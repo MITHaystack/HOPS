@@ -1,0 +1,4 @@
+<map id="hops::MHO_MD5HashGenerator" name="hops::MHO_MD5HashGenerator">
+<area shape="rect" id="node1" title="Class MHO_MD5HashGenerator declares the concrete class which does the work for file streams." alt="" coords="5,95,215,121"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__MD5HashGeneratorMultiType.html" title="Class MHO_MD5HashGeneratorMultiType declares a multi&#45;type streamer with a variadic template parameter..." alt="" coords="6,5,214,47"/>
+</map>

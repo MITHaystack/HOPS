@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacemk4io" kind="namespace" language="Python">
+    <compoundname>mk4io</compoundname>
+    <innernamespace refid="namespacemk4io_1_1mk4io">mk4io::mk4io</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>python-ctypes library for interface with mk4io data-types</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/__init__.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

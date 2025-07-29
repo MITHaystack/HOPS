@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="fplot_2fplot_8c" kind="file" language="C++">
+    <compoundname>fplot/fplot.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="mk4__dfio_8h" local="yes">mk4_dfio.h</includes>
+    <includes refid="fstruct_8h" local="yes">fstruct.h</includes>
+    <includes refid="fplot_8h" local="yes">fplot.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <incdepgraph>
+      <node id="34">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>stdarg.h</label>
+      </node>
+      <node id="11">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="38">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="43">
+        <label>stdint.h</label>
+      </node>
+      <node id="44">
+        <label>mk4_dfio.h</label>
+        <link refid="mk4__dfio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="26">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="33">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="20">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="1">
+        <label>fplot.c</label>
+        <link refid="fplot_2fplot_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>sys/types.h</label>
+      </node>
+      <node id="32">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="9">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="36">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>unistd.h</label>
+      </node>
+      <node id="12">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>complex.h</label>
+      </node>
+      <node id="28">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="8">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="42">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="47">
+        <label>fplot.h</label>
+        <link refid="fplot_8h"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="27">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="6">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="fplot_2fplot_8c_1a0ae1498d31a9eb8ad1f38aa70188136d" prot="public" static="no">
+        <name>POL_LL</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_2fplot_8c_1ae09f2d599dad8f523d1489c2f982abb2" prot="public" static="no">
+        <name>POL_LR</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_2fplot_8c_1ab9a7453c1deb1ece02aad3953c42d0d0" prot="public" static="no">
+        <name>POL_RL</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_2fplot_8c_1a8933d10561b3a974a83569ee74ad4a01" prot="public" static="no">
+        <name>POL_RR</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_2fplot_8c_1aa5ab49c5a177d86ad5d58671980064a4" prot="public" static="no">
+        <name>PS2PDF</name>
+        <initializer>&quot;false&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" line="36" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="fplot_2fplot_8c_1aebde292a58d046e263a1fbee674e027f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char* gen_psname</definition>
+        <argsstring>(char *dn, int ofs, struct mk4_fringe *fringe, int fn)</argsstring>
+        <name>gen_psname</name>
+        <param>
+          <type>char *</type>
+          <declname>dn</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ofs</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__fringe" kindref="compound">mk4_fringe</ref> *</type>
+          <declname>fringe</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" line="47" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" bodystart="47" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="fplot_2fplot_8c_1a0ddf1224851353fc92bfbff6f499fa97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char *argv[])</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>argv</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" line="84" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c" bodystart="84" bodyend="203"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>A<sp/>simple<sp/>little<sp/>program<sp/>to<sp/>access<sp/>and<sp/>display<sp/>fringe<sp/>plots<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>attached<sp/>to<sp/>type<sp/>fringe<sp/>files<sp/>in<sp/>a<sp/>standard<sp/>UNIX<sp/>data<sp/>area.<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>user<sp/>can<sp/>specify<sp/>either<sp/>-x<sp/>or<sp/>-h<sp/>flags,<sp/>which<sp/>result<sp/>in<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>X-window<sp/>on-screen<sp/>display<sp/>or<sp/>direct<sp/>hardcopy.<sp/><sp/>It&apos;s<sp/>like<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>a<sp/>faster,<sp/>friendlier,<sp/>more<sp/>interactive<sp/>(in<sp/>-x<sp/>mode)<sp/>version<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>of<sp/>the<sp/>old<sp/>HP-1000<sp/>FRNGP<sp/>program.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>July<sp/>8<sp/>1993,<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>remove<sp/>mk3<sp/>code<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2010.6.8<sp/><sp/>rjc<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>revised<sp/>as<sp/>with<sp/>fourfit<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2011.11.15<sp/>gbc<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__dfio_8h" kindref="compound">mk4_dfio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fstruct_8h" kindref="compound">fstruct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fplot_8h" kindref="compound">fplot.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>defined<sp/>in<sp/>fourfit/pass_struct.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POL_LL<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POL_RR<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POL_LR<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POL_RL<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>P_tmpdir</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>define<sp/>P_tmpdir<sp/>&quot;/tmp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>P_tmpdir<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PS2PDF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>define<sp/>PS2PDF<sp/>&quot;false&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>PS2PDF<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//<sp/>char<sp/>progname[6]<sp/>=<sp/>&quot;fplot&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>int<sp/>msglev<sp/>=<sp/>2;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">//<sp/>FIXME:<sp/>move<sp/>to<sp/>sub/dfio/gen_psname.c<sp/>(later)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>this<sp/>is<sp/>a<sp/>verbatim<sp/>copy<sp/>from<sp/>fourfit/display_fplot.c<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>note<sp/>that<sp/>offset<sp/>here<sp/>is<sp/>0<sp/>due<sp/>to<sp/>cmd<sp/>line<sp/>processing<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//<sp/>9<sp/>extra<sp/>digits<sp/>should<sp/>suffice<sp/>for<sp/>an<sp/>integer<sp/>fn</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*gen_psname(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*dn,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ofs,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__fringe" kindref="compound">mk4_fringe</ref><sp/>*<ref refid="fourfit3_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fn)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mm<sp/>=<sp/>strlen(dn)+20,<sp/><ref refid="fill__210_8c_1a1daf785e3f68d293c7caa1c756d5cb74" kindref="member">pi</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*nn<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)calloc(mm,<sp/>1),<sp/>*pp,<sp/>*svP,<sp/>*svB,<sp/>*svF;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Incoming<sp/>filename<sp/>is<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>dn<sp/>+<sp/>ofs);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>svP<sp/>=<sp/>pp<sp/>=<sp/>strstr(dn,<sp/></highlight><highlight class="stringliteral">&quot;%P&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pp)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>total<sp/>polarization<sp/>kludge<sp/>--<sp/>see<sp/>fill_208.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(<ref refid="fill__210_8c_1a1daf785e3f68d293c7caa1c756d5cb74" kindref="member">pi</ref><sp/>=<sp/><ref refid="fourfit3_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>-&gt;<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1aa898ae16bd8dd1e85c6712823efd2b12" kindref="member">unused1</ref>[0])<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="fplot_2fplot_8c_1a0ae1498d31a9eb8ad1f38aa70188136d" kindref="member">POL_LL</ref>:<sp/>pp[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;L&apos;</highlight><highlight class="normal">;<sp/>pp[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;L&apos;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="fplot_2fplot_8c_1a8933d10561b3a974a83569ee74ad4a01" kindref="member">POL_RR</ref>:<sp/>pp[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">;<sp/>pp[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="fplot_2fplot_8c_1ae09f2d599dad8f523d1489c2f982abb2" kindref="member">POL_LR</ref>:<sp/>pp[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;L&apos;</highlight><highlight class="normal">;<sp/>pp[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="fplot_2fplot_8c_1ab9a7453c1deb1ece02aad3953c42d0d0" kindref="member">POL_RL</ref>:<sp/>pp[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">;<sp/>pp[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/><sp/><sp/><sp/><sp/>pp[0]<sp/>=<sp/><ref refid="fill__210_8c_1a1daf785e3f68d293c7caa1c756d5cb74" kindref="member">pi</ref>;<sp/><sp/>pp[1]<sp/>=<sp/><ref refid="fill__210_8c_1a1daf785e3f68d293c7caa1c756d5cb74" kindref="member">pi</ref>;<sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>svB<sp/>=<sp/>pp<sp/>=<sp/>strstr(dn,<sp/></highlight><highlight class="stringliteral">&quot;%B&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pp)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pp[0]<sp/>=<sp/><ref refid="fourfit3_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>-&gt;<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>[0];</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pp[1]<sp/>=<sp/><ref refid="fourfit3_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>-&gt;<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>[1];</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>svF<sp/>=<sp/>pp<sp/>=<sp/>strstr(dn,<sp/></highlight><highlight class="stringliteral">&quot;%F&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pp)<sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NB:<sp/>both<sp/>must<sp/>be<sp/>the<sp/>same<sp/>group,<sp/>but<sp/>reducing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>on<sp/>character<sp/>is<sp/>more<sp/>work<sp/>than<sp/>we<sp/>want<sp/>here.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pp[0]<sp/>=<sp/><ref refid="fourfit3_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>-&gt;<ref refid="structmk4__fringe_1a1078ec267cc33da99d889c3de219394b" kindref="member">t203</ref>-&gt;<ref refid="structtype__203_1a6baa2475d927f1a755384247ae53e103" kindref="member">channels</ref>[0].<ref refid="structch__struct_1a01be7041f446352a067ff51e0bd83ea5" kindref="member">ref_chan_id</ref>[0];</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pp[1]<sp/>=<sp/><ref refid="fourfit3_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>-&gt;<ref refid="structmk4__fringe_1a1078ec267cc33da99d889c3de219394b" kindref="member">t203</ref>-&gt;<ref refid="structtype__203_1a6baa2475d927f1a755384247ae53e103" kindref="member">channels</ref>[0].<ref refid="structch__struct_1ac019b8b1e436743aeb96890c5273b1e0" kindref="member">rem_chan_id</ref>[0];</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>snprintf(nn,<sp/>mm,<sp/>dn<sp/>+<sp/>ofs,<sp/>(fn<sp/>&amp;<sp/>0xFFFFFFFF));</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(svP)<sp/>{<sp/>svP[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;%&apos;</highlight><highlight class="normal">;<sp/>svP[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;P&apos;</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(svB)<sp/>{<sp/>svB[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;%&apos;</highlight><highlight class="normal">;<sp/>svB[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;B&apos;</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(svF)<sp/>{<sp/>svF[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;%&apos;</highlight><highlight class="normal">;<sp/>svF[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;F&apos;</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Generated<sp/>Filename<sp/>is<sp/>%s<sp/>(dn<sp/>is<sp/>%s)&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>nn,<sp/>dn);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(nn);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><ref refid="fplot_2fplot_8c_1a0ddf1224851353fc92bfbff6f499fa97" kindref="member">main</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>display,<sp/>ret,<sp/>mk4,<sp/>size,<sp/><ref refid="write__mk4corel_8c_1ab4641dcf43505c4c6a94477f097638f9" kindref="member">quit</ref>,<sp/>prompt,<sp/>poln;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>c,<sp/>cmd[128],<sp/>pmt[128],<sp/>*file_name,<sp/>*psname;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmk4__fringe" kindref="compound">mk4_fringe</ref><sp/>fringe4;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structfstruct" kindref="compound">fstruct</ref><sp/>*files;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*fp;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>ps_file[2048]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;fplot_&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize.<sp/><sp/>No<sp/>fstruct<sp/>entry<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>with<sp/>a<sp/>NULL<sp/>filename<sp/>is<sp/>valid<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>no<sp/>need<sp/>to<sp/>clear<sp/>whole<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>fringe4.<ref refid="structfstruct_1a1230848eb75bd9545ee895dad319a45c" kindref="member">nalloc</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>option<sp/>flags,<sp/>then<sp/>fill<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>the<sp/>files<sp/>structure<sp/>array,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>checking<sp/>the<sp/>file<sp/>type<sp/>implied<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>by<sp/>the<sp/>name<sp/>in<sp/>each<sp/>case<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a41f224f3550cd182f5861fcfd034b734" kindref="member">set_progname</ref>(</highlight><highlight class="stringliteral">&quot;fplot&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1ae2aa6e8913c5d96af651065245a39ef4" kindref="member">set_msglev</ref>(2);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="adump_8h_1a1f55298ff79347a11e3ab86c84b86fa1" kindref="member">parse_cmdline</ref><sp/>(argc,<sp/>argv,<sp/>&amp;files,<sp/>&amp;display,<sp/>&amp;file_name,<sp/>&amp;poln)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Fatal<sp/>error<sp/>interpreting<sp/>command<sp/>line&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(files[0].order<sp/>==<sp/>-1)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;No<sp/>valid<sp/>type-2<sp/>files<sp/>found/specified&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit<sp/>(1);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>all<sp/>filenames<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>i<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="write__mk4corel_8c_1ab4641dcf43505c4c6a94477f097638f9" kindref="member">quit</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>prompt<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(files[i].order<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mk4__dfio_8h_1a469742d13fdece2121b72949eb7eda82" kindref="member">read_mk4fringe</ref><sp/>(files[i++].name,<sp/>&amp;fringe4)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Failure<sp/>reading<sp/>fringe<sp/>file<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>files[i-1].name);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(poln<sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/>fringe4.t203<sp/>!=<sp/>0<sp/>&amp;&amp;<sp/>fringe4.t205<sp/>!=<sp/>0<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fplot_8h_1acf5d0c2883f6f1a3d1f857d87752eb7e" kindref="member">skip_poln</ref>(files[i-1].name,<sp/>fringe4.t203,<sp/>fringe4.t205,<sp/>poln))</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Display<sp/>on<sp/>screen<sp/>if<sp/>xwindow<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(display<sp/>==<sp/><ref refid="fplot_8h_1a1eebd26f16d2443413a32a7e02928cc1" kindref="member">XWINDOW</ref><sp/>||<sp/>display<sp/>==<sp/><ref refid="fplot_8h_1abdd6b2b5a16c24536a51ca8f935213a1" kindref="member">GSDEVICE</ref>)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(display<sp/>==<sp/><ref refid="fplot_8h_1a1eebd26f16d2443413a32a7e02928cc1" kindref="member">XWINDOW</ref>)<sp/>putenv(</highlight><highlight class="stringliteral">&quot;GS_DEVICE=x11&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prompt<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(prompt)<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;File<sp/>%d:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>i-1,<sp/>files[i-1].name);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/><ref refid="mk4__dfio_8h_1ac7c0687c33da159a7698956df91db45d" kindref="member">display_221</ref><sp/>(fringe4.t221,<sp/>1);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(c)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;q&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="write__mk4corel_8c_1ab4641dcf43505c4c6a94477f097638f9" kindref="member">quit</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;p&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>1)<sp/>i<sp/>-=<sp/>2;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>i<sp/>-=<sp/>1;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;n&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="write__mk4corel_8c_1ab4641dcf43505c4c6a94477f097638f9" kindref="member">quit</ref>)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(display<sp/>==<sp/><ref refid="fplot_8h_1adf0a588d45034237124b6c8dd23ad9d0" kindref="member">HARDCOPY</ref><sp/>||<sp/>display<sp/>==<sp/><ref refid="fplot_8h_1acb3ddd8ac0570b11238d6cdd38ac457f" kindref="member">PRINTLPR</ref>)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ps_file<sp/>=<sp/>tmpnam<sp/>(NULL);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>((fp<sp/>=<sp/>fopen<sp/>(ps_file,<sp/>&quot;w&quot;))<sp/>==<sp/>NULL)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy(ps_file,<sp/>P_tmpdir<sp/></highlight><highlight class="stringliteral">&quot;/fplot_XXXXXX&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((fp<sp/>=<sp/>fdopen<sp/>(size=mkstemp(ps_file),<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">))<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;PS<sp/>file<sp/>(%s,%d)<sp/>for<sp/>printing<sp/>failed&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>ps_file,<sp/>size);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size<sp/>=<sp/>strlen<sp/>(fringe4.t221-&gt;pplot);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fwrite<sp/>(fringe4.t221-&gt;pplot,<sp/>1,<sp/>size,<sp/>fp);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose<sp/>(fp);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//sprintf<sp/>(cmd,<sp/>&quot;pplot_print<sp/>%s&quot;,<sp/>ps_file);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf<sp/>(cmd,<sp/></highlight><highlight class="stringliteral">&quot;%s<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(display==<ref refid="fplot_8h_1adf0a588d45034237124b6c8dd23ad9d0" kindref="member">HARDCOPY</ref>)?</highlight><highlight class="stringliteral">&quot;pplot_print&quot;</highlight><highlight class="normal">:</highlight><highlight class="stringliteral">&quot;lpr&quot;</highlight><highlight class="normal">,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>system<sp/>(cmd);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Printing<sp/>hardcopy<sp/>of<sp/>fringe<sp/>plot<sp/>(%s)&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unlink<sp/>(ps_file);<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Tidy<sp/>up<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(display<sp/>==<sp/><ref refid="fplot_8h_1a314f278e51bde415c4c5963757cbdcde" kindref="member">DISKFILE</ref><sp/>||<sp/>display<sp/>==<sp/><ref refid="fplot_8h_1a59b0c7b29ceab89aa4a8c7c0193fb20e" kindref="member">PSTOPDF</ref>)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>psname<sp/>=<sp/>gen_psname(file_name,<sp/>0,<sp/>&amp;fringe4,<sp/>i-1);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//snprintf(ps_file,<sp/>sizeof(ps_file),<sp/>file_name,<sp/>i-1);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memcpy(ps_file,<sp/>psname,<sp/>strlen(psname)+1);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((fp<sp/>=<sp/>fopen<sp/>(ps_file,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">))<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Could<sp/>not<sp/>open<sp/>PS<sp/>file<sp/>(%s)<sp/>for<sp/>output&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size<sp/>=<sp/>strlen<sp/>(fringe4.t221-&gt;pplot);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fwrite<sp/>(fringe4.t221-&gt;pplot,<sp/>1,<sp/>size,<sp/>fp);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose<sp/>(fp);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Created<sp/>PS<sp/>plot<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(display<sp/>==<sp/><ref refid="fplot_8h_1a59b0c7b29ceab89aa4a8c7c0193fb20e" kindref="member">PSTOPDF</ref>)<sp/></highlight><highlight class="comment">/*<sp/>continue<sp/>and<sp/>use<sp/>PS2PDF<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>snprintf(cmd,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(cmd),<sp/></highlight><highlight class="stringliteral">&quot;%s<sp/>%s&quot;</highlight><highlight class="normal">,<sp/><ref refid="fplot_2fplot_8c_1aa5ab49c5a177d86ad5d58671980064a4" kindref="member">PS2PDF</ref>,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(system(cmd))</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;ps2pdf<sp/>na/failed,<sp/>leaving<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(unlink(ps_file))</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Unable<sp/>to<sp/>remove<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Created<sp/>PDF<sp/>from<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>ps_file);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Bad<sp/>value<sp/>for<sp/>display<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Bad<sp/>value<sp/>for<sp/>&apos;display&apos;<sp/>variable:<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>display);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit<sp/>(1);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>exit<sp/>(0);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/fplot.c"/>
+  </compounddef>
+</doxygen>

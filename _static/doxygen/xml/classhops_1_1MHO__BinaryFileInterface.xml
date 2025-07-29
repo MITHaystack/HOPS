@@ -1,0 +1,693 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BinaryFileInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BinaryFileInterface</compoundname>
+    <includes refid="MHO__BinaryFileInterface_8hh" local="no">MHO_BinaryFileInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__BinaryFileInterface_1a4fa470ecf60f3015c8db3b4e56d9f20a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::fCollectKeys</definition>
+        <argsstring></argsstring>
+        <name>fCollectKeys</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="523" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="523" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__BinaryFileInterface_1a29c08842bd7205e50f478c39a115fb27" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref></type>
+        <definition>MHO_BinaryFileStreamer hops::MHO_BinaryFileInterface::fKeyStreamer</definition>
+        <argsstring></argsstring>
+        <name>fKeyStreamer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="470" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="470" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__BinaryFileInterface_1afb20b38fdc750bd3c025edc99f4b78fd" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref></type>
+        <definition>MHO_MD5HashGenerator hops::MHO_BinaryFileInterface::fMD5Generator</definition>
+        <argsstring></argsstring>
+        <name>fMD5Generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="472" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="472" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__BinaryFileInterface_1a32d869e8f8443824742b47d955a0c390" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref></type>
+        <definition>MHO_BinaryFileStreamer hops::MHO_BinaryFileInterface::fObjectStreamer</definition>
+        <argsstring></argsstring>
+        <name>fObjectStreamer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="469" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="469" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__BinaryFileInterface_1a436c4de43e13b4e02279d995130d487b" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__UUIDGenerator" kindref="compound">MHO_UUIDGenerator</ref></type>
+        <definition>MHO_UUIDGenerator hops::MHO_BinaryFileInterface::fUUIDGenerator</definition>
+        <argsstring></argsstring>
+        <name>fUUIDGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="471" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="471" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1abda933dd9a029606cfaf5c80a8d000a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BinaryFileInterface::MHO_BinaryFileInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BinaryFileInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a58f6ad02a3cc9ee1bed083c0c2f04352" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BinaryFileInterface::~MHO_BinaryFileInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BinaryFileInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a84eac8de384126f3306f7a28056cb390" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BinaryFileInterface::Close</definition>
+        <argsstring>()</argsstring>
+        <name>Close</name>
+        <briefdescription>
+<para>Closes file and key/index streamers if open. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="319" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="319" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1ab5e7f1b7ec560ce90ccd5dee2f99f925" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::ExtractFileObjectKeys</definition>
+        <argsstring>(const std::string &amp;filename, std::vector&lt; MHO_FileKey &gt; &amp;keys)</argsstring>
+        <name>ExtractFileObjectKeys</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classhops_1_1MHO__FileKey" kindref="compound">MHO_FileKey</ref> &gt; &amp;</type>
+          <declname>keys</declname>
+        </param>
+        <briefdescription>
+<para>reads an object file and extracts the object file keys while skipping over the object data (cannot be actively streaming to another open file when called) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; MHO_FileKey &gt;&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="184" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="184" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a7d77d3601e622f8082c4faa736ebeb40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::ExtractFileObjectKeysAndOffsets</definition>
+        <argsstring>(const std::string &amp;filename, std::vector&lt; MHO_FileKey &gt; &amp;keys, std::vector&lt; std::size_t &gt; &amp;byte_offsets)</argsstring>
+        <name>ExtractFileObjectKeysAndOffsets</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classhops_1_1MHO__FileKey" kindref="compound">MHO_FileKey</ref> &gt; &amp;</type>
+          <declname>keys</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::size_t &gt; &amp;</type>
+          <declname>byte_offsets</declname>
+        </param>
+        <briefdescription>
+<para>pulls out the object keys and the bytes offsets to the key entry of each object from the start of the file (skipping over object data) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; MHO_FileKey &gt;&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>byte_offsets</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; std::size_t &gt;&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="252" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="252" bodyend="314"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1af54f37f3c026d8ccdb35ce46709b41d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::ExtractIndexFileObjectKeys</definition>
+        <argsstring>(const std::string &amp;index_filename, std::vector&lt; MHO_FileKey &gt; &amp;keys)</argsstring>
+        <name>ExtractIndexFileObjectKeys</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>index_filename</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classhops_1_1MHO__FileKey" kindref="compound">MHO_FileKey</ref> &gt; &amp;</type>
+          <declname>keys</declname>
+        </param>
+        <briefdescription>
+<para>reads an index file and extracts the object file keys (cannot be actively streaming to another open file when called) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keys</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; MHO_FileKey &gt;&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="139" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="139" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1acef0cceb81458fbcb50977c4648a08ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::IsOpenForRead</definition>
+        <argsstring>()</argsstring>
+        <name>IsOpenForRead</name>
+        <briefdescription>
+<para>Checks if the object streamer is open for reading. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if open for read, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="55" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1abbf7aa20fc7d7c87df5ac80b38a875ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::IsOpenForWrite</definition>
+        <argsstring>()</argsstring>
+        <name>IsOpenForWrite</name>
+        <briefdescription>
+<para>Checks if both object and key streamers are open for writing when fCollectKeys is true, otherwise checks only the object streamer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if both streamers are open (when fCollectKeys is true), or if the object streamer is open; false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="38" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="38" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a7f86f460f9e86c4e048f6de7430ea616" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::OpenToAppend</definition>
+        <argsstring>(const std::string &amp;obj_filename, const std::string &amp;index_filename=&quot;&quot;)</argsstring>
+        <name>OpenToAppend</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>obj_filename</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>index_filename</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Opens a file for appending objects and optionally streams keys to an index file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Filename of the object file to open for appending </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional filename of the index file for streaming keys </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if both object and key files are opened successfully, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="87" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="87" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a3e8c504d954b4d084343a15c71e69eb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::OpenToRead</definition>
+        <argsstring>(const std::string &amp;filename)</argsstring>
+        <name>OpenToRead</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Opens a file for reading and checks if it&apos;s open. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file to be opened for reading. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the file is successfully opened for reading, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="109" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="109" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1abb746ef12a698522da7c1b6ad890031a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::OpenToReadAtOffset</definition>
+        <argsstring>(const std::string &amp;filename, uint64_t offset_bytes)</argsstring>
+        <name>OpenToReadAtOffset</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>offset_bytes</declname>
+        </param>
+        <briefdescription>
+<para>Opens a file for reading at a specified byte offset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the file to open and read from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offset_bytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(uint64_t) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the file was successfully opened for reading at the specified offset, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="124" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="124" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a1b26e502a7a8e188f7cb7c0da52ccf1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::OpenToWrite</definition>
+        <argsstring>(const std::string &amp;obj_filename, const std::string &amp;index_filename=&quot;&quot;)</argsstring>
+        <name>OpenToWrite</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>obj_filename</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>index_filename</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Opens a file for writing and optionally opens an index file if provided. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The filename to write object data to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional filename to write key/index data to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if both files are opened successfully, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="64" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="64" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a119de5d49d46aa2c4dc19dd5fd1d4a72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class XReadType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::Read</definition>
+        <argsstring>(XReadType &amp;obj, MHO_FileKey &amp;obj_key)</argsstring>
+        <name>Read</name>
+        <param>
+          <type>XReadType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FileKey" kindref="compound">MHO_FileKey</ref> &amp;</type>
+          <declname>obj_key</declname>
+        </param>
+        <briefdescription>
+<para>Reads the object (XReadType) specified by the object file key from the file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to the object to be filled with data (XReadType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>the</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>File key which points to the object to be read </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if file is open for read, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="401" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="401" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a9cd3d3938723642ae952f44d51a9898c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class XWriteType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::Write</definition>
+        <argsstring>(const XWriteType &amp;obj, const char *shortname)</argsstring>
+        <name>Write</name>
+        <param>
+          <type>const XWriteType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>shortname</declname>
+        </param>
+        <briefdescription>
+<para>Writes an object (must inherit from <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>) to a file (with optional shortname string - overloaded for char array name). Checks if both object and key streamers are open for write if fCollectKeys is true, otherwise checks only object streamer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>the</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>object to be written of type (const XWriteType &amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- optional discriptive char array (C-string) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether writing was successful or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="388" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="388" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1aa30bb6d3bdd6ada166de5c30b40713df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class XWriteType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_BinaryFileInterface::Write</definition>
+        <argsstring>(const XWriteType &amp;obj, const std::string &amp;shortname=&quot;&quot;)</argsstring>
+        <name>Write</name>
+        <param>
+          <type>const XWriteType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>shortname</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Writes an object (must inherit from <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>) to a file (with optional shortname string). Checks if both object and key streamers are open for write if fCollectKeys is true, otherwise checks only object streamer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>the</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>object to be written of type (const XWriteType &amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- optional discriptive string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether writing was successful or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="346" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="346" bodyend="377"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a24d6f076ff799f3fc8f181c0ef3d21db" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BinaryFileInterface::CopyTruncatedString</definition>
+        <argsstring>(const std::string &amp;s, char *arr)</argsstring>
+        <name>CopyTruncatedString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>arr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="502" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="502" bodyend="520"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileInterface_1a9df53ad16227a682d2c74ae4b9daaf95" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class XWriteType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__FileKey" kindref="compound">MHO_FileKey</ref></type>
+        <definition>MHO_FileKey hops::MHO_BinaryFileInterface::GenerateObjectFileKey</definition>
+        <argsstring>(const XWriteType &amp;obj, const std::string &amp;shortname)</argsstring>
+        <name>GenerateObjectFileKey</name>
+        <param>
+          <type>const XWriteType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>shortname</declname>
+        </param>
+        <briefdescription>
+<para>Generates a file key for an object using its type and UUID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The object to generate the file key for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A short name associated with the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The generated <ref refid="classhops_1_1MHO__FileKey" kindref="compound">MHO_FileKey</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="481" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="481" bodyend="500"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileInterface.hh" bodystart="27" bodyend="524"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a84eac8de384126f3306f7a28056cb390" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>Close</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a24d6f076ff799f3fc8f181c0ef3d21db" prot="private" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>CopyTruncatedString</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1ab5e7f1b7ec560ce90ccd5dee2f99f925" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>ExtractFileObjectKeys</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a7d77d3601e622f8082c4faa736ebeb40" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>ExtractFileObjectKeysAndOffsets</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1af54f37f3c026d8ccdb35ce46709b41d4" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>ExtractIndexFileObjectKeys</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a4fa470ecf60f3015c8db3b4e56d9f20a" prot="private" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>fCollectKeys</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a29c08842bd7205e50f478c39a115fb27" prot="private" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>fKeyStreamer</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1afb20b38fdc750bd3c025edc99f4b78fd" prot="private" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>fMD5Generator</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a32d869e8f8443824742b47d955a0c390" prot="private" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>fObjectStreamer</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a436c4de43e13b4e02279d995130d487b" prot="private" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>fUUIDGenerator</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a9df53ad16227a682d2c74ae4b9daaf95" prot="private" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>GenerateObjectFileKey</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1acef0cceb81458fbcb50977c4648a08ff" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>IsOpenForRead</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1abbf7aa20fc7d7c87df5ac80b38a875ae" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>IsOpenForWrite</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1abda933dd9a029606cfaf5c80a8d000a4" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>MHO_BinaryFileInterface</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a7f86f460f9e86c4e048f6de7430ea616" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>OpenToAppend</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a3e8c504d954b4d084343a15c71e69eb0" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>OpenToRead</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1abb746ef12a698522da7c1b6ad890031a" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>OpenToReadAtOffset</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a1b26e502a7a8e188f7cb7c0da52ccf1a" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>OpenToWrite</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a119de5d49d46aa2c4dc19dd5fd1d4a72" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>Read</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1aa30bb6d3bdd6ada166de5c30b40713df" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>Write</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a9cd3d3938723642ae952f44d51a9898c" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>Write</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileInterface_1a58f6ad02a3cc9ee1bed083c0c2f04352" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileInterface</scope><name>~MHO_BinaryFileInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

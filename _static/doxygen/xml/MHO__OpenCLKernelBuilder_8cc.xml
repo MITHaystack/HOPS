@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__OpenCLKernelBuilder_8cc" kind="file" language="C++">
+    <compoundname>MHO_OpenCLKernelBuilder.cc</compoundname>
+    <includes refid="MHO__OpenCLKernelBuilder_8hh" local="yes">MHO_OpenCLKernelBuilder.hh</includes>
+    <includes local="no">cstddef</includes>
+    <includes local="no">cstdlib</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">sstream</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <incdepgraph>
+      <node id="16">
+        <label>atomic</label>
+      </node>
+      <node id="7">
+        <label>cstdint</label>
+      </node>
+      <node id="19">
+        <label>stdexcept</label>
+      </node>
+      <node id="20">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>CL/cl.hpp</label>
+      </node>
+      <node id="14">
+        <label>string</label>
+      </node>
+      <node id="31">
+        <label>map</label>
+      </node>
+      <node id="5">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>fstream</label>
+      </node>
+      <node id="10">
+        <label>ostream</label>
+      </node>
+      <node id="1">
+        <label>MHO_OpenCLKernelBuilder.cc</label>
+        <link refid="MHO__OpenCLKernelBuilder_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_OpenCLConfig.hh</label>
+      </node>
+      <node id="26">
+        <label>tuple</label>
+      </node>
+      <node id="24">
+        <label>ctime</label>
+      </node>
+      <node id="23">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>vector</label>
+      </node>
+      <node id="2">
+        <label>MHO_OpenCLKernelBuilder.hh</label>
+        <link refid="MHO__OpenCLKernelBuilder_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_OpenCLInterface.hh</label>
+        <link refid="MHO__OpenCLInterface_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>sstream</label>
+      </node>
+      <node id="15">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstdlib</label>
+      </node>
+      <node id="8">
+        <label>iostream</label>
+      </node>
+      <node id="32">
+        <label>cstddef</label>
+      </node>
+      <node id="25">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>mutex</label>
+      </node>
+      <node id="17">
+        <label>thread</label>
+      </node>
+      <node id="11">
+        <label>set</label>
+      </node>
+      <node id="30">
+        <label>complex</label>
+      </node>
+      <node id="28">
+        <label>MHO_OpenCLHeaderWrapper.hh</label>
+        <link refid="MHO__OpenCLHeaderWrapper_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>algorithm</label>
+      </node>
+      <node id="13">
+        <label>stdio.h</label>
+      </node>
+      <node id="21">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__OpenCLKernelBuilder_8cc_1af5ab2556d9ebdac60954f800ff96f304" prot="public" static="no">
+        <name>DEBUG_OPENCL_COMPILER_OUTPUT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLKernelBuilder.cc" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLKernelBuilder.cc" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__OpenCLKernelBuilder_8hh" kindref="compound">MHO_OpenCLKernelBuilder.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdlib&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEBUG_OPENCL_COMPILER_OUTPUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//calling<sp/>process<sp/>is<sp/>responsible<sp/>for<sp/>clean<sp/>up<sp/>of<sp/>the<sp/>kernel!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">cl::Kernel*<sp/><ref refid="classhops_1_1MHO__OpenCLKernelBuilder_1a2c730f55bd520cede72b9851d7236f60" kindref="member">MHO_OpenCLKernelBuilder::BuildKernel</ref>(std::string<sp/>SourceFileName,<sp/>std::string<sp/>KernelName,<sp/>std::string<sp/>BuildFlags)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//read<sp/>in<sp/>the<sp/>source<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>sourceCode;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ifstream<sp/>sourceFile(SourceFileName.c_str());</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>sourceCode<sp/>=<sp/>std::string(std::istreambuf_iterator&lt;<sp/>char<sp/>&gt;(sourceFile),<sp/>(std::istreambuf_iterator&lt;<sp/>char<sp/>&gt;()));</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sourceCode.size()<sp/>&lt;<sp/>1)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1f24dc78f2cec992c3a9752db555b06d" kindref="member">msg_warn</ref>(</highlight><highlight class="stringliteral">&quot;opencl&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>kernel<sp/>file:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>SourceFileName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>contains<sp/>no<sp/>code.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Make<sp/>program<sp/>of<sp/>the<sp/>source<sp/>code<sp/>in<sp/>the<sp/>context</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>cl::Program::Sources<sp/>source(1,<sp/>std::make_pair(sourceCode.c_str(),<sp/>sourceCode.length()<sp/>+<sp/>1));</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>cl::Program<sp/><ref refid="difx2mark4_8c_1a02aac88fde921d1659473af995fa005c" kindref="member">program</ref>(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;GetContext(),<sp/>source);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//set<sp/>the<sp/>build<sp/>options</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>std::stringstream<sp/>options;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>options.str(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>options<sp/>&lt;&lt;<sp/>BuildFlags;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>options<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>-I<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1a9b785d90222ea57f8dcd4c631f7f3ebc" kindref="member">GetKernelPath</ref>();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a70d2a69334c19db04365eb32a1d26447" kindref="member">msg_info</ref>(</highlight><highlight class="stringliteral">&quot;opencl&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Attempting<sp/>to<sp/>build<sp/>the<sp/>kernel<sp/>found<sp/>in:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>SourceFileName<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Build<sp/>program<sp/>for<sp/>these<sp/>specific<sp/>devices</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>use<sp/>only<sp/>target<sp/>device!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_VECTOR_TYPE&lt;<sp/>cl::Device<sp/>&gt;<sp/>devices;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>devices.push_back(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;GetDevice());</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="difx2mark4_8c_1a02aac88fde921d1659473af995fa005c" kindref="member">program</ref>.build(devices,<sp/>options.str().c_str());</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal">(cl::Error<sp/>error)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;There<sp/>was<sp/>an<sp/>error<sp/>compiling<sp/>the<sp/>kernel:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>KernelName<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;In<sp/>source<sp/>file:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>SourceFileName<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Here<sp/>is<sp/>the<sp/>information<sp/>from<sp/>the<sp/>OpenCL<sp/>C++<sp/>API:&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>error.what()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>error.err()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Build<sp/>Status:<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/><ref refid="difx2mark4_8c_1a02aac88fde921d1659473af995fa005c" kindref="member">program</ref>.getBuildInfo&lt;<sp/>CL_PROGRAM_BUILD_STATUS<sp/>&gt;(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" kindref="member">GetDevice</ref>())<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Build<sp/>Options:\t&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/><ref refid="difx2mark4_8c_1a02aac88fde921d1659473af995fa005c" kindref="member">program</ref>.getBuildInfo&lt;<sp/>CL_PROGRAM_BUILD_OPTIONS<sp/>&gt;(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" kindref="member">GetDevice</ref>())<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Build<sp/>Log:\t<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="difx2mark4_8c_1a02aac88fde921d1659473af995fa005c" kindref="member">program</ref>.getBuildInfo&lt;<sp/>CL_PROGRAM_BUILD_LOG<sp/>&gt;(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" kindref="member">GetDevice</ref>())</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>s.str()<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::exit(1);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG_OPENCL_COMPILER_OUTPUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::stringstream<sp/>s;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Build<sp/>flags<sp/>for<sp/>Kernel<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>KernelName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>:<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>BuildFlags;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Build<sp/>Log<sp/>for<sp/>Kernel<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>KernelName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>:\t<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>std::stringstream<sp/>build_log_stream;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>build_log_stream<sp/>&lt;&lt;<sp/><ref refid="difx2mark4_8c_1a02aac88fde921d1659473af995fa005c" kindref="member">program</ref>.getBuildInfo&lt;<sp/>CL_PROGRAM_BUILD_LOG<sp/>&gt;(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" kindref="member">GetDevice</ref>())</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>build_log;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>build_log<sp/>=<sp/>build_log_stream.str();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Make<sp/>kernel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>cl_int<sp/>err_code<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>cl::Kernel*<sp/>kernel;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kernel<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>cl::Kernel(<ref refid="difx2mark4_8c_1a02aac88fde921d1659473af995fa005c" kindref="member">program</ref>,<sp/>KernelName.c_str(),<sp/>&amp;err_code);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal">(cl::Error<sp/>error)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Kernel<sp/>construction<sp/>of<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>KernelName<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>failed<sp/>with<sp/>error<sp/>code:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>error.what()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;:<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>error.err()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1aec19c8ecee43376c6998e9cd8c85ddb1" kindref="member">GetErrorMessage</ref>(error.err())<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(build_log.size()<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>build_log;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>s.str()<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::exit(1);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>kernel;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLKernelBuilder.cc"/>
+  </compounddef>
+</doxygen>

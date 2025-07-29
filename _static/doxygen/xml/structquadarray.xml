@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structquadarray" kind="struct" language="C++" prot="public">
+    <compoundname>quadarray</compoundname>
+    <includes refid="aedata_8h" local="no">aedata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structquadarray_1aef7557be1185d4c12e833a7b6ae7cc58" prot="public" static="no" mutable="no">
+        <type><ref refid="structquadsum" kindref="compound">quadsum</ref></type>
+        <definition>quadsum quadarray::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="54" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadarray_1a0a85fc5d4d111a69e4f55dfad621f728" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadarray::flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="52" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadarray_1a9e980a43d5b40ec35a1bd87a5404c5be" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadarray::index[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="53" column="4" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadarray_1a53b38c5feb469cdf60384c82d905da43" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadarray::keyval</definition>
+        <argsstring></argsstring>
+        <name>keyval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="51" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadarray_1af204edb0d5397fe21f2218a5f637b416" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadarray::lastorder</definition>
+        <argsstring></argsstring>
+        <name>lastorder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="50" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadarray_1a9e1732285269b2881a4c96148ad766a6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadarray::order</definition>
+        <argsstring></argsstring>
+        <name>order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="49" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>quadsum</label>
+        <link refid="structquadsum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>azimuth</edgelabel>
+          <edgelabel>cl_amp</edgelabel>
+          <edgelabel>elevation</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>quad</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>scan_offset</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>quadarray</label>
+        <link refid="structquadarray"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="48" bodyend="55"/>
+    <listofallmembers>
+      <member refid="structquadarray_1aef7557be1185d4c12e833a7b6ae7cc58" prot="public" virt="non-virtual"><scope>quadarray</scope><name>data</name></member>
+      <member refid="structquadarray_1a0a85fc5d4d111a69e4f55dfad621f728" prot="public" virt="non-virtual"><scope>quadarray</scope><name>flag</name></member>
+      <member refid="structquadarray_1a9e980a43d5b40ec35a1bd87a5404c5be" prot="public" virt="non-virtual"><scope>quadarray</scope><name>index</name></member>
+      <member refid="structquadarray_1a53b38c5feb469cdf60384c82d905da43" prot="public" virt="non-virtual"><scope>quadarray</scope><name>keyval</name></member>
+      <member refid="structquadarray_1af204edb0d5397fe21f2218a5f637b416" prot="public" virt="non-virtual"><scope>quadarray</scope><name>lastorder</name></member>
+      <member refid="structquadarray_1a9e1732285269b2881a4c96148ad766a6" prot="public" virt="non-virtual"><scope>quadarray</scope><name>order</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

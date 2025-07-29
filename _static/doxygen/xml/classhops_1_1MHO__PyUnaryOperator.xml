@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyUnaryOperator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PyUnaryOperator</compoundname>
+    <includes refid="MHO__PyUnaryOperator_8hh" local="no">MHO_PyUnaryOperator.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyUnaryOperator_1afc5730648531fb6de028f5989c8f709e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_PyUnaryOperator::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" line="40" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyUnaryOperator_1a57a0dfbfdf02019928b8d3944238f263" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_PyUnaryOperator::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" line="38" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyUnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Operator::MHO_Operator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Operator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/src/MHO_Operator.cc" bodystart="7" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" bodystart="34" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyUnaryOperator_1afc5730648531fb6de028f5989c8f709e" prot="public" virt="virtual"><scope>hops::MHO_PyUnaryOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryOperator_1a57a0dfbfdf02019928b8d3944238f263" prot="public" virt="virtual"><scope>hops::MHO_PyUnaryOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_PyUnaryOperator</scope><name>MHO_Operator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

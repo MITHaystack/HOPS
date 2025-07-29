@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structcompress__identity" kind="struct" language="C++" prot="public">
+    <compoundname>compress_identity</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structcompress__identity_1a96f19c34c0dfbca0ecc81028715b02d7" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* compress_identity::affiliation</definition>
+        <argsstring></argsstring>
+        <name>affiliation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="33" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1a9baeaf095d10219bd3ea595c46641de9" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* compress_identity::author</definition>
+        <argsstring></argsstring>
+        <name>author</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="32" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1a101a189a40e1dc1fd6611b0d802ae16c" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* compress_identity::copyright</definition>
+        <argsstring></argsstring>
+        <name>copyright</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="30" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1aed85a988c537b2cc82dcf3295ebce5d2" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* compress_identity::date</definition>
+        <argsstring></argsstring>
+        <name>date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="29" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1a9147f47730eab61cf8c52a0a1053b8a6" prot="public" static="no" mutable="no">
+        <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+        <definition>U32 compress_identity::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="24" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1a002a444ed1e99141e1c8bd66f56a361e" prot="public" static="no" mutable="no">
+        <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+        <definition>U32 compress_identity::memory</definition>
+        <argsstring></argsstring>
+        <name>memory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="25" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1a9b5ce6d07a38680ff538472d4d9055f4" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* compress_identity::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="27" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1a4cc1d63bece0fb4557e52cb3eea33a5e" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* compress_identity::vendor</definition>
+        <argsstring></argsstring>
+        <name>vendor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="34" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcompress__identity_1af23fc408a82faedf38eb1f8c2f286cc1" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* compress_identity::version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="28" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>compress_identity</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>affiliation</edgelabel>
+          <edgelabel>author</edgelabel>
+          <edgelabel>copyright</edgelabel>
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>vendor</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>id</edgelabel>
+          <edgelabel>memory</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="23" bodyend="35"/>
+    <listofallmembers>
+      <member refid="structcompress__identity_1a96f19c34c0dfbca0ecc81028715b02d7" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>affiliation</name></member>
+      <member refid="structcompress__identity_1a9baeaf095d10219bd3ea595c46641de9" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>author</name></member>
+      <member refid="structcompress__identity_1a101a189a40e1dc1fd6611b0d802ae16c" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>copyright</name></member>
+      <member refid="structcompress__identity_1aed85a988c537b2cc82dcf3295ebce5d2" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>date</name></member>
+      <member refid="structcompress__identity_1a9147f47730eab61cf8c52a0a1053b8a6" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>id</name></member>
+      <member refid="structcompress__identity_1a002a444ed1e99141e1c8bd66f56a361e" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>memory</name></member>
+      <member refid="structcompress__identity_1a9b5ce6d07a38680ff538472d4d9055f4" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>name</name></member>
+      <member refid="structcompress__identity_1a4cc1d63bece0fb4557e52cb3eea33a5e" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>vendor</name></member>
+      <member refid="structcompress__identity_1af23fc408a82faedf38eb1f8c2f286cc1" prot="public" virt="non-virtual"><scope>compress_identity</scope><name>version</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

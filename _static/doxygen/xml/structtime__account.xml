@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtime__account" kind="struct" language="C++" prot="public">
+    <compoundname>time_account</compoundname>
+    <includes refid="account_8h" local="no">account.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtime__account_1a6292e5093d352044b96c55f418959da6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int time_account::namlen</definition>
+        <argsstring></argsstring>
+        <name>namlen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" line="16" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtime__account_1aacc04d6b157b0824643915d6ab9f0ce4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double time_account::real_time</definition>
+        <argsstring></argsstring>
+        <name>real_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtime__account_1a71fe8d1989802bce37d48007a47174cd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char time_account::segment_name[NAME_LEN+1]</definition>
+        <argsstring>[NAME_LEN+1]</argsstring>
+        <name>segment_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" line="15" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtime__account_1a291bdb47352fb7782e0fc9cc85858a3c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double time_account::system_time</definition>
+        <argsstring></argsstring>
+        <name>system_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtime__account_1a0b99d889daeb5f3953ad35d6b96ea3e3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int time_account::times_called</definition>
+        <argsstring></argsstring>
+        <name>times_called</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtime__account_1a7f72f7e7aa20b4454a34f7cfd36c845d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double time_account::user_time</definition>
+        <argsstring></argsstring>
+        <name>user_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" line="18" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>time_account</label>
+        <link refid="structtime__account"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>real_time</edgelabel>
+          <edgelabel>system_time</edgelabel>
+          <edgelabel>user_time</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>segment_name</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>namlen</edgelabel>
+          <edgelabel>times_called</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" line="13" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/account.h" bodystart="14" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structtime__account_1a6292e5093d352044b96c55f418959da6" prot="public" virt="non-virtual"><scope>time_account</scope><name>namlen</name></member>
+      <member refid="structtime__account_1aacc04d6b157b0824643915d6ab9f0ce4" prot="public" virt="non-virtual"><scope>time_account</scope><name>real_time</name></member>
+      <member refid="structtime__account_1a71fe8d1989802bce37d48007a47174cd" prot="public" virt="non-virtual"><scope>time_account</scope><name>segment_name</name></member>
+      <member refid="structtime__account_1a291bdb47352fb7782e0fc9cc85858a3c" prot="public" virt="non-virtual"><scope>time_account</scope><name>system_time</name></member>
+      <member refid="structtime__account_1a0b99d889daeb5f3953ad35d6b96ea3e3" prot="public" virt="non-virtual"><scope>time_account</scope><name>times_called</name></member>
+      <member refid="structtime__account_1a7f72f7e7aa20b4454a34f7cfd36c845d" prot="public" virt="non-virtual"><scope>time_account</scope><name>user_time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

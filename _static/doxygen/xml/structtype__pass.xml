@@ -1,0 +1,617 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__pass" kind="struct" language="C++" prot="public">
+    <compoundname>type_pass</compoundname>
+    <includes refid="pass__struct_8h" local="no">pass_struct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::ap_off</definition>
+        <argsstring></argsstring>
+        <name>ap_off</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="87" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::autocorr</definition>
+        <argsstring></argsstring>
+        <name>autocorr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="92" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::channels</definition>
+        <argsstring></argsstring>
+        <name>channels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="83" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structc__block" kindref="compound">c_block</ref></type>
+        <definition>struct c_block type_pass::control</definition>
+        <argsstring></argsstring>
+        <name>control</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="97" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a6d7dd24350e717f41983b9bc32043f7a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::linpol[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>linpol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="89" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::nfreq</definition>
+        <argsstring></argsstring>
+        <name>nfreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="82" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1af29bc82bf233f06adef501e97eabf545" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::nlags</definition>
+        <argsstring></argsstring>
+        <name>nlags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="84" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::npctones</definition>
+        <argsstring></argsstring>
+        <name>npctones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="86" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::npols</definition>
+        <argsstring></argsstring>
+        <name>npols</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="90" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1aab28ad7e084b73985e519840f3b66840" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::num_ap</definition>
+        <argsstring></argsstring>
+        <name>num_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="85" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structfreq__corel" kindref="compound">freq_corel</ref></type>
+        <definition>struct freq_corel type_pass::pass_data[MAX_CHAN]</definition>
+        <argsstring>[MAX_CHAN]</argsstring>
+        <name>pass_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="75" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::pci[2][MAX_CHAN]</definition>
+        <argsstring>[2][MAX_CHAN]</argsstring>
+        <name>pci</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="93" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a51a968cbc3828680104b0d09c803993f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::pcinband[2][MAX_CHAN][MAX_PCF]</definition>
+        <argsstring>[2][MAX_CHAN][MAX_PCF]</argsstring>
+        <name>pcinband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="94" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::pol</definition>
+        <argsstring></argsstring>
+        <name>pol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="88" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a5185b3c38938850bcd4f34266a367cb3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_pass::pprods_present[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>pprods_present</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="91" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1ab46b56d56a747061cd3d394568075a9f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_pass::reftime</definition>
+        <argsstring></argsstring>
+        <name>reftime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="97" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_pass::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="95" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_pass::stop</definition>
+        <argsstring></argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="96" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="18">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>gat_struct</label>
+        <link refid="structgat__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>on_delay</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>spectral</label>
+        <link refid="structspectral"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>im</edgelabel>
+          <edgelabel>re</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>data_corel</label>
+        <link refid="structdata__corel"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>lsbfrac</edgelabel>
+          <edgelabel>usbfrac</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>sband</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>ref_sdata</edgelabel>
+          <edgelabel>rem_sdata</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>sbdelay</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>apdata_ll</edgelabel>
+          <edgelabel>apdata_lr</edgelabel>
+          <edgelabel>apdata_rl</edgelabel>
+          <edgelabel>apdata_rr</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>pc_phasor</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>freq_corel</label>
+        <link refid="structfreq__corel"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>frequency</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>mean_lcp_trk_err</edgelabel>
+          <edgelabel>mean_rcp_trk_err</edgelabel>
+          <edgelabel>pc_freqs</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>bbc_lcp</edgelabel>
+          <edgelabel>bbc_rcp</edgelabel>
+          <edgelabel>trk_lcp</edgelabel>
+          <edgelabel>trk_rcp</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>ch_lsb_lcp</edgelabel>
+          <edgelabel>ch_lsb_rcp</edgelabel>
+          <edgelabel>ch_usb_lcp</edgelabel>
+          <edgelabel>ch_usb_rcp</edgelabel>
+          <edgelabel>fgroup</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ch_idx</edgelabel>
+          <edgelabel>data_alloc</edgelabel>
+          <edgelabel>index</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>lag_data</label>
+        <link refid="unionlag__data"/>
+        <childnode refid="18" relation="usage">
+          <edgelabel>apl</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>spec</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>ag</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>cg</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>cpl</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>dstats</label>
+        <link refid="structdstats"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>flag_wgt</label>
+        <link refid="unionflag__wgt"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>istats</label>
+        <link refid="structistats"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops_complex *</label>
+      </node>
+      <node id="21">
+        <label>counts_global</label>
+        <link refid="structcounts__global"/>
+        <childnode refid="22" relation="usage">
+          <edgelabel>lags</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>hops_complex</label>
+      </node>
+      <node id="4">
+        <label>c_block</label>
+        <link refid="structc__block"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>adhoc_amp</edgelabel>
+          <edgelabel>adhoc_period</edgelabel>
+          <edgelabel>adhoc_poly</edgelabel>
+          <edgelabel>adhoc_tref</edgelabel>
+          <edgelabel>avxpzoom</edgelabel>
+          <edgelabel>chid_rf</edgelabel>
+          <edgelabel>dec_offset</edgelabel>
+          <edgelabel>dr_window</edgelabel>
+          <edgelabel>fmatch_bw_pct</edgelabel>
+          <edgelabel>ion_window</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>dc_block</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>ion_smooth</edgelabel>
+          <edgelabel>knot</edgelabel>
+          <edgelabel>optimize_closure</edgelabel>
+          <edgelabel>skip</edgelabel>
+          <edgelabel>switched_mode</edgelabel>
+          <edgelabel>switched_period</edgelabel>
+          <edgelabel>use_samples</edgelabel>
+          <edgelabel>x_crc</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>adhoc_file</edgelabel>
+          <edgelabel>adhoc_file_chans</edgelabel>
+          <edgelabel>adhoc_flag_files</edgelabel>
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>chid</edgelabel>
+          <edgelabel>f_group</edgelabel>
+          <edgelabel>plot_data_dir</edgelabel>
+          <edgelabel>psamplers</edgelabel>
+          <edgelabel>sampler_codes</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>pc_mode</edgelabel>
+          <edgelabel>pc_period</edgelabel>
+          <edgelabel>pc_tonemask</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>accept_sbs</edgelabel>
+          <edgelabel>adhoc_phase</edgelabel>
+          <edgelabel>avxplopt</edgelabel>
+          <edgelabel>est_pc_manual</edgelabel>
+          <edgelabel>gen_cf_record</edgelabel>
+          <edgelabel>interpolator</edgelabel>
+          <edgelabel>ion_npts</edgelabel>
+          <edgelabel>mbd_anchor</edgelabel>
+          <edgelabel>mbdrplopt</edgelabel>
+          <edgelabel>mixed_mode_rot</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cb_chain</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>gates</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>delay_offs</edgelabel>
+          <edgelabel>delay_offs_pol</edgelabel>
+          <edgelabel>ionosphere</edgelabel>
+          <edgelabel>lsb_offset</edgelabel>
+          <edgelabel>pc_delay_l</edgelabel>
+          <edgelabel>pc_delay_r</edgelabel>
+          <edgelabel>pc_freq</edgelabel>
+          <edgelabel>pc_phase</edgelabel>
+          <edgelabel>pc_phase_offset</edgelabel>
+          <edgelabel>sampler_delay</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="13">
+        <label>interp_sdata</label>
+        <link refid="structinterp__sdata"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mt_delay</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>bigneg</edgelabel>
+          <edgelabel>bigpos</edgelabel>
+          <edgelabel>neg</edgelabel>
+          <edgelabel>pcweight_lcp</edgelabel>
+          <edgelabel>pcweight_rcp</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>mt_pcal</edgelabel>
+          <edgelabel>phasecal_lcp</edgelabel>
+          <edgelabel>phasecal_rcp</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>type_pass</label>
+        <link refid="structtype__pass"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>reftime</edgelabel>
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ap_off</edgelabel>
+          <edgelabel>autocorr</edgelabel>
+          <edgelabel>channels</edgelabel>
+          <edgelabel>linpol</edgelabel>
+          <edgelabel>nfreq</edgelabel>
+          <edgelabel>nlags</edgelabel>
+          <edgelabel>npctones</edgelabel>
+          <edgelabel>npols</edgelabel>
+          <edgelabel>num_ap</edgelabel>
+          <edgelabel>pci</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>pass_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_120</label>
+        <link refid="structtype__120"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>fr_delay</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>status</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>ld</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>fw</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>char</label>
+      </node>
+      <node id="22">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="79" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="80" bodyend="99"/>
+    <listofallmembers>
+      <member refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" prot="public" virt="non-virtual"><scope>type_pass</scope><name>ap_off</name></member>
+      <member refid="structtype__pass_1ad3a097b14f3e2d59ad45bfd87247e534" prot="public" virt="non-virtual"><scope>type_pass</scope><name>autocorr</name></member>
+      <member refid="structtype__pass_1a722023239c4c5f88f2cdab52c6675f3c" prot="public" virt="non-virtual"><scope>type_pass</scope><name>channels</name></member>
+      <member refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" prot="public" virt="non-virtual"><scope>type_pass</scope><name>control</name></member>
+      <member refid="structtype__pass_1a6d7dd24350e717f41983b9bc32043f7a" prot="public" virt="non-virtual"><scope>type_pass</scope><name>linpol</name></member>
+      <member refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" prot="public" virt="non-virtual"><scope>type_pass</scope><name>nfreq</name></member>
+      <member refid="structtype__pass_1af29bc82bf233f06adef501e97eabf545" prot="public" virt="non-virtual"><scope>type_pass</scope><name>nlags</name></member>
+      <member refid="structtype__pass_1a4a9381635ea509e1c5b3436e6d7e340e" prot="public" virt="non-virtual"><scope>type_pass</scope><name>npctones</name></member>
+      <member refid="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" prot="public" virt="non-virtual"><scope>type_pass</scope><name>npols</name></member>
+      <member refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" prot="public" virt="non-virtual"><scope>type_pass</scope><name>num_ap</name></member>
+      <member refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" prot="public" virt="non-virtual"><scope>type_pass</scope><name>pass_data</name></member>
+      <member refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" prot="public" virt="non-virtual"><scope>type_pass</scope><name>pci</name></member>
+      <member refid="structtype__pass_1a51a968cbc3828680104b0d09c803993f" prot="public" virt="non-virtual"><scope>type_pass</scope><name>pcinband</name></member>
+      <member refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" prot="public" virt="non-virtual"><scope>type_pass</scope><name>pol</name></member>
+      <member refid="structtype__pass_1a5185b3c38938850bcd4f34266a367cb3" prot="public" virt="non-virtual"><scope>type_pass</scope><name>pprods_present</name></member>
+      <member refid="structtype__pass_1ab46b56d56a747061cd3d394568075a9f" prot="public" virt="non-virtual"><scope>type_pass</scope><name>reftime</name></member>
+      <member refid="structtype__pass_1a7f0a8500bc9bf4bd078a3a6a789f5b15" prot="public" virt="non-virtual"><scope>type_pass</scope><name>start</name></member>
+      <member refid="structtype__pass_1a46bf9319278df9a27f01d0bc49fc086c" prot="public" virt="non-virtual"><scope>type_pass</scope><name>stop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

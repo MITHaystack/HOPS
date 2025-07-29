@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="delay__rate_8c" kind="file" language="C++">
+    <compoundname>delay_rate.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="hops__complex_8h" local="yes">hops_complex.h</includes>
+    <includes local="no">fftw3.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="param__struct_8h" local="yes">param_struct.h</includes>
+    <includes refid="pass__struct_8h" local="yes">pass_struct.h</includes>
+    <incdepgraph>
+      <node id="33">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="37">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>plot_struct.h</label>
+        <link refid="plot__struct_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="22">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="42">
+        <label>stdint.h</label>
+      </node>
+      <node id="27">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="32">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="6">
+        <label>fftw3.h</label>
+      </node>
+      <node id="21">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>param_struct.h</label>
+        <link refid="param__struct_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="14">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>sys/types.h</label>
+      </node>
+      <node id="31">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="10">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="35">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>complex.h</label>
+      </node>
+      <node id="29">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>pass_struct.h</label>
+        <link refid="pass__struct_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="9">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>math.h</label>
+      </node>
+      <node id="30">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="41">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>delay_rate.c</label>
+        <link refid="delay__rate_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="28">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="7">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="delay__rate_8c_1ad7216df844a6a92d5e563cee371d745e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void delay_rate</definition>
+        <argsstring>(struct type_pass *pass, int fr, hops_complex rate_spectrum[MAXAP])</argsstring>
+        <name>delay_rate</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fr</declname>
+        </param>
+        <param>
+          <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+          <declname>rate_spectrum</declname>
+          <array>[MAXAP]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/delay_rate.c" line="17" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/delay_rate.c" bodystart="17" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Subroutine<sp/>to<sp/>transform<sp/>to<sp/>delay<sp/>rate<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>domain.<sp/>Calculates<sp/>fringe<sp/>rate<sp/>spectrum<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>then<sp/>grids<sp/>it<sp/>into<sp/>delay<sp/>rate.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>8/2/91<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>cmn<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>2012.1.4<sp/>-<sp/>rjc<sp/>-<sp/>remove<sp/>pcal<sp/>rotation<sp/>here<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hops__complex_8h" kindref="compound">hops_complex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fftw3.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="param__struct_8h" kindref="compound">param_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pass__struct_8h" kindref="compound">pass_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="delay__rate_8c_1ad7216df844a6a92d5e563cee371d745e" kindref="member">delay_rate</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fr,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>rate_spectrum[<ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>])</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>apval,<sp/>a;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>fringe_spect[<ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>*2],<sp/>X[<ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>*2];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fl,<sp/>L,<sp/>ap,<sp/>np,<sp/>i,<sp/>j,<sp/>l_int,<sp/>l_int2,<sp/>size;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fft_size<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stnpol[2][4]<sp/>=<sp/>{0,<sp/>1,<sp/>0,<sp/>1,<sp/>0,<sp/>1,<sp/>1,<sp/>0};<sp/></highlight><highlight class="comment">//<sp/>[stn][pol]<sp/>=<sp/>0:L,<sp/>1:R</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b,<sp/>l_fp,<sp/>frac;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/>*pd;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*datum;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__param" kindref="compound">type_param</ref><sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__status" kindref="compound">type_status</ref><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>fftw_plan<sp/>fftplan;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>pd<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref><sp/>+<sp/>fr;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>np<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a23136c78001ae4f87aee23a5a2b2f622" kindref="member">drsp_size</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>np<sp/>=<sp/>#<sp/>of<sp/>ap&apos;s<sp/>in<sp/>FFT<sp/>&lt;<sp/>MAXAP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>size<sp/>=<sp/>np<sp/>*<sp/>4;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>This<sp/>is<sp/>size<sp/>of<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Smaller<sp/>delay<sp/>rate<sp/>spectrum<sp/>option<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(size<sp/>&gt;<sp/><ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>*2)<sp/>size<sp/>=<sp/><ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>*2;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a9ac9125292de28099df1b68a3de5b110" kindref="member">f_rate_size</ref><sp/>=<sp/>size;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(size<sp/>!=<sp/>fft_size)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>recompute<sp/>fft<sp/>quantities<sp/>when<sp/>size<sp/>changes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fft_size<sp/>=<sp/>size;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fftplan<sp/>=<sp/>fftw_plan_dft_1d<sp/>(fft_size,<sp/>(fftw_complex*)<sp/>X,<sp/>(fftw_complex*)<sp/>X,<sp/>FFTW_FORWARD,<sp/>FFTW_MEASURE);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Fill<sp/>data<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>size;<sp/>i++)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="structtype__status_1a87013423c03d177e66e3c2ade33c4560" kindref="member">ap</ref><sp/>=<sp/>0;<sp/><ref refid="structtype__status_1a87013423c03d177e66e3c2ade33c4560" kindref="member">ap</ref><sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;<sp/><ref refid="structtype__status_1a87013423c03d177e66e3c2ade33c4560" kindref="member">ap</ref>++)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datum<sp/>=<sp/>pd-&gt;<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref><sp/>+<sp/><ref refid="structtype__status_1a87013423c03d177e66e3c2ade33c4560" kindref="member">ap</ref><sp/>+<sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>apval<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" kindref="member">sbdelay</ref>[<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a56794c908ad4f65e339cf70c5c6545b1" kindref="member">lag</ref>];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Weight<sp/>by<sp/>fractional<sp/>AP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>frac<sp/><sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>frac<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>When<sp/>both<sp/>sidebands<sp/>added<sp/>together,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>we<sp/>use<sp/>the<sp/>mean<sp/>fraction<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>&amp;&amp;<sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0))<sp/>frac<sp/>/=<sp/>2.0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[<ref refid="structtype__status_1a87013423c03d177e66e3c2ade33c4560" kindref="member">ap</ref>]<sp/>=<sp/>apval<sp/>*<sp/>frac;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_execute<sp/>(fftplan);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>size;<sp/>i++)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>=<sp/>i<sp/>-<sp/>size<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(j<sp/>&lt;<sp/>0)<sp/>j<sp/>+=<sp/>size;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fringe_spect[i]<sp/>=<sp/>X[j];</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/>=<sp/>(pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[fr].<ref refid="structfreq__corel_1aa3a89400497ddcd5df56ce62c067dfa3" kindref="member">frequency</ref><sp/>/<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1afcd199da31a26e7885853c902b413b90" kindref="member">ref_freq</ref>)<sp/>*<sp/>size<sp/>/<sp/>np;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/<sp/>pass-&gt;pass_data[0].frequency)<sp/>*<sp/>size<sp/>/<sp/>np;<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Grid<sp/>fringe<sp/>rate<sp/>spectrum<sp/>to<sp/>delay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>rate<sp/>spectrum.<sp/>rate[L]<sp/>is<sp/>interpolated<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>from<sp/>fringe[l_int]<sp/>&amp;<sp/>fringe[l_int2]<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(L<sp/>=<sp/>0;<sp/>L<sp/>&lt;<sp/>np;<sp/>L++)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>l_fp<sp/>=<sp/>fmod<sp/>((L<sp/>-<sp/>(np/2)<sp/>)<sp/>*<sp/>b<sp/>+<sp/>(size<sp/>*<sp/>1.5)<sp/>,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)size)<sp/>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>l_int<sp/>=<sp/>(int)l_fp;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>l_int2<sp/>=<sp/>l_int+1;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(l_int<sp/>&lt;<sp/>0)<sp/>l_int<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(l_int2<sp/>&gt;<sp/>(size-1))<sp/>l_int2<sp/>=<sp/>size<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rate_spectrum[L]<sp/>=<sp/>fringe_spect[l_int]<sp/>*<sp/>(1.0<sp/>-<sp/>l_fp<sp/>+<sp/>l_int)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>fringe_spect[l_int2]<sp/>*<sp/>(l_fp<sp/>-<sp/>l_int);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//msg(&quot;fr<sp/>%d<sp/>cabs(rate_spectrum[%d])<sp/>%f&quot;,<sp/>-3,<sp/>fr,<sp/>L,<sp/>cabs<sp/>(rate_spectrum[L]));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/delay_rate.c"/>
+  </compounddef>
+</doxygen>

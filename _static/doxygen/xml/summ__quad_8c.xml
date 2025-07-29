@@ -1,0 +1,586 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="summ__quad_8c" kind="file" language="C++">
+    <compoundname>summ_quad.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="aedata_8h" local="yes">aedata.h</includes>
+    <includes refid="summary_8h" local="yes">summary.h</includes>
+    <includes refid="aedit_8h" local="yes">aedit.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>aedata.h</label>
+        <link refid="aedata_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>stdarg.h</label>
+      </node>
+      <node id="15">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="50">
+        <label>usearray.h</label>
+        <link refid="usearray_8h"/>
+      </node>
+      <node id="42">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>sys/times.h</label>
+      </node>
+      <node id="21">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="25">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="8">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>stdint.h</label>
+      </node>
+      <node id="9">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="51">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="24">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>psplot.h</label>
+        <link refid="psplot_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="17">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>sys/types.h</label>
+      </node>
+      <node id="36">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="13">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="40">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="19">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>sizelimits.h</label>
+        <link refid="sizelimits_8h"/>
+      </node>
+      <node id="16">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>complex.h</label>
+      </node>
+      <node id="32">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="56">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="22">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="46">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>pstruct.h</label>
+        <link refid="pstruct_8h"/>
+      </node>
+      <node id="1">
+        <label>summ_quad.c</label>
+        <link refid="summ__quad_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="6">
+        <label>summary.h</label>
+        <link refid="summary_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="31">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="10">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="summ__quad_8c_1a809a6807fd01083b43088eeb5c8c3de8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int summ_quad</definition>
+        <argsstring>(quadarray *qdata, int mode)</argsstring>
+        <name>summ_quad</name>
+        <param>
+          <type><ref refid="structquadarray" kindref="compound">quadarray</ref> *</type>
+          <declname>qdata</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/summ_quad.c" line="24" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/summ_quad.c" bodystart="24" bodyend="142"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>routine<sp/>loops<sp/>through<sp/>the<sp/>quad<sp/>data<sp/>in<sp/>memory,<sp/>and<sp/>accumulates<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>certain<sp/>statistics.<sp/><sp/>This<sp/>information<sp/>can<sp/>be<sp/>printed<sp/>(pr_summary.c)<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/>qdata<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mode<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>defined<sp/>in<sp/>summary.h<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/>filled<sp/>&quot;qsumm&quot;<sp/>structure<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>value<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/>=<sp/>OK,<sp/>-1<sp/>=<sp/>failure<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>9<sp/>April<sp/>1989<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Added<sp/>mode<sp/>support<sp/>for<sp/>data<sp/>versions<sp/>1<sp/>February<sp/>1994<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Cloned<sp/>for<sp/>quads<sp/>24<sp/>August<sp/>1994<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedata_8h" kindref="compound">aedata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="summary_8h" kindref="compound">summary.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedit_8h" kindref="compound">aedit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="summ__quad_8c_1a809a6807fd01083b43088eeb5c8c3de8" kindref="member">summ_quad</ref><sp/>(<ref refid="structquadarray" kindref="compound">quadarray</ref><sp/>*qdata,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mode)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdatasumm" kindref="compound">datasumm</ref><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>,<sp/><ref refid="aedit_8c_1ad68ceffeafb3a212d3d749b1899eb19b" kindref="member">qflag</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dtime;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>j,<sp/>l,<sp/>match,<sp/>first,<sp/>found;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structquadsum" kindref="compound">quadsum</ref><sp/>*datum;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>first<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>all<sp/>quad<sp/>records<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Flagged,<sp/>ignore<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qdata[i].flag<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Point<sp/>to<sp/>data<sp/>section<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>datum<sp/>=<sp/>&amp;(qdata[i].<ref refid="structquadarray_1aef7557be1185d4c12e833a7b6ae7cc58" kindref="member">data</ref>);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Version<sp/>number<sp/>count<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a15e3d97dc246088899ef1ec239dcceb6" kindref="member">version</ref>[datum-&gt;<ref refid="structquadsum_1a175d1b882b9dc85e3f1630913ad8d91a" kindref="member">version</ref>]<sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mode<sp/>==<sp/><ref refid="adump_8h_1a1c6d5de492ac61ad29aec7aa9a436bbf" kindref="member">VERSION</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>times<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>dtime<sp/>=<sp/>datum-&gt;<ref refid="structquadsum_1a0a25ef22cd7f8d3ba50c711b77754e6b" kindref="member">time_tag</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(first)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a694b94703852784cf2b620b4d6df2985" kindref="member">begin</ref><sp/>=<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a17d0dc1bb90580ef4632c1101ce7a889" kindref="member">end</ref><sp/>=<sp/>dtime;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>first<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dtime<sp/>&lt;<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a694b94703852784cf2b620b4d6df2985" kindref="member">begin</ref>)<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a694b94703852784cf2b620b4d6df2985" kindref="member">begin</ref><sp/>=<sp/>dtime;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dtime<sp/>&gt;<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a17d0dc1bb90580ef4632c1101ce7a889" kindref="member">end</ref>)<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a17d0dc1bb90580ef4632c1101ce7a889" kindref="member">end</ref><sp/>=<sp/>dtime;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>stations<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;4;<sp/>j++)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strlen<sp/>(<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a632941fd96c4d0ab6d7ad646303bdeec" kindref="member">stations</ref>)<sp/>&lt;<sp/><ref refid="sizelimits_8h_1a74b6d62963291b4cd234fb87d92d00d2" kindref="member">MAXSTTOT</ref>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a71f927f267e75cf88c9870199492a126" kindref="member">add_station</ref><sp/>(datum-&gt;<ref refid="structquadsum_1ab41b8ecb800a971154dd6219c3bb8c8f" kindref="member">quad</ref>[j],<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1a632941fd96c4d0ab6d7ad646303bdeec" kindref="member">stations</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>baselines<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1acdfc78c029a58e2f0e6c21f016822756" kindref="member">nbtq</ref>;<sp/>j++)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp<sp/>(datum-&gt;<ref refid="structquadsum_1ab41b8ecb800a971154dd6219c3bb8c8f" kindref="member">quad</ref>,<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1ad32e85cbc3fe21faf380ee31307c8854" kindref="member">btq</ref><sp/>+<sp/>5*j)<sp/>==<sp/>0)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(j<sp/>==<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1acdfc78c029a58e2f0e6c21f016822756" kindref="member">nbtq</ref>)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy<sp/>(<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1ad32e85cbc3fe21faf380ee31307c8854" kindref="member">btq</ref><sp/>+<sp/>5*<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1acdfc78c029a58e2f0e6c21f016822756" kindref="member">nbtq</ref>,<sp/>datum-&gt;<ref refid="structquadsum_1ab41b8ecb800a971154dd6219c3bb8c8f" kindref="member">quad</ref>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1acdfc78c029a58e2f0e6c21f016822756" kindref="member">nbtq</ref>++;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>experiment<sp/>numbers<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>match<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1ad82318211213abb54841cdf25e659975" kindref="member">nexp</ref>;<sp/>j++)<sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1ae26a90e25caa2e39487ddedc96ed91f3" kindref="member">experiments</ref>[j]<sp/>==<sp/>datum-&gt;<ref refid="structquadsum_1a4f64c6c8564cc9b37e9734cbc9a179fd" kindref="member">expt_no</ref>)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>match<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<sp/>match<sp/>&amp;&amp;<sp/>(<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1ad82318211213abb54841cdf25e659975" kindref="member">nexp</ref><sp/>&lt;<sp/><ref refid="sizelimits_8h_1ae4466d456a81d0c9153ef273ebc50b72" kindref="member">MAXEXPTS</ref>))<sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1ae26a90e25caa2e39487ddedc96ed91f3" kindref="member">experiments</ref>[<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1ad82318211213abb54841cdf25e659975" kindref="member">nexp</ref>++]<sp/>=<sp/>datum-&gt;<ref refid="structquadsum_1a4f64c6c8564cc9b37e9734cbc9a179fd" kindref="member">expt_no</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Accumulate<sp/>quality<sp/>codes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structquadsum_1af8970ddd16fa0c98699c1c59e6c757f6" kindref="member">quality</ref>)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[0]++;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;B&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[1]++;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;C&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[2]++;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;D&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[3]++;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;E&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[4]++;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;F&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[5]++;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[6]++;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;1&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[7]++;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;2&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[8]++;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;3&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[9]++;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;4&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[10]++;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;5&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[11]++;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;6&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[12]++;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;7&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[13]++;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;8&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[14]++;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;9&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[15]++;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1afb68ecf9daf6380782a2086527f87bca" kindref="member">qcodes</ref>[16]++;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>This<sp/>updates<sp/>source<sp/>list<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1abcccc66f200bd6aa29490f38f778294d" kindref="member">nsource</ref><sp/>&lt;<sp/><ref refid="sizelimits_8h_1a934682caeedb813cc7c92ca84ed6eb04" kindref="member">MAXSRC</ref>)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1abcccc66f200bd6aa29490f38f778294d" kindref="member">nsource</ref><sp/>+=<sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a61625cb4e5b87315eb0a0bc310b5e347" kindref="member">update_sinfo</ref><sp/>(<ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1aec53ea1c528f7ac8aea64db14e0c5fe2" kindref="member">source</ref>,<sp/>datum-&gt;<ref refid="structquadsum_1a00739f50f29ca97c4dee054d73588ea2" kindref="member">source</ref>,<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>.<ref refid="structdatasumm_1abcccc66f200bd6aa29490f38f778294d" kindref="member">nsource</ref>);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>End<sp/>for<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/summ_quad.c"/>
+  </compounddef>
+</doxygen>

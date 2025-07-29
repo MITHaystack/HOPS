@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_4ee03f1d6d97361d935d16cc00b775ae" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="applications_2fplot_2src_2parse__cmdline_8c">applications/fplot/src/parse_cmdline.c</innerfile>
+    <innerfile refid="skip__poln_8c">skip_poln.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/src/"/>
+  </compounddef>
+</doxygen>

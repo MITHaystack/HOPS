@@ -1,0 +1,543 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ScalarContainer" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ScalarContainer</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__ScalarContainerBase" prot="public" virt="non-virtual">hops::MHO_ScalarContainerBase</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4" prot="public" virt="non-virtual">hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__Taggable" prot="public" virt="non-virtual">hops::MHO_Taggable</basecompoundref>
+    <includes refid="MHO__ScalarContainer_8hh" local="no">MHO_ScalarContainer.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1ae84117aa229adda815500db3b08bcc8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ScalarContainer&lt; XValueType &gt;::MHO_ScalarContainer</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ScalarContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1afa9dd8f697b27fe07965f95be37b8fe2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ScalarContainer&lt; XValueType &gt;::MHO_ScalarContainer</definition>
+        <argsstring>(MHO_ScalarContainer &amp;obj)</argsstring>
+        <name>MHO_ScalarContainer</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ScalarContainer" kindref="compound">MHO_ScalarContainer</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1adcf94d41ac4873c9ef89efb19a3c876d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ScalarContainer&lt; XValueType &gt;::~MHO_ScalarContainer</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ScalarContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="29" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a39cfa2666964132e05ed9e92f485319f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_ScalarContainer&lt; XValueType &gt;::ComputeSerializedSize</definition>
+        <argsstring>() const</argsstring>
+        <name>ComputeSerializedSize</name>
+        <briefdescription>
+<para>Calculates and returns the serialized size of an object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The serialized size as a uint64_t. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="55" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="55" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a04c40c2051b3a6b5f13dbcd68fa02e75" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_ScalarContainer&lt; std::string &gt;::ComputeSerializedSize</definition>
+        <argsstring>() const</argsstring>
+        <name>ComputeSerializedSize</name>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__ScalarContainer_1a39cfa2666964132e05ed9e92f485319f" kindref="member">MHO_ScalarContainer&lt;std::string&gt;::ComputeSerializedSize</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (uint64_t <ref refid="classhops_1_1MHO__ScalarContainer" kindref="compound">MHO_ScalarContainer</ref>&lt; std::string) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="174" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="174" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a6ebd899402b949b8cd5d9be3a6411227" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_ScalarContainer&lt; XValueType &gt;::GetSerializedSize</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetSerializedSize</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1aec049bfd4587cb63d887bab57bf08991">GetSerializedSize</reimplements>
+        <briefdescription>
+<para>Getter for serialized size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Serialized size as a uint64_t. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="47" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a024fcf4bfc22a336dbee6cf889b03543" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ScalarContainer&lt; XValueType &gt;::GetSize</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSize</name>
+        <briefdescription>
+<para>Getter for size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Size as std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="87" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a928c85351e0b06da1b81bbb09a35a607" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>XValueType</type>
+        <definition>XValueType hops::MHO_ScalarContainer&lt; XValueType &gt;::GetValue</definition>
+        <argsstring>()</argsstring>
+        <name>GetValue</name>
+        <briefdescription>
+<para>Getter for value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current value of type XValueType. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="76" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a0519f5b7f1c1339282acf21843299d53" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="namespacehops_1a79b4811cd0a8f2e7e35c6d3f85ce8b1b" kindref="member">MHO_ClassVersion</ref></type>
+        <definition>virtual MHO_ClassVersion hops::MHO_ScalarContainer&lt; XValueType &gt;::GetVersion</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetVersion</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1a7b9b9b27f97f67f6aced62b1eae719e8">GetVersion</reimplements>
+        <briefdescription>
+<para>Getter for version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MHO_ClassVersion version number </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="39" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a4ca6a275e9cef2c7344c042d2e081a10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ScalarContainer&lt; XValueType &gt;::SetValue</definition>
+        <argsstring>(const XValueType &amp;value)</argsstring>
+        <name>SetValue</name>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Setter for value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input value of type const XValueType&amp; to be assigned internally </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="69" bodyend="69"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhops_1_1MHO__ScalarContainer_1a09e4adf6aa38c7481fa0b23118f6007d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&lt;&lt;</definition>
+        <argsstring>(XStream &amp;s, const MHO_ScalarContainer &amp;aData)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__ScalarContainer" kindref="compound">MHO_ScalarContainer</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="107" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="107" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhops_1_1MHO__ScalarContainer_1afcadeef3d40605f7810b36d566ca3a9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&gt;&gt;</definition>
+        <argsstring>(XStream &amp;s, MHO_ScalarContainer &amp;aData)</argsstring>
+        <name>operator&gt;&gt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ScalarContainer" kindref="compound">MHO_ScalarContainer</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="90" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="90" bodyend="105"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a3523688b529f08ea9ef68bd55e2ac67f" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>virtual MHO_UUID hops::MHO_ScalarContainer&lt; XValueType &gt;::DetermineTypeUUID</definition>
+        <argsstring>() const override</argsstring>
+        <name>DetermineTypeUUID</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1ae5f8d8c6c32f9d9c76607f6b3b1db6ff">DetermineTypeUUID</reimplements>
+        <briefdescription>
+<para>Generates a UUID by hashing the class name and returning it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> representing the hashed class name. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="153" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="153" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1aacb470d0955768637303272e7570910b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ScalarContainer&lt; XValueType &gt;::StreamInData_V0</definition>
+        <argsstring>(XStream &amp;s)</argsstring>
+        <name>StreamInData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Reads data from stream and stores it in object&apos;s fData and <ref refid="classhops_1_1MHO__Taggable" kindref="compound">MHO_Taggable</ref> fields. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input stream of type XStream&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="129" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="129" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScalarContainer_1a148c661cad2a031e5de436768f8b99a5" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ScalarContainer&lt; XValueType &gt;::StreamOutData_V0</definition>
+        <argsstring>(XStream &amp;s) const</argsstring>
+        <name>StreamOutData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Serializes data and object metadata to an output stream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output stream of type XStream&amp;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="141" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="141" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classhops_1_1MHO__ScalarContainer" kindref="compound">MHO_ScalarContainer</ref>, and wrapper class for storage of a scalar object. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Oct 16 11:17:19 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ScalarContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__ScalarContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ScalarContainerBase</label>
+        <link refid="classhops_1_1MHO__ScalarContainerBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>XValueType</label>
+      </node>
+      <node id="10">
+        <label>json</label>
+      </node>
+      <node id="8">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ScalarContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__ScalarContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fData</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ScalarContainerBase</label>
+        <link refid="classhops_1_1MHO__ScalarContainerBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScalarContainer.hh" bodystart="25" bodyend="165"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a6196efd2aa51a40c710979222c924a7a" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a19a425cc45fb610c718c5d2b0dbb667b" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>AsExtension</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aec4e83a60d4b3f6197a3c7b14625d5ab" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ad9ccfa6ce55bd4ea9e37f2bfbdf08684" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>ClearTags</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a39cfa2666964132e05ed9e92f485319f" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>ComputeSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a04c40c2051b3a6b5f13dbcd68fa02e75" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>ComputeSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a01162d836ddbaf45d51e6b8df2dd0fa3" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>ContainsKey</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a74eedf9337ead51aa34a07b3703db8bf" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>CopyFrom</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a9ff0c9e91598da64f382e40e790641e6" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>CopyTags</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1aba9ec7771e32aca2115875eed2867c01" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>CopyTo</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a3523688b529f08ea9ef68bd55e2ac67f" prot="private" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>DetermineTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a0be2488f1dfd3f3781e246d97cb201eb" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>DumpKeys</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab32a351cb204524f09f839ae6ec6cea0" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>DumpMap</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a0d56ae9b62d3b74b4ccf2c8b03f16d61" prot="protected" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>fData</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1ac7053fbca67e03532f14b4f47e0a6b49" prot="protected" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>fExtensions</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa7de95913b4113fc50143b2c73ddbfa" prot="protected" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>fObject</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a91bccec05187b3201a9e0bb7e9e016d3" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetData</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a29cc193d05cc849ef5556765a46a30af" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aa6f524e78beb65d026c87fc6856ba059" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a69c6080be859a5d130094d348c7ede49" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetRank</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a6ebd899402b949b8cd5d9be3a6411227" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a024fcf4bfc22a336dbee6cf889b03543" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetSize</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aab01eda2ff2ad2338899119bcd509d31" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a928c85351e0b06da1b81bbb09a35a607" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetValue</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a0519f5b7f1c1339282acf21843299d53" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>GetVersion</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a838927fa3c01474e519efe61e4edf6ca" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>HasExtension</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa48fbe7ed6faf902d661eba225931b4" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ad838788924b9a12b62b9df9f263ee4a1" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af94f990de2ea21d48b6b969ff257631b" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>Insert</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1afe17d8f32b77738b06ff188eea23aeac" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MakeExtension</name></member>
+      <member refid="classhops_1_1MHO__Element_1a8457a2bfa206699701a2163585b6cc5f" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a08e0ac36b7baa0b3d4f5d3390d636816" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a24eaabfac649dfcc5418d47cb5a1e4b2" prot="protected" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a95533d35215bcb6a4feb133a58615e81" prot="protected" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ac365eb58d132e525ccaa1dae735f18f2" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a2fc7a87b25f10793c7c44f223e8b80fa" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a3e28ebe0a502478c0b901063aab8139c" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1ae84117aa229adda815500db3b08bcc8a" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_ScalarContainer</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1afa9dd8f697b27fe07965f95be37b8fe2" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_ScalarContainer</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a071ba293eca6f0eb58a8b067ef1506d0" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a29f651974e8b1cfaa7a12810a1644cbd" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aadeecd650cb160acb8e83565ecfb8a0a" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a0b10cce72b8eb35c4cc42071faef7724" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a34a692357c9b64ff0c83bb947df46c24" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a09e4adf6aa38c7481fa0b23118f6007d" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1aad376efca93853cf9ae99b173760d0ff" prot="public" virt="non-virtual" ambiguityscope="hops::"><scope>hops::MHO_ScalarContainer</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a37bbc5f6aa854321af3faeeb653e113e" prot="public" virt="non-virtual" ambiguityscope="hops::MHO_Taggable::"><scope>hops::MHO_ScalarContainer</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af56aebf9c39bf7e6a527d899ebab328b" prot="public" virt="non-virtual" ambiguityscope="hops::MHO_JSONWrapper::"><scope>hops::MHO_ScalarContainer</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1afcadeef3d40605f7810b36d566ca3a9e" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>operator&gt;&gt;</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ac74fb59d9c31fd9823ec2a37bf79c5fb" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>rank</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a8af109cd5401bbce3e2d380c32111e35" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aeb880d8fcf4405994704f7334f7fcecd" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a4e05eabd340296472805dfa61e4402d5" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>SetArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a148af3ae494b7073a6909a00f4f97048" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>SetData</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a701d23cd53b153b2e2038e262b1a4299" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>SetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab9fa54b72be7e5859f46e19865e8ab5b" prot="protected" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>SetObject</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1af3fc6887489606836bf32705332972f7" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>SetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a4ca6a275e9cef2c7344c042d2e081a10" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>SetValue</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1aacb470d0955768637303272e7570910b" prot="private" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>StreamInData_V0</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1a148c661cad2a031e5de436768f8b99a5" prot="private" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>StreamOutData_V0</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a8f44c7a387dd7f0e9476ca31ad7c1de9" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>value_type</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ae85ea538e816f7d41dd48fd2eeb78595" prot="public" virt="non-virtual"><scope>hops::MHO_ScalarContainer</scope><name>ZeroArray</name></member>
+      <member refid="classhops_1_1MHO__Element_1aea329679a16385ae6ac6986128360887" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>~MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a3ebd5b1b0bf0726ac545354cab4d3dff" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>~MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a047860e11d91310d6b11b5acae0a9bf4" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>~MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a9fca9e904ca2b4e7fcd4fe4ae8eb0a8e" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>~MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__ScalarContainer_1adcf94d41ac4873c9ef89efb19a3c876d" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>~MHO_ScalarContainer</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a573b91158c3b24b67b594e6d4af0ccea" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>~MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ae33d3be9c20ced6dce3db305e34d2551" prot="public" virt="virtual"><scope>hops::MHO_ScalarContainer</scope><name>~MHO_Taggable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

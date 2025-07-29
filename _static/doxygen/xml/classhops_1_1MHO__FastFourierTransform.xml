@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FastFourierTransform" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FastFourierTransform</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt; &gt;</basecompoundref>
+    <includes refid="MHO__FastFourierTransform_8hh" local="no">MHO_FastFourierTransform.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XFloatType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" prot="public" static="no">
+        <type><ref refid="classhops_1_1MHO__NDArrayWrapper" kindref="compound">MHO_NDArrayWrapper</ref>&lt; std::complex&lt; XFloatType &gt;, 1 &gt;</type>
+        <definition>using hops::MHO_FastFourierTransform&lt; XFloatType &gt;::XArrayType =  MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt;</definition>
+        <argsstring></argsstring>
+        <name>XArrayType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransform_1a77e59a1d2be8f633e1f6228e90bf3036" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_FastFourierTransform&lt; XFloatType &gt;::fForward</definition>
+        <argsstring></argsstring>
+        <name>fForward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="90" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransform_1aff52c14efb5cb523a16b746a9b1790f4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_FastFourierTransform&lt; XFloatType &gt;::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="91" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransform_1a6f71672b06c92c934b7868061d0987bc" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FastFourierTransformWorkspace" kindref="compound">MHO_FastFourierTransformWorkspace</ref>&lt; XFloatType &gt;</type>
+        <definition>MHO_FastFourierTransformWorkspace&lt; XFloatType &gt; hops::MHO_FastFourierTransform&lt; XFloatType &gt;::fW</definition>
+        <argsstring></argsstring>
+        <name>fW</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="92" column="43" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1a2e62dcdb45b1499557d21db685a7e9d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FastFourierTransform&lt; XFloatType &gt;::MHO_FastFourierTransform</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FastFourierTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="33" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1a42b8671d6ca62830c38780ce771eb490" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FastFourierTransform&lt; XFloatType &gt;::~MHO_FastFourierTransform</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FastFourierTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="39" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1aac9cba171721e1dc5c7d424e20bd038e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FastFourierTransform&lt; XFloatType &gt;::SetBackward</definition>
+        <argsstring>()</argsstring>
+        <name>SetBackward</name>
+        <briefdescription>
+<para>Setter for backward flag (FFT direction) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="51" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1a91383712c7c4f80375e7df0607cc3ef7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FastFourierTransform&lt; XFloatType &gt;::SetForward</definition>
+        <argsstring>()</argsstring>
+        <name>SetForward</name>
+        <briefdescription>
+<para>Setter for forward flag (FFT direction) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="45" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1a949fa96dc1912f754221a7acd9a08324" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FastFourierTransform&lt; XFloatType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" kindref="member">XArrayType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteInPlace, does the FFT on the array in-place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Make a call to execute the FFT plan and perform the transformation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="69" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="144" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1a5cc43eb9139594348912eb24ed4e2a35" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FastFourierTransform&lt; XFloatType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" kindref="member">XArrayType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" kindref="member">XArrayType</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input array to output and executes in-place FFT in the output array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Make a call to execute the FFT plan and perform the transformation.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success of ExecuteInPlace operation. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="87" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="169" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1a95f33bfed4b0eb8b423936a87683e926" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FastFourierTransform&lt; XFloatType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" kindref="member">XArrayType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place transformation and checks input array validity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransform_1a95f33bfed4b0eb8b423936a87683e926" kindref="member">MHO_FastFourierTransform&lt;XFloatType&gt;::InitializeInPlace</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array pointer for initialization. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful initialization. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (template&lt; typename XFloatType &gt; bool <ref refid="classhops_1_1MHO__FastFourierTransform" kindref="compound">MHO_FastFourierTransform</ref>&lt; XFloatType) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="61" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="101" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransform_1afd7a512c3bd5bd3f78fdb1d81b6b2a35" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FastFourierTransform&lt; XFloatType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" kindref="member">XArrayType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" kindref="member">XArrayType</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes out-of-place FFT by checking input/output array sizes and resizing if necessary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransform_1afd7a512c3bd5bd3f78fdb1d81b6b2a35" kindref="member">MHO_FastFourierTransform&lt;XFloatType&gt;::InitializeOutOfPlace</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input XArrayType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to output XArrayType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool <ref refid="classhops_1_1MHO__FastFourierTransform" kindref="compound">MHO_FastFourierTransform</ref>&lt; XFloatType) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="78" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="126" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FastFourierTransform" kindref="compound">MHO_FastFourierTransform</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FastFourierTransform&lt; XFloatType &gt;</label>
+        <link refid="classhops_1_1MHO__FastFourierTransform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FastFourierTransform&lt; XFloatType &gt;</label>
+        <link refid="classhops_1_1MHO__FastFourierTransform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" line="28" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FastFourierTransform.hh" bodystart="29" bodyend="93"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a949fa96dc1912f754221a7acd9a08324" prot="protected" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3" prot="protected" virt="pure-virtual" ambiguityscope="MHO_UnaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt; &gt;::"><scope>hops::MHO_FastFourierTransform</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a5cc43eb9139594348912eb24ed4e2a35" prot="protected" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf" prot="protected" virt="pure-virtual" ambiguityscope="MHO_UnaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt; &gt;::"><scope>hops::MHO_FastFourierTransform</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a77e59a1d2be8f633e1f6228e90bf3036" prot="private" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>fForward</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1aff52c14efb5cb523a16b746a9b1790f4" prot="private" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a6f71672b06c92c934b7868061d0987bc" prot="private" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>fW</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a95f33bfed4b0eb8b423936a87683e926" prot="protected" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20" prot="protected" virt="pure-virtual" ambiguityscope="MHO_UnaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt; &gt;::"><scope>hops::MHO_FastFourierTransform</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1afd7a512c3bd5bd3f78fdb1d81b6b2a35" prot="protected" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058" prot="protected" virt="pure-virtual" ambiguityscope="MHO_UnaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, 1 &gt; &gt;::"><scope>hops::MHO_FastFourierTransform</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a2e62dcdb45b1499557d21db685a7e9d0" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>MHO_FastFourierTransform</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1aac9cba171721e1dc5c7d424e20bd038e" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>SetBackward</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a91383712c7c4f80375e7df0607cc3ef7" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>SetForward</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1af0f38f5cf7d0a68fe45a6c9ef7282b0a" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransform</scope><name>XArrayType</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransform_1a42b8671d6ca62830c38780ce771eb490" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>~MHO_FastFourierTransform</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransform</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

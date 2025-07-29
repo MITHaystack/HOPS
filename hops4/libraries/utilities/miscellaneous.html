@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miscellaneous Utilities &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Containers" href="../containers/Containers.html" />
+    <link rel="prev" title="Legacy Compatibility Tools" href="legacy_compatibility.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Utilities.html">Utilities</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="time_date.html">Time and Date Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_operations.html">File Operation Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="meta_programming.html">Meta-Programming Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="legacy_compatibility.html">Legacy Compatibility Tools</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Miscellaneous Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-tokenizer">MHO_Tokenizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-uuid">MHO_UUID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-uuidgenerator">MHO_UUIDGenerator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-md5hashgenerator">MHO_MD5HashGenerator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-utility-classes">Additional Utility Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Utilities.html">Utilities</a></li>
+      <li class="breadcrumb-item active">Miscellaneous Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/utilities/miscellaneous.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="miscellaneous-utilities">
+<h1>Miscellaneous Utilities<a class="headerlink" href="#miscellaneous-utilities" title="Link to this heading"></a></h1>
+<p>The utilities library includes various support classes for general-purpose
+operations. These tools provide supporting functionality for the HOPS4 framework’s
+data processing, file I/O, time handling, and system integration requirements.</p>
+<section id="mho-tokenizer">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Tokenizer.html">MHO_Tokenizer</a><a class="headerlink" href="#mho-tokenizer" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Tokenizer.html">MHO_Tokenizer</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Miscellaneous</p></td>
+</tr>
+<tr class="row-odd"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">Delimiter strings (default: space)</div>
+<div class="line">Empty token inclusion</div>
+<div class="line">Multi-character delimiter support</div>
+<div class="line">Quote preservation</div>
+<div class="line">Whitespace trimming</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Configurable string tokenization</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Flexible delimiter configuration</div>
+<div class="line">Quote-aware parsing</div>
+<div class="line">Whitespace handling options</div>
+<div class="line">Empty token control</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Tokenizer.html">MHO_Tokenizer</a> class provides flexible string tokenization with
+configurable delimiters and parsing options including quote preservation and
+whitespace handling. This utility class is heavily used by the control file parsing
+library and vex parsing library.</p>
+</section>
+<section id="mho-uuid">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UUID.html">MHO_UUID</a><a class="headerlink" href="#mho-uuid" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UUID.html">MHO_UUID</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Miscellaneous</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>128-bit UUID storage and manipulation</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">16-byte UUID representation</div>
+<div class="line">String and integer conversion</div>
+<div class="line">Comparison operators</div>
+<div class="line">Support for stream operations</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UUID.html">MHO_UUID</a> class provides 128-bit UUID storage and manipulation
+with some conversion capabilities and comparison operators for object identification.</p>
+</section>
+<section id="mho-uuidgenerator">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UUIDGenerator.html">MHO_UUIDGenerator</a><a class="headerlink" href="#mho-uuidgenerator" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UUIDGenerator.html">MHO_UUIDGenerator</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Miscellaneous</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>RFC 4122 compliant UUID generation</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Pseudo-random UUID generation</div>
+<div class="line">Follows RFC 4122 (v4) standard</div>
+<div class="line">String conversion utilities</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UUIDGenerator.html">MHO_UUIDGenerator</a> class generates a RFC-4122 (v4) compliant
+pseudo-random UUID for object identification. The random number generation
+is done via the STL Mersenne Twister algorithm.</p>
+</section>
+<section id="mho-md5hashgenerator">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MD5HashGenerator.html">MHO_MD5HashGenerator</a><a class="headerlink" href="#mho-md5hashgenerator" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MD5HashGenerator.html">MHO_MD5HashGenerator</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Miscellaneous</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>Variadic template for supported data types</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>MD5 hash generation for data integrity</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Streaming MD5 hash computation</div>
+<div class="line">Support for POD types and strings</div>
+<div class="line">UUID conversion from hash digests</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MD5HashGenerator.html">MHO_MD5HashGenerator</a> class provides MD5 hash generation capabilities
+for data hasing/UUID creation. It has streaming support for various data types.
+The underlying implementation is done by the picohash.h header library. placed
+under public domain by Kazuho Oku.</p>
+</section>
+</section>
+<section id="additional-utility-classes">
+<h1>Additional Utility Classes<a class="headerlink" href="#additional-utility-classes" title="Link to this heading"></a></h1>
+<p>The utilities library also includes several specialized utility classes/files:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BidirectionalIterator.html">MHO_BidirectionalIterator</a> and <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BidirectionalStrideIterator.html">MHO_BidirectionalStrideIterator</a> - Iterator implementations for container traversal</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Constants.html">MHO_Constants</a> - Basic mathematical and physical constants</p></li>
+<li><p>MHO_EncodeDecodeValue.hh - Value encoding and decoding utilities</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtensibleElement.html">MHO_ExtensibleElement</a> - Base class for extensible data structures</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IndexLabelInterface.html">MHO_IndexLabelInterface</a> and <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IntervalLabelInterface.html">MHO_IntervalLabelInterface</a> - meta-data labeling</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Interval.html">MHO_Interval</a> - Interval representation and manipulation</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespace_3globalScope_4.html">MHO_JSONHeaderWrapper</a> - JSON header wrapper for data serialization (wraps the nlohmann::json head-only library)</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MPIInterface.html">MHO_MPIInterface</a> and MHO_MPIInterfaceWrapper.hh - basic MPI environment initialization/interaction</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#ae1e001fffefcd1f966ad1dce82f0b61d">MHO_NumpyTypeCode()</a> - Numpy type code creation</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ParameterStore.html">MHO_ParameterStore</a> - Parameter storage and retrieval</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Unit.html">MHO_Unit</a> - Unit representation and conversion - NOT YET IMPLEMENTED</p></li>
+<li><p>picohash.h - Lightweight hashing library placed under public domain by Kazuho Oku.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="legacy_compatibility.html" class="btn btn-neutral float-left" title="Legacy Compatibility Tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../containers/Containers.html" class="btn btn-neutral float-right" title="Containers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

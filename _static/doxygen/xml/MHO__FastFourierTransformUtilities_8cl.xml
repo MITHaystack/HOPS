@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__FastFourierTransformUtilities_8cl" kind="file" language="C++">
+    <compoundname>MHO_FastFourierTransformUtilities.cl</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#ifndef<sp/>MHO_FastFourierUtilities_Defined_H</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>MHO_FastFourierUtilities_Defined_H</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;hopsocl_defines.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;MHO_ComplexUtils.cl&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;MHO_BitReversalPermutation.cl&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>FFT_FORWARD<sp/>-1.0</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>FFT_BACKWARD<sp/>1.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#define<sp/>NORMAL_TWIDDLE<sp/>1.0</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>CONJ_TWIDDLE<sp/>-1.0</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">unsigned<sp/>int<sp/>ComputeBluesteinArraySize(unsigned<sp/>int<sp/>N)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//returns<sp/>smallest<sp/>M<sp/>=<sp/>2^p<sp/>&gt;=<sp/>(2N<sp/>-<sp/>2);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>M<sp/>=<sp/>2*(N<sp/>-<sp/>1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(IsPowerOfTwo(M)){return<sp/>M;}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else{<sp/>return<sp/>NextLowestPowerOfTwo(M);}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">void<sp/>ComputeTwiddleFactorBasis(unsigned<sp/>int<sp/>log2N,<sp/>__local<sp/>CL_TYPE2*<sp/>twiddle)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>double<sp/>dN,<sp/>di,<sp/>arg;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>dN<sp/>=<sp/>TwoToThePowerOf(log2N);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>di<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;log2N;i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arg<sp/>=<sp/>(2.0*M_PI*di)/dN;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>twiddle[i].s0<sp/>=<sp/>cos(arg);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>twiddle[i].s1<sp/>=<sp/>sin(arg);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>di<sp/>*=<sp/>2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//conjugate_flag<sp/>must<sp/>be<sp/>1<sp/>(no<sp/>conjugate)<sp/>or<sp/>-1<sp/>(conjugate)</highlight></codeline>
+<codeline><highlight class="normal">CL_TYPE2<sp/>ComputeTwiddleFactor(unsigned<sp/>int<sp/>log2N,<sp/>unsigned<sp/>int<sp/>index,<sp/>__local<sp/>const<sp/>CL_TYPE2*<sp/>basis,<sp/>CL_TYPE<sp/>conj_flag)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>bit<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>val;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>val.s0<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>val.s1<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;log2N;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(<sp/>(index<sp/>&amp;<sp/>bit)<sp/>){val<sp/>=<sp/>ComplexMultiply(val,basis[i]);}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bit<sp/>*=2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>val.s1<sp/>*=<sp/>conj_flag;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>val;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">////////////////////////////////////////////////////////////////////////////////</highlight></codeline>
+<codeline><highlight class="normal">//calculates<sp/>the<sp/>number<sp/>of<sp/>1d<sp/>FFTs,<sp/>and<sp/>shape<sp/>of<sp/>work<sp/>items</highlight></codeline>
+<codeline><highlight class="normal">unsigned<sp/>int<sp/>CalculateWorkItemInfo(unsigned<sp/>int<sp/>NDIM,<sp/>//total<sp/>number<sp/>of<sp/>dimensions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>D,<sp/>//selected<sp/>dimension</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int*<sp/>dim,<sp/>//size<sp/>of<sp/>array<sp/>in<sp/>each<sp/>dimension</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int*<sp/>non_active_dimension_index,<sp/>//index<sp/>selected<sp/>in<sp/>each<sp/>non-active<sp/>dimension</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int*<sp/>non_active_dimension_size)<sp/>//sizes<sp/>of<sp/>each<sp/>non-active<sp/>dimension</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//figure<sp/>out<sp/>the<sp/>total<sp/>number<sp/>of<sp/>1-D<sp/>FFTs<sp/>to<sp/>perform<sp/>along<sp/>this<sp/>(active)<sp/>axis</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>n_fft<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>count<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>NDIM;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(i<sp/>!=<sp/>D)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n_fft<sp/>*=<sp/>dim[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>non_active_dimension_index[count]<sp/>=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>non_active_dimension_size[count]<sp/>=<sp/>dim[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>count++;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//returns<sp/>the<sp/>total<sp/>number<sp/>of<sp/>FFTs<sp/>that<sp/>need<sp/>to<sp/>be<sp/>performed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>n_fft;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">////////////////////////////////////////////////////////////////////////////////</highlight></codeline>
+<codeline><highlight class="normal">//RADIX2<sp/>DIT<sp/>with<sp/>strided<sp/>data<sp/>locations.</highlight></codeline>
+<codeline><highlight class="normal">//The<sp/>twiddle<sp/>factors<sp/>are<sp/>computed<sp/>on-the-fly<sp/>from<sp/>a<sp/>factor-basis.</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>FFTRadixTwo_DIT(unsigned<sp/>int<sp/>N,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>stride,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_TYPE<sp/>conj_flag,<sp/>//conjugate<sp/>the<sp/>twiddle<sp/>factors</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_TYPE<sp/>direction,<sp/>//-1<sp/>=<sp/>forward,<sp/>1<sp/>=<sp/>backward</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__local<sp/>const<sp/>CL_TYPE2*<sp/>twiddle_basis,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>data)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//temporary<sp/>workspace</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>H0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>H1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>W;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>Z;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>logN<sp/>=<sp/>LogBaseTwo(N);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>butterfly_width;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>n_butterfly_groups;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>group_start;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>butterfly_index;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>x,y;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>stage<sp/>=<sp/>0;<sp/>stage<sp/>&lt;<sp/>logN;<sp/>stage++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//compute<sp/>the<sp/>width<sp/>of<sp/>each<sp/>butterfly</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>butterfly_width<sp/>=<sp/>TwoToThePowerOf(stage);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//compute<sp/>the<sp/>number<sp/>of<sp/>butterfly<sp/>groups</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n_butterfly_groups<sp/>=<sp/>N/(2*butterfly_width);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>n_butterfly_groups;<sp/>n++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//compute<sp/>the<sp/>starting<sp/>index<sp/>of<sp/>this<sp/>butterfly<sp/>group</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>group_start<sp/>=<sp/>2*n*butterfly_width;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>k=0;<sp/>k<sp/>&lt;<sp/>butterfly_width;<sp/>k++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>butterfly_index<sp/>=<sp/>group_start<sp/>+<sp/>k;<sp/>//index</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>=<sp/>stride*butterfly_index;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>y<sp/>=<sp/>stride*(butterfly_index<sp/>+<sp/>butterfly_width);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0<sp/>=<sp/>data[x];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1<sp/>=<sp/>data[y];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>W<sp/>=<sp/>ComputeTwiddleFactor(logN,<sp/>n_butterfly_groups*k,<sp/>twiddle_basis,<sp/>conj_flag);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//conjugate<sp/>if<sp/>the<sp/>direction<sp/>flag<sp/>is<sp/>-1<sp/>(but<sp/>only<sp/>on<sp/>the<sp/>first<sp/>pass)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(stage<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//here<sp/>we<sp/>use<sp/>the<sp/>Cooly-Tukey<sp/>butterfly</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//multiply<sp/>H1<sp/>by<sp/>twiddle<sp/>factor<sp/>to<sp/>get<sp/>W*H1,<sp/>store<sp/>temporary<sp/>workspace<sp/>Z</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>ComplexMultiply(H1,<sp/>W);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//compute<sp/>the<sp/>update</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//H0&apos;<sp/>=<sp/>H0<sp/>+<sp/>W*H1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//H1&apos;<sp/>=<sp/>H0<sp/>-<sp/>W*H1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1<sp/>=<sp/>H0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0<sp/>+=<sp/>Z;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1<sp/>-=<sp/>Z;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//conjugate<sp/>if<sp/>the<sp/>direction<sp/>flag<sp/>is<sp/>-1<sp/>(but<sp/>only<sp/>on<sp/>the<sp/>last<sp/>pass)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(stage<sp/>==<sp/>logN-1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[x]<sp/>=<sp/>H0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[y]<sp/>=<sp/>H1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//RADIX-2<sp/>DIF</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">FFTRadixTwo_DIF(unsigned<sp/>int<sp/>N,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>stride,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_TYPE<sp/>conj_flag,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_TYPE<sp/>direction,<sp/>//-1<sp/>=<sp/>forward,<sp/>1<sp/>=<sp/>backward</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__local<sp/>const<sp/>CL_TYPE2*<sp/>twiddle_basis,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_TYPE2*<sp/>data)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//temporary<sp/>workspace</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>H0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>H1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>W;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>Z;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//decimation<sp/>in<sp/>frequency,<sp/>N<sp/>is<sp/>assumed<sp/>to<sp/>be<sp/>a<sp/>power<sp/>of<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>logN<sp/>=<sp/>LogBaseTwo(N);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>butterfly_width;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>n_butterfly_groups;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>group_start;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>butterfly_index;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>stage<sp/>=<sp/>0;<sp/>stage<sp/>&lt;<sp/>logN;<sp/>stage++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//compute<sp/>the<sp/>number<sp/>of<sp/>butterfly<sp/>groups</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n_butterfly_groups=<sp/>TwoToThePowerOf(stage);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//compute<sp/>the<sp/>width<sp/>of<sp/>each<sp/>butterfly</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>butterfly_width<sp/>=<sp/><sp/>N/(2*n_butterfly_groups);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>n_butterfly_groups;<sp/>n++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//compute<sp/>the<sp/>starting<sp/>index<sp/>of<sp/>this<sp/>butterfly<sp/>group</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>group_start<sp/>=<sp/>2*n*butterfly_width;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>k=0;<sp/>k<sp/>&lt;<sp/>butterfly_width;<sp/>k++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>butterfly_index<sp/>=<sp/>group_start<sp/>+<sp/>k;<sp/>//index</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0<sp/>=<sp/>data[stride*butterfly_index];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1<sp/>=<sp/>data[stride*(butterfly_index+butterfly_width)];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//conjugate<sp/>if<sp/>the<sp/>direction<sp/>flag<sp/>is<sp/>-1<sp/>(but<sp/>only<sp/>on<sp/>the<sp/>first<sp/>pass)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(stage<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>W<sp/>=<sp/>ComputeTwiddleFactor(logN,<sp/>n_butterfly_groups*k,<sp/>twiddle_basis,<sp/>conj_flag);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//here<sp/>we<sp/>use<sp/>Gentleman<sp/>Sande<sp/>butterfly</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>H1;<sp/>//first<sp/>cache<sp/>H1<sp/>in<sp/>Z</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H1<sp/>=<sp/>H0<sp/>-<sp/>Z;<sp/>//set<sp/>H1&apos;<sp/>=<sp/>H0<sp/>-<sp/>H1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0<sp/>+=<sp/>Z;<sp/>//set<sp/>H0<sp/>=<sp/>H0<sp/>+<sp/>H1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//multiply<sp/>H1<sp/>by<sp/>twiddle<sp/>factor<sp/>to<sp/>get<sp/>W*H1,<sp/>to<sp/>obtain<sp/>H1&apos;<sp/>=<sp/>(H0<sp/>-<sp/>H1)*W</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>ComplexMultiply(H1,W);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//conjugate<sp/>if<sp/>the<sp/>direction<sp/>flag<sp/>is<sp/>-1<sp/>(but<sp/>only<sp/>on<sp/>the<sp/>last<sp/>pass)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(stage<sp/>==<sp/>logN-1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>H0.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z.s1<sp/>*=<sp/>direction;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[stride*butterfly_index]<sp/>=<sp/>H0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[stride*(butterfly_index+butterfly_width)]=Z;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//Bluestein<sp/>algorithm<sp/>for<sp/>arbitrary<sp/>length,<sp/>N<sp/>is<sp/>length<sp/>of<sp/>the<sp/>data,<sp/>strided<sp/>data<sp/>access</highlight></codeline>
+<codeline><highlight class="normal">void</highlight></codeline>
+<codeline><highlight class="normal">#ifdef<sp/>FFT_USE_CONST_MEM</highlight></codeline>
+<codeline><highlight class="normal">FFTBluestein(unsigned<sp/>int<sp/>N,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>M,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>stride,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_TYPE<sp/>direction,<sp/>//-1<sp/>=<sp/>forward,<sp/>1<sp/>=<sp/>backward</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__local<sp/>const<sp/>CL_TYPE2*<sp/>twiddle_basis,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>data,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__constant<sp/>CL_TYPE2*<sp/>scale,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__constant<sp/>CL_TYPE2*<sp/>circulant,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>workspace)</highlight></codeline>
+<codeline><highlight class="normal">#else</highlight></codeline>
+<codeline><highlight class="normal">FFTBluestein(unsigned<sp/>int<sp/>N,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>M,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>stride,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_TYPE<sp/>direction,<sp/>//-1<sp/>=<sp/>forward,<sp/>1<sp/>=<sp/>backward</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__local<sp/>const<sp/>CL_TYPE2*<sp/>twiddle_basis,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>data,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>scale,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>circulant,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>workspace)</highlight></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>X;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//STEP<sp/>D</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//copy<sp/>the<sp/>data<sp/>into<sp/>the<sp/>workspace<sp/>and<sp/>scale<sp/>by<sp/>the<sp/>scale<sp/>factor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;N;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X<sp/>=<sp/>data[i*stride];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X.s1<sp/>*=<sp/>direction;<sp/>//conjugate<sp/>here<sp/>if<sp/>direction<sp/>is<sp/>forward</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X<sp/>=<sp/>ComplexMultiply(X,scale[i]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>workspace[i]<sp/>=<sp/>X;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//fill<sp/>out<sp/>the<sp/>rest<sp/>of<sp/>the<sp/>extended<sp/>vector<sp/>with<sp/>zeros</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=N;<sp/>i&lt;M;<sp/>i++){workspace[i]<sp/>=<sp/>0.0;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//STEP<sp/>E</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//perform<sp/>the<sp/>DFT<sp/>on<sp/>the<sp/>workspace</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//do<sp/>radix-2<sp/>FFT<sp/>w/<sp/>decimation<sp/>in<sp/>frequency<sp/>(normal<sp/>order<sp/>input,<sp/>bit-address<sp/>permutated<sp/>output)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FFTRadixTwo_DIF(M,<sp/>1,<sp/>NORMAL_TWIDDLE,<sp/>FFT_FORWARD,<sp/>twiddle_basis,<sp/>workspace);<sp/>//stride=1,<sp/>using<sp/>normal<sp/>twiddle<sp/>factors</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//STEP<sp/>F</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//now<sp/>we<sp/>scale<sp/>the<sp/>workspace<sp/>with<sp/>the<sp/>circulant<sp/>vector</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;M;<sp/>i++){workspace[i]<sp/>=<sp/>ComplexMultiply(workspace[i],<sp/>circulant[i]);}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//STEP<sp/>G</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//now<sp/>perform<sp/>the<sp/>inverse<sp/>DFT<sp/>on<sp/>the<sp/>workspace</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//do<sp/>radix-2<sp/>FFT<sp/>w/<sp/>decimation<sp/>in<sp/>time<sp/>(bit-address<sp/>permutated<sp/>input,<sp/>normal<sp/>order<sp/>output)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FFTRadixTwo_DIT(M,<sp/>1,<sp/>CONJ_TWIDDLE,<sp/>FFT_FORWARD,<sp/>twiddle_basis,<sp/>workspace);<sp/>//stride=1,<sp/>use<sp/>conjugate<sp/>twiddle<sp/>factors</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//STEP<sp/>H</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//renormalize<sp/>to<sp/>complete<sp/>IDFT,<sp/>extract<sp/>and<sp/>scale<sp/>at<sp/>the<sp/>same<sp/>time</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE<sp/>norm<sp/>=<sp/>1.0/((CL_TYPE)M);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;N;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X<sp/>=<sp/>norm*ComplexMultiply(workspace[i],<sp/>scale[i]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X.s1<sp/>*=<sp/>direction;<sp/>//conjugate<sp/>here<sp/>if<sp/>direction<sp/>is<sp/>forward</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[i*stride]<sp/>=<sp/>X;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>MHO_FastFourierUtilities_Defined_H<sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Math/cl/MHO_FastFourierTransformUtilities.cl"/>
+  </compounddef>
+</doxygen>

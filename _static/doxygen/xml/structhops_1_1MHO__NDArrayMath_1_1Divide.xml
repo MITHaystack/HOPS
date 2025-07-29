@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__NDArrayMath_1_1Divide" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_NDArrayMath::Divide</compoundname>
+    <includes refid="MHO__NDArrayMath_8hh" local="no">MHO_NDArrayMath.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>numerator</declname>
+        <defname>numerator</defname>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>denominator</declname>
+        <defname>denominator</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structhops_1_1MHO__NDArrayMath_1_1Divide_1a8cafe10c0ed228bfd249b002af0ceb93" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@24</name>
+        <enumvalue id="structhops_1_1MHO__NDArrayMath_1_1Divide_1a8cafe10c0ed228bfd249b002af0ceb93ae38ca17a2c8763c22e6ec79846af2346" prot="public">
+          <name>value</name>
+          <initializer>= Divide&lt; numerator, 1 &gt;::value / Divide&lt; denominator, 1 &gt;::value</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" line="199" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" bodystart="200" bodyend="202"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>enum <ref refid="structhops_1_1MHO__NDArrayMath_1_1Divide" kindref="compound">Divide</ref> - compute integer division at compile time </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" line="197" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" bodystart="198" bodyend="203"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__NDArrayMath_1_1Divide_1a8cafe10c0ed228bfd249b002af0ceb93ae38ca17a2c8763c22e6ec79846af2346" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayMath::Divide</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

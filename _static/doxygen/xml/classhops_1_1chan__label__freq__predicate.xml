@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1chan__label__freq__predicate" kind="class" language="C++" prot="public">
+    <compoundname>hops::chan_label_freq_predicate</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1a8334faa818130ab7aec5b9f49670eb87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::chan_label_freq_predicate::chan_label_freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>chan_label_freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1a8334faa818130ab7aec5b9f49670eb87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::chan_label_freq_predicate::chan_label_freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>chan_label_freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_WeightChannelizer.cc" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_WeightChannelizer.cc" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1a8334faa818130ab7aec5b9f49670eb87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::chan_label_freq_predicate::chan_label_freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>chan_label_freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1a32d8655680a9834a8dd769285e5e9f7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::chan_label_freq_predicate::~chan_label_freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>~chan_label_freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" line="11" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1a32d8655680a9834a8dd769285e5e9f7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::chan_label_freq_predicate::~chan_label_freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>~chan_label_freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_WeightChannelizer.cc" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_WeightChannelizer.cc" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1a32d8655680a9834a8dd769285e5e9f7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::chan_label_freq_predicate::~chan_label_freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>~chan_label_freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1ae46b707c4a28a2899c51282355a7d081" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::chan_label_freq_predicate::operator()</definition>
+        <argsstring>(const mho_json &amp;a, const mho_json &amp;b)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" line="13" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="13" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1ae46b707c4a28a2899c51282355a7d081" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::chan_label_freq_predicate::operator()</definition>
+        <argsstring>(const mho_json &amp;a, const mho_json &amp;b)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_WeightChannelizer.cc" line="29" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_WeightChannelizer.cc" bodystart="29" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1chan__label__freq__predicate_1a72f0f8380554b7a65bbbc15a9409fd47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::chan_label_freq_predicate::operator()</definition>
+        <argsstring>(const mho_json *a, const mho_json *b)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" line="33" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="33" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" line="7" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="8" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classhops_1_1chan__label__freq__predicate_1a8334faa818130ab7aec5b9f49670eb87" prot="public" virt="non-virtual"><scope>hops::chan_label_freq_predicate</scope><name>chan_label_freq_predicate</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1a8334faa818130ab7aec5b9f49670eb87" prot="public" virt="non-virtual"><scope>hops::chan_label_freq_predicate</scope><name>chan_label_freq_predicate</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1a8334faa818130ab7aec5b9f49670eb87" prot="public" virt="non-virtual"><scope>hops::chan_label_freq_predicate</scope><name>chan_label_freq_predicate</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1ae46b707c4a28a2899c51282355a7d081" prot="public" virt="virtual"><scope>hops::chan_label_freq_predicate</scope><name>operator()</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1ae46b707c4a28a2899c51282355a7d081" prot="public" virt="virtual"><scope>hops::chan_label_freq_predicate</scope><name>operator()</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1a72f0f8380554b7a65bbbc15a9409fd47" prot="public" virt="virtual"><scope>hops::chan_label_freq_predicate</scope><name>operator()</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1a32d8655680a9834a8dd769285e5e9f7f" prot="public" virt="virtual"><scope>hops::chan_label_freq_predicate</scope><name>~chan_label_freq_predicate</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1a32d8655680a9834a8dd769285e5e9f7f" prot="public" virt="virtual"><scope>hops::chan_label_freq_predicate</scope><name>~chan_label_freq_predicate</name></member>
+      <member refid="classhops_1_1chan__label__freq__predicate_1a32d8655680a9834a8dd769285e5e9f7f" prot="public" virt="virtual"><scope>hops::chan_label_freq_predicate</scope><name>~chan_label_freq_predicate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

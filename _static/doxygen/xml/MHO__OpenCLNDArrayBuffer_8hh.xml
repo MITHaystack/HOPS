@@ -1,0 +1,360 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__OpenCLNDArrayBuffer_8hh" kind="file" language="C++">
+    <compoundname>MHO_OpenCLNDArrayBuffer.hh</compoundname>
+    <includes refid="MHO__ExtensibleElement_8hh" local="yes">MHO_ExtensibleElement.hh</includes>
+    <includes refid="MHO__OpenCLInterface_8hh" local="yes">MHO_OpenCLInterface.hh</includes>
+    <includedby refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh" local="yes">MHO_OpenCLFastFourierTransformRadix2Stage.hh</includedby>
+    <includedby refid="MHO__OpenCLScalarMultiply_8hh" local="yes">MHO_OpenCLScalarMultiply.hh</includedby>
+    <incdepgraph>
+      <node id="17">
+        <label>atomic</label>
+      </node>
+      <node id="8">
+        <label>cstdint</label>
+      </node>
+      <node id="20">
+        <label>stdexcept</label>
+      </node>
+      <node id="21">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>CL/cl.hpp</label>
+      </node>
+      <node id="15">
+        <label>string</label>
+      </node>
+      <node id="31">
+        <label>map</label>
+      </node>
+      <node id="6">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>ostream</label>
+      </node>
+      <node id="19">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_OpenCLConfig.hh</label>
+      </node>
+      <node id="26">
+        <label>tuple</label>
+      </node>
+      <node id="24">
+        <label>ctime</label>
+      </node>
+      <node id="23">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="4">
+        <label>MHO_OpenCLInterface.hh</label>
+        <link refid="MHO__OpenCLInterface_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>sstream</label>
+      </node>
+      <node id="16">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstdlib</label>
+      </node>
+      <node id="9">
+        <label>iostream</label>
+      </node>
+      <node id="25">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mutex</label>
+      </node>
+      <node id="18">
+        <label>thread</label>
+      </node>
+      <node id="12">
+        <label>set</label>
+      </node>
+      <node id="1">
+        <label>MHO_OpenCLNDArrayBuffer.hh</label>
+        <link refid="MHO__OpenCLNDArrayBuffer_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>complex</label>
+      </node>
+      <node id="28">
+        <label>MHO_OpenCLHeaderWrapper.hh</label>
+        <link refid="MHO__OpenCLHeaderWrapper_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>algorithm</label>
+      </node>
+      <node id="14">
+        <label>stdio.h</label>
+      </node>
+      <node id="2">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>MHO_OpenCLScalarMultiply.hh</label>
+        <link refid="MHO__OpenCLScalarMultiply_8hh"/>
+      </node>
+      <node id="2">
+        <label>MHO_OpenCLFastFourierTransformRadix2Stage.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh"/>
+      </node>
+      <node id="1">
+        <label>MHO_OpenCLNDArrayBuffer.hh</label>
+        <link refid="MHO__OpenCLNDArrayBuffer_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__OpenCLNDArrayBuffer" prot="public">hops::MHO_OpenCLNDArrayBuffer</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_OpenCLNDArrayBuffer_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_OpenCLNDArrayBuffer_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ExtensibleElement_8hh" kindref="compound">MHO_ExtensibleElement.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__OpenCLInterface_8hh" kindref="compound">MHO_OpenCLInterface.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="classhops_1_1MHO__OpenCLNDArrayBuffer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XArrayType<sp/>&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer" kindref="compound">MHO_OpenCLNDArrayBuffer</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1aed9293a799f4d4650f8f1ab3a623b429" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1aed9293a799f4d4650f8f1ab3a623b429" kindref="member">MHO_OpenCLNDArrayBuffer</ref>(<ref refid="classhops_1_1MHO__ExtensibleElement" kindref="compound">MHO_ExtensibleElement</ref>*<sp/>element)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a8c9d01ced348cac227e560863b4af0b4" kindref="member">fElement</ref>(element),<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" kindref="member">fDimensionBufferCL</ref>(nullptr),<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" kindref="member">fDataBufferCL</ref>(nullptr)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" kindref="member">fRank</ref><sp/>=<sp/>XArrayType::rank::value;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref><sp/>=<sp/></highlight><highlight class="keyword">dynamic_cast&lt;</highlight><highlight class="normal"><sp/>XArrayType*<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(element);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab0b8d6b54a2f964ee96b88f7046b2da8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab0b8d6b54a2f964ee96b88f7046b2da8" kindref="member">~MHO_OpenCLNDArrayBuffer</ref>()</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" kindref="member">fDimensionBufferCL</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" kindref="member">fDataBufferCL</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab955ea7536e320ca85250b833861d96c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab955ea7536e320ca85250b833861d96c" kindref="member">ConstructDimensionBuffer</ref>()</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//buffer<sp/>for<sp/>the<sp/>dimensions<sp/>of<sp/>the<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_bytes<sp/>=<sp/>(<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" kindref="member">fRank</ref>)<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1afb1e7b05efe6d7d7601c352b65756889" kindref="member">CL_ERROR_TRY</ref></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" kindref="member">fDimensionBufferCL</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>cl::Buffer(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;GetContext(),<sp/>CL_MEM_READ_ONLY,<sp/>n_bytes);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1a3a05039be307b6ffdac8a16a93801001" kindref="member">CL_ERROR_CATCH</ref></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a3589d099720c4ebddfb3daa5d76fe255" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a3589d099720c4ebddfb3daa5d76fe255" kindref="member">ConstructDataBuffer</ref>()</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//buffer<sp/>for<sp/>the<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_bytes<sp/>=<sp/>(</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref>-&gt;GetSize()))<sp/>*</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">MHO_OpenCLTypeMap&lt; typename XArrayType::value_type &gt;::mapped_type</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1afb1e7b05efe6d7d7601c352b65756889" kindref="member">CL_ERROR_TRY</ref></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" kindref="member">fDataBufferCL</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>cl::Buffer(<ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;GetContext(),<sp/>CL_MEM_READ_WRITE,<sp/>n_bytes);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1a3a05039be307b6ffdac8a16a93801001" kindref="member">CL_ERROR_CATCH</ref></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7e00c1a6997102822f77b043a3e95396" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::Buffer*<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7e00c1a6997102822f77b043a3e95396" kindref="member">GetDimensionBuffer</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" kindref="member">fDimensionBufferCL</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ae04d2c8353e67187e132a460198b57df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::Buffer*<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ae04d2c8353e67187e132a460198b57df" kindref="member">GetDataBuffer</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" kindref="member">fDataBufferCL</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ad42cc5500ecda31d447c323d58ea4ccb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ad42cc5500ecda31d447c323d58ea4ccb" kindref="member">WriteDimensionBuffer</ref>()</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//writes<sp/>the<sp/>dimensions<sp/>of<sp/>the<sp/>array<sp/>from<sp/>the<sp/>host<sp/>to<sp/>the<sp/>device</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::CommandQueue&amp;<sp/>Q<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1abed33fffd4344aba2fb76077ef4b7d5b" kindref="member">GetQueue</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_bytes<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" kindref="member">fRank</ref><sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>int);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" kindref="member">fRank</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a5bc9cee6ff52926ae394a4abe07fadc7" kindref="member">fDimensions</ref>[i]<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref>-&gt;GetDimension(i));</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//we<sp/>enqueue<sp/>write<sp/>the<sp/>needed<sp/>constants<sp/>for<sp/>this<sp/>dimension</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1afb1e7b05efe6d7d7601c352b65756889" kindref="member">CL_ERROR_TRY</ref></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Q.enqueueWriteBuffer(*<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" kindref="member">fDimensionBufferCL</ref>,<sp/>CL_TRUE,<sp/>0,<sp/>n_bytes,<sp/>&amp;(<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a5bc9cee6ff52926ae394a4abe07fadc7" kindref="member">fDimensions</ref>[0]));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1a3a05039be307b6ffdac8a16a93801001" kindref="member">CL_ERROR_CATCH</ref></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENFORCE_CL_FINISH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Q.finish();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1aab6a2703eaa290ec38b6f898a534c709" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1aab6a2703eaa290ec38b6f898a534c709" kindref="member">WriteDataBuffer</ref>()</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Writes<sp/>data<sp/>from<sp/>the<sp/>host<sp/>to<sp/>device</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::CommandQueue&amp;<sp/>Q<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1abed33fffd4344aba2fb76077ef4b7d5b" kindref="member">GetQueue</ref>();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_bytes<sp/>=<sp/>(</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref>-&gt;GetSize()))<sp/>*</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">MHO_OpenCLTypeMap&lt; typename XArrayType::value_type &gt;::mapped_type</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">MHO_OpenCLTypeMap&lt; typename XArrayType::value_type &gt;::mapped_type</ref>*<sp/>ptr;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="normal"><sp/>typename<sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">MHO_OpenCLTypeMap&lt; typename XArrayType::value_type &gt;::mapped_type</ref>*<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref>-&gt;GetData());</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1afb1e7b05efe6d7d7601c352b65756889" kindref="member">CL_ERROR_TRY</ref></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Q.enqueueWriteBuffer(*<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" kindref="member">fDataBufferCL</ref>,<sp/>CL_TRUE,<sp/>0,<sp/>n_bytes,<sp/>ptr);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1a3a05039be307b6ffdac8a16a93801001" kindref="member">CL_ERROR_CATCH</ref></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENFORCE_CL_FINISH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Q.finish();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a40dba36db69ca90f7444ba44f0b02c9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a40dba36db69ca90f7444ba44f0b02c9b" kindref="member">ReadDataBuffer</ref>()</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//TODO<sp/>FIXME<sp/>--<sp/>need<sp/>to<sp/>make<sp/>sure<sp/><sp/>typename<sp/>XArrayType::value_type<sp/><sp/><sp/>is<sp/>the<sp/>same<sp/>size<sp/>as<sp/>equivalent<sp/>OpenCL<sp/>type<sp/>we<sp/>are<sp/>mapping<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//read<sp/>out<sp/>data<sp/>from<sp/>the<sp/>GPU<sp/>to<sp/>the<sp/>host<sp/>memory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::CommandQueue&amp;<sp/>Q<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()-&gt;<ref refid="classhops_1_1MHO__OpenCLInterface_1abed33fffd4344aba2fb76077ef4b7d5b" kindref="member">GetQueue</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_bytes<sp/>=<sp/>(</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref>-&gt;GetSize()))<sp/>*</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">MHO_OpenCLTypeMap&lt; typename XArrayType::value_type &gt;::mapped_type</ref>);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">MHO_OpenCLTypeMap&lt; typename XArrayType::value_type &gt;::mapped_type</ref>*<sp/>ptr;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="normal"><sp/>typename<sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">MHO_OpenCLTypeMap&lt; typename XArrayType::value_type &gt;::mapped_type</ref>*<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref>-&gt;GetData());</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1afb1e7b05efe6d7d7601c352b65756889" kindref="member">CL_ERROR_TRY</ref></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Q.enqueueReadBuffer(*<ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" kindref="member">fDataBufferCL</ref>,<sp/>CL_TRUE,<sp/>0,<sp/>n_bytes,<sp/>ptr);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__OpenCLInterface_8hh_1a3a05039be307b6ffdac8a16a93801001" kindref="member">CL_ERROR_CATCH</ref></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>ENFORCE_CL_FINISH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Q.finish();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="111" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a8c9d01ced348cac227e560863b4af0b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ExtensibleElement" kindref="compound">MHO_ExtensibleElement</ref>*<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a8c9d01ced348cac227e560863b4af0b4" kindref="member">fElement</ref>;</highlight></codeline>
+<codeline lineno="112" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XArrayType*<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" kindref="member">fNDArray</ref>;</highlight></codeline>
+<codeline lineno="113" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" kindref="member">fRank</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//The<sp/>OpenCL<sp/>buffers<sp/>associated<sp/>with<sp/>this<sp/>table<sp/>are:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//(1)<sp/>A<sp/>buffer<sp/>containing<sp/>the<sp/>dimensions<sp/>of<sp/>the<sp/>table<sp/>+<sp/>total<sp/>size</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//(2)<sp/>A<sp/>buffer<sp/>for<sp/>the<sp/>ND-data<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//buffer<sp/>for<sp/>the<sp/>dimensions<sp/>of<sp/>the<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>buffer<sp/>must<sp/>be<sp/>made<sp/>of<sp/>unsigned<sp/>int<sp/>(fixed<sp/>width),<sp/>as<sp/>opencl<sp/>doesnt<sp/>support<sp/>size_t</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a5bc9cee6ff52926ae394a4abe07fadc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a5bc9cee6ff52926ae394a4abe07fadc7" kindref="member">fDimensions</ref>[XArrayType::rank::value];</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//buffer<sp/>for<sp/>the<sp/>array<sp/>dimensions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::Buffer*<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" kindref="member">fDimensionBufferCL</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//buffer<sp/>for<sp/>the<sp/>array<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::Buffer*<sp/><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" kindref="member">fDataBufferCL</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh"/>
+  </compounddef>
+</doxygen>

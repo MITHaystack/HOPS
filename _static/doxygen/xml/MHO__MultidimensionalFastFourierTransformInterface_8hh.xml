@@ -1,0 +1,981 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__MultidimensionalFastFourierTransformInterface_8hh" kind="file" language="C++">
+    <compoundname>MHO_MultidimensionalFastFourierTransformInterface.hh</compoundname>
+    <includes local="no">cstring</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includes refid="MHO__Meta_8hh" local="yes">MHO_Meta.hh</includes>
+    <includes refid="MHO__TableContainer_8hh" local="yes">MHO_TableContainer.hh</includes>
+    <includedby refid="MHO__MultidimensionalFastFourierTransform_8hh" local="yes">MHO_MultidimensionalFastFourierTransform.hh</includedby>
+    <includedby refid="MHO__MultidimensionalFastFourierTransformFFTW_8hh" local="yes">MHO_MultidimensionalFastFourierTransformFFTW.hh</includedby>
+    <includedby refid="MHO__OpenCLFastFourierTransformPlan_8hh" local="yes">MHO_OpenCLFastFourierTransformPlan.hh</includedby>
+    <includedby refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh" local="yes">MHO_OpenCLFastFourierTransformRadix2Stage.hh</includedby>
+    <includedby refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh" local="yes">MHO_OpenCLMultidimensionalFastFourierTransform.hh</includedby>
+    <incdepgraph>
+      <node id="14">
+        <label>atomic</label>
+      </node>
+      <node id="67">
+        <label>MHO_UUIDGenerator.hh</label>
+        <link refid="MHO__UUIDGenerator_8hh"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>iomanip</label>
+      </node>
+      <node id="61">
+        <label>assert.h</label>
+      </node>
+      <node id="42">
+        <label>iterator</label>
+      </node>
+      <node id="48">
+        <label>MHO_NDArrayView.hh</label>
+        <link refid="MHO__NDArrayView_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cstdint</label>
+      </node>
+      <node id="53">
+        <label>MHO_ClassIdentity.hh</label>
+        <link refid="MHO__ClassIdentity_8hh"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>endian.h</label>
+      </node>
+      <node id="57">
+        <label>stdint.h</label>
+      </node>
+      <node id="31">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>MHO_Meta.hh</label>
+        <link refid="MHO__Meta_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>cmath</label>
+      </node>
+      <node id="69">
+        <label>MHO_Taggable.hh</label>
+        <link refid="MHO__Taggable_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_MultidimensionalFastFourierTransformInterface.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransformInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>stdexcept</label>
+      </node>
+      <node id="34">
+        <label>MHO_IntervalLabelInterface.hh</label>
+        <link refid="MHO__IntervalLabelInterface_8hh"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+      <node id="54">
+        <label>MHO_MD5HashGenerator.hh</label>
+        <link refid="MHO__MD5HashGenerator_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>cinttypes</label>
+      </node>
+      <node id="24">
+        <label>map</label>
+      </node>
+      <node id="3">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>MHO_FileStreamer.hh</label>
+        <link refid="MHO__FileStreamer_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>stddef.h</label>
+      </node>
+      <node id="55">
+        <label>fstream</label>
+      </node>
+      <node id="46">
+        <label>MHO_NDArrayMath.hh</label>
+        <link refid="MHO__NDArrayMath_8hh"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ostream</label>
+      </node>
+      <node id="58">
+        <label>MHO_UUID.hh</label>
+        <link refid="MHO__UUID_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>MHO_NDArrayWrapper_0.hh</label>
+        <link refid="MHO__NDArrayWrapper__0_8hh"/>
+      </node>
+      <node id="35">
+        <label>MHO_VectorContainer.hh</label>
+        <link refid="MHO__VectorContainer_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>MHO_Axis.hh</label>
+        <link refid="MHO__Axis_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>MHO_IndexLabelInterface.hh</label>
+        <link refid="MHO__IndexLabelInterface_8hh"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>MHO_NDArrayWrapper_1.hh</label>
+        <link refid="MHO__NDArrayWrapper__1_8hh"/>
+      </node>
+      <node id="68">
+        <label>random</label>
+      </node>
+      <node id="70">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>string.h</label>
+      </node>
+      <node id="41">
+        <label>MHO_BidirectionalIterator.hh</label>
+        <link refid="MHO__BidirectionalIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>tuple</label>
+      </node>
+      <node id="21">
+        <label>ctime</label>
+      </node>
+      <node id="20">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>vector</label>
+      </node>
+      <node id="49">
+        <label>MHO_BidirectionalIndexedIterator.hh</label>
+        <link refid="MHO__BidirectionalIndexedIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>utility</label>
+      </node>
+      <node id="38">
+        <label>array</label>
+      </node>
+      <node id="10">
+        <label>sstream</label>
+      </node>
+      <node id="13">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>MHO_BidirectionalStrideIterator.hh</label>
+        <link refid="MHO__BidirectionalStrideIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>MHO_NDArrayWrapper.hh</label>
+        <link refid="MHO__NDArrayWrapper_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cstdlib</label>
+      </node>
+      <node id="33">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="47">
+        <label>cstddef</label>
+      </node>
+      <node id="59">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mutex</label>
+      </node>
+      <node id="15">
+        <label>thread</label>
+      </node>
+      <node id="26">
+        <label>type_traits</label>
+      </node>
+      <node id="52">
+        <label>MHO_Serializable.hh</label>
+        <link refid="MHO__Serializable_8hh"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>set</label>
+      </node>
+      <node id="32">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="23">
+        <label>complex</label>
+      </node>
+      <node id="37">
+        <label>algorithm</label>
+      </node>
+      <node id="60">
+        <label>picohash.h</label>
+        <link refid="picohash_8h"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>stdio.h</label>
+      </node>
+      <node id="45">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstring</label>
+      </node>
+      <node id="62">
+        <label>inttypes.h</label>
+      </node>
+      <node id="27">
+        <label>MHO_TableContainer.hh</label>
+        <link refid="MHO__TableContainer_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="11">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="12">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="29">
+        <label>MHO_OpenCLFastFourierTransformPlan.cc</label>
+        <link refid="MHO__OpenCLFastFourierTransformPlan_8cc"/>
+      </node>
+      <node id="27">
+        <label>MHO_MultidimensionalFastFourierTransformFFTW.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransformFFTW_8hh"/>
+      </node>
+      <node id="23">
+        <label>MHO_SingleSidebandNormFX.cc</label>
+        <link refid="MHO__SingleSidebandNormFX_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_DelayRate.hh</label>
+        <link refid="MHO__DelayRate_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_MultidimensionalFastFourierTransformInterface.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransformInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>MHO_ComputePlotData.hh</label>
+        <link refid="MHO__ComputePlotData_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>TestSignalFFT.cc</label>
+        <link refid="TestSignalFFT_8cc"/>
+      </node>
+      <node id="13">
+        <label>MHO_BasicFringeUtilities.cc</label>
+        <link refid="MHO__BasicFringeUtilities_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_MultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransform_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>MHO_MultitonePhaseCorrection.hh</label>
+        <link refid="MHO__MultitonePhaseCorrection_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>MHO_MixedSidebandNormFX.hh</label>
+        <link refid="MHO__MixedSidebandNormFX_8hh"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MHO_IonosphericFringeFitter.hh</label>
+        <link refid="MHO__IonosphericFringeFitter_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>MHO_OpenCLFastFourierTransformRadix2Stage.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh"/>
+      </node>
+      <node id="7">
+        <label>MHO_MBDelaySearch.cc</label>
+        <link refid="MHO__MBDelaySearch_8cc"/>
+      </node>
+      <node id="22">
+        <label>MHO_SingleSidebandNormFX.hh</label>
+        <link refid="MHO__SingleSidebandNormFX_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MHO_FringeFitterFactory.cc</label>
+        <link refid="MHO__FringeFitterFactory_8cc"/>
+      </node>
+      <node id="14">
+        <label>MHO_MBDelaySearchCUDA.hh</label>
+        <link refid="MHO__MBDelaySearchCUDA_8hh"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MHO_DelayRate.cc</label>
+        <link refid="MHO__DelayRate_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_BasicFringeFitter.hh</label>
+        <link refid="MHO__BasicFringeFitter_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>MHO_MixedSidebandNormFX.cc</label>
+        <link refid="MHO__MixedSidebandNormFX_8cc"/>
+      </node>
+      <node id="28">
+        <label>MHO_OpenCLFastFourierTransformPlan.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformPlan_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TestPCalExtraction.cc</label>
+        <link refid="TestPCalExtraction_8cc"/>
+      </node>
+      <node id="26">
+        <label>MHO_FringePlotInfo.cc</label>
+        <link refid="MHO__FringePlotInfo_8cc"/>
+      </node>
+      <node id="25">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_MBDelaySearch.hh</label>
+        <link refid="MHO__MBDelaySearch_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>MHO_MBDelaySearchCUDA.cc</label>
+        <link refid="MHO__MBDelaySearchCUDA_8cc"/>
+      </node>
+      <node id="20">
+        <label>MHO_MultitonePhaseCorrection.cc</label>
+        <link refid="MHO__MultitonePhaseCorrection_8cc"/>
+      </node>
+      <node id="21">
+        <label>MHO_MultitonePhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__MultitonePhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="31">
+        <label>MHO_OpenCLMultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface" prot="public">hops::MHO_MultidimensionalFastFourierTransformInterface</innerclass>
+    <innerclass refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis" prot="protected">hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_MultidimensionalFastFourierTransformInterface_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_MultidimensionalFastFourierTransformInterface_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Meta_8hh" kindref="compound">MHO_Meta.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__TableContainer_8hh" kindref="compound">MHO_TableContainer.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XArgType<sp/>&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface" kindref="compound">MHO_MultidimensionalFastFourierTransformInterface</ref></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>static_assert(<ref refid="structhops_1_1is__complex" kindref="compound">is_complex&lt; typename XArgType::value_type &gt;::value</ref>,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Array<sp/>element<sp/>type<sp/>must<sp/>be<sp/>a<sp/>complex<sp/>floating<sp/>point<sp/>type.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="29" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a69c256470d83da4c91b9d873b42bd3a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a69c256470d83da4c91b9d873b42bd3a4" kindref="member">complex_value_type</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XArgType::value_type;</highlight></codeline>
+<codeline lineno="30" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48aa57e2eba5569636fba88f2a6bac4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48aa57e2eba5569636fba88f2a6bac4e" kindref="member">floating_point_value_type</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XArgType::value_type::value_type;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a2f79775a9703a315bbaf3fa4680c2331" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a2f79775a9703a315bbaf3fa4680c2331" kindref="member">MHO_MultidimensionalFastFourierTransformInterface</ref>()</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>XArgType::rank::value;<sp/>i++)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a00d4d2c72414cebc55955a8813306b91" kindref="member">fDimensionSize</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" kindref="member">fAxesToXForm</ref>[i]<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a792f2c5df090bc623e39fc140a328f10" kindref="member">fIsValid</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" kindref="member">fInitialized</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" kindref="member">fForward</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" kindref="member">fTransformAxisLabels</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48ba7e7463a6149a58e1ae3723ec090b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48ba7e7463a6149a58e1ae3723ec090b" kindref="member">~MHO_MultidimensionalFastFourierTransformInterface</ref>(){};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76b6d126eae8c01d867ef260ef35dd09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76b6d126eae8c01d867ef260ef35dd09" kindref="member">SetForward</ref>()<sp/>{<sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" kindref="member">fForward</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5e2e88affc72fe272de201a20dca1ccb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5e2e88affc72fe272de201a20dca1ccb" kindref="member">SetBackward</ref>()<sp/>{<sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" kindref="member">fForward</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//sometimes<sp/>we<sp/>may<sp/>want<sp/>to<sp/>select/deselect<sp/>particular<sp/>dimensions<sp/>of<sp/>the<sp/>x-form</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//default<sp/>is<sp/>to<sp/>transform<sp/>along<sp/>every<sp/>dimension,<sp/>but<sp/>that<sp/>may<sp/>not<sp/>always<sp/>be<sp/>needed</highlight></codeline>
+<codeline lineno="66" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1affbe2be4dd4fd0925daab1b4eb485a71" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1affbe2be4dd4fd0925daab1b4eb485a71" kindref="member">SelectAllAxes</ref>()</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>XArgType::rank::value;<sp/>i++)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" kindref="member">fAxesToXForm</ref>[i]<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" kindref="member">fInitialized</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a8e49b888c2afb4c39329bc1e31f6bd0b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a8e49b888c2afb4c39329bc1e31f6bd0b" kindref="member">DeselectAllAxes</ref>()</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>XArgType::rank::value;<sp/>i++)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" kindref="member">fAxesToXForm</ref>[i]<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" kindref="member">fInitialized</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5f9dc49f66367e30a50aa4153d6b6614" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5f9dc49f66367e30a50aa4153d6b6614" kindref="member">SelectAxis</ref>(std::size_t<sp/>axis_index)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" kindref="member">fInitialized</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(axis_index<sp/>&lt;<sp/>XArgType::rank::value)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" kindref="member">fAxesToXForm</ref>[axis_index]<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;operators&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Cannot<sp/>transform<sp/>axis<sp/>with<sp/>index:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>axis_index<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;for<sp/>array<sp/>with<sp/>rank:<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>XArgType::rank::value<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76c42f20af267617d7e1dbb835c33716" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76c42f20af267617d7e1dbb835c33716" kindref="member">EnableAxisLabelTransformation</ref>()<sp/>{<sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" kindref="member">fTransformAxisLabels</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1af017acd142a8a83640ea15506ac97dea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1af017acd142a8a83640ea15506ac97dea" kindref="member">DisableAxisLabelTransformation</ref>()<sp/>{<sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" kindref="member">fTransformAxisLabels</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//default...does<sp/>nothing</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XCheckType<sp/>=<sp/>XArgType<sp/>&gt;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>!std::is_base_of&lt;<sp/>MHO_TableContainerBase,<sp/>XCheckType<sp/>&gt;::value,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type</highlight></codeline>
+<codeline lineno="129" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a0c856afe52df1f2b17ae364ca9132c6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a0c856afe52df1f2b17ae364ca9132c6a" kindref="member">IfTableTransformAxis</ref>(XArgType*<sp/>,<sp/>std::size_t<sp/>){};</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//use<sp/>SFINAE<sp/>to<sp/>generate<sp/>specialization<sp/>for<sp/>MHO_TableContainer<sp/>types</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XCheckType<sp/>=<sp/>XArgType<sp/>&gt;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>std::is_base_of&lt;<sp/>MHO_TableContainerBase,<sp/>XCheckType<sp/>&gt;::value,<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type</highlight></codeline>
+<codeline lineno="141" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1adaaf13b5ad51362c4ad39ffffccecca8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1adaaf13b5ad51362c4ad39ffffccecca8" kindref="member">IfTableTransformAxis</ref>(XArgType*<sp/>in,<sp/>std::size_t<sp/>axis_index)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" kindref="member">fTransformAxisLabels</ref>)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" kindref="member">fAxesToXForm</ref>[axis_index])<sp/></highlight><highlight class="comment">//only<sp/>xform<sp/>axis<sp/>if<sp/>this<sp/>dimension<sp/>was<sp/>transformed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis" kindref="compound">TransformAxis</ref><sp/>axis_xformer;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>apply_at&lt;<sp/>typename<sp/>XArgType::axis_pack_tuple_type,<sp/>TransformAxis<sp/>&gt;(*in,<sp/>axis_index,<sp/>axis_xformer);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis" kindref="compound">TransformAxis</ref></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="159" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a009f83d26ad4e3eb5c179e541548237c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a009f83d26ad4e3eb5c179e541548237c" kindref="member">TransformAxis</ref>(){};</highlight></codeline>
+<codeline lineno="160" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a29fc9d545f79b92ed61c4404dabe6f1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a29fc9d545f79b92ed61c4404dabe6f1a" kindref="member">~TransformAxis</ref>(){};</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//generic<sp/>axis,<sp/>do<sp/>nothing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a6b57fc5497b44298aa80290c62a5bc99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XAxisType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a6b57fc5497b44298aa80290c62a5bc99" kindref="member">operator()</ref>(XAxisType&amp;<sp/>){};</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//overload<sp/>for<sp/>doubles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a3715c33ad87551c0eed9a97b114672ff" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a3715c33ad87551c0eed9a97b114672ff" kindref="member">operator()</ref>(<ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis&lt; double &gt;</ref>&amp;<sp/>axis1)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>is<sp/>under<sp/>the<sp/>expectation<sp/>that<sp/>all<sp/>axis<sp/>labels<sp/>are<sp/>equi-spaced</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>should<sp/>be<sp/>a<sp/>safe<sp/>assumption<sp/>since<sp/>we<sp/>are<sp/>doing<sp/>DFT<sp/>anyway</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//one<sp/>issue<sp/>here<sp/>is<sp/>that<sp/>we<sp/>are<sp/>not<sp/>taking<sp/>into<sp/>account<sp/>units<sp/>(e.g.<sp/>nanosec<sp/>or<sp/>MHz)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>N<sp/>=<sp/>axis1.<ref refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ad05b89692cf6a0ca968a9ab70446bd12" kindref="member">GetSize</ref>();</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>length<sp/>=<sp/>N;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(N<sp/>&gt;<sp/>1)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta<sp/>=<sp/>axis1(1)<sp/>-<sp/>axis1(0);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>spacing<sp/>=<sp/>(1.0<sp/>/<sp/>delta)<sp/>*<sp/>(1.0<sp/>/<sp/>length);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>start<sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//-1*length/2;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>N;<sp/>i++)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>&lt;<sp/>N<sp/>/<sp/>2)</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structvalue" kindref="compound">value</ref><sp/>=<sp/>(x<sp/>+<sp/>start)<sp/>*<sp/>spacing;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>axis1(i)<sp/>=<sp/><ref refid="structvalue" kindref="compound">value</ref>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>-1<sp/>*<sp/>length;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structvalue" kindref="compound">value</ref><sp/>=<sp/>(x<sp/>+<sp/>start)<sp/>*<sp/>spacing;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>axis1(i)<sp/>=<sp/><ref refid="structvalue" kindref="compound">value</ref>;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//overload<sp/>for<sp/>floats</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1aa70aae0af0c8c53c28eea27908824b45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1aa70aae0af0c8c53c28eea27908824b45" kindref="member">operator()</ref>(<ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis&lt; float &gt;</ref>&amp;<sp/>axis1)</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>is<sp/>under<sp/>the<sp/>expectation<sp/>that<sp/>all<sp/>axis<sp/>labels<sp/>are<sp/>equi-spaced</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>should<sp/>be<sp/>a<sp/>safe<sp/>assumption<sp/>since<sp/>we<sp/>are<sp/>doing<sp/>DFT<sp/>anyway</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//one<sp/>issue<sp/>here<sp/>is<sp/>that<sp/>we<sp/>are<sp/>not<sp/>taking<sp/>into<sp/>account<sp/>units<sp/>(e.g.<sp/>nanosec<sp/>or<sp/>MHz)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>N<sp/>=<sp/>axis1.<ref refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ad05b89692cf6a0ca968a9ab70446bd12" kindref="member">GetSize</ref>();</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>length<sp/>=<sp/>N;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(N<sp/>&gt;<sp/>1)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>delta<sp/>=<sp/>axis1(1)<sp/>-<sp/>axis1(0);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>spacing<sp/>=<sp/>(1.0<sp/>/<sp/>delta)<sp/>*<sp/>(1.0<sp/>/<sp/>length);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>start<sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//-1*length/2;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>N;<sp/>i++)</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>&lt;<sp/>N<sp/>/<sp/>2)</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structvalue" kindref="compound">value</ref><sp/>=<sp/>(x<sp/>+<sp/>start)<sp/>*<sp/>spacing;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>axis1(i)<sp/>=<sp/><ref refid="structvalue" kindref="compound">value</ref>;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>-1<sp/>*<sp/>length;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structvalue" kindref="compound">value</ref><sp/>=<sp/>(x<sp/>+<sp/>start)<sp/>*<sp/>spacing;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>axis1(i)<sp/>=<sp/><ref refid="structvalue" kindref="compound">value</ref>;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a792f2c5df090bc623e39fc140a328f10" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a792f2c5df090bc623e39fc140a328f10" kindref="member">fIsValid</ref>;</highlight></codeline>
+<codeline lineno="232" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" kindref="member">fForward</ref>;</highlight></codeline>
+<codeline lineno="233" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" kindref="member">fInitialized</ref>;</highlight></codeline>
+<codeline lineno="234" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" kindref="member">fTransformAxisLabels</ref>;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a00d4d2c72414cebc55955a8813306b91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a00d4d2c72414cebc55955a8813306b91" kindref="member">fDimensionSize</ref>[XArgType::rank::value];</highlight></codeline>
+<codeline lineno="237" refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" kindref="member">fAxesToXForm</ref>[XArgType::rank::value];</highlight></codeline>
+<codeline lineno="238"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh"/>
+  </compounddef>
+</doxygen>

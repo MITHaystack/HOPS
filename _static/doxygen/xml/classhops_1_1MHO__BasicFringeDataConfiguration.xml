@@ -1,0 +1,987 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BasicFringeDataConfiguration" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BasicFringeDataConfiguration</compoundname>
+    <includes refid="MHO__BasicFringeDataConfiguration_8hh" local="no">MHO_BasicFringeDataConfiguration.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1af73ab5d46df3d77f11963f37f41da595" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BasicFringeDataConfiguration::MHO_BasicFringeDataConfiguration</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BasicFringeDataConfiguration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="38" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1ad087086626dd5c3fc7069b26a7ec5e53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BasicFringeDataConfiguration::~MHO_BasicFringeDataConfiguration</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BasicFringeDataConfiguration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="39" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" bodystart="39" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a8a0e638c489057db7c00b9157450c50e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::configure_station_data</definition>
+        <argsstring>(MHO_ScanDataStore *scanStore, MHO_ContainerStore *containerStore, std::string ref_station_mk4id, std::string rem_station_mk4id)</argsstring>
+        <name>configure_station_data</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> *</type>
+          <declname>scanStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>containerStore</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>ref_station_mk4id</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>rem_station_mk4id</declname>
+        </param>
+        <briefdescription>
+<para>Configures station data by loading and renaming objects in <ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> and <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scanStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> for loading station data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>containerStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> for renaming objects </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_station_mk4id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference station&apos;s mk4id for loading and renaming </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rem_station_mk4id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Remote station&apos;s mk4id for loading and renaming </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="215" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="928" bodyend="948"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a069f7973e8f457727f6ba9961769f4c3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::configure_visibility_data</definition>
+        <argsstring>(MHO_ContainerStore *store)</argsstring>
+        <name>configure_visibility_data</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>store</declname>
+        </param>
+        <briefdescription>
+<para>Configures visibility data by checking and processing visibility_type and weight_type objects in the store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> containing visibility and weight data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="204" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="837" bodyend="926"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a29a7ce0af55bb6e624a36cdd9289b879" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_BasicFringeDataConfiguration::ConvertProfileEvents</definition>
+        <argsstring>(std::vector&lt; MHO_ProfileEvent &gt; &amp;events)</argsstring>
+        <name>ConvertProfileEvents</name>
+        <param>
+          <type>std::vector&lt; <ref refid="structhops_1_1MHO__ProfileEvent" kindref="compound">MHO_ProfileEvent</ref> &gt; &amp;</type>
+          <declname>events</declname>
+        </param>
+        <briefdescription>
+<para>Converts a vector of profile events into a JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>events</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of <ref refid="structhops_1_1MHO__ProfileEvent" kindref="compound">MHO_ProfileEvent</ref> objects </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>JSON object containing event details </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="236" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="1023" bodyend="1039"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1acef564ce4e2e0b76178b84fbd75e880e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::determine_baselines</definition>
+        <argsstring>(const std::string &amp;dir, const std::string &amp;baseline, std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;baseline_files)</argsstring>
+        <name>determine_baselines</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>dir</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::pair&lt; std::string, std::string &gt; &gt; &amp;</type>
+          <declname>baseline_files</declname>
+        </param>
+        <briefdescription>
+<para>Determines baselines present for each scan in a given directory matching a specified baseline pattern. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input directory path </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Baseline pattern to match (2-char code or wildcard) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseline_files</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output vector of baseline-file pairs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="121" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="429" bodyend="484"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a3b97c899e8d2b4940b2c896a9da76820" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::determine_fgroups_polproducts</definition>
+        <argsstring>(const std::string &amp;filename, const std::string &amp;cmd_fgroup, const std::string &amp;cmd_pprod, std::vector&lt; std::string &gt; &amp;fgroups, std::vector&lt; std::string &gt; &amp;pprods)</argsstring>
+        <name>determine_fgroups_polproducts</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cmd_fgroup</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cmd_pprod</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>fgroups</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>pprods</declname>
+        </param>
+        <briefdescription>
+<para>Determines frequency groups and polarization products to process for each baseline from a given filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input filename containing (visibility) data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cmd_fgroup</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Command line argument for frequency group filter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cmd_pprod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Command line argument for polarization product filter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fgroups</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output vector of frequency groups to process </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pprods</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output vector of polarization products to process </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="134" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="486" bodyend="598"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a3c23298d9c079544ba1be7189b478fd0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::determine_passes</definition>
+        <argsstring>(MHO_ParameterStore *cmdline_params, std::string &amp;cscans, std::string &amp;croots, std::string &amp;cbaselines, std::string &amp;cfgroups, std::string &amp;cpolprods)</argsstring>
+        <name>determine_passes</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>cmdline_params</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>cscans</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>croots</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>cbaselines</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>cfgroups</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>cpolprods</declname>
+        </param>
+        <briefdescription>
+<para>Determines and concatenates data passes for processing, including scans, baselines, frequency groups, and polarization products. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cmdline_params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> containing command line parameters </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cscans</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to string storing concatenated scan directories </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>croots</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to string storing concatenated associated root files </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cbaselines</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to string storing concatenated baseline files </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cfgroups</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to string storing concatenated frequency groups </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cpolprods</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to string storing concatenated polarization products </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="150" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="600" bodyend="663"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a162ec288cc24429b8786cc8a585750f2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_BasicFringeDataConfiguration::determine_required_pol_products</definition>
+        <argsstring>(std::string polprod)</argsstring>
+        <name>determine_required_pol_products</name>
+        <param>
+          <type>std::string</type>
+          <declname>polprod</declname>
+        </param>
+        <briefdescription>
+<para>Parses a polarization product string to determine required pol-products. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>polprod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input polarization product string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of unique required polarization products. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="195" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="973" bodyend="1021"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1aabce6f6bcc338478bd911d2ec6068910" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::determine_scans</definition>
+        <argsstring>(const std::string &amp;initial_dir, std::vector&lt; std::string &gt; &amp;scans, std::vector&lt; std::string &gt; &amp;roots)</argsstring>
+        <name>determine_scans</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>initial_dir</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>scans</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>roots</declname>
+        </param>
+        <briefdescription>
+<para>Determines scan directories and associated root files for processing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>initial_dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial directory to start search. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scans</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output vector of scan directories found. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>roots</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output vector of associated root files. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="110" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="370" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1ad6bfe875bb75b86859a1e7187cb346c1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_BasicFringeDataConfiguration::find_associated_root_file</definition>
+        <argsstring>(std::string dir)</argsstring>
+        <name>find_associated_root_file</name>
+        <param>
+          <type>std::string</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>Finds and returns the associated root (ovex) file in the given directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input directory path as a string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The full path of the associated root (ovex) file as a string. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="79" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="125" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1adfac94257ac8a09ab1a2120f71d08e20" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::init_and_exec_operators</definition>
+        <argsstring>(MHO_OperatorBuilderManager *build_manager, MHO_OperatorToolbox *opToolbox, const char *category)</argsstring>
+        <name>init_and_exec_operators</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorBuilderManager" kindref="compound">MHO_OperatorBuilderManager</ref> *</type>
+          <declname>build_manager</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>opToolbox</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>category</declname>
+        </param>
+        <briefdescription>
+<para>Initializes and executes (in priority value order) all operators associated with a given category. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>build_manager</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__OperatorBuilderManager" kindref="compound">MHO_OperatorBuilderManager</ref> for building operators. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>opToolbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> for getting operators by category. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>category</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Category name as string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="226" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="950" bodyend="971"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a455d4175b3705e85cb7edcfd62e27df4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BasicFringeDataConfiguration::initialize_scan_data</definition>
+        <argsstring>(MHO_ParameterStore *, MHO_ScanDataStore *scanStore)</argsstring>
+        <name>initialize_scan_data</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <defname>paramStore</defname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> *</type>
+          <declname>scanStore</declname>
+        </param>
+        <briefdescription>
+<para>Initializes scan data store using parameters and sets root file name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>param1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> containing initialization parameters </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scanStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> to be initialized </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if scan store is valid, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="177" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="736" bodyend="770"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a877d5ddb2ce86a3df5b6c13be9973204" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::parse_baseline_freqgrp</definition>
+        <argsstring>(std::string baseline_freqgrp, std::string &amp;baseline, std::string &amp;freqgrp)</argsstring>
+        <name>parse_baseline_freqgrp</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline_freqgrp</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>freqgrp</declname>
+        </param>
+        <briefdescription>
+<para>Parses baseline_freqgrp string into separate baseline and freqgrp strings (expects &apos;:&apos; as separator). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseline_freqgrp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string containing baseline and frequency group information. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freqgrp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="51" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="23" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a7680c13cc942969a7a40237f7e78ef99" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_BasicFringeDataConfiguration::parse_fourfit_command_line</definition>
+        <argsstring>(int argc, char **argv, MHO_ParameterStore *paramStore)</argsstring>
+        <name>parse_fourfit_command_line</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Parses command line arguments and stores them in a parameter store for later use by fourfit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of command line arguments </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of command line argument strings </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object to store parsed arguments </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if successful, non-zero otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="100" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="185" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a8455dfbafaaa106b9f723d2f030d05a0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_BasicFringeDataConfiguration::parse_set_string</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;arglist, int &amp;set_arg_index)</argsstring>
+        <name>parse_set_string</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>arglist</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>set_arg_index</declname>
+        </param>
+        <briefdescription>
+<para>Parses a vector of strings to extract and concatenate control file syntax after &apos;set&apos; command. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>arglist</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of strings containing commands and arguments </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>set_arg_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output index of &apos;set&apos; command position in arglist </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Concatenated string of control file syntax after &apos;set&apos; command </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="61" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="58" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a25cd631a86cce599405f94b317d331d4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::populate_initial_parameters</definition>
+        <argsstring>(MHO_ParameterStore *paramStore, MHO_ScanDataStore *scanStore)</argsstring>
+        <name>populate_initial_parameters</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> *</type>
+          <declname>scanStore</declname>
+        </param>
+        <briefdescription>
+<para>Initializes parameter store and scan store for fringe processing, sets initial values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object for storing parameters </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scanStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> object for handling scan data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="186" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="772" bodyend="834"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a6debd0db6b9257812e06b9268b10fd8f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_BasicFringeDataConfiguration::sanitize_directory</definition>
+        <argsstring>(std::string dir)</argsstring>
+        <name>sanitize_directory</name>
+        <param>
+          <type>std::string</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>Sanitizes a directory path by ensuring it ends with &apos;/&apos; and exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input directory path to sanitize. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sanitized directory path (preserves symlinks). </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="70" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="87" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a2c9b07adb99355212aa89db43335919a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_BasicFringeDataConfiguration::sanity_check</definition>
+        <argsstring>(MHO_ParameterStore *paramStore)</argsstring>
+        <name>sanity_check</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Performs a sanity check on command line parameters after parsing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> containing parsed command line arguments. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if parameters are valid, 1 otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="88" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="156" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeDataConfiguration_1a74cf09a928618eb8f5c8251b21b6231a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeDataConfiguration::split_passes</definition>
+        <argsstring>(std::vector&lt; mho_json &gt; &amp;pass_vector, const std::string &amp;cscans, const std::string &amp;croots, const std::string &amp;cbaselines, const std::string &amp;cfgroups, const std::string &amp;cpolprods)</argsstring>
+        <name>split_passes</name>
+        <param>
+          <type>std::vector&lt; <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &gt; &amp;</type>
+          <declname>pass_vector</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cscans</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>croots</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cbaselines</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cfgroups</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cpolprods</declname>
+        </param>
+        <briefdescription>
+<para>Breaks concatenated strings into vector of json objects describing data items for each processing pass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pass_vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output vector of mho_json objects representing data passes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cscans</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Concatenated string of scan directories </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>croots</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Concatenated string of root (ovex) files </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cbaselines</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Concatenated string of baselines </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cfgroups</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Concatenated string of frequency groups </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cpolprods</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Concatenated string of polarization product </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="166" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeDataConfiguration.cc" bodystart="665" bodyend="734"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BasicFringeDataConfiguration" kindref="compound">MHO_BasicFringeDataConfiguration</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>collection of helper functions for fringe fitter start-up</para>
+<para><simplesect kind="author"><para>J. Barrettj - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Sep 20 16:40:35 2023 -0400 Tue Sep 19 04:11:24 PM EDT 2023 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeDataConfiguration.hh" bodystart="35" bodyend="237"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a8a0e638c489057db7c00b9157450c50e" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>configure_station_data</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a069f7973e8f457727f6ba9961769f4c3" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>configure_visibility_data</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a29a7ce0af55bb6e624a36cdd9289b879" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>ConvertProfileEvents</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1acef564ce4e2e0b76178b84fbd75e880e" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>determine_baselines</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a3b97c899e8d2b4940b2c896a9da76820" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>determine_fgroups_polproducts</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a3c23298d9c079544ba1be7189b478fd0" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>determine_passes</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a162ec288cc24429b8786cc8a585750f2" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>determine_required_pol_products</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1aabce6f6bcc338478bd911d2ec6068910" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>determine_scans</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1ad6bfe875bb75b86859a1e7187cb346c1" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>find_associated_root_file</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1adfac94257ac8a09ab1a2120f71d08e20" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>init_and_exec_operators</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a455d4175b3705e85cb7edcfd62e27df4" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>initialize_scan_data</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1af73ab5d46df3d77f11963f37f41da595" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>MHO_BasicFringeDataConfiguration</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a877d5ddb2ce86a3df5b6c13be9973204" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>parse_baseline_freqgrp</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a7680c13cc942969a7a40237f7e78ef99" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>parse_fourfit_command_line</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a8455dfbafaaa106b9f723d2f030d05a0" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>parse_set_string</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a25cd631a86cce599405f94b317d331d4" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>populate_initial_parameters</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a6debd0db6b9257812e06b9268b10fd8f" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>sanitize_directory</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a2c9b07adb99355212aa89db43335919a" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>sanity_check</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1a74cf09a928618eb8f5c8251b21b6231a" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>split_passes</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeDataConfiguration_1ad087086626dd5c3fc7069b26a7ec5e53" prot="public" virt="virtual"><scope>hops::MHO_BasicFringeDataConfiguration</scope><name>~MHO_BasicFringeDataConfiguration</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

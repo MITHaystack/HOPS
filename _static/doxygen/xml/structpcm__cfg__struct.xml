@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpcm__cfg__struct" kind="struct" language="C++" prot="public">
+    <compoundname>pcm_cfg_struct</compoundname>
+    <includes refid="svex_8h" local="no">svex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpcm__cfg__struct_1a1432c2579327523cac3924e85f2dc339" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pcm_cfg_struct::counter_coeff[9]</definition>
+        <argsstring>[9]</argsstring>
+        <name>counter_coeff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="23" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpcm__cfg__struct_1a31fe0ab7428bdf82517f8b300cd5e257" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char pcm_cfg_struct::freq[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="21" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpcm__cfg__struct_1afa053e9b9f6665132c687106db9eee79" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int pcm_cfg_struct::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="22" column="4" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>pcm_cfg_struct</label>
+        <link refid="structpcm__cfg__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>counter_coeff</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="20" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structpcm__cfg__struct_1a1432c2579327523cac3924e85f2dc339" prot="public" virt="non-virtual"><scope>pcm_cfg_struct</scope><name>counter_coeff</name></member>
+      <member refid="structpcm__cfg__struct_1a31fe0ab7428bdf82517f8b300cd5e257" prot="public" virt="non-virtual"><scope>pcm_cfg_struct</scope><name>freq</name></member>
+      <member refid="structpcm__cfg__struct_1afa053e9b9f6665132c687106db9eee79" prot="public" virt="non-virtual"><scope>pcm_cfg_struct</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

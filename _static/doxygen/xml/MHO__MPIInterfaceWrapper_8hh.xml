@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__MPIInterfaceWrapper_8hh" kind="file" language="C++">
+    <compoundname>MHO_MPIInterfaceWrapper.hh</compoundname>
+    <includedby refid="fourfit4_8cc" local="yes">fourfit4.cc</includedby>
+    <includedby refid="mark42hops_8cc" local="yes">mark42hops.cc</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>MHO_MPIInterfaceWrapper.hh</label>
+        <link refid="MHO__MPIInterfaceWrapper_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mark42hops.cc</label>
+        <link refid="mark42hops_8cc"/>
+      </node>
+      <node id="2">
+        <label>fourfit4.cc</label>
+        <link refid="fourfit4_8cc"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__MPIInterfaceWrapper_8hh_1a93e6bc68c0b14a44a611ae8caf8f2640" prot="public" static="no">
+        <name>MPI_SINGLE_PROCESS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MPIInterfaceWrapper.hh" line="19" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MPIInterfaceWrapper.hh" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_MPIInterfaceWrapper_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_MPIInterfaceWrapper_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>HOPS_USE_MPI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&quot;<ref refid="MHO__MPIInterface_8hh" kindref="compound">MHO_MPIInterface.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>HOPS_USE_MPI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>MPI_SINGLE_PROCESS<sp/>if(hops::MHO_MPIInterface::GetInstance()-&gt;GetGlobalProcessID()<sp/>==<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="MHO__MPIInterfaceWrapper_8hh_1a93e6bc68c0b14a44a611ae8caf8f2640" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>MPI_SINGLE_PROCESS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MPIInterfaceWrapper.hh"/>
+  </compounddef>
+</doxygen>

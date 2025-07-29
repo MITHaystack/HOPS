@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1report__lib" kind="namespace" language="Python">
+    <compoundname>vpal::report_lib</compoundname>
+    <innerclass refid="classvpal_1_1report__lib_1_1JsonSerializableObject" prot="public">vpal::report_lib::JsonSerializableObject</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1report__lib_1acf532a2bf19e44cb42b6fae9a873adaf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.report_lib.NestedObjectEncoder</definition>
+        <argsstring>(an_object)</argsstring>
+        <name>NestedObjectEncoder</name>
+        <param>
+          <type>an_object</type>
+          <defname>an_object</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" bodystart="19" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>simple json serialization module for dumping report data</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

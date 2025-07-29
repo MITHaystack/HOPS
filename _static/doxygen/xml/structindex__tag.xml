@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structindex__tag" kind="struct" language="C++" prot="public">
+    <compoundname>index_tag</compoundname>
+    <includes refid="mk4__data_8h" local="no">mk4_data.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structindex__tag_1ad74a3cca04baf96834ebfcfb1a8ffb42" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int index_tag::ap_space</definition>
+        <argsstring></argsstring>
+        <name>ap_space</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="66" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structindex__tag_1ab500d9600f3f3579838a9a6e74e000ee" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__101" kindref="compound">type_101</ref> *</type>
+        <definition>struct type_101* index_tag::t101</definition>
+        <argsstring></argsstring>
+        <name>t101</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="65" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structindex__tag_1adf28e2b95ba2ae54fc89eca361588c1f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__120" kindref="compound">type_120</ref> **</type>
+        <definition>struct type_120** index_tag::t120</definition>
+        <argsstring></argsstring>
+        <name>t120</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="67" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="8">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>spectral</label>
+        <link refid="structspectral"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>im</edgelabel>
+          <edgelabel>re</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>lag_data</label>
+        <link refid="unionlag__data"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>apl</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>spec</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>ag</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>cg</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>cpl</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>flag_wgt</label>
+        <link refid="unionflag__wgt"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>float</label>
+      </node>
+      <node id="11">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>index_tag</label>
+        <link refid="structindex__tag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ap_space</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>t101</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>t120</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>counts_global</label>
+        <link refid="structcounts__global"/>
+        <childnode refid="13" relation="usage">
+          <edgelabel>lags</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="6">
+        <label>type_120</label>
+        <link refid="structtype__120"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>fr_delay</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>status</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ld</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fw</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>type_101</label>
+        <link refid="structtype__101"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>corr_board</edgelabel>
+          <edgelabel>corr_slot</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>nblocks</edgelabel>
+          <edgelabel>primary</edgelabel>
+          <edgelabel>ref_chan</edgelabel>
+          <edgelabel>rem_chan</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>status</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>blocks</edgelabel>
+          <edgelabel>post_mortem</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+      <node id="13">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="63" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="64" bodyend="68"/>
+    <listofallmembers>
+      <member refid="structindex__tag_1ad74a3cca04baf96834ebfcfb1a8ffb42" prot="public" virt="non-virtual"><scope>index_tag</scope><name>ap_space</name></member>
+      <member refid="structindex__tag_1ab500d9600f3f3579838a9a6e74e000ee" prot="public" virt="non-virtual"><scope>index_tag</scope><name>t101</name></member>
+      <member refid="structindex__tag_1adf28e2b95ba2ae54fc89eca361588c1f" prot="public" virt="non-virtual"><scope>index_tag</scope><name>t120</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

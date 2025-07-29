@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structps__array" kind="struct" language="C++" prot="public">
+    <compoundname>ps_array</compoundname>
+    <includes refid="psplot_8h" local="no">psplot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structps__array_1a6f00e9f2933377c883b659a8e0d011a1" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpsplot__baseline" kindref="compound">psplot_baseline</ref></type>
+        <definition>struct psplot_baseline ps_array::baseline[MAXBASE]</definition>
+        <argsstring>[MAXBASE]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="131" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1aa6e0a7d56351076a42b7cabdaf39d22a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ps_array::displayed</definition>
+        <argsstring></argsstring>
+        <name>displayed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="123" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1a858db1abc1bdaf4f5b5a178dd79320a4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpsplot__fgroup" kindref="compound">psplot_fgroup</ref></type>
+        <definition>struct psplot_fgroup ps_array::fglist[MAXGROUPS]</definition>
+        <argsstring>[MAXGROUPS]</argsstring>
+        <name>fglist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="127" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1a0a6815fcb3db1c27e3ec903acee9ea8a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ps_array::fplot_open</definition>
+        <argsstring></argsstring>
+        <name>fplot_open</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="124" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1a1779873869da74469f5710008e2e959d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ps_array::nbaselines</definition>
+        <argsstring></argsstring>
+        <name>nbaselines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="121" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1ac756a6bfab108e1d4b756bdc344b332f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ps_array::nscans</definition>
+        <argsstring></argsstring>
+        <name>nscans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="122" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1ab6ecbba3ac0e8633e20e180cbde7c770" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ps_array::ntagged</definition>
+        <argsstring></argsstring>
+        <name>ntagged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="125" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1abe4ed1ad45129225d7dd0c77474e63d2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpsplot__plotparam" kindref="compound">psplot_plotparam</ref></type>
+        <definition>struct psplot_plotparam ps_array::param</definition>
+        <argsstring></argsstring>
+        <name>param</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="131" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1a23f0bd521372afd2cbecd0d8ae79d334" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ps_array::qtagged[17]</definition>
+        <argsstring>[17]</argsstring>
+        <name>qtagged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="126" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1a90b9c4939eb804627b193a0408f62d95" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ps_array::retain</definition>
+        <argsstring></argsstring>
+        <name>retain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="127" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1acdd90dd025334829bbcda824dde62f3f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ps_array::stnlist[MAXSTEXP]</definition>
+        <argsstring>[MAXSTEXP]</argsstring>
+        <name>stnlist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="130" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1a8c20aaa16151ba03b165b06935a2fc31" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ps_array::subgroups[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>subgroups</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="129" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structps__array_1ac530e9aaa6dcd57b85e432151c08a9d0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpsplot__scantime" kindref="compound">psplot_scantime</ref> *</type>
+        <definition>struct psplot_scantime* ps_array::time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="131" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="9">
+        <label>psplot_scantime</label>
+        <link refid="structpsplot__scantime"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>scan_name</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>nst</edgelabel>
+          <edgelabel>scantime</edgelabel>
+          <edgelabel>seconds</edgelabel>
+          <edgelabel>tagged</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>stations</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>psplot_plotparam</label>
+        <link refid="structpsplot__plotparam"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>base_sep</edgelabel>
+          <edgelabel>scan_sep</edgelabel>
+          <edgelabel>tagsize</edgelabel>
+          <edgelabel>xgb_fract</edgelabel>
+          <edgelabel>ygb_fract</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>band</edgelabel>
+          <edgelabel>base_per_page</edgelabel>
+          <edgelabel>basepage</edgelabel>
+          <edgelabel>nbasepage</edgelabel>
+          <edgelabel>npages</edgelabel>
+          <edgelabel>scanpage</edgelabel>
+          <edgelabel>scans_per_page</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>psplot_cell</label>
+        <link refid="structpsplot__cell"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>colour_index</edgelabel>
+          <edgelabel>data_index</edgelabel>
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>float</label>
+      </node>
+      <node id="10">
+        <label>psplot_station</label>
+        <link refid="structpsplot__station"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fglist</edgelabel>
+          <edgelabel>stn</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>minus</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ps_array</label>
+        <link refid="structps__array"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>baseline</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>stnlist</edgelabel>
+          <edgelabel>subgroups</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fglist</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>param</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>displayed</edgelabel>
+          <edgelabel>fplot_open</edgelabel>
+          <edgelabel>nbaselines</edgelabel>
+          <edgelabel>nscans</edgelabel>
+          <edgelabel>ntagged</edgelabel>
+          <edgelabel>qtagged</edgelabel>
+          <edgelabel>retain</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>psplot_baseline</label>
+        <link refid="structpsplot__baseline"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>alloced</edgelabel>
+          <edgelabel>tagged</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>scan</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="6">
+        <label>psplot_fgroup</label>
+        <link refid="structpsplot__fgroup"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fgroup</edgelabel>
+          <edgelabel>subgroups</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="119" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="120" bodyend="134"/>
+    <listofallmembers>
+      <member refid="structps__array_1a6f00e9f2933377c883b659a8e0d011a1" prot="public" virt="non-virtual"><scope>ps_array</scope><name>baseline</name></member>
+      <member refid="structps__array_1aa6e0a7d56351076a42b7cabdaf39d22a" prot="public" virt="non-virtual"><scope>ps_array</scope><name>displayed</name></member>
+      <member refid="structps__array_1a858db1abc1bdaf4f5b5a178dd79320a4" prot="public" virt="non-virtual"><scope>ps_array</scope><name>fglist</name></member>
+      <member refid="structps__array_1a0a6815fcb3db1c27e3ec903acee9ea8a" prot="public" virt="non-virtual"><scope>ps_array</scope><name>fplot_open</name></member>
+      <member refid="structps__array_1a1779873869da74469f5710008e2e959d" prot="public" virt="non-virtual"><scope>ps_array</scope><name>nbaselines</name></member>
+      <member refid="structps__array_1ac756a6bfab108e1d4b756bdc344b332f" prot="public" virt="non-virtual"><scope>ps_array</scope><name>nscans</name></member>
+      <member refid="structps__array_1ab6ecbba3ac0e8633e20e180cbde7c770" prot="public" virt="non-virtual"><scope>ps_array</scope><name>ntagged</name></member>
+      <member refid="structps__array_1abe4ed1ad45129225d7dd0c77474e63d2" prot="public" virt="non-virtual"><scope>ps_array</scope><name>param</name></member>
+      <member refid="structps__array_1a23f0bd521372afd2cbecd0d8ae79d334" prot="public" virt="non-virtual"><scope>ps_array</scope><name>qtagged</name></member>
+      <member refid="structps__array_1a90b9c4939eb804627b193a0408f62d95" prot="public" virt="non-virtual"><scope>ps_array</scope><name>retain</name></member>
+      <member refid="structps__array_1acdd90dd025334829bbcda824dde62f3f" prot="public" virt="non-virtual"><scope>ps_array</scope><name>stnlist</name></member>
+      <member refid="structps__array_1a8c20aaa16151ba03b165b06935a2fc31" prot="public" virt="non-virtual"><scope>ps_array</scope><name>subgroups</name></member>
+      <member refid="structps__array_1ac530e9aaa6dcd57b85e432151c08a9d0" prot="public" virt="non-virtual"><scope>ps_array</scope><name>time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

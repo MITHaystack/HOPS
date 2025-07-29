@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1fourphase__lib_1_1ExperimentReportData" kind="class" language="Python" prot="public">
+    <compoundname>vpal::fourphase_lib::ExperimentReportData</compoundname>
+    <basecompoundref refid="classvpal_1_1report__lib_1_1JsonSerializableObject" prot="public" virt="non-virtual">vpal.report_lib.JsonSerializableObject</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a67c43b9ed02e956b7efe30cff31f1cb1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.ExperimentReportData::config_obj</definition>
+        <argsstring></argsstring>
+        <name>config_obj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="605" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="605" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a95362e0283b51b22d28582e96051227b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.ExperimentReportData::generated_station_offsets</definition>
+        <argsstring></argsstring>
+        <name>generated_station_offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="606" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="606" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a4f316e1c2664899b225d30d5edd78157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.ExperimentReportData.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="604" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="604" bodyend="607"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a0bd27df5304a68bd744f17656eb4a607" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.ExperimentReportData.create_report</definition>
+        <argsstring>(self, report_filename)</argsstring>
+        <name>create_report</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>report_filename</type>
+          <defname>report_filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="625" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="625" bodyend="630"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1abe5181702672b6c2d8f49400e67e18db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.ExperimentReportData.export_json</definition>
+        <argsstring>(self)</argsstring>
+        <name>export_json</name>
+        <reimplements refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1a5c3ae4ed6d06099f454ead9b988b691c">export_json</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="608" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="608" bodyend="616"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a58af7cd8ca1228231ac00ca0e512ec2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.ExperimentReportData.import_json</definition>
+        <argsstring>(self, json_dict)</argsstring>
+        <name>import_json</name>
+        <reimplements refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1aa016c5f55c3299e6e7525fb4b31a3377">import_json</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>json_dict</type>
+          <defname>json_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="617" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="617" bodyend="624"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1ab7778a4e37f37386e766f81bbc6205ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.ExperimentReportData.load_report</definition>
+        <argsstring>(self, report_filename)</argsstring>
+        <name>load_report</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>report_filename</type>
+          <defname>report_filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="631" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="631" bodyend="636"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1afe1a627b2588e73449631557a2657ee1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.ExperimentReportData.update_config</definition>
+        <argsstring>(self, configuration_obj)</argsstring>
+        <name>update_config</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>configuration_obj</type>
+          <defname>configuration_obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="637" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="637" bodyend="659"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>container class for report data </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fourphase_lib.ExperimentReportData</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fourphase_lib.ExperimentReportData</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="602" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="602" bodyend="664"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a4f316e1c2664899b225d30d5edd78157" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a67c43b9ed02e956b7efe30cff31f1cb1" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>config_obj</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a0bd27df5304a68bd744f17656eb4a607" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>create_report</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1abe5181702672b6c2d8f49400e67e18db" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>export_json</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a95362e0283b51b22d28582e96051227b" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>generated_station_offsets</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a58af7cd8ca1228231ac00ca0e512ec2f" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>import_json</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1ab7778a4e37f37386e766f81bbc6205ba" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>load_report</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1afe1a627b2588e73449631557a2657ee1" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::ExperimentReportData</scope><name>update_config</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

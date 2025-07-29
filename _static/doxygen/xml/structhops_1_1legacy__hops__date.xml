@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1legacy__hops__date" kind="class" language="C++" prot="public">
+    <compoundname>hops::legacy_hops_date</compoundname>
+    <includes refid="legacy__hops__date_8hh" local="no">legacy_hops_date.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1legacy__hops__date_1ad6060d245f487b3018ab0c6f10f9667b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short hops::legacy_hops_date::day</definition>
+        <argsstring></argsstring>
+        <name>day</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" line="19" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1legacy__hops__date_1a196b8358e57bb4c420b2c7934f3c2de0" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short hops::legacy_hops_date::hour</definition>
+        <argsstring></argsstring>
+        <name>hour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" line="20" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1legacy__hops__date_1aafdb5961700ec866f7fdfe924f79ff3f" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short hops::legacy_hops_date::minute</definition>
+        <argsstring></argsstring>
+        <name>minute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" line="21" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1legacy__hops__date_1af302fe04f95994e28a1f909fc35df889" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::legacy_hops_date::second</definition>
+        <argsstring></argsstring>
+        <name>second</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" line="22" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1legacy__hops__date_1af8ea39baf3e849a9672f0b0efdfe6a41" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short hops::legacy_hops_date::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" line="18" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A struct to avoid name collisions between the mk4utils &apos;data&apos; struct and the &apos;date&apos; header library. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Aug 18 10:22:26 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>hops::legacy_hops_date</label>
+        <link refid="structhops_1_1legacy__hops__date"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/legacy_hops_date.hh" bodystart="17" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structhops_1_1legacy__hops__date_1ad6060d245f487b3018ab0c6f10f9667b" prot="public" virt="non-virtual"><scope>hops::legacy_hops_date</scope><name>day</name></member>
+      <member refid="structhops_1_1legacy__hops__date_1a196b8358e57bb4c420b2c7934f3c2de0" prot="public" virt="non-virtual"><scope>hops::legacy_hops_date</scope><name>hour</name></member>
+      <member refid="structhops_1_1legacy__hops__date_1aafdb5961700ec866f7fdfe924f79ff3f" prot="public" virt="non-virtual"><scope>hops::legacy_hops_date</scope><name>minute</name></member>
+      <member refid="structhops_1_1legacy__hops__date_1af302fe04f95994e28a1f909fc35df889" prot="public" virt="non-virtual"><scope>hops::legacy_hops_date</scope><name>second</name></member>
+      <member refid="structhops_1_1legacy__hops__date_1af8ea39baf3e849a9672f0b0efdfe6a41" prot="public" virt="non-virtual"><scope>hops::legacy_hops_date</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

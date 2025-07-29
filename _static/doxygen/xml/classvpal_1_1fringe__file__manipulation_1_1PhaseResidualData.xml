@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData" kind="class" language="Python" prot="public">
+    <compoundname>vpal::fringe_file_manipulation::PhaseResidualData</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a23051ea3ad717d068327229c54e968bc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="380" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a000f4e5f6741e1257e10ef96257ffb9c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::channel_phasor_amplitudes</definition>
+        <argsstring></argsstring>
+        <name>channel_phasor_amplitudes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="385" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a57bd15ae370d61f6d26617af339649ac" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::dtec</definition>
+        <argsstring></argsstring>
+        <name>dtec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="382" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1aee14ba836916aa3e746395119955ff10" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::filename</definition>
+        <argsstring></argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="378" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1abdf775d22ad9fb2c6ed5e3517799146b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::is_valid</definition>
+        <argsstring></argsstring>
+        <name>is_valid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="377" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1ab1e0ca24c30ac4a4bf08b1b6252fd22e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::phase_corrections</definition>
+        <argsstring></argsstring>
+        <name>phase_corrections</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="386" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a754d9a0d9ca978493bddc91525e4312d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::phase_residuals</definition>
+        <argsstring></argsstring>
+        <name>phase_residuals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="384" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a256b41e161fc6c214ba119b6389c098a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::polprod</definition>
+        <argsstring></argsstring>
+        <name>polprod</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="381" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a0c092f53c30f17f911c030a1971a63ea" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::scan_name</definition>
+        <argsstring></argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="379" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1aad0e1d3e3740599e2d9419b5f0d671ae" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.PhaseResidualData::snr</definition>
+        <argsstring></argsstring>
+        <name>snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="383" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1af449c1e903e7dacd1e31c03236862c57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.PhaseResidualData.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="376" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="376" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a15c453556faea4c2464df88c81c194ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.PhaseResidualData.extract</definition>
+        <argsstring>(self, filename)</argsstring>
+        <name>extract</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1aee14ba836916aa3e746395119955ff10" kindref="member">filename</ref></type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="388" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="388" bodyend="439"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> container class to store the phase residuals for each channel </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.fringe_file_manipulation.PhaseResidualData</label>
+        <link refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.fringe_file_manipulation.PhaseResidualData</label>
+        <link refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="373" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="373" bodyend="441"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1af449c1e903e7dacd1e31c03236862c57" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a23051ea3ad717d068327229c54e968bc" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>baseline</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a000f4e5f6741e1257e10ef96257ffb9c" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>channel_phasor_amplitudes</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a57bd15ae370d61f6d26617af339649ac" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>dtec</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a15c453556faea4c2464df88c81c194ea" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>extract</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1aee14ba836916aa3e746395119955ff10" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>filename</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1abdf775d22ad9fb2c6ed5e3517799146b" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>is_valid</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1ab1e0ca24c30ac4a4bf08b1b6252fd22e" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>phase_corrections</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a754d9a0d9ca978493bddc91525e4312d" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>phase_residuals</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a256b41e161fc6c214ba119b6389c098a" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>polprod</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1a0c092f53c30f17f911c030a1971a63ea" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>scan_name</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData_1aad0e1d3e3740599e2d9419b5f0d671ae" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::PhaseResidualData</scope><name>snr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

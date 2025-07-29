@@ -1,0 +1,736 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Axis" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Axis</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__AxisBase" prot="public" virt="non-virtual">hops::MHO_AxisBase</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__VectorContainer" prot="public" virt="non-virtual">hops::MHO_VectorContainer&lt; XValueType &gt;</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__IndexLabelInterface" prot="public" virt="non-virtual">hops::MHO_IndexLabelInterface</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__IntervalLabelInterface" prot="public" virt="non-virtual">hops::MHO_IntervalLabelInterface</basecompoundref>
+    <includes refid="MHO__Axis_8hh" local="no">MHO_Axis.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a9279e126d69af07a7c587bc28371a2b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Axis&lt; XValueType &gt;::MHO_Axis</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Axis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="34" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1af08172aab274af674693630740a0cd16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Axis&lt; XValueType &gt;::MHO_Axis</definition>
+        <argsstring>(const MHO_Axis &amp;obj)</argsstring>
+        <name>MHO_Axis</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="60" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="60" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a7657a7eb582e269eeb4d94e3c263bc8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Axis&lt; XValueType &gt;::MHO_Axis</definition>
+        <argsstring>(std::size_t dim)</argsstring>
+        <name>MHO_Axis</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="46" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="46" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a04c57d54e78c352fa26eb0df84baec60" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Axis&lt; XValueType &gt;::~MHO_Axis</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Axis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="76" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="76" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a3502ccbb5502803b7d999975134e8624" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_Axis&lt; XValueType &gt;::Copy</definition>
+        <argsstring>(const MHO_Axis &amp;rhs)</argsstring>
+        <name>Copy</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Expensive copy for <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> that handles special treatment of index/interval labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to source <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function.</para>
+</simplesect>
+expensive copy (as opposed to the assignment operator), pointers to exernally managed memory are not transferred </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="202" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="202" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1ae3e79153ea4ca78a2fceb07ce9b8e1a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_Axis&lt; XValueType &gt;::CopyTags</definition>
+        <argsstring>(const MHO_Axis &amp;rhs)</argsstring>
+        <name>CopyTags</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Copies tags from rhs <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> object, handling index/interval labels specially. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the source <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="85" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="85" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a237c1dd1ee6515b4745979ddccdadefe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_Axis&lt; XValueType &gt;::GetSerializedSize</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetSerializedSize</name>
+        <reimplements refid="classhops_1_1MHO__VectorContainer_1aaea274dcf1b11ad5f61f9c9cd857c361">GetSerializedSize</reimplements>
+        <briefdescription>
+<para>Getter for serialized size of axis object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Total serialized size as uint64_t </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="184" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="184" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a27fefaeccf48453cabba1d31f83c96cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_Axis&lt; XValueType &gt;::SelectFirstMatchingIndex</definition>
+        <argsstring>(const XValueType &amp;label_value, std::size_t &amp;result)</argsstring>
+        <name>SelectFirstMatchingIndex</name>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>label_value</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+<para>Selects first matching index for a given label value in axis values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>label_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input label value to match. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if a match is found, false otherwise. Result contains matched index. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="164" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="164" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a3a05a41a54184143e499f0a089732d91" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::size_t &gt;</type>
+        <definition>std::vector&lt; std::size_t &gt; hops::MHO_Axis&lt; XValueType &gt;::SelectMatchingIndexes</definition>
+        <argsstring>(const std::set&lt; XValueType &gt; label_values)</argsstring>
+        <name>SelectMatchingIndexes</name>
+        <param>
+          <type>const std::set&lt; XValueType &gt;</type>
+          <declname>label_values</declname>
+        </param>
+        <briefdescription>
+<para>Selects indexes from axis where the label values match the provided labels, dumb brute force search. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>label_values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Set of label values to match against axis elements </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of matching indexes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="117" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="117" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a3cf33a06ac4b7fd1327e69d20099b174" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::size_t &gt;</type>
+        <definition>std::vector&lt; std::size_t &gt; hops::MHO_Axis&lt; XValueType &gt;::SelectMatchingIndexes</definition>
+        <argsstring>(const XValueType &amp;label_value)</argsstring>
+        <name>SelectMatchingIndexes</name>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>label_value</declname>
+        </param>
+        <briefdescription>
+<para>Selects indexes for matching axis values (given a single value) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>label_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of selected indexes where axis element matches the label value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="141" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="141" bodyend="154"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhops_1_1MHO__Axis_1a3cab57ea1076afacc39e5320d2b3f7fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&lt;&lt;</definition>
+        <argsstring>(XStream &amp;s, const MHO_Axis &amp;aData)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="242" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="242" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhops_1_1MHO__Axis_1a5256d0d65456df9619eccfbc2594de55" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&gt;&gt;</definition>
+        <argsstring>(XStream &amp;s, MHO_Axis &amp;aData)</argsstring>
+        <name>operator&gt;&gt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="225" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="225" bodyend="240"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a99ee1845933642c3d03631c197f4eb11" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>virtual MHO_UUID hops::MHO_Axis&lt; XValueType &gt;::DetermineTypeUUID</definition>
+        <argsstring>() const override</argsstring>
+        <name>DetermineTypeUUID</name>
+        <reimplements refid="classhops_1_1MHO__VectorContainer_1aae7a3ca2c182eaa9cab92b733abc0473">DetermineTypeUUID</reimplements>
+        <briefdescription>
+<para>Function DetermineTypeUUID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (<ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="289" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="289" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1a0b08b2da416ce6d6ca441a4735836d63" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_Axis&lt; XValueType &gt;::StreamInData_V0</definition>
+        <argsstring>(XStream &amp;s)</argsstring>
+        <name>StreamInData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Reads data from stream and sets index/interval label objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input stream of type XStream&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="264" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="264" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Axis_1ad5122c7d54ed9926a69b71952416abde" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_Axis&lt; XValueType &gt;::StreamOutData_V0</definition>
+        <argsstring>(XStream &amp;s) const</argsstring>
+        <name>StreamOutData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Serializes the vector container data to an output stream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the output stream. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="284" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="284" bodyend="287"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A class representing a coordinate axis, inherits from <ref refid="classhops_1_1MHO__VectorContainer" kindref="compound">MHO_VectorContainer</ref>.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Oct 19 11:34:27 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 1 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_AxisBase</label>
+        <link refid="classhops_1_1MHO__AxisBase"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_VectorContainerBase</label>
+        <link refid="classhops_1_1MHO__VectorContainerBase"/>
+      </node>
+      <node id="8">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_Axis&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_VectorContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__VectorContainer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_IndexLabelInterface</label>
+        <link refid="classhops_1_1MHO__IndexLabelInterface"/>
+      </node>
+      <node id="9">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+      </node>
+      <node id="7">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="12">
+        <label>hops::MHO_IntervalLabelInterface</label>
+        <link refid="classhops_1_1MHO__IntervalLabelInterface"/>
+      </node>
+      <node id="10">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 1 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_AxisBase</label>
+        <link refid="classhops_1_1MHO__AxisBase"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_VectorContainerBase</label>
+        <link refid="classhops_1_1MHO__VectorContainerBase"/>
+      </node>
+      <node id="11">
+        <label>json</label>
+      </node>
+      <node id="9">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_Axis&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_VectorContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__VectorContainer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_IndexLabelInterface</label>
+        <link refid="classhops_1_1MHO__IndexLabelInterface"/>
+      </node>
+      <node id="10">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="14">
+        <label>hops::MHO_IntervalLabelInterface</label>
+        <link refid="classhops_1_1MHO__IntervalLabelInterface"/>
+      </node>
+      <node id="12">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_Axis.hh" bodystart="31" bodyend="298"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a6196efd2aa51a40c710979222c924a7a" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a19a425cc45fb610c718c5d2b0dbb667b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>AsExtension</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a05721863529d511d6da2999f3bb3b18d" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1afa3972d1d3ed3e7bdf0436c2e003c498" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1abad23b48b91d74d54c8f080a383dcc3d" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>begin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a901da362648b266bc69231fe84334816" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>cbegin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a7e47c1ce77ab259a3aa44692d5b274d8" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>cend</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1af761ac2e487b598b0f6db8d82dee5b52" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>citerator_at</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aec4e83a60d4b3f6197a3c7b14625d5ab" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1ad8bcf35f802859a184c95e28a38d5f8b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ClearIndexLabels</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a0fd8bfe031c7c488c92570c2fb24f75b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ClearIntervalLabels</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ad9ccfa6ce55bd4ea9e37f2bfbdf08684" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ClearTags</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1ad4681d2f047b0d212f19d889dc0442d3" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>Clone</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1adfc54f267304e6d9f3cfcd548f4ea1b3" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ComputeSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a2d13fdcc9b98961a7c1bc3142c699bbd" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ComputeSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a85c7943afd0401b17e36ac4a2659da20" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>const_iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a7594a6634e599349d9140e8957f73de0" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>const_stride_iterator</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a868b27ebb6a95aae5a71331fa0498fc5" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ConstructKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a01162d836ddbaf45d51e6b8df2dd0fa3" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ContainsKey</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a3502ccbb5502803b7d999975134e8624" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>Copy</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a1bc345cee744774033b66b42181f72f2" prot="public" virt="virtual" ambiguityscope="hops::MHO_VectorContainer::"><scope>hops::MHO_Axis</scope><name>Copy</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a6eb05fd975c9f881a7e7af0b4dcb570d" prot="public" virt="virtual" ambiguityscope="hops::MHO_NDArrayWrapper&lt; XValueType, 1 &gt;::"><scope>hops::MHO_Axis</scope><name>Copy</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a74eedf9337ead51aa34a07b3703db8bf" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>CopyFrom</name></member>
+      <member refid="classhops_1_1MHO__Axis_1ae3e79153ea4ca78a2fceb07ce9b8e1a1" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>CopyTags</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a9ff0c9e91598da64f382e40e790641e6" prot="public" virt="virtual" ambiguityscope="hops::MHO_VectorContainer::"><scope>hops::MHO_Axis</scope><name>CopyTags</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1aba9ec7771e32aca2115875eed2867c01" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>CopyTo</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a56a656e5370db5f88f8b533fea7bbf43" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>cstride_begin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a256b32bb41faf0a2e61f26c9dd41e19e" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>cstride_end</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a71d725843d180ea3e723d3fe89d0cebd" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>cstride_iterator_at</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a99ee1845933642c3d03631c197f4eb11" prot="private" virt="virtual"><scope>hops::MHO_Axis</scope><name>DetermineTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a0be2488f1dfd3f3781e246d97cb201eb" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>DumpKeys</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab32a351cb204524f09f839ae6ec6cea0" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>DumpMap</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a9ec8150b07990a1f1994bdaa6f5be148" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>end</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ad082fd5b966f0c0018b0f4a4ff9080f6" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ExtractIndexesFromKey</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a6f89cc760b193859608854d8e8f2365f" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ExtractIndexesFromKey</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1ac7053fbca67e03532f14b4f47e0a6b49" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>fExtensions</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa7de95913b4113fc50143b2c73ddbfa" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>fObject</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a3cfd9254c300fb36bcd8e986af8d81ce" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetData</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ab6470b93f9dc42de580736e920581098" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetData</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a9a2d393530bbe18cb7653998408a58e7" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetDimension</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a6cc9c047e47b2ca48aa3bda9141c2bd9" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetDimensionArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a6c1583f26011c36cba1cc1386f592f8c" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetDimensions</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1af372985f8b1b1628f3392d607366f863" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetDimensions</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a94d0d45eef4d8d97bf4742b8a5f17380" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetFirstIntervalWithKeyValue</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a08141a73a0b3553f7442256bdfe9538c" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetIndexLabelSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a4a35eaf9938f5f33bc666883034d733c" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetIndicesForOffset</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ac73ee79e5efcc0013a4a8e55b0eb3528" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetIntervalLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a0fc74089c82528a8a39806af92c51e19" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1ac05d112e493ca825ac68ad4a61e4f5f9" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a62fbd7d491a531c2239b482a98c3fcac" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetMatchingIndexes</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a094612bb9c7450bc1aa5145f00f9262b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetMatchingIndexes</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a545bdc59e211927f60094a0b440554af" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetMatchingIntervalLabels</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a29cc193d05cc849ef5556765a46a30af" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aa6f524e78beb65d026c87fc6856ba059" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ac28454108cb7fa16aa164c1a14ac6b08" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetOffsetForIndices</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a552b9c492454f370bb2292b4ddd1a4d4" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetRank</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a237c1dd1ee6515b4745979ddccdadefe" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>GetSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ad05b89692cf6a0ca968a9ab70446bd12" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a24d7eb475f33df78b817b29090357186" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetStride</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a96585c5919a67360181c53101fadc312" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetStrideArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a6f5a599a20352a0432b6284a07a4d44f" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetStrides</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ada80608d343d6dc36645c84a14bf7248" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>GetStrides</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aab01eda2ff2ad2338899119bcd509d31" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>GetTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a01d7dd830b5b6924ed586396e3ca2dff" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>GetVersion</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a838927fa3c01474e519efe61e4edf6ca" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>HasExtension</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa48fbe7ed6faf902d661eba225931b4" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ad838788924b9a12b62b9df9f263ee4a1" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a62c6acd5033e4e594a68e6c3d566ac37" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>index_type</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af94f990de2ea21d48b6b969ff257631b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>Insert</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a540c19c418baf902a6ebafa893f9f8f2" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>InsertIndexLabelKeyValue</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ade6305df126cde6b059e1b5f06831043" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>InsertIntervalLabelKeyValue</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1aed1615912679967d6323a7c72054307f" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ae98c43b3fccf47c625b21073d2b3632b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>iterator_at</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1afe17d8f32b77738b06ff188eea23aeac" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MakeExtension</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a9279e126d69af07a7c587bc28371a2b1" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Axis</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a7657a7eb582e269eeb4d94e3c263bc8c" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Axis</name></member>
+      <member refid="classhops_1_1MHO__Axis_1af08172aab274af674693630740a0cd16" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Axis</name></member>
+      <member refid="classhops_1_1MHO__Element_1a8457a2bfa206699701a2163585b6cc5f" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a08e0ac36b7baa0b3d4f5d3390d636816" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1ae70cfe590f07c424c4ad21b922de73bf" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_IndexLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1aba19ad4045001a0ecc36ce2a61913f37" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_IndexLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1aef45cabb7a108b2bd2e7a4bd59ebafeb" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_IntervalLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a6b9468a13034a3da25c626fccd3d1a5f" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_IntervalLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a24eaabfac649dfcc5418d47cb5a1e4b2" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a95533d35215bcb6a4feb133a58615e81" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a7cac78b1bfe29171a09f67896e3d74ca" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a26d048c4dd4d0ab616b8b2b6d13b143b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a98b1bb7b433ad44c386cf374655270ac" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a1e12ee7caab3f1e21a2c7bcbde9c89c6" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a308dd83c3523031abb3c304218e00b1a" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1af07168e43153185e5b0276ccc09f4bd4" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a071ba293eca6f0eb58a8b067ef1506d0" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a29f651974e8b1cfaa7a12810a1644cbd" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aadeecd650cb160acb8e83565ecfb8a0a" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a0b10cce72b8eb35c4cc42071faef7724" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a34a692357c9b64ff0c83bb947df46c24" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a9594977ab28b609c26b6e10c7414bb8b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_VectorContainer</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a84ecc2a350ef2705f117b86b308fb284" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_VectorContainer</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a9bd973df4300e07bd0b0778d7ea47a87" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_VectorContainer</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a5008ad9ed13867ca670908069043eb8f" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>MHO_VectorContainer</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a20888a98dcbd03311236c5cd91e7448c" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1abb1515fd990f3f31836e708787c35e4a" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a706d8f6944ac5e9009aa39e5a06331f3" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator*=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a2728ee745db3233e728ac6a7566457fa" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator*=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a506081334b416e500cdc23009bbca429" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator+=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1afa5fce98b5214f89bbaadba664e62bf7" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator+=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a06c57894bc856474cc2690ae305117e8" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator-=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a3166a84cd377959062f7d9dee6f155b5" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator-=</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a3cab57ea1076afacc39e5320d2b3f7fa" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a07234f770a617a6962dfae1f45ca3cba" prot="public" virt="non-virtual" ambiguityscope="hops::"><scope>hops::MHO_Axis</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a37bbc5f6aa854321af3faeeb653e113e" prot="public" virt="non-virtual" ambiguityscope="hops::MHO_Taggable::"><scope>hops::MHO_Axis</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af56aebf9c39bf7e6a527d899ebab328b" prot="public" virt="non-virtual" ambiguityscope="hops::MHO_JSONWrapper::"><scope>hops::MHO_Axis</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a5256d0d65456df9619eccfbc2594de55" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator&gt;&gt;</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ae2096a0435c1b1795ec9489ac3fa2012" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator[]</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a555f51d83e5c4d8a65b4ec35c06d0d12" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>operator[]</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ac39d1cd3c8f40f178a8e7915fede6c81" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>rank</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ac766c86aec5e348a400829846849ccf5" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>Resize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ac956f08db3dc223013b35d6ea791dff6" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>Resize</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a8af109cd5401bbce3e2d380c32111e35" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aeb880d8fcf4405994704f7334f7fcecd" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a0f7b57ab83164c36d35eca40a290c1ca" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>RetrieveIndexLabelKeyValue</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a5de01e8eb924e0b96fae83e2c916edd9" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>RetrieveIntervalLabelKeyValue</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a27fefaeccf48453cabba1d31f83c96cc" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SelectFirstMatchingIndex</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a3a05a41a54184143e499f0a089732d91" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SelectMatchingIndexes</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a3cf33a06ac4b7fd1327e69d20099b174" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SelectMatchingIndexes</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a4e2582bfd1fc3a28ca5f48f41b2aa49b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a8bb064e7444cdc0865f77226e09d6600" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetExternalData</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ae05a1e804aa8f7fd248742b6021c0a6a" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetExternalData</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a4bb19ee924c552142ef7a0e8505b257d" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetIndexLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a6949bea93ae61dd651917d5c054d177e" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetIntervalLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a50c85058f428c4537b38208245a21c2b" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetIntervalLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a2fa8e178eb4b672fa1ea7faec3f566e7" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetLabelObject</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a701d23cd53b153b2e2038e262b1a4299" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab9fa54b72be7e5859f46e19865e8ab5b" prot="protected" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetObject</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1af3fc6887489606836bf32705332972f7" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a9a15db3a0c00e668cea23d48e7f815a7" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SliceView</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a0b08b2da416ce6d6ca441a4735836d63" prot="private" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>StreamInData_V0</name></member>
+      <member refid="classhops_1_1MHO__Axis_1ad5122c7d54ed9926a69b71952416abde" prot="private" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>StreamOutData_V0</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a4de0696da0984f4776378c6f9f680b89" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>stride_begin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1aa71abb4809a11e1dd788fe9b6a481980" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>stride_end</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a5b501f9cd06692387d6a2dde5da1941f" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>stride_iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1adee345d1c41ea8069fa634cf66969be6" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>stride_iterator_at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a8be7ce16e457a3089506a6571fe36393" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>SubView</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ade0236649283b30baede52a01a687ca6" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>value_type</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a0731de4e1aedab709aaf93440cd620ec" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ValueAt</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a768d65fa71ce8991ffd959c6307d1770" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ValueAt</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a2e9f236a8ec358235efb11512176ba1f" prot="public" virt="non-virtual"><scope>hops::MHO_Axis</scope><name>ZeroArray</name></member>
+      <member refid="classhops_1_1MHO__Axis_1a04c57d54e78c352fa26eb0df84baec60" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_Axis</name></member>
+      <member refid="classhops_1_1MHO__Element_1aea329679a16385ae6ac6986128360887" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a3ebd5b1b0bf0726ac545354cab4d3dff" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__IndexLabelInterface_1a2eb655beb57722eca0a2c912c2091826" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_IndexLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ab420eeaa66d9c7cae9b7f20ae96f142e" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_IntervalLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a047860e11d91310d6b11b5acae0a9bf4" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1a08e2035be32903a62239a1bc7a1766de" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a573b91158c3b24b67b594e6d4af0ccea" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ae33d3be9c20ced6dce3db305e34d2551" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__VectorContainer_1a576937b189142868e4051e034c883763" prot="public" virt="virtual"><scope>hops::MHO_Axis</scope><name>~MHO_VectorContainer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structevex__struct" kind="struct" language="C++" prot="public">
+    <compoundname>evex_struct</compoundname>
+    <includes refid="evex_8h" local="no">evex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structevex__struct_1a394146683005e139e7b60fe1d6695da7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float evex_struct::ap_length</definition>
+        <argsstring></argsstring>
+        <name>ap_length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="34" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1a3cc92ad82afef3b8a3814c5482226576" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char evex_struct::corr_config_key[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>corr_config_key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1a4bc496bd057198f656e4ab3e3d4f9d57" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char evex_struct::cvex_name[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>cvex_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1ab5f3f3b6c2fe304f285c8c0e80761441" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int evex_struct::exper_num</definition>
+        <argsstring></argsstring>
+        <name>exper_num</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="29" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1a16923db2cd10fa9cc30ee8818cf26fdd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char evex_struct::lvex_name[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>lvex_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1a66d1a7035e9364dd5ad24273403de4f1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int evex_struct::mirror</definition>
+        <argsstring></argsstring>
+        <name>mirror</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="44" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1a5d05cf005d458703cd8755c36f4d1a67" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int evex_struct::nst</definition>
+        <argsstring></argsstring>
+        <name>nst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="37" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1aa28588296c2a24d2a10fa0e467251258" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char evex_struct::ovex_name[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>ovex_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1ac8b06f9e045f72e399b4089c39746ccf" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int evex_struct::realtime_latency</definition>
+        <argsstring></argsstring>
+        <name>realtime_latency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1aa974c38f16cea9973ff7881661a0042b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float evex_struct::speedup_factor</definition>
+        <argsstring></argsstring>
+        <name>speedup_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="35" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1ac1c1ed6ddc32436a0f2d2a74a34f068b" prot="public" static="no" mutable="no">
+        <type>struct evex_struct::@17</type>
+        <definition>struct evex_struct::@17 evex_struct::su_config[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>su_config</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="42" column="15"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1a07ba7e92ed442653626298d4442d68a1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char evex_struct::svex_name[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>svex_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_1a6e5b99bfa73128a735b9fba1ef5e7cc9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int evex_struct::tape_mode</definition>
+        <argsstring></argsstring>
+        <name>tape_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>evex_struct</label>
+        <link refid="structevex__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ap_length</edgelabel>
+          <edgelabel>speedup_factor</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>corr_config_key</edgelabel>
+          <edgelabel>cvex_name</edgelabel>
+          <edgelabel>lvex_name</edgelabel>
+          <edgelabel>ovex_name</edgelabel>
+          <edgelabel>svex_name</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>su_config</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>mirror</edgelabel>
+          <edgelabel>nst</edgelabel>
+          <edgelabel>realtime_latency</edgelabel>
+          <edgelabel>tape_mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="4">
+        <label>anonymous:su_config</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="28" bodyend="46"/>
+    <listofallmembers>
+      <member refid="structevex__struct_1a394146683005e139e7b60fe1d6695da7" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>ap_length</name></member>
+      <member refid="structevex__struct_1a3cc92ad82afef3b8a3814c5482226576" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>corr_config_key</name></member>
+      <member refid="structevex__struct_1a4bc496bd057198f656e4ab3e3d4f9d57" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>cvex_name</name></member>
+      <member refid="structevex__struct_1ab5f3f3b6c2fe304f285c8c0e80761441" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>exper_num</name></member>
+      <member refid="structevex__struct_1a16923db2cd10fa9cc30ee8818cf26fdd" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>lvex_name</name></member>
+      <member refid="structevex__struct_1a66d1a7035e9364dd5ad24273403de4f1" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>mirror</name></member>
+      <member refid="structevex__struct_1a5d05cf005d458703cd8755c36f4d1a67" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>nst</name></member>
+      <member refid="structevex__struct_1aa28588296c2a24d2a10fa0e467251258" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>ovex_name</name></member>
+      <member refid="structevex__struct_1ac8b06f9e045f72e399b4089c39746ccf" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>realtime_latency</name></member>
+      <member refid="structevex__struct_1aa974c38f16cea9973ff7881661a0042b" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>speedup_factor</name></member>
+      <member refid="structevex__struct_1ac1c1ed6ddc32436a0f2d2a74a34f068b" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>su_config</name></member>
+      <member refid="structevex__struct_1a07ba7e92ed442653626298d4442d68a1" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>svex_name</name></member>
+      <member refid="structevex__struct_1a6e5b99bfa73128a735b9fba1ef5e7cc9" prot="public" virt="non-virtual"><scope>evex_struct</scope><name>tape_mode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

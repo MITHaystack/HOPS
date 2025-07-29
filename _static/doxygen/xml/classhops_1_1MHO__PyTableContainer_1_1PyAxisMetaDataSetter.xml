@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter" kind="class" language="C++" prot="private">
+    <compoundname>hops::MHO_PyTableContainer::PyAxisMetaDataSetter</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1a66cc3f7764c74a37d489beb8526af0c8" prot="private" static="no" mutable="no">
+        <type>py::dict *</type>
+        <definition>py::dict* hops::MHO_PyTableContainer&lt; XTableType &gt;::PyAxisMetaDataSetter::fDict</definition>
+        <argsstring></argsstring>
+        <name>fDict</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="207" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1a5df502430752f488df5c99c5adc80803" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyTableContainer&lt; XTableType &gt;::PyAxisMetaDataSetter::PyAxisMetaDataSetter</definition>
+        <argsstring>(py::dict *adict)</argsstring>
+        <name>PyAxisMetaDataSetter</name>
+        <param>
+          <type>py::dict *</type>
+          <declname>adict</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="201" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="201" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1add17cb1abd245ff8908ddfd1ecae62c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyTableContainer&lt; XTableType &gt;::PyAxisMetaDataSetter::~PyAxisMetaDataSetter</definition>
+        <argsstring>()</argsstring>
+        <name>~PyAxisMetaDataSetter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="202" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="202" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1acdca6474346260d61489c70d0aa2a8da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XAxisType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_PyTableContainer&lt; XTableType &gt;::PyAxisMetaDataSetter::operator()</definition>
+        <argsstring>(XAxisType &amp;axis)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>XAxisType &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="204" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="204" bodyend="204"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="198" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="199" bodyend="208"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1a66cc3f7764c74a37d489beb8526af0c8" prot="private" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyAxisMetaDataSetter</scope><name>fDict</name></member>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1acdca6474346260d61489c70d0aa2a8da" prot="public" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyAxisMetaDataSetter</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1a5df502430752f488df5c99c5adc80803" prot="public" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyAxisMetaDataSetter</scope><name>PyAxisMetaDataSetter</name></member>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyAxisMetaDataSetter_1add17cb1abd245ff8908ddfd1ecae62c9" prot="public" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyAxisMetaDataSetter</scope><name>~PyAxisMetaDataSetter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

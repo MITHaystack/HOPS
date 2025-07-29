@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__ClassIdentity" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ClassIdentity</compoundname>
+    <includes refid="MHO__ClassIdentity_8hh" local="no">MHO_ClassIdentity.hh</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhops_1_1MHO__ClassIdentity_1aa82481443af729eea9ba1ed001256202" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_ClassIdentity::ClassName</definition>
+        <argsstring>()</argsstring>
+        <name>ClassName</name>
+        <briefdescription>
+<para>Returns the class name as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the class for which the name is requested. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The name of the class. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" line="36" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="structhops_1_1MHO__ClassIdentity_1a3bd44800dc97dcc006e4aa59d8f35965" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_ClassIdentity::ClassName</definition>
+        <argsstring>(const XClassType &amp;)</argsstring>
+        <name>ClassName</name>
+        <param>
+          <type>const XClassType &amp;</type>
+        </param>
+        <briefdescription>
+<para>Returns the class name as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the class for which the name is requested. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An instance of the class (unused in function). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The name of the class. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" line="45" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="structhops_1_1MHO__ClassIdentity_1a811508b3d8159f06c83aa7e5068ac95d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void hops::MHO_ClassIdentity::ClassVersionErrorMsg</definition>
+        <argsstring>(const XClassType &amp;obj, MHO_ClassVersion version)</argsstring>
+        <name>ClassVersionErrorMsg</name>
+        <param>
+          <type>const XClassType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1a79b4811cd0a8f2e7e35c6d3f85ce8b1b" kindref="member">MHO_ClassVersion</ref></type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Generates an error message for when an unknown or unsupported class version is encountered. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the class for which the error message is generated. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An instance of the class. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unsupported class version. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" line="99" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" bodystart="99" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="structhops_1_1MHO__ClassIdentity_1a259b9ed6872ace2728f13a176f89b9ef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>static MHO_UUID hops::MHO_ClassIdentity::GetUUIDFromClass</definition>
+        <argsstring>()</argsstring>
+        <name>GetUUIDFromClass</name>
+        <briefdescription>
+<para>Returns the class name as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the class for which the name is requested. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An instance of the class (unused in function). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string The name of the class. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" line="57" column="38" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" bodystart="57" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="structhops_1_1MHO__ClassIdentity_1a68c88e3ecd5e4305ef557427d9f828db" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>static MHO_UUID hops::MHO_ClassIdentity::GetUUIDFromClass</definition>
+        <argsstring>(const XClassType &amp;)</argsstring>
+        <name>GetUUIDFromClass</name>
+        <param>
+          <type>const XClassType &amp;</type>
+        </param>
+        <briefdescription>
+<para>Returns the UUID associated with a class type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of the class for which the UUID is requested. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An instance of the class (unused in function). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> The UUID of the class. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" line="70" column="38" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" bodystart="70" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="structhops_1_1MHO__ClassIdentity_1a484242fa281cadb15c1ac309478e6edd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>static MHO_UUID hops::MHO_ClassIdentity::GetUUIDFromClassName</definition>
+        <argsstring>(std::string name)</argsstring>
+        <name>GetUUIDFromClassName</name>
+        <param>
+          <type>std::string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Generates a UUID from the class name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the class. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> The generated UUID for the class name. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" line="82" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" bodystart="82" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__ClassIdentity" kindref="compound">MHO_ClassIdentity</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>template class to produce the name of XClassType at runtime</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ClassIdentity.hh" bodystart="28" bodyend="104"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__ClassIdentity_1aa82481443af729eea9ba1ed001256202" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentity</scope><name>ClassName</name></member>
+      <member refid="structhops_1_1MHO__ClassIdentity_1a3bd44800dc97dcc006e4aa59d8f35965" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentity</scope><name>ClassName</name></member>
+      <member refid="structhops_1_1MHO__ClassIdentity_1a811508b3d8159f06c83aa7e5068ac95d" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentity</scope><name>ClassVersionErrorMsg</name></member>
+      <member refid="structhops_1_1MHO__ClassIdentity_1a259b9ed6872ace2728f13a176f89b9ef" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentity</scope><name>GetUUIDFromClass</name></member>
+      <member refid="structhops_1_1MHO__ClassIdentity_1a68c88e3ecd5e4305ef557427d9f828db" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentity</scope><name>GetUUIDFromClass</name></member>
+      <member refid="structhops_1_1MHO__ClassIdentity_1a484242fa281cadb15c1ac309478e6edd" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentity</scope><name>GetUUIDFromClassName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

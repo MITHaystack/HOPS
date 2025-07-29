@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__100" kind="struct" language="C++" prot="public">
+    <compoundname>type_100</compoundname>
+    <includes refid="type__100_8h" local="no">type_100.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__100_1a03061f2d6976f5196e85976c2923bbbf" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_100::baseline[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="16" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a72a742d1995a6d7a9bb0d29c54a2c7d6" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_100::nblocks</definition>
+        <argsstring></argsstring>
+        <name>nblocks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="26" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a29f02500cbe7be1e13aa82f2cd3b9386" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_100::ndrec</definition>
+        <argsstring></argsstring>
+        <name>ndrec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="23" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a01e8221e832477c1b041466608714049" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_100::nindex</definition>
+        <argsstring></argsstring>
+        <name>nindex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="24" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a4109439aa45a6826ed816f7e8900b37d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_100::nlags</definition>
+        <argsstring></argsstring>
+        <name>nlags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="25" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a0310a31443d7783d1f3875f74eda1482" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_100::pct_done</definition>
+        <argsstring></argsstring>
+        <name>pct_done</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="20" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a13584881cb5da7eb67732e8787050b9f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_100::procdate</definition>
+        <argsstring></argsstring>
+        <name>procdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="14" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1aeb31ae7abaf406d079277b700c6369a8" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_100::qcode[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>qcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="18" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1aa6e3c799e5df36cd4bc2e5b7bb57a9e9" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_100::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="12" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1ad134d70ce11b35e3ac8b3d0f0c3df8e2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_100::rootname[34]</definition>
+        <argsstring>[34]</argsstring>
+        <name>rootname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="17" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a471321a6ec301345d6d843d62eb958ec" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_100::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="20" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1aea0fec478ce847e19b3fe4a4f68b6b17" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_100::stop</definition>
+        <argsstring></argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="20" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1afc3335b98e790bee21c9534db5182cb6" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_100::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="14" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a37d134541fbeb45c0d54882f24108cb0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_100::unused2[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>unused2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="19" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__100_1a591774d81c42cff0f7c956d84ddaaeab" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_100::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="13" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="6">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>type_100</label>
+        <link refid="structtype__100"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>nblocks</edgelabel>
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pct_done</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>qcode</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootname</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ndrec</edgelabel>
+          <edgelabel>nindex</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_100.h" bodystart="11" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structtype__100_1a03061f2d6976f5196e85976c2923bbbf" prot="public" virt="non-virtual"><scope>type_100</scope><name>baseline</name></member>
+      <member refid="structtype__100_1a72a742d1995a6d7a9bb0d29c54a2c7d6" prot="public" virt="non-virtual"><scope>type_100</scope><name>nblocks</name></member>
+      <member refid="structtype__100_1a29f02500cbe7be1e13aa82f2cd3b9386" prot="public" virt="non-virtual"><scope>type_100</scope><name>ndrec</name></member>
+      <member refid="structtype__100_1a01e8221e832477c1b041466608714049" prot="public" virt="non-virtual"><scope>type_100</scope><name>nindex</name></member>
+      <member refid="structtype__100_1a4109439aa45a6826ed816f7e8900b37d" prot="public" virt="non-virtual"><scope>type_100</scope><name>nlags</name></member>
+      <member refid="structtype__100_1a0310a31443d7783d1f3875f74eda1482" prot="public" virt="non-virtual"><scope>type_100</scope><name>pct_done</name></member>
+      <member refid="structtype__100_1a13584881cb5da7eb67732e8787050b9f" prot="public" virt="non-virtual"><scope>type_100</scope><name>procdate</name></member>
+      <member refid="structtype__100_1aeb31ae7abaf406d079277b700c6369a8" prot="public" virt="non-virtual"><scope>type_100</scope><name>qcode</name></member>
+      <member refid="structtype__100_1aa6e3c799e5df36cd4bc2e5b7bb57a9e9" prot="public" virt="non-virtual"><scope>type_100</scope><name>record_id</name></member>
+      <member refid="structtype__100_1ad134d70ce11b35e3ac8b3d0f0c3df8e2" prot="public" virt="non-virtual"><scope>type_100</scope><name>rootname</name></member>
+      <member refid="structtype__100_1a471321a6ec301345d6d843d62eb958ec" prot="public" virt="non-virtual"><scope>type_100</scope><name>start</name></member>
+      <member refid="structtype__100_1aea0fec478ce847e19b3fe4a4f68b6b17" prot="public" virt="non-virtual"><scope>type_100</scope><name>stop</name></member>
+      <member refid="structtype__100_1afc3335b98e790bee21c9534db5182cb6" prot="public" virt="non-virtual"><scope>type_100</scope><name>unused1</name></member>
+      <member refid="structtype__100_1a37d134541fbeb45c0d54882f24108cb0" prot="public" virt="non-virtual"><scope>type_100</scope><name>unused2</name></member>
+      <member refid="structtype__100_1a591774d81c42cff0f7c956d84ddaaeab" prot="public" virt="non-virtual"><scope>type_100</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__101" kind="struct" language="C++" prot="public">
+    <compoundname>type_101</compoundname>
+    <includes refid="type__101_8h" local="no">type_101.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__101_1a63283eb306554ecdbdf5c6149a8d5830" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_101::blocks[1]</definition>
+        <argsstring>[1]</argsstring>
+        <name>blocks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="25" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1afe69bb4a903ed5d66b3f2ee0e4117c25" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_101::corr_board</definition>
+        <argsstring></argsstring>
+        <name>corr_board</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="20" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1a6d9df5405e2c903fe99b608028637ffe" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_101::corr_slot</definition>
+        <argsstring></argsstring>
+        <name>corr_slot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="21" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1a622700b30f078f0b0fc70f833fdf6c76" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_101::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="16" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1a74a165dea3203d4f2e637a945b64ea35" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_101::nblocks</definition>
+        <argsstring></argsstring>
+        <name>nblocks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="15" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1aecaa81597584badaceb9dff06ef97c99" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_101::post_mortem</definition>
+        <argsstring></argsstring>
+        <name>post_mortem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="24" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1a5af092a598da77824a91cb961f621bd0" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_101::primary</definition>
+        <argsstring></argsstring>
+        <name>primary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="17" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1a9817a99ac93b27f43b95ce00956ff6de" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_101::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="12" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1adae12a44f4c94b0ab1de8b217a3f48f9" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_101::ref_chan</definition>
+        <argsstring></argsstring>
+        <name>ref_chan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="22" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1ade13bc0e69458e13a7b13cae73802f9f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_101::ref_chan_id[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>ref_chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="18" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1a52fd61887fd57ba7a2935bc5659ef51b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_101::rem_chan</definition>
+        <argsstring></argsstring>
+        <name>rem_chan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="23" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1a79c61b72cc69475a71e19f26a614acea" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_101::rem_chan_id[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>rem_chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="19" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1ae4df0349b4579c4cbddbe4401c5a327e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_101::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="14" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__101_1ac2569d4141d714d4c1fa677052ad044f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_101::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="13" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>type_101</label>
+        <link refid="structtype__101"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>corr_board</edgelabel>
+          <edgelabel>corr_slot</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>nblocks</edgelabel>
+          <edgelabel>primary</edgelabel>
+          <edgelabel>ref_chan</edgelabel>
+          <edgelabel>rem_chan</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>status</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>blocks</edgelabel>
+          <edgelabel>post_mortem</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_101.h" bodystart="11" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structtype__101_1a63283eb306554ecdbdf5c6149a8d5830" prot="public" virt="non-virtual"><scope>type_101</scope><name>blocks</name></member>
+      <member refid="structtype__101_1afe69bb4a903ed5d66b3f2ee0e4117c25" prot="public" virt="non-virtual"><scope>type_101</scope><name>corr_board</name></member>
+      <member refid="structtype__101_1a6d9df5405e2c903fe99b608028637ffe" prot="public" virt="non-virtual"><scope>type_101</scope><name>corr_slot</name></member>
+      <member refid="structtype__101_1a622700b30f078f0b0fc70f833fdf6c76" prot="public" virt="non-virtual"><scope>type_101</scope><name>index</name></member>
+      <member refid="structtype__101_1a74a165dea3203d4f2e637a945b64ea35" prot="public" virt="non-virtual"><scope>type_101</scope><name>nblocks</name></member>
+      <member refid="structtype__101_1aecaa81597584badaceb9dff06ef97c99" prot="public" virt="non-virtual"><scope>type_101</scope><name>post_mortem</name></member>
+      <member refid="structtype__101_1a5af092a598da77824a91cb961f621bd0" prot="public" virt="non-virtual"><scope>type_101</scope><name>primary</name></member>
+      <member refid="structtype__101_1a9817a99ac93b27f43b95ce00956ff6de" prot="public" virt="non-virtual"><scope>type_101</scope><name>record_id</name></member>
+      <member refid="structtype__101_1adae12a44f4c94b0ab1de8b217a3f48f9" prot="public" virt="non-virtual"><scope>type_101</scope><name>ref_chan</name></member>
+      <member refid="structtype__101_1ade13bc0e69458e13a7b13cae73802f9f" prot="public" virt="non-virtual"><scope>type_101</scope><name>ref_chan_id</name></member>
+      <member refid="structtype__101_1a52fd61887fd57ba7a2935bc5659ef51b" prot="public" virt="non-virtual"><scope>type_101</scope><name>rem_chan</name></member>
+      <member refid="structtype__101_1a79c61b72cc69475a71e19f26a614acea" prot="public" virt="non-virtual"><scope>type_101</scope><name>rem_chan_id</name></member>
+      <member refid="structtype__101_1ae4df0349b4579c4cbddbe4401c5a327e" prot="public" virt="non-virtual"><scope>type_101</scope><name>status</name></member>
+      <member refid="structtype__101_1ac2569d4141d714d4c1fa677052ad044f" prot="public" virt="non-virtual"><scope>type_101</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

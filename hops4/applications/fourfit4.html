@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fourfit4 &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="alist4" href="alist4.html" />
+    <link rel="prev" title="HOPS4 Applications and Libraries" href="../hops4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">fourfit4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#positional-arguments">Positional Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subcommands">Subcommands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../hops4.html">HOPS4 Applications and Libraries</a></li>
+      <li class="breadcrumb-item active">fourfit4</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/hops4/applications/fourfit4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fourfit4">
+<h1>fourfit4<a class="headerlink" href="#fourfit4" title="Link to this heading"></a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">fourfit4</span> <span class="pre">[OPTIONS]</span> <span class="pre">input</span> <span class="pre">[SUBCOMMAND]</span></code></p>
+</div></blockquote>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>Command-line tool for fringe-fitting with various configuration options.</p>
+</div></blockquote>
+</section>
+<section id="positional-arguments">
+<h2>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input</span></code> (TEXT, REQUIRED)</p></td>
+<td><p>Name of the input directory (scan) or root file</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">--help</span></code></p></td>
+<td><p>Print this help message and exit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-a</span></code>, <code class="docutils literal notranslate"><span class="pre">--accounting</span></code></p></td>
+<td><p>Perform run-time accounting/profiling</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-b</span></code> TEXT, <code class="docutils literal notranslate"><span class="pre">--baseline</span></code> TEXT</p></td>
+<td><p>Baseline or baseline:frequency_group selection (e.g., <code class="docutils literal notranslate"><span class="pre">GE</span></code> or <code class="docutils literal notranslate"><span class="pre">GE:X</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> TEXT, <code class="docutils literal notranslate"><span class="pre">--control-file</span></code> TEXT</p></td>
+<td><p>Specify the control file</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-d</span></code> TEXT, <code class="docutils literal notranslate"><span class="pre">--disk-file</span></code> TEXT</p></td>
+<td><p>Specify the file name where the plot will be saved</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-e</span></code>, <code class="docutils literal notranslate"><span class="pre">--exclude-autocorrs</span></code></p></td>
+<td><p>Exclude auto-correlations from fringe-fitting</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> INT, <code class="docutils literal notranslate"><span class="pre">--first-plot-channel</span></code> INT</p></td>
+<td><p>Specifies the first channel displayed in the fringe plot (ignored, not yet implemented)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-M</span></code> TEXT …, <code class="docutils literal notranslate"><span class="pre">--message-categories</span></code> TEXT …</p></td>
+<td><p>Limit the allowed message categories to only those which the user specifies. Available categories:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">calibration</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">containers</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">control</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fringe</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initialization</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mk4interface</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utilities</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vex</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python_bindings</span></code></p></li>
+</ul>
+<p>If not used, all categories are allowed.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-m</span></code> INT, <code class="docutils literal notranslate"><span class="pre">--message-level</span></code> INT</p></td>
+<td><p>Message verbosity level, range: <code class="docutils literal notranslate"><span class="pre">-2</span></code> (debug) to <code class="docutils literal notranslate"><span class="pre">5</span></code> (silent)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> INT, <code class="docutils literal notranslate"><span class="pre">--nplot-channels</span></code> INT</p></td>
+<td><p>Number of channels to display in the fringe plot (ignored, not yet implemented)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-p</span></code>, <code class="docutils literal notranslate"><span class="pre">--plot</span></code></p></td>
+<td><p>Generate and show fringe plot on completion</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-r</span></code> TEXT, <code class="docutils literal notranslate"><span class="pre">--refringe-alist</span></code> TEXT</p></td>
+<td><p>Alist file for refringing (ignored, not yet implemented)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> INT, <code class="docutils literal notranslate"><span class="pre">--ap-per-segment</span></code> INT</p></td>
+<td><p>Specify the APs to be averaged per plot segment</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>, <code class="docutils literal notranslate"><span class="pre">--test-mode</span></code></p></td>
+<td><p>If passed, no output is written</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-u</span></code>, <code class="docutils literal notranslate"><span class="pre">--update-mode</span></code></p></td>
+<td><p>Ignored, not yet implemented</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-P</span></code> TEXT, <code class="docutils literal notranslate"><span class="pre">--polprod</span></code> TEXT</p></td>
+<td><p>Polarization product (e.g., <code class="docutils literal notranslate"><span class="pre">XX</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code>, <code class="docutils literal notranslate"><span class="pre">RR+LL</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-T</span></code> TEXT, <code class="docutils literal notranslate"><span class="pre">--reftime</span></code> TEXT</p></td>
+<td><p>Fourfit reference time (ignored, not yet implemented)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-X</span></code> INT, <code class="docutils literal notranslate"><span class="pre">--xpower-output</span></code> INT</p></td>
+<td><p>append cross power data with fringe solution applied, specifying the axis along which data should be summed, options are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code>: no export (default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: none</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: channel</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code>: time/AP</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code>: sub-channel</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> TEXT, <code class="docutils literal notranslate"><span class="pre">--input</span></code> TEXT (REQUIRED)</p></td>
+<td><p>Name of the input directory (scan) or root file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-k</span></code>, <code class="docutils literal notranslate"><span class="pre">--mark4-output</span></code></p></td>
+<td><p>Write output files in Mark4 type_2xx format</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="subcommands">
+<h2>Subcommands<a class="headerlink" href="#subcommands" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Subcommand</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">set</span></code></p></td>
+<td><p>Pass control file parameters and related syntax on the command line</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../hops4.html" class="btn btn-neutral float-left" title="HOPS4 Applications and Libraries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="alist4.html" class="btn btn-neutral float-right" title="alist4" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

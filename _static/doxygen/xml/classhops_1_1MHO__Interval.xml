@@ -1,0 +1,553 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Interval" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Interval</compoundname>
+    <includes refid="MHO__Interval_8hh" local="no">MHO_Interval.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XIntegerType</type>
+        <defval>std::size_t</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" prot="protected" static="no" mutable="no">
+        <type>XIntegerType</type>
+        <definition>XIntegerType hops::MHO_Interval&lt; XIntegerType &gt;::fLowerBound</definition>
+        <argsstring></argsstring>
+        <name>fLowerBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="224" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" prot="protected" static="no" mutable="no">
+        <type>XIntegerType</type>
+        <definition>XIntegerType hops::MHO_Interval&lt; XIntegerType &gt;::fUpperBound</definition>
+        <argsstring></argsstring>
+        <name>fUpperBound</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="225" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Interval&lt; XIntegerType &gt;::fValid</definition>
+        <argsstring></argsstring>
+        <name>fValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="223" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1ac9ffc9ee870f8f7509dc561f7bacd82d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Interval&lt; XIntegerType &gt;::MHO_Interval</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a37888a46443425e8b8d28d8ea6d91580" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Interval&lt; XIntegerType &gt;::MHO_Interval</definition>
+        <argsstring>(const MHO_Interval &amp;copy)</argsstring>
+        <name>MHO_Interval</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a52d392aa96388517676a84a40a24d031" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Interval&lt; XIntegerType &gt;::MHO_Interval</definition>
+        <argsstring>(XIntegerType lower_bound, XIntegerType upper_bound)</argsstring>
+        <name>MHO_Interval</name>
+        <param>
+          <type>XIntegerType</type>
+          <declname>lower_bound</declname>
+        </param>
+        <param>
+          <type>XIntegerType</type>
+          <declname>upper_bound</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="28" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1ac5d43e06fbbbfa30e2d59a25556b8d36" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Interval&lt; XIntegerType &gt;::~MHO_Interval</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a893cc91df7d2dd2b48814bf3f3e57f14" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; XIntegerType, XIntegerType &gt;</type>
+        <definition>std::pair&lt; XIntegerType, XIntegerType &gt; hops::MHO_Interval&lt; XIntegerType &gt;::GetInterval</definition>
+        <argsstring>() const</argsstring>
+        <name>GetInterval</name>
+        <briefdescription>
+<para>Getter for interval bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A pair of XIntegerType representing the current interval&apos;s lower and upper bounds. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="61" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="61" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1ad785f17fef68776a1b9bd800d97741ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>XIntegerType</type>
+        <definition>XIntegerType hops::MHO_Interval&lt; XIntegerType &gt;::GetLength</definition>
+        <argsstring>() const</argsstring>
+        <name>GetLength</name>
+        <briefdescription>
+<para>Getter for length. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Length calculated as fUpperBound - fLowerBound </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="99" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>XIntegerType</type>
+        <definition>XIntegerType hops::MHO_Interval&lt; XIntegerType &gt;::GetLowerBound</definition>
+        <argsstring>() const</argsstring>
+        <name>GetLowerBound</name>
+        <briefdescription>
+<para>Getter for lower bound. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Lower bound value as XIntegerType </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="85" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>XIntegerType</type>
+        <definition>XIntegerType hops::MHO_Interval&lt; XIntegerType &gt;::GetUpperBound</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUpperBound</name>
+        <briefdescription>
+<para>Getter for upper bound. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Upper bound value as XIntegerType </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="92" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a3d0daa8355729cb9dbcfd8d5a66f18fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref></type>
+        <definition>MHO_Interval hops::MHO_Interval&lt; XIntegerType &gt;::Intersection</definition>
+        <argsstring>(const MHO_Interval &amp;other) const</argsstring>
+        <name>Intersection</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Checks if this interval intersects with another and returns true if it does. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other interval to check for intersection. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if there is an intersection, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="169" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="169" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1afe68507565b5874b4c7ba106962ad03f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_Interval&lt; XIntegerType &gt;::Intersects</definition>
+        <argsstring>(const MHO_Interval &amp;other) const</argsstring>
+        <name>Intersects</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Checks if this interval intersects with another. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other interval to check for intersection </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if there is an intersection, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="108" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="108" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a27f454572051396f409d440c59ef46f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_Interval&lt; XIntegerType &gt;::Intersects</definition>
+        <argsstring>(const XIntegerType &amp;idx) const</argsstring>
+        <name>Intersects</name>
+        <param>
+          <type>const XIntegerType &amp;</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Checks if closed interval intersects with another interval. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XIntegerType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if intervals intersect, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="128" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="128" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a933b3d08afc766fa6a529e34d761aa4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref> &amp;</type>
+        <definition>MHO_Interval&amp; hops::MHO_Interval&lt; XIntegerType &gt;::operator=</definition>
+        <argsstring>(const MHO_Interval &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="183" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="183" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1af2da7ce84baf36d3debb05f17ebdaf28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Interval&lt; XIntegerType &gt;::SetBounds</definition>
+        <argsstring>(const std::pair&lt; XIntegerType, XIntegerType &gt; &amp;lower_upper)</argsstring>
+        <name>SetBounds</name>
+        <param>
+          <type>const std::pair&lt; XIntegerType, XIntegerType &gt; &amp;</type>
+          <declname>lower_upper</declname>
+        </param>
+        <briefdescription>
+<para>Setter for bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower_bound</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound of type XIntegerType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_bound</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound of type XIntegerType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="51" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="51" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a3431dd1d743629a42e5382982618511f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Interval&lt; XIntegerType &gt;::SetBounds</definition>
+        <argsstring>(XIntegerType lower_bound, XIntegerType upper_bound)</argsstring>
+        <name>SetBounds</name>
+        <param>
+          <type>XIntegerType</type>
+          <declname>lower_bound</declname>
+        </param>
+        <param>
+          <type>XIntegerType</type>
+          <declname>upper_bound</declname>
+        </param>
+        <briefdescription>
+<para>Setter for bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower_bound</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound value of type XIntegerType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_bound</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound value of type XIntegerType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="43" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a4f8e3339b7ea4e117078c01ffdae4136" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Interval&lt; XIntegerType &gt;::SetLowerBound</definition>
+        <argsstring>(XIntegerType low)</argsstring>
+        <name>SetLowerBound</name>
+        <param>
+          <type>XIntegerType</type>
+          <declname>low</declname>
+        </param>
+        <briefdescription>
+<para>Setter for lower bound. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New lower bound value of type XIntegerType. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="71" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1ad4fb68d5c6accd93c13973c2d713af06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Interval&lt; XIntegerType &gt;::SetUpperBound</definition>
+        <argsstring>(XIntegerType up)</argsstring>
+        <name>SetUpperBound</name>
+        <param>
+          <type>XIntegerType</type>
+          <declname>up</declname>
+        </param>
+        <briefdescription>
+<para>Setter for upper bound. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>up</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New upper bound value of type XIntegerType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="78" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1a62481eab8f4fe814929c624c54e0db9a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref></type>
+        <definition>MHO_Interval hops::MHO_Interval&lt; XIntegerType &gt;::Union</definition>
+        <argsstring>(const MHO_Interval &amp;other) const</argsstring>
+        <name>Union</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns the union interval of this interval and another. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The other interval to calculate the union with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The union interval as an <ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref> object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="144" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="144" bodyend="161"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Interval&lt; XIntegerType &gt;::SetIntervalImpl</definition>
+        <argsstring>(XIntegerType low, XIntegerType up)</argsstring>
+        <name>SetIntervalImpl</name>
+        <param>
+          <type>XIntegerType</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>XIntegerType</type>
+          <declname>up</declname>
+        </param>
+        <briefdescription>
+<para>Setter for interval impl. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound of new interval (copied) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>up</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound of new interval (copied) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="201" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="201" bodyend="221"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Implements the open integer interval [a,b)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Sep 17 10:45:44 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>size_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_Interval&lt; XIntegerType &gt;</label>
+        <link refid="classhops_1_1MHO__Interval"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fValid</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fLowerBound</edgelabel>
+          <edgelabel>fUpperBound</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>bool</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" line="23" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh" bodystart="24" bodyend="226"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" prot="protected" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>fLowerBound</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" prot="protected" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>fUpperBound</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" prot="protected" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>fValid</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a893cc91df7d2dd2b48814bf3f3e57f14" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>GetInterval</name></member>
+      <member refid="classhops_1_1MHO__Interval_1ad785f17fef68776a1b9bd800d97741ed" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>GetLength</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>GetLowerBound</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>GetUpperBound</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a3d0daa8355729cb9dbcfd8d5a66f18fb" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>Intersection</name></member>
+      <member refid="classhops_1_1MHO__Interval_1afe68507565b5874b4c7ba106962ad03f" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>Intersects</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a27f454572051396f409d440c59ef46f9" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>Intersects</name></member>
+      <member refid="classhops_1_1MHO__Interval_1ac9ffc9ee870f8f7509dc561f7bacd82d" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>MHO_Interval</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a52d392aa96388517676a84a40a24d031" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>MHO_Interval</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a37888a46443425e8b8d28d8ea6d91580" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>MHO_Interval</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a933b3d08afc766fa6a529e34d761aa4d" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a3431dd1d743629a42e5382982618511f" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>SetBounds</name></member>
+      <member refid="classhops_1_1MHO__Interval_1af2da7ce84baf36d3debb05f17ebdaf28" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>SetBounds</name></member>
+      <member refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" prot="protected" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>SetIntervalImpl</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a4f8e3339b7ea4e117078c01ffdae4136" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>SetLowerBound</name></member>
+      <member refid="classhops_1_1MHO__Interval_1ad4fb68d5c6accd93c13973c2d713af06" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>SetUpperBound</name></member>
+      <member refid="classhops_1_1MHO__Interval_1a62481eab8f4fe814929c624c54e0db9a" prot="public" virt="non-virtual"><scope>hops::MHO_Interval</scope><name>Union</name></member>
+      <member refid="classhops_1_1MHO__Interval_1ac5d43e06fbbbfa30e2d59a25556b8d36" prot="public" virt="virtual"><scope>hops::MHO_Interval</scope><name>~MHO_Interval</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

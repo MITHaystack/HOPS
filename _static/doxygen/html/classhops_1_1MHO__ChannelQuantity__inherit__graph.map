@@ -1,0 +1,6 @@
+<map id="hops::MHO_ChannelQuantity" name="hops::MHO_ChannelQuantity">
+<area shape="rect" id="node1" title="class for storing and mapping per&#45;channel control quantities (a typical task for fourfit control file..." alt="" coords="5,78,195,105"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__ChannelLabelerBuilder.html" title="Class MHO_ChannelLabelerBuilder." alt="" coords="261,5,445,47"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__ManualChannelDelayCorrectionBuilder.html" title="Class MHO_ManualChannelDelayCorrectionBuilder." alt="" coords="245,71,460,112"/>
+<area shape="rect" id="node4" href="$classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder.html" title="Class MHO_ManualChannelPhaseCorrectionBuilder." alt="" coords="243,136,463,177"/>
+</map>

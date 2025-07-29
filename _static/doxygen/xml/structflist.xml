@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structflist" kind="struct" language="C++" prot="public">
+    <compoundname>flist</compoundname>
+    <includes refid="adump_8h" local="no">adump.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structflist_1a380a5f29cfcf156df7366e0c5de75d85" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char flist::format[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>format</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="98" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structflist_1a1f57d5a256158d4fe5d69d2022dfb864" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int flist::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="97" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structflist_1a4ff9ce8ecf1ed83a70c86cb85a34e084" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char flist::name[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="96" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>flist</label>
+        <link refid="structflist"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>format</edgelabel>
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="94" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="95" bodyend="99"/>
+    <listofallmembers>
+      <member refid="structflist_1a380a5f29cfcf156df7366e0c5de75d85" prot="public" virt="non-virtual"><scope>flist</scope><name>format</name></member>
+      <member refid="structflist_1a1f57d5a256158d4fe5d69d2022dfb864" prot="public" virt="non-virtual"><scope>flist</scope><name>id</name></member>
+      <member refid="structflist_1a4ff9ce8ecf1ed83a70c86cb85a34e084" prot="public" virt="non-virtual"><scope>flist</scope><name>name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_223830feecc3d7bdec83e00adf504d80" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="block__params_8c">block_params.c</innerfile>
+    <innerfile refid="check__intrange_8c">check_intrange.c</innerfile>
+    <innerfile refid="check__realrange_8c">check_realrange.c</innerfile>
+    <innerfile refid="check__scan_8c">check_scan.c</innerfile>
+    <innerfile refid="check__stloc_8c">check_stloc.c</innerfile>
+    <innerfile refid="check__strrange_8c">check_strrange.c</innerfile>
+    <innerfile refid="cvex__info_8c">cvex_info.c</innerfile>
+    <innerfile refid="decode__pval_8c">decode_pval.c</innerfile>
+    <innerfile refid="do__antenna_8c">do_antenna.c</innerfile>
+    <innerfile refid="do__bbc_8c">do_bbc.c</innerfile>
+    <innerfile refid="do__clock_8c">do_clock.c</innerfile>
+    <innerfile refid="do__das_8c">do_das.c</innerfile>
+    <innerfile refid="do__eop_8c">do_eop.c</innerfile>
+    <innerfile refid="do__exper_8c">do_exper.c</innerfile>
+    <innerfile refid="do__freq_8c">do_freq.c</innerfile>
+    <innerfile refid="do__head__pos_8c">do_head_pos.c</innerfile>
+    <innerfile refid="do__if_8c">do_if.c</innerfile>
+    <innerfile refid="do__pass__order_8c">do_pass_order.c</innerfile>
+    <innerfile refid="do__phase__cal__detect_8c">do_phase_cal_detect.c</innerfile>
+    <innerfile refid="do__roll_8c">do_roll.c</innerfile>
+    <innerfile refid="do__site_8c">do_site.c</innerfile>
+    <innerfile refid="do__source_8c">do_source.c</innerfile>
+    <innerfile refid="do__track_8c">do_track.c</innerfile>
+    <innerfile refid="evex__info_8c">evex_info.c</innerfile>
+    <innerfile refid="fill__deflists_8c">fill_deflists.c</innerfile>
+    <innerfile refid="fill__scanlist_8c">fill_scanlist.c</innerfile>
+    <innerfile refid="fill__station__parms_8c">fill_station_parms.c</innerfile>
+    <innerfile refid="find__statements_8c">find_statements.c</innerfile>
+    <innerfile refid="get__block__mode_8c">get_block_mode.c</innerfile>
+    <innerfile refid="get__chip__mode_8c">get_chip_mode.c</innerfile>
+    <innerfile refid="get__corr__bd__parms_8c">get_corr_bd_parms.c</innerfile>
+    <innerfile refid="get__corr__mode_8c">get_corr_mode.c</innerfile>
+    <innerfile refid="get__def_8c">get_def.c</innerfile>
+    <innerfile refid="get__drive__init_8c">get_drive_init.c</innerfile>
+    <innerfile refid="get__global__deflist_8c">get_global_deflist.c</innerfile>
+    <innerfile refid="get__logscan_8c">get_logscan.c</innerfile>
+    <innerfile refid="get__mode__deflist_8c">get_mode_deflist.c</innerfile>
+    <innerfile refid="get__pbs__init_8c">get_pbs_init.c</innerfile>
+    <innerfile refid="get__pcm__config_8c">get_pcm_config.c</innerfile>
+    <innerfile refid="get__pcm__tables_8c">get_pcm_tables.c</innerfile>
+    <innerfile refid="get__section__mode_8c">get_section_mode.c</innerfile>
+    <innerfile refid="get__statement_8c">get_statement.c</innerfile>
+    <innerfile refid="get__station__deflist_8c">get_station_deflist.c</innerfile>
+    <innerfile refid="get__su__chan__out_8c">get_su_chan_out.c</innerfile>
+    <innerfile refid="get__su__connect_8c">get_su_connect.c</innerfile>
+    <innerfile refid="get__trm__config_8c">get_trm_config.c</innerfile>
+    <innerfile refid="get__val__list_8c">get_val_list.c</innerfile>
+    <innerfile refid="get__version_8c">get_version.c</innerfile>
+    <innerfile refid="get__vex_8c">get_vex.c</innerfile>
+    <innerfile refid="in__comment_8c">in_comment.c</innerfile>
+    <innerfile refid="in__quote_8c">in_quote.c</innerfile>
+    <innerfile refid="init__scan_8c">init_scan.c</innerfile>
+    <innerfile refid="ivex__info_8c">ivex_info.c</innerfile>
+    <innerfile refid="locate__blocks_8c">locate_blocks.c</innerfile>
+    <innerfile refid="locate__cq_8c">locate_cq.c</innerfile>
+    <innerfile refid="lvex__info_8c">lvex_info.c</innerfile>
+    <innerfile refid="nextchar_8c">nextchar.c</innerfile>
+    <innerfile refid="param__formats_8c">param_formats.c</innerfile>
+    <innerfile refid="parse__date_8c">parse_date.c</innerfile>
+    <innerfile refid="parse__dec_8c">parse_dec.c</innerfile>
+    <innerfile refid="parse__pval_8c">parse_pval.c</innerfile>
+    <innerfile refid="parse__ra_8c">parse_ra.c</innerfile>
+    <innerfile refid="parse__ref_8c">parse_ref.c</innerfile>
+    <innerfile refid="parse__units_8c">parse_units.c</innerfile>
+    <innerfile refid="parse__vexfile_8c">parse_vexfile.c</innerfile>
+    <innerfile refid="print__location_8c">print_location.c</innerfile>
+    <innerfile refid="process__qstring_8c">process_qstring.c</innerfile>
+    <innerfile refid="read__file_8c">read_file.c</innerfile>
+    <innerfile refid="scan__info_8c">scan_info.c</innerfile>
+    <innerfile refid="strip__text_8c">strip_text.c</innerfile>
+    <innerfile refid="svex__info_8c">svex_info.c</innerfile>
+    <innerfile refid="vex__init_8c">vex_init.c</innerfile>
+    <innerfile refid="write__vexfile_8c">write_vexfile.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/"/>
+  </compounddef>
+</doxygen>

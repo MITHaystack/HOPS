@@ -1,0 +1,1174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__ContainerDictionary_8cc" kind="file" language="C++">
+    <compoundname>MHO_ContainerDictionary.cc</compoundname>
+    <includes refid="MHO__ContainerDictionary_8hh" local="yes">MHO_ContainerDictionary.hh</includes>
+    <includes refid="MHO__ContainerDefinitions_8hh" local="yes">MHO_ContainerDefinitions.hh</includes>
+    <incdepgraph>
+      <node id="77">
+        <label>MHO_FileKey.hh</label>
+        <link refid="MHO__FileKey_8hh"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>atomic</label>
+      </node>
+      <node id="66">
+        <label>MHO_UUIDGenerator.hh</label>
+        <link refid="MHO__UUIDGenerator_8hh"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>iomanip</label>
+      </node>
+      <node id="79">
+        <label>MHO_NumpyTypeCode.hh</label>
+        <link refid="MHO__NumpyTypeCode_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>assert.h</label>
+      </node>
+      <node id="41">
+        <label>iterator</label>
+      </node>
+      <node id="47">
+        <label>MHO_NDArrayView.hh</label>
+        <link refid="MHO__NDArrayView_8hh"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>cstdint</label>
+      </node>
+      <node id="82">
+        <label>MHO_ElementTypes.hh</label>
+        <link refid="MHO__ElementTypes_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>MHO_ClassIdentity.hh</label>
+        <link refid="MHO__ClassIdentity_8hh"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>endian.h</label>
+      </node>
+      <node id="74">
+        <label>MHO_ClassIdentityMap.hh</label>
+        <link refid="MHO__ClassIdentityMap_8hh"/>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>stdint.h</label>
+      </node>
+      <node id="6">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>MHO_Meta.hh</label>
+        <link refid="MHO__Meta_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>cmath</label>
+      </node>
+      <node id="68">
+        <label>MHO_Taggable.hh</label>
+        <link refid="MHO__Taggable_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>stdexcept</label>
+      </node>
+      <node id="28">
+        <label>MHO_IntervalLabelInterface.hh</label>
+        <link refid="MHO__IntervalLabelInterface_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>string</label>
+      </node>
+      <node id="53">
+        <label>MHO_MD5HashGenerator.hh</label>
+        <link refid="MHO__MD5HashGenerator_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>MHO_ContainerJSONConverter.hh</label>
+        <link refid="MHO__ContainerJSONConverter_8hh"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>cinttypes</label>
+      </node>
+      <node id="31">
+        <label>map</label>
+      </node>
+      <node id="10">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>MHO_FileStreamer.hh</label>
+        <link refid="MHO__FileStreamer_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>MHO_ObjectTags.hh</label>
+        <link refid="MHO__ObjectTags_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>stddef.h</label>
+      </node>
+      <node id="76">
+        <label>MHO_BinaryFileStreamer.hh</label>
+        <link refid="MHO__BinaryFileStreamer_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>fstream</label>
+      </node>
+      <node id="45">
+        <label>MHO_NDArrayMath.hh</label>
+        <link refid="MHO__NDArrayMath_8hh"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>ostream</label>
+      </node>
+      <node id="57">
+        <label>MHO_UUID.hh</label>
+        <link refid="MHO__UUID_8hh"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>MHO_NDArrayWrapper_0.hh</label>
+        <link refid="MHO__NDArrayWrapper__0_8hh"/>
+      </node>
+      <node id="72">
+        <label>MHO_ScalarContainer.hh</label>
+        <link refid="MHO__ScalarContainer_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>MHO_VectorContainer.hh</label>
+        <link refid="MHO__VectorContainer_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_Axis.hh</label>
+        <link refid="MHO__Axis_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_IndexLabelInterface.hh</label>
+        <link refid="MHO__IndexLabelInterface_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>MHO_NDArrayWrapper_1.hh</label>
+        <link refid="MHO__NDArrayWrapper__1_8hh"/>
+      </node>
+      <node id="75">
+        <label>MHO_BinaryFileInterface.hh</label>
+        <link refid="MHO__BinaryFileInterface_8hh"/>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>random</label>
+      </node>
+      <node id="70">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>string.h</label>
+      </node>
+      <node id="40">
+        <label>MHO_BidirectionalIterator.hh</label>
+        <link refid="MHO__BidirectionalIterator_8hh"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_ContainerDictionary.hh</label>
+        <link refid="MHO__ContainerDictionary_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>tuple</label>
+      </node>
+      <node id="83">
+        <label>MHO_AxisTypes.hh</label>
+        <link refid="MHO__AxisTypes_8hh"/>
+      </node>
+      <node id="26">
+        <label>ctime</label>
+      </node>
+      <node id="25">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>vector</label>
+      </node>
+      <node id="48">
+        <label>MHO_BidirectionalIndexedIterator.hh</label>
+        <link refid="MHO__BidirectionalIndexedIterator_8hh"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="69">
+        <label>utility</label>
+      </node>
+      <node id="37">
+        <label>array</label>
+      </node>
+      <node id="8">
+        <label>sstream</label>
+      </node>
+      <node id="17">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>MHO_BidirectionalStrideIterator.hh</label>
+        <link refid="MHO__BidirectionalStrideIterator_8hh"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>MHO_NDArrayWrapper.hh</label>
+        <link refid="MHO__NDArrayWrapper_8hh"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>cstdlib</label>
+      </node>
+      <node id="27">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="46">
+        <label>cstddef</label>
+      </node>
+      <node id="58">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>MHO_SerializableObjectFactory.hh</label>
+        <link refid="MHO__SerializableObjectFactory_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>mutex</label>
+      </node>
+      <node id="84">
+        <label>MHO_BaselineContainers.hh</label>
+        <link refid="MHO__BaselineContainers_8hh"/>
+      </node>
+      <node id="86">
+        <label>MHO_FringeContainers.hh</label>
+        <link refid="MHO__FringeContainers_8hh"/>
+      </node>
+      <node id="19">
+        <label>thread</label>
+      </node>
+      <node id="33">
+        <label>type_traits</label>
+      </node>
+      <node id="51">
+        <label>MHO_Serializable.hh</label>
+        <link refid="MHO__Serializable_8hh"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>set</label>
+      </node>
+      <node id="7">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="30">
+        <label>complex</label>
+      </node>
+      <node id="81">
+        <label>MHO_ContainerDefinitions.hh</label>
+        <link refid="MHO__ContainerDefinitions_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>algorithm</label>
+      </node>
+      <node id="59">
+        <label>picohash.h</label>
+        <link refid="picohash_8h"/>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>stdio.h</label>
+      </node>
+      <node id="44">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>cstring</label>
+      </node>
+      <node id="1">
+        <label>MHO_ContainerDictionary.cc</label>
+        <link refid="MHO__ContainerDictionary_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>MHO_StationContainers.hh</label>
+        <link refid="MHO__StationContainers_8hh"/>
+      </node>
+      <node id="61">
+        <label>inttypes.h</label>
+      </node>
+      <node id="73">
+        <label>MHO_TableContainer.hh</label>
+        <link refid="MHO__TableContainer_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__ContainerDictionary_8cc_1aed8690a91b55c1faee2d1c873d3485a8" prot="public" static="no">
+        <name>AddTable1</name>
+        <param><defname>TYPE1</defname></param>
+        <initializer>    AddClassType&lt; MHO_AxisPack_##TYPE1 &gt;();                                                                                    \
+    AddClassType&lt; MHO_TableContainer&lt; Int, MHO_AxisPack_##TYPE1 &gt; &gt;();                                                         \
+    AddClassType&lt; MHO_TableContainer&lt; Double, MHO_AxisPack_##TYPE1 &gt; &gt;();                                                      \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexD, MHO_AxisPack_##TYPE1 &gt; &gt;();                                                    \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexF, MHO_AxisPack_##TYPE1 &gt; &gt;();</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" prot="public" static="no">
+        <name>AddTable2</name>
+        <param><defname>TYPE1</defname></param>
+        <param><defname>TYPE2</defname></param>
+        <initializer>    AddClassType&lt; MHO_AxisPack_##TYPE1##_##TYPE2 &gt;();                                                                          \
+    AddClassType&lt; MHO_TableContainer&lt; Int, MHO_AxisPack_##TYPE1##_##TYPE2 &gt; &gt;();                                               \
+    AddClassType&lt; MHO_TableContainer&lt; Double, MHO_AxisPack_##TYPE1##_##TYPE2 &gt; &gt;();                                            \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexD, MHO_AxisPack_##TYPE1##_##TYPE2 &gt; &gt;();                                          \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexF, MHO_AxisPack_##TYPE1##_##TYPE2 &gt; &gt;();</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" prot="public" static="no">
+        <name>AddTable3</name>
+        <param><defname>TYPE1</defname></param>
+        <param><defname>TYPE2</defname></param>
+        <param><defname>TYPE3</defname></param>
+        <initializer>    AddClassType&lt; MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 &gt;();                                                                \
+    AddClassType&lt; MHO_TableContainer&lt; Int, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 &gt; &gt;();                                     \
+    AddClassType&lt; MHO_TableContainer&lt; Double, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 &gt; &gt;();                                  \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexD, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 &gt; &gt;();                                \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexF, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 &gt; &gt;();</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__ContainerDictionary_8cc_1a798586e0beb731848deae1640fbd54fa" prot="public" static="no">
+        <name>AddTable4</name>
+        <param><defname>TYPE1</defname></param>
+        <param><defname>TYPE2</defname></param>
+        <param><defname>TYPE3</defname></param>
+        <param><defname>TYPE4</defname></param>
+        <initializer>    AddClassType&lt; MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 &gt;();                                                      \
+    AddClassType&lt; MHO_TableContainer&lt; Int, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 &gt; &gt;();                           \
+    AddClassType&lt; MHO_TableContainer&lt; Double, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 &gt; &gt;();                        \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexD, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 &gt; &gt;();                      \
+    AddClassType&lt; MHO_TableContainer&lt; ComplexF, MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 &gt; &gt;();</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ContainerDictionary_8hh" kindref="compound">MHO_ContainerDictionary.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ContainerDefinitions_8hh" kindref="compound">MHO_ContainerDefinitions.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AddTable1(TYPE1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="5"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisPack_##TYPE1<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Int,<sp/>MHO_AxisPack_##TYPE1<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Double,<sp/>MHO_AxisPack_##TYPE1<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="8"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexD,<sp/>MHO_AxisPack_##TYPE1<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="9"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexF,<sp/>MHO_AxisPack_##TYPE1<sp/>&gt;<sp/>&gt;();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AddTable2(TYPE1,<sp/>TYPE2)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisPack_##TYPE1##_##TYPE2<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="13"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Int,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Double,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="15"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexD,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="16"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexF,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2<sp/>&gt;<sp/>&gt;();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AddTable3(TYPE1,<sp/>TYPE2,<sp/>TYPE3)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="19"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Int,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="21"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Double,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="22"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexD,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="23"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexF,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3<sp/>&gt;<sp/>&gt;();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AddTable4(TYPE1,<sp/>TYPE2,<sp/>TYPE3,<sp/>TYPE4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="26"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="27"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Int,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="28"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>Double,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexD,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4<sp/>&gt;<sp/>&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="30"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_TableContainer&lt;<sp/>ComplexF,<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4<sp/>&gt;<sp/>&gt;();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><ref refid="classhops_1_1MHO__ContainerDictionary_1a7e895874e73e23d01a719010684b6110" kindref="member">MHO_ContainerDictionary::MHO_ContainerDictionary</ref>()</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ObjectTags<sp/>&gt;();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//NOTE:<sp/>Most<sp/>of<sp/>the<sp/>different<sp/>types<sp/>below<sp/>are<sp/>not<sp/>needed<sp/>or<sp/>used<sp/>anywhere</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//so<sp/>we<sp/>could<sp/>easily<sp/>trim<sp/>this<sp/>long<sp/>list<sp/>down<sp/>to<sp/>a<sp/>much<sp/>more<sp/>focused<sp/>set<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//objects.<sp/>However,<sp/>having<sp/>a<sp/>wide<sp/>variety<sp/>defined<sp/>already<sp/>lets<sp/>us<sp/>handle<sp/>stuff</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//which<sp/>may<sp/>fit<sp/>into<sp/>these<sp/>objects<sp/>but<sp/>which<sp/>has<sp/>not<sp/>been<sp/>defined<sp/>yet,<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//demonstrate<sp/>how<sp/>to<sp/>add<sp/>support<sp/>for<sp/>new<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HOPS_BUILD_EXTRA_CONTAINERS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//only<sp/>add<sp/>the<sp/>bare<sp/>minimum<sp/>types<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>baseline_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>visibility_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>weight_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>mbd_dr_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>mbd_dr_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>mbd_dr_amp_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>multitone_pcal_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>station_coord_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>station_coord_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//storage<sp/>types<sp/>explicitly<sp/>meant<sp/>for<sp/>on-disk<sp/>format</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>visibility_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>weight_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//other<sp/>extraneous<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_baseline_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_visibility_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_weight_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_visibility_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_weight_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//only<sp/>add<sp/>the<sp/>bare<sp/>minimum<sp/>types<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>baseline_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>visibility_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>weight_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>mbd_dr_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>mbd_dr_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>mbd_dr_amp_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>multitone_pcal_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>station_coord_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>station_coord_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//storage<sp/>types<sp/>explicitly<sp/>meant<sp/>for<sp/>on-disk<sp/>format</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>visibility_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>weight_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//other<sp/>extraneous<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_baseline_axis_pack<sp/>&gt;();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_visibility_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_weight_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_visibility_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>uch_weight_store_type<sp/>&gt;();</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//add<sp/>all<sp/>of<sp/>the<sp/>types<sp/>we<sp/>define</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarBool<sp/>&gt;();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarChar<sp/>&gt;();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarUChar<sp/>&gt;();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarShort<sp/>&gt;();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarUShort<sp/>&gt;();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarInt<sp/>&gt;();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarUInt<sp/>&gt;();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarULong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarLongLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarULongLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarFloat<sp/>&gt;();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarLongDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarComplexFloat<sp/>&gt;();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarComplexDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarComplexLongDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_ScalarString<sp/>&gt;();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//boolean<sp/>vectors<sp/>are<sp/>a<sp/>problem<sp/>due<sp/>underlying<sp/>impl<sp/>of<sp/>std::vector&lt;bool<sp/>(see<sp/>MHO_NDArrayWrapper_1.hh<sp/>line<sp/>195)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//AddClassType&lt;MHO_VectorBool&gt;();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorChar<sp/>&gt;();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorUChar<sp/>&gt;();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorShort<sp/>&gt;();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorUShort<sp/>&gt;();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorInt<sp/>&gt;();</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorUInt<sp/>&gt;();</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorULong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorLongLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorULongLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorFloat<sp/>&gt;();</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorLongDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorComplexFloat<sp/>&gt;();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorComplexDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorComplexLongDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_VectorString<sp/>&gt;();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//AddClassType&lt;MHO_AxisBool&gt;();<sp/>//no<sp/>bools</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisChar<sp/>&gt;();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisUChar<sp/>&gt;();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisShort<sp/>&gt;();</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisUShort<sp/>&gt;();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisInt<sp/>&gt;();</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisUInt<sp/>&gt;();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisULong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisLongLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisULongLong<sp/>&gt;();</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisFloat<sp/>&gt;();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisLongDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisComplexFloat<sp/>&gt;();</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisComplexDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisComplexLongDouble<sp/>&gt;();</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>AddClassType&lt;<sp/>MHO_AxisString<sp/>&gt;();</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1aed8690a91b55c1faee2d1c873d3485a8" kindref="member">AddTable1</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1aed8690a91b55c1faee2d1c873d3485a8" kindref="member">AddTable1</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1aed8690a91b55c1faee2d1c873d3485a8" kindref="member">AddTable1</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a493ee71a0406f7e7be4d4498c6f4fe78" kindref="member">AddTable2</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__ContainerDictionary_8cc_1a0d0d71cfa8bf08fcf7bcd8899006fc58" kindref="member">AddTable3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="208"><highlight class="comment"></highlight></codeline>
+<codeline lineno="209"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="210"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="211"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="212"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="213"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="214"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="215"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="216"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="217"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Int,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="218"><highlight class="comment"></highlight></codeline>
+<codeline lineno="219"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="220"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="221"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="222"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="223"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="224"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="225"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="226"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="227"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>Double,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="228"><highlight class="comment"></highlight></codeline>
+<codeline lineno="229"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="230"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="231"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="232"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="233"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="234"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="235"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="236"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="237"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Int,<sp/>String,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="238"><highlight class="comment"></highlight></codeline>
+<codeline lineno="240"><highlight class="comment"></highlight></codeline>
+<codeline lineno="241"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="242"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="243"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="244"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="245"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="247"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="248"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="249"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Int,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="250"><highlight class="comment"></highlight></codeline>
+<codeline lineno="251"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="252"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="253"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="254"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="255"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="256"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="257"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="258"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="259"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>Double,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="260"><highlight class="comment"></highlight></codeline>
+<codeline lineno="261"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="262"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="263"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="264"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="265"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="266"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="267"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="268"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="269"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(Double,<sp/>String,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="270"><highlight class="comment"></highlight></codeline>
+<codeline lineno="272"><highlight class="comment"></highlight></codeline>
+<codeline lineno="273"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="274"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="275"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="276"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="277"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="278"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="279"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="280"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="281"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Int,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="282"><highlight class="comment"></highlight></codeline>
+<codeline lineno="283"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="284"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="285"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="286"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="287"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="288"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="289"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="290"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="291"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>Double,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="292"><highlight class="comment"></highlight></codeline>
+<codeline lineno="293"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>Int,<sp/>Int);</highlight></codeline>
+<codeline lineno="294"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>Int,<sp/>Double);</highlight></codeline>
+<codeline lineno="295"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>Int,<sp/>String);</highlight></codeline>
+<codeline lineno="296"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>Double,<sp/>Int);</highlight></codeline>
+<codeline lineno="297"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>Double,<sp/>Double);</highlight></codeline>
+<codeline lineno="298"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>Double,<sp/>String);</highlight></codeline>
+<codeline lineno="299"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>String,<sp/>Int);</highlight></codeline>
+<codeline lineno="300"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>String,<sp/>Double);</highlight></codeline>
+<codeline lineno="301"><highlight class="comment"><sp/><sp/><sp/><sp/>AddTable4(String,<sp/>String,<sp/>String,<sp/>String);</highlight></codeline>
+<codeline lineno="302"><highlight class="comment"></highlight></codeline>
+<codeline lineno="303"><highlight class="comment"><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc"/>
+  </compounddef>
+</doxygen>

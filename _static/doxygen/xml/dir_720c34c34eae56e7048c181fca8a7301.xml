@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_720c34c34eae56e7048c181fca8a7301" kind="dir">
+    <compoundname>adump</compoundname>
+    <innerdir refid="dir_efd9a905f7f9d9f65f71aca9ef18ae70">include</innerdir>
+    <innerdir refid="dir_380958c63d952bb3103b4d0780edb576">src</innerdir>
+    <innerfile refid="adump_8c">adump.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__LegacyDateConverter" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_LegacyDateConverter</compoundname>
+    <includes refid="MHO__LegacyDateConverter_8hh" local="no">MHO_LegacyDateConverter.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1a57d826c6f318b4ae49c4871daaa5d950" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_LegacyDateConverter::MHO_LegacyDateConverter</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_LegacyDateConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1aa21a39029ed28b81bdafd0c65d6c250a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_LegacyDateConverter::~MHO_LegacyDateConverter</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_LegacyDateConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="23" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" bodystart="23" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1af1725f76e8c001455b02e170307c3e0b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+        <definition>legacy_hops_date hops::MHO_LegacyDateConverter::ConvertFromISO8601Format</definition>
+        <argsstring>(std::string iso_date)</argsstring>
+        <name>ConvertFromISO8601Format</name>
+        <param>
+          <type>std::string</type>
+          <declname>iso_date</declname>
+        </param>
+        <briefdescription>
+<para>Converts ISO8601 date string to <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>iso_date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input date string in ISO8601 format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> representation of the input ISO8601 date </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="57" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyDateConverter.cc" bodystart="37" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1a8072ba8857bf96840d710f2d8266ecfa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+        <definition>legacy_hops_date hops::MHO_LegacyDateConverter::ConvertFromVexFormat</definition>
+        <argsstring>(std::string vex_date)</argsstring>
+        <name>ConvertFromVexFormat</name>
+        <param>
+          <type>std::string</type>
+          <declname>vex_date</declname>
+        </param>
+        <briefdescription>
+<para>Converts a VEX date string to <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vex_date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input VEX date string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> converted from input vex_date. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="49" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyDateConverter.cc" bodystart="22" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1a75f2f335fa1f0895f41ac1c8f25d6365" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_LegacyDateConverter::ConvertToISO8601Format</definition>
+        <argsstring>(legacy_hops_date a_date)</argsstring>
+        <name>ConvertToISO8601Format</name>
+        <param>
+          <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+          <declname>a_date</declname>
+        </param>
+        <briefdescription>
+<para>Converts a legacy date to ISO8601 format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a_date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input legacy date. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>ISO8601 formatted string representation of the input date. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="32" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyDateConverter.cc" bodystart="10" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1a434086a95de4144c29a78c6c40e41f9c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_LegacyDateConverter::ConvertToVexFormat</definition>
+        <argsstring>(legacy_hops_date a_date)</argsstring>
+        <name>ConvertToVexFormat</name>
+        <param>
+          <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+          <declname>a_date</declname>
+        </param>
+        <briefdescription>
+<para>Converts a legacy date to VEX format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a_date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input legacy date </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Date in VEX format as string </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="40" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyDateConverter.cc" bodystart="16" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1acf25008e8720da883d91a52782a000c7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+        <definition>legacy_hops_date hops::MHO_LegacyDateConverter::HopsEpoch</definition>
+        <argsstring>()</argsstring>
+        <name>HopsEpoch</name>
+        <briefdescription>
+<para>Calculates and returns the legacy date for the current Hops epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> representing the current Hops epoch in legacy format. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="71" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyDateConverter.cc" bodystart="62" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyDateConverter_1a6a694072fd78bb5a96a01c421d229822" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+        <definition>legacy_hops_date hops::MHO_LegacyDateConverter::Now</definition>
+        <argsstring>()</argsstring>
+        <name>Now</name>
+        <briefdescription>
+<para>Returns current date-time as <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current date-time in <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> format. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="64" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyDateConverter.cc" bodystart="52" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>this class is necessary to prevent a collision between the &quot;namespace date&quot; and the legacy HOPS3 &quot;struct date&quot; </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Fri Aug 18 11:08:08 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh" bodystart="20" bodyend="72"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1af1725f76e8c001455b02e170307c3e0b" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>ConvertFromISO8601Format</name></member>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1a8072ba8857bf96840d710f2d8266ecfa" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>ConvertFromVexFormat</name></member>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1a75f2f335fa1f0895f41ac1c8f25d6365" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>ConvertToISO8601Format</name></member>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1a434086a95de4144c29a78c6c40e41f9c" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>ConvertToVexFormat</name></member>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1acf25008e8720da883d91a52782a000c7" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>HopsEpoch</name></member>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1a57d826c6f318b4ae49c4871daaa5d950" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>MHO_LegacyDateConverter</name></member>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1a6a694072fd78bb5a96a01c421d229822" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>Now</name></member>
+      <member refid="classhops_1_1MHO__LegacyDateConverter_1aa21a39029ed28b81bdafd0c65d6c250a" prot="public" virt="virtual"><scope>hops::MHO_LegacyDateConverter</scope><name>~MHO_LegacyDateConverter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

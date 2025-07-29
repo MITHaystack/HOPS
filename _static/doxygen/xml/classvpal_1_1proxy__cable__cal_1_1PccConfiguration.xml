@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::PccConfiguration</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a1763eea77789d02220a8c3e9b279b6d2" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::band_list</definition>
+        <argsstring></argsstring>
+        <name>band_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1127" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a456da0686eefd265b8ff084a811b64e0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::cut_threshold</definition>
+        <argsstring></argsstring>
+        <name>cut_threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1130" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aaa3de90b2f14a7e0e110936840baab18" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::exp_dir</definition>
+        <argsstring></argsstring>
+        <name>exp_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1125" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a3850bcb9d583674574662e3418c77c06" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::fit_method</definition>
+        <argsstring></argsstring>
+        <name>fit_method</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1129" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a2a50e61445e41570f6e2ef16ac3788b1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::include_headers</definition>
+        <argsstring></argsstring>
+        <name>include_headers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1133" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aae476e0f1f4081aad246659db7f9ae54" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1126" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1abf7d1f101df9abeb15823ff9d8356a6e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::output_dir</definition>
+        <argsstring></argsstring>
+        <name>output_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1134" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a06bc279edf7046de590a33d717b7e504" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::pol_list</definition>
+        <argsstring></argsstring>
+        <name>pol_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1128" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aa8e5ee009ec0337543a805ba6cf2e3b8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::reference_scan</definition>
+        <argsstring></argsstring>
+        <name>reference_scan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1132" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a72e9de66aee00f77cbac0942663b7ed4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::scan_start_trim_length</definition>
+        <argsstring></argsstring>
+        <name>scan_start_trim_length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1131" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a1261675802a8513fc664710d80960f05" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::stations</definition>
+        <argsstring></argsstring>
+        <name>stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1124" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aa5c1db2e580e47ec08ef3a94814c1fb1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::use_progress_ticker</definition>
+        <argsstring></argsstring>
+        <name>use_progress_ticker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1135" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a967af99d19fec21b36b14c0d3ffb787c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccConfiguration::verbosity</definition>
+        <argsstring></argsstring>
+        <name>verbosity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1136" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1136" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a5e40048728841aeb9bd5b535d24a5fb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.PccConfiguration.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1123" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1123" bodyend="1138"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>container class of configuration parameters controlling the proxy-cable-cal process</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.PccConfiguration</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.PccConfiguration</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1121" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1121" bodyend="1142"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a5e40048728841aeb9bd5b535d24a5fb1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a1763eea77789d02220a8c3e9b279b6d2" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>band_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a456da0686eefd265b8ff084a811b64e0" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>cut_threshold</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aaa3de90b2f14a7e0e110936840baab18" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>exp_dir</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a3850bcb9d583674574662e3418c77c06" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>fit_method</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a2a50e61445e41570f6e2ef16ac3788b1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>include_headers</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aae476e0f1f4081aad246659db7f9ae54" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>mode</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1abf7d1f101df9abeb15823ff9d8356a6e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>output_dir</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a06bc279edf7046de590a33d717b7e504" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>pol_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aa8e5ee009ec0337543a805ba6cf2e3b8" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>reference_scan</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a72e9de66aee00f77cbac0942663b7ed4" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>scan_start_trim_length</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a1261675802a8513fc664710d80960f05" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>stations</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1aa5c1db2e580e47ec08ef3a94814c1fb1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>use_progress_ticker</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration_1a967af99d19fec21b36b14c0d3ffb787c" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccConfiguration</scope><name>verbosity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

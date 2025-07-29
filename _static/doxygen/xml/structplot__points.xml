@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structplot__points" kind="struct" language="C++" prot="public">
+    <compoundname>plot_points</compoundname>
+    <includes refid="pstruct_8h" local="no">pstruct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structplot__points_1a2b00109c9dca46517847379204b08a08" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref></type>
+        <definition>struct plot_ptqual plot_points::bad</definition>
+        <argsstring></argsstring>
+        <name>bad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="104" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__points_1a8cfeb8aa34c372621211e143ed5f748a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref></type>
+        <definition>struct plot_ptqual plot_points::good</definition>
+        <argsstring></argsstring>
+        <name>good</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="104" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__points_1a1e49d58c98601ee0480b77a234f29671" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref></type>
+        <definition>struct plot_ptqual plot_points::suspect</definition>
+        <argsstring></argsstring>
+        <name>suspect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="104" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>plot_points</label>
+        <link refid="structplot__points"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bad</edgelabel>
+          <edgelabel>good</edgelabel>
+          <edgelabel>suspect</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>plot_ptqual</label>
+        <link refid="structplot__ptqual"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>xerrh</edgelabel>
+          <edgelabel>xerrl</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>yerrh</edgelabel>
+          <edgelabel>yerrl</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="107" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="108" bodyend="112"/>
+    <listofallmembers>
+      <member refid="structplot__points_1a2b00109c9dca46517847379204b08a08" prot="public" virt="non-virtual"><scope>plot_points</scope><name>bad</name></member>
+      <member refid="structplot__points_1a8cfeb8aa34c372621211e143ed5f748a" prot="public" virt="non-virtual"><scope>plot_points</scope><name>good</name></member>
+      <member refid="structplot__points_1a1e49d58c98601ee0480b77a234f29671" prot="public" virt="non-virtual"><scope>plot_points</scope><name>suspect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

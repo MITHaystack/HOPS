@@ -1,0 +1,1762 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__ContainerStore_8hh" kind="file" language="C++">
+    <compoundname>MHO_ContainerStore.hh</compoundname>
+    <includes local="no">map</includes>
+    <includes local="no">set</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">vector</includes>
+    <includes refid="MHO__ContainerDictionary_8hh" local="yes">MHO_ContainerDictionary.hh</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includes refid="MHO__Serializable_8hh" local="yes">MHO_Serializable.hh</includes>
+    <includes refid="MHO__Types_8hh" local="yes">MHO_Types.hh</includes>
+    <includes refid="MHO__UUID_8hh" local="yes">MHO_UUID.hh</includes>
+    <includes refid="MHO__UUIDGenerator_8hh" local="yes">MHO_UUIDGenerator.hh</includes>
+    <includedby refid="CompareCorFiles_8cc" local="yes">CompareCorFiles.cc</includedby>
+    <includedby refid="ComparePcal_8cc" local="yes">ComparePcal.cc</includedby>
+    <includedby refid="hops2flat_8cc" local="yes">hops2flat.cc</includedby>
+    <includedby refid="TestPCalExtraction_8cc" local="yes">TestPCalExtraction.cc</includedby>
+    <includedby refid="MHO__ContainerFileInterface_8hh" local="yes">MHO_ContainerFileInterface.hh</includedby>
+    <includedby refid="MHO__FringeData_8hh" local="yes">MHO_FringeData.hh</includedby>
+    <includedby refid="MHO__ScanDataStore_8hh" local="yes">MHO_ScanDataStore.hh</includedby>
+    <includedby refid="MHO__Snapshot_8hh" local="yes">MHO_Snapshot.hh</includedby>
+    <includedby refid="MHO__ContainerStore_8cc" local="yes">MHO_ContainerStore.cc</includedby>
+    <includedby refid="MHO__BasicFringeDataConfiguration_8hh" local="yes">MHO_BasicFringeDataConfiguration.hh</includedby>
+    <includedby refid="MHO__BasicFringeUtilities_8hh" local="yes">MHO_BasicFringeUtilities.hh</includedby>
+    <includedby refid="MHO__ComputePlotData_8hh" local="yes">MHO_ComputePlotData.hh</includedby>
+    <includedby refid="MHO__FringeControlInitialization_8hh" local="yes">MHO_FringeControlInitialization.hh</includedby>
+    <includedby refid="MHO__FringeFitter_8hh" local="yes">MHO_FringeFitter.hh</includedby>
+    <includedby refid="MHO__FringePlotInfo_8hh" local="yes">MHO_FringePlotInfo.hh</includedby>
+    <includedby refid="MHO__InitialFringeInfo_8hh" local="yes">MHO_InitialFringeInfo.hh</includedby>
+    <includedby refid="MHO__AFileInfoExtractor_8cc" local="yes">MHO_AFileInfoExtractor.cc</includedby>
+    <includedby refid="MHO__OperatorBuilder_8hh" local="yes">MHO_OperatorBuilder.hh</includedby>
+    <includedby refid="MHO__OperatorBuilderManager_8hh" local="yes">MHO_OperatorBuilderManager.hh</includedby>
+    <includedby refid="MHO__MK4FringeExport_8hh" local="yes">MHO_MK4FringeExport.hh</includedby>
+    <includedby refid="hops2hdf5_8cc" local="yes">hops2hdf5.cc</includedby>
+    <includedby refid="MHO__HDF5ContainerFileInterface_8hh" local="yes">MHO_HDF5ContainerFileInterface.hh</includedby>
+    <includedby refid="MHO__PyContainerStoreInterface_8hh" local="yes">MHO_PyContainerStoreInterface.hh</includedby>
+    <includedby refid="MHO__PyFringeDataInterface_8hh" local="yes">MHO_PyFringeDataInterface.hh</includedby>
+    <includedby refid="MHO__PyScanStoreInterface_8hh" local="yes">MHO_PyScanStoreInterface.hh</includedby>
+    <incdepgraph>
+      <node id="77">
+        <label>MHO_FileKey.hh</label>
+        <link refid="MHO__FileKey_8hh"/>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>atomic</label>
+      </node>
+      <node id="67">
+        <label>MHO_UUIDGenerator.hh</label>
+        <link refid="MHO__UUIDGenerator_8hh"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>iomanip</label>
+      </node>
+      <node id="79">
+        <label>MHO_NumpyTypeCode.hh</label>
+        <link refid="MHO__NumpyTypeCode_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>assert.h</label>
+      </node>
+      <node id="42">
+        <label>iterator</label>
+      </node>
+      <node id="48">
+        <label>MHO_NDArrayView.hh</label>
+        <link refid="MHO__NDArrayView_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>cstdint</label>
+      </node>
+      <node id="53">
+        <label>MHO_ClassIdentity.hh</label>
+        <link refid="MHO__ClassIdentity_8hh"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_ContainerStore.hh</label>
+        <link refid="MHO__ContainerStore_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>endian.h</label>
+      </node>
+      <node id="74">
+        <label>MHO_ClassIdentityMap.hh</label>
+        <link refid="MHO__ClassIdentityMap_8hh"/>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>stdint.h</label>
+      </node>
+      <node id="9">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>MHO_Meta.hh</label>
+        <link refid="MHO__Meta_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>cmath</label>
+      </node>
+      <node id="69">
+        <label>MHO_Taggable.hh</label>
+        <link refid="MHO__Taggable_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>stdexcept</label>
+      </node>
+      <node id="30">
+        <label>MHO_IntervalLabelInterface.hh</label>
+        <link refid="MHO__IntervalLabelInterface_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+      <node id="54">
+        <label>MHO_MD5HashGenerator.hh</label>
+        <link refid="MHO__MD5HashGenerator_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>MHO_ContainerJSONConverter.hh</label>
+        <link refid="MHO__ContainerJSONConverter_8hh"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>cinttypes</label>
+      </node>
+      <node id="2">
+        <label>map</label>
+      </node>
+      <node id="13">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>MHO_FileStreamer.hh</label>
+        <link refid="MHO__FileStreamer_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>MHO_ObjectTags.hh</label>
+        <link refid="MHO__ObjectTags_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>stddef.h</label>
+      </node>
+      <node id="76">
+        <label>MHO_BinaryFileStreamer.hh</label>
+        <link refid="MHO__BinaryFileStreamer_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>fstream</label>
+      </node>
+      <node id="46">
+        <label>MHO_NDArrayMath.hh</label>
+        <link refid="MHO__NDArrayMath_8hh"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>ostream</label>
+      </node>
+      <node id="58">
+        <label>MHO_UUID.hh</label>
+        <link refid="MHO__UUID_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>MHO_NDArrayWrapper_0.hh</label>
+        <link refid="MHO__NDArrayWrapper__0_8hh"/>
+      </node>
+      <node id="72">
+        <label>MHO_ScalarContainer.hh</label>
+        <link refid="MHO__ScalarContainer_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>MHO_VectorContainer.hh</label>
+        <link refid="MHO__VectorContainer_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_Axis.hh</label>
+        <link refid="MHO__Axis_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>MHO_IndexLabelInterface.hh</label>
+        <link refid="MHO__IndexLabelInterface_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>MHO_NDArrayWrapper_1.hh</label>
+        <link refid="MHO__NDArrayWrapper__1_8hh"/>
+      </node>
+      <node id="75">
+        <label>MHO_BinaryFileInterface.hh</label>
+        <link refid="MHO__BinaryFileInterface_8hh"/>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>random</label>
+      </node>
+      <node id="70">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>string.h</label>
+      </node>
+      <node id="41">
+        <label>MHO_BidirectionalIterator.hh</label>
+        <link refid="MHO__BidirectionalIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MHO_ContainerDictionary.hh</label>
+        <link refid="MHO__ContainerDictionary_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>tuple</label>
+      </node>
+      <node id="28">
+        <label>ctime</label>
+      </node>
+      <node id="27">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="49">
+        <label>MHO_BidirectionalIndexedIterator.hh</label>
+        <link refid="MHO__BidirectionalIndexedIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>utility</label>
+      </node>
+      <node id="38">
+        <label>array</label>
+      </node>
+      <node id="11">
+        <label>sstream</label>
+      </node>
+      <node id="20">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>MHO_BidirectionalStrideIterator.hh</label>
+        <link refid="MHO__BidirectionalStrideIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>MHO_NDArrayWrapper.hh</label>
+        <link refid="MHO__NDArrayWrapper_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>cstdlib</label>
+      </node>
+      <node id="29">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="47">
+        <label>cstddef</label>
+      </node>
+      <node id="59">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>MHO_SerializableObjectFactory.hh</label>
+        <link refid="MHO__SerializableObjectFactory_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>mutex</label>
+      </node>
+      <node id="22">
+        <label>thread</label>
+      </node>
+      <node id="34">
+        <label>type_traits</label>
+      </node>
+      <node id="52">
+        <label>MHO_Serializable.hh</label>
+        <link refid="MHO__Serializable_8hh"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>set</label>
+      </node>
+      <node id="10">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="32">
+        <label>complex</label>
+      </node>
+      <node id="37">
+        <label>algorithm</label>
+      </node>
+      <node id="60">
+        <label>picohash.h</label>
+        <link refid="picohash_8h"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>stdio.h</label>
+      </node>
+      <node id="45">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>cstring</label>
+      </node>
+      <node id="62">
+        <label>inttypes.h</label>
+      </node>
+      <node id="73">
+        <label>MHO_TableContainer.hh</label>
+        <link refid="MHO__TableContainer_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="86">
+        <label>MHO_FringePlotInfo.hh</label>
+        <link refid="MHO__FringePlotInfo_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MHO_ChannelLabelerBuilder.cc</label>
+        <link refid="MHO__ChannelLabelerBuilder_8cc"/>
+      </node>
+      <node id="15">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="78">
+        <label>hops2hdf5.cc</label>
+        <link refid="hops2hdf5_8cc"/>
+      </node>
+      <node id="66">
+        <label>MHO_PyFringeDataInterface.hh</label>
+        <link refid="MHO__PyFringeDataInterface_8hh"/>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="71">
+        <label>MHO_MK4FringeExport.cc</label>
+        <link refid="MHO__MK4FringeExport_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_FringeData.cc</label>
+        <link refid="MHO__FringeData_8cc"/>
+      </node>
+      <node id="70">
+        <label>MHO_MK4FringeExport.hh</label>
+        <link refid="MHO__MK4FringeExport_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>MHO_InitialFringeInfo.hh</label>
+        <link refid="MHO__InitialFringeInfo_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>MHO_ContainerStore.cc</label>
+        <link refid="MHO__ContainerStore_8cc"/>
+      </node>
+      <node id="32">
+        <label>MHO_LinearDParCorrectionBuilder.cc</label>
+        <link refid="MHO__LinearDParCorrectionBuilder_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_ContainerStore.hh</label>
+        <link refid="MHO__ContainerStore_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>MHO_DefaultPythonPlotVisitor.cc</label>
+        <link refid="MHO__DefaultPythonPlotVisitor_8cc"/>
+      </node>
+      <node id="45">
+        <label>MHO_MixedPolYShiftBuilder.hh</label>
+        <link refid="MHO__MixedPolYShiftBuilder_8hh"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>MHO_PyGenericOperator.hh</label>
+        <link refid="MHO__PyGenericOperator_8hh"/>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>MHO_ManualPolDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualPolDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="31">
+        <label>MHO_LinearDParCorrectionBuilder.hh</label>
+        <link refid="MHO__LinearDParCorrectionBuilder_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>MHO_AFileInfoExtractor.cc</label>
+        <link refid="MHO__AFileInfoExtractor_8cc"/>
+      </node>
+      <node id="69">
+        <label>MHO_ScanDataStore.cc</label>
+        <link refid="MHO__ScanDataStore_8cc"/>
+      </node>
+      <node id="17">
+        <label>MHO_FringeFitterFactory.hh</label>
+        <link refid="MHO__FringeFitterFactory_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="83">
+        <label>MHO_ComputePlotData.hh</label>
+        <link refid="MHO__ComputePlotData_8hh"/>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>MHO_ManualPolPhaseCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualPolPhaseCorrectionBuilder_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>MHO_BasicFringeUtilities.cc</label>
+        <link refid="MHO__BasicFringeUtilities_8cc"/>
+      </node>
+      <node id="30">
+        <label>MHO_DCBlockBuilder.cc</label>
+        <link refid="MHO__DCBlockBuilder_8cc"/>
+      </node>
+      <node id="72">
+        <label>MHO_PyScanStoreInterface.hh</label>
+        <link refid="MHO__PyScanStoreInterface_8hh"/>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>MHO_PassbandBuilder.cc</label>
+        <link refid="MHO__PassbandBuilder_8cc"/>
+      </node>
+      <node id="33">
+        <label>MHO_LSBOffsetBuilder.hh</label>
+        <link refid="MHO__LSBOffsetBuilder_8hh"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>MHO_PyFringeFitterInstance.hh</label>
+        <link refid="MHO__PyFringeFitterInstance_8hh"/>
+      </node>
+      <node id="43">
+        <label>MHO_MinWeightBuilder.hh</label>
+        <link refid="MHO__MinWeightBuilder_8hh"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MHO_ContainerFileInterface.hh</label>
+        <link refid="MHO__ContainerFileInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>MHO_BasicFringeDataConfiguration.cc</label>
+        <link refid="MHO__BasicFringeDataConfiguration_8cc"/>
+      </node>
+      <node id="38">
+        <label>MHO_ManualChannelPhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualChannelPhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="13">
+        <label>MHO_IonosphericFringeFitter.hh</label>
+        <link refid="MHO__IonosphericFringeFitter_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>MHO_OperatorBuilderManager.cc</label>
+        <link refid="MHO__OperatorBuilderManager_8cc"/>
+      </node>
+      <node id="65">
+        <label>MHO_PythonOperatorBuilder.hh</label>
+        <link refid="MHO__PythonOperatorBuilder_8hh"/>
+      </node>
+      <node id="53">
+        <label>fplot4.cc</label>
+        <link refid="fplot4_8cc"/>
+      </node>
+      <node id="60">
+        <label>MHO_PolProductSummationBuilder.cc</label>
+        <link refid="MHO__PolProductSummationBuilder_8cc"/>
+      </node>
+      <node id="62">
+        <label>MHO_SamplerLabelerBuilder.cc</label>
+        <link refid="MHO__SamplerLabelerBuilder_8cc"/>
+      </node>
+      <node id="82">
+        <label>MHO_BasicFringeUtilities.hh</label>
+        <link refid="MHO__BasicFringeUtilities_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>MHO_ManualChannelDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualChannelDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="52">
+        <label>MHO_BasicFringeDataConfiguration.hh</label>
+        <link refid="MHO__BasicFringeDataConfiguration_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>MHO_PyContainersModuleDefinition.cc</label>
+        <link refid="MHO__PyContainersModuleDefinition_8cc"/>
+      </node>
+      <node id="49">
+        <label>MHO_NotchesBuilder.hh</label>
+        <link refid="MHO__NotchesBuilder_8hh"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>MHO_FringeFitterFactory.cc</label>
+        <link refid="MHO__FringeFitterFactory_8cc"/>
+      </node>
+      <node id="22">
+        <label>MHO_ChannelLabelerBuilder.hh</label>
+        <link refid="MHO__ChannelLabelerBuilder_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>MHO_FringeControlInitialization.hh</label>
+        <link refid="MHO__FringeControlInitialization_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_ScanDataStore.hh</label>
+        <link refid="MHO__ScanDataStore_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>MHO_NotchesBuilder.cc</label>
+        <link refid="MHO__NotchesBuilder_8cc"/>
+      </node>
+      <node id="12">
+        <label>MHO_BasicFringeFitter.hh</label>
+        <link refid="MHO__BasicFringeFitter_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>MHO_PyContainerStoreInterface.hh</label>
+        <link refid="MHO__PyContainerStoreInterface_8hh"/>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>MHO_LSBOffsetBuilder.cc</label>
+        <link refid="MHO__LSBOffsetBuilder_8cc"/>
+      </node>
+      <node id="47">
+        <label>MHO_MultitonePhaseCorrectionBuilder.hh</label>
+        <link refid="MHO__MultitonePhaseCorrectionBuilder_8hh"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>MHO_ContainerFileInterface.cc</label>
+        <link refid="MHO__ContainerFileInterface_8cc"/>
+      </node>
+      <node id="29">
+        <label>MHO_DCBlockBuilder.hh</label>
+        <link refid="MHO__DCBlockBuilder_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>TestPCalExtraction.cc</label>
+        <link refid="TestPCalExtraction_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_FringeFitter.hh</label>
+        <link refid="MHO__FringeFitter_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>MHO_CircularFieldRotationBuilder.cc</label>
+        <link refid="MHO__CircularFieldRotationBuilder_8cc"/>
+      </node>
+      <node id="57">
+        <label>MHO_PassbandBuilder.hh</label>
+        <link refid="MHO__PassbandBuilder_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ComparePcal.cc</label>
+        <link refid="ComparePcal_8cc"/>
+      </node>
+      <node id="37">
+        <label>MHO_ManualChannelPhaseCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualChannelPhaseCorrectionBuilder_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>MHO_FringePlotInfo.cc</label>
+        <link refid="MHO__FringePlotInfo_8cc"/>
+      </node>
+      <node id="18">
+        <label>MHO_FringePlotVisitor.hh</label>
+        <link refid="MHO__FringePlotVisitor_8hh"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>MHO_HDF5ContainerFileInterface.cc</label>
+        <link refid="MHO__HDF5ContainerFileInterface_8cc"/>
+      </node>
+      <node id="84">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+      <node id="27">
+        <label>MHO_DataSelectionBuilder.hh</label>
+        <link refid="MHO__DataSelectionBuilder_8hh"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>MHO_MixedPolYShiftBuilder.cc</label>
+        <link refid="MHO__MixedPolYShiftBuilder_8cc"/>
+      </node>
+      <node id="21">
+        <label>MHO_OperatorBuilder.hh</label>
+        <link refid="MHO__OperatorBuilder_8hh"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops2flat.cc</label>
+        <link refid="hops2flat_8cc"/>
+      </node>
+      <node id="79">
+        <label>MHO_HDF5ContainerFileInterface.hh</label>
+        <link refid="MHO__HDF5ContainerFileInterface_8hh"/>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>MHO_FringeControlInitialization.cc</label>
+        <link refid="MHO__FringeControlInitialization_8cc"/>
+      </node>
+      <node id="51">
+        <label>MHO_OperatorBuilderManager.hh</label>
+        <link refid="MHO__OperatorBuilderManager_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>MHO_CircularFieldRotationBuilder.hh</label>
+        <link refid="MHO__CircularFieldRotationBuilder_8hh"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>MHO_ManualPolPhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualPolPhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="44">
+        <label>MHO_MinWeightBuilder.cc</label>
+        <link refid="MHO__MinWeightBuilder_8cc"/>
+      </node>
+      <node id="19">
+        <label>MHO_DefaultPythonPlotVisitor.hh</label>
+        <link refid="MHO__DefaultPythonPlotVisitor_8hh"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>MHO_FringeData.hh</label>
+        <link refid="MHO__FringeData_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>MHO_DataSelectionBuilder.cc</label>
+        <link refid="MHO__DataSelectionBuilder_8cc"/>
+      </node>
+      <node id="63">
+        <label>MHO_StationDelayCorrectionBuilder.hh</label>
+        <link refid="MHO__StationDelayCorrectionBuilder_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>fourfit4.cc</label>
+        <link refid="fourfit4_8cc"/>
+      </node>
+      <node id="73">
+        <label>MHO_Snapshot.hh</label>
+        <link refid="MHO__Snapshot_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>MHO_ManualChannelDelayCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualChannelDelayCorrectionBuilder_8hh"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>MHO_PolProductSummationBuilder.hh</label>
+        <link refid="MHO__PolProductSummationBuilder_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>MHO_Snapshot.cc</label>
+        <link refid="MHO__Snapshot_8cc"/>
+      </node>
+      <node id="39">
+        <label>MHO_ManualPolDelayCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualPolDelayCorrectionBuilder_8hh"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>MHO_MultitonePhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__MultitonePhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="2">
+        <label>CompareCorFiles.cc</label>
+        <link refid="CompareCorFiles_8cc"/>
+      </node>
+      <node id="64">
+        <label>MHO_StationDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__StationDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="88">
+        <label>MHO_InitialFringeInfo.cc</label>
+        <link refid="MHO__InitialFringeInfo_8cc"/>
+      </node>
+      <node id="61">
+        <label>MHO_SamplerLabelerBuilder.hh</label>
+        <link refid="MHO__SamplerLabelerBuilder_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__ContainerStore" prot="public">hops::MHO_ContainerStore</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_ContainerStore_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_ContainerStore_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;set&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ContainerDictionary_8hh" kindref="compound">MHO_ContainerDictionary.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Serializable_8hh" kindref="compound">MHO_Serializable.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Types_8hh" kindref="compound">MHO_Types.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__UUID_8hh" kindref="compound">MHO_UUID.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__UUIDGenerator_8hh" kindref="compound">MHO_UUIDGenerator.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classhops_1_1MHO__ContainerStore" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="34" refid="classhops_1_1MHO__ContainerStore_1a098859e8ed3f641558254b9b11d4656a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a098859e8ed3f641558254b9b11d4656a" kindref="member">MHO_ContainerStore</ref>(){};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classhops_1_1MHO__ContainerStore_1a49821a0ad9e08ffca430837972c14eaf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a49821a0ad9e08ffca430837972c14eaf" kindref="member">~MHO_ContainerStore</ref>()<sp/>{<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a93df4c1775df05712b86dea3b7f44135" kindref="member">Clear</ref>();<sp/>};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a93df4c1775df05712b86dea3b7f44135" kindref="member">Clear</ref>();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1af5ad680d1a1fd5e0f21cff97da89ec79" kindref="member">AddObject</ref>(XClassType*<sp/>obj);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>XClassType*<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" kindref="member">GetObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>XClassType*<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" kindref="member">GetObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>shortname);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>XClassType*<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" kindref="member">GetObject</ref>(std::size_t<sp/>index);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2712f221181fe3f0f11e4557475807f3" kindref="member">DeleteObject</ref>(XClassType*<sp/>obj_ptr);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ae6f78d013685c50c4e21d82135f86415" kindref="member">GetTypeUUID</ref>();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>std::size_t<sp/><ref refid="classhops_1_1MHO__ContainerStore_1aea90e8cc518d391e85e4d84b8a18c6af" kindref="member">GetNObjects</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//check<sp/>if<sp/>any<sp/>object<sp/>with<sp/>the<sp/>given<sp/>object<sp/>id<sp/>is<sp/>in<sp/>the<sp/>store</highlight></codeline>
+<codeline lineno="112"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1aad15f2eb03eea6ebdcd6fc8013435c4d" kindref="member">IsObjectPresent</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>*<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" kindref="member">GetObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2712f221181fe3f0f11e4557475807f3" kindref="member">DeleteObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a6971d6e9313b086e2d70c32d7837564a" kindref="member">GetAllTypeUUIDs</ref>(std::vector&lt;<sp/>MHO_UUID<sp/>&gt;&amp;<sp/>type_ids);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1aa6c23daa08ef67b61c8f7f7d5224049d" kindref="member">GetAllObjectUUIDsOfType</ref>(<ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>type_id,<sp/>std::vector&lt;<sp/>MHO_UUID<sp/>&gt;&amp;<sp/>obj_ids);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="classhops_1_1MHO__ContainerStore_1abb5deba9d4de9f7be5e51d32c96fa86d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classhops_1_1MHO__ContainerStore_1abb5deba9d4de9f7be5e51d32c96fa86d" kindref="member">GetNObjects</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" kindref="member">fObjectsToIds</ref>.size();<sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a165afd02427cc03c70e3bae975fc39db" kindref="member">SetShortName</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>shortname);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a9b6cb68b46ed10595a6d11ed0c14fa31" kindref="member">GetObjectUUID</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>shortname);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a23fd693e5669ed386f15c7a7862bdff2" kindref="member">GetObjectTypeUUID</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a462ef5eb99c761de5a4bca823737b5d3" kindref="member">GetShortName</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a1bf5872e1b8eb1947c0d6ded1248ffad" kindref="member">GetAllShortNames</ref>(std::vector&lt;<sp/>std::string<sp/>&gt;&amp;<sp/>shortnames);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>is<sp/>primarily<sp/>here<sp/>to<sp/>provide<sp/>a<sp/>object<sp/>look-up<sp/>table<sp/>for<sp/>the<sp/>python<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>a<sp/>list<sp/>of<sp/>(object_type_uuid,<sp/>object_item_uuid,<sp/>shortname)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::tuple&lt;<sp/>std::string,<sp/>std::string,<sp/>std::string<sp/>&gt;<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab9da68866bf1259aa65c7c22ab61e3b0" kindref="member">GetAllObjectInfo</ref>();</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1acb204c225f10bc2a281b695c7edca7bd" kindref="member">RenameObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>current_shortname,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>new_shortname);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//debug</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206" refid="classhops_1_1MHO__ContainerStore_1a1cba89cd988f64128a6c562c301d7d3e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a1cba89cd988f64128a6c562c301d7d3e" kindref="member">DumpShortNamesToIds</ref>()</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" kindref="member">fShortNameToIds</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" kindref="member">fShortNameToIds</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>it-&gt;first<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>it-&gt;second.as_string()<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="215" refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref><sp/>=<sp/>std::pair&lt;<sp/>MHO_UUID,<sp/>MHO_UUID<sp/>&gt;;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//object<sp/>dictionary...currently<sp/>we<sp/>only<sp/>have<sp/>one<sp/>dictionary<sp/>implementation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//however,<sp/>we<sp/>may<sp/>in<sp/>the<sp/>future<sp/>want<sp/>to<sp/>allow<sp/>the<sp/>user<sp/>to<sp/>pass<sp/>a<sp/>custom<sp/>dictionary<sp/>implementation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>they<sp/>have<sp/>additional<sp/>classes<sp/>they<sp/>want<sp/>to<sp/>serialize<sp/>which<sp/>are<sp/>not<sp/>already<sp/>supported</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerDictionary" kindref="compound">MHO_ContainerDictionary</ref><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" kindref="member">fDictionary</ref>;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//all<sp/>objects<sp/>are<sp/>stored<sp/>as<sp/>pointers<sp/>to<sp/>the<sp/>base-class<sp/>MHO_Serializable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//they<sp/>are<sp/>cast<sp/>to<sp/>the<sp/>underlying<sp/>type<sp/>specified<sp/>by<sp/>the<sp/>type<sp/>id<sp/>upon<sp/>retrieval</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//the<sp/>key<sp/>pair<sp/>is<sp/>&lt;type_uuid,<sp/>obj_id&gt;,<sp/>and<sp/>the<sp/>value<sp/>is<sp/>a<sp/>pointer<sp/>to<sp/>the<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226" refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>key_pair,<sp/>MHO_Serializable*<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//the<sp/>key<sp/>is<sp/>a<sp/>pointer<sp/>to<sp/>an<sp/>object,<sp/>and<sp/>the<sp/>value<sp/>is<sp/>a<sp/>pair<sp/>of<sp/>&lt;type_uuid,<sp/>obj_id&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>MHO_Serializable*,<sp/>key_pair<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" kindref="member">fObjectsToIds</ref>;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//maps<sp/>string<sp/>names<sp/>to<sp/>object<sp/>uuids</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232" refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>std::string,<sp/>MHO_UUID<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" kindref="member">fShortNameToIds</ref>;</highlight></codeline>
+<codeline lineno="233" refid="classhops_1_1MHO__ContainerStore_1a208625904b4d8294c6e2aba41527fb6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::set&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a208625904b4d8294c6e2aba41527fb6a" kindref="member">fShortNameSet</ref>;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="classhops_1_1MHO__ContainerStore_1af5ad680d1a1fd5e0f21cff97da89ec79" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1af5ad680d1a1fd5e0f21cff97da89ec79" kindref="member">MHO_ContainerStore::AddObject</ref>(XClassType*<sp/>obj)</highlight></codeline>
+<codeline lineno="243"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(obj<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//attempt<sp/>to<sp/>cast<sp/>to<sp/>our<sp/>storage/serialization<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>*<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(obj);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ptr<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>obj_id<sp/>=<sp/>obj-&gt;GetObjectUUID();</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>type_id<sp/>=<sp/>obj-&gt;GetTypeUUID();</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref><sp/>kp;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>kp.first<sp/>=<sp/>type_id;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>kp.second<sp/>=<sp/>obj_id;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>[kp]<sp/>=<sp/>ptr;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" kindref="member">fObjectsToIds</ref>[ptr]<sp/>=<sp/>kp;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274" refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>XClassType*<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" kindref="member">MHO_ContainerStore::GetObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp;<sp/>obj_id)</highlight></codeline>
+<codeline lineno="275"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>type_id<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" kindref="member">fDictionary</ref>.<ref refid="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" kindref="member">GetUUIDFor</ref>&lt;<sp/>XClassType<sp/>&gt;();</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref><sp/>kp;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>kp.first<sp/>=<sp/>type_id;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>kp.second<sp/>=<sp/>obj_id;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>XClassType*<sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.find(kp);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it<sp/>!=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.end())</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>*<sp/>obj<sp/>=<sp/>it-&gt;second;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">dynamic_cast&lt;</highlight><highlight class="normal"><sp/>XClassType*<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(obj);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298" refid="classhops_1_1MHO__ContainerStore_1a750746e89aa37ec1512c17361de19427" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>XClassType*<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" kindref="member">MHO_ContainerStore::GetObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>shortname)</highlight></codeline>
+<codeline lineno="299"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>XClassType*<sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>obj_id<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a9b6cb68b46ed10595a6d11ed0c14fa31" kindref="member">GetObjectUUID</ref>(shortname);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!obj_id.<ref refid="classhops_1_1MHO__UUID_1ac8ee26515febb33da49203778de7b612" kindref="member">is_empty</ref>())</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/>GetObject&lt;<sp/>XClassType<sp/>&gt;(obj_id);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315" refid="classhops_1_1MHO__ContainerStore_1a98ba66c6240f2eaae3df2e6df7d93307" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>XClassType*<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" kindref="member">MHO_ContainerStore::GetObject</ref>(std::size_t<sp/>index)</highlight></codeline>
+<codeline lineno="316"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>XClassType*<sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>n_objects<sp/>=<sp/>GetNObjects&lt;<sp/>XClassType<sp/>&gt;();</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(index<sp/>&lt;<sp/>n_objects)</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>type_id<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" kindref="member">fDictionary</ref>.<ref refid="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" kindref="member">GetUUIDFor</ref>&lt;<sp/>XClassType<sp/>&gt;();</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref><sp/>item_ids<sp/>=<sp/>it-&gt;first;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>item_type_id<sp/>=<sp/>item_ids.first;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(type_id<sp/>==<sp/>item_type_id)</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(count<sp/>==<sp/>index)</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>*<sp/>obj<sp/>=<sp/>it-&gt;second;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">dynamic_cast&lt;</highlight><highlight class="normal"><sp/>XClassType*<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(obj);</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>count++;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ptr;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="349" refid="classhops_1_1MHO__ContainerStore_1a2712f221181fe3f0f11e4557475807f3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2712f221181fe3f0f11e4557475807f3" kindref="member">MHO_ContainerStore::DeleteObject</ref>(XClassType*<sp/>obj_ptr)</highlight></codeline>
+<codeline lineno="350"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>*<sp/>ptr<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>*<sp/></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(obj_ptr);</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ptr<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" kindref="member">fObjectsToIds</ref>.find(ptr);</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it<sp/>==<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" kindref="member">fObjectsToIds</ref>.end())</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref><sp/>kp<sp/>=<sp/>it-&gt;second;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>obj_id<sp/>=<sp/>kp.second;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it2<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.find(kp);</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it2<sp/>==<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.end())</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//remove<sp/>entries<sp/>related<sp/>to<sp/>this<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" kindref="member">fObjectsToIds</ref>.erase(it);</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.erase(it2);</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>obj_ptr;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//remove<sp/>labels<sp/>and<sp/>short<sp/>name<sp/>associated<sp/>with<sp/>this<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>shortname<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" kindref="member">fShortNameToIds</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" kindref="member">fShortNameToIds</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(it-&gt;second<sp/>==<sp/>obj_id)</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shortname<sp/>=<sp/>it-&gt;first;</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" kindref="member">fShortNameToIds</ref>.erase(it);</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a208625904b4d8294c6e2aba41527fb6a" kindref="member">fShortNameSet</ref>.erase(shortname);</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="389"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight></codeline>
+<codeline lineno="396" refid="classhops_1_1MHO__ContainerStore_1ae6f78d013685c50c4e21d82135f86415" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ae6f78d013685c50c4e21d82135f86415" kindref="member">MHO_ContainerStore::GetTypeUUID</ref>()</highlight></codeline>
+<codeline lineno="397"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>type_id<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" kindref="member">fDictionary</ref>.<ref refid="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" kindref="member">GetUUIDFor</ref>&lt;<sp/>XClassType<sp/>&gt;();</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>type_id;</highlight></codeline>
+<codeline lineno="400"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"></highlight></codeline>
+<codeline lineno="407" refid="classhops_1_1MHO__ContainerStore_1aea90e8cc518d391e85e4d84b8a18c6af" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XClassType<sp/>&gt;<sp/>std::size_t<sp/><ref refid="classhops_1_1MHO__ContainerStore_1aea90e8cc518d391e85e4d84b8a18c6af" kindref="member">MHO_ContainerStore::GetNObjects</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="408"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>type_id<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" kindref="member">fDictionary</ref>.<ref refid="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" kindref="member">GetUUIDFor</ref>&lt;<sp/>XClassType<sp/>&gt;();</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" kindref="member">fIdsToObjects</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref><sp/>item_ids<sp/>=<sp/>it-&gt;first;</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>item_type_id<sp/>=<sp/>item_ids.first;</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(type_id<sp/>==<sp/>item_type_id)</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>count++;</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>count;</highlight></codeline>
+<codeline lineno="421"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"></highlight></codeline>
+<codeline lineno="429" refid="classhops_1_1MHO__ContainerStore_1acb204c225f10bc2a281b695c7edca7bd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ContainerStore_1acb204c225f10bc2a281b695c7edca7bd" kindref="member">MHO_ContainerStore::RenameObject</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>current_shortname,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>new_shortname)</highlight></codeline>
+<codeline lineno="430"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref><sp/>obj_uuid<sp/>=<sp/><ref refid="classhops_1_1MHO__ContainerStore_1a9b6cb68b46ed10595a6d11ed0c14fa31" kindref="member">GetObjectUUID</ref>(current_shortname);</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(obj_uuid.<ref refid="classhops_1_1MHO__UUID_1a0993c6e246e2aabb313e6336f627c650" kindref="member">as_long</ref>()<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a208625904b4d8294c6e2aba41527fb6a" kindref="member">fShortNameSet</ref>.erase(current_shortname);</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" kindref="member">fShortNameToIds</ref>.erase(current_shortname);</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ContainerStore_1a165afd02427cc03c70e3bae975fc39db" kindref="member">SetShortName</ref>(obj_uuid,<sp/>new_shortname);</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="438"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"></highlight></codeline>
+<codeline lineno="440"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="441"><highlight class="normal"></highlight></codeline>
+<codeline lineno="442"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh"/>
+  </compounddef>
+</doxygen>

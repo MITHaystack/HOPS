@@ -1,0 +1,449 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="create__lockfile_8c" kind="file" language="C++">
+    <compoundname>create_lockfile.c</compoundname>
+    <includes local="no">sys/types.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">sys/time.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="write__lock__mechanism_8h" local="yes">write_lock_mechanism.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <incdepgraph>
+      <node id="12">
+        <label>stdarg.h</label>
+      </node>
+      <node id="7">
+        <label>stdlib.h</label>
+      </node>
+      <node id="11">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>create_lockfile.c</label>
+        <link refid="create__lockfile_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sys/types.h</label>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
+      <node id="3">
+        <label>unistd.h</label>
+      </node>
+      <node id="9">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sys/time.h</label>
+      </node>
+      <node id="6">
+        <label>stdio.h</label>
+      </node>
+      <node id="10">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="8">
+        <label>write_lock_mechanism.h</label>
+        <link refid="write__lock__mechanism_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="create__lockfile_8c_1abd3f1eedc1ff860d01665e9e030275d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int check_stale</definition>
+        <argsstring>(lockfile_data_struct *other)</argsstring>
+        <name>check_stale</name>
+        <param>
+          <type><ref refid="write__lock__mechanism_8h_1a71a17fa48cfef646ad6f76bd9634a633" kindref="member">lockfile_data_struct</ref> *</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" line="95" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" bodystart="95" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="create__lockfile_8c_1a91ba44b06a88ad9f1efcb854109a752d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_global_lockfile_data</definition>
+        <argsstring>()</argsstring>
+        <name>clear_global_lockfile_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" line="43" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" bodystart="43" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="create__lockfile_8c_1a31777d4610c08362c0edda58135c118d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int create_lockfile</definition>
+        <argsstring>(char *rootname, char *lockfile_name, int max_seq_no)</argsstring>
+        <name>create_lockfile</name>
+        <param>
+          <type>char *</type>
+          <declname>rootname</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>lockfile_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_seq_no</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" line="170" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" bodystart="170" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="create__lockfile_8c_1a127b213cfc2bfd2f7461ca87a2744eca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void init_lockfile_data</definition>
+        <argsstring>(lockfile_data_struct *data)</argsstring>
+        <name>init_lockfile_data</name>
+        <param>
+          <type><ref refid="write__lock__mechanism_8h_1a71a17fa48cfef646ad6f76bd9634a633" kindref="member">lockfile_data_struct</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" line="31" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" bodystart="31" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="create__lockfile_8c_1aff60e9816856dc7bb893978fbae4df59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int lock_has_priority</definition>
+        <argsstring>(lockfile_data_struct *other)</argsstring>
+        <name>lock_has_priority</name>
+        <param>
+          <type><ref refid="write__lock__mechanism_8h_1a71a17fa48cfef646ad6f76bd9634a633" kindref="member">lockfile_data_struct</ref> *</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" line="120" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" bodystart="120" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="create__lockfile_8c_1a4aba52ddf04f16afcea8617400dff628" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_lockfile_name</definition>
+        <argsstring>(char *lockfile_name_base, lockfile_data_struct *result)</argsstring>
+        <name>parse_lockfile_name</name>
+        <param>
+          <type>char *</type>
+          <declname>lockfile_name_base</declname>
+        </param>
+        <param>
+          <type><ref refid="write__lock__mechanism_8h_1a71a17fa48cfef646ad6f76bd9634a633" kindref="member">lockfile_data_struct</ref> *</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" line="57" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" bodystart="57" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="create__lockfile_8c_1a3318d5dac17b795ee7747945044f4d62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void remove_lockfile</definition>
+        <argsstring>()</argsstring>
+        <name>remove_lockfile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" line="48" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c" bodystart="48" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Creates<sp/>a<sp/>file<sp/>in<sp/>the<sp/>same<sp/>directory<sp/>as<sp/>the<sp/>root<sp/>file<sp/>which<sp/>can<sp/>be<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>used<sp/>to<sp/>signal<sp/>other<sp/>running<sp/>fourfit<sp/>processes<sp/>that<sp/>a<sp/>fringe<sp/>file<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>is<sp/>about<sp/>to<sp/>be<sp/>create.<sp/>This<sp/>is<sp/>necessary<sp/>to<sp/>keep<sp/>simultaneously<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>running<sp/>fourfit<sp/>processes<sp/>from<sp/>clobbering<sp/>each<sp/>others<sp/>files.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>lock<sp/>file<sp/>has<sp/>as<sp/>a<sp/>name<sp/>with<sp/>the<sp/>following<sp/>format:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>PROC_ID.lock,<sp/>and<sp/>contains<sp/>the<sp/>value<sp/>of<sp/>the<sp/>epoch<sp/>second<sp/>at<sp/>which<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>it<sp/>was<sp/>generated,<sp/>this<sp/>might<sp/>be<sp/>somewhat<sp/>vulnerable<sp/>to<sp/>process-id<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>recycling,<sp/>but<sp/>as<sp/>long<sp/>we<sp/>are<sp/>not<sp/>spawning<sp/>thousands<sp/>of<sp/>fourfit<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>processes<sp/>at<sp/>once<sp/>that<sp/>shouldn&apos;t<sp/>be<sp/>a<sp/>problem<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rootname<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Full<sp/>pathname<sp/>of<sp/>the<sp/>root<sp/>file<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>value<sp/><sp/><sp/><sp/>0=OK,<sp/>else<sp/>bad<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>Jan<sp/>24<sp/>2017<sp/>JPB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/types.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="write__lock__mechanism_8h" kindref="compound">write_lock_mechanism.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="create__lockfile_8c_1a127b213cfc2bfd2f7461ca87a2744eca" kindref="member">init_lockfile_data</ref>(<ref refid="structlockfile__data" kindref="compound">lockfile_data_struct</ref>*<sp/>data)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structlockfile__data_1aa9376b46493bd6bd63a8a60f17910357" kindref="member">validity</ref><sp/>=<sp/><ref refid="write__lock__mechanism_8h_1a5c3ac8668fcdddd83b604873aaba1dfe" kindref="member">LOCK_INVALID</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structlockfile__data_1ae3d2825ce5a3bf0bdbe8a79ac424e916" kindref="member">seq_number</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" kindref="member">pid</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structlockfile__data_1a5b2bad9be1205b74a0fb52b3dffe1177" kindref="member">time_usec</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;256;<sp/>i++){data-&gt;<ref refid="structlockfile__data_1ac866f53f8bdf07fae1c39f4a37c3b785" kindref="member">hostname</ref>[i]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;<ref refid="write__lock__mechanism_8h_1a841777a085183b78e955e43d25a258a0" kindref="member">MAX_LOCKNAME_LEN</ref>;<sp/>i++){data-&gt;<ref refid="structlockfile__data_1ac02b05887401049ab5129eea751cc3a1" kindref="member">lockfile_name</ref>[i]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="create__lockfile_8c_1a91ba44b06a88ad9f1efcb854109a752d" kindref="member">clear_global_lockfile_data</ref>()</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="create__lockfile_8c_1a127b213cfc2bfd2f7461ca87a2744eca" kindref="member">init_lockfile_data</ref>(&amp;<ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="create__lockfile_8c_1a3318d5dac17b795ee7747945044f4d62" kindref="member">remove_lockfile</ref>()</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1aa9376b46493bd6bd63a8a60f17910357" kindref="member">validity</ref><sp/>==<sp/><ref refid="write__lock__mechanism_8h_1a999e0b3a2cc8690bbdfc539561737bc6" kindref="member">LOCK_VALID</ref>)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remove(<ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1ac02b05887401049ab5129eea751cc3a1" kindref="member">lockfile_name</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="create__lockfile_8c_1a91ba44b06a88ad9f1efcb854109a752d" kindref="member">clear_global_lockfile_data</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="create__lockfile_8c_1a4aba52ddf04f16afcea8617400dff628" kindref="member">parse_lockfile_name</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>lockfile_name_base,<sp/><ref refid="structlockfile__data" kindref="compound">lockfile_data_struct</ref>*<sp/>result)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="create__lockfile_8c_1a127b213cfc2bfd2f7461ca87a2744eca" kindref="member">init_lockfile_data</ref>(result);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy(result-&gt;<ref refid="structlockfile__data_1ac02b05887401049ab5129eea751cc3a1" kindref="member">lockfile_name</ref>,<sp/>lockfile_name_base);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//tokenize<sp/>the<sp/>lockfile<sp/>name<sp/>base,<sp/>(note:<sp/>this<sp/>modifies<sp/>the<sp/>input)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>ptr;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/>strtok(lockfile_name_base,<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ptr<sp/>!=<sp/>NULL){sscanf(ptr,<sp/></highlight><highlight class="stringliteral">&quot;%u&quot;</highlight><highlight class="normal">,<sp/>&amp;(result-&gt;<ref refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" kindref="member">pid</ref>));}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a20736cc5374941215563417e654e708f" kindref="member">LOCK_PARSE_ERROR</ref>;}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/>strtok(NULL,<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ptr<sp/>!=<sp/>NULL){sscanf(ptr,<sp/></highlight><highlight class="stringliteral">&quot;%u&quot;</highlight><highlight class="normal">,<sp/>&amp;(result-&gt;<ref refid="structlockfile__data_1ae3d2825ce5a3bf0bdbe8a79ac424e916" kindref="member">seq_number</ref>));}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a20736cc5374941215563417e654e708f" kindref="member">LOCK_PARSE_ERROR</ref>;}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/>strtok(NULL,<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ptr<sp/>!=<sp/>NULL){sscanf(ptr,<sp/></highlight><highlight class="stringliteral">&quot;%lx&quot;</highlight><highlight class="normal">,<sp/>&amp;(result-&gt;<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref>));}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a20736cc5374941215563417e654e708f" kindref="member">LOCK_PARSE_ERROR</ref>;}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/>strtok(NULL,<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ptr<sp/>!=<sp/>NULL){sscanf(ptr,<sp/></highlight><highlight class="stringliteral">&quot;%lx&quot;</highlight><highlight class="normal">,<sp/>&amp;(result-&gt;<ref refid="structlockfile__data_1a5b2bad9be1205b74a0fb52b3dffe1177" kindref="member">time_usec</ref>));}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a20736cc5374941215563417e654e708f" kindref="member">LOCK_PARSE_ERROR</ref>;}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>ptr<sp/>=<sp/>strtok(NULL,<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ptr<sp/>!=<sp/>NULL){sscanf(ptr,<sp/></highlight><highlight class="stringliteral">&quot;%s&quot;</highlight><highlight class="normal">,<sp/>&amp;(result-&gt;<ref refid="structlockfile__data_1ac866f53f8bdf07fae1c39f4a37c3b785" kindref="member">hostname</ref>[0]));}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a20736cc5374941215563417e654e708f" kindref="member">LOCK_PARSE_ERROR</ref>;}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>result-&gt;<ref refid="structlockfile__data_1aa9376b46493bd6bd63a8a60f17910357" kindref="member">validity</ref><sp/>=<sp/><ref refid="write__lock__mechanism_8h_1a999e0b3a2cc8690bbdfc539561737bc6" kindref="member">LOCK_VALID</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="create__lockfile_8c_1abd3f1eedc1ff860d01665e9e030275d5" kindref="member">check_stale</ref>(<ref refid="structlockfile__data" kindref="compound">lockfile_data_struct</ref>*<sp/>other)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>LOCK_STATUS_OK<sp/>if<sp/>the<sp/>other<sp/>lock<sp/>is<sp/>stale<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>LOCK_STALE_ERROR<sp/>if<sp/>the<sp/>lock<sp/>is<sp/>not<sp/>stale</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//check<sp/>for<sp/>stale-ness<sp/>irrespective<sp/>of<sp/>priority<sp/>or<sp/>host</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">timeval<sp/>timevalue;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>gettimeofday(&amp;timevalue,<sp/>NULL);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>epoch_sec<sp/>=<sp/>timevalue.tv_sec;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>micro_sec<sp/>=<sp/>timevalue.tv_usec;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>other-&gt;<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref><sp/>&lt;<sp/>epoch_sec<sp/>)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>(epoch_sec<sp/>-<sp/>other-&gt;<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref>)<sp/>&gt;<sp/><ref refid="write__lock__mechanism_8h_1af3f2d252bde2e9f543830eac049aed9e" kindref="member">LOCK_STALE_SEC</ref><sp/>)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//issue<sp/>warning,<sp/>do<sp/>not<sp/>have<sp/>priority</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Error:<sp/>stale<sp/>lock<sp/>file<sp/>detected:<sp/>%s<sp/>&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>other-&gt;<ref refid="structlockfile__data_1ac02b05887401049ab5129eea751cc3a1" kindref="member">lockfile_name</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a8d804dc8f5cc64826a455c0b93ecaded" kindref="member">LOCK_STALE_ERROR</ref>;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a680d6306c359d72e483fad9ebc01e605" kindref="member">LOCK_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="create__lockfile_8c_1aff60e9816856dc7bb893978fbae4df59" kindref="member">lock_has_priority</ref>(<ref refid="structlockfile__data" kindref="compound">lockfile_data_struct</ref>*<sp/>other)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>LOCK_PROCESS_HAS_PRIORITY<sp/>if<sp/>this<sp/>process<sp/>has<sp/>priority</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>over<sp/>the<sp/>other&apos;s<sp/>lock<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>LOCK_PROCESS_NO_PRIORITY<sp/>if<sp/>this<sp/>process<sp/>does<sp/>not<sp/>have<sp/>priority</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>LOCK_STALE_ERROR<sp/>if<sp/>there<sp/>is<sp/>a<sp/>stale<sp/>lock<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//no<sp/>need<sp/>to<sp/>check<sp/>for<sp/>stale-ness,<sp/>this<sp/>function<sp/>is<sp/>only<sp/>called<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>the<sp/>lock<sp/>is<sp/>stolen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//strict<sp/>temporal<sp/>ordering<sp/>between<sp/>the<sp/>processes<sp/>is<sp/>not<sp/>totally</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//necessary,<sp/>however,<sp/>we<sp/>do<sp/>need<sp/>a<sp/>robust<sp/>mechanism<sp/>for<sp/>deciding</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//the<sp/>ordering<sp/>between<sp/>processes,<sp/>for<sp/>this<sp/>reason<sp/>we<sp/>use<sp/>the<sp/>pid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//in<sp/>the<sp/>rare<sp/>circumstances<sp/>where<sp/>the<sp/>pid<sp/>is<sp/>the<sp/>same,<sp/>because</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//of<sp/>different<sp/>hosts<sp/>or<sp/>pid<sp/>recycling,<sp/>we<sp/>defer<sp/>to<sp/>using<sp/>time<sp/>ordering</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>that<sp/>in<sp/>turn<sp/>fails,<sp/>then<sp/>the<sp/>lock<sp/>with<sp/>be<sp/>deleted<sp/>and<sp/>we<sp/>try<sp/>again</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" kindref="member">pid</ref><sp/>&lt;<sp/>other-&gt;<ref refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" kindref="member">pid</ref>)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1ada14ed221c6fca414927b85f40752bad" kindref="member">LOCK_PROCESS_HAS_PRIORITY</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" kindref="member">pid</ref><sp/>==<sp/>other-&gt;<ref refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" kindref="member">pid</ref>)<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tie-break<sp/>w/time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref><sp/>&lt;<sp/>other-&gt;<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref><sp/>)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1ada14ed221c6fca414927b85f40752bad" kindref="member">LOCK_PROCESS_HAS_PRIORITY</ref>;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref><sp/>==<sp/>other-&gt;<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref>)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1a5b2bad9be1205b74a0fb52b3dffe1177" kindref="member">time_usec</ref><sp/>&lt;<sp/>other-&gt;<ref refid="structlockfile__data_1a5b2bad9be1205b74a0fb52b3dffe1177" kindref="member">time_usec</ref>)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1ada14ed221c6fca414927b85f40752bad" kindref="member">LOCK_PROCESS_HAS_PRIORITY</ref>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a634af58707c7580779b4cfcf72b90e9d" kindref="member">LOCK_PROCESS_NO_PRIORITY</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ours<sp/>is<sp/>&gt;<sp/>other-&gt;pid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a634af58707c7580779b4cfcf72b90e9d" kindref="member">LOCK_PROCESS_NO_PRIORITY</ref>;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a634af58707c7580779b4cfcf72b90e9d" kindref="member">LOCK_PROCESS_NO_PRIORITY</ref>;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="create__lockfile_8c_1a31777d4610c08362c0edda58135c118d" kindref="member">create_lockfile</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="mk4__afio_8h_1a38555118841f6b56a5a4da1ad0c7386a" kindref="member">rootname</ref>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>lockfile_name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_seq_no)</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//max<sp/>file<sp/>extent<sp/>number<sp/>seen<sp/>at<sp/>time<sp/>of<sp/>lock<sp/>file<sp/>creation<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//(or<sp/>rather,<sp/>the<sp/>time<sp/>which<sp/>fileset()<sp/>was<sp/>run)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>the<sp/>host<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>host_name[256]<sp/>=<sp/>{</highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ret_val<sp/>=<sp/>gethostname(host_name,<sp/>256);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>ret_val<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Fatal<sp/>error<sp/>retrieving<sp/>host<sp/>name:<sp/>create_lockfile.&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>the<sp/>process<sp/>id,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>pid_t<sp/>this_pid<sp/>=<sp/>getpid();</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pid<sp/>=<sp/>this_pid;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//then<sp/>get<sp/>the<sp/>epoch<sp/>second<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">timeval<sp/>timevalue;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>gettimeofday(&amp;timevalue,<sp/>NULL);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>epoch_sec<sp/>=<sp/>timevalue.tv_sec;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>micro_sec<sp/>=<sp/>timevalue.tv_usec;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sequence_to_reserve<sp/>=<sp/>max_seq_no<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//dump<sp/>the<sp/>process<sp/>id<sp/>into<sp/>a<sp/>string<sp/>to<sp/>create<sp/>the<sp/>filename</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;<ref refid="write__lock__mechanism_8h_1a841777a085183b78e955e43d25a258a0" kindref="member">MAX_LOCKNAME_LEN</ref>;<sp/>i++){lockfile_name[i]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//copy<sp/>in<sp/>the<sp/>scan<sp/>directory<sp/>and<sp/>append<sp/>the<sp/>filename</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy(lockfile_name,<sp/><ref refid="mk4__afio_8h_1a38555118841f6b56a5a4da1ad0c7386a" kindref="member">rootname</ref>);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>end_ptr<sp/>=<sp/>strrchr(lockfile_name,<sp/></highlight><highlight class="charliteral">&apos;/&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>end_ptr++;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(end_ptr,<sp/></highlight><highlight class="stringliteral">&quot;%u.%u.%lx.%lx.%s.lock&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pid,<sp/>sequence_to_reserve,<sp/>epoch_sec,<sp/>micro_sec,<sp/>host_name);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE*<sp/>lockfile<sp/>=<sp/>fopen(lockfile_name,<sp/></highlight><highlight class="stringliteral">&quot;w+&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lockfile!=NULL)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>time_buffer[100]<sp/>=<sp/>{</highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(time_buffer,<sp/></highlight><highlight class="stringliteral">&quot;%lu\n&quot;</highlight><highlight class="normal">,<sp/>epoch_sec);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fputs(time_buffer,<sp/>lockfile);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>temp_buffer[100]<sp/>=<sp/>{</highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(temp_buffer,<sp/></highlight><highlight class="stringliteral">&quot;%d\n&quot;</highlight><highlight class="normal">,<sp/>pid);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fputs(temp_buffer,<sp/>lockfile);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(lockfile);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//variables<sp/>so<sp/>that<sp/>the<sp/>signal<sp/>handler<sp/>can<sp/>remove<sp/>the<sp/>lock</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//file<sp/>if<sp/>an<sp/>interrupt<sp/>is<sp/>caught</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1aa9376b46493bd6bd63a8a60f17910357" kindref="member">validity</ref><sp/>=<sp/><ref refid="write__lock__mechanism_8h_1a999e0b3a2cc8690bbdfc539561737bc6" kindref="member">LOCK_VALID</ref>;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1ae3d2825ce5a3bf0bdbe8a79ac424e916" kindref="member">seq_number</ref><sp/>=<sp/>sequence_to_reserve;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" kindref="member">pid</ref><sp/>=<sp/>this_pid;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" kindref="member">time_sec</ref><sp/>=<sp/>epoch_sec;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1a5b2bad9be1205b74a0fb52b3dffe1177" kindref="member">time_usec</ref><sp/>=<sp/>micro_sec;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy(<ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1ac866f53f8bdf07fae1c39f4a37c3b785" kindref="member">hostname</ref>,<sp/>host_name);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy(<ref refid="fourfit3_8c_1a34d4e709285c07a8d5846f152e0400d9" kindref="member">global_lockfile_data</ref>.<ref refid="structlockfile__data_1ac02b05887401049ab5129eea751cc3a1" kindref="member">lockfile_name</ref>,<sp/>lockfile_name);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a042fbeabf6dd83e6d1e4d6261ba32f6a" kindref="member">LOCK_FILE_ERROR</ref>;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="write__lock__mechanism_8h_1a680d6306c359d72e483fad9ebc01e605" kindref="member">LOCK_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/create_lockfile.c"/>
+  </compounddef>
+</doxygen>

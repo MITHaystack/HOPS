@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="swabr_8c" kind="file" language="C++">
+    <compoundname>swabr.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>swabr.c</label>
+        <link refid="swabr_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="swabr_8c_1acc5f36aa72d0ef387e159b6268742899" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double double_reverse</definition>
+        <argsstring>(double j)</argsstring>
+        <name>double_reverse</name>
+        <param>
+          <type>double</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" line="97" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="97" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="swabr_8c_1a474773db45a3dd93f68c264eab55dfd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float float_reverse</definition>
+        <argsstring>(float j)</argsstring>
+        <name>float_reverse</name>
+        <param>
+          <type>float</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" line="81" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="81" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="swabr_8c_1ac9dc922d0fa1fc0f0cf90b26df5887de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int int_reverse</definition>
+        <argsstring>(int j)</argsstring>
+        <name>int_reverse</name>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" line="41" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="41" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="swabr_8c_1a6b31b1910b856ac0aa1a9a713a2edc96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long long_reverse</definition>
+        <argsstring>(long j)</argsstring>
+        <name>long_reverse</name>
+        <param>
+          <type>long</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" line="57" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="57" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="swabr_8c_1a7d6165690824de4b46077b36a6d58ed0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>short</type>
+        <definition>short short_reverse</definition>
+        <argsstring>(short i)</argsstring>
+        <name>short_reverse</name>
+        <param>
+          <type>short</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" line="15" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="15" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="swabr_8c_1a5d6fa489f9bec0f4b19d3af37a2d3fb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned short</type>
+        <definition>unsigned short unsig_reverse</definition>
+        <argsstring>(unsigned short i)</argsstring>
+        <name>unsig_reverse</name>
+        <param>
+          <type>unsigned short</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" line="28" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="28" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>swabr.c<sp/>-<sp/>byte<sp/>reversing<sp/>procedures<sp/>to<sp/>be<sp/>used<sp/>for<sp/>conversion</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>between<sp/>Big-Endian<sp/>and<sp/>Small-Endian<sp/>formats</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Created<sp/>by<sp/>David<sp/>E.<sp/>Flynt,<sp/>8/8/94</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>modified<sp/>by<sp/>rjc,<sp/>2005.9.2,<sp/>to<sp/>optimize<sp/>for<sp/>speed,<sp/>by</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>eliminating<sp/>loops.<sp/>Probably<sp/>should<sp/>be<sp/>implemented<sp/>as<sp/>macro&apos;s<sp/>someday.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>modified<sp/>by<sp/>tac,<sp/>2009.1.7,<sp/>from<sp/>swab.c,<sp/>to<sp/>return<sp/>values<sp/>instead<sp/>of</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>altering<sp/>in<sp/>place.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>short_reverse:<sp/>reverse<sp/>the<sp/>order<sp/>of<sp/>bytes<sp/>in<sp/>a<sp/>short<sp/>integer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="swabr_8c_1a7d6165690824de4b46077b36a6d58ed0" kindref="member">short_reverse</ref><sp/>(</highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>i)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*p1<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;i,<sp/>*p2,<sp/>temp;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>p2<sp/>=<sp/>p1<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>*p1;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>*p1<sp/><sp/>=<sp/>*p2;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>*p2<sp/><sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>unsig_reverse:<sp/>reverse<sp/>the<sp/>order<sp/>of<sp/>bytes<sp/>in<sp/>a<sp/>unsigned<sp/>short<sp/>integer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="swabr_8c_1a5d6fa489f9bec0f4b19d3af37a2d3fb8" kindref="member">unsig_reverse</ref><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>i)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*p1<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;i,<sp/>*p2,<sp/>temp;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>p2<sp/>=<sp/>p1<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>*p1;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>*p1<sp/><sp/>=<sp/>*p2;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>*p2<sp/><sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>int_reverse:<sp/>reverse<sp/>the<sp/>order<sp/>of<sp/>bytes<sp/>in<sp/>an<sp/>integer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="swabr_8c_1ac9dc922d0fa1fc0f0cf90b26df5887de" kindref="member">int_reverse</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;j,<sp/>temp;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>p<sp/>points<sp/>to<sp/>the<sp/>first<sp/>byte<sp/>of<sp/>j<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[0];</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>p[0]<sp/>=<sp/>p[3];</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>p[3]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[1];</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>p[1]<sp/>=<sp/>p[2];</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>p[2]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>long_reverse:<sp/>reverse<sp/>the<sp/>order<sp/>of<sp/>bytes<sp/>in<sp/>a<sp/>64-bit<sp/>integer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="swabr_8c_1a6b31b1910b856ac0aa1a9a713a2edc96" kindref="member">long_reverse</ref><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;j,<sp/>temp;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>p<sp/>points<sp/>to<sp/>the<sp/>first<sp/>byte<sp/>of<sp/>j<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[0];</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>p[0]<sp/>=<sp/>p[7];</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>p[7]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[1];</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>p[1]<sp/>=<sp/>p[6];</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>p[6]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[2];</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>p[2]<sp/>=<sp/>p[5];</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>p[5]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[3];</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>p[3]<sp/>=<sp/>p[4];</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>p[4]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>float_reverse:<sp/>reverse<sp/>the<sp/>order<sp/>of<sp/>bytes<sp/>in<sp/>a<sp/>float<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="swabr_8c_1a474773db45a3dd93f68c264eab55dfd5" kindref="member">float_reverse</ref><sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;j,<sp/>temp;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>p<sp/>points<sp/>to<sp/>the<sp/>first<sp/>byte<sp/>of<sp/>j<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[0];</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>p[0]<sp/>=<sp/>p[3];</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>p[3]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[1];</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>p[1]<sp/>=<sp/>p[2];</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>p[2]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>double_reverse:<sp/>reverse<sp/>the<sp/>order<sp/>of<sp/>bytes<sp/>in<sp/>a<sp/>double<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="swabr_8c_1acc5f36aa72d0ef387e159b6268742899" kindref="member">double_reverse</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*p<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)&amp;j,<sp/>temp;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>p<sp/>points<sp/>to<sp/>the<sp/>first<sp/>byte<sp/>of<sp/>j<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[0];</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>p[0]<sp/>=<sp/>p[7];</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>p[7]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[1];</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>p[1]<sp/>=<sp/>p[6];</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>p[6]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[2];</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>p[2]<sp/>=<sp/>p[5];</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>p[5]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>temp<sp/>=<sp/>p[3];</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>p[3]<sp/>=<sp/>p[4];</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>p[4]<sp/>=<sp/>temp;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment">//<sp/>vim:<sp/>shiftwidth=4:softtabstop=4:expandtab:cindent:cinoptions={1sf1s^-1s</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FringePlotInfo" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FringePlotInfo</compoundname>
+    <includes refid="MHO__FringePlotInfo_8hh" local="no">MHO_FringePlotInfo.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringePlotInfo_1a21d3c256848ffc18e98979ea6ba9b654" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FringePlotInfo::MHO_FringePlotInfo</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FringePlotInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringePlotInfo_1a1270e6331eab375df9fb55607f265073" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FringePlotInfo::~MHO_FringePlotInfo</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FringePlotInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringePlotInfo_1a6c12e20690ae4f44e1b7b5470e5e0a4e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_FringePlotInfo::construct_plot_data</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore, MHO_OperatorToolbox *toolbox, mho_json &amp;vexInfo)</argsstring>
+        <name>construct_plot_data</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>vexInfo</declname>
+        </param>
+        <briefdescription>
+<para>Constructs plot data using provided stores and toolbox, populating vexInfo. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> pointer for accessing visibility, station, and weight data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> pointer for retrieving configuration parameters </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>toolbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> pointer accessing operators for performing computations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vexInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object for storing vex information </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing constructed plot data </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" line="46" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringePlotInfo.cc" bodystart="11" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringePlotInfo_1abf125cb5319ade153b7318d175267bdb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringePlotInfo::fill_plot_data</definition>
+        <argsstring>(MHO_ParameterStore *paramStore, mho_json &amp;plot_dict)</argsstring>
+        <name>fill_plot_data</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>plot_dict</declname>
+        </param>
+        <briefdescription>
+<para>Fills a JSON object with plot data retrieved from an <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> containing plot data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>plot_dict</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object that will store the retrieved plot data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" line="55" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringePlotInfo.cc" bodystart="82" bodyend="306"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FringePlotInfo" kindref="compound">MHO_FringePlotInfo</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>wrapper around plot data construction utilities</para>
+<para><simplesect kind="author"><para>J. Barrettj - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Sep 20 16:26:33 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringePlotInfo.hh" bodystart="28" bodyend="56"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FringePlotInfo_1a6c12e20690ae4f44e1b7b5470e5e0a4e" prot="public" virt="non-virtual"><scope>hops::MHO_FringePlotInfo</scope><name>construct_plot_data</name></member>
+      <member refid="classhops_1_1MHO__FringePlotInfo_1abf125cb5319ade153b7318d175267bdb" prot="public" virt="non-virtual"><scope>hops::MHO_FringePlotInfo</scope><name>fill_plot_data</name></member>
+      <member refid="classhops_1_1MHO__FringePlotInfo_1a21d3c256848ffc18e98979ea6ba9b654" prot="public" virt="non-virtual"><scope>hops::MHO_FringePlotInfo</scope><name>MHO_FringePlotInfo</name></member>
+      <member refid="classhops_1_1MHO__FringePlotInfo_1a1270e6331eab375df9fb55607f265073" prot="public" virt="virtual"><scope>hops::MHO_FringePlotInfo</scope><name>~MHO_FringePlotInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

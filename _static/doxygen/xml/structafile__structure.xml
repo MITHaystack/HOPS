@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structafile__structure" kind="struct" language="C++" prot="public">
+    <compoundname>afile_structure</compoundname>
+    <includes refid="afile__structure_8h" local="no">afile_structure.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structafile__structure_1ae43eff3a26b2b1d0fe9cea245c5b39ba" prot="public" static="no" mutable="no">
+        <type><ref refid="structcorelsum" kindref="compound">corelsum</ref> *</type>
+        <definition>corelsum* afile_structure::coreldata</definition>
+        <argsstring></argsstring>
+        <name>coreldata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="14" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1a5e7cd7ab428982091f9d7113e58a929d" prot="public" static="no" mutable="no">
+        <type><ref refid="structfringesum" kindref="compound">fringesum</ref> *</type>
+        <definition>fringesum* afile_structure::fringedata</definition>
+        <argsstring></argsstring>
+        <name>fringedata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="15" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1ab03ff812cff43837cf3c7bf84e2ec602" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int afile_structure::ncorel</definition>
+        <argsstring></argsstring>
+        <name>ncorel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1ac195c230ce919ae10bbec73ef34253e3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int afile_structure::nfringe</definition>
+        <argsstring></argsstring>
+        <name>nfringe</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1a26b7f9005953d6455e29567b925491ba" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int afile_structure::nquad</definition>
+        <argsstring></argsstring>
+        <name>nquad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1ab5eab3f134e084bdcab4ed04d45e819c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int afile_structure::nroot</definition>
+        <argsstring></argsstring>
+        <name>nroot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1ac3f96ab609fd42988f06e7d7433f1327" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int afile_structure::ntriangle</definition>
+        <argsstring></argsstring>
+        <name>ntriangle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1af9e8a1474b927aad4dc84f088c25151b" prot="public" static="no" mutable="no">
+        <type><ref refid="structquadsum" kindref="compound">quadsum</ref> *</type>
+        <definition>quadsum* afile_structure::quaddata</definition>
+        <argsstring></argsstring>
+        <name>quaddata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1a6564ebf83bbbfff3cca82a92c719f27a" prot="public" static="no" mutable="no">
+        <type><ref refid="structrootsum" kindref="compound">rootsum</ref> *</type>
+        <definition>rootsum* afile_structure::rootdata</definition>
+        <argsstring></argsstring>
+        <name>rootdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structafile__structure_1a8d12ba66cef927585f029cd78e03b25e" prot="public" static="no" mutable="no">
+        <type><ref refid="structtrianglesum" kindref="compound">trianglesum</ref> *</type>
+        <definition>trianglesum* afile_structure::triangledata</definition>
+        <argsstring></argsstring>
+        <name>triangledata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="8">
+        <label>quadsum</label>
+        <link refid="structquadsum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>azimuth</edgelabel>
+          <edgelabel>cl_amp</edgelabel>
+          <edgelabel>elevation</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>quad</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>scan_offset</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>afile_structure</label>
+        <link refid="structafile__structure"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fringedata</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>quaddata</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>rootdata</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ncorel</edgelabel>
+          <edgelabel>nfringe</edgelabel>
+          <edgelabel>nquad</edgelabel>
+          <edgelabel>nroot</edgelabel>
+          <edgelabel>ntriangle</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>triangledata</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>coreldata</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="9">
+        <label>rootsum</label>
+        <link refid="structrootsum"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>stations</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>ssec</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fringesum</label>
+        <link refid="structfringesum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>total_mbdelay</edgelabel>
+          <edgelabel>total_rate</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amp</edgelabel>
+          <edgelabel>dec_deg</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>mbdelay</edgelabel>
+          <edgelabel>phase_snr</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>reftape</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>no_freq</edgelabel>
+          <edgelabel>noloss_cotime</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>parents</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="10">
+        <label>trianglesum</label>
+        <link refid="structtrianglesum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>azimuth</edgelabel>
+          <edgelabel>bis_amp</edgelabel>
+          <edgelabel>bis_phas</edgelabel>
+          <edgelabel>bis_snr</edgelabel>
+          <edgelabel>cdelay_rate</edgelabel>
+          <edgelabel>cmbdelay</edgelabel>
+          <edgelabel>csbdelay</edgelabel>
+          <edgelabel>elevation</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>data_quality</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>scan_quality</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>triangle</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>cotime</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>scan_offset</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>corelsum</label>
+        <link refid="structcorelsum"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>clock_diff</edgelabel>
+          <edgelabel>refclock_err</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freqs</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>corstart</edgelabel>
+          <edgelabel>corstop</edgelabel>
+          <edgelabel>eqts</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>refdrive</edgelabel>
+          <edgelabel>remdrive</edgelabel>
+          <edgelabel>sduration</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>status</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="6" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="7" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structafile__structure_1ae43eff3a26b2b1d0fe9cea245c5b39ba" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>coreldata</name></member>
+      <member refid="structafile__structure_1a5e7cd7ab428982091f9d7113e58a929d" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>fringedata</name></member>
+      <member refid="structafile__structure_1ab03ff812cff43837cf3c7bf84e2ec602" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>ncorel</name></member>
+      <member refid="structafile__structure_1ac195c230ce919ae10bbec73ef34253e3" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>nfringe</name></member>
+      <member refid="structafile__structure_1a26b7f9005953d6455e29567b925491ba" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>nquad</name></member>
+      <member refid="structafile__structure_1ab5eab3f134e084bdcab4ed04d45e819c" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>nroot</name></member>
+      <member refid="structafile__structure_1ac3f96ab609fd42988f06e7d7433f1327" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>ntriangle</name></member>
+      <member refid="structafile__structure_1af9e8a1474b927aad4dc84f088c25151b" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>quaddata</name></member>
+      <member refid="structafile__structure_1a6564ebf83bbbfff3cca82a92c719f27a" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>rootdata</name></member>
+      <member refid="structafile__structure_1a8d12ba66cef927585f029cd78e03b25e" prot="public" virt="non-virtual"><scope>afile_structure</scope><name>triangledata</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

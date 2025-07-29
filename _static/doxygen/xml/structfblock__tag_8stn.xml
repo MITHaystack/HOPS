@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfblock__tag_8stn" kind="struct" language="C++" prot="public">
+    <compoundname>fblock_tag.stn</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a63b07e828bf016e976ff95d6ee07a105" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>ant</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="124" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a7c9df801238abe28cae2675fd3166a1a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>bs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="126" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a823355b63ab3af0a0e4d1367e89abd1c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>bw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="132" column="16"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a85844fef98218528192cc597d7617c83" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring>[8]</argsstring>
+        <name>chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="121" column="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1aea170e2cafb1337755c8b3d5ae4437f4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>find</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="125" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1add2aaba7d0b77e16ff6195b175448f3f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>first_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="127" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1ab0038f6cab2d16ebdcf2e36d1779d8ba" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="131" column="16"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a59de8da6bc17d65d9d7c76975477cba2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>n_spec_chan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="129" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a4b9aa6d42ac6ef014cc4ca25ddb09cd8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>pcal_int</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="130" column="16"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a627a1f8f3e1f8a2a0cbb9aedc33ade8c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>pol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="123" column="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a27d2b11e97368676947e0a486532e527" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>sideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="122" column="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfblock__tag_8stn_1a15913c103a5238e5a80ac2f498ee090d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>zoom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="128" column="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="119" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="120" bodyend="133"/>
+    <listofallmembers>
+      <member refid="structfblock__tag_8stn_1a63b07e828bf016e976ff95d6ee07a105" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>ant</name></member>
+      <member refid="structfblock__tag_8stn_1a7c9df801238abe28cae2675fd3166a1a" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>bs</name></member>
+      <member refid="structfblock__tag_8stn_1a823355b63ab3af0a0e4d1367e89abd1c" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>bw</name></member>
+      <member refid="structfblock__tag_8stn_1a85844fef98218528192cc597d7617c83" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>chan_id</name></member>
+      <member refid="structfblock__tag_8stn_1aea170e2cafb1337755c8b3d5ae4437f4" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>find</name></member>
+      <member refid="structfblock__tag_8stn_1add2aaba7d0b77e16ff6195b175448f3f" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>first_time</name></member>
+      <member refid="structfblock__tag_8stn_1ab0038f6cab2d16ebdcf2e36d1779d8ba" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>freq</name></member>
+      <member refid="structfblock__tag_8stn_1a59de8da6bc17d65d9d7c76975477cba2" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>n_spec_chan</name></member>
+      <member refid="structfblock__tag_8stn_1a4b9aa6d42ac6ef014cc4ca25ddb09cd8" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>pcal_int</name></member>
+      <member refid="structfblock__tag_8stn_1a627a1f8f3e1f8a2a0cbb9aedc33ade8c" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>pol</name></member>
+      <member refid="structfblock__tag_8stn_1a27d2b11e97368676947e0a486532e527" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>sideband</name></member>
+      <member refid="structfblock__tag_8stn_1a15913c103a5238e5a80ac2f498ee090d" prot="public" virt="non-virtual"><scope>fblock_tag.stn</scope><name>zoom</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

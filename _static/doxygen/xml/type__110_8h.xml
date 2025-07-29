@@ -1,0 +1,1010 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="type__110_8h" kind="file" language="C++">
+    <compoundname>type_110.h</compoundname>
+    <includes refid="mk4__typedefs_8h" local="yes">mk4_typedefs.h</includes>
+    <includedby refid="mk4__dfio_8h" local="yes">mk4_dfio.h</includedby>
+    <includedby refid="addr__110_8c" local="yes">addr_110.c</includedby>
+    <includedby refid="clear__110_8c" local="yes">clear_110.c</includedby>
+    <includedby refid="copy__110_8c" local="yes">copy_110.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="1">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="118">
+        <label>copy_309.c</label>
+        <link refid="copy__309_8c"/>
+      </node>
+      <node id="84">
+        <label>clear_307.c</label>
+        <link refid="clear__307_8c"/>
+      </node>
+      <node id="123">
+        <label>read_mk4corel.c</label>
+        <link refid="read__mk4corel_8c"/>
+      </node>
+      <node id="144">
+        <label>fill_212.c</label>
+        <link refid="fill__212_8c"/>
+      </node>
+      <node id="26">
+        <label>realloc_segs.c</label>
+        <link refid="realloc__segs_8c"/>
+      </node>
+      <node id="19">
+        <label>fill_aline.c</label>
+        <link refid="fill__aline_8c"/>
+      </node>
+      <node id="80">
+        <label>clear_303.c</label>
+        <link refid="clear__303_8c"/>
+      </node>
+      <node id="14">
+        <label>calc_seg.c</label>
+        <link refid="calc__seg_8c"/>
+      </node>
+      <node id="43">
+        <label>addr_212.c</label>
+        <link refid="addr__212_8c"/>
+      </node>
+      <node id="69">
+        <label>clear_207.c</label>
+        <link refid="clear__207_8c"/>
+      </node>
+      <node id="3">
+        <label>extract_parms.c</label>
+        <link refid="extract__parms_8c"/>
+      </node>
+      <node id="139">
+        <label>fill_205.c</label>
+        <link refid="fill__205_8c"/>
+      </node>
+      <node id="65">
+        <label>clear_203.c</label>
+        <link refid="clear__203_8c"/>
+      </node>
+      <node id="151">
+        <label>MHO_MK4FringeExport.cc</label>
+        <link refid="MHO__MK4FringeExport_8cc"/>
+      </node>
+      <node id="127">
+        <label>write_err.c</label>
+        <link refid="write__err_8c"/>
+      </node>
+      <node id="126">
+        <label>read_mk4sdata.c</label>
+        <link refid="read__mk4sdata_8c"/>
+      </node>
+      <node id="40">
+        <label>addr_207.c</label>
+        <link refid="addr__207_8c"/>
+      </node>
+      <node id="135">
+        <label>fill_201.c</label>
+        <link refid="fill__201_8c"/>
+      </node>
+      <node id="9">
+        <label>do_record_merge.c</label>
+        <link refid="do__record__merge_8c"/>
+      </node>
+      <node id="36">
+        <label>addr_203.c</label>
+        <link refid="addr__203_8c"/>
+      </node>
+      <node id="92">
+        <label>copy_100.c</label>
+        <link refid="copy__100_8c"/>
+      </node>
+      <node id="152">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="55">
+        <label>addr_307.c</label>
+        <link refid="addr__307_8c"/>
+      </node>
+      <node id="11">
+        <label>fringex.h</label>
+        <link refid="fringex_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>addr_303.c</label>
+        <link refid="addr__303_8c"/>
+      </node>
+      <node id="28">
+        <label>set_reffreq.c</label>
+        <link refid="set__reffreq_8c"/>
+      </node>
+      <node id="2">
+        <label>mk4_dfio.h</label>
+        <link refid="mk4__dfio_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+        <childnode refid="143" relation="include">
+        </childnode>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="145" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="148" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+      </node>
+      <node id="95">
+        <label>copy_200.c</label>
+        <link refid="copy__200_8c"/>
+      </node>
+      <node id="98">
+        <label>copy_204.c</label>
+        <link refid="copy__204_8c"/>
+      </node>
+      <node id="12">
+        <label>fringex.c</label>
+        <link refid="fringex_8c"/>
+      </node>
+      <node id="102">
+        <label>copy_208.c</label>
+        <link refid="copy__208_8c"/>
+      </node>
+      <node id="75">
+        <label>clear_222.c</label>
+        <link refid="clear__222_8c"/>
+      </node>
+      <node id="109">
+        <label>copy_300.c</label>
+        <link refid="copy__300_8c"/>
+      </node>
+      <node id="113">
+        <label>copy_304.c</label>
+        <link refid="copy__304_8c"/>
+      </node>
+      <node id="132">
+        <label>get_corel_data.c</label>
+        <link refid="get__corel__data_8c"/>
+      </node>
+      <node id="45">
+        <label>addr_221.c</label>
+        <link refid="addr__221_8c"/>
+      </node>
+      <node id="117">
+        <label>copy_308.c</label>
+        <link refid="copy__308_8c"/>
+      </node>
+      <node id="83">
+        <label>clear_306.c</label>
+        <link refid="clear__306_8c"/>
+      </node>
+      <node id="72">
+        <label>clear_212.c</label>
+        <link refid="clear__212_8c"/>
+      </node>
+      <node id="79">
+        <label>clear_302.c</label>
+        <link refid="clear__302_8c"/>
+      </node>
+      <node id="104">
+        <label>copy_212.c</label>
+        <link refid="copy__212_8c"/>
+      </node>
+      <node id="22">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="17">
+        <label>determine_nsegs.c</label>
+        <link refid="determine__nsegs_8c"/>
+      </node>
+      <node id="136">
+        <label>fill_202.c</label>
+        <link refid="fill__202_8c"/>
+      </node>
+      <node id="68">
+        <label>clear_206.c</label>
+        <link refid="clear__206_8c"/>
+      </node>
+      <node id="128">
+        <label>write_mk4corel.c</label>
+        <link refid="write__mk4corel_8c"/>
+      </node>
+      <node id="149">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="120">
+        <label>display_221.c</label>
+        <link refid="display__221_8c"/>
+      </node>
+      <node id="122">
+        <label>open_datafile.c</label>
+        <link refid="open__datafile_8c"/>
+      </node>
+      <node id="64">
+        <label>clear_202.c</label>
+        <link refid="clear__202_8c"/>
+      </node>
+      <node id="124">
+        <label>read_mk4file.c</label>
+        <link refid="read__mk4file_8c"/>
+      </node>
+      <node id="39">
+        <label>addr_206.c</label>
+        <link refid="addr__206_8c"/>
+      </node>
+      <node id="18">
+        <label>filelist.c</label>
+        <link refid="filelist_8c"/>
+      </node>
+      <node id="5">
+        <label>fplot.c</label>
+        <link refid="aedit_2src_2fplot_8c"/>
+      </node>
+      <node id="107">
+        <label>copy_222.c</label>
+        <link refid="copy__222_8c"/>
+      </node>
+      <node id="35">
+        <label>addr_202.c</label>
+        <link refid="addr__202_8c"/>
+      </node>
+      <node id="140">
+        <label>fill_206.c</label>
+        <link refid="fill__206_8c"/>
+      </node>
+      <node id="130">
+        <label>write_mk4sdata.c</label>
+        <link refid="write__mk4sdata_8c"/>
+      </node>
+      <node id="6">
+        <label>ps_fplot.c</label>
+        <link refid="ps__fplot_8c"/>
+      </node>
+      <node id="54">
+        <label>addr_306.c</label>
+        <link refid="addr__306_8c"/>
+      </node>
+      <node id="50">
+        <label>addr_302.c</label>
+        <link refid="addr__302_8c"/>
+      </node>
+      <node id="148">
+        <label>make_postplot.c</label>
+        <link refid="make__postplot_8c"/>
+      </node>
+      <node id="97">
+        <label>copy_203.c</label>
+        <link refid="copy__203_8c"/>
+      </node>
+      <node id="15">
+        <label>clear_fxp.c</label>
+        <link refid="clear__fxp_8c"/>
+      </node>
+      <node id="90">
+        <label>clear_mk4sdata.c</label>
+        <link refid="clear__mk4sdata_8c"/>
+      </node>
+      <node id="32">
+        <label>addr_120.c</label>
+        <link refid="addr__120_8c"/>
+      </node>
+      <node id="101">
+        <label>copy_207.c</label>
+        <link refid="copy__207_8c"/>
+      </node>
+      <node id="74">
+        <label>clear_221.c</label>
+        <link refid="clear__221_8c"/>
+      </node>
+      <node id="89">
+        <label>clear_mk4fringe.c</label>
+        <link refid="clear__mk4fringe_8c"/>
+      </node>
+      <node id="87">
+        <label>clear_coord.c</label>
+        <link refid="clear__coord_8c"/>
+      </node>
+      <node id="112">
+        <label>copy_303.c</label>
+        <link refid="copy__303_8c"/>
+      </node>
+      <node id="44">
+        <label>addr_220.c</label>
+        <link refid="addr__220_8c"/>
+      </node>
+      <node id="116">
+        <label>copy_307.c</label>
+        <link refid="copy__307_8c"/>
+      </node>
+      <node id="10">
+        <label>fplot.c</label>
+        <link refid="fplot_2fplot_8c"/>
+      </node>
+      <node id="31">
+        <label>addr_110.c</label>
+        <link refid="addr__110_8c"/>
+      </node>
+      <node id="86">
+        <label>clear_309.c</label>
+        <link refid="clear__309_8c"/>
+      </node>
+      <node id="82">
+        <label>clear_305.c</label>
+        <link refid="clear__305_8c"/>
+      </node>
+      <node id="143">
+        <label>fill_210.c</label>
+        <link refid="fill__210_8c"/>
+      </node>
+      <node id="125">
+        <label>read_mk4fringe.c</label>
+        <link refid="read__mk4fringe_8c"/>
+      </node>
+      <node id="78">
+        <label>clear_301.c</label>
+        <link refid="clear__301_8c"/>
+      </node>
+      <node id="20">
+        <label>init_fxp.c</label>
+        <link refid="init__fxp_8c"/>
+      </node>
+      <node id="30">
+        <label>addr_101.c</label>
+        <link refid="addr__101_8c"/>
+      </node>
+      <node id="42">
+        <label>addr_210.c</label>
+        <link refid="addr__210_8c"/>
+      </node>
+      <node id="137">
+        <label>fill_203.c</label>
+        <link refid="fill__203_8c"/>
+      </node>
+      <node id="106">
+        <label>copy_221.c</label>
+        <link refid="copy__221_8c"/>
+      </node>
+      <node id="1">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>clear_205.c</label>
+        <link refid="clear__205_8c"/>
+      </node>
+      <node id="38">
+        <label>addr_205.c</label>
+        <link refid="addr__205_8c"/>
+      </node>
+      <node id="150">
+        <label>MHO_MK4CorelInterface.cc</label>
+        <link refid="MHO__MK4CorelInterface_8cc"/>
+      </node>
+      <node id="88">
+        <label>clear_mk4corel.c</label>
+        <link refid="clear__mk4corel_8c"/>
+      </node>
+      <node id="63">
+        <label>clear_201.c</label>
+        <link refid="clear__201_8c"/>
+      </node>
+      <node id="7">
+        <label>alist.c</label>
+        <link refid="alist_8c"/>
+      </node>
+      <node id="34">
+        <label>addr_201.c</label>
+        <link refid="addr__201_8c"/>
+      </node>
+      <node id="21">
+        <label>model.c</label>
+        <link refid="model_8c"/>
+      </node>
+      <node id="23">
+        <label>parse_dflag.c</label>
+        <link refid="parse__dflag_8c"/>
+      </node>
+      <node id="141">
+        <label>fill_207.c</label>
+        <link refid="fill__207_8c"/>
+      </node>
+      <node id="57">
+        <label>addr_309.c</label>
+        <link refid="addr__309_8c"/>
+      </node>
+      <node id="147">
+        <label>fill_fringe_info.c</label>
+        <link refid="fill__fringe__info_8c"/>
+      </node>
+      <node id="121">
+        <label>init_000.c</label>
+        <link refid="init__000_8c"/>
+      </node>
+      <node id="53">
+        <label>addr_305.c</label>
+        <link refid="addr__305_8c"/>
+      </node>
+      <node id="4">
+        <label>fill_closure.c</label>
+        <link refid="fill__closure_8c"/>
+      </node>
+      <node id="59">
+        <label>clear_101.c</label>
+        <link refid="clear__101_8c"/>
+      </node>
+      <node id="146">
+        <label>fill_230.c</label>
+        <link refid="fill__230_8c"/>
+      </node>
+      <node id="49">
+        <label>addr_301.c</label>
+        <link refid="addr__301_8c"/>
+      </node>
+      <node id="76">
+        <label>clear_230.c</label>
+        <link refid="clear__230_8c"/>
+      </node>
+      <node id="47">
+        <label>addr_230.c</label>
+        <link refid="addr__230_8c"/>
+      </node>
+      <node id="119">
+        <label>corel_alloc.c</label>
+        <link refid="corel__alloc_8c"/>
+      </node>
+      <node id="96">
+        <label>copy_202.c</label>
+        <link refid="copy__202_8c"/>
+      </node>
+      <node id="131">
+        <label>write_record.c</label>
+        <link refid="write__record_8c"/>
+      </node>
+      <node id="94">
+        <label>copy_110.c</label>
+        <link refid="copy__110_8c"/>
+      </node>
+      <node id="100">
+        <label>copy_206.c</label>
+        <link refid="copy__206_8c"/>
+      </node>
+      <node id="73">
+        <label>clear_220.c</label>
+        <link refid="clear__220_8c"/>
+      </node>
+      <node id="8">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="111">
+        <label>copy_302.c</label>
+        <link refid="copy__302_8c"/>
+      </node>
+      <node id="129">
+        <label>write_mk4fringe.c</label>
+        <link refid="write__mk4fringe_8c"/>
+      </node>
+      <node id="133">
+        <label>read_sdata.c</label>
+        <link refid="read__sdata_8c"/>
+      </node>
+      <node id="91">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+      </node>
+      <node id="103">
+        <label>copy_210.c</label>
+        <link refid="copy__210_8c"/>
+      </node>
+      <node id="115">
+        <label>copy_306.c</label>
+        <link refid="copy__306_8c"/>
+      </node>
+      <node id="85">
+        <label>clear_308.c</label>
+        <link refid="clear__308_8c"/>
+      </node>
+      <node id="61">
+        <label>clear_120.c</label>
+        <link refid="clear__120_8c"/>
+      </node>
+      <node id="27">
+        <label>set_loops.c</label>
+        <link refid="set__loops_8c"/>
+      </node>
+      <node id="81">
+        <label>clear_304.c</label>
+        <link refid="clear__304_8c"/>
+      </node>
+      <node id="71">
+        <label>clear_210.c</label>
+        <link refid="clear__210_8c"/>
+      </node>
+      <node id="77">
+        <label>clear_300.c</label>
+        <link refid="clear__300_8c"/>
+      </node>
+      <node id="16">
+        <label>clear_loops.c</label>
+        <link refid="clear__loops_8c"/>
+      </node>
+      <node id="29">
+        <label>addr_100.c</label>
+        <link refid="addr__100_8c"/>
+      </node>
+      <node id="138">
+        <label>fill_204.c</label>
+        <link refid="fill__204_8c"/>
+      </node>
+      <node id="105">
+        <label>copy_220.c</label>
+        <link refid="copy__220_8c"/>
+      </node>
+      <node id="70">
+        <label>clear_208.c</label>
+        <link refid="clear__208_8c"/>
+      </node>
+      <node id="41">
+        <label>addr_208.c</label>
+        <link refid="addr__208_8c"/>
+      </node>
+      <node id="134">
+        <label>fill_200.c</label>
+        <link refid="fill__200_8c"/>
+      </node>
+      <node id="66">
+        <label>clear_204.c</label>
+        <link refid="clear__204_8c"/>
+      </node>
+      <node id="60">
+        <label>clear_110.c</label>
+        <link refid="clear__110_8c"/>
+      </node>
+      <node id="37">
+        <label>addr_204.c</label>
+        <link refid="addr__204_8c"/>
+      </node>
+      <node id="62">
+        <label>clear_200.c</label>
+        <link refid="clear__200_8c"/>
+      </node>
+      <node id="33">
+        <label>addr_200.c</label>
+        <link refid="addr__200_8c"/>
+      </node>
+      <node id="142">
+        <label>fill_208.c</label>
+        <link refid="fill__208_8c"/>
+      </node>
+      <node id="93">
+        <label>copy_101.c</label>
+        <link refid="copy__101_8c"/>
+      </node>
+      <node id="108">
+        <label>copy_230.c</label>
+        <link refid="copy__230_8c"/>
+      </node>
+      <node id="56">
+        <label>addr_308.c</label>
+        <link refid="addr__308_8c"/>
+      </node>
+      <node id="52">
+        <label>addr_304.c</label>
+        <link refid="addr__304_8c"/>
+      </node>
+      <node id="58">
+        <label>clear_100.c</label>
+        <link refid="clear__100_8c"/>
+      </node>
+      <node id="24">
+        <label>parse_iflag.c</label>
+        <link refid="parse__iflag_8c"/>
+      </node>
+      <node id="13">
+        <label>accum_segs.c</label>
+        <link refid="accum__segs_8c"/>
+      </node>
+      <node id="48">
+        <label>addr_300.c</label>
+        <link refid="addr__300_8c"/>
+      </node>
+      <node id="99">
+        <label>copy_205.c</label>
+        <link refid="copy__205_8c"/>
+      </node>
+      <node id="145">
+        <label>fill_222.c</label>
+        <link refid="fill__222_8c"/>
+      </node>
+      <node id="25">
+        <label>read_binaries.c</label>
+        <link refid="read__binaries_8c"/>
+      </node>
+      <node id="110">
+        <label>copy_301.c</label>
+        <link refid="copy__301_8c"/>
+      </node>
+      <node id="114">
+        <label>copy_305.c</label>
+        <link refid="copy__305_8c"/>
+      </node>
+      <node id="46">
+        <label>addr_222.c</label>
+        <link refid="addr__222_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structraw__data" prot="public">raw_data</innerclass>
+    <innerclass refid="structtype__110" prot="public">type_110</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="type__110_8h_1ae6ac35985427bd4af0138fc3cf12acab" prot="public" static="no">
+        <name>T110_VERSION</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_110.h" line="2" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_110.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="type__110_8h_1adc5220ffc89b2965b443e6ffaea935d8" prot="public" static="no">
+        <name>type_110_v0</name>
+        <initializer><ref refid="structtype__110" kindref="compound">type_110</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_110.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_110.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>T110_VERSION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="type__110_8h_1ae6ac35985427bd4af0138fc3cf12acab" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>T110_VERSION<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__typedefs_8h" kindref="compound">mk4_typedefs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>this<sp/>to<sp/>current<sp/>version,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>defined<sp/>to<sp/>be<sp/>same<sp/>as<sp/>app<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="type__110_8h_1adc5220ffc89b2965b443e6ffaea935d8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>type_110_v0<sp/>type_110</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="structraw__data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="13" refid="structraw__data_1a8ae785c27f052a07a534678b328fa04f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r_cell[33];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Right<sp/>cell<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="structraw__data_1a5e68731752bdb4008c758f92ac9ebc5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>l_cell[33];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Left<sp/>cell<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structraw__data" kindref="compound">raw_data</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="structtype__110" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__110" kindref="compound">type_110</ref><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19" refid="structtype__110_1a6420829c4c9e8f1bd1a3aeb956b6437e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a6420829c4c9e8f1bd1a3aeb956b6437e" kindref="member">record_id</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>3-digit<sp/>id<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="structtype__110_1a9b9eceadfef436d996bfb64fbeda9b87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a9b9eceadfef436d996bfb64fbeda9b87" kindref="member">version_no</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>2-digit<sp/>version<sp/>#<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="structtype__110_1a4b5945b48b7eba35abd0194aacc95adb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a4b5945b48b7eba35abd0194aacc95adb" kindref="member">unused1</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reserved<sp/>space<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="structtype__110_1ab7ae9757802899546e9621f3482eb99f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1ab7ae9757802899546e9621f3482eb99f" kindref="member">nblocks</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Number<sp/>of<sp/>raw_data<sp/>entries<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="structtype__110_1ab52f07920f8899624b1d84d2bf1ecb9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1ab52f07920f8899624b1d84d2bf1ecb9b" kindref="member">unused2</ref>[2];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Padding<sp/>for<sp/>alignment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="structtype__110_1ae6703fd2fb86879e9af48e42b27d014b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1ae6703fd2fb86879e9af48e42b27d014b" kindref="member">baseline</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>baseline<sp/>id<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="structtype__110_1ad74a4afe579b2e3a46443a2017164901" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1ad74a4afe579b2e3a46443a2017164901" kindref="member">filenum</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Fileset<sp/>file<sp/>number<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structtype__110_1aeac4565768d660d8396c0cc7ce661bd6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1aeac4565768d660d8396c0cc7ce661bd6" kindref="member">rootcode</ref>[6];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Root<sp/>suffix<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="structtype__110_1a2c7fff6966462ce982a1ee835df84e9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a2c7fff6966462ce982a1ee835df84e9b" kindref="member">index</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Index<sp/>number<sp/>for<sp/>type<sp/>101<sp/>rec.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="structtype__110_1ad41bf8e91f2775747ec62f6ce2886f7f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1ad41bf8e91f2775747ec62f6ce2886f7f" kindref="member">ap</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Acc<sp/>period<sp/>number<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="structtype__110_1a32641beb7db875fe038c23b9dcf30ac7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a32641beb7db875fe038c23b9dcf30ac7" kindref="member">flag</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Up<sp/>to<sp/>32<sp/>correlation<sp/>flags<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structtype__110_1a65d4bf339771fe059888897ea2e56ea8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a65d4bf339771fe059888897ea2e56ea8" kindref="member">status</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Up<sp/>to<sp/>32<sp/>status<sp/>bits<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structtype__110_1a35e154e6cfade620d7f7285f12ea35dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a35e154e6cfade620d7f7285f12ea35dd" kindref="member">bitshift</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>bitshift<sp/>rate<sp/>(bits/sec)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structtype__110_1aadf039b9a49ea29065b7be90c525fcc0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1aadf039b9a49ea29065b7be90c525fcc0" kindref="member">fbit</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Fractional<sp/>bitshift<sp/>at<sp/>AP<sp/>center<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="structtype__110_1a964f04dfda4fe8415ce3ad6c4ecb521f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structraw__data" kindref="compound">raw_data</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__110_1a964f04dfda4fe8415ce3ad6c4ecb521f" kindref="member">data</ref>[1];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Raw<sp/>data<sp/>dump<sp/>by<sp/>corr.<sp/>block<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_110.h"/>
+  </compounddef>
+</doxygen>

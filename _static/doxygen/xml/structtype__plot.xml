@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__plot" kind="struct" language="C++" prot="public">
+    <compoundname>type_plot</compoundname>
+    <includes refid="plot__struct_8h" local="no">plot_struct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__plot_1a856ebed21629b871666842b329104647" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+        <definition>hops_complex type_plot::cp_spectrum[2 *MAXLAG]</definition>
+        <argsstring>[2 *MAXLAG]</argsstring>
+        <name>cp_spectrum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="27" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a0a581da0dcbb69bf2ec00bdfd4eaa9a2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::d_rate[MAXAP]</definition>
+        <argsstring>[MAXAP]</argsstring>
+        <name>d_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="26" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1aa336348f8e084faaf96de925c41a03a6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_plot::dr_size</definition>
+        <argsstring></argsstring>
+        <name>dr_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="21" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1aba7c04642a5e0e8e8637df4cf7bdfc36" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_plot::dr_size_max</definition>
+        <argsstring></argsstring>
+        <name>dr_size_max</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="22" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1ab27da6a7d46905a7bf41c011c3387e6c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::mb_amp[MBDMXPTS]</definition>
+        <argsstring>[MBDMXPTS]</argsstring>
+        <name>mb_amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="25" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::mean_ap[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>mean_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="34" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1aee84c75358c79b5d4301082a35d29c93" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_plot::num_ap</definition>
+        <argsstring></argsstring>
+        <name>num_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="19" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a6d22ee7ac1cba22d089b7604b98d3173" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_plot::num_freq</definition>
+        <argsstring></argsstring>
+        <name>num_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="20" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_plot::num_mb_pts</definition>
+        <argsstring></argsstring>
+        <name>num_mb_pts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="23" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a13878661fcb7c8812407e3d67899cb97" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+        <definition>hops_complex type_plot::phasor[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>phasor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="28" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1ad9edf40c650fd89b96dbaeadc356d588" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::sb_amp[2 *MAXLAG]</definition>
+        <argsstring>[2 *MAXLAG]</argsstring>
+        <name>sb_amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="24" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a10fa11633b9a69926fdaf8b053d2a5a8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_amp[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="32" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a27dc903a2d46708a7bcaeb318ecb87e5" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_frac_lsb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_frac_lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="36" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1ad4569ad22712875b40a14f23ed61cfc3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_frac_usb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_frac_usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="35" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a8b1851d475042f4205048118ecb99717" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_phs[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_phs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="33" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a2c2d3689f4dcc62501888cfae2606af8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_refbias_lsb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_refbias_lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="44" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1aa7f7a79e4c4019c44d23412afecd96b6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_refbias_usb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_refbias_usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="43" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1ac934f5d37d6692e751db652f13612f93" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_referr[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_referr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="37" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a6ca95704b9dd4b22c593a12dbf1d9fe6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_refpcal[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_refpcal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="47" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a70097b17dd2ef03f2954f1c88387999c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_refscnt_lsb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_refscnt_lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="40" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1aa8e4bcc4d96ca68f43dfdfbfc7b80a53" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_refscnt_usb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_refscnt_usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="39" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1aee2bdc0858485845d80d86748e8d1400" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_rembias_lsb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_rembias_lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="46" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a37d974a14b39a28846190fec41eeac8d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_rembias_usb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_rembias_usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="45" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a6936d8ad99f2537c67fb10ee0fd036aa" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_remerr[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_remerr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a6835e4c1b9988cb53b5b4c4e6dbd3dd3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_rempcal[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_rempcal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="48" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a75a19793c5014b3e80018d8927a19f6f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_remscnt_lsb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_remscnt_lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="42" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1ad0604c164b963607a8cbf3f3e738a413" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::seg_remscnt_usb[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>seg_remscnt_usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="41" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_plot::weights[MAXFREQ+1][MAXAP]</definition>
+        <argsstring>[MAXFREQ+1][MAXAP]</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="30" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>hops_complex</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_plot</label>
+        <link refid="structtype__plot"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>d_rate</edgelabel>
+          <edgelabel>mb_amp</edgelabel>
+          <edgelabel>mean_ap</edgelabel>
+          <edgelabel>sb_amp</edgelabel>
+          <edgelabel>seg_amp</edgelabel>
+          <edgelabel>seg_frac_lsb</edgelabel>
+          <edgelabel>seg_frac_usb</edgelabel>
+          <edgelabel>seg_phs</edgelabel>
+          <edgelabel>seg_refbias_lsb</edgelabel>
+          <edgelabel>seg_refbias_usb</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dr_size</edgelabel>
+          <edgelabel>dr_size_max</edgelabel>
+          <edgelabel>num_ap</edgelabel>
+          <edgelabel>num_freq</edgelabel>
+          <edgelabel>num_mb_pts</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cp_spectrum</edgelabel>
+          <edgelabel>phasor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/plot_struct.h" bodystart="18" bodyend="49"/>
+    <listofallmembers>
+      <member refid="structtype__plot_1a856ebed21629b871666842b329104647" prot="public" virt="non-virtual"><scope>type_plot</scope><name>cp_spectrum</name></member>
+      <member refid="structtype__plot_1a0a581da0dcbb69bf2ec00bdfd4eaa9a2" prot="public" virt="non-virtual"><scope>type_plot</scope><name>d_rate</name></member>
+      <member refid="structtype__plot_1aa336348f8e084faaf96de925c41a03a6" prot="public" virt="non-virtual"><scope>type_plot</scope><name>dr_size</name></member>
+      <member refid="structtype__plot_1aba7c04642a5e0e8e8637df4cf7bdfc36" prot="public" virt="non-virtual"><scope>type_plot</scope><name>dr_size_max</name></member>
+      <member refid="structtype__plot_1ab27da6a7d46905a7bf41c011c3387e6c" prot="public" virt="non-virtual"><scope>type_plot</scope><name>mb_amp</name></member>
+      <member refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" prot="public" virt="non-virtual"><scope>type_plot</scope><name>mean_ap</name></member>
+      <member refid="structtype__plot_1aee84c75358c79b5d4301082a35d29c93" prot="public" virt="non-virtual"><scope>type_plot</scope><name>num_ap</name></member>
+      <member refid="structtype__plot_1a6d22ee7ac1cba22d089b7604b98d3173" prot="public" virt="non-virtual"><scope>type_plot</scope><name>num_freq</name></member>
+      <member refid="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" prot="public" virt="non-virtual"><scope>type_plot</scope><name>num_mb_pts</name></member>
+      <member refid="structtype__plot_1a13878661fcb7c8812407e3d67899cb97" prot="public" virt="non-virtual"><scope>type_plot</scope><name>phasor</name></member>
+      <member refid="structtype__plot_1ad9edf40c650fd89b96dbaeadc356d588" prot="public" virt="non-virtual"><scope>type_plot</scope><name>sb_amp</name></member>
+      <member refid="structtype__plot_1a10fa11633b9a69926fdaf8b053d2a5a8" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_amp</name></member>
+      <member refid="structtype__plot_1a27dc903a2d46708a7bcaeb318ecb87e5" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_frac_lsb</name></member>
+      <member refid="structtype__plot_1ad4569ad22712875b40a14f23ed61cfc3" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_frac_usb</name></member>
+      <member refid="structtype__plot_1a8b1851d475042f4205048118ecb99717" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_phs</name></member>
+      <member refid="structtype__plot_1a2c2d3689f4dcc62501888cfae2606af8" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_refbias_lsb</name></member>
+      <member refid="structtype__plot_1aa7f7a79e4c4019c44d23412afecd96b6" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_refbias_usb</name></member>
+      <member refid="structtype__plot_1ac934f5d37d6692e751db652f13612f93" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_referr</name></member>
+      <member refid="structtype__plot_1a6ca95704b9dd4b22c593a12dbf1d9fe6" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_refpcal</name></member>
+      <member refid="structtype__plot_1a70097b17dd2ef03f2954f1c88387999c" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_refscnt_lsb</name></member>
+      <member refid="structtype__plot_1aa8e4bcc4d96ca68f43dfdfbfc7b80a53" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_refscnt_usb</name></member>
+      <member refid="structtype__plot_1aee2bdc0858485845d80d86748e8d1400" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_rembias_lsb</name></member>
+      <member refid="structtype__plot_1a37d974a14b39a28846190fec41eeac8d" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_rembias_usb</name></member>
+      <member refid="structtype__plot_1a6936d8ad99f2537c67fb10ee0fd036aa" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_remerr</name></member>
+      <member refid="structtype__plot_1a6835e4c1b9988cb53b5b4c4e6dbd3dd3" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_rempcal</name></member>
+      <member refid="structtype__plot_1a75a19793c5014b3e80018d8927a19f6f" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_remscnt_lsb</name></member>
+      <member refid="structtype__plot_1ad0604c164b963607a8cbf3f3e738a413" prot="public" virt="non-virtual"><scope>type_plot</scope><name>seg_remscnt_usb</name></member>
+      <member refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" prot="public" virt="non-virtual"><scope>type_plot</scope><name>weights</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

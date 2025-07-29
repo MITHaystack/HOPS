@@ -1,0 +1,405 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OperatorBuilderManager" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_OperatorBuilderManager</compoundname>
+    <includes refid="MHO__OperatorBuilderManager_8hh" local="no">MHO_OperatorBuilderManager.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1acc2ffaf83e84e4fa2c76b238f499267c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classhops_1_1MHO__OperatorBuilder" kindref="compound">MHO_OperatorBuilder</ref> * &gt;</type>
+        <definition>std::vector&lt; MHO_OperatorBuilder* &gt; hops::MHO_OperatorBuilderManager::fAllBuilders</definition>
+        <argsstring></argsstring>
+        <name>fAllBuilders</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="164" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1ab3b80396c8c46c403433c901141e1d8b" prot="private" static="no" mutable="no">
+        <type>std::multimap&lt; std::string, <ref refid="classhops_1_1MHO__OperatorBuilder" kindref="compound">MHO_OperatorBuilder</ref> * &gt;</type>
+        <definition>std::multimap&lt; std::string, MHO_OperatorBuilder* &gt; hops::MHO_OperatorBuilderManager::fCategoryToBuilderMap</definition>
+        <argsstring></argsstring>
+        <name>fCategoryToBuilderMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="170" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1aceb03f19b12c0cbe22a53efc0ca72795" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+        <definition>MHO_ContainerStore* hops::MHO_OperatorBuilderManager::fContainerStore</definition>
+        <argsstring></argsstring>
+        <name>fContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="160" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a025fcd15d585649f81e5df6ed81ef7b9" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+        <definition>mho_json* hops::MHO_OperatorBuilderManager::fControl</definition>
+        <argsstring></argsstring>
+        <name>fControl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="153" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a1fb6ce62473634ac080a55881681b4ba" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_OperatorBuilderManager::fFormat</definition>
+        <argsstring></argsstring>
+        <name>fFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="152" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a2a04d5d11add0fb502c4c74635554ff3" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+        <definition>MHO_FringeData* hops::MHO_OperatorBuilderManager::fFringeData</definition>
+        <argsstring></argsstring>
+        <name>fFringeData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="159" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a237c223c79e8722b1dc5a941ac4a4677" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classhops_1_1MHO__OperatorBuilder" kindref="compound">MHO_OperatorBuilder</ref> * &gt;</type>
+        <definition>std::map&lt; std::string, MHO_OperatorBuilder* &gt; hops::MHO_OperatorBuilderManager::fNameToBuilderMap</definition>
+        <argsstring></argsstring>
+        <name>fNameToBuilderMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="167" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a138e127a670903955c4527aa503f3429" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+        <definition>MHO_OperatorToolbox* hops::MHO_OperatorBuilderManager::fOperatorToolbox</definition>
+        <argsstring></argsstring>
+        <name>fOperatorToolbox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="156" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilderManager_1a5d112f0d1c2200aab44a383c53c783ab" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+        <definition>MHO_ParameterStore* hops::MHO_OperatorBuilderManager::fParameterStore</definition>
+        <argsstring></argsstring>
+        <name>fParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="161" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1ab282bcbc77f783bbbcd0e2797e6ed127" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OperatorBuilderManager::MHO_OperatorBuilderManager</definition>
+        <argsstring>(MHO_OperatorToolbox *toolbox, MHO_FringeData *fdata, mho_json control_format)</argsstring>
+        <name>MHO_OperatorBuilderManager</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+          <declname>control_format</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="26" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a984fa0e1627f764a95bdd2847d939e41" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_OperatorBuilderManager::~MHO_OperatorBuilderManager</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OperatorBuilderManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="37" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="37" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a7e75bbbeacbfadf088cd6729858fc363" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XBuilderType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_OperatorBuilderManager::AddBuilderType</definition>
+        <argsstring>(const std::string &amp;builder_name, const std::string &amp;format_key)</argsstring>
+        <name>AddBuilderType</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>builder_name</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>format_key</declname>
+        </param>
+        <briefdescription>
+<para>Adds a new builder type with specified format, inserted into (builder) map for later use. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>builder_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the builder type as string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format_key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="88" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="88" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a21f4516d641876a9ce3892f0b997bd70" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OperatorBuilderManager::BuildOperatorCategory</definition>
+        <argsstring>(const char *cat)</argsstring>
+        <name>BuildOperatorCategory</name>
+        <param>
+          <type>const char *</type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+<para>Builds operator category from input string and calls BuildOperatorCategory with it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input operator category as a C-style string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="66" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="66" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1acb2a099082519fa8b158548edeac0727" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OperatorBuilderManager::BuildOperatorCategory</definition>
+        <argsstring>(const std::string &amp;cat)</argsstring>
+        <name>BuildOperatorCategory</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cat</declname>
+        </param>
+        <briefdescription>
+<para>Builds operator category from input string and calls BuildOperatorCategory with it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input operator category as a C-style string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="77" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="76" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a717fee40b605e74f944ff3014dc1adf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OperatorBuilderManager::CreateDefaultBuilders</definition>
+        <argsstring>()</argsstring>
+        <name>CreateDefaultBuilders</name>
+        <briefdescription>
+<para>Registers default operator builders for various purposes such as channel labeling, phase and delay corrections, pol-product summation, flagging operators, etc. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="26" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1ae5fe234a1b7e5b146976a88c848f1756" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OperatorBuilderManager::SetControlStatements</definition>
+        <argsstring>(mho_json *statements)</argsstring>
+        <name>SetControlStatements</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>statements</declname>
+        </param>
+        <briefdescription>
+<para>pass in parsed control file elements </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>statements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json object containing control file statements </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="53" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="53" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a583c21826a126efdc7129a5ce5b62dcc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XBuilderType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_OperatorBuilderManager::AddBuilderTypeWithFormat</definition>
+        <argsstring>(const std::string &amp;builder_name, const mho_json &amp;format)</argsstring>
+        <name>AddBuilderTypeWithFormat</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>builder_name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Adds a new builder type with specified format and maps it by name and category. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>builder_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the builder to be added </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Format specification for the builder </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="130" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="130" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilderManager_1a20c6dd670da103b6fd3ba9cf1ce22439" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OperatorBuilderManager::CreateNullFormatBuilders</definition>
+        <argsstring>()</argsstring>
+        <name>CreateNullFormatBuilders</name>
+        <briefdescription>
+<para>Registers default operator builders for <ref refid="classhops_1_1MHO__OperatorBuilderManager" kindref="compound">MHO_OperatorBuilderManager</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="121" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_OperatorBuilderManager.cc" bodystart="187" bodyend="245"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Manages all the various operator builders. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Thu Jun 8 17:05:29 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilderManager.hh" bodystart="24" bodyend="171"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a7e75bbbeacbfadf088cd6729858fc363" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>AddBuilderType</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a583c21826a126efdc7129a5ce5b62dcc" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>AddBuilderTypeWithFormat</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a21f4516d641876a9ce3892f0b997bd70" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>BuildOperatorCategory</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1acb2a099082519fa8b158548edeac0727" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>BuildOperatorCategory</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a717fee40b605e74f944ff3014dc1adf3" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>CreateDefaultBuilders</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a20c6dd670da103b6fd3ba9cf1ce22439" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>CreateNullFormatBuilders</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1acc2ffaf83e84e4fa2c76b238f499267c" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fAllBuilders</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1ab3b80396c8c46c403433c901141e1d8b" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fCategoryToBuilderMap</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1aceb03f19b12c0cbe22a53efc0ca72795" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fContainerStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a025fcd15d585649f81e5df6ed81ef7b9" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fControl</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a1fb6ce62473634ac080a55881681b4ba" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fFormat</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a2a04d5d11add0fb502c4c74635554ff3" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fFringeData</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a237c223c79e8722b1dc5a941ac4a4677" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fNameToBuilderMap</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a138e127a670903955c4527aa503f3429" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fOperatorToolbox</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a5d112f0d1c2200aab44a383c53c783ab" prot="private" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1ab282bcbc77f783bbbcd0e2797e6ed127" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>MHO_OperatorBuilderManager</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1ae5fe234a1b7e5b146976a88c848f1756" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>SetControlStatements</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilderManager_1a984fa0e1627f764a95bdd2847d939e41" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilderManager</scope><name>~MHO_OperatorBuilderManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

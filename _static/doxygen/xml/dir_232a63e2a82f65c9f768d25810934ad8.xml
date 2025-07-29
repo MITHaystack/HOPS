@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_232a63e2a82f65c9f768d25810934ad8" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="account_8c">account.c</innerfile>
+    <innerfile refid="adler32__checksum_8c">adler32_checksum.c</innerfile>
+    <innerfile refid="check__name_8c">check_name.c</innerfile>
+    <innerfile refid="clear__date_8c">clear_date.c</innerfile>
+    <innerfile refid="clear__fstruct_8c">clear_fstruct.c</innerfile>
+    <innerfile refid="confirm_8c">confirm.c</innerfile>
+    <innerfile refid="datec__to__datef_8c">datec_to_datef.c</innerfile>
+    <innerfile refid="datef__to__datec_8c">datef_to_datec.c</innerfile>
+    <innerfile refid="day__of__datef_8c">day_of_datef.c</innerfile>
+    <innerfile refid="environment_8c">environment.c</innerfile>
+    <innerfile refid="extract__filenames_8c">extract_filenames.c</innerfile>
+    <innerfile refid="fileset_8c">fileset.c</innerfile>
+    <innerfile refid="get__abs__path_8c">get_abs_path.c</innerfile>
+    <innerfile refid="get__filelist_8c">get_filelist.c</innerfile>
+    <innerfile refid="hops__complex_8c">hops_complex.c</innerfile>
+    <innerfile refid="hptoie_8c">hptoie.c</innerfile>
+    <innerfile refid="hptoie4_8c">hptoie4.c</innerfile>
+    <innerfile refid="hptoie8_8c">hptoie8.c</innerfile>
+    <innerfile refid="int__to__time_8c">int_to_time.c</innerfile>
+    <innerfile refid="ismk4_8c">ismk4.c</innerfile>
+    <innerfile refid="minmax_8c">minmax.c</innerfile>
+    <innerfile refid="report__times_8c">report_times.c</innerfile>
+    <innerfile refid="root__belong_8c">root_belong.c</innerfile>
+    <innerfile refid="mk4util_2src_2root__id_8c">mk4util/src/root_id.c</innerfile>
+    <innerfile refid="sexigesimal2hrdeg_8c">sexigesimal2hrdeg.c</innerfile>
+    <innerfile refid="sort__names_8c">sort_names.c</innerfile>
+    <innerfile refid="swap_8c">swap.c</innerfile>
+    <innerfile refid="syntax_8c">syntax.c</innerfile>
+    <innerfile refid="time__to__double_8c">time_to_double.c</innerfile>
+    <innerfile refid="time__to__int_8c">time_to_int.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,616 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FileStreamer" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_FileStreamer</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__BinaryFileStreamer" prot="public" virt="non-virtual">hops::MHO_BinaryFileStreamer</derivedcompoundref>
+    <includes refid="MHO__FileStreamer_8hh" local="no">MHO_FileStreamer.hh</includes>
+      <sectiondef kind="protected-type">
+      <memberdef kind="enum" id="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374" prot="protected" static="no" strong="no">
+        <type></type>
+        <name>FileState</name>
+        <enumvalue id="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374aad84c6b2894a19e94823881c7a285fd1" prot="protected">
+          <name>writeable</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374ab0dbda4abb0ec331bfeb48626718f746" prot="protected">
+          <name>readable</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374ac5dcc897deb7a97b921c5ceb9997558f" prot="protected">
+          <name>closed</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374a7b11d7de8b30ab31170f3e805787e417" prot="protected">
+          <name>undefined</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="180" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="181" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="enum" id="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfce" prot="protected" static="no" strong="no">
+        <type></type>
+        <name>ObjectState</name>
+        <enumvalue id="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfceaeca837d9a8341b912c849606e63f0fd4" prot="protected">
+          <name>unset</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfcea2300494909fbb66f30d5ea0f52e7065f" prot="protected">
+          <name>unknown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="188" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="189" bodyend="192"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__FileStreamer_1a0a89c0d3319748f1edd16f202e0bb35c" prot="protected" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* hops::MHO_FileStreamer::fBuffer</definition>
+        <argsstring></argsstring>
+        <name>fBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="200" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FileStreamer_1aac27f25b2fdce7a6ad9a60bbf9a1727c" prot="protected" static="no" mutable="no">
+        <type>std::streamsize</type>
+        <definition>std::streamsize hops::MHO_FileStreamer::fBufferSize</definition>
+        <argsstring></argsstring>
+        <name>fBufferSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="199" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FileStreamer_1a703f192f0eac30d624e759d66b320749" prot="protected" static="no" mutable="no">
+        <type>std::fstream</type>
+        <definition>std::fstream hops::MHO_FileStreamer::fFile</definition>
+        <argsstring></argsstring>
+        <name>fFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="195" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FileStreamer_1afce2e67965351c92a12152c14c22fd07" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_FileStreamer::fFilename</definition>
+        <argsstring></argsstring>
+        <name>fFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="194" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FileStreamer_1affc400b9a8accfda828247030e496202" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374" kindref="member">FileState</ref></type>
+        <definition>FileState hops::MHO_FileStreamer::fFileState</definition>
+        <argsstring></argsstring>
+        <name>fFileState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="196" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FileStreamer_1a263c4bab387191a0acd04506a01ec6c0" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfce" kindref="member">ObjectState</ref></type>
+        <definition>ObjectState hops::MHO_FileStreamer::fObjectState</definition>
+        <argsstring></argsstring>
+        <name>fObjectState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="197" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a3acc164f02852fa22a176541e3f7ee16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FileStreamer::MHO_FileStreamer</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FileStreamer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>2MB chunk</para>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a8e84353e2ce9185e865c7037271d0c31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FileStreamer::~MHO_FileStreamer</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FileStreamer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a85b6a38e254b15d15dbbbcf446f9a112" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FileStreamer::Close</definition>
+        <argsstring>()=0</argsstring>
+        <name>Close</name>
+        <reimplementedby refid="classhops_1_1MHO__BinaryFileStreamer_1ad1f566e607b9f8100337355b8f2f2119">Close</reimplementedby>
+        <briefdescription>
+<para>Checks if file is closed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="76" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a1480a67947d76a8d0d1ebcd6d99b6fe3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_FileStreamer::GetFilename</definition>
+        <argsstring>()</argsstring>
+        <name>GetFilename</name>
+        <briefdescription>
+<para>Getter for filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current filename as a string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="52" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a5cba2271d81e36ef6f88fc6083eac527" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::fstream &amp;</type>
+        <definition>virtual std::fstream&amp; hops::MHO_FileStreamer::GetStream</definition>
+        <argsstring>()</argsstring>
+        <name>GetStream</name>
+        <reimplementedby refid="classhops_1_1MHO__BinaryFileStreamer_1ad19e3f23bfc791fb7c5ca790baeedeb9">GetStream</reimplementedby>
+        <briefdescription>
+<para>Getter for stream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to the std::fstream object </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="169" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="169" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a2f66e66c4d059ab4a55e9607e8b7e4d7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const std::fstream &amp;</type>
+        <definition>virtual const std::fstream&amp; hops::MHO_FileStreamer::GetStream</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStream</name>
+        <reimplementedby refid="classhops_1_1MHO__BinaryFileStreamer_1a422fcec78659f992b91dd3ef5214c700">GetStream</reimplementedby>
+        <briefdescription>
+<para>Getter for stream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to std::fstream object </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="177" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="177" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a979e189babc9062796bf514409bf8232" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_FileStreamer::IsClosed</definition>
+        <argsstring>()</argsstring>
+        <name>IsClosed</name>
+        <briefdescription>
+<para>Checks if the file is closed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the file is closed, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="114" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="114" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1acb94b99d1646e49f0255b126b063db13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_FileStreamer::IsObjectUnknown</definition>
+        <argsstring>()</argsstring>
+        <name>IsObjectUnknown</name>
+        <briefdescription>
+<para>Checks if object state is unknown. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if object state is unknown, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="144" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="144" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a6274b45eb5365a52f416d24a02b8f08e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_FileStreamer::IsOpenForRead</definition>
+        <argsstring>()</argsstring>
+        <name>IsOpenForRead</name>
+        <briefdescription>
+<para>Checks if a file is open for reading. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if file is readable, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="99" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="99" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1aec07f9beef488892a40249982ae807bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_FileStreamer::IsOpenForWrite</definition>
+        <argsstring>()</argsstring>
+        <name>IsOpenForWrite</name>
+        <briefdescription>
+<para>Checks if file is open for writing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if file is open for write, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="84" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="84" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1aae29030822ba8758abaf6caa377bd0e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FileStreamer::OpenToAppend</definition>
+        <argsstring>()=0</argsstring>
+        <name>OpenToAppend</name>
+        <reimplementedby refid="classhops_1_1MHO__BinaryFileStreamer_1a23a18d890eb5ea1ab3492c95e362e512">OpenToAppend</reimplementedby>
+        <briefdescription>
+<para>Function OpenToAppend. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="64" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a1bd58b864a9d5c87ef498ec6cb409925" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FileStreamer::OpenToRead</definition>
+        <argsstring>()=0</argsstring>
+        <name>OpenToRead</name>
+        <reimplementedby refid="classhops_1_1MHO__BinaryFileStreamer_1a9502522171adc3769fe0cc00fc8eff2c">OpenToRead</reimplementedby>
+        <briefdescription>
+<para>Function OpenToRead - let derived class specify the exact handling of file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="58" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1af99a04592f010b7f0718cdd85006e42b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FileStreamer::OpenToWrite</definition>
+        <argsstring>()=0</argsstring>
+        <name>OpenToWrite</name>
+        <reimplementedby refid="classhops_1_1MHO__BinaryFileStreamer_1a16ecc5e591be1f7fbb6beb270794acf7">OpenToWrite</reimplementedby>
+        <briefdescription>
+<para>Function OpenToWrite. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="70" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a66cdadac9985660113c0604867197ea6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FileStreamer::ResetObjectState</definition>
+        <argsstring>()</argsstring>
+        <name>ResetObjectState</name>
+        <briefdescription>
+<para>Resets the object state to unset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="136" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1aa8478390e7afa8836b476d07c7c672fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FileStreamer::SetFilename</definition>
+        <argsstring>(const std::string filename)</argsstring>
+        <name>SetFilename</name>
+        <param>
+          <type>const std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Setter for filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New filename to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="41" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="41" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1a484abaccd61386330c01c2c74d7ad00c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FileStreamer::SetObjectUnknown</definition>
+        <argsstring>()</argsstring>
+        <name>SetObjectUnknown</name>
+        <briefdescription>
+<para>Setter for object state - if an unrecognized object is encountered in streaming, flag this object by changing the &apos;object&apos; state to &apos;unknown&apos;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="130" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="130" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FileStreamer_1ae912801ceb873d8b41eef837173aa750" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FileStreamer::SkipAhead</definition>
+        <argsstring>(size_t n_bytes)</argsstring>
+        <name>SkipAhead</name>
+        <param>
+          <type>size_t</type>
+          <declname>n_bytes</declname>
+        </param>
+        <briefdescription>
+<para>Seeks ahead in file by specified number of bytes and updates object state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n_bytes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of bytes to skip ahead. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="152" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="152" bodyend="161"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FileStreamer" kindref="compound">MHO_FileStreamer</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Streams objects to/from a file, uses a 2MB buffer.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_BinaryFileStreamer</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FileStreamer</label>
+        <link refid="classhops_1_1MHO__FileStreamer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>FileState</label>
+      </node>
+      <node id="9">
+        <label>std::basic_istream&lt; Char &gt;</label>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::basic_iostream&lt; Char &gt;</label>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>streamsize</label>
+      </node>
+      <node id="14">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FileStreamer</label>
+        <link refid="classhops_1_1MHO__FileStreamer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fBuffer</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fObjectState</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fFileState</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fBufferSize</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fFile</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>fFilename</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>std::basic_ostream&lt; Char &gt;</label>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>std::basic_ios&lt; Char &gt;</label>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>std::ios_base</label>
+      </node>
+      <node id="3">
+        <label>ObjectState</label>
+      </node>
+      <node id="6">
+        <label>std::fstream</label>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+      <node id="13">
+        <label>std::string</label>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>std::basic_fstream&lt; Char &gt;</label>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileStreamer.hh" bodystart="23" bodyend="201"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FileStreamer_1a85b6a38e254b15d15dbbbcf446f9a112" prot="public" virt="pure-virtual"><scope>hops::MHO_FileStreamer</scope><name>Close</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374ac5dcc897deb7a97b921c5ceb9997558f" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>closed</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a0a89c0d3319748f1edd16f202e0bb35c" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>fBuffer</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1aac27f25b2fdce7a6ad9a60bbf9a1727c" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>fBufferSize</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a703f192f0eac30d624e759d66b320749" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>fFile</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1afce2e67965351c92a12152c14c22fd07" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>fFilename</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1affc400b9a8accfda828247030e496202" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>fFileState</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>FileState</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a263c4bab387191a0acd04506a01ec6c0" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>fObjectState</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a1480a67947d76a8d0d1ebcd6d99b6fe3" prot="public" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>GetFilename</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a5cba2271d81e36ef6f88fc6083eac527" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>GetStream</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a2f66e66c4d059ab4a55e9607e8b7e4d7" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>GetStream</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a979e189babc9062796bf514409bf8232" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>IsClosed</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1acb94b99d1646e49f0255b126b063db13" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>IsObjectUnknown</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a6274b45eb5365a52f416d24a02b8f08e" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>IsOpenForRead</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1aec07f9beef488892a40249982ae807bc" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>IsOpenForWrite</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a3acc164f02852fa22a176541e3f7ee16" prot="public" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>MHO_FileStreamer</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfce" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>ObjectState</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1aae29030822ba8758abaf6caa377bd0e3" prot="public" virt="pure-virtual"><scope>hops::MHO_FileStreamer</scope><name>OpenToAppend</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a1bd58b864a9d5c87ef498ec6cb409925" prot="public" virt="pure-virtual"><scope>hops::MHO_FileStreamer</scope><name>OpenToRead</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1af99a04592f010b7f0718cdd85006e42b" prot="public" virt="pure-virtual"><scope>hops::MHO_FileStreamer</scope><name>OpenToWrite</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374ab0dbda4abb0ec331bfeb48626718f746" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>readable</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a66cdadac9985660113c0604867197ea6" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>ResetObjectState</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1aa8478390e7afa8836b476d07c7c672fc" prot="public" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>SetFilename</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a484abaccd61386330c01c2c74d7ad00c" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>SetObjectUnknown</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ae912801ceb873d8b41eef837173aa750" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>SkipAhead</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374a7b11d7de8b30ab31170f3e805787e417" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>undefined</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfcea2300494909fbb66f30d5ea0f52e7065f" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>unknown</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfceaeca837d9a8341b912c849606e63f0fd4" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>unset</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374aad84c6b2894a19e94823881c7a285fd1" prot="protected" virt="non-virtual"><scope>hops::MHO_FileStreamer</scope><name>writeable</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a8e84353e2ce9185e865c7037271d0c31" prot="public" virt="virtual"><scope>hops::MHO_FileStreamer</scope><name>~MHO_FileStreamer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structnewphasor" kind="struct" language="C++" prot="public">
+    <compoundname>newphasor</compoundname>
+    <includes refid="type__212_8h" local="no">type_212.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structnewphasor_1a5beec22cca15aabc1a79eb2c74f55da3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float newphasor::amp</definition>
+        <argsstring></argsstring>
+        <name>amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="17" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnewphasor_1a92d6dd48b45880dc685ece0cf2e3bdf6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float newphasor::phase</definition>
+        <argsstring></argsstring>
+        <name>phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="18" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structnewphasor_1ada64e8900089eed819d928707aa37295" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float newphasor::weight</definition>
+        <argsstring></argsstring>
+        <name>weight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="19" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>newphasor</label>
+        <link refid="structnewphasor"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>amp</edgelabel>
+          <edgelabel>phase</edgelabel>
+          <edgelabel>weight</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="15" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="16" bodyend="20"/>
+    <listofallmembers>
+      <member refid="structnewphasor_1a5beec22cca15aabc1a79eb2c74f55da3" prot="public" virt="non-virtual"><scope>newphasor</scope><name>amp</name></member>
+      <member refid="structnewphasor_1a92d6dd48b45880dc685ece0cf2e3bdf6" prot="public" virt="non-virtual"><scope>newphasor</scope><name>phase</name></member>
+      <member refid="structnewphasor_1ada64e8900089eed819d928707aa37295" prot="public" virt="non-virtual"><scope>newphasor</scope><name>weight</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

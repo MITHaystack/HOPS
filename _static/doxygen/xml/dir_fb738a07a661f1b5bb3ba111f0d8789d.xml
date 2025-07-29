@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_fb738a07a661f1b5bb3ba111f0d8789d" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="aedata_8h">aedata.h</innerfile>
+    <innerfile refid="aedit_8h">aedit.h</innerfile>
+    <innerfile refid="aedit__proto_8h">aedit_proto.h</innerfile>
+    <innerfile refid="close__flags_8h">close_flags.h</innerfile>
+    <innerfile refid="flags_8h">flags.h</innerfile>
+    <innerfile refid="param__list_8h">param_list.h</innerfile>
+    <innerfile refid="psplot_8h">psplot.h</innerfile>
+    <innerfile refid="pstruct_8h">pstruct.h</innerfile>
+    <innerfile refid="sizelimits_8h">sizelimits.h</innerfile>
+    <innerfile refid="sort_8h">sort.h</innerfile>
+    <innerfile refid="summary_8h">summary.h</innerfile>
+    <innerfile refid="tempo_8h">tempo.h</innerfile>
+    <innerfile refid="usearray_8h">usearray.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/"/>
+  </compounddef>
+</doxygen>

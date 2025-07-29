@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyContainerStoreInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PyContainerStoreInterface</compoundname>
+    <includes refid="MHO__PyContainerStoreInterface_8hh" local="no">MHO_PyContainerStoreInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyContainerStoreInterface_1a3c226028007c971a919d4c1f89a5df11" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+        <definition>MHO_ContainerStore* hops::MHO_PyContainerStoreInterface::fContainerStore</definition>
+        <argsstring></argsstring>
+        <name>fContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="142" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1aa3906eee0bc31e903bfc0abf53dc7f44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyContainerStoreInterface::MHO_PyContainerStoreInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_PyContainerStoreInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1aaaba01ca74a0fb9100cfa726edc75b09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyContainerStoreInterface::MHO_PyContainerStoreInterface</definition>
+        <argsstring>(MHO_ContainerStore *conStore)</argsstring>
+        <name>MHO_PyContainerStoreInterface</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1adc1e4e13b1791a2c553f031cbaf9079d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PyContainerStoreInterface::~MHO_PyContainerStoreInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PyContainerStoreInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1a0bd74a4ea9d546e7b72f62c98aa36f1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+        <definition>MHO_ContainerStore* hops::MHO_PyContainerStoreInterface::GetContainerStore</definition>
+        <argsstring>()</argsstring>
+        <name>GetContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="121" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1a1ad727a7bef1041ce6956438baa01680" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_PyContainerStoreInterface::GetNObjects</definition>
+        <argsstring>()</argsstring>
+        <name>GetNObjects</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="45" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="45" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1af24e467e91eed992b3e0fc5b406480ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__PyTableContainer" kindref="compound">MHO_PyTableContainer</ref>&lt; XClassType &gt; *</type>
+        <definition>MHO_PyTableContainer&lt; XClassType &gt;* hops::MHO_PyContainerStoreInterface::GetObject</definition>
+        <argsstring>(const std::string &amp;uuid_string)</argsstring>
+        <name>GetObject</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>uuid_string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="81" column="43" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="81" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1a682853c9ed8cc8c185fc2685bc08a837" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>py::list</type>
+        <definition>py::list hops::MHO_PyContainerStoreInterface::GetObjectList</definition>
+        <argsstring>()</argsstring>
+        <name>GetObjectList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="103" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="103" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1a375b3bcff19f6730cde0162efe2157dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PyContainerStoreInterface::GetObjectTypeUUID</definition>
+        <argsstring>(const std::string &amp;uuid_string) const</argsstring>
+        <name>GetObjectTypeUUID</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>uuid_string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="69" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="69" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1a4940268be967c4f1d72d3995cf0a0cad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyContainerStoreInterface::IsObjectPresent</definition>
+        <argsstring>(const std::string &amp;uuid_string) const</argsstring>
+        <name>IsObjectPresent</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>uuid_string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="54" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1a44236066e9aa45740d4f6fa774288c61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyContainerStoreInterface::IsValid</definition>
+        <argsstring>()</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="36" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="36" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyContainerStoreInterface_1a335ccc2e96538716a60cb6a026c8881b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__PyTableContainer" kindref="compound">MHO_PyTableContainer</ref>&lt; XClassType &gt; *</type>
+        <definition>MHO_PyTableContainer&lt; XClassType &gt;* hops::MHO_PyContainerStoreInterface::GetExtension</definition>
+        <argsstring>(XClassType *obj)</argsstring>
+        <name>GetExtension</name>
+        <param>
+          <type>XClassType *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="125" column="43" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="125" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>python binding to the <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Sep 23 16:03:48 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyContainerStoreInterface.hh" bodystart="30" bodyend="143"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a3c226028007c971a919d4c1f89a5df11" prot="private" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>fContainerStore</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a0bd74a4ea9d546e7b72f62c98aa36f1b" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>GetContainerStore</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a335ccc2e96538716a60cb6a026c8881b" prot="private" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>GetExtension</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a1ad727a7bef1041ce6956438baa01680" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>GetNObjects</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1af24e467e91eed992b3e0fc5b406480ee" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>GetObject</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a682853c9ed8cc8c185fc2685bc08a837" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>GetObjectList</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a375b3bcff19f6730cde0162efe2157dc" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>GetObjectTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a4940268be967c4f1d72d3995cf0a0cad" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>IsObjectPresent</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1a44236066e9aa45740d4f6fa774288c61" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>IsValid</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1aa3906eee0bc31e903bfc0abf53dc7f44" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>MHO_PyContainerStoreInterface</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1aaaba01ca74a0fb9100cfa726edc75b09" prot="public" virt="non-virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>MHO_PyContainerStoreInterface</name></member>
+      <member refid="classhops_1_1MHO__PyContainerStoreInterface_1adc1e4e13b1791a2c553f031cbaf9079d" prot="public" virt="virtual"><scope>hops::MHO_PyContainerStoreInterface</scope><name>~MHO_PyContainerStoreInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

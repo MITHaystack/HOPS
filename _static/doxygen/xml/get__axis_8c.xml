@@ -1,0 +1,716 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="get__axis_8c" kind="file" language="C++">
+    <compoundname>get_axis.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">ctype.h</includes>
+    <includes refid="pstruct_8h" local="yes">pstruct.h</includes>
+    <includes refid="usearray_8h" local="yes">usearray.h</includes>
+    <includes refid="aedit_8h" local="yes">aedit.h</includes>
+    <incdepgraph>
+      <node id="48">
+        <label>aedata.h</label>
+        <link refid="aedata_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>stdarg.h</label>
+      </node>
+      <node id="15">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="6">
+        <label>usearray.h</label>
+        <link refid="usearray_8h"/>
+      </node>
+      <node id="42">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>sys/times.h</label>
+      </node>
+      <node id="21">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="25">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="7">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>stdint.h</label>
+      </node>
+      <node id="9">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="52">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="24">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>psplot.h</label>
+        <link refid="psplot_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="17">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>sys/types.h</label>
+      </node>
+      <node id="36">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="13">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="40">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="19">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>sizelimits.h</label>
+        <link refid="sizelimits_8h"/>
+      </node>
+      <node id="16">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>complex.h</label>
+      </node>
+      <node id="32">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="57">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ctype.h</label>
+      </node>
+      <node id="39">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="22">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="46">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>pstruct.h</label>
+        <link refid="pstruct_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="51">
+        <label>summary.h</label>
+        <link refid="summary_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>get_axis.c</label>
+        <link refid="get__axis_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="31">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="10">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" prot="public" static="no" mutable="no">
+        <type>struct @1</type>
+        <definition>struct @1 axes[]</definition>
+        <argsstring>[]</argsstring>
+        <name>axes</name>
+        <initializer>=
+	{
+	<ref refid="tempo_8h_1a663ea2cbce93fa99b869b8013b8c0ad9" kindref="member">AX_TIMETAG</ref>, <ref refid="tempo_8h_1ab2454f0476e6bba17385e4f70dc805f9" kindref="member">ANY_PLOT</ref>, &quot;timetag&quot;, &quot;&quot;,
+	AX_PCAL_PHASE, <ref refid="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref> | <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;pcal_phase&quot;, &quot;deg&quot;,
+	AX_PCAL_DIFF, <ref refid="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref> | <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;pcal_diff&quot;, &quot;deg&quot;,
+	AX_PCAL_AMP, <ref refid="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref> | <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;pcal_amp&quot;, &quot;&quot;,
+	AX_ERRORATE, <ref refid="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref> | <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;error_rate&quot;, &quot;&quot;,
+	AX_ELEVATION, <ref refid="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref> | <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;elevation&quot;, &quot;deg&quot;,
+	AX_AZIMUTH, <ref refid="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref> | <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;azimuth&quot;, &quot;deg&quot;,
+	AX_SNR, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;snr&quot;, &quot;&quot;,
+	AX_AMPLITUDE, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;amplitude&quot;, &quot;e-4&quot;,
+	AX_PHASE, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;phase&quot;, &quot;deg&quot;,
+	AX_SBDELAY, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;sbdelay&quot;, &quot;us&quot;,
+	AX_MBDELAY, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;mbdelay&quot;, &quot;ns&quot;,
+	AX_DRATE, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;drate&quot;, &quot;ps/s&quot;,
+	AX_NCOTIME, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;ncotime&quot;, &quot;sec&quot;,
+	AX_SCOTIME, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;scotime&quot;, &quot;sec&quot;,
+	AX_CPHASE, <ref refid="tempo_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>, &quot;cphase&quot;, &quot;deg&quot;,
+	AX_CRATE, <ref refid="tempo_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>, &quot;crate&quot;, &quot;ps/s&quot;,
+	AX_CSBDELAY, <ref refid="tempo_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>, &quot;csbdelay&quot;, &quot;us&quot;,
+	AX_CMBDELAY, <ref refid="tempo_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>, &quot;cmbdelay&quot;, &quot;ns&quot;,
+	AX_CAMP, <ref refid="tempo_8h_1addd3200f648cbefaab99bfe55a3f0615" kindref="member">QUAD_PLOT</ref>, &quot;campl&quot;, &quot;&quot;,
+	AX_U, <ref refid="tempo_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref>, &quot;u &quot;, &quot;Mlambda&quot;,
+	AX_V, <ref refid="tempo_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref>, &quot;v &quot;, &quot;Mlambda&quot;,
+	AX_UVDIST, <ref refid="tempo_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref> | <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;uvdist&quot;, &quot;Mlambda&quot;,
+	AX_PARAMETER, <ref refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>, &quot;param&quot;, &quot;&quot;,
+	NO_AXIS, <ref refid="tempo_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref>, NULL, NULL
+	}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_axis.c" line="62" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="get__axis_8c_1af085f244b3289fa38d0dc71fcaf8db11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_axis</definition>
+        <argsstring>(char *string, char *ax_name, int *ax_index, char *ax_units, int *aux, int *plotby)</argsstring>
+        <name>get_axis</name>
+        <param>
+          <type>char *</type>
+          <declname>string</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>ax_name</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>ax_index</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>ax_units</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>aux</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>plotby</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_axis.c" line="64" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_axis.c" bodystart="64" bodyend="207"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>routine<sp/>is<sp/>designed<sp/>to<sp/>recognize<sp/>an<sp/>ascii<sp/>axis<sp/>identifier<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>typed<sp/>by<sp/>the<sp/>user<sp/>in<sp/>the<sp/>&quot;axis&quot;<sp/>command,<sp/>and<sp/>fills<sp/>in<sp/>the<sp/>full<sp/>name<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>and<sp/>id<sp/>number<sp/>of<sp/>the<sp/>corresponding<sp/>axis.<sp/><sp/>The<sp/>job<sp/>is<sp/>complicated<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>somewhat<sp/>by<sp/>the<sp/>special<sp/>handling<sp/>necessary<sp/>for<sp/>phasecals,<sp/>and<sp/>the<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>fact<sp/>that<sp/>some<sp/>extracted<sp/>parameters<sp/>are<sp/>arrays,<sp/>requiring<sp/>some<sp/>extra<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>syntax<sp/>parsing.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/>string<sp/><sp/><sp/><sp/><sp/><sp/>User<sp/>input<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/>ax_name<sp/><sp/><sp/><sp/><sp/>Official<sp/>name<sp/>(goes<sp/>on<sp/>plots)<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ax_index<sp/><sp/><sp/><sp/>Used<sp/>in<sp/>switch<sp/>statements<sp/>later<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>15<sp/>April<sp/>1989<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Added<sp/>yaind<sp/>element<sp/>to<sp/>inp<sp/>struct,<sp/>supported<sp/>here<sp/>7<sp/>Sep<sp/>1993<sp/>by<sp/>CJL<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Made<sp/>into<sp/>generic<sp/>axis<sp/>selection<sp/>routine<sp/>for<sp/>either<sp/>X<sp/>or<sp/>Y<sp/>in<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>support<sp/>of<sp/>flexible<sp/>parameter<sp/>plotting,<sp/>4<sp/>February<sp/>1994<sp/>by<sp/>CJL<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctype.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pstruct_8h" kindref="compound">pstruct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="usearray_8h" kindref="compound">usearray.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedit_8h" kindref="compound">aedit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>axis_index;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>plotby;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*axisname;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*axisunits;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[]<sp/>=</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a663ea2cbce93fa99b869b8013b8c0ad9" kindref="member">AX_TIMETAG</ref>,<sp/><ref refid="pstruct_8h_1ab2454f0476e6bba17385e4f70dc805f9" kindref="member">ANY_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;timetag&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ac00e70455c50a4fc8009e8511610294a" kindref="member">AX_PCAL_PHASE</ref>,<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref><sp/>|<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;pcal_phase&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;deg&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a75fbf6b3eb80adfd581f55ea6120fc2d" kindref="member">AX_PCAL_DIFF</ref>,<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref><sp/>|<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;pcal_diff&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;deg&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a138f55b57a40083403e72238e031ba9c" kindref="member">AX_PCAL_AMP</ref>,<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref><sp/>|<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;pcal_amp&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a8897e6c8c6460afe22c035f1bf85bf1e" kindref="member">AX_ERRORATE</ref>,<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref><sp/>|<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;error_rate&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ae93d710b31d8a241a42b3e8bc63d2754" kindref="member">AX_ELEVATION</ref>,<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref><sp/>|<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;elevation&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;deg&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ab9af8dcf6e47f32ef66f500207c5ba27" kindref="member">AX_AZIMUTH</ref>,<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref><sp/>|<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;azimuth&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;deg&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a43da4ecc269084a8cc0738629769197f" kindref="member">AX_SNR</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;snr&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a5914319d5b1088581e873c3bf970b354" kindref="member">AX_AMPLITUDE</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;amplitude&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;e-4&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a1edb9b223382998ac999f5d56238b84f" kindref="member">AX_PHASE</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;phase&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;deg&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a5d96defa5a2a49ecee3a0325f079c1b5" kindref="member">AX_SBDELAY</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;sbdelay&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;us&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a9458971f1ca0cbaabe7d5912e27b84e3" kindref="member">AX_MBDELAY</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;mbdelay&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ns&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1aebc89bbf430a8a33931aa81adfa53e5f" kindref="member">AX_DRATE</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;drate&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ps/s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a6c7e12a1c358567b9032f51df5c31a63" kindref="member">AX_NCOTIME</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ncotime&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;sec&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ac4b932d49910b743dbf2e6e77dcdbcb9" kindref="member">AX_SCOTIME</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;scotime&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;sec&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a67cac0a02b8a8bdaddd347a0fec6731b" kindref="member">AX_CPHASE</ref>,<sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;cphase&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;deg&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a0317630cea3feebe19b610c8877d234e" kindref="member">AX_CRATE</ref>,<sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;crate&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ps/s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a742efff2115484d984c8806954244a13" kindref="member">AX_CSBDELAY</ref>,<sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;csbdelay&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;us&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ae6c8c1c55abb7ca0172b4f2a5c227ec8" kindref="member">AX_CMBDELAY</ref>,<sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;cmbdelay&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ns&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ae3f32089ab1e014f37be638131127944" kindref="member">AX_CAMP</ref>,<sp/><ref refid="pstruct_8h_1addd3200f648cbefaab99bfe55a3f0615" kindref="member">QUAD_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;campl&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ac25dea6eb1474eb2784775fffe8f470d" kindref="member">AX_U</ref>,<sp/><ref refid="pstruct_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;u<sp/>&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Mlambda&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a247ee22facef524aa232c7b79eec55ba" kindref="member">AX_V</ref>,<sp/><ref refid="pstruct_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;v<sp/>&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Mlambda&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a643d170d72607566330164dffb5bf209" kindref="member">AX_UVDIST</ref>,<sp/><ref refid="pstruct_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref><sp/>|<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;uvdist&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Mlambda&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1a0b72a00a7a8fcd0170f38461247d45b1" kindref="member">AX_PARAMETER</ref>,<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>,<sp/></highlight><highlight class="stringliteral">&quot;param&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>,<sp/><ref refid="pstruct_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref>,<sp/>NULL,<sp/>NULL</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="get__axis_8c_1af085f244b3289fa38d0dc71fcaf8db11" kindref="member">get_axis</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ax_name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*ax_index,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ax_units,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*aux,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*plotby)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>len,<sp/>i,<sp/>j,<sp/>match,<sp/>array_index,<sp/>param_no,<sp/>pindex;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ref_phase,<sp/>rem_phase,<sp/>ref_diff,<sp/>rem_diff,<sp/>ref_amp,<sp/>rem_amp;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>c,<sp/>name[20],<sp/>dummy[80];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structusearray" kindref="compound">usearray</ref><sp/><ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pull<sp/>out<sp/>array<sp/>index<sp/>syntax<sp/>if<sp/>present<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Only<sp/>supported<sp/>for<sp/>phasecal<sp/>quantities<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>array_index<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy<sp/>(dummy,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>len<sp/>=<sp/>strlen<sp/>(dummy);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>len;<sp/>i++)<sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((dummy[i]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;(&apos;</highlight><highlight class="normal">)<sp/>||<sp/>(dummy[i]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;)&apos;</highlight><highlight class="normal">))<sp/>dummy[i]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;<sp/>&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>n<sp/>=<sp/>sscanf<sp/>(dummy,<sp/></highlight><highlight class="stringliteral">&quot;%s<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>name,<sp/>&amp;array_index);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Case-insensitive<sp/>matchup<sp/>...<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>This<sp/>is<sp/>the<sp/>easy<sp/>part.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>len<sp/>=<sp/>strlen<sp/>(name);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Avoid<sp/>ambiguity<sp/>for<sp/>u,<sp/>v<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(len<sp/>==<sp/>1)<sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>strcat<sp/>(name,<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>len<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>i<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>match<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[i].axis_index<sp/>!=<sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>&quot;param&quot;<sp/>must<sp/>be<sp/>followed<sp/>by<sp/>id<sp/>number<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[i].axis_index<sp/>==<sp/><ref refid="pstruct_8h_1a0b72a00a7a8fcd0170f38461247d45b1" kindref="member">AX_PARAMETER</ref>)<sp/>n<sp/>=<sp/>5;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>len;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncasecmp<sp/>(name,<sp/><ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[i].axisname,<sp/>n)<sp/>==<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(match<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Ambiguous<sp/>axis<sp/>specifier<sp/>&apos;%s&apos;,<sp/>see<sp/>&apos;help<sp/>axis&apos;&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>name);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>match<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>i++;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(match<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>axis<sp/>specifier<sp/>&apos;%s&apos;,<sp/>see<sp/>&apos;help<sp/>axis&apos;&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>name);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Copy<sp/>it<sp/>to<sp/>output.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy<sp/>(ax_name,<sp/><ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[match].axisname);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy<sp/>(ax_units,<sp/><ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[match].axisunits);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>*ax_index<sp/>=<sp/><ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[match].axis_index;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>*aux<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>*plotby<sp/>=<sp/><ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref>[match].plotby;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Special<sp/>case<sp/>handling,<sp/>pain<sp/>in<sp/>the<sp/>neck<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Figure<sp/>out<sp/>which<sp/>parameter,<sp/>get<sp/>name<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*ax_index<sp/>==<sp/><ref refid="pstruct_8h_1a0b72a00a7a8fcd0170f38461247d45b1" kindref="member">AX_PARAMETER</ref>)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>*ax_index<sp/>=<sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sscanf<sp/>(name,<sp/></highlight><highlight class="stringliteral">&quot;param%d&quot;</highlight><highlight class="normal">,<sp/>&amp;param_no)<sp/>!=<sp/>1)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Incorrect<sp/>parameter<sp/>axis<sp/>specification,<sp/>see<sp/>&apos;help<sp/>axis&apos;&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_no<sp/>&gt;<sp/><ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1afa17a6d29b5c5c7ac85c8c956495d571" kindref="member">nparms</ref>)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;&apos;param%d&apos;<sp/>specification<sp/>incorrect,<sp/>only<sp/>%d<sp/>parameters<sp/>present&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2,<sp/>param_no,<sp/><ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1afa17a6d29b5c5c7ac85c8c956495d571" kindref="member">nparms</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OK.<sp/>User<sp/>sees<sp/>these<sp/>1-relative<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ax_index<sp/>=<sp/><ref refid="pstruct_8h_1a0b72a00a7a8fcd0170f38461247d45b1" kindref="member">AX_PARAMETER</ref>;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pindex<sp/>=<sp/><ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[param_no-1].<ref refid="structudat_1a65559310e04660f3df7042f63e8f9373" kindref="member">parameter_index</ref>;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pindex<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy<sp/>(name,<sp/><ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[param_no-1].<ref refid="structudat_1aae010554c9a05db80c1e2d9425094de6" kindref="member">parameter_name</ref>);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf<sp/>(name,<sp/></highlight><highlight class="stringliteral">&quot;%s(%d)&quot;</highlight><highlight class="normal">,<sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[param_no-1].<ref refid="structudat_1aae010554c9a05db80c1e2d9425094de6" kindref="member">parameter_name</ref>,<sp/>pindex);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy<sp/>(ax_name,<sp/>name);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*aux<sp/>=<sp/>param_no-1;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Now<sp/>do<sp/>the<sp/>phasecals<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((*ax_index<sp/>==<sp/><ref refid="pstruct_8h_1ac00e70455c50a4fc8009e8511610294a" kindref="member">AX_PCAL_PHASE</ref>)<sp/>||<sp/>(*ax_index<sp/>==<sp/><ref refid="pstruct_8h_1a75fbf6b3eb80adfd581f55ea6120fc2d" kindref="member">AX_PCAL_DIFF</ref>)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(*ax_index<sp/>==<sp/><ref refid="pstruct_8h_1a138f55b57a40083403e72238e031ba9c" kindref="member">AX_PCAL_AMP</ref>))</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(array_index<sp/>&lt;<sp/>1)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;pcal<sp/>axes<sp/>must<sp/>be<sp/>accompanied<sp/>by<sp/>array<sp/>index,<sp/>see<sp/>&apos;help<sp/>plot&apos;&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ax_index<sp/>=<sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>First,<sp/>see<sp/>what<sp/>parameters<sp/>are<sp/>there<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>ref_phase<sp/>=<sp/>rem_phase<sp/>=<sp/>ref_diff<sp/>=<sp/>rem_diff<sp/>=<sp/>ref_amp<sp/>=<sp/>rem_amp<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1afa17a6d29b5c5c7ac85c8c956495d571" kindref="member">nparms</ref>;<sp/>j++)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>requested<sp/>element<sp/>only<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[j].<ref refid="structudat_1a65559310e04660f3df7042f63e8f9373" kindref="member">parameter_index</ref><sp/>!=<sp/>array_index)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[j].<ref refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" kindref="member">parameter_id</ref><sp/>==<sp/><ref refid="usearray_8h_1ac5946dd5b23b917fa8d94e1003dd58de" kindref="member">REF_PCAL_PHASE</ref>)<sp/>ref_phase<sp/>=<sp/>j;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[j].<ref refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" kindref="member">parameter_id</ref><sp/>==<sp/><ref refid="usearray_8h_1a460aae6509c8179a3c6491cdefec44af" kindref="member">REM_PCAL_PHASE</ref>)<sp/>rem_phase<sp/>=<sp/>j;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[j].<ref refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" kindref="member">parameter_id</ref><sp/>==<sp/><ref refid="usearray_8h_1aae3b43a2a6bdbfca8b18d97cf10518ee" kindref="member">REF_PCAL_DIFF</ref>)<sp/>ref_diff<sp/>=<sp/>j;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[j].<ref refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" kindref="member">parameter_id</ref><sp/>==<sp/><ref refid="usearray_8h_1a4e38178c940771de87f44b15b9f4604c" kindref="member">REM_PCAL_DIFF</ref>)<sp/>rem_diff<sp/>=<sp/>j;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[j].<ref refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" kindref="member">parameter_id</ref><sp/>==<sp/><ref refid="usearray_8h_1a0dea9dc58a982e71e52a627c3b2a0088" kindref="member">REF_PCAL_AMP</ref>)<sp/>ref_amp<sp/>=<sp/>j;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>.<ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[j].<ref refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" kindref="member">parameter_id</ref><sp/>==<sp/><ref refid="usearray_8h_1a77c2f1998fc550bb3dba521257a1f0a1" kindref="member">REM_PCAL_AMP</ref>)<sp/>rem_amp<sp/>=<sp/>j;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Now<sp/>have<sp/>parameter<sp/>array<sp/>indices<sp/>of<sp/>ref<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>and<sp/>remote<sp/>quantities.<sp/><sp/>We<sp/>encode<sp/>these<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>into<sp/>ax_index.<sp/><sp/>Recognition<sp/>of<sp/>pcal<sp/>quantities<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>when<sp/>plotting<sp/>has<sp/>to<sp/>be<sp/>kludged<sp/>through<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>string<sp/>recognition<sp/>of<sp/>ax_name<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(*ax_index)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1ac00e70455c50a4fc8009e8511610294a" kindref="member">AX_PCAL_PHASE</ref>:</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((ref_phase<sp/>&lt;<sp/>0)<sp/>||<sp/>(rem_phase<sp/>&lt;<sp/>0))</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Extract<sp/>ref<sp/>and<sp/>remote<sp/>pc<sp/>phases<sp/>before<sp/>specifying<sp/>axis&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ax_index<sp/>=<sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*aux<sp/>=<sp/><ref refid="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" kindref="member">MAX_PARMS</ref>*ref_phase<sp/>+<sp/>rem_phase;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1a75fbf6b3eb80adfd581f55ea6120fc2d" kindref="member">AX_PCAL_DIFF</ref>:</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((ref_diff<sp/>&lt;<sp/>0)<sp/>||<sp/>(rem_diff<sp/>&lt;<sp/>0))</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Extract<sp/>ref<sp/>and<sp/>remote<sp/>pc<sp/>diff<sp/>before<sp/>specifying<sp/>axis&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ax_index<sp/>=<sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*aux<sp/>=<sp/><ref refid="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" kindref="member">MAX_PARMS</ref>*ref_diff<sp/>+<sp/>rem_diff;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1a138f55b57a40083403e72238e031ba9c" kindref="member">AX_PCAL_AMP</ref>:</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((ref_amp<sp/>&lt;<sp/>0)<sp/>||<sp/>(rem_amp<sp/>&lt;<sp/>0))</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Extract<sp/>ref<sp/>and<sp/>remote<sp/>pc<sp/>amp<sp/>before<sp/>specifying<sp/>axis&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ax_index<sp/>=<sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*aux<sp/>=<sp/><ref refid="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" kindref="member">MAX_PARMS</ref>*ref_amp<sp/>+<sp/>rem_amp;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf<sp/>(name,<sp/></highlight><highlight class="stringliteral">&quot;%s(%d)&quot;</highlight><highlight class="normal">,<sp/>ax_name,<sp/>array_index);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy<sp/>(ax_name,<sp/>name);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*ax_index<sp/>==<sp/><ref refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" kindref="member">NO_AXIS</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_axis.c"/>
+  </compounddef>
+</doxygen>

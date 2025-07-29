@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__230" kind="struct" language="C++" prot="public">
+    <compoundname>type_230</compoundname>
+    <includes refid="type__230_8h" local="no">type_230.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__230_1afba8c64af76a042f1bc57e12ad1a0a4a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_230::ap</definition>
+        <argsstring></argsstring>
+        <name>ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="19" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1aa8a82349a14ab962b69bf755c07a4c27" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_230::frq</definition>
+        <argsstring></argsstring>
+        <name>frq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="18" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1aa98aa28abf5f5650e24171bd53702849" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_230::lsbweight</definition>
+        <argsstring></argsstring>
+        <name>lsbweight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="20" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1a121ab60fd2092a72a744c2d4db911a4a" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_230::nspec_pts</definition>
+        <argsstring></argsstring>
+        <name>nspec_pts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="15" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1add5521ba1207368eed1e57a494cb8b8f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_230::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="12" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1aaa0968d21f2e2802fc83cf24dbde3136" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_230::unused1</definition>
+        <argsstring></argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="14" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1a50e9b11df019d5759dcc6a21bf3c9792" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_230::usbweight</definition>
+        <argsstring></argsstring>
+        <name>usbweight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="21" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1ad5a067d06f2a175900aec7bbc7cda954" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_230::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="13" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__230_1a035d627a1cc536850ff2f3ac36e9d402" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1adae0563dbbe26b186882dbfbdbc679a8" kindref="member">hops_scomplex</ref></type>
+        <definition>hops_scomplex type_230::xpower[1]</definition>
+        <argsstring>[1]</argsstring>
+        <name>xpower</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="22" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="7">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_230</label>
+        <link refid="structtype__230"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lsbweight</edgelabel>
+          <edgelabel>usbweight</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>nspec_pts</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>frq</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>xpower</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="6">
+        <label>hops_complex_tag</label>
+        <link refid="structhops__complex__tag"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_230.h" bodystart="11" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structtype__230_1afba8c64af76a042f1bc57e12ad1a0a4a" prot="public" virt="non-virtual"><scope>type_230</scope><name>ap</name></member>
+      <member refid="structtype__230_1aa8a82349a14ab962b69bf755c07a4c27" prot="public" virt="non-virtual"><scope>type_230</scope><name>frq</name></member>
+      <member refid="structtype__230_1aa98aa28abf5f5650e24171bd53702849" prot="public" virt="non-virtual"><scope>type_230</scope><name>lsbweight</name></member>
+      <member refid="structtype__230_1a121ab60fd2092a72a744c2d4db911a4a" prot="public" virt="non-virtual"><scope>type_230</scope><name>nspec_pts</name></member>
+      <member refid="structtype__230_1add5521ba1207368eed1e57a494cb8b8f" prot="public" virt="non-virtual"><scope>type_230</scope><name>record_id</name></member>
+      <member refid="structtype__230_1aaa0968d21f2e2802fc83cf24dbde3136" prot="public" virt="non-virtual"><scope>type_230</scope><name>unused1</name></member>
+      <member refid="structtype__230_1a50e9b11df019d5759dcc6a21bf3c9792" prot="public" virt="non-virtual"><scope>type_230</scope><name>usbweight</name></member>
+      <member refid="structtype__230_1ad5a067d06f2a175900aec7bbc7cda954" prot="public" virt="non-virtual"><scope>type_230</scope><name>version_no</name></member>
+      <member refid="structtype__230_1a035d627a1cc536850ff2f3ac36e9d402" prot="public" virt="non-virtual"><scope>type_230</scope><name>xpower</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

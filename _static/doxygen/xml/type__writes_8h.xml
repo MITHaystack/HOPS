@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="type__writes_8h" kind="file" language="C++">
+    <compoundname>type_writes.h</compoundname>
+    <includedby refid="difx2mark4_8h" local="yes">difx2mark4.h</includedby>
+    <invincdepgraph>
+      <node id="20">
+        <label>write_t303.c</label>
+        <link refid="write__t303_8c"/>
+      </node>
+      <node id="12">
+        <label>root_id.c</label>
+        <link refid="applications_2difx2mark4_2src_2root__id_8c"/>
+      </node>
+      <node id="1">
+        <label>type_writes.h</label>
+        <link refid="type__writes_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>createType1s.c</label>
+        <link refid="createType1s_8c"/>
+      </node>
+      <node id="17">
+        <label>write_t300.c</label>
+        <link refid="write__t300_8c"/>
+      </node>
+      <node id="4">
+        <label>conv2date.c</label>
+        <link refid="conv2date_8c"/>
+      </node>
+      <node id="10">
+        <label>new_type1.c</label>
+        <link refid="new__type1_8c"/>
+      </node>
+      <node id="14">
+        <label>write_t100.c</label>
+        <link refid="write__t100_8c"/>
+      </node>
+      <node id="7">
+        <label>createType3s.c</label>
+        <link refid="createType3s_8c"/>
+      </node>
+      <node id="3">
+        <label>difx2mark4.c</label>
+        <link refid="difx2mark4_8c"/>
+      </node>
+      <node id="16">
+        <label>write_t120.c</label>
+        <link refid="write__t120_8c"/>
+      </node>
+      <node id="5">
+        <label>createRoot.c</label>
+        <link refid="createRoot_8c"/>
+      </node>
+      <node id="18">
+        <label>write_t301.c</label>
+        <link refid="write__t301_8c"/>
+      </node>
+      <node id="21">
+        <label>write_t309.c</label>
+        <link refid="write__t309_8c"/>
+      </node>
+      <node id="11">
+        <label>normalize.c</label>
+        <link refid="normalize_8c"/>
+      </node>
+      <node id="15">
+        <label>write_t101.c</label>
+        <link refid="write__t101_8c"/>
+      </node>
+      <node id="8">
+        <label>fill_fblock.c</label>
+        <link refid="fill__fblock_8c"/>
+      </node>
+      <node id="2">
+        <label>difx2mark4.h</label>
+        <link refid="difx2mark4_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>get_vis.c</label>
+        <link refid="get__vis_8c"/>
+      </node>
+      <node id="19">
+        <label>write_t302.c</label>
+        <link refid="write__t302_8c"/>
+      </node>
+      <node id="13">
+        <label>single_code.c</label>
+        <link refid="single__code_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="type__writes_8h_1aa1588e7b27e9f7a4efe73caecdd7dc6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t100</definition>
+        <argsstring>(struct type_100 *pt100, FILE *fout)</argsstring>
+        <name>write_t100</name>
+        <param>
+          <type>struct <ref refid="structtype__100" kindref="compound">type_100</ref> *</type>
+          <declname>pt100</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="4" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t100.c" bodystart="8" bodyend="42" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="4" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="type__writes_8h_1a0c831f54166d5d101d7c545c2010ea14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t101</definition>
+        <argsstring>(struct type_101 *pt101, FILE *fout)</argsstring>
+        <name>write_t101</name>
+        <param>
+          <type>struct <ref refid="structtype__101" kindref="compound">type_101</ref> *</type>
+          <declname>pt101</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="5" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t101.c" bodystart="8" bodyend="27" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="5" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="type__writes_8h_1a0d1e65f0cd55cdc5bf1d1c2199ff93ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t120</definition>
+        <argsstring>(struct type_120 *pt120, FILE *fout)</argsstring>
+        <name>write_t120</name>
+        <param>
+          <type>struct <ref refid="structtype__120" kindref="compound">type_120</ref> *</type>
+          <declname>pt120</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="6" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t120.c" bodystart="8" bodyend="39" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="6" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="type__writes_8h_1abd40046947986cd039d1c7b9384dee75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t300</definition>
+        <argsstring>(struct type_300 *pt300, FILE *fout)</argsstring>
+        <name>write_t300</name>
+        <param>
+          <type>struct <ref refid="structtype__300" kindref="compound">type_300</ref> *</type>
+          <declname>pt300</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="7" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t300.c" bodystart="8" bodyend="25" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="7" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="type__writes_8h_1aba77ae4f419868c50b6460f3abe02263" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t301</definition>
+        <argsstring>(struct type_301 *pt301, FILE *fout)</argsstring>
+        <name>write_t301</name>
+        <param>
+          <type>struct <ref refid="structtype__301" kindref="compound">type_301</ref> *</type>
+          <declname>pt301</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="8" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t301.c" bodystart="8" bodyend="22" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="8" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="type__writes_8h_1ae65818a3668903437cc407b1743007a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t302</definition>
+        <argsstring>(struct type_302 *pt302, FILE *fout)</argsstring>
+        <name>write_t302</name>
+        <param>
+          <type>struct <ref refid="structtype__302" kindref="compound">type_302</ref> *</type>
+          <declname>pt302</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="9" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t302.c" bodystart="8" bodyend="22" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="9" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="type__writes_8h_1a68e39868d3e00dece4b987b0033944d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t303</definition>
+        <argsstring>(struct type_303 *pt303, FILE *fout)</argsstring>
+        <name>write_t303</name>
+        <param>
+          <type>struct <ref refid="structtype__303" kindref="compound">type_303</ref> *</type>
+          <declname>pt303</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t303.c" bodystart="8" bodyend="29" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="10" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="type__writes_8h_1ae6dab99b615ee70abe07c3bae5dbaaef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t309</definition>
+        <argsstring>(struct type_309 *pt309, FILE *fout)</argsstring>
+        <name>write_t309</name>
+        <param>
+          <type>struct <ref refid="structtype__309" kindref="compound">type_309</ref> *</type>
+          <declname>pt309</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" line="11" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t309.c" bodystart="8" bodyend="32" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h" declline="11" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>collect<sp/>all<sp/>the<sp/>write<sp/>prototypes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__type_writes_h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__type_writes_h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1aa1588e7b27e9f7a4efe73caecdd7dc6c" kindref="member">write_t100</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__100" kindref="compound">type_100</ref><sp/>*pt100,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1a0c831f54166d5d101d7c545c2010ea14" kindref="member">write_t101</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__101" kindref="compound">type_101</ref><sp/>*pt101,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1a0d1e65f0cd55cdc5bf1d1c2199ff93ba" kindref="member">write_t120</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__120" kindref="compound">type_120</ref><sp/>*pt120,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1abd40046947986cd039d1c7b9384dee75" kindref="member">write_t300</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__300" kindref="compound">type_300</ref><sp/>*pt300,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1aba77ae4f419868c50b6460f3abe02263" kindref="member">write_t301</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__301" kindref="compound">type_301</ref><sp/>*pt301,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1ae65818a3668903437cc407b1743007a1" kindref="member">write_t302</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__302" kindref="compound">type_302</ref><sp/>*pt302,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1a68e39868d3e00dece4b987b0033944d1" kindref="member">write_t303</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__303" kindref="compound">type_303</ref><sp/>*pt303,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="type__writes_8h_1ae6dab99b615ee70abe07c3bae5dbaaef" kindref="member">write_t309</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__309" kindref="compound">type_309</ref><sp/>*pt309,<sp/>FILE<sp/>*fout);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>__type_writes_h<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/type_writes.h"/>
+  </compounddef>
+</doxygen>

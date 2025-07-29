@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structbad__frame__struct" kind="struct" language="C++" prot="public">
+    <compoundname>bad_frame_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbad__frame__struct_1a970eab86885e5ad1d6f222a3b816591a" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short bad_frame_struct::CRC_error</definition>
+        <argsstring></argsstring>
+        <name>CRC_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="20" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbad__frame__struct_1a86a44cc418e41afff97ba21f1cdff153" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short bad_frame_struct::lost_sync</definition>
+        <argsstring></argsstring>
+        <name>lost_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="22" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbad__frame__struct_1ae928b8e7e4705c7433afe5ae8728b135" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short bad_frame_struct::PE_limit_exceeded</definition>
+        <argsstring></argsstring>
+        <name>PE_limit_exceeded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="21" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbad__frame__struct_1ae3237bf194e66278a0be42a34c0067d4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short bad_frame_struct::unexpected_sync</definition>
+        <argsstring></argsstring>
+        <name>unexpected_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="23" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>bad_frame_struct</label>
+        <link refid="structbad__frame__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>CRC_error</edgelabel>
+          <edgelabel>PE_limit_exceeded</edgelabel>
+          <edgelabel>lost_sync</edgelabel>
+          <edgelabel>unexpected_sync</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="19" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structbad__frame__struct_1a970eab86885e5ad1d6f222a3b816591a" prot="public" virt="non-virtual"><scope>bad_frame_struct</scope><name>CRC_error</name></member>
+      <member refid="structbad__frame__struct_1a86a44cc418e41afff97ba21f1cdff153" prot="public" virt="non-virtual"><scope>bad_frame_struct</scope><name>lost_sync</name></member>
+      <member refid="structbad__frame__struct_1ae928b8e7e4705c7433afe5ae8728b135" prot="public" virt="non-virtual"><scope>bad_frame_struct</scope><name>PE_limit_exceeded</name></member>
+      <member refid="structbad__frame__struct_1ae3237bf194e66278a0be42a34c0067d4" prot="public" virt="non-virtual"><scope>bad_frame_struct</scope><name>unexpected_sync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

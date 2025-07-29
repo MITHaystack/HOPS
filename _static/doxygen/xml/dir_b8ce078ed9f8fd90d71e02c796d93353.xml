@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b8ce078ed9f8fd90d71e02c796d93353" kind="dir">
+    <compoundname>Initialization</compoundname>
+    <innerdir refid="dir_0dc70d85b9b46e117d15d6fa142bde30">include</innerdir>
+    <innerdir refid="dir_dffae469195e904fa488166b8250282a">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/"/>
+  </compounddef>
+</doxygen>

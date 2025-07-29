@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsrchsummary" kind="struct" language="C++" prot="public">
+    <compoundname>srchsummary</compoundname>
+    <includes refid="search_8h" local="no">search.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" prot="public" static="no" mutable="no">
+        <type><ref refid="structfringesum" kindref="compound">fringesum</ref> *</type>
+        <definition>fringesum* srchsummary::darray[MAX_NRATE *MAX_NDELAY]</definition>
+        <argsstring>[MAX_NRATE *MAX_NDELAY]</argsstring>
+        <name>darray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1ae09f4a35e6cdb9e41172e9c611cf71b9" prot="public" static="no" mutable="no">
+        <type><ref refid="structfringesum" kindref="compound">fringesum</ref> *</type>
+        <definition>fringesum* srchsummary::datum</definition>
+        <argsstring></argsstring>
+        <name>datum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="34" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1a0992946168b275c99305711179d0207a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float srchsummary::max_delay</definition>
+        <argsstring></argsstring>
+        <name>max_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="42" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1a2ff434e5adbfb77d3760d97082224a2a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float srchsummary::max_rate</definition>
+        <argsstring></argsstring>
+        <name>max_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="40" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float srchsummary::min_delay</definition>
+        <argsstring></argsstring>
+        <name>min_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="41" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float srchsummary::min_rate</definition>
+        <argsstring></argsstring>
+        <name>min_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="39" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srchsummary::nd</definition>
+        <argsstring></argsstring>
+        <name>nd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="35" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srchsummary::ndelay</definition>
+        <argsstring></argsstring>
+        <name>ndelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="38" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srchsummary::nrate</definition>
+        <argsstring></argsstring>
+        <name>nrate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="37" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrchsummary_1a6685d1f4dc6239603177fa6d05a12ea7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float srchsummary::snr[MAX_NRATE][MAX_NDELAY]</definition>
+        <argsstring>[MAX_NRATE][MAX_NDELAY]</argsstring>
+        <name>snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="43" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>srchsummary</label>
+        <link refid="structsrchsummary"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>darray</edgelabel>
+          <edgelabel>datum</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>max_delay</edgelabel>
+          <edgelabel>max_rate</edgelabel>
+          <edgelabel>min_delay</edgelabel>
+          <edgelabel>min_rate</edgelabel>
+          <edgelabel>snr</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>nd</edgelabel>
+          <edgelabel>ndelay</edgelabel>
+          <edgelabel>nrate</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="2">
+        <label>fringesum</label>
+        <link refid="structfringesum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>total_mbdelay</edgelabel>
+          <edgelabel>total_rate</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amp</edgelabel>
+          <edgelabel>dec_deg</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>mbdelay</edgelabel>
+          <edgelabel>phase_snr</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>reftape</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>no_freq</edgelabel>
+          <edgelabel>noloss_cotime</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>parents</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="33" bodyend="44"/>
+    <listofallmembers>
+      <member refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>darray</name></member>
+      <member refid="structsrchsummary_1ae09f4a35e6cdb9e41172e9c611cf71b9" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>datum</name></member>
+      <member refid="structsrchsummary_1a0992946168b275c99305711179d0207a" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>max_delay</name></member>
+      <member refid="structsrchsummary_1a2ff434e5adbfb77d3760d97082224a2a" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>max_rate</name></member>
+      <member refid="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>min_delay</name></member>
+      <member refid="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>min_rate</name></member>
+      <member refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>nd</name></member>
+      <member refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>ndelay</name></member>
+      <member refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>nrate</name></member>
+      <member refid="structsrchsummary_1a6685d1f4dc6239603177fa6d05a12ea7" prot="public" virt="non-virtual"><scope>srchsummary</scope><name>snr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

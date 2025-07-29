@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="hops__time_8h" kind="file" language="C++">
+    <compoundname>hops_time.h</compoundname>
+    <includes local="no">ctype.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="htime_8h" local="yes">htime.h</includes>
+    <includedby refid="hops__time_8c" local="yes">hops_time.c</includedby>
+    <includedby refid="ht__parser_8c" local="yes">ht_parser.c</includedby>
+    <includedby refid="ht__timeis_8c" local="yes">ht_timeis.c</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>hetetimecode.h</label>
+        <link refid="hetetimecode_8h"/>
+      </node>
+      <node id="11">
+        <label>time_float_type.h</label>
+        <link refid="time__float__type_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops_time.h</label>
+        <link refid="hops__time_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>stdlib.h</label>
+      </node>
+      <node id="10">
+        <label>string.h</label>
+      </node>
+      <node id="12">
+        <label>hops_config.h</label>
+      </node>
+      <node id="6">
+        <label>time.h</label>
+      </node>
+      <node id="8">
+        <label>math.h</label>
+      </node>
+      <node id="7">
+        <label>sys/time.h</label>
+      </node>
+      <node id="2">
+        <label>ctype.h</label>
+      </node>
+      <node id="4">
+        <label>htime.h</label>
+        <link refid="htime_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>hops_time.c</label>
+        <link refid="hops__time_8c"/>
+      </node>
+      <node id="1">
+        <label>hops_time.h</label>
+        <link refid="hops__time_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ht_parser.c</label>
+        <link refid="ht__parser_8c"/>
+      </node>
+      <node id="4">
+        <label>ht_timeis.c</label>
+        <link refid="ht__timeis_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="hops__time_8h_1a360449257fed8b1a5d7178a7ccd20659" prot="public" static="no" mutable="no">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl d_mult</definition>
+        <argsstring></argsstring>
+        <name>d_mult</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="18" column="14" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="18" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1ac9dbebd6102e66c2749a02f82ee9a006" prot="public" static="no" mutable="no">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl d_orig</definition>
+        <argsstring></argsstring>
+        <name>d_orig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="18" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1abccc572653663cb1edfe91d0ae50af42" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int echo</definition>
+        <argsstring></argsstring>
+        <name>echo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="16" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1aaa528419ba077f4dc3508842a20d0dfc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gibber</definition>
+        <argsstring></argsstring>
+        <name>gibber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="16" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1a1a1bf897623e9f2949e731050bae2515" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* joiner</definition>
+        <argsstring></argsstring>
+        <name>joiner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="17" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_parser.c" bodystart="19" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="17" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1a60d8f653d68b80f5aa5dc098e90427df" prot="public" static="no" mutable="no">
+        <type>FILE *</type>
+        <definition>FILE* ofp</definition>
+        <argsstring></argsstring>
+        <name>ofp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="15" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.c" bodystart="16" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="15" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1a7d25316a3044b7ac147657145e74bf74" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int qtype</definition>
+        <argsstring></argsstring>
+        <name>qtype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="16" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1ab056e7dcfb71fa88c4fcca38524113eb" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char * query_arg</definition>
+        <argsstring></argsstring>
+        <name>query_arg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="17" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1a004af5ca6cfa65a7c82e1e0b44f90dfb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int replace</definition>
+        <argsstring></argsstring>
+        <name>replace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="16" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1a99658514687e587b412657d1cab58de2" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char * report_arg</definition>
+        <argsstring></argsstring>
+        <name>report_arg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="17" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rtype</definition>
+        <argsstring></argsstring>
+        <name>rtype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="16" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1aa8b3f77336705157655ee5cfce5e177f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int statf</definition>
+        <argsstring></argsstring>
+        <name>statf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="16" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hops__time_8h_1a0cdb2f0d2f1082eda441e24d39d87133" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int verb</definition>
+        <argsstring></argsstring>
+        <name>verb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="16" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.c" bodystart="14" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="16" declcolumn="11"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="hops__time_8h_1a60731a3c2e570cb4ff2abce565a23b59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int all_arguments</definition>
+        <argsstring>(char *oa)</argsstring>
+        <name>all_arguments</name>
+        <param>
+          <type>char *</type>
+          <declname>oa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="29" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="196" bodyend="230" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="29" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="hops__time_8h_1a9a88842027f91290ff0a2ee9a5ed7129" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int delta_setup</definition>
+        <argsstring>(char *oa)</argsstring>
+        <name>delta_setup</name>
+        <param>
+          <type>char *</type>
+          <declname>oa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="23" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_parser.c" bodystart="178" bodyend="181" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="23" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="hops__time_8h_1ac6d1d0a7271bae6ddd30a04b4e8e65d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int dump_formats</definition>
+        <argsstring>(char *oa)</argsstring>
+        <name>dump_formats</name>
+        <param>
+          <type>char *</type>
+          <declname>oa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="21" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_parser.c" bodystart="148" bodyend="159" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="21" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="hops__time_8h_1a6833a6601f248dfe2108b94408e51a46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int input_setup</definition>
+        <argsstring>(char *oa)</argsstring>
+        <name>input_setup</name>
+        <param>
+          <type>char *</type>
+          <declname>oa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="24" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_parser.c" bodystart="182" bodyend="190" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="24" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="hops__time_8h_1a97e414d868aad14bc7e7544fff0a585e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int query_setup</definition>
+        <argsstring>(char *oa)</argsstring>
+        <name>query_setup</name>
+        <param>
+          <type>char *</type>
+          <declname>oa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="25" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_parser.c" bodystart="191" bodyend="199" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="25" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="hops__time_8h_1ae503a9e887cf83e318c56018a6d5dfb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int set_origin</definition>
+        <argsstring>(char *oa)</argsstring>
+        <name>set_origin</name>
+        <param>
+          <type>char *</type>
+          <declname>oa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="22" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_parser.c" bodystart="161" bodyend="177" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="22" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="hops__time_8h_1a4ec01185e1e89b10bdbdaee2c8ccfb96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int time_argument</definition>
+        <argsstring>(char *oa)</argsstring>
+        <name>time_argument</name>
+        <param>
+          <type>char *</type>
+          <declname>oa</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" line="28" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="186" bodyend="191" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h" declline="28" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Declarations<sp/>for<sp/>hops_time</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>hops_time_h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>hops_time_h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctype.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="htime_8h" kindref="compound">htime.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>hops_time.c<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>FILE<sp/>*<ref refid="hops__time_8h_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>;</highlight></codeline>
+<codeline lineno="16" refid="hops__time_8h_1abccc572653663cb1edfe91d0ae50af42" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="hops__time_8h_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>,<sp/><ref refid="hops__time_8h_1abccc572653663cb1edfe91d0ae50af42" kindref="member">echo</ref>,<sp/><ref refid="hops__time_8h_1a004af5ca6cfa65a7c82e1e0b44f90dfb" kindref="member">replace</ref>,<sp/><ref refid="hops__time_8h_1aa8b3f77336705157655ee5cfce5e177f" kindref="member">statf</ref>,<sp/><ref refid="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" kindref="member">rtype</ref>,<sp/><ref refid="hops__time_8h_1a7d25316a3044b7ac147657145e74bf74" kindref="member">qtype</ref>,<sp/><ref refid="hops__time_8h_1aaa528419ba077f4dc3508842a20d0dfc" kindref="member">gibber</ref>;</highlight></codeline>
+<codeline lineno="17" refid="hops__time_8h_1ab056e7dcfb71fa88c4fcca38524113eb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="hops__time_8h_1a1a1bf897623e9f2949e731050bae2515" kindref="member">joiner</ref>,<sp/>*<ref refid="hops__time_8h_1ab056e7dcfb71fa88c4fcca38524113eb" kindref="member">query_arg</ref>,<sp/>*<ref refid="hops__time_8h_1a99658514687e587b412657d1cab58de2" kindref="member">report_arg</ref>;</highlight></codeline>
+<codeline lineno="18" refid="hops__time_8h_1ac9dbebd6102e66c2749a02f82ee9a006" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><sp/><sp/><ref refid="hops__time_8h_1a360449257fed8b1a5d7178a7ccd20659" kindref="member">d_mult</ref>,<sp/><ref refid="hops__time_8h_1ac9dbebd6102e66c2749a02f82ee9a006" kindref="member">d_orig</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>ht_parser.c<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hops__time_8h_1ac6d1d0a7271bae6ddd30a04b4e8e65d4" kindref="member">dump_formats</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*oa);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hops__time_8h_1ae503a9e887cf83e318c56018a6d5dfb8" kindref="member">set_origin</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*oa);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hops__time_8h_1a9a88842027f91290ff0a2ee9a5ed7129" kindref="member">delta_setup</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*oa);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hops__time_8h_1a6833a6601f248dfe2108b94408e51a46" kindref="member">input_setup</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*oa);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hops__time_8h_1a97e414d868aad14bc7e7544fff0a585e" kindref="member">query_setup</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*oa);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>ht_utils.c<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hops__time_8h_1a4ec01185e1e89b10bdbdaee2c8ccfb96" kindref="member">time_argument</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*oa);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hops__time_8h_1a60731a3c2e570cb4ff2abce565a23b59" kindref="member">all_arguments</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*oa);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>hops_time_h<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hops_time.h"/>
+  </compounddef>
+</doxygen>

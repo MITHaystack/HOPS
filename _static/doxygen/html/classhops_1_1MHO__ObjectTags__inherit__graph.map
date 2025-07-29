@@ -1,0 +1,8 @@
+<map id="hops::MHO_ObjectTags" name="hops::MHO_ObjectTags">
+<area shape="rect" id="node1" title="Class MHO_ObjectTags." alt="" coords="294,155,455,181"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__Taggable.html" title="Class MHO_Taggable." alt="" coords="203,80,349,107"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__JSONWrapper.html" title=" " alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node4" href="$classhops_1_1MHO__Serializable.html" title="Class MHO_Serializable." alt="" coords="208,5,368,32"/>
+<area shape="rect" id="node5" href="$classhops_1_1MHO__ExtensibleElement.html" title="Class MHO_ExtensibleElement." alt="" coords="373,80,573,107"/>
+<area shape="rect" id="node6" href="$classhops_1_1MHO__Element.html" title="Class MHO_Element." alt="" coords="403,5,544,32"/>
+</map>

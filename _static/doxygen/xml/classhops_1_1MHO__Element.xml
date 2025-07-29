@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Element" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_Element</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__ExtendedElement" prot="public" virt="non-virtual">hops::MHO_ExtendedElement&lt; XExtensionType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ExtensibleElement" prot="public" virt="non-virtual">hops::MHO_ExtensibleElement</derivedcompoundref>
+    <includes refid="MHO__ExtensibleElement_8hh" local="no">MHO_ExtensibleElement.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Element_1a8457a2bfa206699701a2163585b6cc5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Element::MHO_Element</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Element</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" line="44" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Element_1aea329679a16385ae6ac6986128360887" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Element::~MHO_Element</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Element</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Element_1a3676becf00b1d9f0cdcc9d03b2b37636" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_Element::Accept</definition>
+        <argsstring>(MHO_Visitor *aVisitor)=0</argsstring>
+        <name>Accept</name>
+        <reimplementedby refid="classhops_1_1MHO__ExtensibleElement_1a6196efd2aa51a40c710979222c924a7a">Accept</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ExtendedElement_1af0d56cab94072d23b15ef5c4a63c5a23">Accept</reimplementedby>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Visitor" kindref="compound">MHO_Visitor</ref> *</type>
+          <declname>aVisitor</declname>
+        </param>
+        <briefdescription>
+<para>Visits all extensions of this extensible element using the given visitor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aVisitor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__Visitor" kindref="compound">MHO_Visitor</ref> used to visit each extension. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" line="53" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__Element" kindref="compound">MHO_Element</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="19">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 1 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>hops::MHO_Axis&lt; double &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_dr_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_TableContainer&lt; pcal_phasor_type, multitone_pcal_axis_type &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>hops::MHO_Axis&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>hops::MHO_VectorContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__VectorContainer"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, RANK &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ExtendedElement&lt; XExtensionType &gt;</label>
+        <link refid="classhops_1_1MHO__ExtendedElement"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>hops::MHO_ScalarContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__ScalarContainer"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_NDArrayWrapper&lt; double, 3 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>hops::MHO_ObjectTags</label>
+        <link refid="classhops_1_1MHO__ObjectTags"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" bodystart="42" bodyend="54"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Element_1a3676becf00b1d9f0cdcc9d03b2b37636" prot="public" virt="pure-virtual"><scope>hops::MHO_Element</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__Element_1a8457a2bfa206699701a2163585b6cc5f" prot="public" virt="non-virtual"><scope>hops::MHO_Element</scope><name>MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__Element_1aea329679a16385ae6ac6986128360887" prot="public" virt="virtual"><scope>hops::MHO_Element</scope><name>~MHO_Element</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

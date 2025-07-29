@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="phasecal_8py" kind="file" language="Python">
+    <compoundname>phasecal.py</compoundname>
+    <innernamespace refid="namespacevpal_1_1phasecal">vpal::phasecal</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacevpal_1_1phasecal" refkind="compound"><highlight class="stringliteral">&apos;&apos;&apos;</highlight></codeline>
+<codeline lineno="2"><highlight class="stringliteral">phasecal.py</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">Module<sp/>providing<sp/>some<sp/>useful<sp/>functions<sp/>for<sp/>the<sp/>phase<sp/>calibration<sp/>software.</highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral">&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>copy</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy.linalg<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>la</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>functools<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>reduce</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacevpal_1_1phasecal_1afd309f5449373301bb1db84aaa930567" kindref="member">mult_corr</ref>(Rxx_full,<sp/>bp_good=None,<sp/>bad_nans=False):</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;&apos;&apos;</highlight></codeline>
+<codeline lineno="16"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Compute<sp/>multiple<sp/>correlation<sp/>coefficients<sp/>for<sp/>selected</highlight></codeline>
+<codeline lineno="17"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>bandpols,<sp/>whose<sp/>indices<sp/>are<sp/>in<sp/>the<sp/>sequence<sp/>bp_good.</highlight></codeline>
+<codeline lineno="18"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="19"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/>C.T<sp/>is<sp/>C<sp/>transposed,</highlight></codeline>
+<codeline lineno="20"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/>Rxx<sp/>is<sp/>the<sp/>matrix<sp/>of<sp/>cross-correlations<sp/>between<sp/>the<sp/>band-pol<sp/>series</highlight></codeline>
+<codeline lineno="21"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with<sp/>the<sp/>i-th<sp/>bandpol<sp/>excluded.</highlight></codeline>
+<codeline lineno="22"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="23"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Input<sp/>parameters:</highlight></codeline>
+<codeline lineno="24"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/>Rxx_full[nbandpol,nbandpol]<sp/>correlation<sp/>matrix<sp/>of<sp/>the<sp/>cable<sp/>delay</highlight></codeline>
+<codeline lineno="25"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>time<sp/>sequences<sp/>in<sp/>the<sp/>rows<sp/>of<sp/>delps[nbandpol,:]</highlight></codeline>
+<codeline lineno="26"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/>bp_good:<sp/>list<sp/>of<sp/>indices<sp/>of<sp/>good<sp/>band-pols</highlight></codeline>
+<codeline lineno="27"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/>bad_nans:</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>False:<sp/>return<sp/>in<sp/>R_mult<sp/>only<sp/>the<sp/>multiple<sp/>correlations<sp/>for<sp/>the</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bandpols<sp/>listed<sp/>in<sp/>bp_good.<sp/>len(R_mult)<sp/>==<sp/>len(bp_good).</highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>True:<sp/><sp/>return<sp/>in<sp/>R_mult<sp/>the<sp/>multiple<sp/>correlations<sp/>at<sp/>the<sp/>locations</highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listed<sp/>in<sp/>bp_good,<sp/>and<sp/>fill<sp/>the<sp/>rest<sp/>with<sp/>NaNs.</highlight></codeline>
+<codeline lineno="32"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len(R_mult)<sp/>==<sp/>np.size(Rxx_full,0).</highlight></codeline>
+<codeline lineno="33"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="34"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="35"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/>R_mult,<sp/>array<sp/>of<sp/>multiple<sp/>correlation<sp/>coefficients,<sp/>one<sp/>for<sp/>each</highlight></codeline>
+<codeline lineno="36"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bandpol<sp/>indicated<sp/>in<sp/>bp_good.<sp/>The<sp/>size<sp/>of<sp/>R_mult<sp/>depends<sp/>on</highlight></codeline>
+<codeline lineno="37"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>the<sp/>boolean<sp/>value<sp/>in<sp/>bad_nans<sp/>parameter.</highlight></codeline>
+<codeline lineno="38"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>nbandpol<sp/>=<sp/>np.size(Rxx_full,0)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>bp_good<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rxx_good<sp/>=<sp/>np.copy(Rxx_full)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nbandpol_good<sp/>=<sp/>np.size(Rxx_full,<sp/>0)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>From<sp/>matrix<sp/>Rxx_full,<sp/>extract<sp/>a<sp/>sub-matrix<sp/>Rxx_good</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>having<sp/>only<sp/>columns<sp/>and<sp/>rows<sp/>with<sp/>the<sp/>indices<sp/>from<sp/>list<sp/>bp_good</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cols<sp/>=<sp/>list(bp_good)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Like<sp/>[<sp/>2,<sp/><sp/><sp/>3,<sp/><sp/><sp/>4,<sp/><sp/><sp/>5,<sp/><sp/><sp/>7<sp/>]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rows<sp/>=<sp/>[[i]<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>i<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>cols]<sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Like<sp/>[[2],<sp/>[3],<sp/>[4],<sp/>[5],<sp/>[7]]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rxx_good<sp/>=<sp/>Rxx_full[rows,cols]</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nbandpol_good<sp/>=<sp/>np.size(Rxx_good,<sp/>0)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>R_mult2<sp/>=<sp/>np.zeros(nbandpol_good,<sp/>dtype=float)<sp/><sp/></highlight><highlight class="comment">#<sp/>Squared<sp/>mult<sp/>corrs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>R_mult_good<sp/>=<sp/>np.zeros_like(R_mult2)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Mult<sp/>corr<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ibp<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(nbandpol_good):</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>The<sp/>ibp-th<sp/>bandpol<sp/>is<sp/>assumed<sp/>an<sp/>independent<sp/>variable.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Rxx<sp/>is<sp/>the<sp/>correlation<sp/>matrix<sp/>of<sp/>all<sp/>the<sp/>the<sp/>bandpols,<sp/>or<sp/>those</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>listed<sp/>in<sp/>bp_good,<sp/>if<sp/>it<sp/>is<sp/>given.<sp/>It<sp/>is<sp/>obtained<sp/>by<sp/>scratching<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>ibp-th<sp/>row<sp/>and<sp/>ibp-th<sp/>column<sp/>from<sp/>Rxx_good</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Rxx<sp/>=<sp/>np.delete(np.delete(Rxx_good,<sp/>ibp,<sp/>axis=0),<sp/>ibp,<sp/>axis=1)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>cor<sp/>is<sp/>the<sp/>vector<sp/>of<sp/>cross-correlations<sp/>of<sp/>each<sp/>of<sp/>the<sp/>bandpols,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>except<sp/>the<sp/>ibp-th<sp/>one,<sp/>with<sp/>the<sp/>ibp-th<sp/>bandpol.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cor<sp/>=<sp/>np.delete(Rxx_good[ibp,:],<sp/>ibp,<sp/>axis=0)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>invRxx<sp/>=<sp/>la.inv(Rxx)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_mult2[ibp]<sp/>=<sp/>reduce(np.dot,<sp/>[cor,<sp/>invRxx,<sp/>cor])<sp/><sp/></highlight><highlight class="comment">#<sp/>=<sp/>C.T<sp/>*<sp/>Rxx^-1<sp/>*<sp/>C</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>R_mult_good<sp/>=<sp/>np.sqrt(R_mult2)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>bad_nans:</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_mult<sp/>=<sp/>np.zeros(nbandpol,<sp/>dtype=float)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_mult[:]<sp/>=<sp/>np.NaN</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#ibp_good<sp/>=<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ibp<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(nbandpol_good):</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>R_mult[bp_good[ibp]]<sp/>=<sp/>R_mult_good[ibp]</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>R_mult</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>R_mult_good</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacevpal_1_1phasecal_1a980fc0465f23921e78aecc34f128c942" kindref="member">write_xcorrmx</ref>(fout,<sp/>title,<sp/>Rxx_full,<sp/>bp_good,<sp/>station,<sp/>\</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>experiment_number,<sp/>experiment_code,<sp/>bp_sym):</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;&apos;&apos;</highlight></codeline>
+<codeline lineno="94"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Save<sp/>the<sp/>cross-correlation<sp/>matrix<sp/>in<sp/>file<sp/>fout.</highlight></codeline>
+<codeline lineno="95"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>nbandpol<sp/>=<sp/>np.size(Rxx_full,0)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>nbp_sym<sp/>=<sp/>len(bp_sym)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>wrl2_1<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;#\n#<sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>title<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n#&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>+<sp/>&apos;<sp/>Station<sp/>&apos;<sp/>+<sp/>station<sp/>+<sp/>\</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;,<sp/>Exp.<sp/>&apos;<sp/>+<sp/>experiment_number<sp/>+<sp/>&apos;,<sp/>Code<sp/>&apos;<sp/>+<sp/>experiment_code<sp/>+<sp/>\</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;\n#\n&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>wrl2_2<sp/>=<sp/>14*</highlight><highlight class="stringliteral">&apos;<sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ibp<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(nbp_sym):<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>nbp_sym<sp/>=<sp/>8<sp/>bandpols</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrl2_2<sp/>+=<sp/></highlight><highlight class="stringliteral">&apos;<sp/><sp/><sp/><sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>bp_sym[ibp]<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;<sp/><sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>fout.write(wrl2_1<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>fout.write(wrl2_2<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>iy<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(nbandpol):</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrl<sp/>=<sp/>11*</highlight><highlight class="stringliteral">&apos;<sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>bp_sym[iy]<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;<sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ix<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(nbandpol):</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iy<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>bp_good)<sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>(ix<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>bp_good):</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrl<sp/>+=<sp/></highlight><highlight class="stringliteral">&apos;<sp/>{:6.3f}<sp/>&apos;</highlight><highlight class="normal">.format(Rxx_full[iy,ix])</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrl<sp/>+=<sp/>8*</highlight><highlight class="stringliteral">&apos;<sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fout.write(wrl<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>fout.write(</highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacevpal_1_1phasecal_1af52d271dad0cfa4b6749b94b6fdf9d58" kindref="member">write_numbers</ref>(fout,<sp/>prefix,<sp/>numbers,<sp/>bp_good):</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;&apos;&apos;</highlight></codeline>
+<codeline lineno="124"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Write<sp/>a<sp/>line<sp/>of<sp/>numbers<sp/>at<sp/>the<sp/>positions<sp/>at<sp/>bp_good,<sp/>and<sp/>blanks<sp/>at<sp/>others.</highlight></codeline>
+<codeline lineno="125"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>The<sp/>numbers<sp/>can<sp/>be<sp/>multiple<sp/>correlations<sp/>or<sp/>correlation<sp/>medians<sp/>and</highlight></codeline>
+<codeline lineno="126"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>they<sp/>are<sp/>supposed<sp/>to<sp/>be<sp/>printed<sp/>just<sp/>at<sp/>the<sp/>locations<sp/>of<sp/>the</highlight></codeline>
+<codeline lineno="127"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>cross-correlation<sp/>matrix<sp/>columns.</highlight></codeline>
+<codeline lineno="128"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>nbandpol<sp/>=<sp/>len(numbers)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>wrl<sp/>=<sp/>copy.copy(prefix)<sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>13*&apos;<sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ibp<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(nbandpol):</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>ibp<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>bp_good:</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrl<sp/>+=<sp/></highlight><highlight class="stringliteral">&apos;<sp/>{:6.3f}<sp/>&apos;</highlight><highlight class="normal">.format(numbers[ibp])</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wrl<sp/>+=<sp/>8*</highlight><highlight class="stringliteral">&apos;<sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>fout.write(wrl<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacevpal_1_1phasecal_1abf7dbc4aa3ee8e009c2a8246ff609d18" kindref="member">write_title</ref>(fout,<sp/>title,<sp/>station,<sp/>experiment_number,<sp/>experiment_code,<sp/>\</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bp_sym,<sp/>threshold_median):</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;&apos;&apos;</highlight></codeline>
+<codeline lineno="144"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Write<sp/>title<sp/>in<sp/>file<sp/>fout.</highlight></codeline>
+<codeline lineno="145"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>nbp_sym<sp/>=<sp/>len(bp_sym)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>wrl1<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;#\n#<sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>title<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n#\n#<sp/>Station<sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>station<sp/>+<sp/>\</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;,<sp/>Experiment<sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>experiment_number<sp/>+<sp/>\</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;,<sp/>Code<sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>experiment_code<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>wrl2<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;#\n#<sp/>Median<sp/>threshold:<sp/>&apos;</highlight><highlight class="normal"><sp/>+<sp/>str(threshold_median)<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>fout.write(wrl1)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>fout.write(wrl2)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>wrline1<sp/>=<sp/>&apos;#<sp/>&apos;<sp/>+<sp/>experiment_code<sp/>+<sp/>&apos;<sp/>&apos;<sp/>+<sp/>experiment_number<sp/>+<sp/>&apos;<sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>for<sp/>ibp<sp/>in<sp/>range(nbp_sym):<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>nbp_sym<sp/>=<sp/>8<sp/>bandpols</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>wrline1<sp/>+=<sp/>&apos;<sp/><sp/><sp/><sp/>&apos;<sp/>+<sp/>bp_sym[ibp]<sp/>+<sp/>&apos;<sp/><sp/>&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>fout.write(wrline1<sp/>+<sp/>&apos;\n&apos;)</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py"/>
+  </compounddef>
+</doxygen>

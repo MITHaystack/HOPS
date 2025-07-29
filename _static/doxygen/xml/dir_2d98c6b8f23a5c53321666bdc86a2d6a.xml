@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_2d98c6b8f23a5c53321666bdc86a2d6a" kind="dir">
+    <compoundname>Vex2JSON</compoundname>
+    <innerdir refid="dir_3f534e6e189b0de69b57dea7e063d219">include</innerdir>
+    <innerdir refid="dir_1bd9ec73ebdcc653377763de55af03cc">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/"/>
+  </compounddef>
+</doxygen>

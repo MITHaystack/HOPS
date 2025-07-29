@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FringeFitterFactory" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FringeFitterFactory</compoundname>
+    <includes refid="MHO__FringeFitterFactory_8hh" local="no">MHO_FringeFitterFactory.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeFitterFactory_1a1deb2b6ebe41d1b64533e8d00c1ddabb" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+        <definition>MHO_FringeData* hops::MHO_FringeFitterFactory::fFringeData</definition>
+        <argsstring></argsstring>
+        <name>fFringeData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="40" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeFitterFactory_1a2f43ce1817760f1cbe80c9f9c3c911b4" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FringeFitter" kindref="compound">MHO_FringeFitter</ref> *</type>
+        <definition>MHO_FringeFitter* hops::MHO_FringeFitterFactory::fFringeFitter</definition>
+        <argsstring></argsstring>
+        <name>fFringeFitter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="41" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitterFactory_1ac548d55b22a392cf56602893a40d48e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FringeFitterFactory::MHO_FringeFitterFactory</definition>
+        <argsstring>(MHO_FringeData *data)</argsstring>
+        <name>MHO_FringeFitterFactory</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeFitterFactory.cc" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitterFactory_1a8d693536d86fd10980706a872b53ae41" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_FringeFitterFactory::~MHO_FringeFitterFactory</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FringeFitterFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeFitterFactory.cc" bodystart="27" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitterFactory_1ae35100eee68f66698fea8bf3bc55a319" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__FringeFitter" kindref="compound">MHO_FringeFitter</ref> *</type>
+        <definition>MHO_FringeFitter * hops::MHO_FringeFitterFactory::ConstructFringeFitter</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructFringeFitter</name>
+        <briefdescription>
+<para>Constructs and configures an <ref refid="classhops_1_1MHO__FringeFitter" kindref="compound">MHO_FringeFitter</ref> instance based on configuration. the underlying object returned can be a <ref refid="classhops_1_1MHO__BasicFringeFitter" kindref="compound">MHO_BasicFringeFitter</ref> or <ref refid="classhops_1_1MHO__IonosphericFringeFitter" kindref="compound">MHO_IonosphericFringeFitter</ref> (other types will be introduced in the future) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MHO_FringeFitter* - The constructed fringe fitter </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="36" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeFitterFactory.cc" bodystart="34" bodyend="76"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FringeFitterFactory" kindref="compound">MHO_FringeFitterFactory</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Fringe fitter factory, builds the appropriate underlying fitter type, and returns it as a MHO_FringeFitter*.</para>
+<para><simplesect kind="author"><para>J. Barrettj - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sun Oct 13 08:05:51 PM EDT 2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="25">
+        <label>size_t</label>
+      </node>
+      <node id="29">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="32">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="16" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="19">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="23" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="16" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ParameterStore</label>
+        <link refid="classhops_1_1MHO__ParameterStore"/>
+      </node>
+      <node id="20">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="21" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="16" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>json</label>
+      </node>
+      <node id="14">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="26">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>key_pair</label>
+      </node>
+      <node id="24">
+        <label>int</label>
+      </node>
+      <node id="16">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>std::set&lt; std::string &gt;</label>
+        <childnode refid="13" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FringeFitterFactory</label>
+        <link refid="classhops_1_1MHO__FringeFitterFactory"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fFringeFitter</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fFringeData</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_FringeFitter</label>
+        <link refid="classhops_1_1MHO__FringeFitter"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fOperatorBuildManager</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fFringeData</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>fOperatorToolbox</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fScanStore</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>uint8_t</label>
+      </node>
+      <node id="7">
+        <label>hops::MHO_ScanDataStore</label>
+        <link refid="classhops_1_1MHO__ScanDataStore"/>
+      </node>
+      <node id="30">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="16" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_OperatorBuilderManager</label>
+        <link refid="classhops_1_1MHO__OperatorBuilderManager"/>
+      </node>
+      <node id="9">
+        <label>std::map&lt; hops::MHO_Serializable *, key_pair &gt;</label>
+        <childnode refid="10" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="8">
+        <label>hops::MHO_ContainerStore</label>
+        <link refid="classhops_1_1MHO__ContainerStore"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fObjectsToIds</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fShortNameSet</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fShortNameToIds</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fIdsToObjects</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>fDictionary</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="23" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>hops::MHO_OperatorToolbox</label>
+        <link refid="classhops_1_1MHO__OperatorToolbox"/>
+      </node>
+      <node id="18">
+        <label>std::map&lt; key_pair, hops::MHO_Serializable * &gt;</label>
+        <childnode refid="10" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="23">
+        <label>char</label>
+      </node>
+      <node id="5">
+        <label>hops::MHO_FringeData</label>
+        <link refid="classhops_1_1MHO__FringeData"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fControlFormat</edgelabel>
+          <edgelabel>fControlStatements</edgelabel>
+          <edgelabel>fPlotData</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fScanStore</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>std::string</label>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitterFactory.hh" bodystart="24" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FringeFitterFactory_1ae35100eee68f66698fea8bf3bc55a319" prot="public" virt="non-virtual"><scope>hops::MHO_FringeFitterFactory</scope><name>ConstructFringeFitter</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterFactory_1a1deb2b6ebe41d1b64533e8d00c1ddabb" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeFitterFactory</scope><name>fFringeData</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterFactory_1a2f43ce1817760f1cbe80c9f9c3c911b4" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeFitterFactory</scope><name>fFringeFitter</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterFactory_1ac548d55b22a392cf56602893a40d48e9" prot="public" virt="non-virtual"><scope>hops::MHO_FringeFitterFactory</scope><name>MHO_FringeFitterFactory</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterFactory_1a8d693536d86fd10980706a872b53ae41" prot="public" virt="virtual"><scope>hops::MHO_FringeFitterFactory</scope><name>~MHO_FringeFitterFactory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

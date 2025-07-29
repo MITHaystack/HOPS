@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OpenCLComplexPointwiseMultiply" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_OpenCLComplexPointwiseMultiply</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__BinaryOperator" prot="public" virt="non-virtual">hops::MHO_BinaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt;, MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt;, MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt; &gt;</basecompoundref>
+    <includes refid="MHO__ComplexPointwiseMultiply_8hh" local="no">MHO_ComplexPointwiseMultiply.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a4cbd4efa30492fbf221ab9a1df363912" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_OpenCLComplexPointwiseMultiply::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" line="38" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1af63ff791b7218f3b91a3c9dcc60242f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLComplexPointwiseMultiply::MHO_OpenCLComplexPointwiseMultiply</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_OpenCLComplexPointwiseMultiply</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a1a597f02ae14dc5d9f588ce1d4773aa2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_OpenCLComplexPointwiseMultiply::~MHO_OpenCLComplexPointwiseMultiply</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OpenCLComplexPointwiseMultiply</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a51165b3bf5d7c6746adfc98c738898ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OpenCLComplexPointwiseMultiply::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__BinaryOperator_1af0716d50495400b0510af28a5ec75c8e">Execute</reimplements>
+        <briefdescription>
+<para>Executes operation using provided arguments and returns result. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success/failure of execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" line="35" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a5552fe2964320dc5c84c5950d6985922" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OpenCLComplexPointwiseMultiply::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__BinaryOperator_1aa9d4b322af4ea6f5e98afc218681abe1">Initialize</reimplements>
+        <briefdescription>
+<para>Initializes the object using arguments from fArgs tuple. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if initialization succeeds, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" line="33" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para></para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OpenCLComplexPointwiseMultiply</label>
+        <link refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_BinaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt;, MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt;, MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OpenCLComplexPointwiseMultiply</label>
+        <link refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_BinaryOperator&lt; MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt;, MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt;, MHO_NDArrayWrapper&lt; std::complex&lt; XFloatType &gt;, RANK &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_ComplexPointwiseMultiply.hh" bodystart="27" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a51165b3bf5d7c6746adfc98c738898ce" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1a7448e37ee77a50fb3cbe4d93e0df92e7" prot="protected" virt="pure-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>fArgs</name></member>
+      <member refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a4cbd4efa30492fbf221ab9a1df363912" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a5552fe2964320dc5c84c5950d6985922" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1a7640bfa5a29b53673e615aaf1c2ff3a1" prot="protected" virt="pure-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1abd9b011b1ad9ce7ed98fac23e0153afa" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>MHO_BinaryOperator</name></member>
+      <member refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1af63ff791b7218f3b91a3c9dcc60242f2" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>MHO_OpenCLComplexPointwiseMultiply</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1ab98c0e7cdbc7f23197964387625f9e66" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1ace7fcbd64341e102dd5f42985a8d26f4" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>~MHO_BinaryOperator</name></member>
+      <member refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a1a597f02ae14dc5d9f588ce1d4773aa2" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>~MHO_OpenCLComplexPointwiseMultiply</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_OpenCLComplexPointwiseMultiply</scope><name>~MHO_Operator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

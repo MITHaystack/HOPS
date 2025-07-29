@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structMHO__SumIdentity" kind="struct" language="C++" prot="public">
+    <compoundname>MHO_SumIdentity</compoundname>
+    <includes refid="MHO__CompoundReductions_8hh" local="no">MHO_CompoundReductions.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structMHO__SumIdentity_1a57a15e9880403ac616026e4d94baee59" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>XValueType</type>
+        <definition>static XValueType MHO_SumIdentity&lt; XValueType &gt;::value</definition>
+        <argsstring>()</argsstring>
+        <name>value</name>
+        <briefdescription>
+<para>Returns the identity for the sum operation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>XValueType </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="27" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="27" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structMHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="20" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structMHO__SumIdentity_1a57a15e9880403ac616026e4d94baee59" prot="public" virt="non-virtual"><scope>MHO_SumIdentity</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__ControlStatement" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_ControlStatement</compoundname>
+    <includes refid="MHO__ControlDefinitions_8hh" local="no">MHO_ControlDefinitions.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__ControlStatement_1ab5665de6a60245a04210820ebab2b52e" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlStatement::fKeyword</definition>
+        <argsstring></argsstring>
+        <name>fKeyword</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="46" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__ControlStatement_1a8f0377c88b082d3a34d5321511cbe24e" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ControlStatement::fStartLineNumber</definition>
+        <argsstring></argsstring>
+        <name>fStartLineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="45" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__ControlStatement_1a48acec0344c9952167fbcc220060f2bc" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt;</type>
+        <definition>std::vector&lt; MHO_Token &gt; hops::MHO_ControlStatement::fTokens</definition>
+        <argsstring></argsstring>
+        <name>fTokens</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="47" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__ControlStatement" kindref="compound">MHO_ControlStatement</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>size_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ControlStatement</label>
+        <link refid="structhops_1_1MHO__ControlStatement"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fKeyword</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fStartLineNumber</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fTokens</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; hops::MHO_Token &gt;</label>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_Token</label>
+        <link refid="structhops_1_1MHO__Token"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fValue</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fLineNumber</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::string</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="44" bodyend="48"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__ControlStatement_1ab5665de6a60245a04210820ebab2b52e" prot="public" virt="non-virtual"><scope>hops::MHO_ControlStatement</scope><name>fKeyword</name></member>
+      <member refid="structhops_1_1MHO__ControlStatement_1a8f0377c88b082d3a34d5321511cbe24e" prot="public" virt="non-virtual"><scope>hops::MHO_ControlStatement</scope><name>fStartLineNumber</name></member>
+      <member refid="structhops_1_1MHO__ControlStatement_1a48acec0344c9952167fbcc220060f2bc" prot="public" virt="non-virtual"><scope>hops::MHO_ControlStatement</scope><name>fTokens</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

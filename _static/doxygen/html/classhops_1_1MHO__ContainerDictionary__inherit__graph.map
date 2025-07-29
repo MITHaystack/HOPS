@@ -1,0 +1,6 @@
+<map id="hops::MHO_ContainerDictionary" name="hops::MHO_ContainerDictionary">
+<area shape="rect" id="node1" title="Class MHO_ContainerDictionary." alt="" coords="13,80,219,107"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__ContainerFileInterface.html" title="Class MHO_ContainerFileInterface &#45; a MHO_ContainerDictionary which can read/write objects to file." alt="" coords="5,155,227,181"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__ClassIdentityMap.html" title="Class MHO_ClassIdentityMap." alt="" coords="19,5,213,32"/>
+<area shape="rect" id="node4" href="$classhops_1_1MHO__HDF5ContainerFileInterface.html" title="Class to convert a HOPS4 file to HDF5." alt="" coords="14,229,218,271"/>
+</map>

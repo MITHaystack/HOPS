@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="vector__sum_8h" kind="file" language="C++">
+    <compoundname>vector_sum.h</compoundname>
+    <includes local="no">cuComplex.h</includes>
+    <includes local="no">cufft.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">cuda_runtime_api.h</includes>
+    <includes local="no">cuda.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>cufft.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="1">
+        <label>vector_sum.h</label>
+        <link refid="vector__sum_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cuComplex.h</label>
+      </node>
+      <node id="6">
+        <label>cuda.h</label>
+      </node>
+      <node id="5">
+        <label>cuda_runtime_api.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="vector__sum_8h_1a589f368134d3df6606acf5edc6d51c6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>__global__ void</type>
+        <definition>__global__ void cuda_vector_add</definition>
+        <argsstring>(float *a, float *b, float *c, int length)</argsstring>
+        <name>cuda_vector_add</name>
+        <param>
+          <type>float *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" line="12" column="17" declfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" declline="12" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="vector__sum_8h_1a568ab8f00b4de8110b7e8b713a469eb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>__global__ void</type>
+        <definition>__global__ void cuda_vector_reduce</definition>
+        <argsstring>(float *a, float *b, int length)</argsstring>
+        <name>cuda_vector_reduce</name>
+        <param>
+          <type>float *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" line="16" column="17" declfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" declline="16" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="vector__sum_8h_1a1d1d1417b131d349717a2a6e04ff681f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void vector_reduce</definition>
+        <argsstring>(float *a, float *b, int n)</argsstring>
+        <name>vector_reduce</name>
+        <param>
+          <type>float *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" line="17" column="17" declfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" declline="17" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="vector__sum_8h_1a20730fda85099a23a8d52ae5483e2ff0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void vector_sum</definition>
+        <argsstring>(float *a, float *b, float *c, int n)</argsstring>
+        <name>vector_sum</name>
+        <param>
+          <type>float *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" line="13" column="17" declfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h" declline="13" declcolumn="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>H_VECTOR_SUM_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>H_VECTOR_SUM_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>CUDA<sp/>includes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cuComplex.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cufft.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cuda_runtime_api.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cuda.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//sum<sp/>two<sp/>vectors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="vector__sum_8h_1a589f368134d3df6606acf5edc6d51c6a" refkind="member"><highlight class="normal">__global__<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="vector__sum_8h_1a589f368134d3df6606acf5edc6d51c6a" kindref="member">cuda_vector_add</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>a,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>b,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="13" refid="vector__sum_8h_1a20730fda85099a23a8d52ae5483e2ff0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="vector__sum_8h_1a20730fda85099a23a8d52ae5483e2ff0" kindref="member">vector_sum</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>a,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>b,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>c,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//sum<sp/>a<sp/>single<sp/>vector<sp/>to<sp/>reduce<sp/>it<sp/>to<sp/>a<sp/>single<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="vector__sum_8h_1a568ab8f00b4de8110b7e8b713a469eb7" refkind="member"><highlight class="normal">__global__<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="vector__sum_8h_1a568ab8f00b4de8110b7e8b713a469eb7" kindref="member">cuda_vector_reduce</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>a,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>b,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>length);</highlight></codeline>
+<codeline lineno="17" refid="vector__sum_8h_1a1d1d1417b131d349717a2a6e04ff681f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="vector__sum_8h_1a1d1d1417b131d349717a2a6e04ff681f" kindref="member">vector_reduce</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>a,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>b,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/vector_sum.h"/>
+  </compounddef>
+</doxygen>

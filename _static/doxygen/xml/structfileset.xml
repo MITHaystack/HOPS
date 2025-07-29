@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfileset" kind="struct" language="C++" prot="public">
+    <compoundname>fileset</compoundname>
+    <includes refid="fileset_8h" local="no">fileset.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfileset_1aa97284d05e1496152eebec876ee4f5ae" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fileset::expno</definition>
+        <argsstring></argsstring>
+        <name>expno</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="11" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfileset_1a2db7ed0d980f7ea6c3927289884c01d7" prot="public" static="no" mutable="no">
+        <type><ref refid="structfstruct" kindref="compound">fstruct</ref></type>
+        <definition>fstruct fileset::file[MAXFSET]</definition>
+        <argsstring>[MAXFSET]</argsstring>
+        <name>file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="15" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfileset_1a14d23479117564d5fabb31a1890c678d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fileset::maxfile</definition>
+        <argsstring></argsstring>
+        <name>maxfile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="14" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfileset_1aaeb98c6594107d61ed7ea3bbd6aa17bd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fileset::rootname[40]</definition>
+        <argsstring>[40]</argsstring>
+        <name>rootname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfileset_1af21ae88cc0cf2bfd27de3e12d9c48d85" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fileset::scandir[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>scandir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfileset_1a4062ead97675b88a97ebe180b272d1ee" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fileset::scanname[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>scanname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="12" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>fileset</label>
+        <link refid="structfileset"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>expno</edgelabel>
+          <edgelabel>maxfile</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>rootname</edgelabel>
+          <edgelabel>scandir</edgelabel>
+          <edgelabel>scanname</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>file</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="4">
+        <label>fstruct</label>
+        <link refid="structfstruct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>floatparm</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>done</edgelabel>
+          <edgelabel>type</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>poln</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>station</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>filenum</edgelabel>
+          <edgelabel>intparm</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" line="8" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fileset.h" bodystart="9" bodyend="16"/>
+    <listofallmembers>
+      <member refid="structfileset_1aa97284d05e1496152eebec876ee4f5ae" prot="public" virt="non-virtual"><scope>fileset</scope><name>expno</name></member>
+      <member refid="structfileset_1a2db7ed0d980f7ea6c3927289884c01d7" prot="public" virt="non-virtual"><scope>fileset</scope><name>file</name></member>
+      <member refid="structfileset_1a14d23479117564d5fabb31a1890c678d" prot="public" virt="non-virtual"><scope>fileset</scope><name>maxfile</name></member>
+      <member refid="structfileset_1aaeb98c6594107d61ed7ea3bbd6aa17bd" prot="public" virt="non-virtual"><scope>fileset</scope><name>rootname</name></member>
+      <member refid="structfileset_1af21ae88cc0cf2bfd27de3e12d9c48d85" prot="public" virt="non-virtual"><scope>fileset</scope><name>scandir</name></member>
+      <member refid="structfileset_1a4062ead97675b88a97ebe180b272d1ee" prot="public" virt="non-virtual"><scope>fileset</scope><name>scanname</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

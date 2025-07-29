@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Reducer_1_1AxisReducer" kind="class" language="C++" prot="private">
+    <compoundname>hops::MHO_Reducer::AxisReducer</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Reducer_1_1AxisReducer_1aaf501f52cf487119dacf1f70321b38df" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Reducer&lt; XArrayType, XFunctorType &gt;::AxisReducer::fReduce</definition>
+        <argsstring></argsstring>
+        <name>fReduce</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" line="253" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Reducer_1_1AxisReducer_1a9fcdfe382dbf87aa8d2d5ce4a2ee7a22" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Reducer&lt; XArrayType, XFunctorType &gt;::AxisReducer::AxisReducer</definition>
+        <argsstring>(std::size_t reduce_ax)</argsstring>
+        <name>AxisReducer</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>reduce_ax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" line="223" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" bodystart="223" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Reducer_1_1AxisReducer_1ae262f148176f40c815692fda9263db9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Reducer&lt; XArrayType, XFunctorType &gt;::AxisReducer::~AxisReducer</definition>
+        <argsstring>()</argsstring>
+        <name>~AxisReducer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" line="231" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" bodystart="231" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Reducer_1_1AxisReducer_1a20a0af529b0004abcef48e47ec9615a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XAxisType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_Reducer&lt; XArrayType, XFunctorType &gt;::AxisReducer::operator()</definition>
+        <argsstring>(const XAxisType &amp;axis1, XAxisType &amp;axis2)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const XAxisType &amp;</type>
+          <declname>axis1</declname>
+        </param>
+        <param>
+          <type>XAxisType &amp;</type>
+          <declname>axis2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" line="233" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" bodystart="233" bodyend="250"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class AxisReducer - handles special treament of axes objects for a <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> input. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" line="220" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_Reducer.hh" bodystart="221" bodyend="254"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Reducer_1_1AxisReducer_1a9fcdfe382dbf87aa8d2d5ce4a2ee7a22" prot="public" virt="non-virtual"><scope>hops::MHO_Reducer::AxisReducer</scope><name>AxisReducer</name></member>
+      <member refid="classhops_1_1MHO__Reducer_1_1AxisReducer_1aaf501f52cf487119dacf1f70321b38df" prot="private" virt="non-virtual"><scope>hops::MHO_Reducer::AxisReducer</scope><name>fReduce</name></member>
+      <member refid="classhops_1_1MHO__Reducer_1_1AxisReducer_1a20a0af529b0004abcef48e47ec9615a9" prot="public" virt="non-virtual"><scope>hops::MHO_Reducer::AxisReducer</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__Reducer_1_1AxisReducer_1ae262f148176f40c815692fda9263db9b" prot="public" virt="non-virtual"><scope>hops::MHO_Reducer::AxisReducer</scope><name>~AxisReducer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

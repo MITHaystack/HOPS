@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structcorelarray" kind="struct" language="C++" prot="public">
+    <compoundname>corelarray</compoundname>
+    <includes refid="aedata_8h" local="no">aedata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structcorelarray_1a2a460d751e69f1efafe46a1a1230ce32" prot="public" static="no" mutable="no">
+        <type><ref refid="structcorelsum" kindref="compound">corelsum</ref></type>
+        <definition>corelsum corelarray::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcorelarray_1ab5703bc97a367633c1648eccc36baa55" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int corelarray::flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="22" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcorelarray_1ad7c2baf0ac415613e99a7837bffe9358" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int corelarray::keyval</definition>
+        <argsstring></argsstring>
+        <name>keyval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="21" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcorelarray_1a1cf07395ae03ada7998ba5f04d7027ec" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int corelarray::lastorder</definition>
+        <argsstring></argsstring>
+        <name>lastorder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="20" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcorelarray_1abfa021a38ee487108b5f21aa54fdb156" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int corelarray::order</definition>
+        <argsstring></argsstring>
+        <name>order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="19" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcorelarray_1a07731515e479e3f00e7660a59ed5a85c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int corelarray::parent_root</definition>
+        <argsstring></argsstring>
+        <name>parent_root</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="23" column="4" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>corelarray</label>
+        <link refid="structcorelarray"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+          <edgelabel>parent_root</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>corelsum</label>
+        <link refid="structcorelsum"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>clock_diff</edgelabel>
+          <edgelabel>refclock_err</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freqs</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>corstart</edgelabel>
+          <edgelabel>corstop</edgelabel>
+          <edgelabel>eqts</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>refdrive</edgelabel>
+          <edgelabel>remdrive</edgelabel>
+          <edgelabel>sduration</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>status</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="18" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structcorelarray_1a2a460d751e69f1efafe46a1a1230ce32" prot="public" virt="non-virtual"><scope>corelarray</scope><name>data</name></member>
+      <member refid="structcorelarray_1ab5703bc97a367633c1648eccc36baa55" prot="public" virt="non-virtual"><scope>corelarray</scope><name>flag</name></member>
+      <member refid="structcorelarray_1ad7c2baf0ac415613e99a7837bffe9358" prot="public" virt="non-virtual"><scope>corelarray</scope><name>keyval</name></member>
+      <member refid="structcorelarray_1a1cf07395ae03ada7998ba5f04d7027ec" prot="public" virt="non-virtual"><scope>corelarray</scope><name>lastorder</name></member>
+      <member refid="structcorelarray_1abfa021a38ee487108b5f21aa54fdb156" prot="public" virt="non-virtual"><scope>corelarray</scope><name>order</name></member>
+      <member refid="structcorelarray_1a07731515e479e3f00e7660a59ed5a85c" prot="public" virt="non-virtual"><scope>corelarray</scope><name>parent_root</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

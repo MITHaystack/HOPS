@@ -1,0 +1,617 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="copy__208_8c" kind="file" language="C++">
+    <compoundname>copy_208.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="bytflp_8h" local="yes">bytflp.h</includes>
+    <includes refid="type__208_8h" local="yes">type_208.h</includes>
+    <includes refid="mk4__dfio_8h" local="yes">mk4_dfio.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <incdepgraph>
+      <node id="44">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="8">
+        <label>stdarg.h</label>
+      </node>
+      <node id="48">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>sys/times.h</label>
+      </node>
+      <node id="27">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="32">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="54">
+        <label>stdint.h</label>
+      </node>
+      <node id="17">
+        <label>mk4_dfio.h</label>
+        <link refid="mk4__dfio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="5">
+        <label>bytflp.h</label>
+        <link refid="bytflp_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>copy_208.c</label>
+        <link refid="copy__208_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="7">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="31">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="23">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>sys/types.h</label>
+      </node>
+      <node id="42">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="19">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="46">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>complex.h</label>
+      </node>
+      <node id="38">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops_config.h</label>
+      </node>
+      <node id="28">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="12">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="29">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="53">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="13">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="37">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="51">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="copy__208_8c_1af5365f48e7515c6b410e01b0373a13f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int copy_208</definition>
+        <argsstring>(struct type_208 *t208, char **ptr)</argsstring>
+        <name>copy_208</name>
+        <param>
+          <type>struct <ref refid="structtype__208" kindref="compound">type_208</ref> *</type>
+          <declname>t208</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/copy_208.c" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/copy_208.c" bodystart="31" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>is<sp/>the<sp/>inverse<sp/>of<sp/>addr_208().<sp/><sp/>It<sp/>takes<sp/>an<sp/>application<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>structure<sp/>and<sp/>a<sp/>target<sp/>address,<sp/>and<sp/>places<sp/>an<sp/>overlay<sp/>structure<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>of<sp/>the<sp/>appropriate<sp/>version<sp/>into<sp/>the<sp/>target<sp/>address.<sp/><sp/>Sometimes<sp/>this<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>will<sp/>require<sp/>a<sp/>field-by-field<sp/>copying<sp/>operation,<sp/>sometimes<sp/>it<sp/>will<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>be<sp/>a<sp/>ptr<sp/>assignment<sp/>operation,<sp/>depending<sp/>on<sp/>version<sp/>control<sp/>status.<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>To<sp/>handle<sp/>byte-flipping,<sp/>the<sp/>copy<sp/>operation<sp/>is<sp/>now<sp/>done<sp/>in<sp/>all<sp/>cases<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>which<sp/>allows<sp/>use<sp/>of<sp/>the<sp/>bytflp.h<sp/>macros<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t208<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>application<sp/>structure<sp/>pointer<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ptr<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>overlay<sp/>structure<sp/>address<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with<sp/>data<sp/>filled<sp/>in<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>value<sp/><sp/><sp/><sp/>number<sp/>of<sp/>bytes<sp/>filled<sp/>in<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>25<sp/>September<sp/>1995<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Redesigned<sp/>23<sp/>September<sp/>1997<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Added<sp/>version<sp/>1<sp/>support,<sp/>Feb<sp/>14<sp/>2000<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bytflp_8h" kindref="compound">bytflp.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__208_8h" kindref="compound">type_208.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__dfio_8h" kindref="compound">mk4_dfio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="copy__208_8c_1af5365f48e7515c6b410e01b0373a13f8" kindref="member">copy_208</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__208" kindref="compound">type_208</ref><sp/>*t208,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**ptr)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__208__v0" kindref="compound">type_208_v0</ref><sp/>*t208_v0;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="type__208_8h_1acc9c56d34da7be01b4d7b206567d3573" kindref="member">type_208_v1</ref><sp/>*t208_v1;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>What<sp/>version<sp/>is<sp/>requested<sp/>for<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>the<sp/>disk<sp/>format?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>sscanf<sp/>(t208-&gt;<ref refid="structtype__208_1aa12ab062dbb67fe31117cf8ffa8009ac" kindref="member">version_no</ref>,<sp/></highlight><highlight class="stringliteral">&quot;%2d&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Disk<sp/>format<sp/>same<sp/>as<sp/>app<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Simple<sp/>pointer<sp/>assignment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/>T208_VERSION)<sp/>*ptr<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)t208;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*ptr<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)malloc<sp/>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__208__v0" kindref="compound">type_208_v0</ref>));</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*ptr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Memory<sp/>allocation<sp/>failure<sp/>in<sp/>copy_208()&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>version<sp/>number<sp/>%d<sp/>in<sp/>copy_208()&quot;</highlight><highlight class="normal">,<sp/>2,<sp/><ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Handle<sp/>each<sp/>version<sp/>number<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>individually.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t208_v0<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__208__v0" kindref="compound">type_208_v0</ref><sp/>*)<sp/>*ptr;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a54a9f25e6bd24aecd2803d26dc7becdf" kindref="member">record_id</ref>,<sp/></highlight><highlight class="stringliteral">&quot;208&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a2f7c1fd8c22659257f7e0b43cca382a3" kindref="member">version_no</ref>,<sp/></highlight><highlight class="stringliteral">&quot;00&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t208_v0-&gt;<ref refid="structtype__208__v0_1ae0700faac6884599153b059d016316c1" kindref="member">quality</ref><sp/>=<sp/>t208-&gt;<ref refid="structtype__208_1a3b72b2c5695fc4c365ddcc26f6c4b3ba" kindref="member">quality</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t208_v0-&gt;<ref refid="structtype__208__v0_1a53f2348b015c14dfd892e02bfc62b184" kindref="member">errcode</ref><sp/>=<sp/>t208-&gt;<ref refid="structtype__208_1a791bfb25465f4b74a5aef3c411320222" kindref="member">errcode</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1aac845e6f0933adcd17c1aed2d5415e4d" kindref="member">tape_qcode</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1af23cd1dee111c0e276586f012494855e" kindref="member">tape_qcode</ref>,<sp/>6);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1ab3ffdf98fd7dc50181990681bb3fa0d1" kindref="member">adelay</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a45b6d0f013481df1c46a785e184cd304" kindref="member">adelay</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a748c0a468e5ccb103140086b459c955f" kindref="member">arate</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a3df4c1415f7b9ac85a193042d25b8a94" kindref="member">arate</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a97c763f1b38525e7791130208be22888" kindref="member">aaccel</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a7862ac0111874d33bef3917eedcad4eb" kindref="member">aaccel</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a05a50b84562a1bda55dc2723bb6c69e5" kindref="member">tot_mbd</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a0752a7475c9f33954e80eb7673e24a90" kindref="member">tot_mbd</ref>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1aabb7f648b6d36ccaf9df08c4a77c3b3f" kindref="member">tot_sbd</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1aea95daf2f35c0ce1483776dd41aa1461" kindref="member">tot_sbd</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1ae23051ed23353ac992b0123b572b9947" kindref="member">tot_rate</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1ab4216af1652211c2484b9ad58ae81780" kindref="member">tot_rate</ref>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>next<sp/>3<sp/>lines<sp/>added<sp/>by<sp/>rjc<sp/>2000.1.6<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1ac11448da8dc25c4fe12a323273f7c8dc" kindref="member">tot_mbd_ref</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a4736c991824e41698b2fa50c9ffebb2e" kindref="member">tot_mbd_ref</ref>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a03bed4adea20bfc86be553005f0b0e6a" kindref="member">tot_sbd_ref</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a116cb49a0dfc817a15e3c98ff39e3279" kindref="member">tot_sbd_ref</ref>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1ab8982e06bfa6057504bd8c6b784e1e1c" kindref="member">tot_rate_ref</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a78f67e1ca1a51453a67deb116888d8be" kindref="member">tot_rate_ref</ref>);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a7a7b71ae4562d4c0177a4232d4f4f8fe" kindref="member">resid_mbd</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1aaa4d66ecf4d348831574f2b8863e9bca" kindref="member">resid_mbd</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a43a5498c9373482c5c15eff349be6d9d" kindref="member">resid_sbd</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a7dcbe6cc06df99a593027fb4577d9af2" kindref="member">resid_sbd</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a9892882976319cd4442648978573d540" kindref="member">resid_rate</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1ac77bc15bb68174f73ef2de36399bbc86" kindref="member">resid_rate</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a00442e107040ea3752d39bf1f1636a0e" kindref="member">mbd_error</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a251ba72a48b96b815006168c7c9648e0" kindref="member">mbd_error</ref>);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a94c350e4ef3880aa424a7e8b7a1f4b95" kindref="member">sbd_error</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1add3ed19082c2f3d3370458a694f3d702" kindref="member">sbd_error</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1af0f1c85ddc4718839a38c02653d6cfbf" kindref="member">rate_error</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1afb6ec15c9461bbeeefd578c7916aae88" kindref="member">rate_error</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a5031122e506343f70c264946452f29db" kindref="member">ambiguity</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1ae5123cf81b11cbfc9e3468140e5901d8" kindref="member">ambiguity</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a42c08358e894e5150a3538518e6cb181" kindref="member">amplitude</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1ab8b3d28ce994ea855d1e170e50a72106" kindref="member">amplitude</ref>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1acef792f8e76ada804985414510375226" kindref="member">inc_seg_ampl</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a38dd11e43fd0e1a2f048674b4da522e3" kindref="member">inc_seg_ampl</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a340446235b767cb10c2edbde883dafe9" kindref="member">inc_chan_ampl</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1ac648ece27044b4c01974b0753565706a" kindref="member">inc_chan_ampl</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a66e89ffa48d257bdd7e4b986ab8cda60" kindref="member">snr</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1af9fef61163291fbd0a39a40ee366c6af" kindref="member">snr</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a686f638ed785c37efed20b5fc83a9c03" kindref="member">prob_false</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1a4fe85b163417e58e2b4b47c624585f74" kindref="member">prob_false</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a452661729da93350bb889c856d3e8570" kindref="member">totphase</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1ae00cb491366b109cff4ceda358e34d25" kindref="member">totphase</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v0-&gt;<ref refid="structtype__208__v0_1a89da430e9ecb1b6e0c51ef7f82c1a674" kindref="member">resphase</ref>,<sp/>t208-&gt;<ref refid="structtype__208_1abf8af8a252876d9dad222b48e403ec86" kindref="member">resphase</ref>);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__208__v0" kindref="compound">type_208_v0</ref>));</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t208_v1<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="type__208_8h_1acc9c56d34da7be01b4d7b206567d3573" kindref="member">type_208_v1</ref><sp/>*)<sp/>*ptr;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t208_v1-&gt;record_id,<sp/></highlight><highlight class="stringliteral">&quot;208&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t208_v1-&gt;version_no,<sp/></highlight><highlight class="stringliteral">&quot;01&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t208_v1-&gt;unused1,<sp/>t208-&gt;<ref refid="structtype__208_1aa898ae16bd8dd1e85c6712823efd2b12" kindref="member">unused1</ref>,<sp/>3);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t208_v1-&gt;quality<sp/>=<sp/>t208-&gt;<ref refid="structtype__208_1a3b72b2c5695fc4c365ddcc26f6c4b3ba" kindref="member">quality</ref>;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t208_v1-&gt;errcode<sp/>=<sp/>t208-&gt;<ref refid="structtype__208_1a791bfb25465f4b74a5aef3c411320222" kindref="member">errcode</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t208_v1-&gt;tape_qcode,<sp/>t208-&gt;<ref refid="structtype__208_1af23cd1dee111c0e276586f012494855e" kindref="member">tape_qcode</ref>,<sp/>6);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;adelay,<sp/>t208-&gt;<ref refid="structtype__208_1a45b6d0f013481df1c46a785e184cd304" kindref="member">adelay</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;arate,<sp/>t208-&gt;<ref refid="structtype__208_1a3df4c1415f7b9ac85a193042d25b8a94" kindref="member">arate</ref>);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;aaccel,<sp/>t208-&gt;<ref refid="structtype__208_1a7862ac0111874d33bef3917eedcad4eb" kindref="member">aaccel</ref>);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;tot_mbd,<sp/>t208-&gt;<ref refid="structtype__208_1a0752a7475c9f33954e80eb7673e24a90" kindref="member">tot_mbd</ref>);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;tot_sbd,<sp/>t208-&gt;<ref refid="structtype__208_1aea95daf2f35c0ce1483776dd41aa1461" kindref="member">tot_sbd</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;tot_rate,<sp/>t208-&gt;<ref refid="structtype__208_1ab4216af1652211c2484b9ad58ae81780" kindref="member">tot_rate</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>next<sp/>3<sp/>lines<sp/>added<sp/>by<sp/>rjc<sp/>2000.1.6<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;tot_mbd_ref,<sp/>t208-&gt;<ref refid="structtype__208_1a4736c991824e41698b2fa50c9ffebb2e" kindref="member">tot_mbd_ref</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;tot_sbd_ref,<sp/>t208-&gt;<ref refid="structtype__208_1a116cb49a0dfc817a15e3c98ff39e3279" kindref="member">tot_sbd_ref</ref>);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1ae9522e802a3ce9177478b184a2bb0ed1" kindref="member">cp_double</ref><sp/>(t208_v1-&gt;tot_rate_ref,<sp/>t208-&gt;<ref refid="structtype__208_1a78f67e1ca1a51453a67deb116888d8be" kindref="member">tot_rate_ref</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;resid_mbd,<sp/>t208-&gt;<ref refid="structtype__208_1aaa4d66ecf4d348831574f2b8863e9bca" kindref="member">resid_mbd</ref>);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;resid_sbd,<sp/>t208-&gt;<ref refid="structtype__208_1a7dcbe6cc06df99a593027fb4577d9af2" kindref="member">resid_sbd</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;resid_rate,<sp/>t208-&gt;<ref refid="structtype__208_1ac77bc15bb68174f73ef2de36399bbc86" kindref="member">resid_rate</ref>);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;mbd_error,<sp/>t208-&gt;<ref refid="structtype__208_1a251ba72a48b96b815006168c7c9648e0" kindref="member">mbd_error</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;sbd_error,<sp/>t208-&gt;<ref refid="structtype__208_1add3ed19082c2f3d3370458a694f3d702" kindref="member">sbd_error</ref>);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;rate_error,<sp/>t208-&gt;<ref refid="structtype__208_1afb6ec15c9461bbeeefd578c7916aae88" kindref="member">rate_error</ref>);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;ambiguity,<sp/>t208-&gt;<ref refid="structtype__208_1ae5123cf81b11cbfc9e3468140e5901d8" kindref="member">ambiguity</ref>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;amplitude,<sp/>t208-&gt;<ref refid="structtype__208_1ab8b3d28ce994ea855d1e170e50a72106" kindref="member">amplitude</ref>);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;inc_seg_ampl,<sp/>t208-&gt;<ref refid="structtype__208_1a38dd11e43fd0e1a2f048674b4da522e3" kindref="member">inc_seg_ampl</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;inc_chan_ampl,<sp/>t208-&gt;<ref refid="structtype__208_1ac648ece27044b4c01974b0753565706a" kindref="member">inc_chan_ampl</ref>);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;snr,<sp/>t208-&gt;<ref refid="structtype__208_1af9fef61163291fbd0a39a40ee366c6af" kindref="member">snr</ref>);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;prob_false,<sp/>t208-&gt;<ref refid="structtype__208_1a4fe85b163417e58e2b4b47c624585f74" kindref="member">prob_false</ref>);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;totphase,<sp/>t208-&gt;<ref refid="structtype__208_1ae00cb491366b109cff4ceda358e34d25" kindref="member">totphase</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;totphase_ref,<sp/>t208-&gt;<ref refid="structtype__208_1a7c554caae740bd96f885b4b6851cb851" kindref="member">totphase_ref</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;resphase,<sp/>t208-&gt;<ref refid="structtype__208_1abf8af8a252876d9dad222b48e403ec86" kindref="member">resphase</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t208_v1-&gt;tec_error,<sp/>t208-&gt;<ref refid="structtype__208_1a8ef2fb8daf48eb1b7056d5299f984d92" kindref="member">tec_error</ref>);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="type__208_8h_1acc9c56d34da7be01b4d7b206567d3573" kindref="member">type_208_v1</ref>));</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>version<sp/>number<sp/>%d<sp/>in<sp/>copy_208()&quot;</highlight><highlight class="normal">,<sp/>2,<sp/><ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/copy_208.c"/>
+  </compounddef>
+</doxygen>

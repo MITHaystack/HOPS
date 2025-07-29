@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__TimeStampConverter" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_TimeStampConverter</compoundname>
+    <includes refid="MHO__TimeStampConverter_8hh" local="no">MHO_TimeStampConverter.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__TimeStampConverter_1abb16e75e63fb1d744043d7e68e44d2fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_TimeStampConverter::MHO_TimeStampConverter</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_TimeStampConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TimeStampConverter_1a8b8a297a354ee50f5a78b504a6cf7043" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_TimeStampConverter::~MHO_TimeStampConverter</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_TimeStampConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__TimeStampConverter_1aa0e29137bd0dc6a579151fd2145454e4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp</definition>
+        <argsstring>(const uint64_t &amp;epoch_sec, const double &amp;fractional_part, std::string &amp;date_string)</argsstring>
+        <name>ConvertEpochSecondToTimeStamp</name>
+        <param>
+          <type>const uint64_t &amp;</type>
+          <declname>epoch_sec</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>fractional_part</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>date_string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>convert a long int epoch second count to a human readable date string in YYYY-MM-DDTHH:MM:SS.(F)Z format. The fractional_part is rounded to the nearest nano second <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>epoch_sec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>const reference to a uint64_t to the epoch second </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fractional_part</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>const reference to a double containing the factional second </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to a std::string object where the date string is to be stored </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a boolean indicating if the conversion was successful </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" line="40" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_TimeStampConverter.cc" bodystart="10" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TimeStampConverter_1a3f361912cf70676cdf8a6111c744f988" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_TimeStampConverter::ConvertTimeStampToEpochSecond</definition>
+        <argsstring>(const std::string &amp;date_string, uint64_t &amp;epoch_sec, double &amp;fractional_part)</argsstring>
+        <name>ConvertTimeStampToEpochSecond</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>date_string</declname>
+        </param>
+        <param>
+          <type>uint64_t &amp;</type>
+          <declname>epoch_sec</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>fractional_part</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Convert a date string into an epoch second and fractional second. The time stamp must be in UTC/Zulu with format: YYYY-MM-DDTHH:MM:SS.(F)Z, the number of digits in the fractional part (F) may vary. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>date</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>const reference to the date string to be converted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>epoch_sec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to a uint64_t where the epoch second value is to be stored </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fractional_part</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference to a double where the factional second value is to be stored </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a boolean indicating if the conversion was successful </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" line="50" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_TimeStampConverter.cc" bodystart="56" bodyend="186"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__TimeStampConverter" kindref="compound">MHO_TimeStampConverter</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon May 11 15:51:26 2020 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> A class responsible for converting times/dates stored in a human readable string into Unix epoch seconds and fractions of a second. The conversion can be done in both directions </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_TimeStampConverter.hh" bodystart="28" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__TimeStampConverter_1aa0e29137bd0dc6a579151fd2145454e4" prot="public" virt="non-virtual"><scope>hops::MHO_TimeStampConverter</scope><name>ConvertEpochSecondToTimeStamp</name></member>
+      <member refid="classhops_1_1MHO__TimeStampConverter_1a3f361912cf70676cdf8a6111c744f988" prot="public" virt="non-virtual"><scope>hops::MHO_TimeStampConverter</scope><name>ConvertTimeStampToEpochSecond</name></member>
+      <member refid="classhops_1_1MHO__TimeStampConverter_1abb16e75e63fb1d744043d7e68e44d2fa" prot="public" virt="non-virtual"><scope>hops::MHO_TimeStampConverter</scope><name>MHO_TimeStampConverter</name></member>
+      <member refid="classhops_1_1MHO__TimeStampConverter_1a8b8a297a354ee50f5a78b504a6cf7043" prot="public" virt="non-virtual"><scope>hops::MHO_TimeStampConverter</scope><name>~MHO_TimeStampConverter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

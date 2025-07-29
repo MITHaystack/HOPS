@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__306_8stcount" kind="struct" language="C++" prot="public">
+    <compoundname>type_306.stcount</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__306_8stcount_1a34724f732e7f9c54653543d74e70297d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>bigneg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_306.h" line="23" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__306_8stcount_1aa840745dfddf09dd442dd9db3645987c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>bigpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_306.h" line="20" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__306_8stcount_1a27786fed43e5fe8cd6d1845b8811436f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring>[32]</argsstring>
+        <name>chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_306.h" line="19" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__306_8stcount_1af24c2c15b9d03797c6874986a8d19516" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>neg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_306.h" line="22" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__306_8stcount_1a5e0bdcbddccca4d66d74ba8c1cee1a68" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_306.h" line="21" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_306.h" line="17" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_306.h" bodystart="18" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structtype__306_8stcount_1a34724f732e7f9c54653543d74e70297d" prot="public" virt="non-virtual"><scope>type_306.stcount</scope><name>bigneg</name></member>
+      <member refid="structtype__306_8stcount_1aa840745dfddf09dd442dd9db3645987c" prot="public" virt="non-virtual"><scope>type_306.stcount</scope><name>bigpos</name></member>
+      <member refid="structtype__306_8stcount_1a27786fed43e5fe8cd6d1845b8811436f" prot="public" virt="non-virtual"><scope>type_306.stcount</scope><name>chan_id</name></member>
+      <member refid="structtype__306_8stcount_1af24c2c15b9d03797c6874986a8d19516" prot="public" virt="non-virtual"><scope>type_306.stcount</scope><name>neg</name></member>
+      <member refid="structtype__306_8stcount_1a5e0bdcbddccca4d66d74ba8c1cee1a68" prot="public" virt="non-virtual"><scope>type_306.stcount</scope><name>pos</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_a83f57f9bf6352142b006be3d76b0075" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="afile__header_8c">afile_header.c</innerfile>
+    <innerfile refid="aline__id_8c">aline_id.c</innerfile>
+    <innerfile refid="check__sizes_8c">check_sizes.c</innerfile>
+    <innerfile refid="clear__afile__structure_8c">clear_afile_structure.c</innerfile>
+    <innerfile refid="clear__csumm_8c">clear_csumm.c</innerfile>
+    <innerfile refid="clear__fsumm_8c">clear_fsumm.c</innerfile>
+    <innerfile refid="clear__rsumm_8c">clear_rsumm.c</innerfile>
+    <innerfile refid="clear__tsumm_8c">clear_tsumm.c</innerfile>
+    <innerfile refid="corelname_8c">corelname.c</innerfile>
+    <innerfile refid="fringename_8c">fringename.c</innerfile>
+    <innerfile refid="get__unique__name_8c">get_unique_name.c</innerfile>
+    <innerfile refid="parse__csumm_8c">parse_csumm.c</innerfile>
+    <innerfile refid="parse__fsumm_8c">parse_fsumm.c</innerfile>
+    <innerfile refid="parse__rsumm_8c">parse_rsumm.c</innerfile>
+    <innerfile refid="parse__tsumm_8c">parse_tsumm.c</innerfile>
+    <innerfile refid="read__afile_8c">read_afile.c</innerfile>
+    <innerfile refid="rootname_8c">rootname.c</innerfile>
+    <innerfile refid="write__csumm_8c">write_csumm.c</innerfile>
+    <innerfile refid="write__fsumm_8c">write_fsumm.c</innerfile>
+    <innerfile refid="write__rsumm_8c">write_rsumm.c</innerfile>
+    <innerfile refid="write__tsumm_8c">write_tsumm.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/"/>
+  </compounddef>
+</doxygen>

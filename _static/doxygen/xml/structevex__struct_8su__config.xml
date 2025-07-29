@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structevex__struct_8su__config" kind="struct" language="C++" prot="public">
+    <compoundname>evex_struct.su_config</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structevex__struct_8su__config_1ae8ed3f2846110837f3adb8015ccad5ec" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>station</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="40" column="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="structevex__struct_8su__config_1ac8f9150aaf49e6779b21b91e0da34db4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>su_config_key</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="41" column="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" line="38" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/evex.h" bodystart="39" bodyend="42"/>
+    <listofallmembers>
+      <member refid="structevex__struct_8su__config_1ae8ed3f2846110837f3adb8015ccad5ec" prot="public" virt="non-virtual"><scope>evex_struct.su_config</scope><name>station</name></member>
+      <member refid="structevex__struct_8su__config_1ac8f9150aaf49e6779b21b91e0da34db4" prot="public" virt="non-virtual"><scope>evex_struct.su_config</scope><name>su_config_key</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

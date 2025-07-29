@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="for__python__construct__cblock_8c" kind="file" language="C++">
+    <compoundname>for_python_construct_cblock.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="control_8h" local="yes">control.h</includes>
+    <includes refid="ffcontrol__module__extern_8h" local="yes">ffcontrol_module_extern.h</includes>
+    <incdepgraph>
+      <node id="7">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="5">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="1">
+        <label>for_python_construct_cblock.c</label>
+        <link refid="for__python__construct__cblock_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="8">
+        <label>ffcontrol_module_extern.h</label>
+        <link refid="ffcontrol__module__extern_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="for__python__construct__cblock_8c_1ad94f44067c5bfc450a6dbf067b7f60db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int for_python_construct_cblock</definition>
+        <argsstring>(char *filename, struct c_block *cb_out, char baseline[static 2], char source[static 31], char fgroup, int time)</argsstring>
+        <name>for_python_construct_cblock</name>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structc__block" kindref="compound">c_block</ref> *</type>
+          <declname>cb_out</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>baseline</declname>
+          <array>[static 2]</array>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>source</declname>
+          <array>[static 31]</array>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>fgroup</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/for_python_construct_cblock.c" line="8" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/for_python_construct_cblock.c" bodystart="8" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="control_8h" kindref="compound">control.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ffcontrol__module__extern_8h" kindref="compound">ffcontrol_module_extern.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//same<sp/>basic<sp/>fuctionality<sp/>as<sp/>generate_cblock<sp/>but<sp/>without<sp/>dependence<sp/>on<sp/>pass/param<sp/>struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="for__python__construct__cblock_8c_1ad94f44067c5bfc450a6dbf067b7f60db" kindref="member">for_python_construct_cblock</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>cb_out,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>[</highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>2],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>source[</highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>31],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>fgroup,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>time)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/><ref refid="fourfit3_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kindref="member">nullify_cblock</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1adb2d3007c1a3a5a5f94c8640c875fcd8" kindref="member">default_cblock</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a68db5088343ba432982d15fddc5b4a21" kindref="member">criteria_match</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">[2],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">[31],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a1509af0fb856111ee313879f84a5fc77" kindref="member">copy_cblock_parts</ref><sp/>(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcontrol_8h_1a804eebb12c988144bbacf70dd38d0caf" kindref="member">parse_control_file</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//init<sp/>control<sp/>record<sp/>buffers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref>*<sp/>cb_ptr<sp/>=<sp/><ref refid="fourfit3_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref><sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref><sp/>*)<sp/>malloc<sp/>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structc__block" kindref="compound">c_block</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kindref="member">nullify_cblock</ref><sp/>(<ref refid="fourfit3_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref>);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1a804eebb12c988144bbacf70dd38d0caf" kindref="member">parse_control_file</ref>(filename,<sp/>&amp;<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref>,<sp/>&amp;<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref>);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>cb_ptr<sp/>=<sp/><ref refid="fourfit3_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1a6dc5ac4998488dc0ce4b6881573035d6" kindref="member">nullify_cblock</ref>(<sp/>cb_out<sp/>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1adb2d3007c1a3a5a5f94c8640c875fcd8" kindref="member">default_cblock</ref>(<sp/>cb_out<sp/>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(cb_ptr=<ref refid="fourfit3_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref>;<sp/>cb_ptr!=NULL;<sp/>cb_ptr=cb_ptr-&gt;<ref refid="structc__block_1afa7aec728aad53f339dc6ccd57a75317" kindref="member">cb_chain</ref>)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="ffcontrol_8h_1a68db5088343ba432982d15fddc5b4a21" kindref="member">criteria_match</ref><sp/>(cb_ptr,<sp/><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>,<sp/><ref refid="structc__block_1a7b9ac952c48e90fb0026a0f3f1891740" kindref="member">source</ref>,<sp/>fgroup,<sp/>time))</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1a1509af0fb856111ee313879f84a5fc77" kindref="member">copy_cblock_parts</ref><sp/>(cb_ptr,cb_out);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref><sp/>!=<sp/>NULL){free(<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref>);};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref><sp/>!=<sp/>NULL){free(<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref>);};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/for_python_construct_cblock.c"/>
+  </compounddef>
+</doxygen>

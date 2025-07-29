@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstsband" kind="struct" language="C++" prot="public">
+    <compoundname>stsband</compoundname>
+    <includes refid="general_8h" local="no">general.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstsband_1a2f026f330a4ea96f996f321285dd7382" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
+        <definition>struct istats stsband::psb</definition>
+        <argsstring></argsstring>
+        <name>psb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="31" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstsband_1aa70c7a7a99c8d959ced0730688c811b0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
+        <definition>struct istats stsband::rsb</definition>
+        <argsstring></argsstring>
+        <name>rsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="31" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>stsband</label>
+        <link refid="structstsband"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>psb</edgelabel>
+          <edgelabel>rsb</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>istats</label>
+        <link refid="structistats"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="34" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structstsband_1a2f026f330a4ea96f996f321285dd7382" prot="public" virt="non-virtual"><scope>stsband</scope><name>psb</name></member>
+      <member refid="structstsband_1aa70c7a7a99c8d959ced0730688c811b0" prot="public" virt="non-virtual"><scope>stsband</scope><name>rsb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

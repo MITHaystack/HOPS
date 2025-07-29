@@ -1,0 +1,714 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstation__struct" kind="struct" language="C++" prot="public">
+    <compoundname>station_struct</compoundname>
+    <includes refid="ovex_8h" local="no">ovex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstation__struct_1a661261bc2fdff7677d1fad76a887bdbf" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::axis_offset</definition>
+        <argsstring></argsstring>
+        <name>axis_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="131" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1ae825df983ffe16c309b5623f96515126" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::axis_type</definition>
+        <argsstring></argsstring>
+        <name>axis_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="130" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1ad88a5e9c0b8bf2fb5f9b5b0116faf089" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::bits_sample</definition>
+        <argsstring></argsstring>
+        <name>bits_sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="144" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a2ec6764e0f4e6673001e80c0aeb15476" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structchan__struct" kindref="compound">chan_struct</ref></type>
+        <definition>struct chan_struct station_struct::channels[MAX_CHAN]</definition>
+        <argsstring>[MAX_CHAN]</argsstring>
+        <name>channels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="151" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a2282cd9ce912fcb46bd9f7e688be37ee" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::clock_early</definition>
+        <argsstring></argsstring>
+        <name>clock_early</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="137" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::clockrate</definition>
+        <argsstring></argsstring>
+        <name>clockrate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="139" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a6e05d9b0f20f075f56c2098b53c36c82" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date station_struct::clockrate_epoch</definition>
+        <argsstring></argsstring>
+        <name>clockrate_epoch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="137" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1aa249421265c1c6c68ebaf9dadc399977" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date station_struct::coordinate_epoch</definition>
+        <argsstring></argsstring>
+        <name>coordinate_epoch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="125" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double station_struct::coordinates[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>coordinates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="125" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a5477b302032f4ba27bdb24b8ac56de1d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::drive_no</definition>
+        <argsstring></argsstring>
+        <name>drive_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="120" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a358fdb7e5293acca826e8b043705100d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::early_start</definition>
+        <argsstring></argsstring>
+        <name>early_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="115" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a81a158180e3dafc11e9a10cc73bb159b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::head_position[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>head_position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="147" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a7f1b074d30d55f152a0d29bc426f2abc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::late_finish</definition>
+        <argsstring></argsstring>
+        <name>late_finish</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="116" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a97e8aee8feb60df946cd4fec72233f2a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_struct::mk4_site_id</definition>
+        <argsstring></argsstring>
+        <name>mk4_site_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="124" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1ad170d68bad1277ab160c9f49472657a7" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::modulation</definition>
+        <argsstring></argsstring>
+        <name>modulation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="143" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1ae6e2ee7bf08e04d2f20c0031b29a2ffd" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::multiplex_ratio</definition>
+        <argsstring></argsstring>
+        <name>multiplex_ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="145" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1ad69d90888d1388164d48a638830df4b4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_struct::occucode[5]</definition>
+        <argsstring>[5]</argsstring>
+        <name>occucode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="129" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a93f1cce1da7283a86459de290542c5e1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_struct::pass_direction</definition>
+        <argsstring></argsstring>
+        <name>pass_direction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="146" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a9cdd80b8f6728cbb251c471092ab0030" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::passno</definition>
+        <argsstring></argsstring>
+        <name>passno</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="119" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1ab7d03e5d71ec6916079633c5ee878ad0" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::rack_type</definition>
+        <argsstring></argsstring>
+        <name>rack_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="133" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a814b999829f4f51ca0e33f4397c379c8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::record_density</definition>
+        <argsstring></argsstring>
+        <name>record_density</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="134" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a429c2caf6f903457959081c4848f834c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::recorder_id</definition>
+        <argsstring></argsstring>
+        <name>recorder_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="136" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a990d94bc9da457a7e890ec73fa24cd46" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::recorder_type</definition>
+        <argsstring></argsstring>
+        <name>recorder_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="132" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a618d5c05372a49481ae21b848c27b4f4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::roll</definition>
+        <argsstring></argsstring>
+        <name>roll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="148" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a7139575e75b8f78ff4dfa3c06ec49be5" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::roll_increment</definition>
+        <argsstring></argsstring>
+        <name>roll_increment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="149" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a53e57b3059a9883d51becf12ebe42660" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::roll_period</definition>
+        <argsstring></argsstring>
+        <name>roll_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="150" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a4dff8c60edb8bc99ece30a323ad9a3c4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::roll_seq[5][34][32]</definition>
+        <argsstring>[5][34][32]</argsstring>
+        <name>roll_seq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="151" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a8e81d776ed155d1d593760ffc9d60864" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double station_struct::samplerate</definition>
+        <argsstring></argsstring>
+        <name>samplerate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="141" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a8e0f89fac47f41bf1b326301a7413ab2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_struct::site_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>site_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="123" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1af6366fbb80d495702bc869cb96659805" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_struct::site_name[9]</definition>
+        <argsstring>[9]</argsstring>
+        <name>site_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="122" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a746841fbde6c194aafdedc606d7be925" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::site_type</definition>
+        <argsstring></argsstring>
+        <name>site_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="121" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a3649f3686a3efaa76179a911b8ba7151" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double station_struct::site_velocity[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>site_velocity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="127" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a266619d6727a91faae426e99222ef2d7" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::start_offset</definition>
+        <argsstring></argsstring>
+        <name>start_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="111" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a70b57ab5377795975a939021c966570b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::start_tapepos</definition>
+        <argsstring></argsstring>
+        <name>start_tapepos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="113" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a97502f8e6191b06c672e739b625dff6d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::stop_offset</definition>
+        <argsstring></argsstring>
+        <name>stop_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="112" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1ac3d94f885692e1147c4c0cb0080dac4c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_struct::subpass</definition>
+        <argsstring></argsstring>
+        <name>subpass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="118" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a3ff2a7cd4a46f70d990652713ae1dc65" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::tape_gap</definition>
+        <argsstring></argsstring>
+        <name>tape_gap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="117" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a817b6af709c26e5968392c4b296cca77" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_struct::tape_id[9]</definition>
+        <argsstring>[9]</argsstring>
+        <name>tape_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="140" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a7007efd465ab11efa751fd289b56c6b2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::tape_length</definition>
+        <argsstring></argsstring>
+        <name>tape_length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="135" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a6bb6ede13741a0a552c13b55c429d578" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::tape_motion</definition>
+        <argsstring></argsstring>
+        <name>tape_motion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="114" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a5536c7bda0f333b9fc6f39d87e56ec0e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short station_struct::track_format</definition>
+        <argsstring></argsstring>
+        <name>track_format</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="142" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__struct_1a223f03fbf664f60d8da1bc168b2cf8c0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_struct::zenith_atm</definition>
+        <argsstring></argsstring>
+        <name>zenith_atm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="128" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="6">
+        <label>chan_struct</label>
+        <link refid="structchan__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>if_total_lo</edgelabel>
+          <edgelabel>sky_frequency</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>pcal_base_freq</edgelabel>
+          <edgelabel>pcal_spacing</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>bbc_no</edgelabel>
+          <edgelabel>mag_headstack</edgelabel>
+          <edgelabel>mag_tracks</edgelabel>
+          <edgelabel>pcal_detect</edgelabel>
+          <edgelabel>sign_headstack</edgelabel>
+          <edgelabel>sign_tracks</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>band_id</edgelabel>
+          <edgelabel>bbc_id</edgelabel>
+          <edgelabel>chan_id</edgelabel>
+          <edgelabel>chan_name</edgelabel>
+          <edgelabel>if_id</edgelabel>
+          <edgelabel>if_name</edgelabel>
+          <edgelabel>if_sideband</edgelabel>
+          <edgelabel>net_sideband</edgelabel>
+          <edgelabel>pcal_id</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>station_struct</label>
+        <link refid="structstation__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>coordinates</edgelabel>
+          <edgelabel>samplerate</edgelabel>
+          <edgelabel>site_velocity</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mk4_site_id</edgelabel>
+          <edgelabel>occucode</edgelabel>
+          <edgelabel>pass_direction</edgelabel>
+          <edgelabel>site_id</edgelabel>
+          <edgelabel>site_name</edgelabel>
+          <edgelabel>subpass</edgelabel>
+          <edgelabel>tape_id</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>axis_offset</edgelabel>
+          <edgelabel>clock_early</edgelabel>
+          <edgelabel>clockrate</edgelabel>
+          <edgelabel>head_position</edgelabel>
+          <edgelabel>record_density</edgelabel>
+          <edgelabel>roll_period</edgelabel>
+          <edgelabel>start_tapepos</edgelabel>
+          <edgelabel>tape_length</edgelabel>
+          <edgelabel>zenith_atm</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>axis_type</edgelabel>
+          <edgelabel>bits_sample</edgelabel>
+          <edgelabel>drive_no</edgelabel>
+          <edgelabel>early_start</edgelabel>
+          <edgelabel>late_finish</edgelabel>
+          <edgelabel>modulation</edgelabel>
+          <edgelabel>multiplex_ratio</edgelabel>
+          <edgelabel>passno</edgelabel>
+          <edgelabel>rack_type</edgelabel>
+          <edgelabel>recorder_id</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>clockrate_epoch</edgelabel>
+          <edgelabel>coordinate_epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="109" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="110" bodyend="153"/>
+    <listofallmembers>
+      <member refid="structstation__struct_1a661261bc2fdff7677d1fad76a887bdbf" prot="public" virt="non-virtual"><scope>station_struct</scope><name>axis_offset</name></member>
+      <member refid="structstation__struct_1ae825df983ffe16c309b5623f96515126" prot="public" virt="non-virtual"><scope>station_struct</scope><name>axis_type</name></member>
+      <member refid="structstation__struct_1ad88a5e9c0b8bf2fb5f9b5b0116faf089" prot="public" virt="non-virtual"><scope>station_struct</scope><name>bits_sample</name></member>
+      <member refid="structstation__struct_1a2ec6764e0f4e6673001e80c0aeb15476" prot="public" virt="non-virtual"><scope>station_struct</scope><name>channels</name></member>
+      <member refid="structstation__struct_1a2282cd9ce912fcb46bd9f7e688be37ee" prot="public" virt="non-virtual"><scope>station_struct</scope><name>clock_early</name></member>
+      <member refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" prot="public" virt="non-virtual"><scope>station_struct</scope><name>clockrate</name></member>
+      <member refid="structstation__struct_1a6e05d9b0f20f075f56c2098b53c36c82" prot="public" virt="non-virtual"><scope>station_struct</scope><name>clockrate_epoch</name></member>
+      <member refid="structstation__struct_1aa249421265c1c6c68ebaf9dadc399977" prot="public" virt="non-virtual"><scope>station_struct</scope><name>coordinate_epoch</name></member>
+      <member refid="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" prot="public" virt="non-virtual"><scope>station_struct</scope><name>coordinates</name></member>
+      <member refid="structstation__struct_1a5477b302032f4ba27bdb24b8ac56de1d" prot="public" virt="non-virtual"><scope>station_struct</scope><name>drive_no</name></member>
+      <member refid="structstation__struct_1a358fdb7e5293acca826e8b043705100d" prot="public" virt="non-virtual"><scope>station_struct</scope><name>early_start</name></member>
+      <member refid="structstation__struct_1a81a158180e3dafc11e9a10cc73bb159b" prot="public" virt="non-virtual"><scope>station_struct</scope><name>head_position</name></member>
+      <member refid="structstation__struct_1a7f1b074d30d55f152a0d29bc426f2abc" prot="public" virt="non-virtual"><scope>station_struct</scope><name>late_finish</name></member>
+      <member refid="structstation__struct_1a97e8aee8feb60df946cd4fec72233f2a" prot="public" virt="non-virtual"><scope>station_struct</scope><name>mk4_site_id</name></member>
+      <member refid="structstation__struct_1ad170d68bad1277ab160c9f49472657a7" prot="public" virt="non-virtual"><scope>station_struct</scope><name>modulation</name></member>
+      <member refid="structstation__struct_1ae6e2ee7bf08e04d2f20c0031b29a2ffd" prot="public" virt="non-virtual"><scope>station_struct</scope><name>multiplex_ratio</name></member>
+      <member refid="structstation__struct_1ad69d90888d1388164d48a638830df4b4" prot="public" virt="non-virtual"><scope>station_struct</scope><name>occucode</name></member>
+      <member refid="structstation__struct_1a93f1cce1da7283a86459de290542c5e1" prot="public" virt="non-virtual"><scope>station_struct</scope><name>pass_direction</name></member>
+      <member refid="structstation__struct_1a9cdd80b8f6728cbb251c471092ab0030" prot="public" virt="non-virtual"><scope>station_struct</scope><name>passno</name></member>
+      <member refid="structstation__struct_1ab7d03e5d71ec6916079633c5ee878ad0" prot="public" virt="non-virtual"><scope>station_struct</scope><name>rack_type</name></member>
+      <member refid="structstation__struct_1a814b999829f4f51ca0e33f4397c379c8" prot="public" virt="non-virtual"><scope>station_struct</scope><name>record_density</name></member>
+      <member refid="structstation__struct_1a429c2caf6f903457959081c4848f834c" prot="public" virt="non-virtual"><scope>station_struct</scope><name>recorder_id</name></member>
+      <member refid="structstation__struct_1a990d94bc9da457a7e890ec73fa24cd46" prot="public" virt="non-virtual"><scope>station_struct</scope><name>recorder_type</name></member>
+      <member refid="structstation__struct_1a618d5c05372a49481ae21b848c27b4f4" prot="public" virt="non-virtual"><scope>station_struct</scope><name>roll</name></member>
+      <member refid="structstation__struct_1a7139575e75b8f78ff4dfa3c06ec49be5" prot="public" virt="non-virtual"><scope>station_struct</scope><name>roll_increment</name></member>
+      <member refid="structstation__struct_1a53e57b3059a9883d51becf12ebe42660" prot="public" virt="non-virtual"><scope>station_struct</scope><name>roll_period</name></member>
+      <member refid="structstation__struct_1a4dff8c60edb8bc99ece30a323ad9a3c4" prot="public" virt="non-virtual"><scope>station_struct</scope><name>roll_seq</name></member>
+      <member refid="structstation__struct_1a8e81d776ed155d1d593760ffc9d60864" prot="public" virt="non-virtual"><scope>station_struct</scope><name>samplerate</name></member>
+      <member refid="structstation__struct_1a8e0f89fac47f41bf1b326301a7413ab2" prot="public" virt="non-virtual"><scope>station_struct</scope><name>site_id</name></member>
+      <member refid="structstation__struct_1af6366fbb80d495702bc869cb96659805" prot="public" virt="non-virtual"><scope>station_struct</scope><name>site_name</name></member>
+      <member refid="structstation__struct_1a746841fbde6c194aafdedc606d7be925" prot="public" virt="non-virtual"><scope>station_struct</scope><name>site_type</name></member>
+      <member refid="structstation__struct_1a3649f3686a3efaa76179a911b8ba7151" prot="public" virt="non-virtual"><scope>station_struct</scope><name>site_velocity</name></member>
+      <member refid="structstation__struct_1a266619d6727a91faae426e99222ef2d7" prot="public" virt="non-virtual"><scope>station_struct</scope><name>start_offset</name></member>
+      <member refid="structstation__struct_1a70b57ab5377795975a939021c966570b" prot="public" virt="non-virtual"><scope>station_struct</scope><name>start_tapepos</name></member>
+      <member refid="structstation__struct_1a97502f8e6191b06c672e739b625dff6d" prot="public" virt="non-virtual"><scope>station_struct</scope><name>stop_offset</name></member>
+      <member refid="structstation__struct_1ac3d94f885692e1147c4c0cb0080dac4c" prot="public" virt="non-virtual"><scope>station_struct</scope><name>subpass</name></member>
+      <member refid="structstation__struct_1a3ff2a7cd4a46f70d990652713ae1dc65" prot="public" virt="non-virtual"><scope>station_struct</scope><name>tape_gap</name></member>
+      <member refid="structstation__struct_1a817b6af709c26e5968392c4b296cca77" prot="public" virt="non-virtual"><scope>station_struct</scope><name>tape_id</name></member>
+      <member refid="structstation__struct_1a7007efd465ab11efa751fd289b56c6b2" prot="public" virt="non-virtual"><scope>station_struct</scope><name>tape_length</name></member>
+      <member refid="structstation__struct_1a6bb6ede13741a0a552c13b55c429d578" prot="public" virt="non-virtual"><scope>station_struct</scope><name>tape_motion</name></member>
+      <member refid="structstation__struct_1a5536c7bda0f333b9fc6f39d87e56ec0e" prot="public" virt="non-virtual"><scope>station_struct</scope><name>track_format</name></member>
+      <member refid="structstation__struct_1a223f03fbf664f60d8da1bc168b2cf8c0" prot="public" virt="non-virtual"><scope>station_struct</scope><name>zenith_atm</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

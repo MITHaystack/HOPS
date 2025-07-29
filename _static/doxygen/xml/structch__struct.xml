@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structch__struct" kind="struct" language="C++" prot="public">
+    <compoundname>ch_struct</compoundname>
+    <includes refid="type__203_8h" local="no">type_203.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structch__struct_1a4ed66ce856962d95f1cb54de49a6a2bc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ch_struct::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="22" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1a01be7041f446352a067ff51e0bd83ea5" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ch_struct::ref_chan_id[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>ref_chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="30" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1aefecc53a89ce89536394db2871c8a96e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ch_struct::ref_freq</definition>
+        <argsstring></argsstring>
+        <name>ref_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="28" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1a2de9171ed335e1666970e61c6f10d73d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ch_struct::refpol</definition>
+        <argsstring></argsstring>
+        <name>refpol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="26" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1a8acfd48b58aad534dadaf9a4a1f21124" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ch_struct::refsb</definition>
+        <argsstring></argsstring>
+        <name>refsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="24" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1ac019b8b1e436743aeb96890c5273b1e0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ch_struct::rem_chan_id[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>rem_chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="31" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1a3a750ce61588229b7ea585127a6a80fb" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ch_struct::rem_freq</definition>
+        <argsstring></argsstring>
+        <name>rem_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="29" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1aa5d51e6ce00cc20d7454e98f52940594" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ch_struct::rempol</definition>
+        <argsstring></argsstring>
+        <name>rempol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="27" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1ae5f1d302837ecc19762f7a56595ad5c7" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ch_struct::remsb</definition>
+        <argsstring></argsstring>
+        <name>remsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="25" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structch__struct_1a6d2d2468466989afe99f3fb4c1627589" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int ch_struct::sample_rate</definition>
+        <argsstring></argsstring>
+        <name>sample_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="23" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>ch_struct</label>
+        <link refid="structch__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>rem_freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>refpol</edgelabel>
+          <edgelabel>refsb</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>rempol</edgelabel>
+          <edgelabel>remsb</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>index</edgelabel>
+          <edgelabel>sample_rate</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="21" bodyend="32"/>
+    <listofallmembers>
+      <member refid="structch__struct_1a4ed66ce856962d95f1cb54de49a6a2bc" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>index</name></member>
+      <member refid="structch__struct_1a01be7041f446352a067ff51e0bd83ea5" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>ref_chan_id</name></member>
+      <member refid="structch__struct_1aefecc53a89ce89536394db2871c8a96e" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>ref_freq</name></member>
+      <member refid="structch__struct_1a2de9171ed335e1666970e61c6f10d73d" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>refpol</name></member>
+      <member refid="structch__struct_1a8acfd48b58aad534dadaf9a4a1f21124" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>refsb</name></member>
+      <member refid="structch__struct_1ac019b8b1e436743aeb96890c5273b1e0" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>rem_chan_id</name></member>
+      <member refid="structch__struct_1a3a750ce61588229b7ea585127a6a80fb" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>rem_freq</name></member>
+      <member refid="structch__struct_1aa5d51e6ce00cc20d7454e98f52940594" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>rempol</name></member>
+      <member refid="structch__struct_1ae5f1d302837ecc19762f7a56595ad5c7" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>remsb</name></member>
+      <member refid="structch__struct_1a6d2d2468466989afe99f3fb4c1627589" prot="public" virt="non-virtual"><scope>ch_struct</scope><name>sample_rate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

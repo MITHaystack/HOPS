@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="parse__control__file_8c" kind="file" language="C++">
+    <compoundname>parse_control_file.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="control_8h" local="yes">control.h</includes>
+    <includes refid="ffcontrol_8h" local="yes">ffcontrol.h</includes>
+    <includes refid="parser_8h" local="yes">parser.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <incdepgraph>
+      <node id="11">
+        <label>stdarg.h</label>
+      </node>
+      <node id="7">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="10">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>parser.h</label>
+        <link refid="parser_8h"/>
+      </node>
+      <node id="5">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="1">
+        <label>parse_control_file.c</label>
+        <link refid="parse__control__file_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="8">
+        <label>ffcontrol.h</label>
+        <link refid="ffcontrol_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="parse__control__file_8c_1ab3d64402c03be9185d20d350d3eb7359" prot="public" static="no">
+        <name>IS_CONTROL_FILE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="parse__control__file_8c_1a14e54f35c8ebd07072779b90881b6be5" prot="public" static="no">
+        <name>IS_SET_STRING</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="parse__control__file_8c_1a60d5aa5945374d3928ea4852513bbc8a" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* char_values</definition>
+        <argsstring></argsstring>
+        <name>char_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="27" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="parse__control__file_8c_1ad6d23835b07f1486d02781beae1fba5d" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* float_values</definition>
+        <argsstring></argsstring>
+        <name>float_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="25" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="parse__control__file_8c_1a2f20d1bdda76b8e24273c759fd9e1517" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structfsm__table__entry" kindref="compound">fsm_table_entry</ref> *</type>
+        <definition>struct fsm_table_entry* fsm_base</definition>
+        <argsstring></argsstring>
+        <name>fsm_base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="28" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="parse__control__file_8c_1ac1829f44e2c4570d81ec609f3a623111" prot="public" static="no" mutable="no">
+        <type>int *</type>
+        <definition>int* line_end</definition>
+        <argsstring></argsstring>
+        <name>line_end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="29" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="parse__control__file_8c_1a8f9834ea429d800d7fa9dbc517b4d6a2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int token_cat[MAX_TOKENS]</definition>
+        <argsstring>[MAX_TOKENS]</argsstring>
+        <name>token_cat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="23" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="parse__control__file_8c_1a27456e1d601373e0a7c37af8490b5cf5" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* token_string[MAX_TOKENS]</definition>
+        <argsstring>[MAX_TOKENS]</argsstring>
+        <name>token_string</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="22" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="parse__control__file_8c_1a5fa05140bf6690c8fea8250127dd3336" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtoken__struct" kindref="compound">token_struct</ref> *</type>
+        <definition>struct token_struct* tokens</definition>
+        <argsstring></argsstring>
+        <name>tokens</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="26" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="parse__control__file_8c_1a804eebb12c988144bbacf70dd38d0caf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_control_file</definition>
+        <argsstring>(char *control_file_name, char **control_file_buff, char **set_string_buff)</argsstring>
+        <name>parse_control_file</name>
+        <param>
+          <type>char *</type>
+          <declname>control_file_name</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>control_file_buff</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>set_string_buff</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c" bodystart="32" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*******************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/><sp/><sp/>parse_control_file<sp/>is<sp/>the<sp/>high-level<sp/>routine<sp/>in<sp/>charge<sp/>of<sp/>reading<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/><sp/><sp/>the<sp/>input<sp/>control<sp/>file,<sp/>conditioning<sp/>the<sp/>text,<sp/>lexically<sp/>analyzing<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/><sp/><sp/>it,<sp/>parsing<sp/>the<sp/>text,<sp/>and<sp/>generating<sp/>c_blocks<sp/>that<sp/>embody<sp/>the<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/><sp/><sp/>appropriate<sp/>information.<sp/>All<sp/>code<sp/>here<sp/>must<sp/>be<sp/>serially<sp/>reusable,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/><sp/><sp/>as<sp/>this<sp/>routine<sp/>is<sp/>called<sp/>twice.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rjc<sp/>92.10.7<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="control_8h" kindref="compound">control.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ffcontrol_8h" kindref="compound">ffcontrol.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="parser_8h" kindref="compound">parser.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_CONTROL_FILE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_SET_STRING<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="parse__control__file_8c_1a27456e1d601373e0a7c37af8490b5cf5" kindref="member">token_string</ref>[<ref refid="parser_8h_1a09886d6ba96e67553bf3c49ed8ade975" kindref="member">MAX_TOKENS</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>global<sp/>storage<sp/>for<sp/>token<sp/>strings<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="parse__control__file_8c_1a8f9834ea429d800d7fa9dbc517b4d6a2" kindref="member">token_cat</ref>[<ref refid="parser_8h_1a09886d6ba96e67553bf3c49ed8ade975" kindref="member">MAX_TOKENS</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/>&quot;<sp/>categories<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<ref refid="parse__control__file_8c_1ad6d23835b07f1486d02781beae1fba5d" kindref="member">float_values</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtoken__struct" kindref="compound">token_struct</ref><sp/>*<ref refid="parse__control__file_8c_1a5fa05140bf6690c8fea8250127dd3336" kindref="member">tokens</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>global<sp/>ptrs<sp/>to<sp/>various<sp/>temporary<sp/>arrays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="parse__control__file_8c_1a60d5aa5945374d3928ea4852513bbc8a" kindref="member">char_values</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfsm__table__entry" kindref="compound">fsm_table_entry</ref><sp/>*<ref refid="parse__control__file_8c_1a2f20d1bdda76b8e24273c759fd9e1517" kindref="member">fsm_base</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<ref refid="parse__control__file_8c_1ac1829f44e2c4570d81ec609f3a623111" kindref="member">line_end</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><ref refid="parse__control__file_8c_1a804eebb12c988144bbacf70dd38d0caf" kindref="member">parse_control_file</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>control_file_name,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/><ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref>,<sp/><sp/></highlight><highlight class="comment">//stash<sp/>stripped<sp/>but<sp/>unparsed<sp/>contents<sp/>of<sp/>control<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/><ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//stash<sp/>stripped<sp/>but<sp/>unparsed<sp/>contents<sp/>of<sp/>set<sp/>commands</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*input_string;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>read<sp/>input<sp/>control<sp/>file<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ffcontrol_8h_1a1ed7b0d1282a3f66d11968aaeceb92aa" kindref="member">read_control_file</ref><sp/>(control_file_name,&amp;input_string,<sp/>&amp;flag)<sp/>!=<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Error<sp/>opening<sp/>control<sp/>file<sp/>%s<sp/>\n&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>control_file_name);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//these<sp/>strings<sp/>are<sp/>malloced<sp/>here<sp/>so<sp/>we<sp/>can<sp/>can<sp/>save<sp/>them<sp/>to<sp/>the<sp/>type_222<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//record<sp/>later,<sp/>they<sp/>will<sp/>be<sp/>freed<sp/>at<sp/>the<sp/>end<sp/>of<sp/>fourfit<sp/>main<sp/>4/7/17<sp/>JPB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>is<sp/>not<sp/>a<sp/>perfect<sp/>solution,<sp/>as<sp/>it<sp/>relies<sp/>on<sp/>this<sp/>function<sp/>only<sp/>ever</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//being<sp/>called<sp/>with<sp/>control_file_buff<sp/>=<sp/>param.control_file_buff</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//and<sp/>set_string_buff<sp/>=<sp/>param.set_string_buff,<sp/>this<sp/>probably<sp/>needs<sp/>to<sp/>be<sp/>revised</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(flag<sp/>==<sp/><ref refid="parse__control__file_8c_1ab3d64402c03be9185d20d350d3eb7359" kindref="member">IS_CONTROL_FILE</ref>)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(*<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(*<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<sp/>malloc(<sp/>strlen(input_string)<sp/>+<sp/>1<sp/>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<sp/>malloc(<sp/>strlen(input_string)<sp/>+<sp/>1<sp/>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy(*<ref refid="ffcontrol__module__extern_8h_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref>,<sp/>input_string);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(flag<sp/>==<sp/><ref refid="parse__control__file_8c_1a14e54f35c8ebd07072779b90881b6be5" kindref="member">IS_SET_STRING</ref>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(*<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(*<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<sp/>malloc(<sp/>strlen(input_string)<sp/>+<sp/>1<sp/>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref><sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)<sp/>malloc(<sp/>strlen(input_string)<sp/>+<sp/>1<sp/>);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy(*<ref refid="ffcontrol__module__extern_8h_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref>,<sp/>input_string);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>perform<sp/>lexical<sp/>analysis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1af773e7385850540b832aff590170ceb0" kindref="member">init_tokens</ref><sp/>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>first<sp/>set<sp/>up<sp/>token<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ffcontrol_8h_1aded062758c98d3a296703cce34d87d41" kindref="member">lex</ref><sp/>(input_string)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Error<sp/>lexically<sp/>analyzing<sp/>control<sp/>file<sp/>&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ffcontrol_8h_1a9c36a9fc6bb0ec18d292d2607710382e" kindref="member">create_fsm</ref><sp/>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>create<sp/>fsm<sp/>table<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ffcontrol_8h_1a7190520c0d971601304fd6c9dff56bc2" kindref="member">parser</ref><sp/>()<sp/>!=<sp/>0)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>parse<sp/>token<sp/>string<sp/>and<sp/>fill<sp/>c_blocks<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Error<sp/>parsing<sp/>control<sp/>file<sp/>&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>free<sp/>up<sp/>temporary<sp/>storage<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>free<sp/>(input_string);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>free<sp/>(<ref refid="parse__control__file_8c_1a2f20d1bdda76b8e24273c759fd9e1517" kindref="member">fsm_base</ref>);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>free<sp/>(<ref refid="parse__control__file_8c_1a5fa05140bf6690c8fea8250127dd3336" kindref="member">tokens</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>free<sp/>(<ref refid="parse__control__file_8c_1ad6d23835b07f1486d02781beae1fba5d" kindref="member">float_values</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>free<sp/>(<ref refid="parse__control__file_8c_1a60d5aa5945374d3928ea4852513bbc8a" kindref="member">char_values</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>free<sp/>(<ref refid="parse__control__file_8c_1ac1829f44e2c4570d81ec609f3a623111" kindref="member">line_end</ref>);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>signal<sp/>successful<sp/>execution<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/parse_control_file.c"/>
+  </compounddef>
+</doxygen>

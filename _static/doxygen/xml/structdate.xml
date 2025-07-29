@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdate" kind="struct" language="C++" prot="public">
+    <compoundname>date</compoundname>
+    <includes refid="mk4__typedefs_8h" local="no">mk4_typedefs.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdate_1aad570045b0c46ad2ec1333516b19d826" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short date::day</definition>
+        <argsstring></argsstring>
+        <name>day</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="17" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdate_1a86616c8f14820a1b884493b3f70d6790" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short date::hour</definition>
+        <argsstring></argsstring>
+        <name>hour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="18" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdate_1a0a89d97324551f72b471a80cad3b7b9e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short date::minute</definition>
+        <argsstring></argsstring>
+        <name>minute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="19" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdate_1afda99d94a7ee7ff3dda1dbce576ba524" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float date::second</definition>
+        <argsstring></argsstring>
+        <name>second</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="20" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdate_1aef68a8508dda64a80f5fe08202e0da4c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short date::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="16" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="15" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structdate_1aad570045b0c46ad2ec1333516b19d826" prot="public" virt="non-virtual"><scope>date</scope><name>day</name></member>
+      <member refid="structdate_1a86616c8f14820a1b884493b3f70d6790" prot="public" virt="non-virtual"><scope>date</scope><name>hour</name></member>
+      <member refid="structdate_1a0a89d97324551f72b471a80cad3b7b9e" prot="public" virt="non-virtual"><scope>date</scope><name>minute</name></member>
+      <member refid="structdate_1afda99d94a7ee7ff3dda1dbce576ba524" prot="public" virt="non-virtual"><scope>date</scope><name>second</name></member>
+      <member refid="structdate_1aef68a8508dda64a80f5fe08202e0da4c" prot="public" virt="non-virtual"><scope>date</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

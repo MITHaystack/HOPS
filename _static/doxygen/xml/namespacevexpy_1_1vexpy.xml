@@ -1,0 +1,495 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevexpy_1_1vexpy" kind="namespace" language="Python">
+    <compoundname>vexpy::vexpy</compoundname>
+    <innerclass refid="classvexpy_1_1vexpy_1_1chan__struct" prot="public">vexpy::vexpy::chan_struct</innerclass>
+    <innerclass refid="classvexpy_1_1vexpy_1_1scan__struct" prot="public">vexpy::vexpy::scan_struct</innerclass>
+    <innerclass refid="classvexpy_1_1vexpy_1_1source__struct" prot="public">vexpy::vexpy::source_struct</innerclass>
+    <innerclass refid="classvexpy_1_1vexpy_1_1station__struct" prot="public">vexpy::vexpy::station_struct</innerclass>
+    <innerclass refid="classvexpy_1_1vexpy_1_1vex" prot="public">vexpy::vexpy::vex</innerclass>
+    <innerclass refid="classvexpy_1_1vexpy_1_1VexStructureBase" prot="public">vexpy::vexpy::VexStructureBase</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ae6d16f4adc4bf6a658b9bf7ac1e38a08" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.ADAPTIVE</definition>
+        <argsstring></argsstring>
+        <name>ADAPTIVE</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1aa08b4a29ee18d80c16c74e30f3719efb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.AZEL</definition>
+        <argsstring></argsstring>
+        <name>AZEL</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1af6ca945aee00447d9100998be62c74dc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.B1950</definition>
+        <argsstring></argsstring>
+        <name>B1950</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ace064cf43a90853fb2011c03cbf621bc" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string vexpy::vexpy.C_UNDEFINED</definition>
+        <argsstring></argsstring>
+        <name>C_UNDEFINED</name>
+        <initializer>=  &apos;\0&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="50" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1af95754fb018057336611488b6c56c689" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.CONTINUOUS</definition>
+        <argsstring></argsstring>
+        <name>CONTINUOUS</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="25" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ab93ed004bc1343a61c04c70d20fbd94e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.DUMMY</definition>
+        <argsstring></argsstring>
+        <name>DUMMY</name>
+        <initializer>=  4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a75f275632e2b148d15c26481fbf60d10" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.EARTH_ORBIT</definition>
+        <argsstring></argsstring>
+        <name>EARTH_ORBIT</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a4921c30aaf6c4598ed6f5a3694e9600e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.EQUATORIAL</definition>
+        <argsstring></argsstring>
+        <name>EQUATORIAL</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a620ea5fee8fc6907ac30ee7470fe05ca" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float vexpy::vexpy.F_UNDEFINED</definition>
+        <argsstring></argsstring>
+        <name>F_UNDEFINED</name>
+        <initializer>=  -1.0e30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="52" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a8f6627f9a9ace600d1c1e9ba3ac21134" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.FIXED</definition>
+        <argsstring></argsstring>
+        <name>FIXED</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ad7942efc8b8803d0d3de0ba54f3231ce" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.I_UNDEFINED</definition>
+        <argsstring></argsstring>
+        <name>I_UNDEFINED</name>
+        <initializer>=  16383</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ae3cde02edf64c0bd9d527a09f7b2af6d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.J2000</definition>
+        <argsstring></argsstring>
+        <name>J2000</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a903d6f8273be3f696022b8823de8530d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.K4</definition>
+        <argsstring></argsstring>
+        <name>K4</name>
+        <initializer>=  6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a0e20ae5108503453b43e8d7be3fff66e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.MARK3A</definition>
+        <argsstring></argsstring>
+        <name>MARK3A</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="38" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1afc83ffb8cf34bb7d7e7fa1ec51032949" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.MARK4</definition>
+        <argsstring></argsstring>
+        <name>MARK4</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="39" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a02755f7ad1f5fdd1154a453641750b21" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.MARK5A</definition>
+        <argsstring></argsstring>
+        <name>MARK5A</name>
+        <initializer>=  7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="44" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ade130ae34870c2cdac3f61fd1c759843" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.MARK5B</definition>
+        <argsstring></argsstring>
+        <name>MARK5B</name>
+        <initializer>=  8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="45" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a39b3bdcff58f5ce76a63bc333bd3a159" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.MAX_CHAN</definition>
+        <argsstring></argsstring>
+        <name>MAX_CHAN</name>
+        <initializer>=  128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="57" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a3a0552e2ef5c41cf4bedb5b9581af729" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.OFF</definition>
+        <argsstring></argsstring>
+        <name>OFF</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a0eaaa7c814f1dec900a4e7ef5acdfbe2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.ON</definition>
+        <argsstring></argsstring>
+        <name>ON</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="47" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a8cc799d63c865b901adbcd117b71ce95" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.OVEX</definition>
+        <argsstring></argsstring>
+        <name>OVEX</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="54" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ab1ebb40125c9bb7a08c6b6c5ec454090" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.QUASAR</definition>
+        <argsstring></argsstring>
+        <name>QUASAR</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+<para>compiler defines from <ref refid="ovex_8h" kindref="compound">ovex.h</ref> (need to pythonize these) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1adc0eaad0b6494761195a1f2c2a6f5821" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.S2</definition>
+        <argsstring></argsstring>
+        <name>S2</name>
+        <initializer>=  5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a61ff517db311b1fd99d465c76ac39d5a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.SATELLITE</definition>
+        <argsstring></argsstring>
+        <name>SATELLITE</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1ad3ea39acaa7c8488a86c09393579dd31" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.STAR</definition>
+        <argsstring></argsstring>
+        <name>STAR</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1acf7e3cfcc84eed5509b591cda07b8034" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.START_STOP</definition>
+        <argsstring></argsstring>
+        <name>START_STOP</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a79993afd8ea5ac8ee2c11b310420d802" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.VLBA</definition>
+        <argsstring></argsstring>
+        <name>VLBA</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1af5c6db44720d3efa3d37a50c7ee4be80" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.VLBAG</definition>
+        <argsstring></argsstring>
+        <name>VLBAG</name>
+        <initializer>=  4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1acb07f2fbb9533259873c39738992981c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.X_YEW</definition>
+        <argsstring></argsstring>
+        <name>X_YEW</name>
+        <initializer>=  4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="35" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevexpy_1_1vexpy_1a475237a6d639f8cdc80109b1467f2319" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vexpy::vexpy.X_YNS</definition>
+        <argsstring></argsstring>
+        <name>X_YNS</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevexpy_1_1vexpy_1a38010bfd85ff86f2e7a2afc0620847bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vexpy.vexpy.get_file_station_polarizations</definition>
+        <argsstring>(ovex_filename)</argsstring>
+        <name>get_file_station_polarizations</name>
+        <param>
+          <type>ovex_filename</type>
+          <defname>ovex_filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> parse the ovex (root) file of a particular scan and determine the polarizations associated with each station, return as dict </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="302" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="302" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevexpy_1_1vexpy_1ad7b494f37264544407a3b859bd33c496" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vexpy.vexpy.get_ovex</definition>
+        <argsstring>(filename)</argsstring>
+        <name>get_ovex</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> Get parsed ovex file data. WARNING, the object returned by this function will not be preserved across
+multiple calls to get_ovex() as the returned ovex object does not perform a deep
+copy of itself and the underlying vex library is not re-entrant/thread-safe </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="289" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="289" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevexpy_1_1vexpy_1a0ee6e3af2a74d4d8a7c59932b4c9412f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vexpy.vexpy.load_vexpy_library</definition>
+        <argsstring>()</argsstring>
+        <name>load_vexpy_library</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>locate and load the vex parsing c-library</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="251" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="251" bodyend="288"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>provides python access to vex parsing library</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

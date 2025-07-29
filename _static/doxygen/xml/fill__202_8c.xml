@@ -1,0 +1,637 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="fill__202_8c" kind="file" language="C++">
+    <compoundname>fill_202.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <includes refid="vex_8h" local="yes">vex.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="mk4__dfio_8h" local="yes">mk4_dfio.h</includes>
+    <includes refid="param__struct_8h" local="yes">param_struct.h</includes>
+    <incdepgraph>
+      <node id="42">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>lvex.h</label>
+        <link refid="lvex_8h"/>
+      </node>
+      <node id="32">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="6">
+        <label>stdarg.h</label>
+      </node>
+      <node id="46">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>plot_struct.h</label>
+        <link refid="plot__struct_8h"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="51">
+        <label>stdint.h</label>
+      </node>
+      <node id="52">
+        <label>mk4_dfio.h</label>
+        <link refid="mk4__dfio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="13">
+        <label>ivex.h</label>
+        <link refid="ivex_8h"/>
+      </node>
+      <node id="41">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>fill_202.c</label>
+        <link refid="fill__202_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="28">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>param_struct.h</label>
+        <link refid="param__struct_8h"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>cvex.h</label>
+        <link refid="cvex_8h"/>
+      </node>
+      <node id="33">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="21">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>sys/types.h</label>
+      </node>
+      <node id="40">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="18">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="44">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>complex.h</label>
+      </node>
+      <node id="36">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="17">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>math.h</label>
+      </node>
+      <node id="39">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>evex.h</label>
+        <link refid="evex_8h"/>
+      </node>
+      <node id="47">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="50">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>svex.h</label>
+        <link refid="svex_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="35">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="16">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="fill__202_8c_1a7924c3f2626a8aa33f3ebbaf3e948db9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_202</definition>
+        <argsstring>(struct vex *root, struct type_param *param, struct type_202 *t202)</argsstring>
+        <name>fill_202</name>
+        <param>
+          <type>struct <ref refid="structvex" kindref="compound">vex</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__202" kindref="compound">type_202</ref> *</type>
+          <declname>t202</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_202.c" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_202.c" bodystart="23" bodyend="142"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Fills<sp/>in<sp/>a<sp/>type_202<sp/>record,<sp/>based<sp/>on<sp/>root<sp/>information<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>root<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scan_info<sp/>struct<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param<sp/><sp/><sp/><sp/><sp/><sp/><sp/>lots<sp/>of<sp/>parameters<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t202<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Filled<sp/>in<sp/>type_202<sp/>record<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>31<sp/>August<sp/>1999<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vex_8h" kindref="compound">vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__dfio_8h" kindref="compound">mk4_dfio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="param__struct_8h" kindref="compound">param_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="fill__202_8c_1a7924c3f2626a8aa33f3ebbaf3e948db9" kindref="member">fill_202</ref><sp/>(</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structvex" kindref="compound">vex</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__202" kindref="compound">type_202</ref><sp/>*t202)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>refst,<sp/>remst;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>refepoch,<sp/>remepoch,<sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref>,<sp/>refdiff,<sp/>remdiff,<sp/>lambda;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="mk4__util_8h_1a9a8c75fdf144b114d3d1749aa68bdafe" kindref="member">time_to_double</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*<ref refid="structref" kindref="compound">ref</ref>,<sp/>*rem;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstation__log" kindref="compound">station_log</ref><sp/>*lref,<sp/>*lrem;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/>tempdate;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/><ref refid="fourfit3_8c_1a67a98e2a5d464ae68b26343d8eebfec2" kindref="member">sdata</ref>[];</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*refsd,<sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*remsd;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mk4__dfio_8h_1aca8a96099e0879ee854db13eca585126" kindref="member">clear_202</ref><sp/>(t202);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy<sp/>(t202-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>,<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a2e7820df0998eb238db240e0740793b9" kindref="member">baseline</ref>,<sp/>2);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>station<sp/>structs<sp/>from<sp/>root<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>refst<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a2e7820df0998eb238db240e0740793b9" kindref="member">baseline</ref>[0];</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>remst<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a2e7820df0998eb238db240e0740793b9" kindref="member">baseline</ref>[1];</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structref" kindref="compound">ref</ref><sp/>=<sp/>rem<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;root-&gt;<ref refid="structvex_1a7edd147b2c001dc595c5d922acc48182" kindref="member">ovex</ref>-&gt;<ref refid="structscan__struct_1a66276d0b97f433138d77f34b49ee1bb3" kindref="member">nst</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(root-&gt;<ref refid="structvex_1a7edd147b2c001dc595c5d922acc48182" kindref="member">ovex</ref>-&gt;<ref refid="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" kindref="member">st</ref>[i].<ref refid="structstation__struct_1a97e8aee8feb60df946cd4fec72233f2a" kindref="member">mk4_site_id</ref><sp/>==<sp/>refst)<sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structref" kindref="compound">ref</ref><sp/>=<sp/>root-&gt;<ref refid="structvex_1a7edd147b2c001dc595c5d922acc48182" kindref="member">ovex</ref>-&gt;<ref refid="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" kindref="member">st</ref><sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(root-&gt;<ref refid="structvex_1a7edd147b2c001dc595c5d922acc48182" kindref="member">ovex</ref>-&gt;<ref refid="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" kindref="member">st</ref>[i].<ref refid="structstation__struct_1a97e8aee8feb60df946cd4fec72233f2a" kindref="member">mk4_site_id</ref><sp/>==<sp/>remst)<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem<sp/>=<sp/>root-&gt;<ref refid="structvex_1a7edd147b2c001dc595c5d922acc48182" kindref="member">ovex</ref>-&gt;<ref refid="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" kindref="member">st</ref><sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="structref" kindref="compound">ref</ref><sp/>==<sp/>NULL)<sp/>||<sp/>(rem<sp/>==<sp/>NULL))</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="structref" kindref="compound">ref</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>find<sp/>station<sp/>&apos;%c&apos;<sp/>in<sp/>ovex<sp/>file&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>refst);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>find<sp/>station<sp/>&apos;%c&apos;<sp/>in<sp/>ovex<sp/>file&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>remst);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy<sp/>(t202-&gt;<ref refid="structtype__202_1a270770bf8fa318547488169ace45418e" kindref="member">ref_intl_id</ref>,<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;site_id,<sp/>2);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy<sp/>(t202-&gt;<ref refid="structtype__202_1a33adcf3c205416a1c302d67596137148" kindref="member">rem_intl_id</ref>,<sp/>rem-&gt;<ref refid="structstation__struct_1a8e0f89fac47f41bf1b326301a7413ab2" kindref="member">site_id</ref>,<sp/>2);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy<sp/>(t202-&gt;<ref refid="structtype__202_1a5d039a56134f495a716c172aa8d94028" kindref="member">ref_name</ref>,<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;site_name,<sp/>8);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy<sp/>(t202-&gt;<ref refid="structtype__202_1a53a92c1ffbe4b75bdc4433bdd907f7ff" kindref="member">rem_name</ref>,<sp/>rem-&gt;<ref refid="structstation__struct_1af6366fbb80d495702bc869cb96659805" kindref="member">site_name</ref>,<sp/>8);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1aba168175634242aad41065027eba853e" kindref="member">nlags</ref><sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1afc491296aa5330791465a1f62bdf9050" kindref="member">nlags</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1abcc71a329608e744e2c6e1f9af4fa69f" kindref="member">ref_xpos</ref><sp/>=<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;coordinates[0];</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1ac7ae3e0fc99e367a1ec567b8737d4e1d" kindref="member">rem_xpos</ref><sp/>=<sp/>rem-&gt;<ref refid="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" kindref="member">coordinates</ref>[0];</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a8d9db39e34185d3438f50e21c7d75474" kindref="member">ref_ypos</ref><sp/>=<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;coordinates[1];</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a79be65be2f3b6f910d701176b067f2db" kindref="member">rem_ypos</ref><sp/>=<sp/>rem-&gt;<ref refid="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" kindref="member">coordinates</ref>[1];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a9d088c90b2f8c4255bedf5cd745c11d0" kindref="member">ref_zpos</ref><sp/>=<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;coordinates[2];</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a2ac6c4b7da36606501b9b2dc1bb93f26" kindref="member">rem_zpos</ref><sp/>=<sp/>rem-&gt;<ref refid="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" kindref="member">coordinates</ref>[2];</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Fourfit<sp/>ref<sp/>time<sp/>is<sp/>relative<sp/>to<sp/>start<sp/>of<sp/>year<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>So<sp/>need<sp/>to<sp/>convert<sp/>to<sp/>secs<sp/>since<sp/>1980<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>tempdate.year<sp/>=<sp/>root-&gt;<ref refid="structvex_1a7edd147b2c001dc595c5d922acc48182" kindref="member">ovex</ref>-&gt;<ref refid="structscan__struct_1a0c97c293e48442f34ba184f2c6df3950" kindref="member">start_time</ref>.<ref refid="structdate_1aef68a8508dda64a80f5fe08202e0da4c" kindref="member">year</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>tempdate.day<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>tempdate.hour<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>tempdate.minute<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>tempdate.second<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref><sp/>=<sp/><ref refid="mk4__util_8h_1a9a8c75fdf144b114d3d1749aa68bdafe" kindref="member">time_to_double</ref><sp/>(tempdate)<sp/>+<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1aa839955ea8b858f5738ef36187c13c21" kindref="member">reftime</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Ref<sp/>station<sp/>clockrate<sp/>ref<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="structref" kindref="compound">ref</ref>-&gt;clockrate<sp/>!=<sp/>0.0)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refepoch<sp/>=<sp/><ref refid="mk4__util_8h_1a9a8c75fdf144b114d3d1749aa68bdafe" kindref="member">time_to_double</ref><sp/>(<ref refid="structref" kindref="compound">ref</ref>-&gt;clockrate_epoch);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>refepoch<sp/>=<sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>refdiff<sp/>=<sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref><sp/>-<sp/>refepoch;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs<sp/>(refdiff)<sp/>&gt;<sp/>3.0e5)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Warning,<sp/>ref<sp/>station<sp/>clockrate<sp/>epoch<sp/>highly<sp/>discrepant<sp/>from<sp/>FRT\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;frt<sp/>=<sp/>%12.2f,<sp/>ref<sp/>epoch<sp/>=<sp/>%12.2f&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref>,<sp/>refepoch);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Rem<sp/>station<sp/>clockrate<sp/>ref<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem-&gt;<ref refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" kindref="member">clockrate</ref><sp/>!=<sp/>0.0)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remepoch<sp/>=<sp/><ref refid="mk4__util_8h_1a9a8c75fdf144b114d3d1749aa68bdafe" kindref="member">time_to_double</ref><sp/>(rem-&gt;<ref refid="structstation__struct_1a6e05d9b0f20f075f56c2098b53c36c82" kindref="member">clockrate_epoch</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>remepoch<sp/>=<sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>remdiff<sp/>=<sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref><sp/>-<sp/>remepoch;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs<sp/>(remdiff)<sp/>&gt;<sp/>3.0e5)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Warning,<sp/>rem<sp/>station<sp/>clockrate<sp/>epoch<sp/>highly<sp/>discrepant<sp/>from<sp/>FRT\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;frt<sp/>=<sp/>%12.2f,<sp/>ref<sp/>epoch<sp/>=<sp/>%12.2f&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="createRoot_8c_1a513dfe21d8fdb9359382061550cb2ef6" kindref="member">frt</ref>,<sp/>remepoch);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Adjust<sp/>clocks<sp/>to<sp/>frt<sp/>for<sp/>clockrate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a6f0570b5e417ef82afbcc8dc704a4204" kindref="member">ref_clock</ref><sp/>=<sp/>(<ref refid="structref" kindref="compound">ref</ref>-&gt;clock_early<sp/>+<sp/>(refdiff<sp/>*<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;clockrate))<sp/>*<sp/>1.0e6;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a0a9cbd05594e270a7329f72e418e9f92" kindref="member">rem_clock</ref><sp/>=<sp/>(rem-&gt;<ref refid="structstation__struct_1a2282cd9ce912fcb46bd9f7e688be37ee" kindref="member">clock_early</ref><sp/>+<sp/>(remdiff<sp/>*<sp/>rem-&gt;<ref refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" kindref="member">clockrate</ref>))<sp/>*<sp/>1.0e6;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1aaa32b007656415fd44cad7e75c2e2a26" kindref="member">ref_clockrate</ref><sp/>=<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;clockrate;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a4484e07057dd55de6ccd78d566a0fe8f" kindref="member">rem_clockrate</ref><sp/>=<sp/>rem-&gt;<ref refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" kindref="member">clockrate</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Instrumental<sp/>delays(?)<sp/>here<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a7b47244d1542856e90be069094f35ac8" kindref="member">ref_zdelay</ref><sp/>=<sp/><ref refid="structref" kindref="compound">ref</ref>-&gt;zenith_atm<sp/>*<sp/>1.0e6;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1aba75dcf9568f3cde34bf4f9330c6d5fb" kindref="member">rem_zdelay</ref><sp/>=<sp/>rem-&gt;<ref refid="structstation__struct_1a223f03fbf664f60d8da1bc168b2cf8c0" kindref="member">zenith_atm</ref><sp/>*<sp/>1.0e6;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>elevations/azimuths<sp/>here<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="mk4__data_8h_1a5961d051984b9bee9a6e190abb80153d" kindref="member">MAXSTATIONS</ref>;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>find<sp/>correct<sp/>splines</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a67a98e2a5d464ae68b26343d8eebfec2" kindref="member">sdata</ref>[i].<ref refid="structmk4__sdata_1a740f033ffb027b5d8c1fddab2bb4084e" kindref="member">t300</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a67a98e2a5d464ae68b26343d8eebfec2" kindref="member">sdata</ref>[i].<ref refid="structmk4__sdata_1a740f033ffb027b5d8c1fddab2bb4084e" kindref="member">t300</ref>-&gt;<ref refid="structtype__300_1a4acc7d084be2b541aa145ac6c10ad790" kindref="member">id</ref><sp/>==<sp/>refst)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refsd<sp/>=<sp/><ref refid="fourfit3_8c_1a67a98e2a5d464ae68b26343d8eebfec2" kindref="member">sdata</ref><sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a67a98e2a5d464ae68b26343d8eebfec2" kindref="member">sdata</ref>[i].<ref refid="structmk4__sdata_1a740f033ffb027b5d8c1fddab2bb4084e" kindref="member">t300</ref>-&gt;<ref refid="structtype__300_1a4acc7d084be2b541aa145ac6c10ad790" kindref="member">id</ref><sp/>==<sp/>remst)<sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remsd<sp/>=<sp/><ref refid="fourfit3_8c_1a67a98e2a5d464ae68b26343d8eebfec2" kindref="member">sdata</ref><sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((refsd<sp/>==<sp/>NULL)<sp/>||<sp/>(remsd<sp/>==<sp/>NULL))</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Could<sp/>not<sp/>find<sp/>stations<sp/>in<sp/>t303<sp/>records<sp/>in<sp/>fill_202()&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>should<sp/>actually<sp/>evaluate<sp/>these<sp/>polys<sp/>at<sp/>frt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(refsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]<sp/>!=<sp/>NULL<sp/>&amp;&amp;<sp/>remsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1aca05da77fc537527959bbe7e443e6c13" kindref="member">ref_elev</ref><sp/>=<sp/>refsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;elevation[0];</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a2455db4bfa3ade121c3bed3e6031aa50" kindref="member">rem_elev</ref><sp/>=<sp/>remsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;elevation[0];</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a6a7042bab8ce5e8485fcdf36376bfbcc" kindref="member">ref_az</ref><sp/><sp/><sp/>=<sp/>refsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;azimuth[0];</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a2868b8b174160e7b98627a00cf1f7951" kindref="member">rem_az</ref><sp/><sp/><sp/>=<sp/>remsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;azimuth[0];</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Baseline<sp/>u,v<sp/>in<sp/>fr<sp/>/<sp/>asec</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>should<sp/>evaluate<sp/>these<sp/>polys<sp/>at<sp/>frt,<sp/>too!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lambda<sp/>=<sp/>299.792458<sp/>/<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1afcd199da31a26e7885853c902b413b90" kindref="member">ref_freq</ref>;<sp/></highlight><highlight class="comment">//<sp/>wavelength<sp/>(m)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a5d44b8f32d12e7c071436389bb5249db" kindref="member">u</ref><sp/>=<sp/>4.848137e-6<sp/>*<sp/>(remsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;u[0]<sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>refsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;u[0])<sp/>/<sp/>lambda;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t202-&gt;<ref refid="structtype__202_1a8e9bd7adba5cae87cd0cc659290a16c1" kindref="member">v</ref><sp/>=<sp/>4.848137e-6<sp/>*<sp/>(remsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;v[0]<sp/></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>refsd-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[0].t303[0]-&gt;v[0])<sp/>/<sp/>lambda;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Now<sp/>find<sp/>stations<sp/>in<sp/>lvex<sp/>for<sp/>VSNs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;root-&gt;<ref refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" kindref="member">lvex</ref>-&gt;<ref refid="structlvex__struct_1a7971f83ecd7a826ce01ff78803d337ff" kindref="member">nstation</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(root-&gt;<ref refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" kindref="member">lvex</ref>-&gt;<ref refid="structlvex__struct_1a23aa4b713f9193311da2f7a41156fe76" kindref="member">stn</ref>[i].<ref refid="structstation__log_1a4737dfa4e36bf1da771ac04c6f06904b" kindref="member">station</ref><sp/>==<sp/>refst)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t202-&gt;<ref refid="structtype__202_1ade3f35a36a09a647bfb69d2fdf09d5f1" kindref="member">ref_tape</ref>,<sp/>root-&gt;<ref refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" kindref="member">lvex</ref>-&gt;<ref refid="structlvex__struct_1a23aa4b713f9193311da2f7a41156fe76" kindref="member">stn</ref>[i].<ref refid="structstation__log_1a9e13e037e922778a6d7ede5cc1a0f543" kindref="member">vsn</ref>,<sp/>8);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(root-&gt;<ref refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" kindref="member">lvex</ref>-&gt;<ref refid="structlvex__struct_1a23aa4b713f9193311da2f7a41156fe76" kindref="member">stn</ref>[i].<ref refid="structstation__log_1a4737dfa4e36bf1da771ac04c6f06904b" kindref="member">station</ref><sp/>==<sp/>remst)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t202-&gt;<ref refid="structtype__202_1ac7a97ed004245dd57446f2025c08c350" kindref="member">rem_tape</ref>,<sp/>root-&gt;<ref refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" kindref="member">lvex</ref>-&gt;<ref refid="structlvex__struct_1a23aa4b713f9193311da2f7a41156fe76" kindref="member">stn</ref>[i].<ref refid="structstation__log_1a9e13e037e922778a6d7ede5cc1a0f543" kindref="member">vsn</ref>,<sp/>8);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_202.c"/>
+  </compounddef>
+</doxygen>

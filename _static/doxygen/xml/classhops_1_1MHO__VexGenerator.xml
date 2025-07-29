@@ -1,0 +1,515 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VexGenerator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VexGenerator</compoundname>
+    <includes refid="MHO__VexGenerator_8hh" local="no">MHO_VexGenerator.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1ad4aa5b58a83ce83eedabce57054e45d6" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_VexGenerator::fBlockFormat</definition>
+        <argsstring></argsstring>
+        <name>fBlockFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="84" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a7a55e513b0eea2a0c7f920dae5d37122" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_VexGenerator::fBlockFormatLoaded</definition>
+        <argsstring></argsstring>
+        <name>fBlockFormatLoaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="83" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a857916c5213c3e3cdca2b87210d3b8a3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_VexGenerator::fBlockNames</definition>
+        <argsstring></argsstring>
+        <name>fBlockNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="65" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1adbd7f5aaf3308d492c23440372a731e5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::fFilename</definition>
+        <argsstring></argsstring>
+        <name>fFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="57" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1aa88f12cd6fbe22ed929d8dca1c3ceda4" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::fFormatDirectory</definition>
+        <argsstring></argsstring>
+        <name>fFormatDirectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="62" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a6605c6ce0fa21aafa0a0a74860170bfc" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::fIndentPad</definition>
+        <argsstring></argsstring>
+        <name>fIndentPad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="82" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a99af0c93402eb212fedd928e04cce7a5" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__VexElementLineGenerator" kindref="compound">MHO_VexElementLineGenerator</ref></type>
+        <definition>MHO_VexElementLineGenerator hops::MHO_VexGenerator::fLineGen</definition>
+        <argsstring></argsstring>
+        <name>fLineGen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="103" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1aa4e41b2d57751ad19035afb4a390ddce" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::fPad</definition>
+        <argsstring></argsstring>
+        <name>fPad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="81" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a587613be270f4294d3b0646f55819b3f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::fSpace</definition>
+        <argsstring></argsstring>
+        <name>fSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="60" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a1375fd821281926389d20244fc7b0053" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__VexDefinitions" kindref="compound">MHO_VexDefinitions</ref></type>
+        <definition>MHO_VexDefinitions hops::MHO_VexGenerator::fVexDef</definition>
+        <argsstring></argsstring>
+        <name>fVexDef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="61" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a10be015a9a11eae5d7178cfbd9b8275c" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::fVexRevisionFlag</definition>
+        <argsstring></argsstring>
+        <name>fVexRevisionFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="63" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexGenerator_1a10562582578b8e804028f0186159891c" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::fVexVersion</definition>
+        <argsstring></argsstring>
+        <name>fVexVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="64" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1a389d2dc252ee28e8888f299c8de513cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VexGenerator::MHO_VexGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_VexGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="7" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1ae3c7beac56e62fdefbae2c867496d2d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_VexGenerator::~MHO_VexGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_VexGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1a21b35212d2ad12953277a21298e35de2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::GenerateVex</definition>
+        <argsstring>(mho_json &amp;root)</argsstring>
+        <name>GenerateVex</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+<para>Generates Vex file content and writes it to a specified filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>root</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json object containing data for Vex generation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="47" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="21" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1ad8a81c989c417d341fbaf5429a344299" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::SetFilename</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>SetFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Setter for filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New filename to be set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="41" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="16" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1a8ce1e19a49f6d79dacedfc31b3861d87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::SetIndentPadding</definition>
+        <argsstring>(std::string indent_pad)</argsstring>
+        <name>SetIndentPadding</name>
+        <param>
+          <type>std::string</type>
+          <declname>indent_pad</declname>
+        </param>
+        <briefdescription>
+<para>Setter for indent padding. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>indent_pad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New indent padding string to be set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1aa3468143105945dc60897573eb0727a2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::ConstructBlockLines</definition>
+        <argsstring>(mho_json &amp;root, std::string block_name, std::vector&lt; std::string &gt; &amp;lines)</argsstring>
+        <name>ConstructBlockLines</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>block_name</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="100" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="71" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1a80ef849ea8514b70e4ad2de607520246" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::ConstructElementLines</definition>
+        <argsstring>(mho_json &amp;element, std::vector&lt; std::string &gt; &amp;lines)</argsstring>
+        <name>ConstructElementLines</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="101" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="129" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1ae775d6da38cb0eda056e2aaee277ca69" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::ConstructReferenceLines</definition>
+        <argsstring>(mho_json &amp;element, std::vector&lt; std::string &gt; &amp;lines)</argsstring>
+        <name>ConstructReferenceLines</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>lines</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="102" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="190" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1ab29b917d0c07d63e1af6e166f1ebf889" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexGenerator::GetBlockFormatFileName</definition>
+        <argsstring>(std::string block_name)</argsstring>
+        <name>GetBlockFormatFileName</name>
+        <param>
+          <type>std::string</type>
+          <declname>block_name</declname>
+        </param>
+        <briefdescription>
+<para>Getter for block format file name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>block_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input block name string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Formatted block file name as string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="99" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="260" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1ad68c448165cccf68eb6dada53cdc4e6b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_VexGenerator::IsExcludedOvex</definition>
+        <argsstring>(std::string block_name)</argsstring>
+        <name>IsExcludedOvex</name>
+        <param>
+          <type>std::string</type>
+          <declname>block_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="106" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="269" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1ad2470470d5a15b9877aa1ecc917d77b9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::LoadBlockFormat</definition>
+        <argsstring>(std::string block_name)</argsstring>
+        <name>LoadBlockFormat</name>
+        <param>
+          <type>std::string</type>
+          <declname>block_name</declname>
+        </param>
+        <briefdescription>
+<para>Loads block format from file using given block name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>block_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the block to load format for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="91" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="237" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1ae17455b267b137dd4d74b4feb12b4de0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::SetVexVersion</definition>
+        <argsstring>(const char *version)</argsstring>
+        <name>SetVexVersion</name>
+        <param>
+          <type>const char *</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New version string to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="78" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexGenerator_1a7abe888a5f1aaaebd44aad41e5e12d26" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexGenerator::SetVexVersion</definition>
+        <argsstring>(std::string version)</argsstring>
+        <name>SetVexVersion</name>
+        <param>
+          <type>std::string</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New vex version as string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="71" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexGenerator.cc" bodystart="229" bodyend="235"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__VexGenerator" kindref="compound">MHO_VexGenerator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jun 16 12:01:17 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexGenerator.hh" bodystart="31" bodyend="107"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__VexGenerator_1aa3468143105945dc60897573eb0727a2" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>ConstructBlockLines</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a80ef849ea8514b70e4ad2de607520246" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>ConstructElementLines</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ae775d6da38cb0eda056e2aaee277ca69" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>ConstructReferenceLines</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ad4aa5b58a83ce83eedabce57054e45d6" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fBlockFormat</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a7a55e513b0eea2a0c7f920dae5d37122" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fBlockFormatLoaded</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a857916c5213c3e3cdca2b87210d3b8a3" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fBlockNames</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1adbd7f5aaf3308d492c23440372a731e5" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fFilename</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1aa88f12cd6fbe22ed929d8dca1c3ceda4" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fFormatDirectory</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a6605c6ce0fa21aafa0a0a74860170bfc" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fIndentPad</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a99af0c93402eb212fedd928e04cce7a5" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fLineGen</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1aa4e41b2d57751ad19035afb4a390ddce" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fPad</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a587613be270f4294d3b0646f55819b3f" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fSpace</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a1375fd821281926389d20244fc7b0053" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fVexDef</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a10be015a9a11eae5d7178cfbd9b8275c" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fVexRevisionFlag</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a10562582578b8e804028f0186159891c" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>fVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a21b35212d2ad12953277a21298e35de2" prot="public" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>GenerateVex</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ab29b917d0c07d63e1af6e166f1ebf889" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>GetBlockFormatFileName</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ad68c448165cccf68eb6dada53cdc4e6b" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>IsExcludedOvex</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ad2470470d5a15b9877aa1ecc917d77b9" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>LoadBlockFormat</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a389d2dc252ee28e8888f299c8de513cd" prot="public" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>MHO_VexGenerator</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ad8a81c989c417d341fbaf5429a344299" prot="public" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>SetFilename</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a8ce1e19a49f6d79dacedfc31b3861d87" prot="public" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>SetIndentPadding</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1a7abe888a5f1aaaebd44aad41e5e12d26" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>SetVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ae17455b267b137dd4d74b4feb12b4de0" prot="private" virt="non-virtual"><scope>hops::MHO_VexGenerator</scope><name>SetVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexGenerator_1ae3c7beac56e62fdefbae2c867496d2d4" prot="public" virt="virtual"><scope>hops::MHO_VexGenerator</scope><name>~MHO_VexGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

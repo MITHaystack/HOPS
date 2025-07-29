@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="statistics_8h" kind="file" language="C++">
+    <compoundname>statistics.h</compoundname>
+    <includedby refid="compute__qf_8c" local="yes">compute_qf.c</includedby>
+    <includedby refid="apply__filter_8c" local="yes">apply_filter.c</includedby>
+    <invincdepgraph>
+      <node id="3">
+        <label>apply_filter.c</label>
+        <link refid="apply__filter_8c"/>
+      </node>
+      <node id="1">
+        <label>statistics.h</label>
+        <link refid="statistics_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>compute_qf.c</label>
+        <link refid="compute__qf_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structtype__statistics" prot="public">type_statistics</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="structtype__statistics" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__statistics" kindref="compound">type_statistics</ref></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="3" refid="structtype__statistics_1ad529b0527da4f17eda926d97589dab04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="structtype__statistics_1ad529b0527da4f17eda926d97589dab04" kindref="member">frq_x_perror</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>][8];</highlight></codeline>
+<codeline lineno="4" refid="structtype__statistics_1aac1a7dcb89203a4f08706f61b10438cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="structtype__statistics_1aac1a7dcb89203a4f08706f61b10438cd" kindref="member">frq_y_perror</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>][8];</highlight></codeline>
+<codeline lineno="5" refid="structtype__statistics_1adfb16591c7cf460dd9012cb802751c95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__statistics_1adfb16591c7cf460dd9012cb802751c95" kindref="member">frq_acc</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>][8];</highlight></codeline>
+<codeline lineno="6" refid="structtype__statistics_1a0f6372083c3b5b54baeb0c708ff0fded" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="structtype__statistics_1a0f6372083c3b5b54baeb0c708ff0fded" kindref="member">xperror</ref>;</highlight></codeline>
+<codeline lineno="7" refid="structtype__statistics_1a0cf7741157e356cf856398fa10dfe343" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="structtype__statistics_1a0cf7741157e356cf856398fa10dfe343" kindref="member">yperror</ref>;</highlight></codeline>
+<codeline lineno="8" refid="structtype__statistics_1ae2481016178ee0eefaa7e3e4da1dd5e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structtype__statistics_1ae2481016178ee0eefaa7e3e4da1dd5e3" kindref="member">ercc</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h"/>
+  </compounddef>
+</doxygen>

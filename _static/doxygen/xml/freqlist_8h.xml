@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="freqlist_8h" kind="file" language="C++">
+    <compoundname>freqlist.h</compoundname>
+    <includedby refid="make__flist_8c" local="yes">make_flist.c</includedby>
+    <includedby refid="set__pointers_8c" local="yes">set_pointers.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>make_flist.c</label>
+        <link refid="make__flist_8c"/>
+      </node>
+      <node id="3">
+        <label>set_pointers.c</label>
+        <link refid="set__pointers_8c"/>
+      </node>
+      <node id="1">
+        <label>freqlist.h</label>
+        <link refid="freqlist_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structfreqlist" prot="public">freqlist</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="structfreqlist" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfreqlist" kindref="compound">freqlist</ref></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="3" refid="structfreqlist_1ad22d8652276f2d16b6d5d24a93ce9c14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="structfreqlist_1ad22d8652276f2d16b6d5d24a93ce9c14" kindref="member">sky_frequency</ref>;</highlight></codeline>
+<codeline lineno="4" refid="structfreqlist_1ae4a3c581c7df98eceaa6664dcd428ce8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structfreqlist_1ae4a3c581c7df98eceaa6664dcd428ce8" kindref="member">ref_chnos</ref>[4];</highlight></codeline>
+<codeline lineno="5" refid="structfreqlist_1a6236497ae8565c8848e0f904e11c5471" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structfreqlist_1a6236497ae8565c8848e0f904e11c5471" kindref="member">rem_chnos</ref>[4];</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/freqlist.h"/>
+  </compounddef>
+</doxygen>

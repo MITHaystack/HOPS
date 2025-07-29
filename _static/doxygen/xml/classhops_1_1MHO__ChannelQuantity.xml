@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ChannelQuantity" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ChannelQuantity</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__ChannelLabelerBuilder" prot="public" virt="non-virtual">hops::MHO_ChannelLabelerBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ManualChannelDelayCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_ManualChannelDelayCorrectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_ManualChannelPhaseCorrectionBuilder</derivedcompoundref>
+    <includes refid="MHO__ChannelQuantity_8hh" local="no">MHO_ChannelQuantity.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelQuantity_1a42d07a1c26ed52b77ed19f8bd427a009" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ChannelQuantity::MHO_ChannelQuantity</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ChannelQuantity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelQuantity_1af1f963d1ce2afc7c9f1dafb3b790fa98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ChannelQuantity::~MHO_ChannelQuantity</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ChannelQuantity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh" bodystart="23" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelQuantity_1aba21578f415b9dd12a3fff23fd92fc0b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, double &gt;</type>
+        <definition>std::map&lt; std::string, double &gt; hops::MHO_ChannelQuantity::MapChannelQuantities</definition>
+        <argsstring>(std::string chan_names, std::vector&lt; double &gt; &amp;values)</argsstring>
+        <name>MapChannelQuantities</name>
+        <param>
+          <type>std::string</type>
+          <declname>chan_names</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+<para>Maps channel names to corresponding values and returns a map. if the number of channel names isn&apos;t the same as the number of values, this returns an empty map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>chan_names</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string containing comma-separated (or concatenated 1-character, with no space) channel names. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to input vector of double values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Map with channel names as keys and corresponding values. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh" line="35" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_ChannelQuantity.cc" bodystart="9" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class for storing and mapping per-channel control quantities (a typical task for fourfit control files) </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Thu Jun 8 13:56:30 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_ManualChannelDelayCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__ManualChannelDelayCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ChannelLabelerBuilder</label>
+        <link refid="classhops_1_1MHO__ChannelLabelerBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ChannelQuantity</label>
+        <link refid="classhops_1_1MHO__ChannelQuantity"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ManualChannelPhaseCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ChannelQuantity.hh" bodystart="20" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ChannelQuantity_1aba21578f415b9dd12a3fff23fd92fc0b" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelQuantity</scope><name>MapChannelQuantities</name></member>
+      <member refid="classhops_1_1MHO__ChannelQuantity_1a42d07a1c26ed52b77ed19f8bd427a009" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelQuantity</scope><name>MHO_ChannelQuantity</name></member>
+      <member refid="classhops_1_1MHO__ChannelQuantity_1af1f963d1ce2afc7c9f1dafb3b790fa98" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelQuantity</scope><name>~MHO_ChannelQuantity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

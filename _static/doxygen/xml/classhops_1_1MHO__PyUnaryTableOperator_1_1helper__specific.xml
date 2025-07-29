@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific" kind="class" language="C++" prot="private">
+    <compoundname>hops::MHO_PyUnaryTableOperator::helper_specific</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">hops::MHO_PyUnaryTableOperator::helper_base</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename XTableType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1aa73805c94a4eedee587f3c6c8a652338" prot="private" static="no" mutable="no">
+        <type>XTableType *</type>
+        <definition>XTableType* hops::MHO_PyUnaryTableOperator::helper_specific&lt; XTableType &gt;::fPtr</definition>
+        <argsstring></argsstring>
+        <name>fPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" line="114" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1a83410d85efd2ccb5cbdf30d0bd3db2f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyUnaryTableOperator::helper_specific&lt; XTableType &gt;::helper_specific</definition>
+        <argsstring>(XTableType *ptr)</argsstring>
+        <name>helper_specific</name>
+        <param>
+          <type>XTableType *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" line="88" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1a0dda8167ed62d09b12b4ecf4c0ae6e43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PyUnaryTableOperator::helper_specific&lt; XTableType &gt;::~helper_specific</definition>
+        <argsstring>()</argsstring>
+        <name>~helper_specific</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" line="89" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1a96dfe8a2081f6867309227617a7c7fbf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_PyUnaryTableOperator::helper_specific&lt; XTableType &gt;::exe</definition>
+        <argsstring>() override</argsstring>
+        <name>exe</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" line="91" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" bodystart="91" bodyend="111"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_PyUnaryTableOperator::helper_specific&lt; XTableType &gt;</label>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_PyUnaryTableOperator::helper_base</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PyUnaryTableOperator::helper_specific&lt; XTableType &gt;</label>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_PyUnaryTableOperator::helper_base</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fFunctionName</edgelabel>
+          <edgelabel>fModuleName</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" line="85" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryTableOperator.hh" bodystart="86" bodyend="115"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1a96dfe8a2081f6867309227617a7c7fbf" prot="public" virt="virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>exe</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__base_1a116590568259fd06ad8b55d89813aea8" prot="protected" virt="non-virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>fFunctionName</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__base_1aae3263019fa51a3d90a6e9a27731f59a" prot="protected" virt="non-virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>fModuleName</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1aa73805c94a4eedee587f3c6c8a652338" prot="private" virt="non-virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>fPtr</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__base_1af2acc6cb06465cb4ec0fed04bde6bd92" prot="public" virt="non-virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>helper_base</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1a83410d85efd2ccb5cbdf30d0bd3db2f6" prot="public" virt="non-virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>helper_specific</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__base_1a5c01c7c31601085f7bd4c09ca2dcf02e" prot="public" virt="non-virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>SetFunctionName</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__base_1ac951c9c7d37b71775e46f6ae47c0ebba" prot="public" virt="non-virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>SetModuleName</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__base_1a930b599ed3a44d221e32dea7a2e86e77" prot="public" virt="virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>~helper_base</name></member>
+      <member refid="classhops_1_1MHO__PyUnaryTableOperator_1_1helper__specific_1a0dda8167ed62d09b12b4ecf4c0ae6e43" prot="public" virt="virtual"><scope>hops::MHO_PyUnaryTableOperator::helper_specific</scope><name>~helper_specific</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

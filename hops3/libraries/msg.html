@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>msg &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="License" href="../../license.html" />
+    <link rel="prev" title="mk4util" href="mk4util.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hops4/hops4.html">HOPS4</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../hops3.html">HOPS3</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../applications/fourfit.html">fourfit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/alist.html">alist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/aedit.html">aedit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afio.html">afio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dfio.html">dfio - Mark4 Correlator I/O types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mk4util.html">mk4util</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">msg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv43msgPKciz"><code class="docutils literal notranslate"><span class="pre">msg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412set_prognamePKc"><code class="docutils literal notranslate"><span class="pre">set_progname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv412get_prognamev"><code class="docutils literal notranslate"><span class="pre">get_progname()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv410set_msglevi"><code class="docutils literal notranslate"><span class="pre">set_msglev()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../hops3.html">HOPS3 Applications and Libraries</a></li>
+      <li class="breadcrumb-item active">msg</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/hops3/libraries/msg.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="msg">
+<span id="id1"></span><h1>msg<a class="headerlink" href="#msg" title="Link to this heading"></a></h1>
+<p>The msg library controls the command line output of various programs. The only
+parameter accessible to the user is the message level. The message level for hops3
+programs is an integer, where the lower the integet the more verbose the output will be.
+For example a level of ‘-1’ will print a large variety of debug information, whereas
+‘5’ will be silent.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43msgPKciz">
+<span id="_CPPv33msgPKciz"></span><span id="_CPPv23msgPKciz"></span><span id="msg__cCP.i.z"></span><span class="target" id="msg_8h_1a02560f9686da0fc5d8020e1a070b884b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">msg</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">string</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">level</span></span>, <span class="p"><span class="pre">...</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43msgPKciz" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412set_prognamePKc">
+<span id="_CPPv312set_prognamePKc"></span><span id="_CPPv212set_prognamePKc"></span><span id="set_progname__cCP"></span><span class="target" id="msg_8h_1a41f224f3550cd182f5861fcfd034b734"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_progname</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">local_progname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412set_prognamePKc" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412get_prognamev">
+<span id="_CPPv312get_prognamev"></span><span id="_CPPv212get_prognamev"></span><span id="get_progname"></span><span class="target" id="msg_8h_1ae6d2b116b3b724573c3f383d81b21924"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">get_progname</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412get_prognamev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410set_msglevi">
+<span id="_CPPv310set_msglevi"></span><span id="_CPPv210set_msglevi"></span><span id="set_msglev__i"></span><span class="target" id="msg_8h_1ae2aa6e8913c5d96af651065245a39ef4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_msglev</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lev</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410set_msglevi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mk4util.html" class="btn btn-neutral float-left" title="mk4util" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

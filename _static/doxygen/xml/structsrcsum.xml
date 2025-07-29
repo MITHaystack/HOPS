@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsrcsum" kind="struct" language="C++" prot="public">
+    <compoundname>srcsum</compoundname>
+    <includes refid="summary_8h" local="no">summary.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsrcsum_1ad8f63055abf4ea5b907b051ea0011842" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srcsum::begin</definition>
+        <argsstring></argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="26" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1a8881c6138f0ca0aac1639530e06d922a" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* srcsum::btq</definition>
+        <argsstring></argsstring>
+        <name>btq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="30" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1afbfafe460457f3ca198ef6cc74a5b878" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srcsum::btq_allocated</definition>
+        <argsstring></argsstring>
+        <name>btq_allocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="34" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1a10875a3252ec368a2c1aee4321c3acf6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srcsum::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="25" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1a36eddb25e3978a5c1911cdc8e0840a18" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srcsum::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="27" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char srcsum::name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="24" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1a79cea437f7ea6e433bbc07601469a421" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srcsum::nbtq</definition>
+        <argsstring></argsstring>
+        <name>nbtq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="29" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1af13342b22c618f23b6d627af26e34846" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int srcsum::qcodes[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>qcodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="35" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1af8cfb37bdaaca2c4b8340346d223a6c3" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float srcsum::snrmax</definition>
+        <argsstring></argsstring>
+        <name>snrmax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="37" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1a1c9630b2c3d46042a4091c5edb4c28c4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float srcsum::snrmin</definition>
+        <argsstring></argsstring>
+        <name>snrmin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="36" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsrcsum_1a4ccd03e9220fc95587909b1cd7561c3b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char srcsum::stations[MAXSTEXP+1]</definition>
+        <argsstring>[MAXSTEXP+1]</argsstring>
+        <name>stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="28" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>srcsum</label>
+        <link refid="structsrcsum"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>snrmax</edgelabel>
+          <edgelabel>snrmin</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>btq</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>stations</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>begin</edgelabel>
+          <edgelabel>btq_allocated</edgelabel>
+          <edgelabel>count</edgelabel>
+          <edgelabel>end</edgelabel>
+          <edgelabel>nbtq</edgelabel>
+          <edgelabel>qcodes</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="23" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structsrcsum_1ad8f63055abf4ea5b907b051ea0011842" prot="public" virt="non-virtual"><scope>srcsum</scope><name>begin</name></member>
+      <member refid="structsrcsum_1a8881c6138f0ca0aac1639530e06d922a" prot="public" virt="non-virtual"><scope>srcsum</scope><name>btq</name></member>
+      <member refid="structsrcsum_1afbfafe460457f3ca198ef6cc74a5b878" prot="public" virt="non-virtual"><scope>srcsum</scope><name>btq_allocated</name></member>
+      <member refid="structsrcsum_1a10875a3252ec368a2c1aee4321c3acf6" prot="public" virt="non-virtual"><scope>srcsum</scope><name>count</name></member>
+      <member refid="structsrcsum_1a36eddb25e3978a5c1911cdc8e0840a18" prot="public" virt="non-virtual"><scope>srcsum</scope><name>end</name></member>
+      <member refid="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" prot="public" virt="non-virtual"><scope>srcsum</scope><name>name</name></member>
+      <member refid="structsrcsum_1a79cea437f7ea6e433bbc07601469a421" prot="public" virt="non-virtual"><scope>srcsum</scope><name>nbtq</name></member>
+      <member refid="structsrcsum_1af13342b22c618f23b6d627af26e34846" prot="public" virt="non-virtual"><scope>srcsum</scope><name>qcodes</name></member>
+      <member refid="structsrcsum_1af8cfb37bdaaca2c4b8340346d223a6c3" prot="public" virt="non-virtual"><scope>srcsum</scope><name>snrmax</name></member>
+      <member refid="structsrcsum_1a1c9630b2c3d46042a4091c5edb4c28c4" prot="public" virt="non-virtual"><scope>srcsum</scope><name>snrmin</name></member>
+      <member refid="structsrcsum_1a4ccd03e9220fc95587909b1cd7561c3b" prot="public" virt="non-virtual"><scope>srcsum</scope><name>stations</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

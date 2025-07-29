@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__EmptyType" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_EmptyType</compoundname>
+    <includes refid="MHO__Meta_8hh" local="no">MHO_Meta.hh</includes>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__EmptyType" kindref="compound">MHO_EmptyType</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="27" bodyend="27"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

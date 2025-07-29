@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structinsert" kind="struct" language="C++" prot="public">
+    <compoundname>insert</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structinsert_1a2c4e707d5f34d7e8739d155055ffec38" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int insert::after</definition>
+        <argsstring></argsstring>
+        <name>after</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="128" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinsert_1a01bde264648ba3ceb660f196a3100ef9" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* insert::str</definition>
+        <argsstring></argsstring>
+        <name>str</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="129" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>insert</label>
+        <link refid="structinsert"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>str</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>after</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="126" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="127" bodyend="130"/>
+    <listofallmembers>
+      <member refid="structinsert_1a2c4e707d5f34d7e8739d155055ffec38" prot="public" virt="non-virtual"><scope>insert</scope><name>after</name></member>
+      <member refid="structinsert_1a01bde264648ba3ceb660f196a3100ef9" prot="public" virt="non-virtual"><scope>insert</scope><name>str</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

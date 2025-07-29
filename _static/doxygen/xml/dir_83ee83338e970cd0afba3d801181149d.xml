@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_83ee83338e970cd0afba3d801181149d" kind="dir">
+    <compoundname>fplot</compoundname>
+    <innerdir refid="dir_be1673e5112679701f144c4cb4ba6a98">include</innerdir>
+    <innerdir refid="dir_4ee03f1d6d97361d935d16cc00b775ae">src</innerdir>
+    <innerfile refid="fplot_2fplot_8c">fplot/fplot.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1301 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ivex_8h" kind="file" language="C++">
+    <compoundname>ivex.h</compoundname>
+    <includedby refid="vex_8h" local="yes">vex.h</includedby>
+    <invincdepgraph>
+      <node id="69">
+        <label>do_source.c</label>
+        <link refid="do__source_8c"/>
+      </node>
+      <node id="43">
+        <label>realloc_segs.c</label>
+        <link refid="realloc__segs_8c"/>
+      </node>
+      <node id="36">
+        <label>fill_aline.c</label>
+        <link refid="fill__aline_8c"/>
+      </node>
+      <node id="84">
+        <label>get_mode_deflist.c</label>
+        <link refid="get__mode__deflist_8c"/>
+      </node>
+      <node id="24">
+        <label>search.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
+      </node>
+      <node id="31">
+        <label>calc_seg.c</label>
+        <link refid="calc__seg_8c"/>
+      </node>
+      <node id="105">
+        <label>param_formats.c</label>
+        <link refid="param__formats_8c"/>
+      </node>
+      <node id="115">
+        <label>read_file.c</label>
+        <link refid="read__file_8c"/>
+      </node>
+      <node id="16">
+        <label>fill_205.c</label>
+        <link refid="fill__205_8c"/>
+      </node>
+      <node id="13">
+        <label>fill_201.c</label>
+        <link refid="fill__201_8c"/>
+      </node>
+      <node id="77">
+        <label>get_chip_mode.c</label>
+        <link refid="get__chip__mode_8c"/>
+      </node>
+      <node id="47">
+        <label>plot_data_dir.c</label>
+        <link refid="plot__data__dir_8c"/>
+      </node>
+      <node id="8">
+        <label>make_flist.c</label>
+        <link refid="make__flist_8c"/>
+      </node>
+      <node id="71">
+        <label>evex_info.c</label>
+        <link refid="evex__info_8c"/>
+      </node>
+      <node id="96">
+        <label>get_vex.c</label>
+        <link refid="get__vex_8c"/>
+      </node>
+      <node id="121">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="28">
+        <label>fringex.h</label>
+        <link refid="fringex_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="102">
+        <label>locate_cq.c</label>
+        <link refid="locate__cq_8c"/>
+      </node>
+      <node id="110">
+        <label>parse_ref.c</label>
+        <link refid="parse__ref_8c"/>
+      </node>
+      <node id="45">
+        <label>set_reffreq.c</label>
+        <link refid="set__reffreq_8c"/>
+      </node>
+      <node id="98">
+        <label>in_quote.c</label>
+        <link refid="in__quote_8c"/>
+      </node>
+      <node id="111">
+        <label>parse_units.c</label>
+        <link refid="parse__units_8c"/>
+      </node>
+      <node id="29">
+        <label>fringex.c</label>
+        <link refid="fringex_8c"/>
+      </node>
+      <node id="23">
+        <label>fringe_search.c</label>
+        <link refid="fringe__search_8c"/>
+      </node>
+      <node id="85">
+        <label>get_pbs_init.c</label>
+        <link refid="get__pbs__init_8c"/>
+      </node>
+      <node id="54">
+        <label>cvex_info.c</label>
+        <link refid="cvex__info_8c"/>
+      </node>
+      <node id="7">
+        <label>get_corel_data.c</label>
+        <link refid="get__corel__data_8c"/>
+      </node>
+      <node id="1">
+        <label>ivex.h</label>
+        <link refid="ivex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>do_site.c</label>
+        <link refid="do__site_8c"/>
+      </node>
+      <node id="70">
+        <label>do_track.c</label>
+        <link refid="do__track_8c"/>
+      </node>
+      <node id="106">
+        <label>parse_date.c</label>
+        <link refid="parse__date_8c"/>
+      </node>
+      <node id="39">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="92">
+        <label>get_su_connect.c</label>
+        <link refid="get__su__connect_8c"/>
+      </node>
+      <node id="34">
+        <label>determine_nsegs.c</label>
+        <link refid="determine__nsegs_8c"/>
+      </node>
+      <node id="14">
+        <label>fill_202.c</label>
+        <link refid="fill__202_8c"/>
+      </node>
+      <node id="97">
+        <label>in_comment.c</label>
+        <link refid="in__comment_8c"/>
+      </node>
+      <node id="21">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="114">
+        <label>process_qstring.c</label>
+        <link refid="process__qstring_8c"/>
+      </node>
+      <node id="60">
+        <label>do_eop.c</label>
+        <link refid="do__eop_8c"/>
+      </node>
+      <node id="117">
+        <label>strip_text.c</label>
+        <link refid="strip__text_8c"/>
+      </node>
+      <node id="57">
+        <label>do_bbc.c</label>
+        <link refid="do__bbc_8c"/>
+      </node>
+      <node id="22">
+        <label>ffsearch.h</label>
+        <link refid="ffsearch_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>filelist.c</label>
+        <link refid="filelist_8c"/>
+      </node>
+      <node id="94">
+        <label>get_val_list.c</label>
+        <link refid="get__val__list_8c"/>
+      </node>
+      <node id="90">
+        <label>get_station_deflist.c</label>
+        <link refid="get__station__deflist_8c"/>
+      </node>
+      <node id="46">
+        <label>plot_data_dir.h</label>
+        <link refid="plot__data__dir_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>fill_206.c</label>
+        <link refid="fill__206_8c"/>
+      </node>
+      <node id="53">
+        <label>check_strrange.c</label>
+        <link refid="check__strrange_8c"/>
+      </node>
+      <node id="99">
+        <label>init_scan.c</label>
+        <link refid="init__scan_8c"/>
+      </node>
+      <node id="62">
+        <label>do_freq.c</label>
+        <link refid="do__freq_8c"/>
+      </node>
+      <node id="52">
+        <label>check_stloc.c</label>
+        <link refid="check__stloc_8c"/>
+      </node>
+      <node id="3">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="59">
+        <label>do_das.c</label>
+        <link refid="do__das_8c"/>
+      </node>
+      <node id="82">
+        <label>get_global_deflist.c</label>
+        <link refid="get__global__deflist_8c"/>
+      </node>
+      <node id="103">
+        <label>lvex_info.c</label>
+        <link refid="lvex__info_8c"/>
+      </node>
+      <node id="63">
+        <label>do_head_pos.c</label>
+        <link refid="do__head__pos_8c"/>
+      </node>
+      <node id="118">
+        <label>svex_info.c</label>
+        <link refid="svex__info_8c"/>
+      </node>
+      <node id="80">
+        <label>get_def.c</label>
+        <link refid="get__def_8c"/>
+      </node>
+      <node id="32">
+        <label>clear_fxp.c</label>
+        <link refid="clear__fxp_8c"/>
+      </node>
+      <node id="113">
+        <label>print_location.c</label>
+        <link refid="print__location_8c"/>
+      </node>
+      <node id="73">
+        <label>fill_scanlist.c</label>
+        <link refid="fill__scanlist_8c"/>
+      </node>
+      <node id="66">
+        <label>do_phase_cal_detect.c</label>
+        <link refid="do__phase__cal__detect_8c"/>
+      </node>
+      <node id="104">
+        <label>nextchar.c</label>
+        <link refid="nextchar_8c"/>
+      </node>
+      <node id="100">
+        <label>ivex_info.c</label>
+        <link refid="ivex__info_8c"/>
+      </node>
+      <node id="64">
+        <label>do_if.c</label>
+        <link refid="do__if_8c"/>
+      </node>
+      <node id="4">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="101">
+        <label>locate_blocks.c</label>
+        <link refid="locate__blocks_8c"/>
+      </node>
+      <node id="19">
+        <label>fill_210.c</label>
+        <link refid="fill__210_8c"/>
+      </node>
+      <node id="37">
+        <label>init_fxp.c</label>
+        <link refid="init__fxp_8c"/>
+      </node>
+      <node id="83">
+        <label>get_logscan.c</label>
+        <link refid="get__logscan_8c"/>
+      </node>
+      <node id="15">
+        <label>fill_203.c</label>
+        <link refid="fill__203_8c"/>
+      </node>
+      <node id="108">
+        <label>parse_pval.c</label>
+        <link refid="parse__pval_8c"/>
+      </node>
+      <node id="49">
+        <label>check_intrange.c</label>
+        <link refid="check__intrange_8c"/>
+      </node>
+      <node id="79">
+        <label>get_corr_mode.c</label>
+        <link refid="get__corr__mode_8c"/>
+      </node>
+      <node id="38">
+        <label>model.c</label>
+        <link refid="model_8c"/>
+      </node>
+      <node id="40">
+        <label>parse_dflag.c</label>
+        <link refid="parse__dflag_8c"/>
+      </node>
+      <node id="18">
+        <label>fill_207.c</label>
+        <link refid="fill__207_8c"/>
+      </node>
+      <node id="75">
+        <label>find_statements.c</label>
+        <link refid="find__statements_8c"/>
+      </node>
+      <node id="10">
+        <label>set_pointers.c</label>
+        <link refid="set__pointers_8c"/>
+      </node>
+      <node id="20">
+        <label>fill_fringe_info.c</label>
+        <link refid="fill__fringe__info_8c"/>
+      </node>
+      <node id="27">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>do_roll.c</label>
+        <link refid="do__roll_8c"/>
+      </node>
+      <node id="48">
+        <label>block_params.c</label>
+        <link refid="block__params_8c"/>
+      </node>
+      <node id="120">
+        <label>write_vexfile.c</label>
+        <link refid="write__vexfile_8c"/>
+      </node>
+      <node id="116">
+        <label>scan_info.c</label>
+        <link refid="scan__info_8c"/>
+      </node>
+      <node id="81">
+        <label>get_drive_init.c</label>
+        <link refid="get__drive__init_8c"/>
+      </node>
+      <node id="93">
+        <label>get_trm_config.c</label>
+        <link refid="get__trm__config_8c"/>
+      </node>
+      <node id="78">
+        <label>get_corr_bd_parms.c</label>
+        <link refid="get__corr__bd__parms_8c"/>
+      </node>
+      <node id="5">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="56">
+        <label>do_antenna.c</label>
+        <link refid="do__antenna_8c"/>
+      </node>
+      <node id="95">
+        <label>get_version.c</label>
+        <link refid="get__version_8c"/>
+      </node>
+      <node id="11">
+        <label>time_range.c</label>
+        <link refid="time__range_8c"/>
+      </node>
+      <node id="76">
+        <label>get_block_mode.c</label>
+        <link refid="get__block__mode_8c"/>
+      </node>
+      <node id="44">
+        <label>set_loops.c</label>
+        <link refid="set__loops_8c"/>
+      </node>
+      <node id="2">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+      </node>
+      <node id="109">
+        <label>parse_ra.c</label>
+        <link refid="parse__ra_8c"/>
+      </node>
+      <node id="88">
+        <label>get_section_mode.c</label>
+        <link refid="get__section__mode_8c"/>
+      </node>
+      <node id="51">
+        <label>check_scan.c</label>
+        <link refid="check__scan_8c"/>
+      </node>
+      <node id="33">
+        <label>clear_loops.c</label>
+        <link refid="clear__loops_8c"/>
+      </node>
+      <node id="58">
+        <label>do_clock.c</label>
+        <link refid="do__clock_8c"/>
+      </node>
+      <node id="107">
+        <label>parse_dec.c</label>
+        <link refid="parse__dec_8c"/>
+      </node>
+      <node id="65">
+        <label>do_pass_order.c</label>
+        <link refid="do__pass__order_8c"/>
+      </node>
+      <node id="12">
+        <label>fill_200.c</label>
+        <link refid="fill__200_8c"/>
+      </node>
+      <node id="6">
+        <label>fill_param.c</label>
+        <link refid="fill__param_8c"/>
+      </node>
+      <node id="50">
+        <label>check_realrange.c</label>
+        <link refid="check__realrange_8c"/>
+      </node>
+      <node id="61">
+        <label>do_exper.c</label>
+        <link refid="do__exper_8c"/>
+      </node>
+      <node id="72">
+        <label>fill_deflists.c</label>
+        <link refid="fill__deflists_8c"/>
+      </node>
+      <node id="41">
+        <label>parse_iflag.c</label>
+        <link refid="parse__iflag_8c"/>
+      </node>
+      <node id="26">
+        <label>organize_data.c</label>
+        <link refid="organize__data_8c"/>
+      </node>
+      <node id="30">
+        <label>accum_segs.c</label>
+        <link refid="accum__segs_8c"/>
+      </node>
+      <node id="89">
+        <label>get_statement.c</label>
+        <link refid="get__statement_8c"/>
+      </node>
+      <node id="119">
+        <label>vex_init.c</label>
+        <link refid="vex__init_8c"/>
+      </node>
+      <node id="87">
+        <label>get_pcm_tables.c</label>
+        <link refid="get__pcm__tables_8c"/>
+      </node>
+      <node id="9">
+        <label>make_passes.c</label>
+        <link refid="make__passes_8c"/>
+      </node>
+      <node id="112">
+        <label>parse_vexfile.c</label>
+        <link refid="parse__vexfile_8c"/>
+      </node>
+      <node id="25">
+        <label>create_fname.c</label>
+        <link refid="create__fname_8c"/>
+      </node>
+      <node id="86">
+        <label>get_pcm_config.c</label>
+        <link refid="get__pcm__config_8c"/>
+      </node>
+      <node id="42">
+        <label>read_binaries.c</label>
+        <link refid="read__binaries_8c"/>
+      </node>
+      <node id="74">
+        <label>fill_station_parms.c</label>
+        <link refid="fill__station__parms_8c"/>
+      </node>
+      <node id="55">
+        <label>decode_pval.c</label>
+        <link refid="decode__pval_8c"/>
+      </node>
+      <node id="91">
+        <label>get_su_chan_out.c</label>
+        <link refid="get__su__chan__out_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structbad__frame__struct" prot="public">bad_frame_struct</innerclass>
+    <innerclass refid="structCUCC__port__struct" prot="public">CUCC_port_struct</innerclass>
+    <innerclass refid="structdrive__init__struct" prot="public">drive_init_struct</innerclass>
+    <innerclass refid="structheadstack__DIM__connect__struct" prot="public">headstack_DIM_connect_struct</innerclass>
+    <innerclass refid="structheadstack__parms__struct" prot="public">headstack_parms_struct</innerclass>
+    <innerclass refid="structivex__struct" prot="public">ivex_struct</innerclass>
+    <innerclass refid="structmoni__read__struct" prot="public">moni_read_struct</innerclass>
+    <innerclass refid="structpbs__init__struct" prot="public">pbs_init_struct</innerclass>
+    <innerclass refid="structsu__connect__struct" prot="public">su_connect_struct</innerclass>
+    <innerclass refid="structSUCC__port__struct" prot="public">SUCC_port_struct</innerclass>
+    <innerclass refid="structtim__mon__struct" prot="public">tim_mon_struct</innerclass>
+    <innerclass refid="structTRM__config__struct" prot="public">TRM_config_struct</innerclass>
+    <innerclass refid="structvacuum__struct" prot="public">vacuum_struct</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="ivex_8h_1a67e488f26e398d2667d24c5c9b814d71" prot="public" static="no">
+        <name>MAXHEADS</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1abf3c3f3084d9564414860637353d2330" prot="public" static="no">
+        <name>TRM_ABSENT</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1ab5d8b3bc0985771121b51300b2b43edb" prot="public" static="no">
+        <name>TRM_MAG0</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1a36a993cfbe48d90a724e057bb9ad02ea" prot="public" static="no">
+        <name>TRM_MAG1</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1a9441add766e2950406080cfb6c205ff3" prot="public" static="no">
+        <name>TRM_MAG2</name>
+        <initializer>12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1aedf1440797f1171f98bf5d26c33f98ac" prot="public" static="no">
+        <name>TRM_MAG3</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1a6e5668f948344972b2813e350caec3ff" prot="public" static="no">
+        <name>TRM_SIGN0</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1ad673a9540d062c4dae4f5ba1807e31d3" prot="public" static="no">
+        <name>TRM_SIGN1</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1a5037ac168bbae25965bb414ff6a68d11" prot="public" static="no">
+        <name>TRM_SIGN2</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ivex_8h_1acee217794f1e41b3f98084bc60ccd5a7" prot="public" static="no">
+        <name>TRM_SIGN3</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="ivex_8h_1a6b7b47dd702d9e331586d485013fd1ea" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@18</name>
+        <enumvalue id="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa8f1a7a8a1c338175c78c15569bb7cd30" prot="public">
+          <name>DRV_MK4</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa7a672a4c2613790d03397fd7aad1d5c8" prot="public">
+          <name>DRV_VLBA</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa6849106c97d48d81bfc5a5f326e2edd2" prot="public">
+          <name>DRV_MK5P</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaad8c15e841e78213d7e880e192cd0b7b6" prot="public">
+          <name>DRV_MK5A</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa7819e15a95945d48c2579040636a5f57" prot="public">
+          <name>DRV_MK5B</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="11" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="enum" id="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@19</name>
+        <enumvalue id="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960a8487756fbc720579906f0ae1738f0fcc" prot="public">
+          <name>EVEN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960aa29cedab858353a26006af9db7cd1ed8" prot="public">
+          <name>ODD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960ac157bdf0b85a40d2619cbc8bc1ae5fe2" prot="public">
+          <name>NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="12" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="enum" id="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@20</name>
+        <enumvalue id="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409a90d16746f0bfaafdfa194671636631d5" prot="public">
+          <name>HSC0</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409ae4f6483509ae10d4ade268b73ea303dc" prot="public">
+          <name>HSC1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409af6847132715715c4d8647f9dcd49c209" prot="public">
+          <name>HSC2</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409afafadff52069a65acb80848afb4ed892" prot="public">
+          <name>HSC3</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409a471cbffe29f216c5590f85c0eed72fc3" prot="public">
+          <name>MAX_HSC</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="13" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="enum" id="ivex_8h_1aae05225933a42f81e7c4a9fb286596f9" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@21</name>
+        <enumvalue id="ivex_8h_1aae05225933a42f81e7c4a9fb286596f9a906b7cc20b42994dda4da492767c1de9" prot="public">
+          <name>REVERSE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="ivex_8h_1aae05225933a42f81e7c4a9fb286596f9aa26736999186daf8146f809e863712a1" prot="public">
+          <name>FORWARD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="14" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>IVEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IVEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>ivex.h</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">Tue<sp/>Feb<sp/><sp/>2<sp/>11:35:07<sp/>EST<sp/>1999</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>typedef<sp/>unsigned<sp/>short<sp/>U16;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>typedef<sp/>unsigned<sp/>long<sp/><sp/>U32;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa8f1a7a8a1c338175c78c15569bb7cd30" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa8f1a7a8a1c338175c78c15569bb7cd30" kindref="member">DRV_MK4</ref>,<sp/><ref refid="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa7a672a4c2613790d03397fd7aad1d5c8" kindref="member">DRV_VLBA</ref>,<sp/><ref refid="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa6849106c97d48d81bfc5a5f326e2edd2" kindref="member">DRV_MK5P</ref>,<sp/><ref refid="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaad8c15e841e78213d7e880e192cd0b7b6" kindref="member">DRV_MK5A</ref>,<sp/><ref refid="ivex_8h_1a6b7b47dd702d9e331586d485013fd1eaa7819e15a95945d48c2579040636a5f57" kindref="member">DRV_MK5B</ref><sp/>};</highlight></codeline>
+<codeline lineno="12" refid="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960a8487756fbc720579906f0ae1738f0fcc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960a8487756fbc720579906f0ae1738f0fcc" kindref="member">EVEN</ref>,<sp/><ref refid="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960aa29cedab858353a26006af9db7cd1ed8" kindref="member">ODD</ref>,<sp/><ref refid="ivex_8h_1af9bdc3014f3d54c426b6d2df10de4960ac157bdf0b85a40d2619cbc8bc1ae5fe2" kindref="member">NONE</ref><sp/>};</highlight></codeline>
+<codeline lineno="13" refid="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409a90d16746f0bfaafdfa194671636631d5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409a90d16746f0bfaafdfa194671636631d5" kindref="member">HSC0</ref>,<sp/><ref refid="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409ae4f6483509ae10d4ade268b73ea303dc" kindref="member">HSC1</ref>,<sp/><ref refid="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409af6847132715715c4d8647f9dcd49c209" kindref="member">HSC2</ref>,<sp/><ref refid="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409afafadff52069a65acb80848afb4ed892" kindref="member">HSC3</ref>,<sp/><ref refid="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409a471cbffe29f216c5590f85c0eed72fc3" kindref="member">MAX_HSC</ref><sp/>};</highlight></codeline>
+<codeline lineno="14" refid="ivex_8h_1aae05225933a42f81e7c4a9fb286596f9aa26736999186daf8146f809e863712a1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/><ref refid="ivex_8h_1aae05225933a42f81e7c4a9fb286596f9a906b7cc20b42994dda4da492767c1de9" kindref="member">REVERSE</ref>,<sp/><ref refid="ivex_8h_1aae05225933a42f81e7c4a9fb286596f9aa26736999186daf8146f809e863712a1" kindref="member">FORWARD</ref><sp/>};</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="ivex_8h_1a67e488f26e398d2667d24c5c9b814d71" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXHEADS<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="structbad__frame__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structbad__frame__struct" kindref="compound">bad_frame_struct</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20" refid="structbad__frame__struct_1a970eab86885e5ad1d6f222a3b816591a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structbad__frame__struct_1a970eab86885e5ad1d6f222a3b816591a" kindref="member">CRC_error</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>off|on<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="structbad__frame__struct_1ae928b8e7e4705c7433afe5ae8728b135" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structbad__frame__struct_1ae928b8e7e4705c7433afe5ae8728b135" kindref="member">PE_limit_exceeded</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>off|on<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="structbad__frame__struct_1a86a44cc418e41afff97ba21f1cdff153" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structbad__frame__struct_1a86a44cc418e41afff97ba21f1cdff153" kindref="member">lost_sync</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>off|on<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="structbad__frame__struct_1ae3237bf194e66278a0be42a34c0067d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structbad__frame__struct_1ae3237bf194e66278a0be42a34c0067d4" kindref="member">unexpected_sync</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>off|on<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="ivex_8h_1abf3c3f3084d9564414860637353d2330" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_ABSENT<sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="ivex_8h_1a6e5668f948344972b2813e350caec3ff" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_SIGN0<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="ivex_8h_1ad673a9540d062c4dae4f5ba1807e31d3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_SIGN1<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="ivex_8h_1a5037ac168bbae25965bb414ff6a68d11" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_SIGN2<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="ivex_8h_1acee217794f1e41b3f98084bc60ccd5a7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_SIGN3<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="ivex_8h_1ab5d8b3bc0985771121b51300b2b43edb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_MAG0<sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="ivex_8h_1a36a993cfbe48d90a724e057bb9ad02ea" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_MAG1<sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="ivex_8h_1a9441add766e2950406080cfb6c205ff3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_MAG2<sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="ivex_8h_1aedf1440797f1171f98bf5d26c33f98ac" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRM_MAG3<sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structTRM__config__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structTRM__config__struct" kindref="compound">TRM_config_struct</ref></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38" refid="structTRM__config__struct_1a5b9f7eacd7d90ddcd712939d64be0783" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structTRM__config__struct_1a5b9f7eacd7d90ddcd712939d64be0783" kindref="member">mux4_2bit</ref>[8];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Values<sp/>given<sp/>by<sp/>defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="structTRM__config__struct_1a309e4e5f7655ba8b19bdf122bafe31af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structTRM__config__struct_1a309e4e5f7655ba8b19bdf122bafe31af" kindref="member">mux4_1bit</ref>[4];</highlight></codeline>
+<codeline lineno="40" refid="structTRM__config__struct_1a159d06eea98cfecf1fecb747db8326b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structTRM__config__struct_1a159d06eea98cfecf1fecb747db8326b1" kindref="member">mux2_2bit</ref>[4];</highlight></codeline>
+<codeline lineno="41" refid="structTRM__config__struct_1a230ae733d025c24df64a1083ef0c3425" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structTRM__config__struct_1a230ae733d025c24df64a1083ef0c3425" kindref="member">mux2_1bit</ref>[2];</highlight></codeline>
+<codeline lineno="42" refid="structTRM__config__struct_1ac8b4a97a6596d2336f34096063f2fcc6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structTRM__config__struct_1ac8b4a97a6596d2336f34096063f2fcc6" kindref="member">mux1_2bit</ref>[2];</highlight></codeline>
+<codeline lineno="43" refid="structTRM__config__struct_1a247dbd318460282566416df0c9b37f9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structTRM__config__struct_1a247dbd318460282566416df0c9b37f9d" kindref="member">mux1_1bit</ref>;</highlight></codeline>
+<codeline lineno="44" refid="structTRM__config__struct_1ab8a9880d22b51c8dadf206a024c6a413" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="structTRM__config__struct_1a6cefb76d13cadf449b8cd15666a86832" kindref="member">parity_error_limit</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>rx<sp/>parity<sp/>error<sp/>threshold<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structbad__frame__struct" kindref="compound">bad_frame_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structTRM__config__struct_1ab8a9880d22b51c8dadf206a024c6a413" kindref="member">invalid_frame_control</ref>;<sp/></highlight><highlight class="comment">/*<sp/>boolean<sp/>flags<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structvacuum__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structvacuum__struct" kindref="compound">vacuum_struct</ref></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="50" refid="structvacuum__struct_1acfb58b6b8b74259ebdf100a288385b95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structvacuum__struct_1acfb58b6b8b74259ebdf100a288385b95" kindref="member">inches_of_H2O</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>eg.<sp/>5&quot;<sp/>and<sp/>15&quot;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="structvacuum__struct_1ade8f51c6a2e80e45581141fa6c442a85" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structvacuum__struct_1ade8f51c6a2e80e45581141fa6c442a85" kindref="member">setting</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="structheadstack__DIM__connect__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structheadstack__DIM__connect__struct" kindref="compound">headstack_DIM_connect_struct</ref></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56" refid="structheadstack__DIM__connect__struct_1a28ca2d6b0c47c95b7c75789362cdfb1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structheadstack__DIM__connect__struct_1a28ca2d6b0c47c95b7c75789362cdfb1c" kindref="member">headstack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>1|2|3|4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="structheadstack__DIM__connect__struct_1a3eac7355505fd27a4330991dd6bf741c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structheadstack__DIM__connect__struct_1a3eac7355505fd27a4330991dd6bf741c" kindref="member">parity</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>EVEN|ODD|NONE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="structheadstack__DIM__connect__struct_1aaf850ddb73d9cd6c9222bd42c12b88ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structheadstack__DIM__connect__struct_1aaf850ddb73d9cd6c9222bd42c12b88ce" kindref="member">eqlzr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>equalizer<sp/>(Mbps)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="structmoni__read__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmoni__read__struct" kindref="compound">moni_read_struct</ref></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63" refid="structmoni__read__struct_1a190c59345bfffb82a1eb2e456044fe55" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structmoni__read__struct_1a190c59345bfffb82a1eb2e456044fe55" kindref="member">track</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>REV|FWD:<sp/>track<sp/>value<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="structmoni__read__struct_1ad20eadb1809522de5cf893b8811b9ec4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structmoni__read__struct_1ad20eadb1809522de5cf893b8811b9ec4" kindref="member">equalizer</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>0|1|2=std,alt1,alt2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="structheadstack__parms__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structheadstack__parms__struct" kindref="compound">headstack_parms_struct</ref></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{<sp/>ffspeed,<sp/>fsspeed,<sp/>rfspeed,<sp/>rsspeed,<sp/>pscale,<sp/>nscale,<sp/>0.0,<sp/>0.0,<sp/>fbias,<sp/>rbias<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="structheadstack__parms__struct_1a5d26b9f8289606d31ba630473cf0ac12" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="structheadstack__parms__struct_1a5d26b9f8289606d31ba630473cf0ac12" kindref="member">param</ref>[10];</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="structdrive__init__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdrive__init__struct" kindref="compound">drive_init_struct</ref></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="75" refid="structdrive__init__struct_1a5dc4a44af45ea5046f01cc8de1ef2d4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structdrive__init__struct_1a5dc4a44af45ea5046f01cc8de1ef2d4d" kindref="member">drive_type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Mark4|VLBA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="structdrive__init__struct_1abb5ba196de35e774c41cc52f1bb5f3ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdrive__init__struct_1abb5ba196de35e774c41cc52f1bb5f3ae" kindref="member">computer_name</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>Mark<sp/>5<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="structdrive__init__struct_1a0d7a1e84bc20854a03987ccb31c465c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structdrive__init__struct_1a0d7a1e84bc20854a03987ccb31c465c0" kindref="member">mcb_addr_start</ref>;</highlight></codeline>
+<codeline lineno="78" refid="structdrive__init__struct_1a1a32761c3acca4dac79dbc21dce8b816" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structdrive__init__struct_1a1a32761c3acca4dac79dbc21dce8b816" kindref="member">mcb_addr_id</ref>;</highlight></codeline>
+<codeline lineno="79" refid="structdrive__init__struct_1a7d92c5f336bcae60c67dd4008ffc3536" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structdrive__init__struct_1a7d92c5f336bcae60c67dd4008ffc3536" kindref="member">capstan_relative_diameter</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>eg.<sp/>1.014<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structvacuum__struct" kindref="compound">vacuum_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdrive__init__struct_1ab086e06d971a5ab485a4cb566e1328f0" kindref="member">vacuum</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>eg<sp/>5&quot;<sp/>&amp;<sp/>15&quot;<sp/>hijklmno<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="structdrive__init__struct_1ac373ce924d3bd2e84b80f7b658fdf7d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structdrive__init__struct_1a374893f5476453bc2fccb93786f9527f" kindref="member">tape_acceleration</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Mark4<sp/>default:<sp/>67.5<sp/>ips/sec<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structheadstack__DIM__connect__struct" kindref="compound">headstack_DIM_connect_struct</ref><sp/><sp/><sp/><sp/><ref refid="structdrive__init__struct_1ac373ce924d3bd2e84b80f7b658fdf7d2" kindref="member">DIM_connect</ref>[<ref refid="ivex_8h_1adb49720dc49f7d4e4cf9adbf2948e409a471cbffe29f216c5590f85c0eed72fc3" kindref="member">MAX_HSC</ref>];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>HSC0..3<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structdrive__init__struct_1a3f856248a95c80b1733adbb633c79056" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structdrive__init__struct_1a1b3911ab6c4cbde088434224f08703b9" kindref="member">nheads</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>number<sp/>of<sp/>headstacks<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structmoni__read__struct" kindref="compound">moni_read_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdrive__init__struct_1a8efbde66f95731c4d9c0f4c4a7859f68" kindref="member">monitor_module</ref>[<ref refid="ivex_8h_1a67e488f26e398d2667d24c5c9b814d71" kindref="member">MAXHEADS</ref>+1];</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structheadstack__parms__struct" kindref="compound">headstack_parms_struct</ref><sp/><sp/><ref refid="structdrive__init__struct_1a3f856248a95c80b1733adbb633c79056" kindref="member">headstack</ref>[<ref refid="ivex_8h_1a67e488f26e398d2667d24c5c9b814d71" kindref="member">MAXHEADS</ref>+1];</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="structsu__connect__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsu__connect__struct" kindref="compound">su_connect_struct</ref></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="90" refid="structsu__connect__struct_1addc1668d721a8d668928592035437d9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structsu__connect__struct_1addc1668d721a8d668928592035437d9f" kindref="member">corr_segment</ref>[4];</highlight></codeline>
+<codeline lineno="91" refid="structsu__connect__struct_1a2a7d7ab171a12a7f198d8a8defc82182" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structsu__connect__struct_1a2a7d7ab171a12a7f198d8a8defc82182" kindref="member">inputbd_chan_grp</ref>[4];</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="structtim__mon__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtim__mon__struct" kindref="compound">tim_mon_struct</ref></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96" refid="structtim__mon__struct_1a09891364a7187d94f8c09a382ab2c6a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtim__mon__struct_1a09891364a7187d94f8c09a382ab2c6a5" kindref="member">measurement_name</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="97" refid="structtim__mon__struct_1a191b2e8842423389b7e5c874bb5db7c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structtim__mon__struct_1a191b2e8842423389b7e5c874bb5db7c6" kindref="member">switch_pos</ref>;</highlight></codeline>
+<codeline lineno="98" refid="structtim__mon__struct_1acf488ba6354fc289c5bcc4847c39ce58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structtim__mon__struct_1acf488ba6354fc289c5bcc4847c39ce58" kindref="member">minimum</ref>;</highlight></codeline>
+<codeline lineno="99" refid="structtim__mon__struct_1a061021f3f2df6f1520c6ad657d12e616" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structtim__mon__struct_1a061021f3f2df6f1520c6ad657d12e616" kindref="member">maximum</ref>;</highlight></codeline>
+<codeline lineno="100" refid="structtim__mon__struct_1af8bdfed3eee531aabfcd1a3e70efd47d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtim__mon__struct_1af8bdfed3eee531aabfcd1a3e70efd47d" kindref="member">fail_action</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="structCUCC__port__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCUCC__port__struct" kindref="compound">CUCC_port_struct</ref></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105" refid="structCUCC__port__struct_1a03b736c5519fe39dcc4cd1717b51bf40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCUCC__port__struct_1a03b736c5519fe39dcc4cd1717b51bf40" kindref="member">crate_number</ref>;</highlight></codeline>
+<codeline lineno="106" refid="structCUCC__port__struct_1a9d9b4e21049872fc45f17214dd9f0b32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structCUCC__port__struct_1a9d9b4e21049872fc45f17214dd9f0b32" kindref="member">server_envname</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="107" refid="structCUCC__port__struct_1a35548ce3bc4c7dd4946de4bf2af858fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCUCC__port__struct_1a35548ce3bc4c7dd4946de4bf2af858fb" kindref="member">port_A_number</ref>;</highlight></codeline>
+<codeline lineno="108" refid="structCUCC__port__struct_1ae804e7b93cf5664d6985117568194e77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCUCC__port__struct_1ae804e7b93cf5664d6985117568194e77" kindref="member">port_B_number</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="structSUCC__port__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structSUCC__port__struct" kindref="compound">SUCC_port_struct</ref></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113" refid="structSUCC__port__struct_1a2ca2100778d0c9141824e18d4c21b296" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structSUCC__port__struct_1a2ca2100778d0c9141824e18d4c21b296" kindref="member">server_envname</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="114" refid="structSUCC__port__struct_1a35efa5e383fcfcca88649a945649591b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structSUCC__port__struct_1a35efa5e383fcfcca88649a945649591b" kindref="member">console_port</ref>;</highlight></codeline>
+<codeline lineno="115" refid="structSUCC__port__struct_1a43c4007e1a01af6b6aaf8ade2aa777f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structSUCC__port__struct_1a43c4007e1a01af6b6aaf8ade2aa777f6" kindref="member">DPU_port</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="structpbs__init__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpbs__init__struct" kindref="compound">pbs_init_struct</ref></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120" refid="structpbs__init__struct_1ac33c1bd54463df71350555ac64ec3c29" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1ac33c1bd54463df71350555ac64ec3c29" kindref="member">SU_ID</ref>;</highlight></codeline>
+<codeline lineno="121" refid="structpbs__init__struct_1abb11798b238fcb884b56ea13c209b395" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1abb11798b238fcb884b56ea13c209b395" kindref="member">cHost</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="122" refid="structpbs__init__struct_1afc5c0a8e4fe65e9ca87ba7e61c5c4b8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1a12dc956fe5752f2707c759d217ea33b1" kindref="member">tape_servo_interval</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structSUCC__port__struct" kindref="compound">SUCC_port_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1a1f6aca66e06b05feac59d30fed70b52d" kindref="member">succ_port</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structtim__mon__struct" kindref="compound">tim_mon_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1a253c0e70090e696ac12376d5b238d35c" kindref="member">timing_monitor</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structTRM__config__struct" kindref="compound">TRM_config_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1a8711640eea9be5d38690ae2866e46c32" kindref="member">TRM_config</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structdrive__init__struct" kindref="compound">drive_init_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1afc5c0a8e4fe65e9ca87ba7e61c5c4b8d" kindref="member">drive</ref>;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structsu__connect__struct" kindref="compound">su_connect_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpbs__init__struct_1a1712009db33f93858b3547998fd0f38a" kindref="member">su_connect</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="structivex__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structivex__struct" kindref="compound">ivex_struct</ref></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="132" refid="structivex__struct_1a18ba9462814297883925391230fef092" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structivex__struct_1a18ba9462814297883925391230fef092" kindref="member">system_tempo</ref>;</highlight></codeline>
+<codeline lineno="133" refid="structivex__struct_1a6ca1235fe053ceaedaea6a28661e4cd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="structivex__struct_1a6ca1235fe053ceaedaea6a28661e4cd9" kindref="member">bocf_period</ref>;</highlight></codeline>
+<codeline lineno="134" refid="structivex__struct_1afc8bcc64ae37b1e056bcd04555ac5e2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structivex__struct_1a412bfd99e3534c6a3e520bb78bc67250" kindref="member">header_duration</ref>;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCUCC__port__struct" kindref="compound">CUCC_port_struct</ref><sp/><ref refid="structivex__struct_1afc8bcc64ae37b1e056bcd04555ac5e2c" kindref="member">cucc_ports</ref>[2];</highlight></codeline>
+<codeline lineno="136" refid="structivex__struct_1a3907dcddc2f8fd9e2ace491fbb73da89" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structivex__struct_1a3907dcddc2f8fd9e2ace491fbb73da89" kindref="member">counter_envname</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="137" refid="structivex__struct_1ab14a499f1a9de0d413756deffa53327e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structivex__struct_1ab14a499f1a9de0d413756deffa53327e" kindref="member">counter_port</ref>;</highlight></codeline>
+<codeline lineno="138" refid="structivex__struct_1aab10ba8be2802783f3dc3c2e96faf647" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structivex__struct_1aab10ba8be2802783f3dc3c2e96faf647" kindref="member">switch_envname</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="139" refid="structivex__struct_1a863c57eedee153da42a52a08d014b1e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structivex__struct_1a863c57eedee153da42a52a08d014b1e1" kindref="member">switch_port</ref>;</highlight></codeline>
+<codeline lineno="140" refid="structivex__struct_1a35473c1ebc2ff2e84cb12a2d50815fcf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structivex__struct_1a35473c1ebc2ff2e84cb12a2d50815fcf" kindref="member">cf_edit_mask</ref>;</highlight></codeline>
+<codeline lineno="141" refid="structivex__struct_1ab594622fc52a7c087f79507585fdc8d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structivex__struct_1ab594622fc52a7c087f79507585fdc8d7" kindref="member">nmonitor</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structtim__mon__struct" kindref="compound">tim_mon_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structivex__struct_1a64c10a1537e2670b53a0064656501110" kindref="member">timing_monitor</ref>[10];</highlight></codeline>
+<codeline lineno="143" refid="structivex__struct_1ac0fca252a113d036e95b50af2f6cc3fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structivex__struct_1ac0fca252a113d036e95b50af2f6cc3fb" kindref="member">nplayback_systems</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/><sp/></highlight><highlight class="normal"><ref refid="structpbs__init__struct" kindref="compound">pbs_init_struct</ref><sp/><ref refid="structivex__struct_1a9ef75e3105a4b4b739a8e2d787c316f2" kindref="member">pbs_init</ref>[16];</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h"/>
+  </compounddef>
+</doxygen>

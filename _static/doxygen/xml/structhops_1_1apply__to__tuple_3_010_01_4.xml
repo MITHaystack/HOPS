@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1apply__to__tuple_3_010_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>hops::apply_to_tuple&lt; 0 &gt;</compoundname>
+    <includes refid="MHO__Meta_8hh" local="no">MHO_Meta.hh</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhops_1_1apply__to__tuple_3_010_01_4_1a255e17377865c974e4afd0923a10f7c3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XTupleType</type>
+          </param>
+          <param>
+            <type>typename XFunctorType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void hops::apply_to_tuple&lt; 0 &gt;::apply</definition>
+        <argsstring>(XTupleType &amp;tup, size_t index, XFunctorType &amp;functor)</argsstring>
+        <name>apply</name>
+        <param>
+          <type>XTupleType &amp;</type>
+          <declname>tup</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>XFunctorType &amp;</type>
+          <declname>functor</declname>
+        </param>
+        <briefdescription>
+<para>Applies a functor to an element of a tuple at a given index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XTupleType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XTupleType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>XFunctorType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XFunctorType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tup</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tuple to apply functor on </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the tuple&apos;s element to operate on </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>functor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Functor to apply </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="267" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="267" bodyend="268"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1apply__to__tuple_3_010_01_4" kindref="compound">apply_to_tuple&lt;0&gt;</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="254" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="255" bodyend="269"/>
+    <listofallmembers>
+      <member refid="structhops_1_1apply__to__tuple_3_010_01_4_1a255e17377865c974e4afd0923a10f7c3" prot="public" virt="non-virtual"><scope>hops::apply_to_tuple&lt; 0 &gt;</scope><name>apply</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

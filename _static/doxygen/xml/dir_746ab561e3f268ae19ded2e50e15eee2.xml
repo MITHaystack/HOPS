@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_746ab561e3f268ae19ded2e50e15eee2" kind="dir">
+    <compoundname>mk4_module</compoundname>
+    <innerdir refid="dir_7f075cfff0d71ae9263a32ee3c9bd88f">afio</innerdir>
+    <innerdir refid="dir_66ef297f7139df2549fd4d47bd3b651a">mk4io</innerdir>
+    <innerdir refid="dir_9a56c79be5e393a1d3abc627b2c65292">vexpy</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/"/>
+  </compounddef>
+</doxygen>

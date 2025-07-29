@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structlag__tag" kind="struct" language="C++" prot="public">
+    <compoundname>lag_tag</compoundname>
+    <includes refid="type__120_8h" local="no">type_120.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlag__tag_1af04a67c0ba22924b919637551d7a7d70" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int lag_tag::coscor</definition>
+        <argsstring></argsstring>
+        <name>coscor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="34" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlag__tag_1ad79a13b205ea0b2da08cfa1bb2d9feb3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int lag_tag::sincor</definition>
+        <argsstring></argsstring>
+        <name>sincor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="35" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="33" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structlag__tag_1af04a67c0ba22924b919637551d7a7d70" prot="public" virt="non-virtual"><scope>lag_tag</scope><name>coscor</name></member>
+      <member refid="structlag__tag_1ad79a13b205ea0b2da08cfa1bb2d9feb3" prot="public" virt="non-virtual"><scope>lag_tag</scope><name>sincor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal" kind="namespace" language="Python">
+    <compoundname>vpal</compoundname>
+    <innernamespace refid="namespacevpal_1_1ffres2pcp__lib">vpal::ffres2pcp_lib</innernamespace>
+    <innernamespace refid="namespacevpal_1_1fourphase__lib">vpal::fourphase_lib</innernamespace>
+    <innernamespace refid="namespacevpal_1_1fringe__file__manipulation">vpal::fringe_file_manipulation</innernamespace>
+    <innernamespace refid="namespacevpal_1_1pcc__delay__fitting">vpal::pcc_delay_fitting</innernamespace>
+    <innernamespace refid="namespacevpal_1_1pcc__plotting__utils">vpal::pcc_plotting_utils</innernamespace>
+    <innernamespace refid="namespacevpal_1_1phasecal">vpal::phasecal</innernamespace>
+    <innernamespace refid="namespacevpal_1_1processing">vpal::processing</innernamespace>
+    <innernamespace refid="namespacevpal_1_1proxy__cable__cal">vpal::proxy_cable_cal</innernamespace>
+    <innernamespace refid="namespacevpal_1_1report__lib">vpal::report_lib</innernamespace>
+    <innernamespace refid="namespacevpal_1_1utility">vpal::utility</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/__init__.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

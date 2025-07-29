@@ -1,0 +1,590 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="apply__passband_8c" kind="file" language="C++">
+    <compoundname>apply_passband.c</compoundname>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="param__struct_8h" local="yes">param_struct.h</includes>
+    <includes refid="pass__struct_8h" local="yes">pass_struct.h</includes>
+    <includes refid="apply__funcs_8h" local="yes">apply_funcs.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="34">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="5">
+        <label>stdarg.h</label>
+      </node>
+      <node id="38">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>apply_passband.c</label>
+        <link refid="apply__passband_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>plot_struct.h</label>
+        <link refid="plot__struct_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="21">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="43">
+        <label>stdint.h</label>
+      </node>
+      <node id="26">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="33">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="20">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>param_struct.h</label>
+        <link refid="param__struct_8h"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="13">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>sys/types.h</label>
+      </node>
+      <node id="32">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="9">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="36">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>complex.h</label>
+      </node>
+      <node id="28">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>pass_struct.h</label>
+        <link refid="pass__struct_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="8">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="42">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>apply_funcs.h</label>
+        <link refid="apply__funcs_8h"/>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="27">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="6">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="apply__passband_8c_1a155d44ce851d17e5342c6cd53c9946c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void apply_passband</definition>
+        <argsstring>(int sb, int ap, struct freq_corel *fdata, hops_complex *xp_spectrum, int npts, struct data_corel *datum, struct type_status *status, struct type_param *param)</argsstring>
+        <name>apply_passband</name>
+        <param>
+          <type>int</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ap</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfreq__corel" kindref="compound">freq_corel</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <param>
+          <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref> *</type>
+          <declname>xp_spectrum</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>npts</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdata__corel" kindref="compound">data_corel</ref> *</type>
+          <declname>datum</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_passband.c" line="20" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_passband.c" bodystart="20" bodyend="178"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>apply<sp/>passband<sp/>to<sp/>cross<sp/>power<sp/>spectrum,<sp/>if<sp/>specified</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rjc<sp/>2002.4.19</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>None<sp/>of<sp/>this<sp/>code<sp/>is<sp/>called<sp/>if<sp/>datum-&gt;?sbfrac<sp/>&lt;<sp/>0</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>The<sp/>main<sp/>confusion<sp/>here<sp/>is<sp/>that<sp/>at<sp/>this<sp/>point<sp/>npts=2*nlags,</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>and<sp/>the<sp/>LSB<sp/>and<sp/>USB<sp/>data<sp/>lie<sp/>entirely<sp/>within<sp/>npts/4<sp/>or<sp/>nlags/2</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>based<sp/>on<sp/>param-&gt;corr_type<sp/>=<sp/>DIFX<sp/>or<sp/>param-&gt;corr_type<sp/>=<sp/>MK4HDW</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="param__struct_8h" kindref="compound">param_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pass__struct_8h" kindref="compound">pass_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="apply__funcs_8h" kindref="compound">apply_funcs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//#include<sp/>&quot;ff_misc_if.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="apply__passband_8c_1a155d44ce851d17e5342c6cd53c9946c6" kindref="member">apply_passband</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ap,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/>*fdata,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>*xp_spectrum,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npts,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*datum,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ibot,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>itop,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>incband,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nuked,<sp/>dv;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bw,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bottom,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>top,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param_passband_0_,<sp/>param_passband_1_;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*usbfracptr,<sp/>usbreduce,<sp/>usboldfrac;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*lsbfracptr,<sp/>lsbreduce,<sp/>lsboldfrac;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>factor,<sp/>oldfrac;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>mark<sp/>temporary<sp/>space<sp/>and<sp/>return<sp/>immediately<sp/>if<sp/>no<sp/>work</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>1<sp/>for<sp/>notches<sp/>and<sp/>0<sp/>for<sp/>passband,<sp/>-1<sp/>as<sp/>&apos;no<sp/>action&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1afcb9cb5a699aa15d176e58d8e86721d9" kindref="member">sb_bw_fracs</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>+0][sb]<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a2d78c7b5875ba7b354e37f3cf3cdec11" kindref="member">sb_bw_origs</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>+0][sb]<sp/>=<sp/><sp/>0.0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[0]<sp/>==<sp/>0.0<sp/>&amp;&amp;<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[1]<sp/>==<sp/>1.0E6)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>return<sp/>if<sp/>&apos;band&apos;<sp/>width<sp/>is<sp/>zero<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[0]<sp/>==<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[1])</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[0]<sp/>&lt;<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[1])</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>incband<sp/>=<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>this<sp/>is<sp/>an<sp/>inclusion<sp/>band<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param_passband_0_<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[0];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param_passband_1_<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[1];</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>incband<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>this<sp/>is<sp/>an<sp/>exclusion<sp/>band<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param_passband_0_<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[1];</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param_passband_1_<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[0];</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>assert(<sp/>param_passband_0_<sp/>&lt;<sp/>param_passband_1_<sp/>);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>bw<sp/>=<sp/>0.5e-6<sp/>/<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a946698d8babf41196ee53ac329f69d2f" kindref="member">samp_period</ref>;</highlight><highlight class="comment">/*<sp/>in<sp/>MHz,<sp/>assumes<sp/>Nyquist<sp/>sampling<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>dv<sp/>=<sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1abfe2f5a8f14382ee80eddd436b5dd7af" kindref="member">corr_type</ref><sp/>==<sp/><ref refid="param__struct_8h_1a6a32edcbcd16e69289f950d8c49ef141" kindref="member">DIFX</ref>)<sp/>?<sp/>4<sp/>:<sp/>2<sp/>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>deviant<sp/>npts<sp/>usage</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>determine<sp/>top<sp/>and<sp/>bottom<sp/>frequency<sp/>of</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>this<sp/>current<sp/>sideband<sp/>(MHz)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sb)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>LSB:<sp/><sp/>3*npts/4<sp/>..<sp/>npts-1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>top<sp/>=<sp/>fdata-&gt;<ref refid="structfreq__corel_1aa3a89400497ddcd5df56ce62c067dfa3" kindref="member">frequency</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bottom<sp/>=<sp/>top<sp/>-<sp/>bw;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>save<sp/>relative<sp/>locations<sp/>in<sp/>the<sp/>xp<sp/>spectrum<sp/>space</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;2;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>assert(<sp/>bottom<sp/>&lt;<sp/>top<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bottom<sp/>&lt;=<sp/>param-&gt;passband[i]<sp/>&amp;&amp;<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[i]<sp/>&lt;=<sp/>top)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a2480c142513f81cb53f96606d0f229e1" kindref="member">xpnotchpband</ref>[i]<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[i]<sp/>-<sp/>top;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_1_<sp/>&lt;<sp/>bottom)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ibot<sp/>=<sp/>npts<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_1_<sp/>&lt;<sp/>top)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ibot<sp/>=<sp/>(1.0<sp/>-<sp/>(param_passband_1_<sp/>-<sp/>bottom)<sp/>/<sp/>bw)<sp/>*<sp/>npts<sp/>/dv<sp/>+<sp/>0.5;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ibot<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_0_<sp/>&lt;<sp/>bottom)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>itop<sp/>=<sp/>npts<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_0_<sp/>&lt;<sp/>top)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>itop<sp/>=<sp/>(1.0<sp/>-<sp/>(param_passband_0_<sp/>-<sp/>bottom)<sp/>/<sp/>bw)<sp/>*<sp/>npts<sp/>/dv<sp/>+<sp/>0.5;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>itop<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lsbfracptr<sp/>=<sp/>&amp;datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usbfracptr<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>disable<sp/>accounting<sp/>logic<sp/>below<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>USB:<sp/><sp/>0<sp/>..<sp/>npts/4-1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bottom<sp/>=<sp/>fdata-&gt;<ref refid="structfreq__corel_1aa3a89400497ddcd5df56ce62c067dfa3" kindref="member">frequency</ref>;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>top<sp/>=<sp/>bottom<sp/>+<sp/>bw;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>save<sp/>relative<sp/>locations<sp/>in<sp/>the<sp/>xp<sp/>spectrum<sp/>space</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;2;<sp/>i++)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>assert(<sp/>bottom<sp/>&lt;<sp/>top<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bottom<sp/>&lt;=<sp/>param-&gt;passband[i]<sp/>&amp;&amp;<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[i]<sp/>&lt;=<sp/>top)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a2480c142513f81cb53f96606d0f229e1" kindref="member">xpnotchpband</ref>[i]<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>-&gt;<ref refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" kindref="member">passband</ref>[i]<sp/>-<sp/>bottom;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_0_<sp/>&lt;<sp/>bottom)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ibot<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_0_<sp/>&lt;<sp/>top)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ibot<sp/>=<sp/>(param_passband_0_<sp/>-<sp/>bottom)<sp/>/<sp/>bw<sp/>*<sp/>npts<sp/>/dv<sp/>+<sp/>0.5;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ibot<sp/>=<sp/>npts<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_1_<sp/>&lt;<sp/>bottom)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>itop<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(param_passband_1_<sp/>&lt;<sp/>top)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>itop<sp/>=<sp/>(param_passband_1_<sp/>-<sp/>bottom)<sp/>/<sp/>bw<sp/>*<sp/>npts<sp/>/dv<sp/>+<sp/>0.5;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>itop<sp/>=<sp/>npts<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usbfracptr<sp/>=<sp/>&amp;datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lsbfracptr<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>disable<sp/>accounting<sp/>logic<sp/>below<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>assert<sp/>(<sp/>ibot<sp/>&lt;<sp/>itop<sp/>);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>zero<sp/>out<sp/>data<sp/>outside<sp/>of<sp/>passband<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>nuked<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/><sp/>incband<sp/>&amp;&amp;<sp/>i&lt;npts/dv;<sp/>i++)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>&lt;<sp/>ibot<sp/>||<sp/>i<sp/>&gt;<sp/>itop)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xp_spectrum[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nuked<sp/>++;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OR:<sp/>zero<sp/>out<sp/>data<sp/>inside<sp/>passband<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>!incband<sp/>&amp;&amp;<sp/>i&lt;npts/dv;<sp/>i++)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>&gt;<sp/>ibot<sp/>&amp;&amp;<sp/>i<sp/>&lt;<sp/>itop)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xp_spectrum[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nuked<sp/>++;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>implicitly<sp/>assuming<sp/>USB<sp/>and<sp/>LSB<sp/>bands<sp/>are<sp/>same<sp/>size:<sp/>npts/dv<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>usbreduce<sp/>=<sp/>lsbreduce<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(usbfracptr)<sp/></highlight><highlight class="comment">//<sp/>sb<sp/>==<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oldfrac<sp/>=<sp/>usboldfrac<sp/>=<sp/>*usbfracptr;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>factor<sp/>=<sp/>usbreduce<sp/>=<sp/>(nuked<sp/>&gt;=<sp/>npts/dv)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/>0.0<sp/>:<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)(npts/dv)/(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)(npts/dv<sp/>-<sp/>nuked);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*usbfracptr<sp/>*=<sp/>usbreduce;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;usb:<sp/>ap<sp/>%d<sp/>bw<sp/>%.3lf<sp/>bot<sp/>%.3lf<sp/>top<sp/>%.3lf<sp/>ibot<sp/>%3d<sp/>itop<sp/>%3d<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;nuke/npts<sp/>%3d/%3d<sp/>%s<sp/>%.3lf-&gt;%.3lf<sp/>(%.3lf)<sp/>%.2f<sp/>%.2f&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/>ap,<sp/>bw,<sp/>bottom,<sp/>top,<sp/>ibot,<sp/>itop,<sp/>nuked,<sp/>npts,</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>incband<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;include&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;exclude&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usboldfrac,<sp/>*usbfracptr,<sp/>usbreduce,</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param_passband_0_,<sp/>param_passband_1_);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lsbfracptr)<sp/></highlight><highlight class="comment">//<sp/>sb<sp/>==<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>oldfrac<sp/>=<sp/>lsboldfrac<sp/>=<sp/>*lsbfracptr;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>factor<sp/>=<sp/>lsbreduce<sp/>=<sp/>(nuked<sp/>&gt;=<sp/>npts/dv)</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/>0.0<sp/>:<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)(npts/dv)/(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)(npts/dv<sp/>-<sp/>nuked);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*lsbfracptr<sp/>*=<sp/>lsbreduce;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;lsb:<sp/>ap<sp/>%d<sp/>bw<sp/>%.3lf<sp/>bot<sp/>%.3lf<sp/>top<sp/>%.3lf<sp/>ibot<sp/>%3d<sp/>itop<sp/>%3d<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;nuke/npts<sp/>%3d/%3d<sp/>%s<sp/>%.3lf-&gt;%.3lf<sp/>(%.3lf)<sp/>%.2f<sp/>%.2f&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/>ap,<sp/>bw,<sp/>bottom,<sp/>top,<sp/>ibot,<sp/>itop,<sp/>nuked,<sp/>npts,</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>incband<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;include&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;exclude&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lsboldfrac,<sp/>*lsbfracptr,<sp/>lsbreduce,</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>param_passband_0_,<sp/>param_passband_1_);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1afcb9cb5a699aa15d176e58d8e86721d9" kindref="member">sb_bw_fracs</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>+0][sb]<sp/>=<sp/>(factor&gt;0.0)<sp/>?<sp/>1/factor<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a2d78c7b5875ba7b354e37f3cf3cdec11" kindref="member">sb_bw_origs</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>+0][sb]<sp/>=<sp/>oldfrac;<sp/></highlight><highlight class="comment">//<sp/>to<sp/>undo<sp/>this<sp/>later</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>eof<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_passband.c"/>
+  </compounddef>
+</doxygen>

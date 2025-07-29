@@ -1,0 +1,1152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__param" kind="struct" language="C++" prot="public">
+    <compoundname>type_param</compoundname>
+    <includes refid="param__struct_8h" local="no">param_struct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__param_1aa9dff0ef6fc33863605f4542f887d94d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::acc_period</definition>
+        <argsstring></argsstring>
+        <name>acc_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="23" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1acba150c4de3e6165b94e89b6c57e1ad0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::ah_amp</definition>
+        <argsstring></argsstring>
+        <name>ah_amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="50" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a0d147c041cf27f2ac4df7ba7b9deacf1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_param::ah_file[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>ah_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="53" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a79e905af763070db85be8b80a836b756" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_param::ah_file_chans[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>ah_file_chans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="54" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1abe36cfd1c2a8b0254c2f468c405b8165" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_param::ah_flag_files[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>ah_flag_files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="55" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ac3eeca0e5810322f5eee2dc2e1ad7e1c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::ah_period</definition>
+        <argsstring></argsstring>
+        <name>ah_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="49" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1aeabc621d6ca12ff562f73a22fdbe6516" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::ah_phase</definition>
+        <argsstring></argsstring>
+        <name>ah_phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="52" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a2e7e7735bded79a91503260d3dccef9c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::ah_poly[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>ah_poly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="51" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a3fa808d1845bf97d05410a1fba983289" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::ah_tref</definition>
+        <argsstring></argsstring>
+        <name>ah_tref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a87d420717711d52761012ac38b16afea" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::avxplopt[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>avxplopt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="65" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a184519e65c2f79931436537af51358e0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::avxpzoom[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>avxpzoom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="64" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a2e7820df0998eb238db240e0740793b9" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_param::baseline[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a9016d54514b2cc325f3928c7c343067b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::bits_sample[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>bits_sample</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a8dd39cb67c0f29dde8ff038b9426bcc4" prot="public" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long type_param::bocf_period</definition>
+        <argsstring></argsstring>
+        <name>bocf_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="57" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1aafa47c4bcbd4e6f4bc179d1a0c28f6f4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::bocfs_per_ap</definition>
+        <argsstring></argsstring>
+        <name>bocfs_per_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="58" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a786b84253e01bec118e66ca776950a8d" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* type_param::control_file_buff</definition>
+        <argsstring></argsstring>
+        <name>control_file_buff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="82" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a5ae1abb4e7b179739eb25339cc1635fc" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::cor_limit</definition>
+        <argsstring></argsstring>
+        <name>cor_limit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a62c0ec6022e6f68ff5969902a9fd52ce" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::cormode</definition>
+        <argsstring></argsstring>
+        <name>cormode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1abfe2f5a8f14382ee80eddd436b5dd7af" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::corr_type</definition>
+        <argsstring></argsstring>
+        <name>corr_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="29" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a491438ab65f685ff92ababc783243ffc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::dc_block</definition>
+        <argsstring></argsstring>
+        <name>dc_block</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="62" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a9984ea37b05e868eb868738f49425a96" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::elevation[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>elevation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="86" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a63ae510c742d8c39e832e051b91878a7" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::epoch_time</definition>
+        <argsstring></argsstring>
+        <name>epoch_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a3c3c03b7d1839da41b14617f01405417" prot="public" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long type_param::error_mask</definition>
+        <argsstring></argsstring>
+        <name>error_mask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="60" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a0da3df9424947c1393d13e551b2090b8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::est_pc_manual</definition>
+        <argsstring></argsstring>
+        <name>est_pc_manual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="84" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1af440e1de7b43fe6aaed95ffc9ca85a99" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::first_plot</definition>
+        <argsstring></argsstring>
+        <name>first_plot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="70" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a6bd3264e8b0cd9b565a97cd09ada9ef1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::fmatch_bw_pct</definition>
+        <argsstring></argsstring>
+        <name>fmatch_bw_pct</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="81" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1aa6370ab66564d6db387d0e36d73ca163" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::frt_offset</definition>
+        <argsstring></argsstring>
+        <name>frt_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="22" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a1e0457c248fbbb025a490fa999c366c2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::gen_cf_record</definition>
+        <argsstring></argsstring>
+        <name>gen_cf_record</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="66" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ae7ae98d49580e521feb401ec35439c5c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::interpol</definition>
+        <argsstring></argsstring>
+        <name>interpol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="72" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a1f7f73c89b4159c2737738c262822ef6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::inv_sigma</definition>
+        <argsstring></argsstring>
+        <name>inv_sigma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a0fae9788f283d695098144023c359c53" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::ion_diff</definition>
+        <argsstring></argsstring>
+        <name>ion_diff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="75" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ae82c9a85bc04b9cbb8411efa0fb0c50f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::ion_pts</definition>
+        <argsstring></argsstring>
+        <name>ion_pts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="76" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a726be37f9b7e1a81ce823dc5688c9126" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::ion_smooth</definition>
+        <argsstring></argsstring>
+        <name>ion_smooth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="77" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a34e40afb76627fd2473d195e1e197a5d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::maxap</definition>
+        <argsstring></argsstring>
+        <name>maxap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="25" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1add42b49167c3850bd9c19feee9df305f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::mbd_anchor</definition>
+        <argsstring></argsstring>
+        <name>mbd_anchor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="73" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a4df426039a6a5317a0ad513bf65bd0c4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::mbdrplopt[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>mbdrplopt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="90" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ae0e48724daea5cacb82eac915146041b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::minap</definition>
+        <argsstring></argsstring>
+        <name>minap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="24" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a5dbfeb1109aa4238e93e83f9608eed3e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::mixed_mode_rot</definition>
+        <argsstring></argsstring>
+        <name>mixed_mode_rot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="87" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ad01e0397b5086404c6752eaf2b9f1e52" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::mod4numbering</definition>
+        <argsstring></argsstring>
+        <name>mod4numbering</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="89" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a84ac92ccd470e454852e8d7b6d3dcb2b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::mount_type[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>mount_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="85" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1afc491296aa5330791465a1f62bdf9050" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::nlags</definition>
+        <argsstring></argsstring>
+        <name>nlags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a0cd5d07d1532ee6ed5c196b48e72eb50" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::nnotches</definition>
+        <argsstring></argsstring>
+        <name>nnotches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="67" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a427517bad31afdcab16fc9ec4889e06f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::noautofringes</definition>
+        <argsstring></argsstring>
+        <name>noautofringes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="88" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a621c1d02104f8730ab9a2032317fa822" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::notches[MAXNOTCH][2]</definition>
+        <argsstring>[MAXNOTCH][2]</argsstring>
+        <name>notches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="68" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a1100c988a198a3e388809ec9857fcf74" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::nplot_chans</definition>
+        <argsstring></argsstring>
+        <name>nplot_chans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="71" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a7472e73a47cab59dcef02987ab48c00d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::num_ap</definition>
+        <argsstring></argsstring>
+        <name>num_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a221a6f6a81d5e322cc227fd374b7c05b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::ov_bline[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>ov_bline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a4c8989f21810a23f77efef7fbdf9d468" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::par_angle[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>par_angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="78" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::passband[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>passband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="63" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a26a3b089678a814364b9fe29218782ad" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::pc_amp_hcode</definition>
+        <argsstring></argsstring>
+        <name>pc_amp_hcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="80" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ae95d9a91980c8baf61667363be89c28f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::pc_freq[MAXFREQ][2]</definition>
+        <argsstring>[MAXFREQ][2]</argsstring>
+        <name>pc_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="37" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::pc_mode[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>pc_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1aee8a9b47552f07dde94aae67b2d7e710" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::pc_period[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>pc_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1abac67c08812f6c345304789002708b82" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::pc_tonemask[MAXFREQ][2]</definition>
+        <argsstring>[MAXFREQ][2]</argsstring>
+        <name>pc_tonemask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a734a7cbf0b388202649e003982c6236f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::pcal_spacing[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>pcal_spacing</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="74" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ac4acff2fdb5bd5feccb6ecb38381f08e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_param::plot_data_dir[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>plot_data_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="56" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a425f6a555164c64ef40dca34c7359d0f" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::pol</definition>
+        <argsstring></argsstring>
+        <name>pol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1afcd199da31a26e7885853c902b413b90" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::ref_freq</definition>
+        <argsstring></argsstring>
+        <name>ref_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="47" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1aa839955ea8b858f5738ef36187c13c21" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::reftime</definition>
+        <argsstring></argsstring>
+        <name>reftime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="21" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a785734a88d84327387700670c12954cf" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* type_param::rf_fglist</definition>
+        <argsstring></argsstring>
+        <name>rf_fglist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a946698d8babf41196ee53ac329f69d2f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::samp_period</definition>
+        <argsstring></argsstring>
+        <name>samp_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a63913695d1a39288c02ce98603917ff4" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* type_param::set_string_buff</definition>
+        <argsstring></argsstring>
+        <name>set_string_buff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="83" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1afacce5efab8466ba649b8cb17cbe91d4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::speedup</definition>
+        <argsstring></argsstring>
+        <name>speedup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="69" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a13e47e88a55cca0124cb10d965e36502" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="19" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1af5f2550a7de2918bb20deca3c87b06d8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::start_nom</definition>
+        <argsstring></argsstring>
+        <name>start_nom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="15" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a1d7604e4df681a0dca72a09a57fec47d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::start_offset</definition>
+        <argsstring></argsstring>
+        <name>start_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="17" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ab0524d77bf7e490c557d0bb7f7e2b826" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::stop</definition>
+        <argsstring></argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="20" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ae9605614704ba8b7ba0001b1c03ab9d1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::stop_nom</definition>
+        <argsstring></argsstring>
+        <name>stop_nom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ab3a176e150a24126e9b9ac9be298164e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_param::stop_offset</definition>
+        <argsstring></argsstring>
+        <name>stop_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="18" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a37b60a32d616093aae0ec8ea24bd8b99" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::su_number[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>su_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="59" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ab1d22948c7f5b5d3e4cd1ff3138fea93" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_param::use_sample_cnts</definition>
+        <argsstring></argsstring>
+        <name>use_sample_cnts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="61" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1ac4762efb069c7a56db97c19c578155b9" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::weak_channel</definition>
+        <argsstring></argsstring>
+        <name>weak_channel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="79" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a468701a7fa97e414d8685e341a8ef284" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::win_dr[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>win_dr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="40" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a5723dde843f38cef9e43f57ae51e47e6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::win_ion[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>win_ion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="42" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a96e93531c321f5e14117eb66bfbf5dc7" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::win_mb[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>win_mb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="41" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__param_1a7d1aac103c152b5a6d8ddb081754fa55" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_param::win_sb[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>win_sb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="39" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>type_param</label>
+        <link refid="structtype__param"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bocf_period</edgelabel>
+          <edgelabel>error_mask</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>acc_period</edgelabel>
+          <edgelabel>ah_amp</edgelabel>
+          <edgelabel>ah_period</edgelabel>
+          <edgelabel>ah_poly</edgelabel>
+          <edgelabel>ah_tref</edgelabel>
+          <edgelabel>avxpzoom</edgelabel>
+          <edgelabel>cor_limit</edgelabel>
+          <edgelabel>elevation</edgelabel>
+          <edgelabel>epoch_time</edgelabel>
+          <edgelabel>fmatch_bw_pct</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>corr_type</edgelabel>
+          <edgelabel>dc_block</edgelabel>
+          <edgelabel>ion_smooth</edgelabel>
+          <edgelabel>ov_bline</edgelabel>
+          <edgelabel>pc_mode</edgelabel>
+          <edgelabel>pc_period</edgelabel>
+          <edgelabel>pol</edgelabel>
+          <edgelabel>su_number</edgelabel>
+          <edgelabel>use_sample_cnts</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ah_file</edgelabel>
+          <edgelabel>ah_file_chans</edgelabel>
+          <edgelabel>ah_flag_files</edgelabel>
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>control_file_buff</edgelabel>
+          <edgelabel>plot_data_dir</edgelabel>
+          <edgelabel>rf_fglist</edgelabel>
+          <edgelabel>set_string_buff</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>ah_phase</edgelabel>
+          <edgelabel>avxplopt</edgelabel>
+          <edgelabel>bits_sample</edgelabel>
+          <edgelabel>bocfs_per_ap</edgelabel>
+          <edgelabel>cormode</edgelabel>
+          <edgelabel>est_pc_manual</edgelabel>
+          <edgelabel>first_plot</edgelabel>
+          <edgelabel>gen_cf_record</edgelabel>
+          <edgelabel>interpol</edgelabel>
+          <edgelabel>ion_pts</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>unsigned long</label>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" line="12" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/param_struct.h" bodystart="13" bodyend="91"/>
+    <listofallmembers>
+      <member refid="structtype__param_1aa9dff0ef6fc33863605f4542f887d94d" prot="public" virt="non-virtual"><scope>type_param</scope><name>acc_period</name></member>
+      <member refid="structtype__param_1acba150c4de3e6165b94e89b6c57e1ad0" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_amp</name></member>
+      <member refid="structtype__param_1a0d147c041cf27f2ac4df7ba7b9deacf1" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_file</name></member>
+      <member refid="structtype__param_1a79e905af763070db85be8b80a836b756" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_file_chans</name></member>
+      <member refid="structtype__param_1abe36cfd1c2a8b0254c2f468c405b8165" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_flag_files</name></member>
+      <member refid="structtype__param_1ac3eeca0e5810322f5eee2dc2e1ad7e1c" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_period</name></member>
+      <member refid="structtype__param_1aeabc621d6ca12ff562f73a22fdbe6516" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_phase</name></member>
+      <member refid="structtype__param_1a2e7e7735bded79a91503260d3dccef9c" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_poly</name></member>
+      <member refid="structtype__param_1a3fa808d1845bf97d05410a1fba983289" prot="public" virt="non-virtual"><scope>type_param</scope><name>ah_tref</name></member>
+      <member refid="structtype__param_1a87d420717711d52761012ac38b16afea" prot="public" virt="non-virtual"><scope>type_param</scope><name>avxplopt</name></member>
+      <member refid="structtype__param_1a184519e65c2f79931436537af51358e0" prot="public" virt="non-virtual"><scope>type_param</scope><name>avxpzoom</name></member>
+      <member refid="structtype__param_1a2e7820df0998eb238db240e0740793b9" prot="public" virt="non-virtual"><scope>type_param</scope><name>baseline</name></member>
+      <member refid="structtype__param_1a9016d54514b2cc325f3928c7c343067b" prot="public" virt="non-virtual"><scope>type_param</scope><name>bits_sample</name></member>
+      <member refid="structtype__param_1a8dd39cb67c0f29dde8ff038b9426bcc4" prot="public" virt="non-virtual"><scope>type_param</scope><name>bocf_period</name></member>
+      <member refid="structtype__param_1aafa47c4bcbd4e6f4bc179d1a0c28f6f4" prot="public" virt="non-virtual"><scope>type_param</scope><name>bocfs_per_ap</name></member>
+      <member refid="structtype__param_1a786b84253e01bec118e66ca776950a8d" prot="public" virt="non-virtual"><scope>type_param</scope><name>control_file_buff</name></member>
+      <member refid="structtype__param_1a5ae1abb4e7b179739eb25339cc1635fc" prot="public" virt="non-virtual"><scope>type_param</scope><name>cor_limit</name></member>
+      <member refid="structtype__param_1a62c0ec6022e6f68ff5969902a9fd52ce" prot="public" virt="non-virtual"><scope>type_param</scope><name>cormode</name></member>
+      <member refid="structtype__param_1abfe2f5a8f14382ee80eddd436b5dd7af" prot="public" virt="non-virtual"><scope>type_param</scope><name>corr_type</name></member>
+      <member refid="structtype__param_1a491438ab65f685ff92ababc783243ffc" prot="public" virt="non-virtual"><scope>type_param</scope><name>dc_block</name></member>
+      <member refid="structtype__param_1a9984ea37b05e868eb868738f49425a96" prot="public" virt="non-virtual"><scope>type_param</scope><name>elevation</name></member>
+      <member refid="structtype__param_1a63ae510c742d8c39e832e051b91878a7" prot="public" virt="non-virtual"><scope>type_param</scope><name>epoch_time</name></member>
+      <member refid="structtype__param_1a3c3c03b7d1839da41b14617f01405417" prot="public" virt="non-virtual"><scope>type_param</scope><name>error_mask</name></member>
+      <member refid="structtype__param_1a0da3df9424947c1393d13e551b2090b8" prot="public" virt="non-virtual"><scope>type_param</scope><name>est_pc_manual</name></member>
+      <member refid="structtype__param_1af440e1de7b43fe6aaed95ffc9ca85a99" prot="public" virt="non-virtual"><scope>type_param</scope><name>first_plot</name></member>
+      <member refid="structtype__param_1a6bd3264e8b0cd9b565a97cd09ada9ef1" prot="public" virt="non-virtual"><scope>type_param</scope><name>fmatch_bw_pct</name></member>
+      <member refid="structtype__param_1aa6370ab66564d6db387d0e36d73ca163" prot="public" virt="non-virtual"><scope>type_param</scope><name>frt_offset</name></member>
+      <member refid="structtype__param_1a1e0457c248fbbb025a490fa999c366c2" prot="public" virt="non-virtual"><scope>type_param</scope><name>gen_cf_record</name></member>
+      <member refid="structtype__param_1ae7ae98d49580e521feb401ec35439c5c" prot="public" virt="non-virtual"><scope>type_param</scope><name>interpol</name></member>
+      <member refid="structtype__param_1a1f7f73c89b4159c2737738c262822ef6" prot="public" virt="non-virtual"><scope>type_param</scope><name>inv_sigma</name></member>
+      <member refid="structtype__param_1a0fae9788f283d695098144023c359c53" prot="public" virt="non-virtual"><scope>type_param</scope><name>ion_diff</name></member>
+      <member refid="structtype__param_1ae82c9a85bc04b9cbb8411efa0fb0c50f" prot="public" virt="non-virtual"><scope>type_param</scope><name>ion_pts</name></member>
+      <member refid="structtype__param_1a726be37f9b7e1a81ce823dc5688c9126" prot="public" virt="non-virtual"><scope>type_param</scope><name>ion_smooth</name></member>
+      <member refid="structtype__param_1a34e40afb76627fd2473d195e1e197a5d" prot="public" virt="non-virtual"><scope>type_param</scope><name>maxap</name></member>
+      <member refid="structtype__param_1add42b49167c3850bd9c19feee9df305f" prot="public" virt="non-virtual"><scope>type_param</scope><name>mbd_anchor</name></member>
+      <member refid="structtype__param_1a4df426039a6a5317a0ad513bf65bd0c4" prot="public" virt="non-virtual"><scope>type_param</scope><name>mbdrplopt</name></member>
+      <member refid="structtype__param_1ae0e48724daea5cacb82eac915146041b" prot="public" virt="non-virtual"><scope>type_param</scope><name>minap</name></member>
+      <member refid="structtype__param_1a5dbfeb1109aa4238e93e83f9608eed3e" prot="public" virt="non-virtual"><scope>type_param</scope><name>mixed_mode_rot</name></member>
+      <member refid="structtype__param_1ad01e0397b5086404c6752eaf2b9f1e52" prot="public" virt="non-virtual"><scope>type_param</scope><name>mod4numbering</name></member>
+      <member refid="structtype__param_1a84ac92ccd470e454852e8d7b6d3dcb2b" prot="public" virt="non-virtual"><scope>type_param</scope><name>mount_type</name></member>
+      <member refid="structtype__param_1afc491296aa5330791465a1f62bdf9050" prot="public" virt="non-virtual"><scope>type_param</scope><name>nlags</name></member>
+      <member refid="structtype__param_1a0cd5d07d1532ee6ed5c196b48e72eb50" prot="public" virt="non-virtual"><scope>type_param</scope><name>nnotches</name></member>
+      <member refid="structtype__param_1a427517bad31afdcab16fc9ec4889e06f" prot="public" virt="non-virtual"><scope>type_param</scope><name>noautofringes</name></member>
+      <member refid="structtype__param_1a621c1d02104f8730ab9a2032317fa822" prot="public" virt="non-virtual"><scope>type_param</scope><name>notches</name></member>
+      <member refid="structtype__param_1a1100c988a198a3e388809ec9857fcf74" prot="public" virt="non-virtual"><scope>type_param</scope><name>nplot_chans</name></member>
+      <member refid="structtype__param_1a7472e73a47cab59dcef02987ab48c00d" prot="public" virt="non-virtual"><scope>type_param</scope><name>num_ap</name></member>
+      <member refid="structtype__param_1a221a6f6a81d5e322cc227fd374b7c05b" prot="public" virt="non-virtual"><scope>type_param</scope><name>ov_bline</name></member>
+      <member refid="structtype__param_1a4c8989f21810a23f77efef7fbdf9d468" prot="public" virt="non-virtual"><scope>type_param</scope><name>par_angle</name></member>
+      <member refid="structtype__param_1a4f1903c44a3c284039e3eda9401b507b" prot="public" virt="non-virtual"><scope>type_param</scope><name>passband</name></member>
+      <member refid="structtype__param_1a26a3b089678a814364b9fe29218782ad" prot="public" virt="non-virtual"><scope>type_param</scope><name>pc_amp_hcode</name></member>
+      <member refid="structtype__param_1ae95d9a91980c8baf61667363be89c28f" prot="public" virt="non-virtual"><scope>type_param</scope><name>pc_freq</name></member>
+      <member refid="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" prot="public" virt="non-virtual"><scope>type_param</scope><name>pc_mode</name></member>
+      <member refid="structtype__param_1aee8a9b47552f07dde94aae67b2d7e710" prot="public" virt="non-virtual"><scope>type_param</scope><name>pc_period</name></member>
+      <member refid="structtype__param_1abac67c08812f6c345304789002708b82" prot="public" virt="non-virtual"><scope>type_param</scope><name>pc_tonemask</name></member>
+      <member refid="structtype__param_1a734a7cbf0b388202649e003982c6236f" prot="public" virt="non-virtual"><scope>type_param</scope><name>pcal_spacing</name></member>
+      <member refid="structtype__param_1ac4acff2fdb5bd5feccb6ecb38381f08e" prot="public" virt="non-virtual"><scope>type_param</scope><name>plot_data_dir</name></member>
+      <member refid="structtype__param_1a425f6a555164c64ef40dca34c7359d0f" prot="public" virt="non-virtual"><scope>type_param</scope><name>pol</name></member>
+      <member refid="structtype__param_1afcd199da31a26e7885853c902b413b90" prot="public" virt="non-virtual"><scope>type_param</scope><name>ref_freq</name></member>
+      <member refid="structtype__param_1aa839955ea8b858f5738ef36187c13c21" prot="public" virt="non-virtual"><scope>type_param</scope><name>reftime</name></member>
+      <member refid="structtype__param_1a785734a88d84327387700670c12954cf" prot="public" virt="non-virtual"><scope>type_param</scope><name>rf_fglist</name></member>
+      <member refid="structtype__param_1a946698d8babf41196ee53ac329f69d2f" prot="public" virt="non-virtual"><scope>type_param</scope><name>samp_period</name></member>
+      <member refid="structtype__param_1a63913695d1a39288c02ce98603917ff4" prot="public" virt="non-virtual"><scope>type_param</scope><name>set_string_buff</name></member>
+      <member refid="structtype__param_1afacce5efab8466ba649b8cb17cbe91d4" prot="public" virt="non-virtual"><scope>type_param</scope><name>speedup</name></member>
+      <member refid="structtype__param_1a13e47e88a55cca0124cb10d965e36502" prot="public" virt="non-virtual"><scope>type_param</scope><name>start</name></member>
+      <member refid="structtype__param_1af5f2550a7de2918bb20deca3c87b06d8" prot="public" virt="non-virtual"><scope>type_param</scope><name>start_nom</name></member>
+      <member refid="structtype__param_1a1d7604e4df681a0dca72a09a57fec47d" prot="public" virt="non-virtual"><scope>type_param</scope><name>start_offset</name></member>
+      <member refid="structtype__param_1ab0524d77bf7e490c557d0bb7f7e2b826" prot="public" virt="non-virtual"><scope>type_param</scope><name>stop</name></member>
+      <member refid="structtype__param_1ae9605614704ba8b7ba0001b1c03ab9d1" prot="public" virt="non-virtual"><scope>type_param</scope><name>stop_nom</name></member>
+      <member refid="structtype__param_1ab3a176e150a24126e9b9ac9be298164e" prot="public" virt="non-virtual"><scope>type_param</scope><name>stop_offset</name></member>
+      <member refid="structtype__param_1a37b60a32d616093aae0ec8ea24bd8b99" prot="public" virt="non-virtual"><scope>type_param</scope><name>su_number</name></member>
+      <member refid="structtype__param_1ab1d22948c7f5b5d3e4cd1ff3138fea93" prot="public" virt="non-virtual"><scope>type_param</scope><name>use_sample_cnts</name></member>
+      <member refid="structtype__param_1ac4762efb069c7a56db97c19c578155b9" prot="public" virt="non-virtual"><scope>type_param</scope><name>weak_channel</name></member>
+      <member refid="structtype__param_1a468701a7fa97e414d8685e341a8ef284" prot="public" virt="non-virtual"><scope>type_param</scope><name>win_dr</name></member>
+      <member refid="structtype__param_1a5723dde843f38cef9e43f57ae51e47e6" prot="public" virt="non-virtual"><scope>type_param</scope><name>win_ion</name></member>
+      <member refid="structtype__param_1a96e93531c321f5e14117eb66bfbf5dc7" prot="public" virt="non-virtual"><scope>type_param</scope><name>win_mb</name></member>
+      <member refid="structtype__param_1a7d1aac103c152b5a6d8ddb081754fa55" prot="public" virt="non-virtual"><scope>type_param</scope><name>win_sb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BasicFringeUtilities" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BasicFringeUtilities</compoundname>
+    <includes refid="MHO__BasicFringeUtilities_8hh" local="no">MHO_BasicFringeUtilities.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1ae24718fba8ac0fddfa25ab0815524cf6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BasicFringeUtilities::MHO_BasicFringeUtilities</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BasicFringeUtilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1af1ff1b17469cf6ac906415f7ddea1dc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BasicFringeUtilities::~MHO_BasicFringeUtilities</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BasicFringeUtilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1a285cd768b6a4fe954df263d728f64770" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeUtilities::calculate_fringe_solution_info</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore, const mho_json &amp;vexInfo)</argsstring>
+        <name>calculate_fringe_solution_info</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>vexInfo</declname>
+        </param>
+        <briefdescription>
+<para>Calculates fringe solution info using data extracted from container store, parameter store, and vexInfo. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> pointer for accessing container data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> pointer for accessing parameter data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vexInfo</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>const mho_json&amp; containing vex information </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="70" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeUtilities.cc" bodystart="24" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1afebfaa8ea19a5bee035cd350a3a7ff0a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeUtilities::calculate_ion_covariance</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>calculate_ion_covariance</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Calculates ionospheric covariance matrix using data from container and parameter stores. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> containing data for calculation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> containing parameters for calculation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="99" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeUtilities.cc" bodystart="475" bodyend="582"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1a96d0bc417096df343fc3c7081a57a985" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeUtilities::calculate_residual_phase</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>calculate_residual_phase</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Calculates residual phase using data extracted from container and parameter stores. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> for data access </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> for configuration values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Residual phase as a double value </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="60" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeUtilities.cc" bodystart="293" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1aefd3a6e4e421ccaa98ccf51d6a901276" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeUtilities::calculate_sbavg</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>calculate_sbavg</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns the average sideband value from visibility data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input container store for accessing visibility data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter store (not used in this function) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Average sideband value as a double. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="50" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeUtilities.cc" bodystart="585" bodyend="610"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1aba76965556ae8460be96ef48e121ca95" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeUtilities::calculate_snr_correction_factor</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>calculate_snr_correction_factor</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Calculates bandwidth correction factor for SNR using <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> and <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input container store containing visibility and weight data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input parameter store containing configuration settings </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Bandwidth correction factor as a double value </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="90" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeUtilities.cc" bodystart="416" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeUtilities_1a0100684374f5b6f63b4233cb47644b48" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeUtilities::determine_sample_rate</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>determine_sample_rate</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Determines and updates sample rate and period using channel bandwidth info from visibilities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input container store for accessing visibility data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/Output parameter store for retrieving and updating sample rate and period. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="80" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeUtilities.cc" bodystart="372" bodyend="414"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BasicFringeUtilities" kindref="compound">MHO_BasicFringeUtilities</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>a collection of helper functions to organize fringe fitting</para>
+<para><simplesect kind="author"><para>J. Barrettj - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Sep 20 15:37:46 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeUtilities.hh" bodystart="34" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1a285cd768b6a4fe954df263d728f64770" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>calculate_fringe_solution_info</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1afebfaa8ea19a5bee035cd350a3a7ff0a" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>calculate_ion_covariance</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1a96d0bc417096df343fc3c7081a57a985" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>calculate_residual_phase</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1aefd3a6e4e421ccaa98ccf51d6a901276" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>calculate_sbavg</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1aba76965556ae8460be96ef48e121ca95" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>calculate_snr_correction_factor</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1a0100684374f5b6f63b4233cb47644b48" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>determine_sample_rate</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1ae24718fba8ac0fddfa25ab0815524cf6" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>MHO_BasicFringeUtilities</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeUtilities_1af1ff1b17469cf6ac906415f7ddea1dc7" prot="public" virt="virtual"><scope>hops::MHO_BasicFringeUtilities</scope><name>~MHO_BasicFringeUtilities</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

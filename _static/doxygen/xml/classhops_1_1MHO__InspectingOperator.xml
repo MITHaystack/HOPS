@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__InspectingOperator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_InspectingOperator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__Operator" prot="public" virt="non-virtual">hops::MHO_Operator</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ExtremaSearch" prot="public" virt="non-virtual">hops::MHO_ExtremaSearch&lt; MHO_TableContainer&lt; double, mbd_axis_pack &gt; &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ExtremaSearch" prot="public" virt="non-virtual">hops::MHO_ExtremaSearch&lt; XArgType &gt;</derivedcompoundref>
+    <includes refid="MHO__InspectingOperator_8hh" local="no">MHO_InspectingOperator.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class XArgType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__InspectingOperator_1a5f6eb3f05738ed013a1ae555399caa07" prot="protected" static="no" mutable="no">
+        <type>const XArgType *</type>
+        <definition>const XArgType* hops::MHO_InspectingOperator&lt; XArgType &gt;::fArg</definition>
+        <argsstring></argsstring>
+        <name>fArg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="69" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__InspectingOperator_1ade9ff5dfb10fd46f60d4b05e388f52e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_InspectingOperator&lt; XArgType &gt;::MHO_InspectingOperator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_InspectingOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InspectingOperator_1a02d0f0c0080c0465abafb7594aa2d12c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_InspectingOperator&lt; XArgType &gt;::~MHO_InspectingOperator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_InspectingOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="25" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InspectingOperator_1a2b4643b0fa8840e2cd9c563ff94b7b09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_InspectingOperator&lt; XArgType &gt;::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7">Execute</reimplements>
+        <briefdescription>
+<para>Executes the inspection on the input array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success/failure of execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="49" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InspectingOperator_1aee87234b1bfcec770ca95db0d527b6ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_InspectingOperator&lt; XArgType &gt;::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171">Initialize</reimplements>
+        <briefdescription>
+<para>initializes inspection for a single const array of type XArgType. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if initialization is successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="41" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InspectingOperator_1a3cea8e96348fc6b912aaf73a39dc0812" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_InspectingOperator&lt; XArgType &gt;::SetArgs</definition>
+        <argsstring>(const XArgType *in)</argsstring>
+        <name>SetArgs</name>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Setter for args. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input const array of XArgType to inspect </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="33" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__InspectingOperator_1ae00b4e9b7c1fb8897e0ddf5e87867acc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_InspectingOperator&lt; XArgType &gt;::ExecuteImpl</definition>
+        <argsstring>(const XArgType *in)=0</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplementedby refid="classhops_1_1MHO__EstimatePCManual_1a7d5ca32e5151601b6ad36c41bfcd5e57">ExecuteImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MBDelaySearch_1a6c7d8f119fa61cbd9355e2d078e1a57a">ExecuteImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ExtremaSearch_1af5a5428cf156dc834026a21d466e7164">ExecuteImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MBDelaySearchCUDA_1acbf2b7d00d02571ffc5371381143927e">ExecuteImpl</reimplementedby>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Inspects a single const array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input const array of type XArgType to inspect. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="67" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InspectingOperator_1aded8287bb457abddd135814ea95c417d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_InspectingOperator&lt; XArgType &gt;::InitializeImpl</definition>
+        <argsstring>(const XArgType *in)=0</argsstring>
+        <name>InitializeImpl</name>
+        <reimplementedby refid="classhops_1_1MHO__EstimatePCManual_1a9b47c443f5fb182cad453b5b6099bd5e">InitializeImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ExtremaSearch_1ac7208445491db4e7d29116d711861a8b">InitializeImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MBDelaySearch_1ad502fee097a883471fb1e4c51f1d7ce1">InitializeImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MBDelaySearchCUDA_1a518b72e9b20b6670f865916ed2c4e697">InitializeImpl</reimplementedby>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>initializes inspection for a single const array of type XArgType. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input const array of type XArgType to inspect </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if inspection is successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="59" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__InspectingOperator" kindref="compound">MHO_InspectingOperator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>abstract base (template) class which inspects an N-D array object, operates on a single const array (just to inspect it)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue Jan 10 16:42:53 2023 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ExtremaSearch&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__ExtremaSearch"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_InspectingOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__InspectingOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ExtremaSearch&lt; MHO_TableContainer&lt; double, mbd_axis_pack &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__ExtremaSearch"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_InspectingOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__InspectingOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fArg</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>const XArgType *</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" line="21" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_InspectingOperator.hh" bodystart="22" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a2b4643b0fa8840e2cd9c563ff94b7b09" prot="public" virt="virtual"><scope>hops::MHO_InspectingOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1ae00b4e9b7c1fb8897e0ddf5e87867acc" prot="protected" virt="pure-virtual"><scope>hops::MHO_InspectingOperator</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a5f6eb3f05738ed013a1ae555399caa07" prot="protected" virt="non-virtual"><scope>hops::MHO_InspectingOperator</scope><name>fArg</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_InspectingOperator</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1aee87234b1bfcec770ca95db0d527b6ab" prot="public" virt="virtual"><scope>hops::MHO_InspectingOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1aded8287bb457abddd135814ea95c417d" prot="protected" virt="pure-virtual"><scope>hops::MHO_InspectingOperator</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1ade9ff5dfb10fd46f60d4b05e388f52e6" prot="public" virt="non-virtual"><scope>hops::MHO_InspectingOperator</scope><name>MHO_InspectingOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_InspectingOperator</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_InspectingOperator</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a3cea8e96348fc6b912aaf73a39dc0812" prot="public" virt="virtual"><scope>hops::MHO_InspectingOperator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_InspectingOperator</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_InspectingOperator</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a02d0f0c0080c0465abafb7594aa2d12c" prot="public" virt="virtual"><scope>hops::MHO_InspectingOperator</scope><name>~MHO_InspectingOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_InspectingOperator</scope><name>~MHO_Operator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

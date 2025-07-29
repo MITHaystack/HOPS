@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="fplot_8h" kind="file" language="C++">
+    <compoundname>fplot.h</compoundname>
+    <includes refid="type__203_8h" local="yes">type_203.h</includes>
+    <includes refid="type__205_8h" local="yes">type_205.h</includes>
+    <includedby refid="fplot_2fplot_8c" local="yes">fplot.c</includedby>
+    <includedby refid="applications_2fplot_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <incdepgraph>
+      <node id="5">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="2">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="1">
+        <label>fplot.h</label>
+        <link refid="fplot_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>fplot.c</label>
+        <link refid="fplot_2fplot_8c"/>
+      </node>
+      <node id="1">
+        <label>fplot.h</label>
+        <link refid="fplot_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fplot_2src_2parse__cmdline_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="fplot_8h_1a314f278e51bde415c4c5963757cbdcde" prot="public" static="no">
+        <name>DISKFILE</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="6" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_8h_1abdd6b2b5a16c24536a51ca8f935213a1" prot="public" static="no">
+        <name>GSDEVICE</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_8h_1adf0a588d45034237124b6c8dd23ad9d0" prot="public" static="no">
+        <name>HARDCOPY</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="3" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_8h_1a655c84af1b0034986ff56e12e84f983d" prot="public" static="no">
+        <name>NONE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="1" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_8h_1acb3ddd8ac0570b11238d6cdd38ac457f" prot="public" static="no">
+        <name>PRINTLPR</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_8h_1a59b0c7b29ceab89aa4a8c7c0193fb20e" prot="public" static="no">
+        <name>PSTOPDF</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fplot_8h_1a1eebd26f16d2443413a32a7e02928cc1" prot="public" static="no">
+        <name>XWINDOW</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="2" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="fplot_8h_1a7e47156156c54b1d3a9803e81305ff3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_cmdline</definition>
+        <argsstring>(int argc, char **argv, fstruct **files, int *display, char **file_name, int *poln)</argsstring>
+        <name>parse_cmdline</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type><ref refid="structfstruct" kindref="compound">fstruct</ref> **</type>
+          <declname>files</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>display</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>file_name</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>poln</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="12" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/src/parse_cmdline.c" bodystart="59" bodyend="147" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" declline="12" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="fplot_8h_1acf5d0c2883f6f1a3d1f857d87752eb7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int skip_poln</definition>
+        <argsstring>(char *name, struct type_203 *t203, struct type_205 *t205, int poln)</argsstring>
+        <name>skip_poln</name>
+        <param>
+          <type>char *</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__203" kindref="compound">type_203</ref> *</type>
+          <declname>t203</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__205" kindref="compound">type_205</ref> *</type>
+          <declname>t205</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>poln</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" line="15" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/src/skip_poln.c" bodystart="15" bodyend="44" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h" declline="15" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="fplot_8h_1a655c84af1b0034986ff56e12e84f983d" refkind="member"><highlight class="preprocessor">#define<sp/>NONE<sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="fplot_8h_1a1eebd26f16d2443413a32a7e02928cc1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>XWINDOW<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="fplot_8h_1adf0a588d45034237124b6c8dd23ad9d0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HARDCOPY<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="fplot_8h_1acb3ddd8ac0570b11238d6cdd38ac457f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PRINTLPR<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="fplot_8h_1abdd6b2b5a16c24536a51ca8f935213a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GSDEVICE<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="fplot_8h_1a314f278e51bde415c4c5963757cbdcde" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISKFILE<sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="fplot_8h_1a59b0c7b29ceab89aa4a8c7c0193fb20e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PSTOPDF<sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__203_8h" kindref="compound">type_203.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__205_8h" kindref="compound">type_205.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="fplot_8h_1a7e47156156c54b1d3a9803e81305ff3f" kindref="member">parse_cmdline</ref><sp/>(</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv,<sp/><ref refid="structfstruct" kindref="compound">fstruct</ref>**<sp/>files,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>display,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>file_name,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*poln);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="fplot_8h_1acf5d0c2883f6f1a3d1f857d87752eb7e" kindref="member">skip_poln</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*name,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__203" kindref="compound">type_203</ref><sp/>*t203,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__205" kindref="compound">type_205</ref><sp/>*t205,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>poln);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>MK4_DATA</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="mk4__dfio_8h_1ac7c0687c33da159a7698956df91db45d" kindref="member">display_221</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__221" kindref="compound">type_221</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>MK4_DATA<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fplot/include/fplot.h"/>
+  </compounddef>
+</doxygen>

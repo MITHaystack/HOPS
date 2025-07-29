@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpsplot__fgroup" kind="struct" language="C++" prot="public">
+    <compoundname>psplot_fgroup</compoundname>
+    <includes refid="psplot_8h" local="no">psplot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpsplot__fgroup_1a126a8b9ace36ea1b7acbe8bba6fdfd5c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char psplot_fgroup::fgroup[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>fgroup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="115" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__fgroup_1ac4039284495ffe5b42ba53a65867421f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char psplot_fgroup::subgroups[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>subgroups</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="116" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>psplot_fgroup</label>
+        <link refid="structpsplot__fgroup"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fgroup</edgelabel>
+          <edgelabel>subgroups</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="113" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="114" bodyend="117"/>
+    <listofallmembers>
+      <member refid="structpsplot__fgroup_1a126a8b9ace36ea1b7acbe8bba6fdfd5c" prot="public" virt="non-virtual"><scope>psplot_fgroup</scope><name>fgroup</name></member>
+      <member refid="structpsplot__fgroup_1ac4039284495ffe5b42ba53a65867421f" prot="public" virt="non-virtual"><scope>psplot_fgroup</scope><name>subgroups</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

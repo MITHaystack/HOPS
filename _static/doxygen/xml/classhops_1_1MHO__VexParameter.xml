@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VexParameter" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VexParameter</compoundname>
+    <includes refid="MHO__VexParameter_8hh" local="no">MHO_VexParameter.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParameter_1a134cafa6bfce507333d5f2af35e22580" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParameter::fToken</definition>
+        <argsstring></argsstring>
+        <name>fToken</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="46" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParameter_1ab64693a8e677c395e5da428cd3daee22" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParameter::fUnits</definition>
+        <argsstring></argsstring>
+        <name>fUnits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="47" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexParameter_1a680550208002660e55e7c41c3bab2be3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VexParameter::MHO_VexParameter</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_VexParameter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParameter_1a2226ae5fb503a91ec060496ebbb861a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VexParameter::MHO_VexParameter</definition>
+        <argsstring>(std::string token, std::string units=&quot;&quot;)</argsstring>
+        <name>MHO_VexParameter</name>
+        <param>
+          <type>std::string</type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>units</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParameter_1a2226ae5fb503a91ec060496ebbb861a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VexParameter::MHO_VexParameter</definition>
+        <argsstring>(std::string token, std::string units=&quot;&quot;)</argsstring>
+        <name>MHO_VexParameter</name>
+        <param>
+          <type>std::string</type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>units</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParameter_1a8a5f4ba0de663dcdb847c4709b74f5e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_VexParameter::~MHO_VexParameter</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_VexParameter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="29" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParameter_1a07090eb5c291631118cdbb8f50b27908" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParameter::SetTokenString</definition>
+        <argsstring>(std::string token)</argsstring>
+        <name>SetTokenString</name>
+        <param>
+          <type>std::string</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Setter for token string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input token string to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="36" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParameter_1a0e498563d2dd00ec3a14379a4014887f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParameter::SetUnitsString</definition>
+        <argsstring>(std::string units)</argsstring>
+        <name>SetUnitsString</name>
+        <param>
+          <type>std::string</type>
+          <declname>units</declname>
+        </param>
+        <briefdescription>
+<para>Setter for units string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>units</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New units string to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="43" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="43" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__VexParameter" kindref="compound">MHO_VexParameter</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Stores a vex parameter value token (with associated units)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu May 26 16:55:16 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParameter.hh" bodystart="21" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__VexParameter_1a134cafa6bfce507333d5f2af35e22580" prot="private" virt="non-virtual"><scope>hops::MHO_VexParameter</scope><name>fToken</name></member>
+      <member refid="classhops_1_1MHO__VexParameter_1ab64693a8e677c395e5da428cd3daee22" prot="private" virt="non-virtual"><scope>hops::MHO_VexParameter</scope><name>fUnits</name></member>
+      <member refid="classhops_1_1MHO__VexParameter_1a680550208002660e55e7c41c3bab2be3" prot="public" virt="non-virtual"><scope>hops::MHO_VexParameter</scope><name>MHO_VexParameter</name></member>
+      <member refid="classhops_1_1MHO__VexParameter_1a2226ae5fb503a91ec060496ebbb861a1" prot="public" virt="non-virtual"><scope>hops::MHO_VexParameter</scope><name>MHO_VexParameter</name></member>
+      <member refid="classhops_1_1MHO__VexParameter_1a2226ae5fb503a91ec060496ebbb861a1" prot="public" virt="non-virtual"><scope>hops::MHO_VexParameter</scope><name>MHO_VexParameter</name></member>
+      <member refid="classhops_1_1MHO__VexParameter_1a07090eb5c291631118cdbb8f50b27908" prot="public" virt="non-virtual"><scope>hops::MHO_VexParameter</scope><name>SetTokenString</name></member>
+      <member refid="classhops_1_1MHO__VexParameter_1a0e498563d2dd00ec3a14379a4014887f" prot="public" virt="non-virtual"><scope>hops::MHO_VexParameter</scope><name>SetUnitsString</name></member>
+      <member refid="classhops_1_1MHO__VexParameter_1a8a5f4ba0de663dcdb847c4709b74f5e2" prot="public" virt="virtual"><scope>hops::MHO_VexParameter</scope><name>~MHO_VexParameter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

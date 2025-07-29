@@ -1,0 +1,707 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BitReversalPermutation" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BitReversalPermutation</compoundname>
+    <includes refid="MHO__BitReversalPermutation_8hh" local="no">MHO_BitReversalPermutation.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a07e4b336a719d1cca0a69bb9d997a959" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BitReversalPermutation::MHO_BitReversalPermutation</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BitReversalPermutation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a319471a463f83874bec6fa28669fcc40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BitReversalPermutation::~MHO_BitReversalPermutation</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BitReversalPermutation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" bodystart="27" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a0c66a979457c700414df15241dc5ac81" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BitReversalPermutation::ComputeBitReversedIndicesBaseTwo</definition>
+        <argsstring>(unsigned int N, unsigned int *index_arr)</argsstring>
+        <name>ComputeBitReversedIndicesBaseTwo</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>index_arr</declname>
+        </param>
+        <briefdescription>
+<para>Computes bit-reversed indices using Buneman algorithm for input N, must have N = 2^P, with P an integer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input size, must be a power of two </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index_arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array to store permutated indices </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="112" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="119" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a59fa9109626c043514f45310ffc8a144" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BitReversalPermutation::IsPowerOfBase</definition>
+        <argsstring>(unsigned int N, unsigned int B)</argsstring>
+        <name>IsPowerOfBase</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>B</declname>
+        </param>
+        <briefdescription>
+<para>Checks if an unsigned integer N is a perfect power of another unsigned integer B. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input number to check for being a perfect power </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Base number against which N is checked </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if N is a perfect power of B, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="83" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="60" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a87fdeec0897c7601b14adcdf0a7018f4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_BitReversalPermutation::IsPowerOfTwo</definition>
+        <argsstring>(unsigned int N)</argsstring>
+        <name>IsPowerOfTwo</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Checks if an unsigned integer is a power of two. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input unsigned integer to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if N is a power of two, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="36" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="10" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a6b57ce9f0b1545eca3142b24a74448db" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_BitReversalPermutation::LogBaseB</definition>
+        <argsstring>(unsigned int N, unsigned int B)</argsstring>
+        <name>LogBaseB</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>B</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the logarithm base B of N, assuming N is a perfect power of B. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input number for which to calculate the logarithm </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Base of the logarithm </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Leading power of B that divides N </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="103" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="92" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1aabe10e5ec23563da37c5d8318493f85c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_BitReversalPermutation::LogBaseTwo</definition>
+        <argsstring>(unsigned int N)</argsstring>
+        <name>LogBaseTwo</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the logarithm base two of an unsigned integer N using bitwise operations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input unsigned integer for which to calculate the logarithm base two. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The logarithm base two of N as an unsigned integer. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="54" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="17" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a12577ae76d52e7f739ef7d62e244b8b6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_BitReversalPermutation::NextLowestPowerOfTwo</definition>
+        <argsstring>(unsigned int N)</argsstring>
+        <name>NextLowestPowerOfTwo</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the next lowest power of two for a given unsigned integer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input unsigned integer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Next lowest power of two as an unsigned integer. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="63" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="35" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a5e91eb3f662823d9a17243abd40aef44" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename DataType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void hops::MHO_BitReversalPermutation::PermuteArray</definition>
+        <argsstring>(unsigned int N, const unsigned int *permutation_index_arr, DataType *arr)</argsstring>
+        <name>PermuteArray</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const unsigned int *</type>
+          <declname>permutation_index_arr</declname>
+        </param>
+        <param>
+          <type>DataType *</type>
+          <declname>arr</declname>
+        </param>
+        <briefdescription>
+<para>Permutes an array using a given permutation index array (non-strided data access pattern). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>DataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter DataType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the array and permutation index array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>permutation_index_arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array containing permutation indices. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(DataType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="124" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" bodystart="124" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a4a36a1916154e014d01134d8b21b8297" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename DataType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void hops::MHO_BitReversalPermutation::PermuteArray</definition>
+        <argsstring>(unsigned int N, const unsigned int *permutation_index_arr, DataType *arr, unsigned int stride)</argsstring>
+        <name>PermuteArray</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const unsigned int *</type>
+          <declname>permutation_index_arr</declname>
+        </param>
+        <param>
+          <type>DataType *</type>
+          <declname>arr</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+        </param>
+        <briefdescription>
+<para>Permutes a DataType array using an index permutation (strided data access version) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>DataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter DataType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the array and permutation index array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>permutation_index_arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array containing the permutation indices. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>DataType array to be permuted. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int), memory stride between adjacent elements in the array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="156" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" bodystart="156" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a25b124dcaeef9d1a6ef3cfa93702c84b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename DataType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void hops::MHO_BitReversalPermutation::PermuteArrayBranchFree</definition>
+        <argsstring>(unsigned int N, const unsigned int *permutation_index_arr, DataType *arr)</argsstring>
+        <name>PermuteArrayBranchFree</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const unsigned int *</type>
+          <declname>permutation_index_arr</declname>
+        </param>
+        <param>
+          <type>DataType *</type>
+          <declname>arr</declname>
+        </param>
+        <briefdescription>
+<para>Function PermuteArrayBranchFree non-strided data access pattern branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>DataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter DataType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>permutation_index_arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const unsigned int*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(DataType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="190" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" bodystart="190" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1aa25aba2c8409ef3f474b232cb76a4188" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename DataType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void hops::MHO_BitReversalPermutation::PermuteArrayBranchFree</definition>
+        <argsstring>(unsigned int N, const unsigned int *permutation_index_arr, DataType *arr, unsigned int stride)</argsstring>
+        <name>PermuteArrayBranchFree</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const unsigned int *</type>
+          <declname>permutation_index_arr</declname>
+        </param>
+        <param>
+          <type>DataType *</type>
+          <declname>arr</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+        </param>
+        <briefdescription>
+<para>Function PermuteArrayBranchFree strided data access version branch free (this is actually slower on CPU, but we preserve it here for comparison as this method is used on GPU) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>DataType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter DataType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>permutation_index_arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const unsigned int*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(DataType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int), memory stride between adjacent elements in the array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="227" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" bodystart="227" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a0066e408ba8b38219a8a238152197385" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_BitReversalPermutation::RaiseBaseToThePower</definition>
+        <argsstring>(unsigned int B, unsigned int N)</argsstring>
+        <name>RaiseBaseToThePower</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Calculates B raised to the power N. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>B</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Base number to be raised </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Power to which base is raised (N must be &gt;= 0) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of B^N </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="93" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="82" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a1fbc90e9291f97deda9769ddaceca1b3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_BitReversalPermutation::ReverseIndexBits</definition>
+        <argsstring>(unsigned int nbits, unsigned int x)</argsstring>
+        <name>ReverseIndexBits</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>nbits</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Reverses the bit indices of a given unsigned integer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nbits</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of bits to consider for reversal. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input unsigned integer whose bit indices are to be reversed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The unsigned integer with its bit indices reversed. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="73" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="50" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BitReversalPermutation_1a66e4e5a7b1adbaf2d2a247f8c0e21ed8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_BitReversalPermutation::TwoToThePowerOf</definition>
+        <argsstring>(unsigned int N)</argsstring>
+        <name>TwoToThePowerOf</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Calculates 2 raised to the power of N using bit shifting. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input exponent for the calculation (N must be &gt;= 0 and &lt;=31) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of 2^N as an unsigned integer. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="45" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_BitReversalPermutation.cc" bodystart="29" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>bit reversal permutation function for power-of-two FFTs </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Fri Oct 23 12:02:01 2020 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_BitReversalPermutation.hh" bodystart="24" bodyend="254"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a0c66a979457c700414df15241dc5ac81" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>ComputeBitReversedIndicesBaseTwo</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a59fa9109626c043514f45310ffc8a144" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>IsPowerOfBase</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a87fdeec0897c7601b14adcdf0a7018f4" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>IsPowerOfTwo</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a6b57ce9f0b1545eca3142b24a74448db" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>LogBaseB</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1aabe10e5ec23563da37c5d8318493f85c" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>LogBaseTwo</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a07e4b336a719d1cca0a69bb9d997a959" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>MHO_BitReversalPermutation</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a12577ae76d52e7f739ef7d62e244b8b6" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>NextLowestPowerOfTwo</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a5e91eb3f662823d9a17243abd40aef44" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>PermuteArray</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a4a36a1916154e014d01134d8b21b8297" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>PermuteArray</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a25b124dcaeef9d1a6ef3cfa93702c84b" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>PermuteArrayBranchFree</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1aa25aba2c8409ef3f474b232cb76a4188" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>PermuteArrayBranchFree</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a0066e408ba8b38219a8a238152197385" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>RaiseBaseToThePower</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a1fbc90e9291f97deda9769ddaceca1b3" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>ReverseIndexBits</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a66e4e5a7b1adbaf2d2a247f8c0e21ed8" prot="public" virt="non-virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>TwoToThePowerOf</name></member>
+      <member refid="classhops_1_1MHO__BitReversalPermutation_1a319471a463f83874bec6fa28669fcc40" prot="public" virt="virtual"><scope>hops::MHO_BitReversalPermutation</scope><name>~MHO_BitReversalPermutation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__filter" kind="struct" language="C++" prot="public">
+    <compoundname>type_filter</compoundname>
+    <includes refid="filter_8h" local="no">filter.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__filter_1a555ea53e362d69ef2acba5b9aea48c99" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::absent</definition>
+        <argsstring></argsstring>
+        <name>absent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="4" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a011add97ef88e555148e3c7e2d9f7eed" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::ap_mid_miss</definition>
+        <argsstring></argsstring>
+        <name>ap_mid_miss</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="7" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a9369ba3885c364cf5697271c65774f72" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::badd[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>badd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a90f834e913d772e50648250480cb5d99" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::cf_service</definition>
+        <argsstring></argsstring>
+        <name>cf_service</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="6" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1ad1db9df1689a6c1d3bade0f1cd544181" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::cfnum[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>cfnum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="13" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1ad9d05080645e8264e258cbea1ac82d8d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::chid[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>chid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="11" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1aaeb515bd603ca8ef3a77463e36b8b762" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::chksum[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>chksum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="12" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1aee4f176298581038da4c6ea361229c2d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::emasked</definition>
+        <argsstring></argsstring>
+        <name>emasked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="5" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a84c36e5a4446111ef28928e2e080fc82" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::ib_sync[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>ib_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="17" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1afcd7f0befea68679d647f3aa67ef12dd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::link[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>link</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1ae29c3aa5304899a5e9428878c4a0b097" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::ndiscard</definition>
+        <argsstring></argsstring>
+        <name>ndiscard</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="18" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a91cec395279e2cbee4b09c7817e4ea24" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::suid[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>suid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="10" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a66906c346b9098e6f808189f033847dd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::tap_overrun</definition>
+        <argsstring></argsstring>
+        <name>tap_overrun</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="8" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1ab301fc96f86a269f5e87fa3c00a1a6fc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::triple_carries</definition>
+        <argsstring></argsstring>
+        <name>triple_carries</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="9" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a23f7d62d361cc3c9a461a5d22c1ec3f6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::xperror</definition>
+        <argsstring></argsstring>
+        <name>xperror</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="19" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1aff17e8d763066cae1618a74b052d608b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::yperror</definition>
+        <argsstring></argsstring>
+        <name>yperror</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="20" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__filter_1a20f839fb7f60a234b7e4d18bcadf99b4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_filter::zero[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>zero</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="15" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>type_filter</label>
+        <link refid="structtype__filter"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>absent</edgelabel>
+          <edgelabel>ap_mid_miss</edgelabel>
+          <edgelabel>badd</edgelabel>
+          <edgelabel>cf_service</edgelabel>
+          <edgelabel>cfnum</edgelabel>
+          <edgelabel>chid</edgelabel>
+          <edgelabel>chksum</edgelabel>
+          <edgelabel>emasked</edgelabel>
+          <edgelabel>ib_sync</edgelabel>
+          <edgelabel>link</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" line="2" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h" bodystart="3" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structtype__filter_1a555ea53e362d69ef2acba5b9aea48c99" prot="public" virt="non-virtual"><scope>type_filter</scope><name>absent</name></member>
+      <member refid="structtype__filter_1a011add97ef88e555148e3c7e2d9f7eed" prot="public" virt="non-virtual"><scope>type_filter</scope><name>ap_mid_miss</name></member>
+      <member refid="structtype__filter_1a9369ba3885c364cf5697271c65774f72" prot="public" virt="non-virtual"><scope>type_filter</scope><name>badd</name></member>
+      <member refid="structtype__filter_1a90f834e913d772e50648250480cb5d99" prot="public" virt="non-virtual"><scope>type_filter</scope><name>cf_service</name></member>
+      <member refid="structtype__filter_1ad1db9df1689a6c1d3bade0f1cd544181" prot="public" virt="non-virtual"><scope>type_filter</scope><name>cfnum</name></member>
+      <member refid="structtype__filter_1ad9d05080645e8264e258cbea1ac82d8d" prot="public" virt="non-virtual"><scope>type_filter</scope><name>chid</name></member>
+      <member refid="structtype__filter_1aaeb515bd603ca8ef3a77463e36b8b762" prot="public" virt="non-virtual"><scope>type_filter</scope><name>chksum</name></member>
+      <member refid="structtype__filter_1aee4f176298581038da4c6ea361229c2d" prot="public" virt="non-virtual"><scope>type_filter</scope><name>emasked</name></member>
+      <member refid="structtype__filter_1a84c36e5a4446111ef28928e2e080fc82" prot="public" virt="non-virtual"><scope>type_filter</scope><name>ib_sync</name></member>
+      <member refid="structtype__filter_1afcd7f0befea68679d647f3aa67ef12dd" prot="public" virt="non-virtual"><scope>type_filter</scope><name>link</name></member>
+      <member refid="structtype__filter_1ae29c3aa5304899a5e9428878c4a0b097" prot="public" virt="non-virtual"><scope>type_filter</scope><name>ndiscard</name></member>
+      <member refid="structtype__filter_1a91cec395279e2cbee4b09c7817e4ea24" prot="public" virt="non-virtual"><scope>type_filter</scope><name>suid</name></member>
+      <member refid="structtype__filter_1a66906c346b9098e6f808189f033847dd" prot="public" virt="non-virtual"><scope>type_filter</scope><name>tap_overrun</name></member>
+      <member refid="structtype__filter_1ab301fc96f86a269f5e87fa3c00a1a6fc" prot="public" virt="non-virtual"><scope>type_filter</scope><name>triple_carries</name></member>
+      <member refid="structtype__filter_1a23f7d62d361cc3c9a461a5d22c1ec3f6" prot="public" virt="non-virtual"><scope>type_filter</scope><name>xperror</name></member>
+      <member refid="structtype__filter_1aff17e8d763066cae1618a74b052d608b" prot="public" virt="non-virtual"><scope>type_filter</scope><name>yperror</name></member>
+      <member refid="structtype__filter_1a20f839fb7f60a234b7e4d18bcadf99b4" prot="public" virt="non-virtual"><scope>type_filter</scope><name>zero</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

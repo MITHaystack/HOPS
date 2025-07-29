@@ -1,0 +1,449 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__OpenCLInterface_8cc" kind="file" language="C++">
+    <compoundname>MHO_OpenCLInterface.cc</compoundname>
+    <includes refid="MHO__OpenCLInterface_8hh" local="yes">MHO_OpenCLInterface.hh</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="yes">MHO_OpenCLConfig.hh</includes>
+    <incdepgraph>
+      <node id="15">
+        <label>atomic</label>
+      </node>
+      <node id="6">
+        <label>cstdint</label>
+      </node>
+      <node id="31">
+        <label>stdlib.h</label>
+      </node>
+      <node id="18">
+        <label>stdexcept</label>
+      </node>
+      <node id="19">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>CL/cl.hpp</label>
+      </node>
+      <node id="13">
+        <label>string</label>
+      </node>
+      <node id="30">
+        <label>map</label>
+      </node>
+      <node id="4">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ostream</label>
+      </node>
+      <node id="1">
+        <label>MHO_OpenCLInterface.cc</label>
+        <link refid="MHO__OpenCLInterface_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_OpenCLConfig.hh</label>
+      </node>
+      <node id="25">
+        <label>tuple</label>
+      </node>
+      <node id="23">
+        <label>ctime</label>
+      </node>
+      <node id="22">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>vector</label>
+      </node>
+      <node id="2">
+        <label>MHO_OpenCLInterface.hh</label>
+        <link refid="MHO__OpenCLInterface_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>sstream</label>
+      </node>
+      <node id="14">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cstdlib</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="24">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>mutex</label>
+      </node>
+      <node id="16">
+        <label>thread</label>
+      </node>
+      <node id="10">
+        <label>set</label>
+      </node>
+      <node id="29">
+        <label>complex</label>
+      </node>
+      <node id="27">
+        <label>MHO_OpenCLHeaderWrapper.hh</label>
+        <link refid="MHO__OpenCLHeaderWrapper_8hh"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>algorithm</label>
+      </node>
+      <node id="12">
+        <label>stdio.h</label>
+      </node>
+      <node id="20">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__OpenCLInterface_8cc_1a60d961702e18c204f3a7a33c1335f5f4" prot="public" static="no">
+        <name>DEFAULT_KERNEL_DIR</name>
+        <initializer>&quot;.&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" line="9" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__OpenCLInterface_8hh" kindref="compound">MHO_OpenCLInterface.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;MHO_OpenCLConfig.hh&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DEFAULT_KERNEL_DIR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>DEFAULT_KERNEL_DIR<sp/>&quot;.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>!DEFAULT_KERNEL_DIR<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">MHO_OpenCLInterface*<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" kindref="member">MHO_OpenCLInterface::fOpenCLInterface</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><ref refid="classhops_1_1MHO__OpenCLInterface_1a9784736fb34d8345c2f803413075a90e" kindref="member">MHO_OpenCLInterface::MHO_OpenCLInterface</ref>()</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab5035c4ae5c0abe52f5a5017a0723894" kindref="member">InitializeOpenCL</ref>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="classhops_1_1MHO__OpenCLInterface_1ac05bd85d85fd5e0c7a2142dd1b5170a2" kindref="member">MHO_OpenCLInterface::~MHO_OpenCLInterface</ref>()</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::vector&lt;<sp/>cl::CommandQueue*<sp/>&gt;::iterator<sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" kindref="member">fQueues</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" kindref="member">fQueues</ref>.end();<sp/>++it)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(*it)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/>*it;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">MHO_OpenCLInterface*<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">MHO_OpenCLInterface::GetInstance</ref>()</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" kindref="member">fOpenCLInterface</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" kindref="member">fOpenCLInterface</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a9784736fb34d8345c2f803413075a90e" kindref="member">MHO_OpenCLInterface</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" kindref="member">fOpenCLInterface</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab5035c4ae5c0abe52f5a5017a0723894" kindref="member">MHO_OpenCLInterface::InitializeOpenCL</ref>()</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Disable<sp/>CUDA<sp/>caching,<sp/>since<sp/>it<sp/>doesn&apos;t<sp/>check<sp/>if<sp/>included<sp/>.cl<sp/>files<sp/>have</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>changed</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>setenv(</highlight><highlight class="stringliteral">&quot;CUDA_CACHE_DISABLE&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1&quot;</highlight><highlight class="normal">,<sp/>1);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Get<sp/>available<sp/>platforms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>cl::Platform::get(&amp;<ref refid="classhops_1_1MHO__OpenCLInterface_1a5926a29191ab38dc06a41ce46b4af4f7" kindref="member">fPlatforms</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Select<sp/>the<sp/>default<sp/>platform<sp/>and<sp/>create<sp/>a<sp/>context<sp/>using<sp/>this<sp/>platform<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>GPU</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>cl_context_properties<sp/>cps[3]<sp/>=<sp/>{CL_CONTEXT_PLATFORM,<sp/>(cl_context_properties)(<ref refid="classhops_1_1MHO__OpenCLInterface_1a5926a29191ab38dc06a41ce46b4af4f7" kindref="member">fPlatforms</ref>[HOPS_OPENCL_PLATFORM])(),<sp/>0};</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>deviceType<sp/>=<sp/>HOPS_OPENCL_DEVICE_TYPE;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(deviceType<sp/>==<sp/>0)<sp/></highlight><highlight class="comment">//we<sp/>have<sp/>a<sp/>GPU</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" kindref="member">fContext</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>cl::Context(CL_DEVICE_TYPE_GPU,<sp/>cps);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(deviceType<sp/>==<sp/>1)<sp/></highlight><highlight class="comment">//we<sp/>have<sp/>a<sp/>CPU</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" kindref="member">fContext</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>cl::Context(CL_DEVICE_TYPE_CPU,<sp/>cps);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(deviceType<sp/>==<sp/>2)<sp/></highlight><highlight class="comment">//we<sp/>have<sp/>an<sp/>accelerator<sp/>device</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" kindref="member">fContext</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>cl::Context(CL_DEVICE_TYPE_ACCELERATOR,<sp/>cps);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>CL_VECTOR_TYPE&lt;<sp/>cl::Device<sp/>&gt;<sp/>availableDevices<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" kindref="member">fContext</ref>-&gt;getInfo&lt;<sp/>CL_CONTEXT_DEVICES<sp/>&gt;();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" kindref="member">fCLDeviceID</ref><sp/>=<sp/>HOPS_DEFAULT_GPU_ID;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>.clear();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref><sp/>=<sp/>availableDevices;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" kindref="member">fQueues</ref>.resize(<ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>.size(),<sp/>NULL);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a301ce39850f60c94d0fc0fe5cd61ff2a" kindref="member">fKernelPath</ref><sp/>=<sp/><ref refid="MHO__OpenCLInterface_8cc_1a60d961702e18c204f3a7a33c1335f5f4" kindref="member">DEFAULT_KERNEL_DIR</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad207290e81615d9f9196b76b8a453490" kindref="member">FillErrorCodeMaps</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1afe586f89d7b0a76237cdb11a6fb9140b" kindref="member">MHO_OpenCLInterface::SetGPU</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>&gt;=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>.size())</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1f24dc78f2cec992c3a9752db555b06d" kindref="member">msg_warn</ref>(</highlight><highlight class="stringliteral">&quot;opencl&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Cannot<sp/>set<sp/>GPU<sp/>device<sp/>to<sp/>ID<sp/>#<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>i<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>since<sp/>there<sp/>are<sp/>only<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>.size()</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>devices<sp/>available.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>HOPS_USE_DOUBLE_PRECISION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>cl::STRING_CLASS<sp/>extensions;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>[i].getInfo(CL_DEVICE_EXTENSIONS,<sp/>&amp;extensions);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((extensions.find(</highlight><highlight class="stringliteral">&quot;cl_khr_fp64&quot;</highlight><highlight class="normal">)<sp/>==<sp/>std::string::npos)<sp/>&amp;&amp;<sp/>(extensions.find(</highlight><highlight class="stringliteral">&quot;cl_amd_fp64&quot;</highlight><highlight class="normal">)<sp/>==<sp/>std::string::npos))</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1f24dc78f2cec992c3a9752db555b06d" kindref="member">msg_warn</ref>(</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;opencl&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Cannot<sp/>set<sp/>GPU<sp/>device<sp/>to<sp/>ID<sp/>#<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>i</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>since<sp/>it<sp/>does<sp/>not<sp/>support<sp/>double<sp/>precision<sp/>(and<sp/>this<sp/>program<sp/>was<sp/>built<sp/>with<sp/>double<sp/>precision<sp/>enabled).&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>cl::STRING_CLASS<sp/>name;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>[i].getInfo(CL_DEVICE_NAME,<sp/>&amp;name);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a70d2a69334c19db04365eb32a1d26447" kindref="member">msg_info</ref>(</highlight><highlight class="stringliteral">&quot;opencl&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Setting<sp/>GPU<sp/>device<sp/>to<sp/>ID<sp/>#<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>i<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>name<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)<sp/>of<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>.size()</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>available<sp/>devices<sp/>(double<sp/>precision<sp/>supported).<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>cl::STRING_CLASS<sp/>name;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>[i].getInfo(CL_DEVICE_NAME,<sp/>&amp;name);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a70d2a69334c19db04365eb32a1d26447" kindref="member">msg_info</ref>(</highlight><highlight class="stringliteral">&quot;opencl&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Setting<sp/>GPU<sp/>device<sp/>to<sp/>ID<sp/>#<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>i<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>name<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)<sp/>of<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>.size()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>available<sp/>devices.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>HOPS_USE_DOUBLE_PRECISION<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" kindref="member">fCLDeviceID</ref><sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">cl::CommandQueue&amp;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1abed33fffd4344aba2fb76077ef4b7d5b" kindref="member">MHO_OpenCLInterface::GetQueue</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="126"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>deviceID<sp/>=<sp/>(i<sp/>==<sp/>-1<sp/>?<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" kindref="member">fCLDeviceID</ref><sp/>:<sp/>i);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<ref refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" kindref="member">fQueues</ref>.at(deviceID))</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" kindref="member">fQueues</ref>[deviceID]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>cl::CommandQueue(<ref refid="classhops_1_1MHO__OpenCLInterface_1adf641e6d0d3172159a6f042ba6a92f23" kindref="member">GetContext</ref>(),<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" kindref="member">GetDevice</ref>());</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" kindref="member">fQueues</ref>[deviceID];</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad207290e81615d9f9196b76b8a453490" kindref="member">MHO_OpenCLInterface::FillErrorCodeMaps</ref>()</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//straight<sp/>from<sp/>the<sp/>OpenCL<sp/>header<sp/>(cl.h)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_SUCCESS&quot;</highlight><highlight class="normal">]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_DEVICE_NOT_FOUND&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_DEVICE_NOT_AVAILABLE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-2;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_COMPILER_NOT_AVAILABLE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-3;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_MEM_OBJECT_ALLOCATION_FAILURE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-4;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_OUT_OF_RESOURCES&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-5;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_OUT_OF_HOST_MEMORY&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-6;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_PROFILING_INFO_NOT_AVAILABLE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-7;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_MEM_COPY_OVERLAP&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-8;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_IMAGE_FORMAT_MISMATCH&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-9;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_IMAGE_FORMAT_NOT_SUPPORTED&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-10;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_BUILD_PROGRAM_FAILURE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-11;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_MAP_FAILURE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-12;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CL_VERSION_1_1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_MISALIGNED_SUB_BUFFER_OFFSET&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-13;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_EXEC_STATUS_ERROR_FOR_EVENTS_IN_WAIT_LIST&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-14;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CL_VERSION_1_2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_COMPILE_PROGRAM_FAILURE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-15;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_LINKER_NOT_AVAILABLE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-16;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_LINK_PROGRAM_FAILURE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-17;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_DEVICE_PARTITION_FAILED&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-18;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_KERNEL_ARG_INFO_NOT_AVAILABLE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-19;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_VALUE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-30;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_DEVICE_TYPE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-31;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_PLATFORM&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-32;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_DEVICE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-33;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_CONTEXT&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-34;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_QUEUE_PROPERTIES&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-35;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_COMMAND_QUEUE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-36;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_HOST_PTR&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-37;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_MEM_OBJECT&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-38;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_IMAGE_FORMAT_DESCRIPTOR&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-39;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_IMAGE_SIZE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-40;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_SAMPLER&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-41;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_BINARY&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-42;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_BUILD_OPTIONS&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-43;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_PROGRAM&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-44;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_PROGRAM_EXECUTABLE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-45;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_KERNEL_NAME&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-46;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_KERNEL_DEFINITION&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-47;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_KERNEL&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-48;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_ARG_INDEX&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-49;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_ARG_VALUE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-50;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_ARG_SIZE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-51;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_KERNEL_ARGS&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-52;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_WORK_DIMENSION&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-53;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_WORK_GROUP_SIZE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-54;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_WORK_ITEM_SIZE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-55;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_GLOBAL_OFFSET&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-56;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_EVENT_WAIT_LIST&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-57;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_EVENT&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-58;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_OPERATION&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-59;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_GL_OBJECT&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-60;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_BUFFER_SIZE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-61;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_MIP_LEVEL&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-62;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_GLOBAL_WORK_SIZE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-63;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CL_VERSION_1_1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_PROPERTY&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-64;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CL_VERSION_1_2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_IMAGE_DESCRIPTOR&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-65;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_COMPILER_OPTIONS&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-66;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_LINKER_OPTIONS&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-67;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_DEVICE_PARTITION_COUNT&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-68;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CL_VERSION_2_0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_PIPE_SIZE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-69;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_DEVICE_QUEUE&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-70;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CL_VERSION_2_2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_INVALID_SPEC_ID&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-71;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>[</highlight><highlight class="stringliteral">&quot;CL_MAX_SIZE_RESTRICTION_EXCEEDED&quot;</highlight><highlight class="normal">]<sp/>=<sp/>-72;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>.begin();<sp/>it<sp/>!=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>.end();<sp/>it++)</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>message<sp/>=<sp/>it-&gt;first;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>code<sp/>=<sp/>it-&gt;second;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a0b17bd9c198832c80e10c6e14e135d01" kindref="member">fOpenCLCode2ErrorMap</ref>[code]<sp/>=<sp/>message;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc"/>
+  </compounddef>
+</doxygen>

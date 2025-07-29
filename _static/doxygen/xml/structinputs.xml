@@ -1,0 +1,568 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structinputs" kind="struct" language="C++" prot="public">
+    <compoundname>inputs</compoundname>
+    <includes refid="aedit_8h" local="no">aedit.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structinputs_1a1596a8e951afb4533046fb390d0dcfa0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::baselines[3 *MAXBASE]</definition>
+        <argsstring>[3 *MAXBASE]</argsstring>
+        <name>baselines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="20" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1af39fb0fd1d27c38f8d2e0608338c3ba1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::begin</definition>
+        <argsstring></argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="15" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a5af10686360f601c6d94c0a412c1d2ff" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float inputs::bsnr[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>bsnr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1af4f73a1ec657879715b1523a6880d259" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::dev_auto</definition>
+        <argsstring></argsstring>
+        <name>dev_auto</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="54" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1af017276b710191e2c34cac70580aad4a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::device[30]</definition>
+        <argsstring>[30]</argsstring>
+        <name>device</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="53" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a0ea3ea585afe3b24b3c540e79a079daf" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a9752e37f50ed7f0023aa8ca5adf84da9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::experiment</definition>
+        <argsstring></argsstring>
+        <name>experiment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="29" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ab2b456ba9660e030eaa3ab56f91bfc9c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::fraction</definition>
+        <argsstring></argsstring>
+        <name>fraction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a3aa0c71953d4791eb91a641631894a42" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::frequencies[2 *MAXFREQ]</definition>
+        <argsstring>[2 *MAXFREQ]</argsstring>
+        <name>frequencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a2bba76f78884e2a2b39d4a104c226d97" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::grid[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>grid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="51" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a45e2df41e3a472a5cbad6108f6080097" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1aefd4f8dca9b884c4169eb827d49292b5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="52" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a0c5c3c12e446d90bddcb5ad09e175d64" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::nfreq[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>nfreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a746a000d3d60f76345c238195ff30351" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float inputs::parameter[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>parameter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="37" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::plotby</definition>
+        <argsstring></argsstring>
+        <name>plotby</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="47" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a1bf349829f153f2d20f487c8779ab179" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::polarizations[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>polarizations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ad4f9cd6e9d3bde9e9b02c2900ef7e353" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::proc_begin</definition>
+        <argsstring></argsstring>
+        <name>proc_begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="17" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a40a85ea91711bb67f127b413a0037c3e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::proc_end</definition>
+        <argsstring></argsstring>
+        <name>proc_end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="18" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ae8cd1431884b9dee43b658ae09d85da2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::qcodes[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>qcodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a40254295103fa8bc5edd32c06e25bd63" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::quads[1024]</definition>
+        <argsstring>[1024]</argsstring>
+        <name>quads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a25b1885b3d6a79e63c70af68f1d13b36" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::refrem</definition>
+        <argsstring></argsstring>
+        <name>refrem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a065347200f6a210c818c8ae26ec59da2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float inputs::snr[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a7c900b7838080325c354d3b55e944802" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::sources[200]</definition>
+        <argsstring>[200]</argsstring>
+        <name>sources</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ae6877562292350363487759db34ee98b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::stations[2 *MAXSTEXP]</definition>
+        <argsstring>[2 *MAXSTEXP]</argsstring>
+        <name>stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="19" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a1313fb406144a41e59183796f376b678" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::triangles[4 *MAXCLOSE]</definition>
+        <argsstring>[4 *MAXCLOSE]</argsstring>
+        <name>triangles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="25" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a74973aff1a5b35b55a6c5fa1bd80a660" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::type[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a3903af4a99b8ab145c90c6d76a873265" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::x_aux</definition>
+        <argsstring></argsstring>
+        <name>x_aux</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="42" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ab0b194ce7b3a5ebd59cb74a4e04cebf5" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::x_axis[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>x_axis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="39" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a08a26a2dd9005b9ab72ffc788995e0a4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::x_units[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>x_units</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="40" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a807741285291a2158202b49824e86b97" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::xaind</definition>
+        <argsstring></argsstring>
+        <name>xaind</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="41" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ad3acbb53adf723aa0c71300bb085b251" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float inputs::xscale[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>xscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="49" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a8a35b962c223ce7e634ef917305edf86" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::y_aux</definition>
+        <argsstring></argsstring>
+        <name>y_aux</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1a768b199fcdf84cb0721ba52ba52f65a4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::y_axis[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>y_axis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ae783b38de1e925ecdfd77dea6e16e62b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char inputs::y_units[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>y_units</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1afe81735c749a3b1391b78bdde5fd9105" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inputs::yaind</definition>
+        <argsstring></argsstring>
+        <name>yaind</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinputs_1ae7596a70556e2e8e298d8405ce4c0427" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float inputs::yscale[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>yscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="50" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>inputs</label>
+        <link refid="structinputs"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bsnr</edgelabel>
+          <edgelabel>parameter</edgelabel>
+          <edgelabel>snr</edgelabel>
+          <edgelabel>xscale</edgelabel>
+          <edgelabel>yscale</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>baselines</edgelabel>
+          <edgelabel>device</edgelabel>
+          <edgelabel>frequencies</edgelabel>
+          <edgelabel>polarizations</edgelabel>
+          <edgelabel>qcodes</edgelabel>
+          <edgelabel>quads</edgelabel>
+          <edgelabel>sources</edgelabel>
+          <edgelabel>stations</edgelabel>
+          <edgelabel>triangles</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>begin</edgelabel>
+          <edgelabel>dev_auto</edgelabel>
+          <edgelabel>end</edgelabel>
+          <edgelabel>experiment</edgelabel>
+          <edgelabel>fraction</edgelabel>
+          <edgelabel>grid</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>nfreq</edgelabel>
+          <edgelabel>plotby</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="14" bodyend="55"/>
+    <listofallmembers>
+      <member refid="structinputs_1a1596a8e951afb4533046fb390d0dcfa0" prot="public" virt="non-virtual"><scope>inputs</scope><name>baselines</name></member>
+      <member refid="structinputs_1af39fb0fd1d27c38f8d2e0608338c3ba1" prot="public" virt="non-virtual"><scope>inputs</scope><name>begin</name></member>
+      <member refid="structinputs_1a5af10686360f601c6d94c0a412c1d2ff" prot="public" virt="non-virtual"><scope>inputs</scope><name>bsnr</name></member>
+      <member refid="structinputs_1af4f73a1ec657879715b1523a6880d259" prot="public" virt="non-virtual"><scope>inputs</scope><name>dev_auto</name></member>
+      <member refid="structinputs_1af017276b710191e2c34cac70580aad4a" prot="public" virt="non-virtual"><scope>inputs</scope><name>device</name></member>
+      <member refid="structinputs_1a0ea3ea585afe3b24b3c540e79a079daf" prot="public" virt="non-virtual"><scope>inputs</scope><name>end</name></member>
+      <member refid="structinputs_1a9752e37f50ed7f0023aa8ca5adf84da9" prot="public" virt="non-virtual"><scope>inputs</scope><name>experiment</name></member>
+      <member refid="structinputs_1ab2b456ba9660e030eaa3ab56f91bfc9c" prot="public" virt="non-virtual"><scope>inputs</scope><name>fraction</name></member>
+      <member refid="structinputs_1a3aa0c71953d4791eb91a641631894a42" prot="public" virt="non-virtual"><scope>inputs</scope><name>frequencies</name></member>
+      <member refid="structinputs_1a2bba76f78884e2a2b39d4a104c226d97" prot="public" virt="non-virtual"><scope>inputs</scope><name>grid</name></member>
+      <member refid="structinputs_1a45e2df41e3a472a5cbad6108f6080097" prot="public" virt="non-virtual"><scope>inputs</scope><name>length</name></member>
+      <member refid="structinputs_1aefd4f8dca9b884c4169eb827d49292b5" prot="public" virt="non-virtual"><scope>inputs</scope><name>mode</name></member>
+      <member refid="structinputs_1a0c5c3c12e446d90bddcb5ad09e175d64" prot="public" virt="non-virtual"><scope>inputs</scope><name>nfreq</name></member>
+      <member refid="structinputs_1a746a000d3d60f76345c238195ff30351" prot="public" virt="non-virtual"><scope>inputs</scope><name>parameter</name></member>
+      <member refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" prot="public" virt="non-virtual"><scope>inputs</scope><name>plotby</name></member>
+      <member refid="structinputs_1a1bf349829f153f2d20f487c8779ab179" prot="public" virt="non-virtual"><scope>inputs</scope><name>polarizations</name></member>
+      <member refid="structinputs_1ad4f9cd6e9d3bde9e9b02c2900ef7e353" prot="public" virt="non-virtual"><scope>inputs</scope><name>proc_begin</name></member>
+      <member refid="structinputs_1a40a85ea91711bb67f127b413a0037c3e" prot="public" virt="non-virtual"><scope>inputs</scope><name>proc_end</name></member>
+      <member refid="structinputs_1ae8cd1431884b9dee43b658ae09d85da2" prot="public" virt="non-virtual"><scope>inputs</scope><name>qcodes</name></member>
+      <member refid="structinputs_1a40254295103fa8bc5edd32c06e25bd63" prot="public" virt="non-virtual"><scope>inputs</scope><name>quads</name></member>
+      <member refid="structinputs_1a25b1885b3d6a79e63c70af68f1d13b36" prot="public" virt="non-virtual"><scope>inputs</scope><name>refrem</name></member>
+      <member refid="structinputs_1a065347200f6a210c818c8ae26ec59da2" prot="public" virt="non-virtual"><scope>inputs</scope><name>snr</name></member>
+      <member refid="structinputs_1a7c900b7838080325c354d3b55e944802" prot="public" virt="non-virtual"><scope>inputs</scope><name>sources</name></member>
+      <member refid="structinputs_1ae6877562292350363487759db34ee98b" prot="public" virt="non-virtual"><scope>inputs</scope><name>stations</name></member>
+      <member refid="structinputs_1a1313fb406144a41e59183796f376b678" prot="public" virt="non-virtual"><scope>inputs</scope><name>triangles</name></member>
+      <member refid="structinputs_1a74973aff1a5b35b55a6c5fa1bd80a660" prot="public" virt="non-virtual"><scope>inputs</scope><name>type</name></member>
+      <member refid="structinputs_1a3903af4a99b8ab145c90c6d76a873265" prot="public" virt="non-virtual"><scope>inputs</scope><name>x_aux</name></member>
+      <member refid="structinputs_1ab0b194ce7b3a5ebd59cb74a4e04cebf5" prot="public" virt="non-virtual"><scope>inputs</scope><name>x_axis</name></member>
+      <member refid="structinputs_1a08a26a2dd9005b9ab72ffc788995e0a4" prot="public" virt="non-virtual"><scope>inputs</scope><name>x_units</name></member>
+      <member refid="structinputs_1a807741285291a2158202b49824e86b97" prot="public" virt="non-virtual"><scope>inputs</scope><name>xaind</name></member>
+      <member refid="structinputs_1ad3acbb53adf723aa0c71300bb085b251" prot="public" virt="non-virtual"><scope>inputs</scope><name>xscale</name></member>
+      <member refid="structinputs_1a8a35b962c223ce7e634ef917305edf86" prot="public" virt="non-virtual"><scope>inputs</scope><name>y_aux</name></member>
+      <member refid="structinputs_1a768b199fcdf84cb0721ba52ba52f65a4" prot="public" virt="non-virtual"><scope>inputs</scope><name>y_axis</name></member>
+      <member refid="structinputs_1ae783b38de1e925ecdfd77dea6e16e62b" prot="public" virt="non-virtual"><scope>inputs</scope><name>y_units</name></member>
+      <member refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" prot="public" virt="non-virtual"><scope>inputs</scope><name>yaind</name></member>
+      <member refid="structinputs_1ae7596a70556e2e8e298d8405ce4c0427" prot="public" virt="non-virtual"><scope>inputs</scope><name>yscale</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

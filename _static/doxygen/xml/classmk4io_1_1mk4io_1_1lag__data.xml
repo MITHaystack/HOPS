@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1lag__data" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::lag_data</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ctypes.Union</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1lag__data_1a735cce61d4d44924830a463f0969ab39" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.lag_data::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;cpl&apos;, <ref refid="classmk4io_1_1mk4io_1_1counts__per__lag" kindref="compound">counts_per_lag</ref> * 1),
+        (&apos;cg&apos;, <ref refid="classmk4io_1_1mk4io_1_1counts__global" kindref="compound">counts_global</ref>),
+        (&apos;apl&apos;, <ref refid="classmk4io_1_1mk4io_1_1auto__per__lag" kindref="compound">auto_per_lag</ref> * 1),
+        (&apos;ag&apos;, <ref refid="classmk4io_1_1mk4io_1_1auto__global" kindref="compound">auto_global</ref>),
+        (&apos;spec&apos;, <ref refid="classmk4io_1_1mk4io_1_1spectral" kindref="compound">spectral</ref> * 1),
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="240" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>mk4io.mk4io.lag_data</label>
+        <link refid="classmk4io_1_1mk4io_1_1lag__data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes.Union</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>mk4io.mk4io.lag_data</label>
+        <link refid="classmk4io_1_1mk4io_1_1lag__data"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes.Union</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="239" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="239" bodyend="248"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1lag__data_1a735cce61d4d44924830a463f0969ab39" prot="private" virt="non-virtual"><scope>mk4io::mk4io::lag_data</scope><name>_fields_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

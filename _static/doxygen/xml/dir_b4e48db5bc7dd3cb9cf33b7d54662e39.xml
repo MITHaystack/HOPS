@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b4e48db5bc7dd3cb9cf33b7d54662e39" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="display__fplot_8c">display_fplot.c</innerfile>
+    <innerfile refid="fit__vbp_8c">fit_vbp.c</innerfile>
+    <innerfile refid="generate__graphs_8c">generate_graphs.c</innerfile>
+    <innerfile refid="generate__text_8c">generate_text.c</innerfile>
+    <innerfile refid="grid_8c">grid.c</innerfile>
+    <innerfile refid="make__plotdata_8c">make_plotdata.c</innerfile>
+    <innerfile refid="make__postplot_8c">make_postplot.c</innerfile>
+    <innerfile refid="output_8c">output.c</innerfile>
+    <innerfile refid="plot__complex_8c">plot_complex.c</innerfile>
+    <innerfile refid="plot__data__dir_8c">plot_data_dir.c</innerfile>
+    <innerfile refid="plot__graph_8c">plot_graph.c</innerfile>
+    <innerfile refid="put__char__at_8c">put_char_at.c</innerfile>
+    <innerfile refid="sprint__char__arr_8c">sprint_char_arr.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/"/>
+  </compounddef>
+</doxygen>

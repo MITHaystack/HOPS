@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1mk4__sdata" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::mk4_sdata</compoundname>
+    <basecompoundref refid="classmk4io_1_1mk4io_1_1Mk4StructureBase" prot="public" virt="non-virtual">mk4io.mk4io.Mk4StructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1mk4__sdata_1a70964cb8cbd5f70726b2292cef3434d4" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.mk4_sdata::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;allocated&apos;, ctypes.POINTER(None) * (2*64*64 + 7*3600 + 3)), #2*<ref refid="mk4__data_8h_1a591323bb7add08c9004bd130374e3278" kindref="member">MAXSPLINES</ref>*<ref refid="mk4__sizes_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref> + 7*<ref refid="MHO__MathUtilities_8cc_1a5a9b9652ba48bf345dbc7c970348a564" kindref="member">MAXSTATPER</ref> + 3
+        (&apos;nalloc&apos;, ctypes.c_int),
+        (&apos;file_image&apos;, ctypes.POINTER(ctypes.c_char)),
+        (&apos;id&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__000" kindref="compound">type_000</ref>)),
+        (&apos;t300&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__300" kindref="compound">type_300</ref>)),
+        (&apos;<ref refid="model_8c_1aabf9b11853936ad14d904737ad0d6983" kindref="member">model</ref>&apos;, <ref refid="classmk4io_1_1mk4io_1_1model__struct" kindref="compound">model_struct</ref> * 64), #<ref refid="mk4__sizes_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>
+        (&apos;n304&apos;, ctypes.c_int),
+        (&apos;n305&apos;, ctypes.c_int),
+        (&apos;n306&apos;, ctypes.c_int),
+        (&apos;n307&apos;, ctypes.c_int),
+        (&apos;n308&apos;, ctypes.c_int),
+        (&apos;n309&apos;, ctypes.c_int),
+        (&apos;t304&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__304" kindref="compound">type_304</ref>) * 3600), #<ref refid="MHO__MathUtilities_8cc_1a5a9b9652ba48bf345dbc7c970348a564" kindref="member">MAXSTATPER</ref>
+        (&apos;t305&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__305" kindref="compound">type_305</ref>) * 3600),
+        (&apos;t306&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__306" kindref="compound">type_306</ref>) * 3600),
+        (&apos;t307&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__307" kindref="compound">type_307</ref>) * 3600),
+        (&apos;t308&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__308" kindref="compound">type_308</ref>) * 3600),
+        (&apos;t309&apos;, ctypes.POINTER(<ref refid="classmk4io_1_1mk4io_1_1type__309" kindref="compound">type_309</ref>) * 3600)
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="909" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="909" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmk4io_1_1mk4io_1_1mk4__sdata_1aafe14e5bd89c4b316a8cfb7999911608" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4_sdata.__del__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__del__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>clean up memory allocated by c library</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="930" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="930" bodyend="934"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>mk4io.mk4io.mk4_sdata</label>
+        <link refid="classmk4io_1_1mk4io_1_1mk4__sdata"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>mk4io.mk4io.mk4_sdata</label>
+        <link refid="classmk4io_1_1mk4io_1_1mk4__sdata"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="908" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="908" bodyend="939"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1mk4__sdata_1aafe14e5bd89c4b316a8cfb7999911608" prot="public" virt="non-virtual"><scope>mk4io::mk4io::mk4_sdata</scope><name>__del__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a0772ef701b441c652a3bbde35de2261a" prot="public" virt="non-virtual"><scope>mk4io::mk4io::mk4_sdata</scope><name>__eq__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a7347e4cacf99a75b7d7788d94e502398" prot="public" virt="non-virtual"><scope>mk4io::mk4io::mk4_sdata</scope><name>__ne__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1mk4__sdata_1a70964cb8cbd5f70726b2292cef3434d4" prot="private" virt="non-virtual"><scope>mk4io::mk4io::mk4_sdata</scope><name>_fields_</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1af9c631103b72450dc357ed98d0f7b6d5" prot="public" virt="non-virtual"><scope>mk4io::mk4io::mk4_sdata</scope><name>approximately_equal</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a27bca4a0801b033de3fdbebe84eae485" prot="public" virt="non-virtual"><scope>mk4io::mk4io::mk4_sdata</scope><name>contains_floats</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1ae00dca3ceb7ad4ebb8144fbcd6ef51b6" prot="public" virt="non-virtual"><scope>mk4io::mk4io::mk4_sdata</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

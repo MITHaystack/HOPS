@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Unit" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Unit</compoundname>
+    <includes refid="MHO__Unit_8hh" local="no">MHO_Unit.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Unit_1a5e14fb3347ee844c59be3e594be85870" prot="private" static="no" mutable="no">
+        <type>std::array&lt; int, 7 &gt;</type>
+        <definition>std::array&lt; int, 7 &gt; hops::MHO_Unit::fExp</definition>
+        <argsstring></argsstring>
+        <name>fExp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="55" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Unit_1a03b3dcdaadd872cf366f8c9c02dd1535" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Unit::fStringRep</definition>
+        <argsstring></argsstring>
+        <name>fStringRep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="48" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1ab12a00da456c4eb2deebd0ca9aa17f1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>()</type>
+        <definition>MHO_Unit () hops::MHO_Unit::MHO_Unit</definition>
+        <argsstring>(const std::string &amp;unit)</argsstring>
+        <name>MHO_Unit</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="19" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1ada0f7b738aa104fcc48a531d53a9d575" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Unit::~MHO_Unit</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Unit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="20" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1aef6f562167866be38bac0eabc82179ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Unit::GetUnitString</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUnitString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="25" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1aeba1949d73182e73062adf1daa25e5ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Unit::Invert</definition>
+        <argsstring>()</argsstring>
+        <name>Invert</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="39" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1acc1dd4cdfc27b35eb76c5c3603b4a718" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref></type>
+        <definition>MHO_Unit hops::MHO_Unit::operator*</definition>
+        <argsstring>(const MHO_Unit &amp;other) const</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="28" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1aa9e6324dc57f705467bf99bb181598ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+        <definition>MHO_Unit&amp; hops::MHO_Unit::operator*=</definition>
+        <argsstring>(const MHO_Unit &amp;other)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="32" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1aece442c72221001a2c28ff726c861a40" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref></type>
+        <definition>MHO_Unit hops::MHO_Unit::operator/</definition>
+        <argsstring>(const MHO_Unit &amp;other) const</argsstring>
+        <name>operator/</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="29" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1ac6eca8df2bdece05780614b809783d1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+        <definition>MHO_Unit&amp; hops::MHO_Unit::operator/=</definition>
+        <argsstring>(const MHO_Unit &amp;other)</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="33" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1a7d0605f6e3096862f4b2c95e08fbb908" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+        <definition>MHO_Unit&amp; hops::MHO_Unit::operator=</definition>
+        <argsstring>(const MHO_Unit &amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="45" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1a172f08e54b9160ba98d98a1c80e06466" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_Unit::operator==</definition>
+        <argsstring>(const MHO_Unit &amp;other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="42" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1a33faad42625b7fc57bb9edaceebd3463" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Unit::RaiseToPower</definition>
+        <argsstring>(int power)</argsstring>
+        <name>RaiseToPower</name>
+        <param>
+          <type>int</type>
+          <declname>power</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="36" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1a855a156457c0bbfe77d6b75e83a2cd0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Unit::SetUnitString</definition>
+        <argsstring>(const std::string unit)</argsstring>
+        <name>SetUnitString</name>
+        <param>
+          <type>const std::string</type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="23" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" bodystart="23" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1a2a34b9f6dedd234ecb41d7643fc25489" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>virutal std::string</type>
+        <definition>virutal std::string hops::MHO_Unit::ConstructString</definition>
+        <argsstring>() const</argsstring>
+        <name>ConstructString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="61" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Unit_1a3ca7907077578044fd83ab938a28f3fd" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_Unit::Parse</definition>
+        <argsstring>(const std::string &amp;repl)</argsstring>
+        <name>Parse</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>repl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="58" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="15" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" bodystart="16" bodyend="64"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Unit_1a2a34b9f6dedd234ecb41d7643fc25489" prot="private" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>ConstructString</name></member>
+      <member refid="classhops_1_1MHO__Unit_1a5e14fb3347ee844c59be3e594be85870" prot="private" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>fExp</name></member>
+      <member refid="classhops_1_1MHO__Unit_1a03b3dcdaadd872cf366f8c9c02dd1535" prot="private" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>fStringRep</name></member>
+      <member refid="classhops_1_1MHO__Unit_1aef6f562167866be38bac0eabc82179ad" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>GetUnitString</name></member>
+      <member refid="classhops_1_1MHO__Unit_1aeba1949d73182e73062adf1daa25e5ae" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>Invert</name></member>
+      <member refid="classhops_1_1MHO__Unit_1ab12a00da456c4eb2deebd0ca9aa17f1e" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>MHO_Unit</name></member>
+      <member refid="classhops_1_1MHO__Unit_1acc1dd4cdfc27b35eb76c5c3603b4a718" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>operator*</name></member>
+      <member refid="classhops_1_1MHO__Unit_1aa9e6324dc57f705467bf99bb181598ce" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>operator*=</name></member>
+      <member refid="classhops_1_1MHO__Unit_1aece442c72221001a2c28ff726c861a40" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>operator/</name></member>
+      <member refid="classhops_1_1MHO__Unit_1ac6eca8df2bdece05780614b809783d1b" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>operator/=</name></member>
+      <member refid="classhops_1_1MHO__Unit_1a7d0605f6e3096862f4b2c95e08fbb908" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Unit_1a172f08e54b9160ba98d98a1c80e06466" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>operator==</name></member>
+      <member refid="classhops_1_1MHO__Unit_1a3ca7907077578044fd83ab938a28f3fd" prot="private" virt="virtual"><scope>hops::MHO_Unit</scope><name>Parse</name></member>
+      <member refid="classhops_1_1MHO__Unit_1a33faad42625b7fc57bb9edaceebd3463" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>RaiseToPower</name></member>
+      <member refid="classhops_1_1MHO__Unit_1a855a156457c0bbfe77d6b75e83a2cd0f" prot="public" virt="non-virtual"><scope>hops::MHO_Unit</scope><name>SetUnitString</name></member>
+      <member refid="classhops_1_1MHO__Unit_1ada0f7b738aa104fcc48a531d53a9d575" prot="public" virt="virtual"><scope>hops::MHO_Unit</scope><name>~MHO_Unit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

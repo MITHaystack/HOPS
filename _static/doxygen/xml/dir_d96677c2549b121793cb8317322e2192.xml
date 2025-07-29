@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_d96677c2549b121793cb8317322e2192" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__BinaryFileStreamer_8cc">MHO_BinaryFileStreamer.cc</innerfile>
+    <innerfile refid="MHO__DirectoryInterface_8cc">MHO_DirectoryInterface.cc</innerfile>
+    <innerfile refid="MHO__LegacyDateConverter_8cc">MHO_LegacyDateConverter.cc</innerfile>
+    <innerfile refid="MHO__LegacyRootCodeGenerator_8cc">MHO_LegacyRootCodeGenerator.cc</innerfile>
+    <innerfile refid="MHO__LockFileHandler_8cc">MHO_LockFileHandler.cc</innerfile>
+    <innerfile refid="MHO__MPIInterface_8cc">MHO_MPIInterface.cc</innerfile>
+    <innerfile refid="MHO__StationCodeMap_8cc">MHO_StationCodeMap.cc</innerfile>
+    <innerfile refid="Utilities_2src_2MHO__Timer_8cc">Utilities/src/MHO_Timer.cc</innerfile>
+    <innerfile refid="MHO__TimeStampConverter_8cc">MHO_TimeStampConverter.cc</innerfile>
+    <innerfile refid="MHO__Tokenizer_8cc">MHO_Tokenizer.cc</innerfile>
+    <innerfile refid="MHO__UUIDGenerator_8cc">MHO_UUIDGenerator.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/"/>
+  </compounddef>
+</doxygen>

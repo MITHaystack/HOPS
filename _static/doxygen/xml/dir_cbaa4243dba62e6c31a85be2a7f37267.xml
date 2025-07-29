@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_cbaa4243dba62e6c31a85be2a7f37267" kind="dir">
+    <compoundname>OpenCL</compoundname>
+    <innerdir refid="dir_e2fcaed8db8bcf350f433431a993c8b5">Containers</innerdir>
+    <innerdir refid="dir_c452024336701c9bf6340e0043ea0543">Core</innerdir>
+    <innerdir refid="dir_4d5b50bac2e8240a72f7da0fc2eb46d6">Math</innerdir>
+    <innerdir refid="dir_33a62e81222a3378099f7b5a2aa63b54">Operators</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1freq__predicate" kind="class" language="C++" prot="public">
+    <compoundname>hops::freq_predicate</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1freq__predicate_1a729b18516f70ea1a97f2df591fbef5a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::freq_predicate::freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" line="57" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1freq__predicate_1ab3fb1bea97a181e137378d920401a3c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::freq_predicate::~freq_predicate</definition>
+        <argsstring>()</argsstring>
+        <name>~freq_predicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" line="58" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1freq__predicate_1ad2a25299ec239a253c5fd0ab0f246d40" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::freq_predicate::operator()</definition>
+        <argsstring>(const std::pair&lt; std::string, double &gt; &amp;a, const std::pair&lt; std::string, double &gt; &amp;b)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const std::pair&lt; std::string, double &gt; &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const std::pair&lt; std::string, double &gt; &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" line="60" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="60" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" line="54" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="55" bodyend="64"/>
+    <listofallmembers>
+      <member refid="classhops_1_1freq__predicate_1a729b18516f70ea1a97f2df591fbef5a4" prot="public" virt="non-virtual"><scope>hops::freq_predicate</scope><name>freq_predicate</name></member>
+      <member refid="classhops_1_1freq__predicate_1ad2a25299ec239a253c5fd0ab0f246d40" prot="public" virt="virtual"><scope>hops::freq_predicate</scope><name>operator()</name></member>
+      <member refid="classhops_1_1freq__predicate_1ab3fb1bea97a181e137378d920401a3c7" prot="public" virt="virtual"><scope>hops::freq_predicate</scope><name>~freq_predicate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

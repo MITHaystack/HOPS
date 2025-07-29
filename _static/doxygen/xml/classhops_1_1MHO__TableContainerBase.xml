@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__TableContainerBase" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_TableContainerBase</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; visibility_element_type, mbd_dr_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; pcal_phasor_type, multitone_pcal_axis_type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</derivedcompoundref>
+    <includes refid="MHO__Meta_8hh" local="no">MHO_Meta.hh</includes>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="10">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_TableContainerBase</label>
+        <link refid="classhops_1_1MHO__TableContainerBase"/>
+      </node>
+      <node id="7">
+        <label>hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_dr_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_TableContainer&lt; pcal_phasor_type, multitone_pcal_axis_type &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="380" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="381" bodyend="381"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

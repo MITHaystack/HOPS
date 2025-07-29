@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="read__alist_8py" kind="file" language="Python">
+    <compoundname>read_alist.py</compoundname>
+    <innernamespace refid="namespacehops__visualization_1_1read__alist">hops_visualization::read_alist</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacehops__visualization_1_1read__alist" refkind="compound"><highlight class="comment">#<sp/>Functions<sp/>to<sp/>support<sp/>parsing<sp/>an<sp/>alist<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">#<sp/>alist<sp/>files<sp/>have<sp/>many<sp/>columns,<sp/>pick<sp/>out<sp/>the<sp/>useful<sp/>information</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">#<sp/>for<sp/>a<sp/>given<sp/>baseline,<sp/>return<sp/>amplitudes<sp/>and<sp/>time<sp/>tags</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacehops__visualization_1_1read__alist_1a85c74ac2bc9d582cbce213c1653435ed" kindref="member">get_amp_time</ref>(filename,<sp/>baseline):</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>f<sp/>=<sp/>open(filename,<sp/></highlight><highlight class="stringliteral">&apos;r&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>lines<sp/>=<sp/>f.readlines()</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>f.close()</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>source<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>scan<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>root<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>amp<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>t<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>base<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>pol<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>line<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>lines:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>skip<sp/>header<sp/>lines</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>line[0]==</highlight><highlight class="stringliteral">&apos;*&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cols<sp/>=<sp/>line.rsplit(</highlight><highlight class="stringliteral">&apos;\n&apos;</highlight><highlight class="normal">)[0].split()<sp/></highlight><highlight class="comment">#<sp/>remove<sp/>the<sp/>trailing<sp/>EOL<sp/>and<sp/>split<sp/>on<sp/>whitespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>build<sp/>lists<sp/>of<sp/>the<sp/>useful<sp/>columns</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>root.append(cols[1])</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>TIME*TAG<sp/>column<sp/>is<sp/>in<sp/>fractional<sp/>DOY<sp/>format?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timetag<sp/>=<sp/>cols[11].split(</highlight><highlight class="stringliteral">&apos;-&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t.append(int(timetag[0])+float(</highlight><highlight class="stringliteral">&apos;0.&apos;</highlight><highlight class="normal">+timetag[1]))</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>source.append(cols[13][0:5])<sp/></highlight><highlight class="comment">#<sp/>only<sp/>grab<sp/>the<sp/>first<sp/>five<sp/>characters<sp/>of<sp/>the<sp/>source<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base.append(cols[14])</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pol.append(cols[17])</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>amp.append(float(cols[19]))</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>find<sp/>the<sp/>indices<sp/>of<sp/>the<sp/>rows<sp/>with<sp/>data<sp/>from<sp/>the<sp/>baseline<sp/>we<sp/>want</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>idx<sp/>=<sp/>np.where(np.array(base,<sp/>copy=</highlight><highlight class="keyword">False</highlight><highlight class="normal">)<sp/>==<sp/>baseline)[0]</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>convert<sp/>lists<sp/>to<sp/>arrays<sp/>for<sp/>indexing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>amplitudes<sp/>=<sp/>np.array(amp)[idx]</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>times<sp/>=<sp/>np.array(t)[idx]</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>construct<sp/>the<sp/>filename<sp/>for<sp/>the<sp/>jpg<sp/>file<sp/>(kludge)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>fname<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ii<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(len(idx)):</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fname.append(base[idx[ii]]<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;_&apos;</highlight><highlight class="normal"><sp/>+<sp/>source[idx[ii]]<sp/>+<sp/></highlight><highlight class="stringliteral">&apos;_&apos;</highlight><highlight class="normal"><sp/>+<sp/>pol[idx[ii]])</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fname,<sp/>amplitudes,<sp/>times</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/read_alist.py"/>
+  </compounddef>
+</doxygen>

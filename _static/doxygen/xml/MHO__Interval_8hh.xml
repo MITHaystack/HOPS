@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__Interval_8hh" kind="file" language="C++">
+    <compoundname>MHO_Interval.hh</compoundname>
+    <includes local="no">algorithm</includes>
+    <includes local="no">utility</includes>
+    <includes refid="MHO__MathUtilities_8hh" local="yes">MHO_MathUtilities.hh</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>cmath</label>
+      </node>
+      <node id="7">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>MHO_MathUtilities.hh</label>
+        <link refid="MHO__MathUtilities_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+      <node id="3">
+        <label>utility</label>
+      </node>
+      <node id="6">
+        <label>complex</label>
+      </node>
+      <node id="2">
+        <label>algorithm</label>
+      </node>
+      <node id="1">
+        <label>MHO_Interval.hh</label>
+        <link refid="MHO__Interval_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classhops_1_1MHO__Interval" prot="public">hops::MHO_Interval</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_Interval_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_Interval_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__MathUtilities_8hh" kindref="compound">MHO_MathUtilities.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classhops_1_1MHO__Interval" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XIntegerType<sp/>=<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26" refid="classhops_1_1MHO__Interval_1ac9ffc9ee870f8f7509dc561f7bacd82d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1ac9ffc9ee870f8f7509dc561f7bacd82d" kindref="member">MHO_Interval</ref>():<sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref>(false),<sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>(0),<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>(0){};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classhops_1_1MHO__Interval_1a52d392aa96388517676a84a40a24d031" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a52d392aa96388517676a84a40a24d031" kindref="member">MHO_Interval</ref>(XIntegerType<sp/>lower_bound,<sp/>XIntegerType<sp/>upper_bound):<sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref>(false)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" kindref="member">SetIntervalImpl</ref>(lower_bound,<sp/>upper_bound);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="classhops_1_1MHO__Interval_1a37888a46443425e8b8d28d8ea6d91580" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a37888a46443425e8b8d28d8ea6d91580" kindref="member">MHO_Interval</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref>&amp;<sp/>copy):<sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref>(false)<sp/>{<sp/><ref refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" kindref="member">SetIntervalImpl</ref>(copy.<ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>,<sp/>copy.<ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classhops_1_1MHO__Interval_1ac5d43e06fbbbfa30e2d59a25556b8d36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1ac5d43e06fbbbfa30e2d59a25556b8d36" kindref="member">~MHO_Interval</ref>(){};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="classhops_1_1MHO__Interval_1a3431dd1d743629a42e5382982618511f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1a3431dd1d743629a42e5382982618511f" kindref="member">SetBounds</ref>(XIntegerType<sp/>lower_bound,<sp/>XIntegerType<sp/>upper_bound)<sp/>{<sp/><ref refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" kindref="member">SetIntervalImpl</ref>(lower_bound,<sp/>upper_bound);<sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classhops_1_1MHO__Interval_1af2da7ce84baf36d3debb05f17ebdaf28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1af2da7ce84baf36d3debb05f17ebdaf28" kindref="member">SetBounds</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::pair&lt;<sp/>XIntegerType,<sp/>XIntegerType<sp/>&gt;&amp;<sp/>lower_upper)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" kindref="member">SetIntervalImpl</ref>(lower_upper.first,<sp/>lower_upper.second);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classhops_1_1MHO__Interval_1a893cc91df7d2dd2b48814bf3f3e57f14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::pair&lt;<sp/>XIntegerType,<sp/>XIntegerType<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__Interval_1a893cc91df7d2dd2b48814bf3f3e57f14" kindref="member">GetInterval</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="62"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::pair&lt;<sp/>XIntegerType,<sp/>XIntegerType<sp/>&gt;(<ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>,<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="classhops_1_1MHO__Interval_1a4f8e3339b7ea4e117078c01ffdae4136" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1a4f8e3339b7ea4e117078c01ffdae4136" kindref="member">SetLowerBound</ref>(XIntegerType<sp/>low)<sp/>{<sp/><ref refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" kindref="member">SetIntervalImpl</ref>(low,<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classhops_1_1MHO__Interval_1ad4fb68d5c6accd93c13973c2d713af06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1ad4fb68d5c6accd93c13973c2d713af06" kindref="member">SetUpperBound</ref>(XIntegerType<sp/>up)<sp/>{<sp/><ref refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" kindref="member">SetIntervalImpl</ref>(<ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>,<sp/>up);<sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/><ref refid="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" kindref="member">GetLowerBound</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/><ref refid="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" kindref="member">GetUpperBound</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="classhops_1_1MHO__Interval_1ad785f17fef68776a1b9bd800d97741ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/><ref refid="classhops_1_1MHO__Interval_1ad785f17fef68776a1b9bd800d97741ed" kindref="member">GetLength</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref><sp/>-<sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//test<sp/>if<sp/>this<sp/>object<sp/>itersects<sp/>with<sp/>an<sp/>other<sp/>interval</highlight></codeline>
+<codeline lineno="108" refid="classhops_1_1MHO__Interval_1afe68507565b5874b4c7ba106962ad03f" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1afe68507565b5874b4c7ba106962ad03f" kindref="member">Intersects</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="109"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/>result[2];</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numIntersections;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numIntersections<sp/>=<sp/>MHO_MathUtilities::FindIntersection&lt;<sp/>XIntegerType<sp/>&gt;(</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>,<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>,<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" kindref="member">GetLowerBound</ref>(),<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" kindref="member">GetUpperBound</ref>(),<sp/>result);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(numIntersections<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//test<sp/>if<sp/>the<sp/>closed<sp/>interval<sp/>itersects<sp/>with<sp/>a<sp/>point</highlight></codeline>
+<codeline lineno="128" refid="classhops_1_1MHO__Interval_1a27f454572051396f409d440c59ef46f9" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1a27f454572051396f409d440c59ef46f9" kindref="member">Intersects</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XIntegerType&amp;<sp/>idx)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="129"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref><sp/>&lt;=<sp/>idx<sp/>&amp;&amp;<sp/>idx<sp/>&lt;=<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//returns<sp/>the<sp/>union<sp/>of<sp/>the<sp/>two<sp/>intervals</highlight></codeline>
+<codeline lineno="144" refid="classhops_1_1MHO__Interval_1a62481eab8f4fe814929c624c54e0db9a" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref><sp/><ref refid="classhops_1_1MHO__Interval_1a62481eab8f4fe814929c624c54e0db9a" kindref="member">Union</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="145"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref><sp/>interval;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/>result[2];</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numIntersections;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numIntersections<sp/>=<sp/>MHO_MathUtilities::FindIntersection&lt;<sp/>XIntegerType<sp/>&gt;(</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>,<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>,<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" kindref="member">GetLowerBound</ref>(),<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" kindref="member">GetUpperBound</ref>(),<sp/>result);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(numIntersections<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//the<sp/>two<sp/>intervals<sp/>do<sp/>intersect,<sp/>so<sp/>the<sp/>union<sp/>of<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//new<sp/>interval<sp/>is<sp/>just<sp/>the<sp/>min/max<sp/>of<sp/>the<sp/>following</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/>low<sp/>=<sp/><ref refid="max555_8c_1ac6afabdc09a49a433ee19d8a9486056d" kindref="member">std::min</ref>(<ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>,<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" kindref="member">GetLowerBound</ref>());</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/>up<sp/>=<sp/><ref refid="max555_8c_1affe776513b24d84b39af8ab0930fef7f" kindref="member">std::max</ref>(<ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>,<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" kindref="member">GetUpperBound</ref>());</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interval.SetInterval(low,<sp/>up);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//they<sp/>don&apos;t<sp/>intersect,<sp/>so<sp/>just<sp/>return<sp/>an<sp/>empty<sp/>interval</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>interval;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="classhops_1_1MHO__Interval_1a3d0daa8355729cb9dbcfd8d5a66f18fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref><sp/><ref refid="classhops_1_1MHO__Interval_1a3d0daa8355729cb9dbcfd8d5a66f18fb" kindref="member">Intersection</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="170"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref><sp/>interval;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/>result[2];</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>numIntersections;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>numIntersections<sp/>=<sp/>MHO_MathUtilities::FindIntersection&lt;<sp/>XIntegerType<sp/>&gt;(</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>,<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>,<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a8a0168d901d9af2a472c0d33489b0cdf" kindref="member">GetLowerBound</ref>(),<sp/>other.<ref refid="classhops_1_1MHO__Interval_1a743a71bb337fd5444efdf7fafc11157f" kindref="member">GetUpperBound</ref>(),<sp/>result);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(numIntersections<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>interval.SetInterval(result[0],<sp/>result[1]);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>interval;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="classhops_1_1MHO__Interval_1a933b3d08afc766fa6a529e34d761aa4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref>&amp;<sp/><ref refid="classhops_1_1MHO__Interval_1a933b3d08afc766fa6a529e34d761aa4d" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval" kindref="compound">MHO_Interval</ref>&amp;<sp/>rhs)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>!=<sp/>&amp;rhs)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref><sp/>=<sp/>rhs.<ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref><sp/>=<sp/>rhs.<ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref><sp/>=<sp/>rhs.<ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="201" refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1af57fe3fa02093c29ca057f1edebddcd4" kindref="member">SetIntervalImpl</ref>(XIntegerType<sp/>low,<sp/>XIntegerType<sp/>up)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(low<sp/>&lt;<sp/>up)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref><sp/>=<sp/>low;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref><sp/>=<sp/>up;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(up<sp/>&lt;<sp/>low)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref><sp/>=<sp/>up;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref><sp/>=<sp/>low;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(low<sp/>==<sp/>up)</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref><sp/>=<sp/>low;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref><sp/>=<sp/>up;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223" refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Interval_1a4a5386fe378ddcfdc80d25eee2a7d82c" kindref="member">fValid</ref>;<sp/></highlight><highlight class="comment">//boolean<sp/>to<sp/>indicate<sp/>if<sp/>any<sp/>of<sp/>the<sp/>upper/lower<sp/>bounds<sp/>have<sp/>been<sp/>set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224" refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/><ref refid="classhops_1_1MHO__Interval_1aef9d90a9d1745915ec46554cd77c3a14" kindref="member">fLowerBound</ref>;</highlight></codeline>
+<codeline lineno="225" refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XIntegerType<sp/><ref refid="classhops_1_1MHO__Interval_1a3872092ebb9298aa0ff67faecf917c69" kindref="member">fUpperBound</ref>;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Interval.hh"/>
+  </compounddef>
+</doxygen>

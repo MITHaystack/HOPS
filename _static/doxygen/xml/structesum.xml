@@ -1,0 +1,393 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structesum" kind="struct" language="C++" prot="public">
+    <compoundname>esum</compoundname>
+    <includes refid="aedata_8h" local="no">aedata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" prot="public" static="no" mutable="no">
+        <type><ref refid="structcorelarray" kindref="compound">corelarray</ref> *</type>
+        <definition>corelarray* esum::cdata</definition>
+        <argsstring></argsstring>
+        <name>cdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="59" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" prot="public" static="no" mutable="no">
+        <type><ref refid="structfringearray" kindref="compound">fringearray</ref> *</type>
+        <definition>fringearray* esum::fdata</definition>
+        <argsstring></argsstring>
+        <name>fdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="60" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structesum_1a5f86a9569e39d8c8821d584565f3124e" prot="public" static="no" mutable="no">
+        <type><ref refid="structquadarray" kindref="compound">quadarray</ref> *</type>
+        <definition>quadarray* esum::qdata</definition>
+        <argsstring></argsstring>
+        <name>qdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="62" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" prot="public" static="no" mutable="no">
+        <type><ref refid="structrootarray" kindref="compound">rootarray</ref> *</type>
+        <definition>rootarray* esum::rdata</definition>
+        <argsstring></argsstring>
+        <name>rdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="58" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structesum_1a5b7351638813f38c179e463262d66615" prot="public" static="no" mutable="no">
+        <type><ref refid="structtrianglearray" kindref="compound">trianglearray</ref> *</type>
+        <definition>trianglearray* esum::tdata</definition>
+        <argsstring></argsstring>
+        <name>tdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="61" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="16">
+        <label>quadsum</label>
+        <link refid="structquadsum"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>azimuth</edgelabel>
+          <edgelabel>cl_amp</edgelabel>
+          <edgelabel>elevation</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>quad</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>scan_offset</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>esum</label>
+        <link refid="structesum"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>rdata</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fdata</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>cdata</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>tdata</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>qdata</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>fringearray</label>
+        <link refid="structfringearray"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+          <edgelabel>param_ptr</edgelabel>
+          <edgelabel>parent_corel</edgelabel>
+          <edgelabel>parent_root</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>float</label>
+      </node>
+      <node id="11">
+        <label>corelarray</label>
+        <link refid="structcorelarray"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+          <edgelabel>parent_root</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="9">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>rootsum</label>
+        <link refid="structrootsum"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>stations</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>ssec</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>rootarray</label>
+        <link refid="structrootarray"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>trianglearray</label>
+        <link refid="structtrianglearray"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>reversed</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>fringesum</label>
+        <link refid="structfringesum"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>total_mbdelay</edgelabel>
+          <edgelabel>total_rate</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amp</edgelabel>
+          <edgelabel>dec_deg</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>mbdelay</edgelabel>
+          <edgelabel>phase_snr</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>reftape</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>no_freq</edgelabel>
+          <edgelabel>noloss_cotime</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>parents</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="15">
+        <label>quadarray</label>
+        <link refid="structquadarray"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>trianglesum</label>
+        <link refid="structtrianglesum"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>azimuth</edgelabel>
+          <edgelabel>bis_amp</edgelabel>
+          <edgelabel>bis_phas</edgelabel>
+          <edgelabel>bis_snr</edgelabel>
+          <edgelabel>cdelay_rate</edgelabel>
+          <edgelabel>cmbdelay</edgelabel>
+          <edgelabel>csbdelay</edgelabel>
+          <edgelabel>elevation</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>data_quality</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>scan_quality</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>triangle</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cotime</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>scan_offset</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>corelsum</label>
+        <link refid="structcorelsum"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>clock_diff</edgelabel>
+          <edgelabel>refclock_err</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freqs</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>corstart</edgelabel>
+          <edgelabel>corstop</edgelabel>
+          <edgelabel>eqts</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>refdrive</edgelabel>
+          <edgelabel>remdrive</edgelabel>
+          <edgelabel>sduration</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>status</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="57" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="57" bodyend="63"/>
+    <listofallmembers>
+      <member refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" prot="public" virt="non-virtual"><scope>esum</scope><name>cdata</name></member>
+      <member refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" prot="public" virt="non-virtual"><scope>esum</scope><name>fdata</name></member>
+      <member refid="structesum_1a5f86a9569e39d8c8821d584565f3124e" prot="public" virt="non-virtual"><scope>esum</scope><name>qdata</name></member>
+      <member refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" prot="public" virt="non-virtual"><scope>esum</scope><name>rdata</name></member>
+      <member refid="structesum_1a5b7351638813f38c179e463262d66615" prot="public" virt="non-virtual"><scope>esum</scope><name>tdata</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,527 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OpenCLScalarMultiply" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_OpenCLScalarMultiply</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; XArrayType &gt;</basecompoundref>
+    <includes refid="MHO__OpenCLScalarMultiply_8hh" local="no">MHO_OpenCLScalarMultiply.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XFactorType</type>
+      </param>
+      <param>
+        <type>class XArrayType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1ac6d59a6765facbf41b04ba5a2d505082" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__OpenCLNDArrayBuffer" kindref="compound">MHO_OpenCLNDArrayBuffer</ref>&lt; XArrayType &gt; *</type>
+        <definition>MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;* hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fArrayBuffer</definition>
+        <argsstring></argsstring>
+        <name>fArrayBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="204" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1a2622e67a1f1825a23f859428c17b562c" prot="private" static="no" mutable="no">
+        <type>XFactorType</type>
+        <definition>XFactorType hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fFactor</definition>
+        <argsstring></argsstring>
+        <name>fFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="197" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1a974117f7733efc56ba0057d598961cb0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="196" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1a33c9fecf4b03246381c870933ad6f98b" prot="private" static="no" mutable="no">
+        <type>cl::Kernel *</type>
+        <definition>cl::Kernel* hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fKernel</definition>
+        <argsstring></argsstring>
+        <name>fKernel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="200" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1a5b089da96fbc49a5b1bce9da70a48b61" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fNGlobal</definition>
+        <argsstring></argsstring>
+        <name>fNGlobal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="199" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1ac3f5bea5f14834f67a0a7ff52b945d3c" prot="private" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fNLocal</definition>
+        <argsstring></argsstring>
+        <name>fNLocal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="198" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1a2fd7c273f91fa16fc4d945424cf1ac85" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fReadBack</definition>
+        <argsstring></argsstring>
+        <name>fReadBack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="202" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLScalarMultiply_1a5e94d73644a051e7bf0f0ab7ca8c1409" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::fWriteOut</definition>
+        <argsstring></argsstring>
+        <name>fWriteOut</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="201" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1a58ad42febc73130985a785b48d601cdc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::MHO_OpenCLScalarMultiply</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_OpenCLScalarMultiply</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="28" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1adbdf4ca1f86a8dfca42652a83a9ed79c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::~MHO_OpenCLScalarMultiply</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OpenCLScalarMultiply</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1aa740b441507b6b1a5cedeb9a87a4f49c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>XFactorType</type>
+        <definition>XFactorType hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::GetFactor</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="40" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1aaab55f061301e71ac4daca5729484b5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::SetFactor</definition>
+        <argsstring>(XFactorType factor)</argsstring>
+        <name>SetFactor</name>
+        <param>
+          <type>XFactorType</type>
+          <declname>factor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="38" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1a4f1e7ce527b07dbcafa10f41c944c8a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::SetReadFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetReadFalse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="47" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1afa702abd9cc6acc6ed8860d7241d5465" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::SetReadTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetReadTrue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1a560038b48327b62cc16d81b82b92b580" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::SetWriteFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetWriteFalse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1aea245414ce572b8d70a63314d84ed72a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::SetWriteTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetWriteTrue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1afb9f766f1a24d1da3eef8408eb709914" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArrayType *in)</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteInPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="91" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="91" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1a909a8a4f2ebda414e167972c53989bac" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out)</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteOutOfPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="123" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="123" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1af32f25490339638c174608cb256e8b0d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArrayType *in)</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function InitializeInPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="57" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="57" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1a9d993057556b0c49e7326d4e1e90e6b4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out)</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function InitializeOutOfPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="117" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="117" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1a12648c346fc6d6df493a7518807ef4fa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::BuildKernel</definition>
+        <argsstring>()</argsstring>
+        <name>BuildKernel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="135" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="135" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1af85b532df5712e6288bf006de85e8d81" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::ConditionallyResizeOutput</definition>
+        <argsstring>(const std::array&lt; std::size_t, XArrayType::rank::value &gt; &amp;dims, XArrayType *out)</argsstring>
+        <name>ConditionallyResizeOutput</name>
+        <param>
+          <type>const std::array&lt; std::size_t, XArrayType::rank::value &gt; &amp;</type>
+          <declname>dims</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="179" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="179" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLScalarMultiply_1adb643e56928b300f342c1d105110b5de" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;::GetOpenCLFlags</definition>
+        <argsstring>()</argsstring>
+        <name>GetOpenCLFlags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="155" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="155" bodyend="177"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para></para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__OpenCLScalarMultiply"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OpenCLScalarMultiply&lt; XFactorType, XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__OpenCLScalarMultiply"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" line="25" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLScalarMultiply.hh" bodystart="26" bodyend="205"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a12648c346fc6d6df493a7518807ef4fa" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>BuildKernel</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1af85b532df5712e6288bf006de85e8d81" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>ConditionallyResizeOutput</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1afb9f766f1a24d1da3eef8408eb709914" prot="protected" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a909a8a4f2ebda414e167972c53989bac" prot="protected" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1ac6d59a6765facbf41b04ba5a2d505082" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fArrayBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a2622e67a1f1825a23f859428c17b562c" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fFactor</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a974117f7733efc56ba0057d598961cb0" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a33c9fecf4b03246381c870933ad6f98b" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fKernel</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a5b089da96fbc49a5b1bce9da70a48b61" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fNGlobal</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1ac3f5bea5f14834f67a0a7ff52b945d3c" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fNLocal</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a2fd7c273f91fa16fc4d945424cf1ac85" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fReadBack</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a5e94d73644a051e7bf0f0ab7ca8c1409" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>fWriteOut</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1aa740b441507b6b1a5cedeb9a87a4f49c" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>GetFactor</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1adb643e56928b300f342c1d105110b5de" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>GetOpenCLFlags</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1af32f25490339638c174608cb256e8b0d" prot="protected" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a9d993057556b0c49e7326d4e1e90e6b4" prot="protected" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a58ad42febc73130985a785b48d601cdc" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>MHO_OpenCLScalarMultiply</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1aaab55f061301e71ac4daca5729484b5a" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetFactor</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a4f1e7ce527b07dbcafa10f41c944c8a0" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetReadFalse</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1afa702abd9cc6acc6ed8860d7241d5465" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetReadTrue</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1a560038b48327b62cc16d81b82b92b580" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetWriteFalse</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1aea245414ce572b8d70a63314d84ed72a" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>SetWriteTrue</name></member>
+      <member refid="classhops_1_1MHO__OpenCLScalarMultiply_1adbdf4ca1f86a8dfca42652a83a9ed79c" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>~MHO_OpenCLScalarMultiply</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_OpenCLScalarMultiply</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

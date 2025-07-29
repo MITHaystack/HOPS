@@ -1,0 +1,327 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::ScanPccBandDelay</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a0e3b2825c7bfa778e1d17ac063c96830" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::azimuth</definition>
+        <argsstring></argsstring>
+        <name>azimuth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="907" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="907" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a206f41f12d1c7a6370b5c948c11a5324" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::delay_model_ps</definition>
+        <argsstring></argsstring>
+        <name>delay_model_ps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="902" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="902" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a770f36ead0da2af9d1b97d05579120b1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::doy</definition>
+        <argsstring></argsstring>
+        <name>doy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="896" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="896" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a12695bf454847fdafc944ca43fa8f3a5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::elevation</definition>
+        <argsstring></argsstring>
+        <name>elevation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="908" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="908" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a52dd34b059e8511c94f4b9dd17a8c658" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::hour</definition>
+        <argsstring></argsstring>
+        <name>hour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="897" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="897" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a03bc54fcc30945cb633f6c5c2bed467e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::minute</definition>
+        <argsstring></argsstring>
+        <name>minute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="898" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="898" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a5d96017de170d3c63d566cf7dbef5fdd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::phase_model_dc</definition>
+        <argsstring></argsstring>
+        <name>phase_model_dc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="901" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="901" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1af976e1d8249fee0e0f155849f3bc67fc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::phase_model_midband</definition>
+        <argsstring></argsstring>
+        <name>phase_model_midband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="900" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="900" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a57eb0410870de2b713b405fb5cc785cf" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::phase_rmse</definition>
+        <argsstring></argsstring>
+        <name>phase_rmse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="903" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="903" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a1e780e7879c2eb956b87362b2b0a49de" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::scan_name</definition>
+        <argsstring></argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="904" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="904" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a20c36beabe3a99cce9b36454fb5512c1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::second</definition>
+        <argsstring></argsstring>
+        <name>second</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="899" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="899" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a0dff0271ff983e30ec8cfae35d81156f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::source_name</definition>
+        <argsstring></argsstring>
+        <name>source_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="905" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="905" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1aadba6d2a6ce1b6eb78b03486ff287de6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::station_code</definition>
+        <argsstring></argsstring>
+        <name>station_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="906" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="906" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a0d996339477bed38c9fe5b08023c6c61" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ScanPccBandDelay::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="895" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="895" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a48b7db40af93271693470878b52e1457" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ScanPccBandDelay.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="894" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="894" bodyend="909"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a9f0a4e7ae9bc3a83e94f644e2f6e187c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ScanPccBandDelay.init_from_string</definition>
+        <argsstring>(self, line_string)</argsstring>
+        <name>init_from_string</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>line_string</type>
+          <defname>line_string</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="910" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="910" bodyend="927"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1ab24a78a4c521180384e027366b870f66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ScanPccBandDelay.is_equal_within_tolerance</definition>
+        <argsstring>(self, scan_pcc_delay_object, relative_tolerance=1e-3, absolute_tolerance=1e-6)</argsstring>
+        <name>is_equal_within_tolerance</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>scan_pcc_delay_object</type>
+          <defname>scan_pcc_delay_object</defname>
+        </param>
+        <param>
+          <type>relative_tolerance</type>
+          <defname>relative_tolerance</defname>
+          <defval>1e-3</defval>
+        </param>
+        <param>
+          <type>absolute_tolerance</type>
+          <defname>absolute_tolerance</defname>
+          <defval>1e-6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="931" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="931" bodyend="962"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1ac96c1b3854e1a3d724de53d7a86044ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ScanPccBandDelay.print_line</definition>
+        <argsstring>(self)</argsstring>
+        <name>print_line</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="928" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="928" bodyend="930"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>class to store a single line from a pcc band-pol delay file (e.g. bandmodel.E.A.X.dat) </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ScanPccBandDelay</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ScanPccBandDelay</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="892" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="892" bodyend="967"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a48b7db40af93271693470878b52e1457" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a0e3b2825c7bfa778e1d17ac063c96830" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>azimuth</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a206f41f12d1c7a6370b5c948c11a5324" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>delay_model_ps</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a770f36ead0da2af9d1b97d05579120b1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>doy</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a12695bf454847fdafc944ca43fa8f3a5" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>elevation</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a52dd34b059e8511c94f4b9dd17a8c658" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>hour</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a9f0a4e7ae9bc3a83e94f644e2f6e187c" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>init_from_string</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1ab24a78a4c521180384e027366b870f66" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>is_equal_within_tolerance</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a03bc54fcc30945cb633f6c5c2bed467e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>minute</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a5d96017de170d3c63d566cf7dbef5fdd" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>phase_model_dc</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1af976e1d8249fee0e0f155849f3bc67fc" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>phase_model_midband</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a57eb0410870de2b713b405fb5cc785cf" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>phase_rmse</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1ac96c1b3854e1a3d724de53d7a86044ad" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>print_line</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a1e780e7879c2eb956b87362b2b0a49de" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>scan_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a20c36beabe3a99cce9b36454fb5512c1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>second</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a0dff0271ff983e30ec8cfae35d81156f" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>source_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1aadba6d2a6ce1b6eb78b03486ff287de6" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>station_code</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay_1a0d996339477bed38c9fe5b08023c6c61" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ScanPccBandDelay</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

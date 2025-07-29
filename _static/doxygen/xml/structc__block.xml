@@ -1,0 +1,1254 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structc__block" kind="struct" language="C++" prot="public">
+    <compoundname>c_block</compoundname>
+    <includes refid="control_8h" local="no">control.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structc__block_1aee6b5d4ebabd12f0933dd6813f3808a4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::accept_sbs[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>accept_sbs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="51" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1af2c4ab8df819cbf751c796c0031fde7d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::adhoc_amp</definition>
+        <argsstring></argsstring>
+        <name>adhoc_amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="83" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a9f22f4d2161369cde07d309781a06276" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::adhoc_file[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>adhoc_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="85" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1afcb49d714671f1129722cbf4d78408bf" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::adhoc_file_chans[2][128]</definition>
+        <argsstring>[2][128]</argsstring>
+        <name>adhoc_file_chans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="86" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a60888ec3971c6e49bd96bda5ca7d9fa0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::adhoc_flag_files[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>adhoc_flag_files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="87" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aefcb8c582c5cd62e7d6fe76bf15abd26" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::adhoc_period</definition>
+        <argsstring></argsstring>
+        <name>adhoc_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="82" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a34acf33412797087d554e0a6b58af8b1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::adhoc_phase</definition>
+        <argsstring></argsstring>
+        <name>adhoc_phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="80" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aea8b4884b443a10d4549de084ee49dd9" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::adhoc_poly[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>adhoc_poly</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="84" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a3a11f780ca7ae83a57da841bafef3614" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::adhoc_tref</definition>
+        <argsstring></argsstring>
+        <name>adhoc_tref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="81" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a7032747ad2b374a1811d18e820182bfb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::avxplopt[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>avxplopt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="91" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1acb13bf40f45f3b31507604692d3e6086" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::avxpzoom[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>avxpzoom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="90" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1acf2bffda72c897b2955a3ec3d5fa9288" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::baseline[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1afa7aec728aad53f339dc6ccd57a75317" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structc__block" kindref="compound">c_block</ref> *</type>
+        <definition>struct c_block* c_block::cb_chain</definition>
+        <argsstring></argsstring>
+        <name>cb_chain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a0110ef1e2eae572bd64fb774ba385168" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::chid[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>chid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="113" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1adf17d126984b5c9401587b135511aa89" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::chid_rf[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>chid_rf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="114" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aac01ec0b94b64d2c34ed04cd4a1f00a2" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::dc_block</definition>
+        <argsstring></argsstring>
+        <name>dc_block</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="77" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a41462db6cc8b61600345d612bde9af4b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::dec_offset</definition>
+        <argsstring></argsstring>
+        <name>dec_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="70" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1af9f56633bde3053c35ad64b546b94d71" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::delay_offs[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>delay_offs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::delay_offs_pol[MAXFREQ][2]</definition>
+        <argsstring>[MAXFREQ][2]</argsstring>
+        <name>delay_offs_pol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a0ba396197f1e475ea2299984b0766a83" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::dr_window[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>dr_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="67" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aa3b849f48f0d30939623684568fe85c4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::est_pc_manual</definition>
+        <argsstring></argsstring>
+        <name>est_pc_manual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="104" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a3edd51c2270cdd8033eceeb1a832b69e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::f_group</definition>
+        <argsstring></argsstring>
+        <name>f_group</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a9166b78a6e0ead14dfb5206f74e06c0e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::fmatch_bw_pct</definition>
+        <argsstring></argsstring>
+        <name>fmatch_bw_pct</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="112" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aefd3f62d073ea97a0080ef12701e8572" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structgat__struct" kindref="compound">gat_struct</ref></type>
+        <definition>struct gat_struct c_block::gates[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>gates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="78" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a383a082add7fc5badcdbe83042dcfb67" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::gen_cf_record</definition>
+        <argsstring></argsstring>
+        <name>gen_cf_record</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="92" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1af29b1a4eefb0a9426bcb98845a3937f8" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::index[2 *MAXFREQ]</definition>
+        <argsstring>[2 *MAXFREQ]</argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a1373fc2cf778d3ac1a5516a52ed1f83f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::interpolator</definition>
+        <argsstring></argsstring>
+        <name>interpolator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="105" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1ac160d04a6e887807169c9392bbafb8f1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::ion_npts</definition>
+        <argsstring></argsstring>
+        <name>ion_npts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="71" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1ac675ca5bab6a82e45421968530df41ee" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::ion_smooth</definition>
+        <argsstring></argsstring>
+        <name>ion_smooth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="73" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a7b1b010891f3e7fac8de77ca3d9629a2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::ion_window[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>ion_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="68" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a0db8b039cd82c161227254f44de0a7ad" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::ionosphere</definition>
+        <argsstring></argsstring>
+        <name>ionosphere</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a96ac09561a63e47ab116603edced26d9" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::knot[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>knot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="43" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a1f12c0546cea88e32f19dd3855927fce" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::lsb_offset</definition>
+        <argsstring></argsstring>
+        <name>lsb_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1ac5ca554cab981630c4a702178d9a789a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::mb_window[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>mb_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="66" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a03ed01ffabf4f7a1d35a1f0e920e8002" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::mbd_anchor</definition>
+        <argsstring></argsstring>
+        <name>mbd_anchor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a662e3ec1304ff6098cc211c6c1e9003d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::mbdrplopt[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>mbdrplopt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="123" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a50de18918ce4a0c09b37ef07689abf1a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::min_weight</definition>
+        <argsstring></argsstring>
+        <name>min_weight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="49" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a13c2c00c255b973a5cc279c34c3f2182" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::mixed_mode_rot</definition>
+        <argsstring></argsstring>
+        <name>mixed_mode_rot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="120" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a90e930a9ecebe098965ea32fd8819615" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::mod4numbering</definition>
+        <argsstring></argsstring>
+        <name>mod4numbering</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="122" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a6cbf9ecf2f44528342d2e3080263a237" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::mount_type[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>mount_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="119" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aa13b64c175225c55e349e973836f5ef9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::nnotches</definition>
+        <argsstring></argsstring>
+        <name>nnotches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="93" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a20a6410dfc3e35c90b9818769349fa98" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::noautofringes</definition>
+        <argsstring></argsstring>
+        <name>noautofringes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="121" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aa062c6d0fdd281e803a76d5cdb563935" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::notches[MAXNOTCH][2]</definition>
+        <argsstring>[MAXNOTCH][2]</argsstring>
+        <name>notches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="94" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a08cca6177dd98a079309f3ffa13cd986" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::nsamplers</definition>
+        <argsstring></argsstring>
+        <name>nsamplers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="99" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a73addde4cbcbd377d1f22ca2f733680e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::optimize_closure</definition>
+        <argsstring></argsstring>
+        <name>optimize_closure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="78" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aa35555ce63668639e5a62a2942969b93" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::passband[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>passband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="89" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1acebe7155fc5d3c243fb70f91c7a9da6e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::pc_amp_hcode</definition>
+        <argsstring></argsstring>
+        <name>pc_amp_hcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="111" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a56f805b864bed2ba864e21cd001b1dc5" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::pc_delay_l</definition>
+        <argsstring></argsstring>
+        <name>pc_delay_l</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a0ce6860363af42f10ee4392c23519a2d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::pc_delay_r</definition>
+        <argsstring></argsstring>
+        <name>pc_delay_r</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a0b01950c509fd30f6fb87cbaa756e888" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::pc_freq[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>pc_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a7921106a8bdcc58991e483296d981bfd" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
+        <definition>struct istats c_block::pc_mode</definition>
+        <argsstring></argsstring>
+        <name>pc_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a8c7917c34b1a809c1412fce84e039e34" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
+        <definition>struct istats c_block::pc_period</definition>
+        <argsstring></argsstring>
+        <name>pc_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a3360e10a8a5ff1e1c29ba30a3f2cfccc" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::pc_phase[MAXFREQ][2]</definition>
+        <argsstring>[MAXFREQ][2]</argsstring>
+        <name>pc_phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::pc_phase_offset[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>pc_phase_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a5d7c990ae136886d5ce1412820d25c49" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structistats" kindref="compound">istats</ref></type>
+        <definition>struct istats c_block::pc_tonemask[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>pc_tonemask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a2d5d02667c61abde863e80dffeda13a0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::plot_data_dir[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>plot_data_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="88" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1af3d3a2a36b00854cf26d7b02f366e8c4" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* c_block::psamplers[MAX_SAMP]</definition>
+        <argsstring>[MAX_SAMP]</argsstring>
+        <name>psamplers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="100" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1af606985e9ef67d9d372132de6640129c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::ra_offset</definition>
+        <argsstring></argsstring>
+        <name>ra_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="69" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1ab1531f4dbd9642bc858cbff2f73e2351" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::ref_freq</definition>
+        <argsstring></argsstring>
+        <name>ref_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="50" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a770ca4840da62327710454694b3b888d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::sampler_codes[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>sampler_codes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a6011a7af5ec3da8fcb66c027d20f269d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::sampler_delay[MAX_SAMP][2]</definition>
+        <argsstring>[MAX_SAMP][2]</argsstring>
+        <name>sampler_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="101" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a9768dfaed4bae878370d872b2f0d01c5" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::sb_window[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>sb_window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="65" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1abd22adaf8407d0129c6d9abd9f57b728" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::scan[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>scan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="41" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1ad7572e7b87010ec11e499c961c4f5d35" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::skip</definition>
+        <argsstring></argsstring>
+        <name>skip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="48" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a7b9ac952c48e90fb0026a0f3f1891740" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::source[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="39" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a7b7050b9c6534170ae26678249333543" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::station_delay</definition>
+        <argsstring></argsstring>
+        <name>station_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="106" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a37976e62191a9cade3e4b0a690a89796" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::switched_mode</definition>
+        <argsstring></argsstring>
+        <name>switched_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="74" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a204130c9a7cff6f7961a3b0ae1e46060" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::switched_period</definition>
+        <argsstring></argsstring>
+        <name>switched_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="75" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a6313374a22f707f51db3ac16511f4109" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::t_cohere</definition>
+        <argsstring></argsstring>
+        <name>t_cohere</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="95" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a9f4e841c60a3ba375292269a6d0442ad" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::time_span[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>time_span</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="72" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a24a9d7c918eb439cd19f2fb9bbe44c51" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::use_samples</definition>
+        <argsstring></argsstring>
+        <name>use_samples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="76" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1acec71fe3c19fc4297561ee47cd73d963" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdstats" kindref="compound">dstats</ref></type>
+        <definition>struct dstats c_block::vbp_coeffs[5]</definition>
+        <argsstring>[5]</argsstring>
+        <name>vbp_coeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="116" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a972025f18a0e611fd859d25cfa2464e8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::vbp_correct</definition>
+        <argsstring></argsstring>
+        <name>vbp_correct</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="115" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a04c1c22ef63905d30f73dd44a13a40e0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char c_block::vbp_file[2][256]</definition>
+        <argsstring>[2][256]</argsstring>
+        <name>vbp_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="118" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a682498537b5396f1b2ed3890be64b29f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int c_block::vbp_fit</definition>
+        <argsstring></argsstring>
+        <name>vbp_fit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="116" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1ad7d8a611b1fd9ddd4cf4c4729b0a4cfd" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double c_block::weak_channel</definition>
+        <argsstring></argsstring>
+        <name>weak_channel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="110" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a4261b6058cca532809519c5fcffce1d5" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::x_crc</definition>
+        <argsstring></argsstring>
+        <name>x_crc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="61" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1a653fbac03f0a3d6fdb9c397aedf2f5f2" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::x_slip_sync</definition>
+        <argsstring></argsstring>
+        <name>x_slip_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="63" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1aa8fa310b754316d588dc7fefda27bcdb" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::y_crc</definition>
+        <argsstring></argsstring>
+        <name>y_crc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="62" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structc__block_1ad43e027d8dbbdfb562057bc6ce0e3671" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short c_block::y_slip_sync</definition>
+        <argsstring></argsstring>
+        <name>y_slip_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="64" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="7">
+        <label>gat_struct</label>
+        <link refid="structgat__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>on_delay</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dstats</label>
+        <link refid="structdstats"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>istats</label>
+        <link refid="structistats"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c_block</label>
+        <link refid="structc__block"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>adhoc_amp</edgelabel>
+          <edgelabel>adhoc_period</edgelabel>
+          <edgelabel>adhoc_poly</edgelabel>
+          <edgelabel>adhoc_tref</edgelabel>
+          <edgelabel>avxpzoom</edgelabel>
+          <edgelabel>chid_rf</edgelabel>
+          <edgelabel>dec_offset</edgelabel>
+          <edgelabel>dr_window</edgelabel>
+          <edgelabel>fmatch_bw_pct</edgelabel>
+          <edgelabel>ion_window</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dc_block</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>ion_smooth</edgelabel>
+          <edgelabel>knot</edgelabel>
+          <edgelabel>optimize_closure</edgelabel>
+          <edgelabel>skip</edgelabel>
+          <edgelabel>switched_mode</edgelabel>
+          <edgelabel>switched_period</edgelabel>
+          <edgelabel>use_samples</edgelabel>
+          <edgelabel>x_crc</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>adhoc_file</edgelabel>
+          <edgelabel>adhoc_file_chans</edgelabel>
+          <edgelabel>adhoc_flag_files</edgelabel>
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>chid</edgelabel>
+          <edgelabel>f_group</edgelabel>
+          <edgelabel>plot_data_dir</edgelabel>
+          <edgelabel>psamplers</edgelabel>
+          <edgelabel>sampler_codes</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>pc_mode</edgelabel>
+          <edgelabel>pc_period</edgelabel>
+          <edgelabel>pc_tonemask</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>accept_sbs</edgelabel>
+          <edgelabel>adhoc_phase</edgelabel>
+          <edgelabel>avxplopt</edgelabel>
+          <edgelabel>est_pc_manual</edgelabel>
+          <edgelabel>gen_cf_record</edgelabel>
+          <edgelabel>interpolator</edgelabel>
+          <edgelabel>ion_npts</edgelabel>
+          <edgelabel>mbd_anchor</edgelabel>
+          <edgelabel>mbdrplopt</edgelabel>
+          <edgelabel>mixed_mode_rot</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>cb_chain</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>gates</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>delay_offs</edgelabel>
+          <edgelabel>delay_offs_pol</edgelabel>
+          <edgelabel>ionosphere</edgelabel>
+          <edgelabel>lsb_offset</edgelabel>
+          <edgelabel>pc_delay_l</edgelabel>
+          <edgelabel>pc_delay_r</edgelabel>
+          <edgelabel>pc_freq</edgelabel>
+          <edgelabel>pc_phase</edgelabel>
+          <edgelabel>pc_phase_offset</edgelabel>
+          <edgelabel>sampler_delay</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="32" bodyend="124"/>
+    <listofallmembers>
+      <member refid="structc__block_1aee6b5d4ebabd12f0933dd6813f3808a4" prot="public" virt="non-virtual"><scope>c_block</scope><name>accept_sbs</name></member>
+      <member refid="structc__block_1af2c4ab8df819cbf751c796c0031fde7d" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_amp</name></member>
+      <member refid="structc__block_1a9f22f4d2161369cde07d309781a06276" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_file</name></member>
+      <member refid="structc__block_1afcb49d714671f1129722cbf4d78408bf" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_file_chans</name></member>
+      <member refid="structc__block_1a60888ec3971c6e49bd96bda5ca7d9fa0" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_flag_files</name></member>
+      <member refid="structc__block_1aefcb8c582c5cd62e7d6fe76bf15abd26" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_period</name></member>
+      <member refid="structc__block_1a34acf33412797087d554e0a6b58af8b1" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_phase</name></member>
+      <member refid="structc__block_1aea8b4884b443a10d4549de084ee49dd9" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_poly</name></member>
+      <member refid="structc__block_1a3a11f780ca7ae83a57da841bafef3614" prot="public" virt="non-virtual"><scope>c_block</scope><name>adhoc_tref</name></member>
+      <member refid="structc__block_1a7032747ad2b374a1811d18e820182bfb" prot="public" virt="non-virtual"><scope>c_block</scope><name>avxplopt</name></member>
+      <member refid="structc__block_1acb13bf40f45f3b31507604692d3e6086" prot="public" virt="non-virtual"><scope>c_block</scope><name>avxpzoom</name></member>
+      <member refid="structc__block_1acf2bffda72c897b2955a3ec3d5fa9288" prot="public" virt="non-virtual"><scope>c_block</scope><name>baseline</name></member>
+      <member refid="structc__block_1afa7aec728aad53f339dc6ccd57a75317" prot="public" virt="non-virtual"><scope>c_block</scope><name>cb_chain</name></member>
+      <member refid="structc__block_1a0110ef1e2eae572bd64fb774ba385168" prot="public" virt="non-virtual"><scope>c_block</scope><name>chid</name></member>
+      <member refid="structc__block_1adf17d126984b5c9401587b135511aa89" prot="public" virt="non-virtual"><scope>c_block</scope><name>chid_rf</name></member>
+      <member refid="structc__block_1aac01ec0b94b64d2c34ed04cd4a1f00a2" prot="public" virt="non-virtual"><scope>c_block</scope><name>dc_block</name></member>
+      <member refid="structc__block_1a41462db6cc8b61600345d612bde9af4b" prot="public" virt="non-virtual"><scope>c_block</scope><name>dec_offset</name></member>
+      <member refid="structc__block_1af9f56633bde3053c35ad64b546b94d71" prot="public" virt="non-virtual"><scope>c_block</scope><name>delay_offs</name></member>
+      <member refid="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" prot="public" virt="non-virtual"><scope>c_block</scope><name>delay_offs_pol</name></member>
+      <member refid="structc__block_1a0ba396197f1e475ea2299984b0766a83" prot="public" virt="non-virtual"><scope>c_block</scope><name>dr_window</name></member>
+      <member refid="structc__block_1aa3b849f48f0d30939623684568fe85c4" prot="public" virt="non-virtual"><scope>c_block</scope><name>est_pc_manual</name></member>
+      <member refid="structc__block_1a3edd51c2270cdd8033eceeb1a832b69e" prot="public" virt="non-virtual"><scope>c_block</scope><name>f_group</name></member>
+      <member refid="structc__block_1a9166b78a6e0ead14dfb5206f74e06c0e" prot="public" virt="non-virtual"><scope>c_block</scope><name>fmatch_bw_pct</name></member>
+      <member refid="structc__block_1aefd3f62d073ea97a0080ef12701e8572" prot="public" virt="non-virtual"><scope>c_block</scope><name>gates</name></member>
+      <member refid="structc__block_1a383a082add7fc5badcdbe83042dcfb67" prot="public" virt="non-virtual"><scope>c_block</scope><name>gen_cf_record</name></member>
+      <member refid="structc__block_1af29b1a4eefb0a9426bcb98845a3937f8" prot="public" virt="non-virtual"><scope>c_block</scope><name>index</name></member>
+      <member refid="structc__block_1a1373fc2cf778d3ac1a5516a52ed1f83f" prot="public" virt="non-virtual"><scope>c_block</scope><name>interpolator</name></member>
+      <member refid="structc__block_1ac160d04a6e887807169c9392bbafb8f1" prot="public" virt="non-virtual"><scope>c_block</scope><name>ion_npts</name></member>
+      <member refid="structc__block_1ac675ca5bab6a82e45421968530df41ee" prot="public" virt="non-virtual"><scope>c_block</scope><name>ion_smooth</name></member>
+      <member refid="structc__block_1a7b1b010891f3e7fac8de77ca3d9629a2" prot="public" virt="non-virtual"><scope>c_block</scope><name>ion_window</name></member>
+      <member refid="structc__block_1a0db8b039cd82c161227254f44de0a7ad" prot="public" virt="non-virtual"><scope>c_block</scope><name>ionosphere</name></member>
+      <member refid="structc__block_1a96ac09561a63e47ab116603edced26d9" prot="public" virt="non-virtual"><scope>c_block</scope><name>knot</name></member>
+      <member refid="structc__block_1a1f12c0546cea88e32f19dd3855927fce" prot="public" virt="non-virtual"><scope>c_block</scope><name>lsb_offset</name></member>
+      <member refid="structc__block_1ac5ca554cab981630c4a702178d9a789a" prot="public" virt="non-virtual"><scope>c_block</scope><name>mb_window</name></member>
+      <member refid="structc__block_1a03ed01ffabf4f7a1d35a1f0e920e8002" prot="public" virt="non-virtual"><scope>c_block</scope><name>mbd_anchor</name></member>
+      <member refid="structc__block_1a662e3ec1304ff6098cc211c6c1e9003d" prot="public" virt="non-virtual"><scope>c_block</scope><name>mbdrplopt</name></member>
+      <member refid="structc__block_1a50de18918ce4a0c09b37ef07689abf1a" prot="public" virt="non-virtual"><scope>c_block</scope><name>min_weight</name></member>
+      <member refid="structc__block_1a13c2c00c255b973a5cc279c34c3f2182" prot="public" virt="non-virtual"><scope>c_block</scope><name>mixed_mode_rot</name></member>
+      <member refid="structc__block_1a90e930a9ecebe098965ea32fd8819615" prot="public" virt="non-virtual"><scope>c_block</scope><name>mod4numbering</name></member>
+      <member refid="structc__block_1a6cbf9ecf2f44528342d2e3080263a237" prot="public" virt="non-virtual"><scope>c_block</scope><name>mount_type</name></member>
+      <member refid="structc__block_1aa13b64c175225c55e349e973836f5ef9" prot="public" virt="non-virtual"><scope>c_block</scope><name>nnotches</name></member>
+      <member refid="structc__block_1a20a6410dfc3e35c90b9818769349fa98" prot="public" virt="non-virtual"><scope>c_block</scope><name>noautofringes</name></member>
+      <member refid="structc__block_1aa062c6d0fdd281e803a76d5cdb563935" prot="public" virt="non-virtual"><scope>c_block</scope><name>notches</name></member>
+      <member refid="structc__block_1a08cca6177dd98a079309f3ffa13cd986" prot="public" virt="non-virtual"><scope>c_block</scope><name>nsamplers</name></member>
+      <member refid="structc__block_1a73addde4cbcbd377d1f22ca2f733680e" prot="public" virt="non-virtual"><scope>c_block</scope><name>optimize_closure</name></member>
+      <member refid="structc__block_1aa35555ce63668639e5a62a2942969b93" prot="public" virt="non-virtual"><scope>c_block</scope><name>passband</name></member>
+      <member refid="structc__block_1acebe7155fc5d3c243fb70f91c7a9da6e" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_amp_hcode</name></member>
+      <member refid="structc__block_1a56f805b864bed2ba864e21cd001b1dc5" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_delay_l</name></member>
+      <member refid="structc__block_1a0ce6860363af42f10ee4392c23519a2d" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_delay_r</name></member>
+      <member refid="structc__block_1a0b01950c509fd30f6fb87cbaa756e888" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_freq</name></member>
+      <member refid="structc__block_1a7921106a8bdcc58991e483296d981bfd" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_mode</name></member>
+      <member refid="structc__block_1a8c7917c34b1a809c1412fce84e039e34" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_period</name></member>
+      <member refid="structc__block_1a3360e10a8a5ff1e1c29ba30a3f2cfccc" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_phase</name></member>
+      <member refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_phase_offset</name></member>
+      <member refid="structc__block_1a5d7c990ae136886d5ce1412820d25c49" prot="public" virt="non-virtual"><scope>c_block</scope><name>pc_tonemask</name></member>
+      <member refid="structc__block_1a2d5d02667c61abde863e80dffeda13a0" prot="public" virt="non-virtual"><scope>c_block</scope><name>plot_data_dir</name></member>
+      <member refid="structc__block_1af3d3a2a36b00854cf26d7b02f366e8c4" prot="public" virt="non-virtual"><scope>c_block</scope><name>psamplers</name></member>
+      <member refid="structc__block_1af606985e9ef67d9d372132de6640129c" prot="public" virt="non-virtual"><scope>c_block</scope><name>ra_offset</name></member>
+      <member refid="structc__block_1ab1531f4dbd9642bc858cbff2f73e2351" prot="public" virt="non-virtual"><scope>c_block</scope><name>ref_freq</name></member>
+      <member refid="structc__block_1a770ca4840da62327710454694b3b888d" prot="public" virt="non-virtual"><scope>c_block</scope><name>sampler_codes</name></member>
+      <member refid="structc__block_1a6011a7af5ec3da8fcb66c027d20f269d" prot="public" virt="non-virtual"><scope>c_block</scope><name>sampler_delay</name></member>
+      <member refid="structc__block_1a9768dfaed4bae878370d872b2f0d01c5" prot="public" virt="non-virtual"><scope>c_block</scope><name>sb_window</name></member>
+      <member refid="structc__block_1abd22adaf8407d0129c6d9abd9f57b728" prot="public" virt="non-virtual"><scope>c_block</scope><name>scan</name></member>
+      <member refid="structc__block_1ad7572e7b87010ec11e499c961c4f5d35" prot="public" virt="non-virtual"><scope>c_block</scope><name>skip</name></member>
+      <member refid="structc__block_1a7b9ac952c48e90fb0026a0f3f1891740" prot="public" virt="non-virtual"><scope>c_block</scope><name>source</name></member>
+      <member refid="structc__block_1a7b7050b9c6534170ae26678249333543" prot="public" virt="non-virtual"><scope>c_block</scope><name>station_delay</name></member>
+      <member refid="structc__block_1a37976e62191a9cade3e4b0a690a89796" prot="public" virt="non-virtual"><scope>c_block</scope><name>switched_mode</name></member>
+      <member refid="structc__block_1a204130c9a7cff6f7961a3b0ae1e46060" prot="public" virt="non-virtual"><scope>c_block</scope><name>switched_period</name></member>
+      <member refid="structc__block_1a6313374a22f707f51db3ac16511f4109" prot="public" virt="non-virtual"><scope>c_block</scope><name>t_cohere</name></member>
+      <member refid="structc__block_1a9f4e841c60a3ba375292269a6d0442ad" prot="public" virt="non-virtual"><scope>c_block</scope><name>time_span</name></member>
+      <member refid="structc__block_1a24a9d7c918eb439cd19f2fb9bbe44c51" prot="public" virt="non-virtual"><scope>c_block</scope><name>use_samples</name></member>
+      <member refid="structc__block_1acec71fe3c19fc4297561ee47cd73d963" prot="public" virt="non-virtual"><scope>c_block</scope><name>vbp_coeffs</name></member>
+      <member refid="structc__block_1a972025f18a0e611fd859d25cfa2464e8" prot="public" virt="non-virtual"><scope>c_block</scope><name>vbp_correct</name></member>
+      <member refid="structc__block_1a04c1c22ef63905d30f73dd44a13a40e0" prot="public" virt="non-virtual"><scope>c_block</scope><name>vbp_file</name></member>
+      <member refid="structc__block_1a682498537b5396f1b2ed3890be64b29f" prot="public" virt="non-virtual"><scope>c_block</scope><name>vbp_fit</name></member>
+      <member refid="structc__block_1ad7d8a611b1fd9ddd4cf4c4729b0a4cfd" prot="public" virt="non-virtual"><scope>c_block</scope><name>weak_channel</name></member>
+      <member refid="structc__block_1a4261b6058cca532809519c5fcffce1d5" prot="public" virt="non-virtual"><scope>c_block</scope><name>x_crc</name></member>
+      <member refid="structc__block_1a653fbac03f0a3d6fdb9c397aedf2f5f2" prot="public" virt="non-virtual"><scope>c_block</scope><name>x_slip_sync</name></member>
+      <member refid="structc__block_1aa8fa310b754316d588dc7fefda27bcdb" prot="public" virt="non-virtual"><scope>c_block</scope><name>y_crc</name></member>
+      <member refid="structc__block_1ad43e027d8dbbdfb562057bc6ce0e3671" prot="public" virt="non-virtual"><scope>c_block</scope><name>y_slip_sync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

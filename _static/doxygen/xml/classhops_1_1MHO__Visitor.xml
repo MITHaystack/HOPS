@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Visitor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Visitor</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor" prot="public" virt="non-virtual">hops::MHO_ExtendedElement&lt; XExtensionType &gt;::ExtendedVisitor</derivedcompoundref>
+    <includes refid="MHO__ExtensibleElement_8hh" local="no">MHO_ExtensibleElement.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Visitor_1adcf35ee9c2f3782ce91c472e46e6f30b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Visitor::MHO_Visitor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Visitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Visitor_1ae0b70718d0ad025bbee5296a116f5e5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Visitor::~MHO_Visitor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Visitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__Visitor" kindref="compound">MHO_Visitor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_ExtendedElement&lt; XExtensionType &gt;::ExtendedVisitor</label>
+        <link refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_Visitor</label>
+        <link refid="classhops_1_1MHO__Visitor"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_TableContainerBufferBuilder&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainerBufferBuilder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ExtensibleElement.hh" bodystart="32" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Visitor_1adcf35ee9c2f3782ce91c472e46e6f30b" prot="public" virt="non-virtual"><scope>hops::MHO_Visitor</scope><name>MHO_Visitor</name></member>
+      <member refid="classhops_1_1MHO__Visitor_1ae0b70718d0ad025bbee5296a116f5e5e" prot="public" virt="virtual"><scope>hops::MHO_Visitor</scope><name>~MHO_Visitor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

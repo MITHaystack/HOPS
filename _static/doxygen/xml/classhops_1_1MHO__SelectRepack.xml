@@ -1,0 +1,575 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__SelectRepack" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_SelectRepack</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; XArgType &gt;</basecompoundref>
+    <includes refid="MHO__SelectRepack_8hh" local="no">MHO_SelectRepack.hh</includes>
+    <innerclass refid="classhops_1_1MHO__SelectRepack_1_1SelectOnAxis" prot="private">hops::MHO_SelectRepack::SelectOnAxis</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class XArgType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__SelectRepack_1a9e3734932efb774b80f2e699b8be55a2" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::size_t, std::vector&lt; std::size_t &gt; &gt;</type>
+        <definition>std::map&lt; std::size_t, std::vector&lt; std::size_t &gt; &gt; hops::MHO_SelectRepack&lt; XArgType &gt;::fAxisSelectionMap</definition>
+        <argsstring></argsstring>
+        <name>fAxisSelectionMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="310" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="310" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__SelectRepack_1abce3a04d05bfc8b6b0901311a8dbf469" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_SelectRepack&lt; XArgType &gt;::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="304" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="304" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__SelectRepack_1a5e39497928211475cd5db816914a293c" prot="private" static="no" mutable="no">
+        <type>XArgType</type>
+        <definition>XArgType hops::MHO_SelectRepack&lt; XArgType &gt;::fWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="305" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="305" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1aa503ae15550b7da9bf6fb594215b05cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_SelectRepack&lt; XArgType &gt;::MHO_SelectRepack</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_SelectRepack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="32" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a2bcbfbd504c0a5679e926d90c4a9f6b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_SelectRepack&lt; XArgType &gt;::~MHO_SelectRepack</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_SelectRepack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1aabc5aa1ac3cb1f23b27add7586ab99ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_SelectRepack&lt; XArgType &gt;::Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <briefdescription>
+<para>Clears all entries from fAxisSelectionMap. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="43" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a9f52a81732ec6c34860cb558888354fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_SelectRepack&lt; XArgType &gt;::SelectAxisItems</definition>
+        <argsstring>(std::size_t axis_index, const std::vector&lt; std::size_t &gt; &amp;valid_indexes)</argsstring>
+        <name>SelectAxisItems</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>axis_index</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::size_t &gt; &amp;</type>
+          <declname>valid_indexes</declname>
+        </param>
+        <briefdescription>
+<para>Stores valid indexes for a given axis and marks selection as uninitialized. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the axis to store valid indexes for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>valid_indexes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of valid indexes for the specified axis. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="51" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="51" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a61bd56798d3ed5f5e1a84fc75fc09d36" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_SelectRepack&lt; XArgType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArgType *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Executes operation in-place by calling ExecuteOutOfPlace and copying result back to input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input object of type XArgType* that will be modified in-place </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status of the execution operation </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="76" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="76" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a25e595cccbdedffe21c4e4453ff7b0fd" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_SelectRepack&lt; XArgType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteOutOfPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="116" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="116" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a7d62bc6ecc91c129756107bc84b06518" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_SelectRepack&lt; XArgType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArgType *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place by calling InitializeOutOfPlace with workspace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to XArgType object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success of initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="67" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a9ad52ce5e111f3649a29fd529380ce7d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_SelectRepack&lt; XArgType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes out-of-place processing for given input and output arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input argument of type XArgType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to output argument of type XArgType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success or failure of initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="92" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="92" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a58c04ea520380dc62f1820c5f437bd93" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_SelectRepack&lt; XArgType &gt;::ConditionallyResizeOutput</definition>
+        <argsstring>(const std::array&lt; std::size_t, XArgType::rank::value &gt; &amp;dims, XArgType *out)</argsstring>
+        <name>ConditionallyResizeOutput</name>
+        <param>
+          <type>const std::array&lt; std::size_t, XArgType::rank::value &gt; &amp;</type>
+          <declname>dims</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Checks and conditionally resizes output dimensions if they differ from input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dims</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input dimension array to compare with output. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="214" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="214" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1abea7c0ccb5a5ebc6b256daf4528505d7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::array&lt; std::size_t, XArgType::rank::value &gt;</type>
+        <definition>std::array&lt; std::size_t, XArgType::rank::value &gt; hops::MHO_SelectRepack&lt; XArgType &gt;::DetermineOutputDimensions</definition>
+        <argsstring>(const XArgType *in)</argsstring>
+        <name>DetermineOutputDimensions</name>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Determines output dimensions based on input dimensions and axis selections. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument type pointer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Output dimensions as an array of size_t. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="193" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="193" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a1bb85806f78a7fc038b43f54f4aeb6aa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XCheckType</type>
+            <defval>XArgType</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; !std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XCheckType &gt;::<ref refid="structvalue" kindref="compound">value</ref>, void &gt;::type</type>
+        <definition>std::enable_if&lt; !std::is_base_of&lt; MHO_TableContainerBase, XCheckType &gt;::value, void &gt;::type hops::MHO_SelectRepack&lt; XArgType &gt;::IfTableSelectOnAxes</definition>
+        <argsstring>(const XArgType *, XArgType *)</argsstring>
+        <name>IfTableSelectOnAxes</name>
+        <param>
+          <type>const XArgType *</type>
+        </param>
+        <param>
+          <type>XArgType *</type>
+        </param>
+        <briefdescription>
+<para>Applies table selection on axes for input XArgType and outputs result to another XArgType. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCheckType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCheckType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="241" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="241" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SelectRepack_1a023c621b10c1d84326405826782516e2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XCheckType</type>
+            <defval>XArgType</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XCheckType &gt;::<ref refid="structvalue" kindref="compound">value</ref>, void &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_base_of&lt; MHO_TableContainerBase, XCheckType &gt;::value, void &gt;::type hops::MHO_SelectRepack&lt; XArgType &gt;::IfTableSelectOnAxes</definition>
+        <argsstring>(const XArgType *in, XArgType *out)</argsstring>
+        <name>IfTableSelectOnAxes</name>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Applies selection on axes for input XArgType and outputs result to another XArgType. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCheckType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCheckType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input XArgType data for selection </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output XArgType after applying selection </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="253" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="253" bodyend="261"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__SelectRepack" kindref="compound">MHO_SelectRepack</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>operator to select data from table and repack it into an entirely new table, this typically would involve lots of copying (expensive), so it should be used sparringly (e.g. initial or final coarse data selection)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Dec 15 16:45:22 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_SelectRepack&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__SelectRepack"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_SelectRepack&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__SelectRepack"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>tuple&lt; XArgType * &gt;</label>
+      </node>
+      <node id="4">
+        <label>tuple&lt; const XArgType *, XArgType * &gt;</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fOutOfPlaceArgs</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fInPlace</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fInPlaceArgs</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>bool</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" line="29" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SelectRepack.hh" bodystart="30" bodyend="311"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__SelectRepack_1a58c04ea520380dc62f1820c5f437bd93" prot="private" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>ConditionallyResizeOutput</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1abea7c0ccb5a5ebc6b256daf4528505d7" prot="private" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>DetermineOutputDimensions</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_SelectRepack</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a61bd56798d3ed5f5e1a84fc75fc09d36" prot="protected" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a25e595cccbdedffe21c4e4453ff7b0fd" prot="protected" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a9e3734932efb774b80f2e699b8be55a2" prot="private" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>fAxisSelectionMap</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1abce3a04d05bfc8b6b0901311a8dbf469" prot="private" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a5e39497928211475cd5db816914a293c" prot="private" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>fWorkspace</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a1bb85806f78a7fc038b43f54f4aeb6aa" prot="private" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>IfTableSelectOnAxes</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a023c621b10c1d84326405826782516e2" prot="private" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>IfTableSelectOnAxes</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_SelectRepack</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a7d62bc6ecc91c129756107bc84b06518" prot="protected" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a9ad52ce5e111f3649a29fd529380ce7d" prot="protected" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1aa503ae15550b7da9bf6fb594215b05cb" prot="public" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>MHO_SelectRepack</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1aabc5aa1ac3cb1f23b27add7586ab99ea" prot="public" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>Reset</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a9f52a81732ec6c34860cb558888354fd" prot="public" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>SelectAxisItems</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_SelectRepack</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__SelectRepack_1a2bcbfbd504c0a5679e926d90c4a9f6b9" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>~MHO_SelectRepack</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_SelectRepack</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

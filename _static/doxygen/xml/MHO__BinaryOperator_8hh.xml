@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__BinaryOperator_8hh" kind="file" language="C++">
+    <compoundname>MHO_BinaryOperator.hh</compoundname>
+    <includes refid="MHO__Operator_8hh" local="yes">MHO_Operator.hh</includes>
+    <includes local="no">tuple</includes>
+    <includedby refid="MHO__DelayRate_8hh" local="yes">MHO_DelayRate.hh</includedby>
+    <includedby refid="MHO__ComputePlotData_8hh" local="yes">MHO_ComputePlotData.hh</includedby>
+    <includedby refid="MHO__ComplexPointwiseMultiply_8hh" local="yes">MHO_ComplexPointwiseMultiply.hh</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>MHO_BinaryOperator.hh</label>
+        <link refid="MHO__BinaryOperator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tuple</label>
+      </node>
+      <node id="2">
+        <label>MHO_Operator.hh</label>
+        <link refid="MHO__Operator_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="8">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_DelayRate.hh</label>
+        <link refid="MHO__DelayRate_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>MHO_ComputePlotData.hh</label>
+        <link refid="MHO__ComputePlotData_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MHO_BasicFringeUtilities.cc</label>
+        <link refid="MHO__BasicFringeUtilities_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_BinaryOperator.hh</label>
+        <link refid="MHO__BinaryOperator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MHO_IonosphericFringeFitter.hh</label>
+        <link refid="MHO__IonosphericFringeFitter_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_MBDelaySearch.cc</label>
+        <link refid="MHO__MBDelaySearch_8cc"/>
+      </node>
+      <node id="7">
+        <label>MHO_FringeFitterFactory.cc</label>
+        <link refid="MHO__FringeFitterFactory_8cc"/>
+      </node>
+      <node id="11">
+        <label>MHO_MBDelaySearchCUDA.hh</label>
+        <link refid="MHO__MBDelaySearchCUDA_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>MHO_DelayRate.cc</label>
+        <link refid="MHO__DelayRate_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_BasicFringeFitter.hh</label>
+        <link refid="MHO__BasicFringeFitter_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MHO_FringePlotInfo.cc</label>
+        <link refid="MHO__FringePlotInfo_8cc"/>
+      </node>
+      <node id="15">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+      <node id="17">
+        <label>MHO_ComplexPointwiseMultiply.hh</label>
+        <link refid="MHO__ComplexPointwiseMultiply_8hh"/>
+      </node>
+      <node id="3">
+        <label>MHO_MBDelaySearch.hh</label>
+        <link refid="MHO__MBDelaySearch_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MHO_MBDelaySearchCUDA.cc</label>
+        <link refid="MHO__MBDelaySearchCUDA_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__BinaryOperator" prot="public">hops::MHO_BinaryOperator</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_BinaryOperator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_BinaryOperator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Operator_8hh" kindref="compound">MHO_Operator.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tuple&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>XArgType1,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>XArgType2<sp/>=<sp/>XArgType1,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>XArgType3<sp/>=<sp/>XArgType2<sp/>&gt;</highlight></codeline>
+<codeline lineno="23" refid="classhops_1_1MHO__BinaryOperator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__BinaryOperator" kindref="compound">MHO_BinaryOperator</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Operator" kindref="compound">MHO_Operator</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26" refid="classhops_1_1MHO__BinaryOperator_1abd9b011b1ad9ce7ed98fac23e0153afa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1abd9b011b1ad9ce7ed98fac23e0153afa" kindref="member">MHO_BinaryOperator</ref>()</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>)<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>1<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>)<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>2<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>)<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="classhops_1_1MHO__BinaryOperator_1ace7fcbd64341e102dd5f42985a8d26f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1ace7fcbd64341e102dd5f42985a8d26f4" kindref="member">~MHO_BinaryOperator</ref>(){};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="classhops_1_1MHO__BinaryOperator_1ab98c0e7cdbc7f23197964387625f9e66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1ab98c0e7cdbc7f23197964387625f9e66" kindref="member">SetArgs</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType1*<sp/>in1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType2*<sp/>in2,<sp/>XArgType3*<sp/>out)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref><sp/>=<sp/>std::make_tuple(in1,<sp/>in2,<sp/>out);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classhops_1_1MHO__BinaryOperator_1aa9d4b322af4ea6f5e98afc218681abe1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1aa9d4b322af4ea6f5e98afc218681abe1" kindref="member">Initialize</ref>()</highlight><highlight class="keyword"><sp/>override</highlight></codeline>
+<codeline lineno="55"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1a7640bfa5a29b53673e615aaf1c2ff3a1" kindref="member">InitializeImpl</ref>(std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>),<sp/>std::get&lt;<sp/>1<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>),<sp/>std::get&lt;<sp/>2<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>));</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classhops_1_1MHO__BinaryOperator_1af0716d50495400b0510af28a5ec75c8e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1af0716d50495400b0510af28a5ec75c8e" kindref="member">Execute</ref>()</highlight><highlight class="keyword"><sp/>override</highlight></codeline>
+<codeline lineno="66"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1a7448e37ee77a50fb3cbe4d93e0df92e7" kindref="member">ExecuteImpl</ref>(std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>),<sp/>std::get&lt;<sp/>1<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>),<sp/>std::get&lt;<sp/>2<sp/>&gt;(<ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>));</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>type1<sp/>=<sp/>XArgType1;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>type2<sp/>=<sp/>XArgType2;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>using<sp/>type3<sp/>=<sp/>XArgType3;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classhops_1_1MHO__BinaryOperator_1a7640bfa5a29b53673e615aaf1c2ff3a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1a7640bfa5a29b53673e615aaf1c2ff3a1" kindref="member">InitializeImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType1*<sp/>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType2*<sp/>,<sp/>XArgType3*<sp/>)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="94" refid="classhops_1_1MHO__BinaryOperator_1a7448e37ee77a50fb3cbe4d93e0df92e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BinaryOperator_1a7448e37ee77a50fb3cbe4d93e0df92e7" kindref="member">ExecuteImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType1*<sp/>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType2*<sp/>,<sp/>XArgType3*<sp/>)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//place<sp/>for<sp/>args<sp/>to<sp/>be<sp/>store<sp/>for<sp/>the<sp/>derived<sp/>class<sp/>to<sp/>pick<sp/>them<sp/>up/modify</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::tuple&lt;<sp/>const<sp/>XArgType1*,<sp/>const<sp/>XArgType2*,<sp/>XArgType3*<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" kindref="member">fArgs</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh"/>
+  </compounddef>
+</doxygen>

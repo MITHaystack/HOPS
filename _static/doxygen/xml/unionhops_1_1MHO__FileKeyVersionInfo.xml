@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionhops_1_1MHO__FileKeyVersionInfo" kind="union" language="C++" prot="public">
+    <compoundname>hops::MHO_FileKeyVersionInfo</compoundname>
+    <includes refid="MHO__FileKey_8hh" local="no">MHO_FileKey.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionhops_1_1MHO__FileKeyVersionInfo_1a71fac491fe8630e74d030489091e035a" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t hops::MHO_FileKeyVersionInfo::fLabel</definition>
+        <argsstring></argsstring>
+        <name>fLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileKey.hh" line="38" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileKey.hh" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionhops_1_1MHO__FileKeyVersionInfo_1add504903a128aeea27554677a0ea47db" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t hops::MHO_FileKeyVersionInfo::fVersionSize[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>fVersionSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileKey.hh" line="39" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileKey.hh" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>union <ref refid="unionhops_1_1MHO__FileKeyVersionInfo" kindref="compound">MHO_FileKeyVersionInfo</ref> - this union allows us to store the file key version and size info into a 4 byte integer </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>uint16_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FileKeyVersionInfo</label>
+        <link refid="unionhops_1_1MHO__FileKeyVersionInfo"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fVersionSize</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fLabel</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>uint32_t</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileKey.hh" line="36" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_FileKey.hh" bodystart="37" bodyend="43"/>
+    <listofallmembers>
+      <member refid="unionhops_1_1MHO__FileKeyVersionInfo_1a71fac491fe8630e74d030489091e035a" prot="public" virt="non-virtual"><scope>hops::MHO_FileKeyVersionInfo</scope><name>fLabel</name></member>
+      <member refid="unionhops_1_1MHO__FileKeyVersionInfo_1add504903a128aeea27554677a0ea47db" prot="public" virt="non-virtual"><scope>hops::MHO_FileKeyVersionInfo</scope><name>fVersionSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

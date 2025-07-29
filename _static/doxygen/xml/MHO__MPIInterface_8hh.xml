@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__MPIInterface_8hh" kind="file" language="C++">
+    <compoundname>MHO_MPIInterface.hh</compoundname>
+    <includes local="yes">mpi.h</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="MHO__MPIInterface_8cc" local="yes">MHO_MPIInterface.cc</includedby>
+    <incdepgraph>
+      <node id="14">
+        <label>atomic</label>
+      </node>
+      <node id="5">
+        <label>cstdint</label>
+      </node>
+      <node id="17">
+        <label>stdexcept</label>
+      </node>
+      <node id="18">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ostream</label>
+      </node>
+      <node id="1">
+        <label>MHO_MPIInterface.hh</label>
+        <link refid="MHO__MPIInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>ctime</label>
+      </node>
+      <node id="21">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>vector</label>
+      </node>
+      <node id="10">
+        <label>sstream</label>
+      </node>
+      <node id="13">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cstdlib</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="7">
+        <label>mutex</label>
+      </node>
+      <node id="2">
+        <label>mpi.h</label>
+      </node>
+      <node id="15">
+        <label>thread</label>
+      </node>
+      <node id="9">
+        <label>set</label>
+      </node>
+      <node id="11">
+        <label>stdio.h</label>
+      </node>
+      <node id="19">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>MHO_MPIInterface.hh</label>
+        <link refid="MHO__MPIInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_MPIInterface.cc</label>
+        <link refid="MHO__MPIInterface_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__MPIInterface" prot="public">hops::MHO_MPIInterface</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__MPIInterface_8hh_1ae1503405cdf32bf55fa06d0256de2173" prot="public" static="no">
+        <name>LOCAL_RANK_MPI</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MPIInterface.hh" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MPIInterface.hh" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_MPIInterface_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_MPIInterface_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;mpi.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="MHO__MPIInterface_8hh_1ae1503405cdf32bf55fa06d0256de2173" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCAL_RANK_MPI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classhops_1_1MHO__MPIInterface" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__MPIInterface" kindref="compound">MHO_MPIInterface</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//singleton<sp/>interface</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface" kindref="compound">MHO_MPIInterface</ref>*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a6b58a044628cbeda3a8d36764579d9b7" kindref="member">GetInstance</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1ac05d746a41145a038e35a3cb78571019" kindref="member">Initialize</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">***<sp/>argv,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>split_mode<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a8e733880f5796665aa38c8a47aeaf697" kindref="member">Finalize</ref>();</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="classhops_1_1MHO__MPIInterface_1a95e0cb77ec0610881e0649d1285f387f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a95e0cb77ec0610881e0649d1285f387f" kindref="member">Check</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="classhops_1_1MHO__MPIInterface_1ad236f1e94d3e73a674ef867d6857736f" kindref="member">fGlobalProcessID</ref><sp/>&gt;=<sp/>0)<sp/>&amp;&amp;<sp/>(<ref refid="classhops_1_1MHO__MPIInterface_1a0dc7ec2fc5b288b6d07565937f1acab4" kindref="member">fNProcesses</ref><sp/>&gt;<sp/>0);<sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classhops_1_1MHO__MPIInterface_1a63b99fe5a5d14e99d6aae5000cdffa52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a63b99fe5a5d14e99d6aae5000cdffa52" kindref="member">GetGlobalProcessID</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1ad236f1e94d3e73a674ef867d6857736f" kindref="member">fGlobalProcessID</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classhops_1_1MHO__MPIInterface_1a5534aaba69060ae781d88117b6ec5290" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a5534aaba69060ae781d88117b6ec5290" kindref="member">GetNProcesses</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a0dc7ec2fc5b288b6d07565937f1acab4" kindref="member">fNProcesses</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="classhops_1_1MHO__MPIInterface_1a6cd841945d25d8e129a9ea1b7e8b71b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a6cd841945d25d8e129a9ea1b7e8b71b5" kindref="member">GetLocalProcessID</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a63cd737749bc018be1eb5e36d2d76d1f" kindref="member">fLocalProcessID</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="classhops_1_1MHO__MPIInterface_1a19ea8b61335033060da8ad409601af29" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a19ea8b61335033060da8ad409601af29" kindref="member">GetHostName</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a4293b8ca683fba3de489f4f0ecd598c4" kindref="member">fHostName</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//use<sp/>to<sp/>isolate<sp/>a<sp/>section<sp/>of<sp/>code,<sp/>so<sp/>each<sp/>process<sp/>completes<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//one<sp/>at<sp/>a<sp/>time</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a59de15aba08cbc766b8b70ee52c3a4af" kindref="member">BeginSequentialProcess</ref>();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a4fdae43146158a3072e71ecbdc4137af" kindref="member">EndSequentialProcess</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="classhops_1_1MHO__MPIInterface_1a8b8297ee16e54d52ad181841cceccbe2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a8b8297ee16e54d52ad181841cceccbe2" kindref="member">GlobalBarrier</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/>MPI_Barrier(MPI_COMM_WORLD);<sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a2d22dffe4baccdc47ef2718cd399f94c" kindref="member">PrintMessage</ref>(std::string<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//broadcast<sp/>a<sp/>string<sp/>message<sp/>to<sp/>all<sp/>processes</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a8308c741d05fd1a474b273d67fcb12e3" kindref="member">BroadcastString</ref>(std::string&amp;<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//routines<sp/>to<sp/>be<sp/>used<sp/>by<sp/>programs<sp/>which<sp/>split<sp/>the<sp/>processes<sp/>into<sp/>two</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//groups<sp/>bases<sp/>on<sp/>even/odd<sp/>local<sp/>process<sp/>rank</highlight></codeline>
+<codeline lineno="125" refid="classhops_1_1MHO__MPIInterface_1a8236777f2fa7c7ce62056ef459766a58" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a8236777f2fa7c7ce62056ef459766a58" kindref="member">SplitMode</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1ace6bcf5d716aae5301c68e161344f4bf" kindref="member">fSplitMode</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="classhops_1_1MHO__MPIInterface_1a7c817eb9b612960ab4f37255cfcd3b8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a7c817eb9b612960ab4f37255cfcd3b8a" kindref="member">IsSplitValid</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a05173d87213b0e0d78f69c1596d6c2c0" kindref="member">fValidSplit</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="classhops_1_1MHO__MPIInterface_1a4a8e53316bac65ef6a251da8e84773f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a4a8e53316bac65ef6a251da8e84773f5" kindref="member">IsEvenGroupMember</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a14f226d03f901258997c78cafa89ed22" kindref="member">fIsEvenGroupMember</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="classhops_1_1MHO__MPIInterface_1a2dd40e73eb18d944210514257fbee842" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a2dd40e73eb18d944210514257fbee842" kindref="member">GetNSubGroupProcesses</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1af8b6f1fcaaeab595c39a1044b5f56499" kindref="member">fNSubGroupProcesses</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="classhops_1_1MHO__MPIInterface_1aaac900475439743bf7a6d621ca20dbfc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1aaac900475439743bf7a6d621ca20dbfc" kindref="member">GetSubGroupRank</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a87eb0cd69f58963f23bf14e0852a61f3" kindref="member">fSubGroupRank</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="classhops_1_1MHO__MPIInterface_1ad762f7153263a7923915f60a7854dbe8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1ad762f7153263a7923915f60a7854dbe8" kindref="member">GetPartnerProcessID</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a37d2f9144bda63c583fc088a2a9a7469" kindref="member">fPartnerProcessID</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="classhops_1_1MHO__MPIInterface_1a4daa81cf325e1db5064cec4348cc3bbb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Group*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a4daa81cf325e1db5064cec4348cc3bbb" kindref="member">GetSubGroup</ref>()</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MPIInterface_1a14f226d03f901258997c78cafa89ed22" kindref="member">fIsEvenGroupMember</ref>)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1a04b9f780e842b7eb95b8e969420d8f03" kindref="member">fEvenGroup</ref>;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1a0a899309139f6ae77cfde64e56edcaa1" kindref="member">fOddGroup</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="classhops_1_1MHO__MPIInterface_1a0f4260d861d3f2913868949195f8d687" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Comm*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a0f4260d861d3f2913868949195f8d687" kindref="member">GetSubGroupCommunicator</ref>()</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MPIInterface_1a14f226d03f901258997c78cafa89ed22" kindref="member">fIsEvenGroupMember</ref>)</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1a89e1e29fa863e9e68024dea5d19ee470" kindref="member">fEvenCommunicator</ref>;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1add803dfef098f24187e6e612d6823ada" kindref="member">fOddCommunicator</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="classhops_1_1MHO__MPIInterface_1a21c20f5b286b71d9df9d8b01ec3caa56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Group*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a21c20f5b286b71d9df9d8b01ec3caa56" kindref="member">GetEvenGroup</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1a04b9f780e842b7eb95b8e969420d8f03" kindref="member">fEvenGroup</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193" refid="classhops_1_1MHO__MPIInterface_1ac18b6535e4281975d7aa0fe644555391" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Group*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1ac18b6535e4281975d7aa0fe644555391" kindref="member">GetOddGroup</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1a0a899309139f6ae77cfde64e56edcaa1" kindref="member">fOddGroup</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195" refid="classhops_1_1MHO__MPIInterface_1a371ecdc49e020108c5e354c7b2cea769" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Comm*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a371ecdc49e020108c5e354c7b2cea769" kindref="member">GetEvenCommunicator</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1a89e1e29fa863e9e68024dea5d19ee470" kindref="member">fEvenCommunicator</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197" refid="classhops_1_1MHO__MPIInterface_1a5841337d15d2cc4022c7ddafc7f5fd57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Comm*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a5841337d15d2cc4022c7ddafc7f5fd57" kindref="member">GetOddCommunicator</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>&amp;<ref refid="classhops_1_1MHO__MPIInterface_1add803dfef098f24187e6e612d6823ada" kindref="member">fOddCommunicator</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MPIInterface_1aab52f6718fe26c8caf3612f754789be1" kindref="member">MHO_MPIInterface</ref>();</highlight></codeline>
+<codeline lineno="201" refid="classhops_1_1MHO__MPIInterface_1a8dfeca2754a801ff12b18bb93798b75a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a8dfeca2754a801ff12b18bb93798b75a" kindref="member">~MHO_MPIInterface</ref>();</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203" refid="classhops_1_1MHO__MPIInterface_1ae18f46995f832fe47d11bfb41501cd27" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface" kindref="compound">MHO_MPIInterface</ref>*<sp/><ref refid="classhops_1_1MHO__MPIInterface_1ae18f46995f832fe47d11bfb41501cd27" kindref="member">fMPIInterface</ref>;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205" refid="classhops_1_1MHO__MPIInterface_1ad236f1e94d3e73a674ef867d6857736f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1ad236f1e94d3e73a674ef867d6857736f" kindref="member">fGlobalProcessID</ref>;</highlight></codeline>
+<codeline lineno="206" refid="classhops_1_1MHO__MPIInterface_1a0dc7ec2fc5b288b6d07565937f1acab4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a0dc7ec2fc5b288b6d07565937f1acab4" kindref="member">fNProcesses</ref>;</highlight></codeline>
+<codeline lineno="207" refid="classhops_1_1MHO__MPIInterface_1a63cd737749bc018be1eb5e36d2d76d1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a63cd737749bc018be1eb5e36d2d76d1f" kindref="member">fLocalProcessID</ref>;</highlight></codeline>
+<codeline lineno="208" refid="classhops_1_1MHO__MPIInterface_1a4293b8ca683fba3de489f4f0ecd598c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a4293b8ca683fba3de489f4f0ecd598c4" kindref="member">fHostName</ref>;</highlight></codeline>
+<codeline lineno="209" refid="classhops_1_1MHO__MPIInterface_1ac3709bb544193b8e87a90345ceb6cecd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>int<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__MPIInterface_1ac3709bb544193b8e87a90345ceb6cecd" kindref="member">fCoHostedProcessIDs</ref>;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//groups<sp/>and<sp/>communicators<sp/>for<sp/>splitting<sp/>processes<sp/>into</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//two<sp/>sets,<sp/>based<sp/>on<sp/>whether<sp/>they<sp/>have<sp/>even/odd<sp/>(local)<sp/>ranks</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213" refid="classhops_1_1MHO__MPIInterface_1ace6bcf5d716aae5301c68e161344f4bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1ace6bcf5d716aae5301c68e161344f4bf" kindref="member">fSplitMode</ref>;</highlight></codeline>
+<codeline lineno="214" refid="classhops_1_1MHO__MPIInterface_1a04b9f780e842b7eb95b8e969420d8f03" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Group<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a04b9f780e842b7eb95b8e969420d8f03" kindref="member">fEvenGroup</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//even<sp/>process<sp/>subgroup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215" refid="classhops_1_1MHO__MPIInterface_1a0a899309139f6ae77cfde64e56edcaa1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Group<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a0a899309139f6ae77cfde64e56edcaa1" kindref="member">fOddGroup</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//odd<sp/>process<sp/>subgroup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216" refid="classhops_1_1MHO__MPIInterface_1a89e1e29fa863e9e68024dea5d19ee470" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Comm<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a89e1e29fa863e9e68024dea5d19ee470" kindref="member">fEvenCommunicator</ref>;<sp/></highlight><highlight class="comment">//comm<sp/>for<sp/>even<sp/>group</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="classhops_1_1MHO__MPIInterface_1add803dfef098f24187e6e612d6823ada" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Comm<sp/><ref refid="classhops_1_1MHO__MPIInterface_1add803dfef098f24187e6e612d6823ada" kindref="member">fOddCommunicator</ref>;<sp/><sp/></highlight><highlight class="comment">//comm<sp/>for<sp/>odd<sp/>group</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218" refid="classhops_1_1MHO__MPIInterface_1a05173d87213b0e0d78f69c1596d6c2c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a05173d87213b0e0d78f69c1596d6c2c0" kindref="member">fValidSplit</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//true<sp/>if<sp/>the<sp/>size<sp/>of<sp/>the<sp/>subgroups<sp/>is<sp/>equal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219" refid="classhops_1_1MHO__MPIInterface_1a14f226d03f901258997c78cafa89ed22" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a14f226d03f901258997c78cafa89ed22" kindref="member">fIsEvenGroupMember</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//true<sp/>if<sp/>this<sp/>process<sp/>is<sp/>a<sp/>member<sp/>of<sp/>the<sp/>even<sp/>subgroup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="classhops_1_1MHO__MPIInterface_1a87eb0cd69f58963f23bf14e0852a61f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a87eb0cd69f58963f23bf14e0852a61f3" kindref="member">fSubGroupRank</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//rank<sp/>of<sp/>this<sp/>process<sp/>in<sp/>its<sp/>subgroup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221" refid="classhops_1_1MHO__MPIInterface_1af8b6f1fcaaeab595c39a1044b5f56499" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1af8b6f1fcaaeab595c39a1044b5f56499" kindref="member">fNSubGroupProcesses</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//number<sp/>of<sp/>processes<sp/>in<sp/>the<sp/>subgroup<sp/>this<sp/>process<sp/>belongs<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="classhops_1_1MHO__MPIInterface_1a37d2f9144bda63c583fc088a2a9a7469" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1a37d2f9144bda63c583fc088a2a9a7469" kindref="member">fPartnerProcessID</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//global<sp/>rank<sp/>of<sp/>partner<sp/>process<sp/>in<sp/>other<sp/>subgroup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1ae22eb4418d99e36c32339b5c3eff0599" kindref="member">DetermineLocalRank</ref>();</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MPIInterface_1adae0399d810bb8df980c1bd5ddc9f844" kindref="member">SetupSubGroups</ref>();</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227" refid="classhops_1_1MHO__MPIInterface_1a47e02e7096c5ea79e668b3d27466ebfe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MPI_Status<sp/><ref refid="classhops_1_1MHO__MPIInterface_1a47e02e7096c5ea79e668b3d27466ebfe" kindref="member">fStatus</ref>;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal">}<sp/></highlight><highlight class="comment">//end<sp/>of<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MPIInterface.hh"/>
+  </compounddef>
+</doxygen>

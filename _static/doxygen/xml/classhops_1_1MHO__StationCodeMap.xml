@@ -1,0 +1,539 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__StationCodeMap" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_StationCodeMap</compoundname>
+    <includes refid="MHO__StationCodeMap_8hh" local="no">MHO_StationCodeMap.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1a654168abcbdbe043dff4305a0cf7502b" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt; std::string, std::string &gt; hops::MHO_StationCodeMap::fCode2Mk4IdMap</definition>
+        <argsstring></argsstring>
+        <name>fCode2Mk4IdMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="137" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1abfdaa14eec8b36a75d2bdb6c91404682" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_StationCodeMap::fFile</definition>
+        <argsstring></argsstring>
+        <name>fFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="127" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1a564658ca305e77df3513c4c751dcd4a7" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_StationCodeMap::fFreeMk4Ids</definition>
+        <argsstring></argsstring>
+        <name>fFreeMk4Ids</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="134" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1a6afa08ab36bfd4372e6e6af5d390f466" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_StationCodeMap::fLine</definition>
+        <argsstring></argsstring>
+        <name>fLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="128" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1ab3119f9672c35ae4f9b8f0285f36e9bb" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt; std::string, std::string &gt; hops::MHO_StationCodeMap::fMk4Id2CodeMap</definition>
+        <argsstring></argsstring>
+        <name>fMk4Id2CodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="136" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1a687720607564534ffbf65752a294d725" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_StationCodeMap::fMk4Ids</definition>
+        <argsstring></argsstring>
+        <name>fMk4Ids</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="133" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1ade438b4a062d8db882f2158152a18350" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_StationCodeMap::fStationCodes</definition>
+        <argsstring></argsstring>
+        <name>fStationCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="132" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1ac52b83e9386d3e96065bc7ea82a265a1" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Tokenizer" kindref="compound">MHO_Tokenizer</ref></type>
+        <definition>MHO_Tokenizer hops::MHO_StationCodeMap::fTokenizer</definition>
+        <argsstring></argsstring>
+        <name>fTokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="129" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1aa95559b2ef54b21f7c0954f63be5a9bf" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_StationCodeMap::fTokens</definition>
+        <argsstring></argsstring>
+        <name>fTokens</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="130" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__StationCodeMap_1aa5e45586a5c0bc4804abaf9450bbcbcf" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_StationCodeMap::fUseLegacyCodes</definition>
+        <argsstring></argsstring>
+        <name>fUseLegacyCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="121" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1ab23fac23ae1c64cf1ee62fd25a5814a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_StationCodeMap::MHO_StationCodeMap</definition>
+        <argsstring>(bool use_legacy_default_codes=false)</argsstring>
+        <name>MHO_StationCodeMap</name>
+        <param>
+          <type>bool</type>
+          <declname>use_legacy_default_codes</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="9" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1aa2adff3004672122a47a314bacb942e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_StationCodeMap::~MHO_StationCodeMap</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_StationCodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a5f2eaae0e03949d254a7594eaf5c6e35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_StationCodeMap::GetAllMk4Ids</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllMk4Ids</name>
+        <briefdescription>
+<para>Getter for all mk4ids. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;std::string containing all Mk4 IDs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="64" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="264" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1af7c9e1476b263eda31b47e897a591e3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_StationCodeMap::GetAllStationCodes</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllStationCodes</name>
+        <briefdescription>
+<para>Getter for all station codes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A vector of strings containing all unique station codes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="70" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="274" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a45b5ac3145364e0ab6233e282a66e5f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_StationCodeMap::GetMk4IdFromStationCode</definition>
+        <argsstring>(std::string station_code)</argsstring>
+        <name>GetMk4IdFromStationCode</name>
+        <param>
+          <type>std::string</type>
+          <declname>station_code</declname>
+        </param>
+        <briefdescription>
+<para>Getter for mk4id from station code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input station code to retrieve mk4id </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mk4id corresponding to input station_code </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="57" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="125" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1ac76e58b29acfb430dcca2f00cecc0909" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_StationCodeMap::GetStationCodeFromMk4Id</definition>
+        <argsstring>(std::string mk4id)</argsstring>
+        <name>GetStationCodeFromMk4Id</name>
+        <param>
+          <type>std::string</type>
+          <declname>mk4id</declname>
+        </param>
+        <briefdescription>
+<para>Getter for station code from mk4id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mk4id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input Mk4 ID string to search for in the map. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Station code as a string if found; otherwise, an empty string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="50" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="114" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a050190c2f69bc71bd62b7a1cbae1e1a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_StationCodeMap::InitializeStationCodes</definition>
+        <argsstring>(std::string station_codes_file=&quot;&quot;)</argsstring>
+        <name>InitializeStationCodes</name>
+        <param>
+          <type>std::string</type>
+          <declname>station_codes_file</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Initializes station codes by reading from a file and optionally using legacy codes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_codes_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the file containing station codes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="42" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="17" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a341c1b5359d2c70bb66777b2a48a9053" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_StationCodeMap::UseLegacyCodes</definition>
+        <argsstring>()</argsstring>
+        <name>UseLegacyCodes</name>
+        <briefdescription>
+<para>Sets legacy codes usage flag to true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="35" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a126a1c0defb0018a5c368fd0bf2421f3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_StationCodeMap::AddLegacyCodeMap</definition>
+        <argsstring>()</argsstring>
+        <name>AddLegacyCodeMap</name>
+        <briefdescription>
+<para>Adds a legacy set of station codes to the <ref refid="classhops_1_1MHO__StationCodeMap" kindref="compound">MHO_StationCodeMap</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="125" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="183" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a16f4c1416b53433e7560ef1554abf99c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_StationCodeMap::Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <briefdescription>
+<para>Initializes free Mk4 IDs and clears station codes and Mk4 IDs maps. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="76" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="158" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a6cbe489e7d16885503c7b2b6edc87b36" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_StationCodeMap::InsertPair</definition>
+        <argsstring>(std::string station_code, std::string mk4id)</argsstring>
+        <name>InsertPair</name>
+        <param>
+          <type>std::string</type>
+          <declname>station_code</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>mk4id</declname>
+        </param>
+        <briefdescription>
+<para>Inserts a pair of station_code and mk4id into maps and updates free Mk4Ids. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Station code string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mk4id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Mk4 identifier string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="95" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="88" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1af6840c187077fa4f8d855231cc99c261" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_StationCodeMap::ProcessLine</definition>
+        <argsstring>()</argsstring>
+        <name>ProcessLine</name>
+        <briefdescription>
+<para>Processes a line containing station codes and inserts them into a map if valid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="87" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="46" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a9efa5d898749df8d091f663809cb32c9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_StationCodeMap::ToCanonicalCase</definition>
+        <argsstring>(std::string token)</argsstring>
+        <name>ToCanonicalCase</name>
+        <param>
+          <type>std::string</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Converts a given string token to canonical case (first character uppercase, second lowercase). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string token to be converted </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String token in canonical case </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="119" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="236" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1af69e46c99e2080019dee77ac39be7d0b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_StationCodeMap::TokensAreValid</definition>
+        <argsstring>()</argsstring>
+        <name>TokensAreValid</name>
+        <briefdescription>
+<para>Checks if the size and length of tokens are valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if tokens are valid, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="82" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="97" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1a45553a02a97caf76ec8d504571a26e48" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_StationCodeMap::ToLowerCase</definition>
+        <argsstring>(std::string token)</argsstring>
+        <name>ToLowerCase</name>
+        <param>
+          <type>std::string</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Converts a given string to lowercase while preserving non-alphabetic characters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string to be converted to lowercase. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The input string converted to lowercase. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="111" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="218" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__StationCodeMap_1aab9b4dbc3f4a8e918926b2a7dc6a4ec2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_StationCodeMap::ToUpperCase</definition>
+        <argsstring>(std::string token)</argsstring>
+        <name>ToUpperCase</name>
+        <param>
+          <type>std::string</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Converts a given string to uppercase while preserving non-alphabetic characters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string to be converted to uppercase. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Uppercase version of the input string, preserving non-alphabetic characters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="103" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_StationCodeMap.cc" bodystart="200" bodyend="216"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__StationCodeMap" kindref="compound">MHO_StationCodeMap</ref> Handles the mapping of two character and one character station representation. This class can be initialized from a file, otherwise it assigns free 1-char codes based on the order in which stations are encountered. Optionally, we can enable some legacy station code assignments inherited from difx2mark4. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Apr 28 12:25:09 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_StationCodeMap.hh" bodystart="27" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a126a1c0defb0018a5c368fd0bf2421f3" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>AddLegacyCodeMap</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a654168abcbdbe043dff4305a0cf7502b" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fCode2Mk4IdMap</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1abfdaa14eec8b36a75d2bdb6c91404682" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fFile</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a564658ca305e77df3513c4c751dcd4a7" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fFreeMk4Ids</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a6afa08ab36bfd4372e6e6af5d390f466" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fLine</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1ab3119f9672c35ae4f9b8f0285f36e9bb" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fMk4Id2CodeMap</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a687720607564534ffbf65752a294d725" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fMk4Ids</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1ade438b4a062d8db882f2158152a18350" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fStationCodes</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1ac52b83e9386d3e96065bc7ea82a265a1" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fTokenizer</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1aa95559b2ef54b21f7c0954f63be5a9bf" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fTokens</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1aa5e45586a5c0bc4804abaf9450bbcbcf" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>fUseLegacyCodes</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a5f2eaae0e03949d254a7594eaf5c6e35" prot="public" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>GetAllMk4Ids</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1af7c9e1476b263eda31b47e897a591e3d" prot="public" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>GetAllStationCodes</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a45b5ac3145364e0ab6233e282a66e5f6" prot="public" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>GetMk4IdFromStationCode</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1ac76e58b29acfb430dcca2f00cecc0909" prot="public" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>GetStationCodeFromMk4Id</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a16f4c1416b53433e7560ef1554abf99c" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a050190c2f69bc71bd62b7a1cbae1e1a8" prot="public" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>InitializeStationCodes</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a6cbe489e7d16885503c7b2b6edc87b36" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>InsertPair</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1ab23fac23ae1c64cf1ee62fd25a5814a7" prot="public" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>MHO_StationCodeMap</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1af6840c187077fa4f8d855231cc99c261" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>ProcessLine</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a9efa5d898749df8d091f663809cb32c9" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>ToCanonicalCase</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1af69e46c99e2080019dee77ac39be7d0b" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>TokensAreValid</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a45553a02a97caf76ec8d504571a26e48" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>ToLowerCase</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1aab9b4dbc3f4a8e918926b2a7dc6a4ec2" prot="private" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>ToUpperCase</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1a341c1b5359d2c70bb66777b2a48a9053" prot="public" virt="non-virtual"><scope>hops::MHO_StationCodeMap</scope><name>UseLegacyCodes</name></member>
+      <member refid="classhops_1_1MHO__StationCodeMap_1aa2adff3004672122a47a314bacb942e7" prot="public" virt="virtual"><scope>hops::MHO_StationCodeMap</scope><name>~MHO_StationCodeMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

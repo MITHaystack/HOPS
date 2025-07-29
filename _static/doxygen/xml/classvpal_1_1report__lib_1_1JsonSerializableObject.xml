@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1report__lib_1_1JsonSerializableObject" kind="class" language="Python" prot="public">
+    <compoundname>vpal::report_lib::JsonSerializableObject</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+    <derivedcompoundref refid="classvpal_1_1ffres2pcp__lib_1_1Configuration" prot="public" virt="non-virtual">vpal.ffres2pcp_lib.Configuration</derivedcompoundref>
+    <derivedcompoundref refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData" prot="public" virt="non-virtual">vpal.ffres2pcp_lib.ExperimentReportData</derivedcompoundref>
+    <derivedcompoundref refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases" prot="public" virt="non-virtual">vpal.ffres2pcp_lib.SingleStationPCPhases</derivedcompoundref>
+    <derivedcompoundref refid="classvpal_1_1fourphase__lib_1_1Configuration" prot="public" virt="non-virtual">vpal.fourphase_lib.Configuration</derivedcompoundref>
+    <derivedcompoundref refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData" prot="public" virt="non-virtual">vpal.fourphase_lib.ExperimentReportData</derivedcompoundref>
+    <derivedcompoundref refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets" prot="public" virt="non-virtual">vpal.fourphase_lib.SingleStationPhaseDelayOffsets</derivedcompoundref>
+    <derivedcompoundref refid="classvpal_1_1fringe__file__manipulation_1_1SingleBaselinePolarizationProductCollection" prot="public" virt="non-virtual">vpal.fringe_file_manipulation.SingleBaselinePolarizationProductCollection</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1report__lib_1_1JsonSerializableObject_1a5c3ae4ed6d06099f454ead9b988b691c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.report_lib.JsonSerializableObject.export_json</definition>
+        <argsstring>(self)</argsstring>
+        <name>export_json</name>
+        <reimplementedby refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a3db22e453afa71581fcdb3253b5a5de5">export_json</reimplementedby>
+        <reimplementedby refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a113db7ba79c0d0ecbff91e54719dc58b">export_json</reimplementedby>
+        <reimplementedby refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a0955eba7c07c328aae4fa1805f21c831">export_json</reimplementedby>
+        <reimplementedby refid="classvpal_1_1fourphase__lib_1_1Configuration_1aba26d44f328ac32c49a8619a65c19a8b">export_json</reimplementedby>
+        <reimplementedby refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a4370a90a66c896a27c0a23d2952cbd2e">export_json</reimplementedby>
+        <reimplementedby refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1abe5181702672b6c2d8f49400e67e18db">export_json</reimplementedby>
+        <reimplementedby refid="classvpal_1_1fringe__file__manipulation_1_1SingleBaselinePolarizationProductCollection_1a17cc7f8703c2781cc346201ab35c6eac">export_json</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" line="9" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1report__lib_1_1JsonSerializableObject_1aa016c5f55c3299e6e7525fb4b31a3377" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.report_lib.JsonSerializableObject.import_json</definition>
+        <argsstring>(self, json_dict)</argsstring>
+        <name>import_json</name>
+        <reimplementedby refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a1eecf5e9dc903538a53fecd6dc557a1a">import_json</reimplementedby>
+        <reimplementedby refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData_1a58af7cd8ca1228231ac00ca0e512ec2f">import_json</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>json_dict</type>
+          <defname>json_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" line="12" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" bodystart="12" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>JsonSerializableObject, functions must be overloaded for complex types</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vpal.ffres2pcp_lib.Configuration</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1Configuration"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vpal.ffres2pcp_lib.ExperimentReportData</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>vpal.ffres2pcp_lib.SingleStationPCPhases</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="9">
+        <label>vpal.fringe_file_manipulation.SingleBaselinePolarizationProductCollection</label>
+        <link refid="classvpal_1_1fringe__file__manipulation_1_1SingleBaselinePolarizationProductCollection"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>vpal.fourphase_lib.SingleStationPhaseDelayOffsets</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>vpal.fourphase_lib.Configuration</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1Configuration"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>vpal.fourphase_lib.ExperimentReportData</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" line="6" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/report_lib.py" bodystart="6" bodyend="19"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1a5c3ae4ed6d06099f454ead9b988b691c" prot="public" virt="non-virtual"><scope>vpal::report_lib::JsonSerializableObject</scope><name>export_json</name></member>
+      <member refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1aa016c5f55c3299e6e7525fb4b31a3377" prot="public" virt="non-virtual"><scope>vpal::report_lib::JsonSerializableObject</scope><name>import_json</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

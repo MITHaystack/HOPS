@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__statistics" kind="struct" language="C++" prot="public">
+    <compoundname>type_statistics</compoundname>
+    <includes refid="statistics_8h" local="no">statistics.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__statistics_1ae2481016178ee0eefaa7e3e4da1dd5e3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_statistics::ercc</definition>
+        <argsstring></argsstring>
+        <name>ercc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" line="8" column="4" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__statistics_1adfb16591c7cf460dd9012cb802751c95" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_statistics::frq_acc[MAXFREQ][8]</definition>
+        <argsstring>[MAXFREQ][8]</argsstring>
+        <name>frq_acc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__statistics_1ad529b0527da4f17eda926d97589dab04" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_statistics::frq_x_perror[MAXFREQ][8]</definition>
+        <argsstring>[MAXFREQ][8]</argsstring>
+        <name>frq_x_perror</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" line="3" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__statistics_1aac1a7dcb89203a4f08706f61b10438cd" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_statistics::frq_y_perror[MAXFREQ][8]</definition>
+        <argsstring>[MAXFREQ][8]</argsstring>
+        <name>frq_y_perror</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" line="4" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__statistics_1a0f6372083c3b5b54baeb0c708ff0fded" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_statistics::xperror</definition>
+        <argsstring></argsstring>
+        <name>xperror</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" line="6" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__statistics_1a0cf7741157e356cf856398fa10dfe343" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_statistics::yperror</definition>
+        <argsstring></argsstring>
+        <name>yperror</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" line="7" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_statistics</label>
+        <link refid="structtype__statistics"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>frq_x_perror</edgelabel>
+          <edgelabel>frq_y_perror</edgelabel>
+          <edgelabel>xperror</edgelabel>
+          <edgelabel>yperror</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ercc</edgelabel>
+          <edgelabel>frq_acc</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" line="1" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/statistics.h" bodystart="2" bodyend="9"/>
+    <listofallmembers>
+      <member refid="structtype__statistics_1ae2481016178ee0eefaa7e3e4da1dd5e3" prot="public" virt="non-virtual"><scope>type_statistics</scope><name>ercc</name></member>
+      <member refid="structtype__statistics_1adfb16591c7cf460dd9012cb802751c95" prot="public" virt="non-virtual"><scope>type_statistics</scope><name>frq_acc</name></member>
+      <member refid="structtype__statistics_1ad529b0527da4f17eda926d97589dab04" prot="public" virt="non-virtual"><scope>type_statistics</scope><name>frq_x_perror</name></member>
+      <member refid="structtype__statistics_1aac1a7dcb89203a4f08706f61b10438cd" prot="public" virt="non-virtual"><scope>type_statistics</scope><name>frq_y_perror</name></member>
+      <member refid="structtype__statistics_1a0f6372083c3b5b54baeb0c708ff0fded" prot="public" virt="non-virtual"><scope>type_statistics</scope><name>xperror</name></member>
+      <member refid="structtype__statistics_1a0cf7741157e356cf856398fa10dfe343" prot="public" virt="non-virtual"><scope>type_statistics</scope><name>yperror</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

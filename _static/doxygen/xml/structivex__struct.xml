@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structivex__struct" kind="struct" language="C++" prot="public">
+    <compoundname>ivex_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structivex__struct_1a6ca1235fe053ceaedaea6a28661e4cd9" prot="public" static="no" mutable="no">
+        <type>unsigned long</type>
+        <definition>unsigned long ivex_struct::bocf_period</definition>
+        <argsstring></argsstring>
+        <name>bocf_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="133" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1a35473c1ebc2ff2e84cb12a2d50815fcf" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ivex_struct::cf_edit_mask</definition>
+        <argsstring></argsstring>
+        <name>cf_edit_mask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="140" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1a3907dcddc2f8fd9e2ace491fbb73da89" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ivex_struct::counter_envname[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>counter_envname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="136" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1ab14a499f1a9de0d413756deffa53327e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ivex_struct::counter_port</definition>
+        <argsstring></argsstring>
+        <name>counter_port</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="137" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1afc8bcc64ae37b1e056bcd04555ac5e2c" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structCUCC__port__struct" kindref="compound">CUCC_port_struct</ref></type>
+        <definition>struct CUCC_port_struct ivex_struct::cucc_ports[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>cucc_ports</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="134" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1a412bfd99e3534c6a3e520bb78bc67250" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ivex_struct::header_duration</definition>
+        <argsstring></argsstring>
+        <name>header_duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="134" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1ab594622fc52a7c087f79507585fdc8d7" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ivex_struct::nmonitor</definition>
+        <argsstring></argsstring>
+        <name>nmonitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="141" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1ac0fca252a113d036e95b50af2f6cc3fb" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ivex_struct::nplayback_systems</definition>
+        <argsstring></argsstring>
+        <name>nplayback_systems</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="143" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1a9ef75e3105a4b4b739a8e2d787c316f2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpbs__init__struct" kindref="compound">pbs_init_struct</ref></type>
+        <definition>struct pbs_init_struct ivex_struct::pbs_init[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>pbs_init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="143" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1aab10ba8be2802783f3dc3c2e96faf647" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ivex_struct::switch_envname[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>switch_envname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="138" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1a863c57eedee153da42a52a08d014b1e1" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ivex_struct::switch_port</definition>
+        <argsstring></argsstring>
+        <name>switch_port</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="139" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1a18ba9462814297883925391230fef092" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ivex_struct::system_tempo</definition>
+        <argsstring></argsstring>
+        <name>system_tempo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="132" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structivex__struct_1a64c10a1537e2670b53a0064656501110" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtim__mon__struct" kindref="compound">tim_mon_struct</ref></type>
+        <definition>struct tim_mon_struct ivex_struct::timing_monitor[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>timing_monitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="141" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="19">
+        <label>CUCC_port_struct</label>
+        <link refid="structCUCC__port__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>crate_number</edgelabel>
+          <edgelabel>port_A_number</edgelabel>
+          <edgelabel>port_B_number</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>drive_init_struct</label>
+        <link refid="structdrive__init__struct"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>monitor_module</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>capstan_relative_diameter</edgelabel>
+          <edgelabel>tape_acceleration</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>computer_name</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>drive_type</edgelabel>
+          <edgelabel>nheads</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>vacuum</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mcb_addr_id</edgelabel>
+          <edgelabel>mcb_addr_start</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>headstack</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>DIM_connect</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="16">
+        <label>headstack_DIM_connect_struct</label>
+        <link refid="structheadstack__DIM__connect__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>eqlzr</edgelabel>
+          <edgelabel>headstack</edgelabel>
+          <edgelabel>parity</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>double</label>
+      </node>
+      <node id="12">
+        <label>moni_read_struct</label>
+        <link refid="structmoni__read__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>equalizer</edgelabel>
+          <edgelabel>track</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>bad_frame_struct</label>
+        <link refid="structbad__frame__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>CRC_error</edgelabel>
+          <edgelabel>PE_limit_exceeded</edgelabel>
+          <edgelabel>lost_sync</edgelabel>
+          <edgelabel>unexpected_sync</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>tim_mon_struct</label>
+        <link refid="structtim__mon__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>maximum</edgelabel>
+          <edgelabel>minimum</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>switch_pos</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>measurement_name</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fail_action</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>su_connect_struct</label>
+        <link refid="structsu__connect__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>corr_segment</edgelabel>
+          <edgelabel>inputbd_chan_grp</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="14">
+        <label>headstack_parms_struct</label>
+        <link refid="structheadstack__parms__struct"/>
+        <childnode refid="15" relation="usage">
+          <edgelabel>param</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>SUCC_port_struct</label>
+        <link refid="structSUCC__port__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>DPU_port</edgelabel>
+          <edgelabel>console_port</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>vacuum_struct</label>
+        <link refid="structvacuum__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>inches_of_H2O</edgelabel>
+          <edgelabel>setting</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>unsigned long</label>
+      </node>
+      <node id="17">
+        <label>TRM_config_struct</label>
+        <link refid="structTRM__config__struct"/>
+        <childnode refid="15" relation="usage">
+          <edgelabel>parity_error_limit</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mux1_1bit</edgelabel>
+          <edgelabel>mux1_2bit</edgelabel>
+          <edgelabel>mux2_1bit</edgelabel>
+          <edgelabel>mux2_2bit</edgelabel>
+          <edgelabel>mux4_1bit</edgelabel>
+          <edgelabel>mux4_2bit</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>invalid_frame_control</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>pbs_init_struct</label>
+        <link refid="structpbs__init__struct"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>succ_port</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>tape_servo_interval</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cHost</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>SU_ID</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>timing_monitor</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>su_connect</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>drive</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>TRM_config</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ivex_struct</label>
+        <link refid="structivex__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bocf_period</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>counter_envname</edgelabel>
+          <edgelabel>switch_envname</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>counter_port</edgelabel>
+          <edgelabel>header_duration</edgelabel>
+          <edgelabel>nmonitor</edgelabel>
+          <edgelabel>nplayback_systems</edgelabel>
+          <edgelabel>switch_port</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>system_tempo</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>timing_monitor</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>pbs_init</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>cf_edit_mask</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>cucc_ports</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="130" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="131" bodyend="145"/>
+    <listofallmembers>
+      <member refid="structivex__struct_1a6ca1235fe053ceaedaea6a28661e4cd9" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>bocf_period</name></member>
+      <member refid="structivex__struct_1a35473c1ebc2ff2e84cb12a2d50815fcf" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>cf_edit_mask</name></member>
+      <member refid="structivex__struct_1a3907dcddc2f8fd9e2ace491fbb73da89" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>counter_envname</name></member>
+      <member refid="structivex__struct_1ab14a499f1a9de0d413756deffa53327e" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>counter_port</name></member>
+      <member refid="structivex__struct_1afc8bcc64ae37b1e056bcd04555ac5e2c" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>cucc_ports</name></member>
+      <member refid="structivex__struct_1a412bfd99e3534c6a3e520bb78bc67250" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>header_duration</name></member>
+      <member refid="structivex__struct_1ab594622fc52a7c087f79507585fdc8d7" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>nmonitor</name></member>
+      <member refid="structivex__struct_1ac0fca252a113d036e95b50af2f6cc3fb" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>nplayback_systems</name></member>
+      <member refid="structivex__struct_1a9ef75e3105a4b4b739a8e2d787c316f2" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>pbs_init</name></member>
+      <member refid="structivex__struct_1aab10ba8be2802783f3dc3c2e96faf647" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>switch_envname</name></member>
+      <member refid="structivex__struct_1a863c57eedee153da42a52a08d014b1e1" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>switch_port</name></member>
+      <member refid="structivex__struct_1a18ba9462814297883925391230fef092" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>system_tempo</name></member>
+      <member refid="structivex__struct_1a64c10a1537e2670b53a0064656501110" prot="public" virt="non-virtual"><scope>ivex_struct</scope><name>timing_monitor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

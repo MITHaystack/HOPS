@@ -1,0 +1,513 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ffio_8h" kind="file" language="C++">
+    <compoundname>ffio.h</compoundname>
+    <includedby refid="fill__fringe__info_8c" local="yes">fill_fringe_info.c</includedby>
+    <includedby refid="output_8c" local="yes">output.c</includedby>
+    <invincdepgraph>
+      <node id="3">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="1">
+        <label>ffio.h</label>
+        <link refid="ffio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fill_fringe_info.c</label>
+        <link refid="fill__fringe__info_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ffio_8h_1a6f3b254a50dbd0b98f1c457a245ba915" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_200</definition>
+        <argsstring>(struct scan_struct *root, struct type_param *param, struct type_200 *t200)</argsstring>
+        <name>fill_200</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__200" kindref="compound">type_200</ref> *</type>
+          <declname>t200</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="6" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_200.c" bodystart="28" bodyend="84" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="6" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a79b850df237336f02b3ae5a86c771732" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_201</definition>
+        <argsstring>(struct scan_struct *root, struct type_param *param, struct type_201 *t201)</argsstring>
+        <name>fill_201</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__201" kindref="compound">type_201</ref> *</type>
+          <declname>t201</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="12" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_201.c" bodystart="20" bodyend="42" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="12" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a7924c3f2626a8aa33f3ebbaf3e948db9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_202</definition>
+        <argsstring>(struct vex *root, struct type_param *param, struct type_202 *t202)</argsstring>
+        <name>fill_202</name>
+        <param>
+          <type>struct <ref refid="structvex" kindref="compound">vex</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__202" kindref="compound">type_202</ref> *</type>
+          <declname>t202</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_202.c" bodystart="23" bodyend="142" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="17" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a3063cbc69f3cb56f3698140444bada82" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_203</definition>
+        <argsstring>(struct scan_struct *root, struct type_param *param, struct type_203 *t203)</argsstring>
+        <name>fill_203</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__203" kindref="compound">type_203</ref> *</type>
+          <declname>t203</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_203.c" bodystart="24" bodyend="106" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="23" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a6a11d244dc9af401aed461e29389a6d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_204</definition>
+        <argsstring>(struct type_204 *t204)</argsstring>
+        <name>fill_204</name>
+        <param>
+          <type>struct <ref refid="structtype__204" kindref="compound">type_204</ref> *</type>
+          <declname>t204</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_204.c" bodystart="23" bodyend="65" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="29" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a7a4a7f217da7f1b92b3e9b3b6f93a521" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_205</definition>
+        <argsstring>(struct scan_struct *root, struct type_pass *pass, struct type_param *param, struct type_203 *t203, struct type_205 *t205)</argsstring>
+        <name>fill_205</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__203" kindref="compound">type_203</ref> *</type>
+          <declname>t203</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__205" kindref="compound">type_205</ref> *</type>
+          <declname>t205</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_205.c" bodystart="22" bodyend="112" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="33" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a2e77bb8a8cd7ea49cb6b580541ceb0f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_206</definition>
+        <argsstring>(struct scan_struct *root, struct type_pass *pass, struct type_param *param, struct type_status *status, struct type_206 *t206)</argsstring>
+        <name>fill_206</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__206" kindref="compound">type_206</ref> *</type>
+          <declname>t206</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_206.c" bodystart="22" bodyend="75" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="41" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a37f87f377957354eb2c5fe50f493dd35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_207</definition>
+        <argsstring>(struct type_pass *pass, struct type_status *status, struct type_param *param, struct type_207 *t207)</argsstring>
+        <name>fill_207</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__207" kindref="compound">type_207</ref> *</type>
+          <declname>t207</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="49" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_207.c" bodystart="23" bodyend="97" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="49" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1acb5616839e6ea9dfc8c8e090878eb773" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_208</definition>
+        <argsstring>(struct type_pass *pass, struct type_param *param, struct type_status *status, struct type_202 *t202, struct type_208 *t208)</argsstring>
+        <name>fill_208</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__202" kindref="compound">type_202</ref> *</type>
+          <declname>t202</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__208" kindref="compound">type_208</ref> *</type>
+          <declname>t208</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="56" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_208.c" bodystart="27" bodyend="173" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="56" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a26eecbc147d03cdde955f0807a69e793" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_210</definition>
+        <argsstring>(struct type_pass *pass, struct type_status *status, struct type_210 *t210)</argsstring>
+        <name>fill_210</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__210" kindref="compound">type_210</ref> *</type>
+          <declname>t210</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="64" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_210.c" bodystart="24" bodyend="40" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="64" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a358d1ab3ea48a655b660555cdefb35e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_212</definition>
+        <argsstring>(struct type_pass *pass, struct type_status *status, struct type_param *param, int fr, struct type_212 *t212)</argsstring>
+        <name>fill_212</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fr</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__212" kindref="compound">type_212</ref> *</type>
+          <declname>t212</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="70" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_212.c" bodystart="20" bodyend="62" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="70" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a74faa26911abeafaca7c093e1128659b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_222</definition>
+        <argsstring>(struct type_param *param, struct type_222 **t222)</argsstring>
+        <name>fill_222</name>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__222" kindref="compound">type_222</ref> **</type>
+          <declname>t222</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="78" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_222.c" bodystart="25" bodyend="107" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="78" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1ab6cc849c6a0795a3f8e12559ed1d5e34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_230</definition>
+        <argsstring>(struct type_pass *pass, struct type_param *param, int fr, int ap, struct type_230 *t230)</argsstring>
+        <name>fill_230</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fr</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ap</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__230" kindref="compound">type_230</ref> *</type>
+          <declname>t230</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="83" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_230.c" bodystart="19" bodyend="82" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="83" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ffio_8h_1a9147053a235d939cb55d95710091017f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_fringe_info</definition>
+        <argsstring>(struct vex *root, struct type_pass *pass, char *filename)</argsstring>
+        <name>fill_fringe_info</name>
+        <param>
+          <type>struct <ref refid="structvex" kindref="compound">vex</ref> *</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" line="91" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/src/fill_fringe_info.c" bodystart="27" bodyend="159" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h" declline="91" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>FFIO_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FFIO_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><ref refid="ffio_8h_1a6f3b254a50dbd0b98f1c457a245ba915" kindref="member">fill_200</ref><sp/>(</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__200" kindref="compound">type_200</ref><sp/>*t200);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><ref refid="ffio_8h_1a79b850df237336f02b3ae5a86c771732" kindref="member">fill_201</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__201" kindref="compound">type_201</ref><sp/>*t201);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><ref refid="ffio_8h_1a7924c3f2626a8aa33f3ebbaf3e948db9" kindref="member">fill_202</ref><sp/>(</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structvex" kindref="compound">vex</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__202" kindref="compound">type_202</ref><sp/>*t202);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="ffio_8h_1a3063cbc69f3cb56f3698140444bada82" kindref="member">fill_203</ref><sp/>(</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__203" kindref="compound">type_203</ref><sp/>*t203);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="ffio_8h_1a6a11d244dc9af401aed461e29389a6d9" kindref="member">fill_204</ref><sp/>(</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__204" kindref="compound">type_204</ref><sp/>*t204);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><ref refid="ffio_8h_1a7a4a7f217da7f1b92b3e9b3b6f93a521" kindref="member">fill_205</ref><sp/>(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__203" kindref="compound">type_203</ref><sp/>*t203,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__205" kindref="compound">type_205</ref><sp/>*t205);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><ref refid="ffio_8h_1a2e77bb8a8cd7ea49cb6b580541ceb0f2" kindref="member">fill_206</ref><sp/>(</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__206" kindref="compound">type_206</ref><sp/>*t206);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><ref refid="ffio_8h_1a37f87f377957354eb2c5fe50f493dd35" kindref="member">fill_207</ref><sp/>(</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__207" kindref="compound">type_207</ref><sp/>*t207);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><ref refid="ffio_8h_1acb5616839e6ea9dfc8c8e090878eb773" kindref="member">fill_208</ref><sp/>(</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__202" kindref="compound">type_202</ref><sp/>*t202,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__208" kindref="compound">type_208</ref><sp/>*t208);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><ref refid="ffio_8h_1a26eecbc147d03cdde955f0807a69e793" kindref="member">fill_210</ref><sp/>(</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__210" kindref="compound">type_210</ref><sp/>*t210);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><ref refid="ffio_8h_1a358d1ab3ea48a655b660555cdefb35e9" kindref="member">fill_212</ref><sp/>(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fr,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__212" kindref="compound">type_212</ref><sp/>*t212);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><ref refid="ffio_8h_1a74faa26911abeafaca7c093e1128659b" kindref="member">fill_222</ref>(</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__222" kindref="compound">type_222</ref><sp/>**t222);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><ref refid="ffio_8h_1ab6cc849c6a0795a3f8e12559ed1d5e34" kindref="member">fill_230</ref><sp/>(</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fr,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ap,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__230" kindref="compound">type_230</ref><sp/>*t230);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><ref refid="ffio_8h_1a9147053a235d939cb55d95710091017f" kindref="member">fill_fringe_info</ref><sp/>(</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structvex" kindref="compound">vex</ref><sp/>*root,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>include<sp/>guard:<sp/>FFIO_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/include/ffio.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1fourphase__lib" kind="namespace" language="Python">
+    <compoundname>vpal::fourphase_lib</compoundname>
+    <innerclass refid="classvpal_1_1fourphase__lib_1_1Configuration" prot="public">vpal::fourphase_lib::Configuration</innerclass>
+    <innerclass refid="classvpal_1_1fourphase__lib_1_1ExperimentReportData" prot="public">vpal::fourphase_lib::ExperimentReportData</innerclass>
+    <innerclass refid="classvpal_1_1fourphase__lib_1_1MixedModeFourphaseSingleScanProcessor" prot="public">vpal::fourphase_lib::MixedModeFourphaseSingleScanProcessor</innerclass>
+    <innerclass refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets" prot="public">vpal::fourphase_lib::SingleStationPhaseDelayOffsets</innerclass>
+    <innerclass refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor" prot="public">vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacevpal_1_1fourphase__lib_1ab2a3fecfe20ce0b0c6d799610f27b7e1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal::fourphase_lib.Bar</definition>
+        <argsstring></argsstring>
+        <name>Bar</name>
+        <initializer>=  <ref refid="classvpal_1_1utility_1_1Bar" kindref="compound">utility.Bar</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="35" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1fourphase__lib_1a10a802ff3bcf55c9eb9e152299be1ace" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal::fourphase_lib.fourphase_logger</definition>
+        <argsstring></argsstring>
+        <name>fourphase_logger</name>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1fourphase__lib_1a5e1755faa31a038afc0d1d738643ddfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.construct_control_file_lines</definition>
+        <argsstring>(config_obj, station_delay_phase_results)</argsstring>
+        <name>construct_control_file_lines</name>
+        <param>
+          <type>config_obj</type>
+          <defname>config_obj</defname>
+        </param>
+        <param>
+          <type>station_delay_phase_results</type>
+          <defname>station_delay_phase_results</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>given the a-priori and generated phase/delay offsets, sum and round their values
+to obtain the corrections necessary for the control file output, then output formatted lines </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="853" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="853" bodyend="882"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1fourphase__lib_1a70debf6c37b528812b9226537aa5800d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.generate_fourphase_control_file</definition>
+        <argsstring>(config_obj, output_control_filename)</argsstring>
+        <name>generate_fourphase_control_file</name>
+        <param>
+          <type>config_obj</type>
+          <defname>config_obj</defname>
+        </param>
+        <param>
+          <type>output_control_filename</type>
+          <defname>output_control_filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>write the new phase/delay offset lines to the final control file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="887" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="887" bodyend="911"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1fourphase__lib_1a7c525675d1cc855fd2e884dda2459995" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.generate_station_phase_delay_corrections</definition>
+        <argsstring>(config_obj, report_data_obj=None)</argsstring>
+        <name>generate_station_phase_delay_corrections</name>
+        <param>
+          <type>config_obj</type>
+          <defname>config_obj</defname>
+        </param>
+        <param>
+          <type>report_data_obj</type>
+          <defname>report_data_obj</defname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>run the fourphase algorithm to generate Y-X delay/phase corrections for each VGOS station</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="721" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="721" bodyend="848"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1fourphase__lib_1a4f165a515ba6c6bb5ea23ff1fd717083" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.select_fourphase_scans_by_baseline</definition>
+        <argsstring>(SingleScanBaselineCollection_list, exp_directory, stations, dtec_tolerance=1.0, min_snr=10, dtec_nom=0.1, max_number_to_select=0)</argsstring>
+        <name>select_fourphase_scans_by_baseline</name>
+        <param>
+          <type>SingleScanBaselineCollection_list</type>
+          <defname>SingleScanBaselineCollection_list</defname>
+        </param>
+        <param>
+          <type>exp_directory</type>
+          <defname>exp_directory</defname>
+        </param>
+        <param>
+          <type><ref refid="structstations" kindref="compound">stations</ref></type>
+          <defname>stations</defname>
+        </param>
+        <param>
+          <type>dtec_tolerance</type>
+          <defname>dtec_tolerance</defname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>min_snr</type>
+          <defname>min_snr</defname>
+          <defval>10</defval>
+        </param>
+        <param>
+          <type>dtec_nom</type>
+          <defname>dtec_nom</defname>
+          <defval>0.1</defval>
+        </param>
+        <param>
+          <type>max_number_to_select</type>
+          <defname>max_number_to_select</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> given a list of SingleScanBaselineCollection&apos;s, try to select a list of scans which will provide good fourphase output stations on each baseline
+    returns a dictionary (indexed by baseline) of scans collections to be processed</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="664" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="664" bodyend="716"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>module to determine the appropriate manual phases/delay offsets between the
+Y-X polarization signal chains for each station during an experiment</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

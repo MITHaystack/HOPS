@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Object: station_data &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Data Object: pcal" href="PcalData.html" />
+    <link rel="prev" title="Data Object: weights" href="WeightData.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Containers.html">Containers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Objects.html">Data Object Specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VisibilityData.html">Data Object: <cite>visibilities</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="WeightData.html">Data Object: <cite>weights</cite></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Object: <cite>station_data</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-information">General Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tags">Tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#axes">Axes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PcalData.html">Data Object: <cite>pcal</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ObjectTags.html">Data Object: <cite>object_tags</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Containers.html">Containers</a></li>
+      <li class="breadcrumb-item active">Data Object: <cite>station_data</cite></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/containers/StationData.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-object-station-data">
+<h1>Data Object: <cite>station_data</cite><a class="headerlink" href="#data-object-station-data" title="Link to this heading"></a></h1>
+<p>The station_data table container is use to store the information about the a priori station model.
+Mainly this is the delay and coordinate polynomial spline models used for the station during correlation.
+The data stored in the table are the polynomial coefficients for each coordinate, time period, and polynomial power associated with each coefficient.</p>
+<section id="general-information">
+<h2>General Information<a class="headerlink" href="#general-information" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Class</strong>: <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a6f27aa7690ad9ea81270e4c98605d9bb">station_coord_type</a></p></li>
+<li><p><strong>Class UUID</strong>: 769cfb37e4301e9272adcb53f217de1b</p></li>
+<li><p><strong>Rank</strong>: 3</p></li>
+<li><p><strong>Shape</strong>: the length of each dimension (e.g. [7, 2, 6] )</p></li>
+<li><p><strong>Strides</strong>: the stride between data in each dimension (e.g. [12, 6, 1] )</p></li>
+<li><p><strong>Total Size</strong>: the total number of data elements in the array (e.g. 84 )</p></li>
+<li><p><strong>Element Type</strong>: <code class="docutils literal notranslate"><span class="pre">double</span></code></p></li>
+</ul>
+<p><strong>Aliases</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>alias</p></th>
+<th class="head"><p>full class name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">station_coord_type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_TableContainer&lt;double,MHO_AxisPack&lt;MHO_Axis&lt;string&gt;,MHO_Axis&lt;double&gt;,MHO_Axis&lt;int&gt;&gt;&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tags">
+<h2>Tags<a class="headerlink" href="#tags" title="Link to this heading"></a></h2>
+<p>The meta-data tags (key:value pairs) that are commonly associated with objects
+of this type are as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>key</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>example value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>the container name</p></td>
+<td><p>station_data</p></td>
+</tr>
+<tr class="row-odd"><td><p>X</p></td>
+<td><p>station X coordinate</p></td>
+<td><p>-5543831.705</p></td>
+</tr>
+<tr class="row-even"><td><p>Y</p></td>
+<td><p>station Y coordinate</p></td>
+<td><p>-2054585.983</p></td>
+</tr>
+<tr class="row-odd"><td><p>Z</p></td>
+<td><p>station Z coordinate</p></td>
+<td><p>2387828.776</p></td>
+</tr>
+<tr class="row-even"><td><p>difx_station_code</p></td>
+<td><p>the DiFX formatted 2-char station code</p></td>
+<td><p>K2</p></td>
+</tr>
+<tr class="row-odd"><td><p>model_interval</p></td>
+<td><p>the time length of each polynomial model period (s)</p></td>
+<td><p>120.0</p></td>
+</tr>
+<tr class="row-even"><td><p>model_start</p></td>
+<td><p>the start time of the spline model (vex format)</p></td>
+<td><p>2019y105d18h00m00s</p></td>
+</tr>
+<tr class="row-odd"><td><p>mount</p></td>
+<td><p>the station mount type</p></td>
+<td><p>AZEL</p></td>
+</tr>
+<tr class="row-even"><td><p>nsplines</p></td>
+<td><p>the number of spline intervals</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>station_code</p></td>
+<td><p>The cannonical 2-char station code</p></td>
+<td><p>K2</p></td>
+</tr>
+<tr class="row-even"><td><p>station_mk4id</p></td>
+<td><p>the 1-char mark4 station ID</p></td>
+<td><p>H</p></td>
+</tr>
+<tr class="row-odd"><td><p>station_name</p></td>
+<td><p>the full station name</p></td>
+<td><p>KOKEE12M</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="axes">
+<h2>Axes<a class="headerlink" href="#axes" title="Link to this heading"></a></h2>
+<p>This structure is a 3-dimensional dataset with labeled axes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Axis 0</strong> labels the type/name of the station model component.</p></li>
+<li><p><strong>Axis 1</strong> corresponds to spline intervals (time/model epoch).</p></li>
+<li><p><strong>Axis 2</strong> indexes the individual spline coefficients for each power.</p></li>
+</ul>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Axis Index</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description/Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>coordinate</p></td>
+<td><p>N/A</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;string&gt;</span></code></p></td>
+<td><p>[“delay”, “azimuth”, “elevation”, “parallactic_angle”, “u”, “v”, “w”]</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>time</p></td>
+<td><p>s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;double&gt;</span></code></p></td>
+<td><p>start time offset of each spline period (0, 120.0,…)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>polynomial_spline_index</p></td>
+<td><p>N/A</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;int&gt;</span></code></p></td>
+<td><p>coefficient power 0, 1, 2,…</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="WeightData.html" class="btn btn-neutral float-left" title="Data Object: weights" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="PcalData.html" class="btn btn-neutral float-right" title="Data Object: pcal" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

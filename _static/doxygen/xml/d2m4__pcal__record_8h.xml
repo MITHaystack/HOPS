@@ -1,0 +1,450 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d2m4__pcal__record_8h" kind="file" language="C++">
+    <compoundname>d2m4_pcal_record.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includedby refid="createType3s_8c" local="yes">createType3s.c</includedby>
+    <includedby refid="d2m4__pcal__copy__record_8c" local="yes">d2m4_pcal_copy_record.c</includedby>
+    <includedby refid="d2m4__pcal__count__unique__polarizations_8c" local="yes">d2m4_pcal_count_unique_polarizations.c</includedby>
+    <includedby refid="d2m4__pcal__create__list_8c" local="yes">d2m4_pcal_create_list.c</includedby>
+    <includedby refid="d2m4__pcal__dump__record_8c" local="yes">d2m4_pcal_dump_record.c</includedby>
+    <includedby refid="d2m4__pcal__free__list_8c" local="yes">d2m4_pcal_free_list.c</includedby>
+    <includedby refid="d2m4__pcal__free__record_8c" local="yes">d2m4_pcal_free_record.c</includedby>
+    <includedby refid="d2m4__pcal__init__record_8c" local="yes">d2m4_pcal_init_record.c</includedby>
+    <includedby refid="d2m4__pcal__merge__datastreams__in__list_8c" local="yes">d2m4_pcal_merge_datastreams_in_list.c</includedby>
+    <includedby refid="d2m4__pcal__merge__record_8c" local="yes">d2m4_pcal_merge_record.c</includedby>
+    <includedby refid="d2m4__pcal__populate__record_8c" local="yes">d2m4_pcal_populate_record.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>d2m4_pcal_record.h</label>
+        <link refid="d2m4__pcal__record_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>d2m4_pcal_record.h</label>
+        <link refid="d2m4__pcal__record_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>d2m4_pcal_merge_record.c</label>
+        <link refid="d2m4__pcal__merge__record_8c"/>
+      </node>
+      <node id="3">
+        <label>d2m4_pcal_copy_record.c</label>
+        <link refid="d2m4__pcal__copy__record_8c"/>
+      </node>
+      <node id="12">
+        <label>d2m4_pcal_populate_record.c</label>
+        <link refid="d2m4__pcal__populate__record_8c"/>
+      </node>
+      <node id="8">
+        <label>d2m4_pcal_free_record.c</label>
+        <link refid="d2m4__pcal__free__record_8c"/>
+      </node>
+      <node id="2">
+        <label>createType3s.c</label>
+        <link refid="createType3s_8c"/>
+      </node>
+      <node id="4">
+        <label>d2m4_pcal_count_unique_polarizations.c</label>
+        <link refid="d2m4__pcal__count__unique__polarizations_8c"/>
+      </node>
+      <node id="6">
+        <label>d2m4_pcal_dump_record.c</label>
+        <link refid="d2m4__pcal__dump__record_8c"/>
+      </node>
+      <node id="10">
+        <label>d2m4_pcal_merge_datastreams_in_list.c</label>
+        <link refid="d2m4__pcal__merge__datastreams__in__list_8c"/>
+      </node>
+      <node id="5">
+        <label>d2m4_pcal_create_list.c</label>
+        <link refid="d2m4__pcal__create__list_8c"/>
+      </node>
+      <node id="9">
+        <label>d2m4_pcal_init_record.c</label>
+        <link refid="d2m4__pcal__init__record_8c"/>
+      </node>
+      <node id="7">
+        <label>d2m4_pcal_free_list.c</label>
+        <link refid="d2m4__pcal__free__list_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structd2m4__pcal__list__node" prot="public">d2m4_pcal_list_node</innerclass>
+    <innerclass refid="structd2m4__pcal__phasor" prot="public">d2m4_pcal_phasor</innerclass>
+    <innerclass refid="structd2m4__pcal__record" prot="public">d2m4_pcal_record</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="d2m4__pcal__record_8h_1aa0a8bba43708a6f968425f64157432fe" prot="public" static="no">
+        <name>AP_TOL</name>
+        <initializer>0.001</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="6" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="d2m4__pcal__record_8h_1a0571d2acaefeb83c3621cdb8d25d3ecd" prot="public" static="no">
+        <name>D2M4_LBUFF_SIZE</name>
+        <initializer>40 * <ref refid="d2m4__pcal__record_8h_1a2f7834788d678470379e15ed84521aa6" kindref="member">D2M4_NPC_TONES</ref> * <ref refid="d2m4__pcal__record_8h_1a13576a01ae8a52e5ec0b1336efb8e159" kindref="member">D2M4_NPC_FREQS</ref> + 256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="d2m4__pcal__record_8h_1a13576a01ae8a52e5ec0b1336efb8e159" prot="public" static="no">
+        <name>D2M4_NPC_FREQS</name>
+        <initializer>64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="d2m4__pcal__record_8h_1a2f7834788d678470379e15ed84521aa6" prot="public" static="no">
+        <name>D2M4_NPC_TONES</name>
+        <initializer>64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1a2861b09a6bb90e1b7e6e804db223af3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int d2m4_pcal_can_merge_records</definition>
+        <argsstring>(struct d2m4_pcal_record *record1, struct d2m4_pcal_record *record2)</argsstring>
+        <name>d2m4_pcal_can_merge_records</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record1</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="61" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_record.c" bodystart="7" bodyend="27" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="61" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1afd65af24f7aa3d483a5beb9a7553cb62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void d2m4_pcal_copy_record</definition>
+        <argsstring>(struct d2m4_pcal_record *record1, struct d2m4_pcal_record *record2)</argsstring>
+        <name>d2m4_pcal_copy_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record1</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="58" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_copy_record.c" bodystart="7" bodyend="49" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="58" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1a1b28089d0a47ac2dc4389ad9227fe0ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int d2m4_pcal_count_unique_polarizations</definition>
+        <argsstring>(struct d2m4_pcal_record *record)</argsstring>
+        <name>d2m4_pcal_count_unique_polarizations</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="64" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_count_unique_polarizations.c" bodystart="5" bodyend="38" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="64" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1a2d5766504b84682a587234c380d7acfd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+        <definition>struct d2m4_pcal_list_node* d2m4_pcal_create_list</definition>
+        <argsstring>(FILE *fin)</argsstring>
+        <name>d2m4_pcal_create_list</name>
+        <param>
+          <type>FILE *</type>
+          <declname>fin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="73" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_create_list.c" bodystart="8" bodyend="68" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="73" declcolumn="34"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1aa8c272609dbeb8c46a53d4cf712256c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int d2m4_pcal_dump_record</definition>
+        <argsstring>(struct d2m4_pcal_record *rec, char *line_buffer, int buffer_size)</argsstring>
+        <name>d2m4_pcal_dump_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>rec</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>line_buffer</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>buffer_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="55" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_dump_record.c" bodystart="7" bodyend="49" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="55" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1aa5dd6b99c9d34ca991b95ddd235cc75b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void d2m4_pcal_free_list</definition>
+        <argsstring>(struct d2m4_pcal_list_node *pcal_list)</argsstring>
+        <name>d2m4_pcal_free_list</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+          <declname>pcal_list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="78" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_free_list.c" bodystart="6" bodyend="26" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="78" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1a7308f606708f1ec09c0cb98033be03c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void d2m4_pcal_free_record</definition>
+        <argsstring>(struct d2m4_pcal_record *rec)</argsstring>
+        <name>d2m4_pcal_free_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>rec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="49" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_free_record.c" bodystart="5" bodyend="10" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="49" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1a2e74f227dc44adde0ac32d2911b4469d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void d2m4_pcal_init_record</definition>
+        <argsstring>(struct d2m4_pcal_record *rec)</argsstring>
+        <name>d2m4_pcal_init_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>rec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="46" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_init_record.c" bodystart="6" bodyend="15" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="46" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1a3d9eb1f2821a1edf33652ff8d53df870" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+        <definition>struct d2m4_pcal_list_node* d2m4_pcal_merge_datastreams_in_list</definition>
+        <argsstring>(struct d2m4_pcal_list_node *input_pcal_list)</argsstring>
+        <name>d2m4_pcal_merge_datastreams_in_list</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+          <declname>input_pcal_list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="75" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_datastreams_in_list.c" bodystart="6" bodyend="90" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="75" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1acfcdecde4de4a84f3dca7cef59a87445" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+        <definition>struct d2m4_pcal_record* d2m4_pcal_merge_record</definition>
+        <argsstring>(struct d2m4_pcal_record *record1, struct d2m4_pcal_record *record2)</argsstring>
+        <name>d2m4_pcal_merge_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record1</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="69" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_record.c" bodystart="30" bodyend="139" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="69" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__record_8h_1a158259687b806ea9419b8d466ef7d070" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void d2m4_pcal_populate_record</definition>
+        <argsstring>(struct d2m4_pcal_record *rec, char *line_buffer)</argsstring>
+        <name>d2m4_pcal_populate_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>rec</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>line_buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="52" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_populate_record.c" bodystart="7" bodyend="41" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" declline="52" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>D2M4_PCAL_RECORD_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>D2M4_PCAL_RECORD_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="d2m4__pcal__record_8h_1aa0a8bba43708a6f968425f64157432fe" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AP_TOL<sp/>0.001</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="d2m4__pcal__record_8h_1a2f7834788d678470379e15ed84521aa6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>D2M4_NPC_TONES<sp/>64</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="d2m4__pcal__record_8h_1a13576a01ae8a52e5ec0b1336efb8e159" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>D2M4_NPC_FREQS<sp/>64</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="d2m4__pcal__record_8h_1a0571d2acaefeb83c3621cdb8d25d3ecd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>D2M4_LBUFF_SIZE<sp/>40<sp/>*<sp/>D2M4_NPC_TONES<sp/>*<sp/>D2M4_NPC_FREQS<sp/>+<sp/>256</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//#define<sp/>D2M4_PCAL_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//stores<sp/>an<sp/>individual<sp/>pcal<sp/>phasor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="structd2m4__pcal__phasor" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16" refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref>;<sp/></highlight><highlight class="comment">//polarization<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref>;<sp/></highlight><highlight class="comment">//frequency<sp/>in<sp/>MHz</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref>;<sp/></highlight><highlight class="comment">//keep<sp/>track<sp/>of<sp/>the<sp/>original<sp/>datastream<sp/>this<sp/>phasor<sp/>came<sp/>from</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref>;</highlight></codeline>
+<codeline lineno="20" refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//stores<sp/>all<sp/>the<sp/>pcal<sp/>data<sp/>from<sp/>a<sp/>single<sp/>line<sp/>of<sp/>PCAL<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//thisshould<sp/>be<sp/>data<sp/>from<sp/>single<sp/>mjd...but<sp/>for<sp/>a<sp/>given<sp/>mjd,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//there<sp/>may<sp/>be<sp/>multiple<sp/>records<sp/>from<sp/>different<sp/>data<sp/>streams</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structd2m4__pcal__record" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28" refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" kindref="member">antenna</ref>[8];<sp/></highlight><highlight class="comment">//antenna<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>;<sp/></highlight><highlight class="comment">//time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref>;<sp/></highlight><highlight class="comment">//integration<sp/>time?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref>;<sp/></highlight><highlight class="comment">//number<sp/>of<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>;<sp/></highlight><highlight class="comment">//max<sp/>number<sp/>of<sp/>tones<sp/>per<sp/>channel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref>*<sp/><ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">//node<sp/>for<sp/>a<sp/>linked<sp/>list<sp/>of<sp/>pcal<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//so<sp/>we<sp/>can<sp/>load<sp/>and<sp/>iterate<sp/>over<sp/>the<sp/>whole<sp/>PCAL<sp/>file<sp/>data<sp/>in<sp/>memory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structd2m4__pcal__list__node" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40" refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/><ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>;<sp/></highlight><highlight class="comment">//node<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/><ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref>;<sp/></highlight><highlight class="comment">//next<sp/>node<sp/>in<sp/>the<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="structd2m4__pcal__list__node_1acd0458ef349bc5573acd37ce21dc93e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/><ref refid="structd2m4__pcal__list__node_1acd0458ef349bc5573acd37ce21dc93e7" kindref="member">previous</ref>;<sp/></highlight><highlight class="comment">//previous<sp/>node<sp/>in<sp/>the<sp/>list<sp/>--<sp/>do<sp/>we<sp/>need<sp/>bidirectional<sp/>traversal?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">//initialize<sp/>a<sp/>pcal<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1a2e74f227dc44adde0ac32d2911b4469d" kindref="member">d2m4_pcal_init_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">//destroy<sp/>a<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1a7308f606708f1ec09c0cb98033be03c2" kindref="member">d2m4_pcal_free_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//populate<sp/>a<sp/>record<sp/>from<sp/>a<sp/>PCAL<sp/>file<sp/>data<sp/>line</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1a158259687b806ea9419b8d466ef7d070" kindref="member">d2m4_pcal_populate_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>line_buffer);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">//dump<sp/>a<sp/>pcal<sp/>record<sp/>into<sp/>a<sp/>line<sp/>buffer,<sp/>returns<sp/>the<sp/>lenght<sp/>of<sp/>the<sp/>dumped<sp/>data<sp/>(in<sp/>chars)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1aa8c272609dbeb8c46a53d4cf712256c0" kindref="member">d2m4_pcal_dump_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>line_buffer,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>buffer_size);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">//copy<sp/>the<sp/>data<sp/>from<sp/>record2<sp/>into<sp/>record1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1afd65af24f7aa3d483a5beb9a7553cb62" kindref="member">d2m4_pcal_copy_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record1,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record2);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//return<sp/>1<sp/>if<sp/>two<sp/>pcal_records<sp/>can<sp/>be<sp/>merged<sp/>(same<sp/>AP),<sp/>and<sp/>0<sp/>if<sp/>otherwise</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1a2861b09a6bb90e1b7e6e804db223af3e" kindref="member">d2m4_pcal_can_merge_records</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record1,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record2);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//returns<sp/>the<sp/>number<sp/>of<sp/>unique<sp/>polaization<sp/>in<sp/>a<sp/>pcal<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1a1b28089d0a47ac2dc4389ad9227fe0ce" kindref="member">d2m4_pcal_count_unique_polarizations</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">//allocates<sp/>space<sp/>for<sp/>a<sp/>new<sp/>pcal_record<sp/>which<sp/>is<sp/>the<sp/>result<sp/>of<sp/>merging<sp/>two</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">//individual<sp/>pcal_records<sp/>(of<sp/>a<sp/>single<sp/>mjd,<sp/>but<sp/>different<sp/>data<sp/>streams)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">//note<sp/>that<sp/>the<sp/>merged<sp/>records<sp/>should<sp/>be<sp/>deleted<sp/>afterwards,<sp/>but<sp/>this<sp/>function<sp/>does<sp/>not<sp/>take<sp/>care<sp/>of<sp/>this</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/><ref refid="d2m4__pcal__record_8h_1acfcdecde4de4a84f3dca7cef59a87445" kindref="member">d2m4_pcal_merge_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record1,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record2);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">//run<sp/>through<sp/>a<sp/>whole<sp/>PCAL<sp/>file<sp/>and<sp/>read<sp/>it<sp/>into<sp/>memory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//return<sp/>a<sp/>the<sp/>pcal<sp/>records<sp/>as<sp/>a<sp/>linked<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/><ref refid="d2m4__pcal__record_8h_1a2d5766504b84682a587234c380d7acfd" kindref="member">d2m4_pcal_create_list</ref>(FILE*<sp/>fin);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/><ref refid="d2m4__pcal__record_8h_1a3d9eb1f2821a1edf33652ff8d53df870" kindref="member">d2m4_pcal_merge_datastreams_in_list</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/>input_pcal_list);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//destroy<sp/>all<sp/>the<sp/>data<sp/>in<sp/>the<sp/>linked-list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__record_8h_1aa5dd6b99c9d34ca991b95ddd235cc75b" kindref="member">d2m4_pcal_free_list</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/>pcal_list);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h"/>
+  </compounddef>
+</doxygen>

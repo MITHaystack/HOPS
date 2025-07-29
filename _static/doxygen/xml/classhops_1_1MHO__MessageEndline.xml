@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MessageEndline" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MessageEndline</compoundname>
+    <includes refid="MHO__Message_8hh" local="no">MHO_Message.hh</includes>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MessageEndline" kindref="compound">MHO_MessageEndline</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="60" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="61" bodyend="61"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

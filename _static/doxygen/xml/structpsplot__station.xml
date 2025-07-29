@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpsplot__station" kind="struct" language="C++" prot="public">
+    <compoundname>psplot_station</compoundname>
+    <includes refid="psplot_8h" local="no">psplot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpsplot__station_1a0fe745fa1b2c36e0a13405cc0250db37" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char psplot_station::fglist[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>fglist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="83" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__station_1a2a8e517a2368970b40821967ccd16e90" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_station::minus</definition>
+        <argsstring></argsstring>
+        <name>minus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="84" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__station_1a4aee718fcd16f0f885302556390a31dd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char psplot_station::stn</definition>
+        <argsstring></argsstring>
+        <name>stn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="82" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>psplot_station</label>
+        <link refid="structpsplot__station"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fglist</edgelabel>
+          <edgelabel>stn</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>minus</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="80" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="81" bodyend="85"/>
+    <listofallmembers>
+      <member refid="structpsplot__station_1a0fe745fa1b2c36e0a13405cc0250db37" prot="public" virt="non-virtual"><scope>psplot_station</scope><name>fglist</name></member>
+      <member refid="structpsplot__station_1a2a8e517a2368970b40821967ccd16e90" prot="public" virt="non-virtual"><scope>psplot_station</scope><name>minus</name></member>
+      <member refid="structpsplot__station_1a4aee718fcd16f0f885302556390a31dd" prot="public" virt="non-virtual"><scope>psplot_station</scope><name>stn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

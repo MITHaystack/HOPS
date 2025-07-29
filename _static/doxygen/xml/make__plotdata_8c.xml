@@ -1,0 +1,798 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="make__plotdata_8c" kind="file" language="C++">
+    <compoundname>make_plotdata.c</compoundname>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="param__struct_8h" local="yes">param_struct.h</includes>
+    <includes refid="pass__struct_8h" local="yes">pass_struct.h</includes>
+    <includes refid="ffmath_8h" local="yes">ffmath.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="hops__complex_8h" local="yes">hops_complex.h</includes>
+    <includes refid="apply__funcs_8h" local="yes">apply_funcs.h</includes>
+    <includes local="no">fftw3.h</includes>
+    <incdepgraph>
+      <node id="34">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="5">
+        <label>stdarg.h</label>
+      </node>
+      <node id="38">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>plot_struct.h</label>
+        <link refid="plot__struct_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="21">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="43">
+        <label>stdint.h</label>
+      </node>
+      <node id="26">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="33">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="52">
+        <label>fftw3.h</label>
+      </node>
+      <node id="20">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>param_struct.h</label>
+        <link refid="param__struct_8h"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="13">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>sys/types.h</label>
+      </node>
+      <node id="32">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="9">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="36">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>make_plotdata.c</label>
+        <link refid="make__plotdata_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>complex.h</label>
+      </node>
+      <node id="28">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>pass_struct.h</label>
+        <link refid="pass__struct_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="8">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>math.h</label>
+      </node>
+      <node id="31">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="42">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>apply_funcs.h</label>
+        <link refid="apply__funcs_8h"/>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="27">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="6">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>ffmath.h</label>
+        <link refid="ffmath_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="make__plotdata_8c_1a7036e1e75fbabd9310c6c47c09f945ba" prot="public" static="no">
+        <name>GRID_PTS</name>
+        <initializer>2048</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/make_plotdata.c" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/make_plotdata.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="make__plotdata_8c_1abc2f91d01372d8b8c2188440eed8b56b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int make_plotdata</definition>
+        <argsstring>(struct type_pass *pass)</argsstring>
+        <name>make_plotdata</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/make_plotdata.c" line="31" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/make_plotdata.c" bodystart="31" bodyend="381"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/***************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/><sp/>Subroutine<sp/>to<sp/>generate<sp/>data<sp/>for<sp/>the<sp/>plot<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/><sp/>structure<sp/>.<sp/>cmn<sp/>91.9.??<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/><sp/>93.6.16<sp/>rjc<sp/>generate<sp/>rate<sp/>spectrum<sp/>for<sp/>all<sp/>lags<sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/><sp/>99.8.16<sp/>rjc<sp/>modify<sp/>for<sp/>Mk4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/><sp/>00.10.20<sp/>cjl<sp/>modify<sp/>for<sp/>fractional<sp/>APs<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">***************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="param__struct_8h" kindref="compound">param_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pass__struct_8h" kindref="compound">pass_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ffmath_8h" kindref="compound">ffmath.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hops__complex_8h" kindref="compound">hops_complex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="apply__funcs_8h" kindref="compound">apply_funcs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//#include<sp/>&quot;ff_misc_if.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fftw3.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>MAXLAG<sp/>==<sp/>8192<sp/>so<sp/>4*MAXLAG<sp/>is<sp/>4x<sp/>MBDMXPTS<sp/>which<sp/>is<sp/>3x<sp/>more<sp/>than<sp/>needed<sp/>for<sp/>MBD.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>However,<sp/>Y<sp/>is<sp/>re-used<sp/>with<sp/>the<sp/>lagdata<sp/>and<sp/>4*MAXLAG<sp/>is<sp/>then<sp/>needed.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>+3<sp/>is<sp/>temporarily<sp/>for<sp/>slop...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>assert(plot.num_mb_pts<sp/>&lt;<sp/>8192)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>GRID_PTS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GRID_PTS<sp/>2048</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>GRID_PTS<sp/>=<sp/>MBDMXPTS<sp/>/<sp/>MBDMULT<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="make__plotdata_8c_1abc2f91d01372d8b8c2188440eed8b56b" kindref="member">make_plotdata</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__param" kindref="compound">type_param</ref><sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__status" kindref="compound">type_status</ref><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__plot" kindref="compound">type_plot</ref><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/>*<ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*datum;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>Z,<sp/>sum;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>X[2*<ref refid="mk4__data_8h_1adca8487fa073bb03f28836129d14731a" kindref="member">MAXMAX</ref>],<sp/>Y[4*<ref refid="mk4__data_8h_1a23719c10dde829abaa7c317534d79e0d" kindref="member">MAXLAG</ref>+3],<sp/>sbsp[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>][2*<ref refid="mk4__data_8h_1a23719c10dde829abaa7c317534d79e0d" kindref="member">MAXLAG</ref>],<sp/>sum_ap[<ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>];</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>sum_all,<sp/>sum_freq;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/><ref refid="vrot_8c_1ab90c5aa4be6dc5f7c2fa3ed39dafe65d" kindref="member">vrot</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref>*);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>wght_phsr;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>maxchan[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>],<sp/>i,<sp/>j,<sp/>np,<sp/>fr,<sp/>ap,<sp/>lag,<sp/>st,<sp/>seg,<sp/>lagbit;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ap_seg,<sp/><ref refid="max555_8c_1affe776513b24d84b39af8ab0930fef7f" kindref="member">max</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>],<sp/>maxv,<sp/>peak,<sp/>frac,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbdbox[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>],<sp/>rj,<sp/>c,<sp/>nap,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>offset,<sp/>maxamp,<sp/>sumwt,<sp/>q[3],</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yy[3],<sp/>eff_npol,<sp/>sb_factor;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ap_cnt[<ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>],<sp/>temp[<ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>];</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>ij,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maxi,<sp/>npmax,<sp/>nl;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>function<sp/>prototypes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//int<sp/>minvert<sp/>(double<sp/>[3][3],<sp/>double<sp/>[3][3]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ion__covariance_8c_1a69bef583c20a74a4dd177187c00228a3" kindref="member">ion_covariance</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="calc__rms_8c_1a9039dc6e0c026f366852c9aab4294196" kindref="member">calc_rms</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref>*<sp/>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Make<sp/>sure<sp/>data<sp/>will<sp/>fit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1afc491296aa5330791465a1f62bdf9050" kindref="member">nlags</ref>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a7472e73a47cab59dcef02987ab48c00d" kindref="member">num_ap</ref><sp/>&gt;<sp/><ref refid="mk4__data_8h_1ae3576ef627303c7951ad7cfec721c194" kindref="member">MAX_APXLAG</ref>)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Too<sp/>many<sp/>lags<sp/>and/or<sp/>aps<sp/>for<sp/>plot<sp/>arrays&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_plan<sp/>fftplan;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref><sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>convenience<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculate<sp/>delay<sp/>rate<sp/>spectrum<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(at<sp/>max<sp/>delay<sp/>channel<sp/>and<sp/>averaged<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>over<sp/>all<sp/>frequencies<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>np<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a23136c78001ae4f87aee23a5a2b2f622" kindref="member">drsp_size</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>npmax<sp/>=<sp/>np;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npmax<sp/>&lt;<sp/>256)<sp/>npmax<sp/>=<sp/>256;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Empirically<sp/>determined<sp/>from<sp/>FRNGE<sp/>plots<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>first<sp/>apply<sp/>rotator<sp/>to<sp/>single<sp/>band<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>delay<sp/>values<sp/>(at<sp/>max<sp/>sb<sp/>delay)<sp/>and<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>total<sp/>sum<sp/>over<sp/>all<sp/>freqs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="mk4__data_8h_1adaaa9c507e46294fa69aafd85ae027ba" kindref="member">MAXAP</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>fr++)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(ap<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;<sp/>ap<sp/>&lt;<sp/>pass-&gt;ap_off+pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;<sp/>ap++)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datum<sp/>=<sp/><ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref>[fr].data<sp/>+<sp/>ap;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" kindref="member">sbdelay</ref>[<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a965e2eea9f6e29ac26c015ec672ccb40" kindref="member">max_delchan</ref>]</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><ref refid="vrot_8c_1ab90c5aa4be6dc5f7c2fa3ed39dafe65d" kindref="member">vrot</ref><sp/>(ap,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a7d1d3e4b4d9a800d2011bcd570a52cff" kindref="member">dr_max_global</ref>,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ada300f2666fe318679e49c52e7f0f801" kindref="member">mbd_max_global</ref>,<sp/>fr,<sp/>datum-&gt;<ref refid="structdata__corel_1aa6c41a7149d8c66fbfcad73e7f0e98c2" kindref="member">sband</ref>,<sp/>pass);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Weight<sp/>by<sp/>fractional<sp/>AP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>frac<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>frac<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>When<sp/>both<sp/>sidebands<sp/>added<sp/>together,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>we<sp/>use<sp/>the<sp/>mean<sp/>fraction<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>&amp;&amp;<sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0))<sp/>frac<sp/>/=<sp/>2.0;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>Z<sp/>*<sp/>frac;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[ap-pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>]<sp/>=<sp/>X[ap-pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>]<sp/>+<sp/>Z;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Then<sp/>perform<sp/>FFT<sp/>over<sp/>time<sp/>to<sp/>obtain<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>d-r<sp/>spectrum<sp/>avg&apos;d<sp/>over<sp/>all<sp/>frequencies<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>fftplan<sp/>=<sp/>fftw_plan_dft_1d<sp/>(npmax,<sp/>(fftw_complex*)<sp/>X,<sp/>(fftw_complex*)<sp/>X,<sp/>FFTW_FORWARD,<sp/>FFTW_ESTIMATE);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_execute<sp/>(fftplan);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>npmax;<sp/>i++)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rj<sp/>=<sp/>(double)i<sp/>-<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)(npmax/2);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>offset<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a7d1d3e4b4d9a800d2011bcd570a52cff" kindref="member">dr_max_global</ref><sp/>*<sp/><ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref>[0].frequency<sp/>*<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1aa9dff0ef6fc33863605f4542f887d94d" kindref="member">acc_period</ref></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(double)npmax;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rj<sp/>-=<sp/>offset;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rj<sp/>&lt;<sp/>-0.5)<sp/>rj<sp/>+=<sp/>(double)npmax;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rj<sp/>&gt;<sp/>(npmax<sp/>-<sp/>0.5))<sp/>rj<sp/>-=<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)npmax;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>=<sp/>(int)(rj<sp/>+<sp/>0.5);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a0a581da0dcbb69bf2ec00bdfd4eaa9a2" kindref="member">d_rate</ref>[i]<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref><sp/>(X[j])<sp/>/<sp/>(double)<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a01f74ea2c91b4212e27661ee0594dc12" kindref="member">total_ap_frac</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>adjust<sp/>dr<sp/>plot<sp/>for<sp/>effects<sp/>of<sp/>coherence<sp/>time</highlight></codeline>
+<codeline lineno="113"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>if<sp/>that<sp/>feature<sp/>has<sp/>been<sp/>invoked<sp/><sp/>rjc<sp/>2006.4.27<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a6313374a22f707f51db3ac16511f4109" kindref="member">t_cohere</ref><sp/>&gt;<sp/>0.0)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>=<sp/>npmax<sp/>*<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1aa9dff0ef6fc33863605f4542f887d94d" kindref="member">acc_period</ref><sp/>/<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a6313374a22f707f51db3ac16511f4109" kindref="member">t_cohere</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>=<sp/>(n%2)<sp/>?<sp/>n<sp/>:<sp/>n+1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>force<sp/>n<sp/>to<sp/>be<sp/>odd<sp/>for<sp/>symmetry<sp/>(no<sp/>bias)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;convolving<sp/>plot<sp/>rate<sp/>spectrum<sp/>over<sp/>%d<sp/>res.<sp/>elements&quot;</highlight><highlight class="normal">,<sp/>0,<sp/>n);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;delay<sp/>rate<sp/>spectrum:&quot;</highlight><highlight class="normal">,<sp/>0);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>store<sp/>rate<sp/>spectrum<sp/>temporarily<sp/>&amp;<sp/>prescale<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>npmax;<sp/>i++)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>temp[i]<sp/>=<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a0a581da0dcbb69bf2ec00bdfd4eaa9a2" kindref="member">d_rate</ref>[i]<sp/>/<sp/>n;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>npmax;<sp/>i++)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a0a581da0dcbb69bf2ec00bdfd4eaa9a2" kindref="member">d_rate</ref>[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>form<sp/>boxcar<sp/>sum<sp/>about<sp/>the<sp/>ith<sp/>point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=-(n/2);<sp/>j&lt;=n/2;<sp/>j++)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ij<sp/>=<sp/>i<sp/>+<sp/>j;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>force<sp/>sum<sp/>of<sp/>i+j<sp/>to<sp/>wrap<sp/>(lie<sp/>within<sp/>0..npmax-1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ij<sp/>=<sp/>(ij<sp/>&lt;<sp/>0)<sp/>?<sp/>ij<sp/>+<sp/>npmax<sp/>:<sp/>ij;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ij<sp/>=<sp/>(ij<sp/>&gt;=<sp/>npmax)<sp/>?<sp/>ij<sp/>-<sp/>npmax<sp/>:<sp/>ij;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a0a581da0dcbb69bf2ec00bdfd4eaa9a2" kindref="member">d_rate</ref>[i]<sp/>+=<sp/>temp[ij];</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;%3d<sp/>%12.6lf&quot;</highlight><highlight class="normal">,<sp/>0,<sp/>i,<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a0a581da0dcbb69bf2ec00bdfd4eaa9a2" kindref="member">d_rate</ref>[i]);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1aa336348f8e084faaf96de925c41a03a6" kindref="member">dr_size</ref><sp/>=<sp/>np;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1aba7c04642a5e0e8e8637df4cf7bdfc36" kindref="member">dr_size_max</ref><sp/>=<sp/>npmax;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1aee84c75358c79b5d4301082a35d29c93" kindref="member">num_ap</ref><sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6d22ee7ac1cba22d089b7604b98d3173" kindref="member">num_freq</ref><sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculate<sp/>multi<sp/>band<sp/>delay.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Apply<sp/>rotator<sp/>to<sp/>single<sp/>band<sp/>delay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>values<sp/>and<sp/>add<sp/>up<sp/>over<sp/>time.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>MBD<sp/>FFT<sp/>max<sp/>size<sp/>hardcoded<sp/>to<sp/>8192<sp/>at<sp/>present<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>set<sp/>floor<sp/>of<sp/>256<sp/>points<sp/>in<sp/>mbd<sp/>plot</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" kindref="member">num_mb_pts</ref><sp/>=<sp/>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ac4684986b8a8313a61d61c083b09b54c" kindref="member">grid_points</ref><sp/>&lt;<sp/>256)<sp/>?<sp/>256<sp/>:<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ac4684986b8a8313a61d61c083b09b54c" kindref="member">grid_points</ref>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" kindref="member">num_mb_pts</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>fr++)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ap<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;<sp/>ap<sp/>&lt;<sp/>pass-&gt;ap_off+pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;<sp/>ap++)</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datum<sp/>=<sp/><ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref>[fr].data<sp/>+<sp/>ap;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" kindref="member">sbdelay</ref>[<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a965e2eea9f6e29ac26c015ec672ccb40" kindref="member">max_delchan</ref>]</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><ref refid="vrot_8c_1ab90c5aa4be6dc5f7c2fa3ed39dafe65d" kindref="member">vrot</ref><sp/>(ap,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a7d1d3e4b4d9a800d2011bcd570a52cff" kindref="member">dr_max_global</ref>,<sp/>0.0,<sp/>fr,<sp/>datum-&gt;<ref refid="structdata__corel_1aa6c41a7149d8c66fbfcad73e7f0e98c2" kindref="member">sband</ref>,<sp/>pass);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Weight<sp/>by<sp/>fractional<sp/>AP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0)</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>When<sp/>both<sp/>sidebands<sp/>added<sp/>together,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>we<sp/>use<sp/>the<sp/>mean<sp/>fraction<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>&amp;&amp;<sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0))</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac<sp/>/=<sp/>2.0;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>Z<sp/>*<sp/>frac;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[fr]<sp/>=<sp/>X[fr]<sp/>+<sp/>Z;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Space<sp/>frequencies<sp/>in<sp/>array<sp/>for<sp/>FFT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>allow<sp/>garbage<sp/>to<sp/>be<sp/>ignored</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a5a9b35622e373b025c29734233e529ce" kindref="member">mb_index</ref>[fr]<sp/>&lt;<sp/><ref refid="make__plotdata_8c_1a7036e1e75fbabd9310c6c47c09f945ba" kindref="member">GRID_PTS</ref>)</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y[<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a5a9b35622e373b025c29734233e529ce" kindref="member">mb_index</ref>[fr]]<sp/>=<sp/>X[fr];</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>FFt<sp/>across<sp/>freq<sp/>to<sp/>mbdelay<sp/>spectrum<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>fftplan<sp/>=<sp/>fftw_plan_dft_1d<sp/>(<ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" kindref="member">num_mb_pts</ref>,<sp/>(fftw_complex*)<sp/>Y,<sp/>(fftw_complex*)<sp/>Y,<sp/>FFTW_FORWARD,<sp/>FFTW_ESTIMATE);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_execute<sp/>(fftplan);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" kindref="member">num_mb_pts</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>=<sp/>i<sp/>-<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" kindref="member">num_mb_pts</ref><sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(j<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>+=<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a95df8733614734b33bf64ecd3efeed41" kindref="member">num_mb_pts</ref>;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ab27da6a7d46905a7bf41c011c3387e6c" kindref="member">mb_amp</ref>[i]<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(Y[j])<sp/>/<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a01f74ea2c91b4212e27661ee0594dc12" kindref="member">total_ap_frac</ref>;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculate<sp/>single<sp/>band<sp/>delay,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Xpower<sp/>spectrum,<sp/>&amp;<sp/>sbdbox<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>2*<ref refid="mk4__data_8h_1a23719c10dde829abaa7c317534d79e0d" kindref="member">MAXLAG</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>4*<ref refid="mk4__data_8h_1a23719c10dde829abaa7c317534d79e0d" kindref="member">MAXLAG</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="max555_8c_1affe776513b24d84b39af8ab0930fef7f" kindref="member">max</ref>[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maxchan[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>nl<sp/>=<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1afc491296aa5330791465a1f62bdf9050" kindref="member">nlags</ref>;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(lag<sp/>=<sp/>0;<sp/>lag<sp/>&lt;<sp/>nl<sp/>*<sp/>2;<sp/>lag++)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>fr++)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ap<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;<sp/>ap<sp/>&lt;<sp/>pass-&gt;ap_off+pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;<sp/>ap++)</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datum<sp/>=<sp/><ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref>[fr].data<sp/>+<sp/>ap;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" kindref="member">sbdelay</ref>[lag]</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><ref refid="vrot_8c_1ab90c5aa4be6dc5f7c2fa3ed39dafe65d" kindref="member">vrot</ref><sp/>(ap,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a7d1d3e4b4d9a800d2011bcd570a52cff" kindref="member">dr_max_global</ref>,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ada300f2666fe318679e49c52e7f0f801" kindref="member">mbd_max_global</ref>,<sp/>fr,<sp/>0,<sp/>pass);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sb<sp/>correction<sp/>made<sp/>by<sp/>spectral<sp/>below</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Weight<sp/>by<sp/>fractional<sp/>AP<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>frac<sp/><sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>frac<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>When<sp/>both<sp/>sidebands<sp/>added<sp/>together,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>we<sp/>use<sp/>the<sp/>mean<sp/>fraction<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>&amp;&amp;<sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0))<sp/>frac<sp/>/=<sp/>2.0;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>Z<sp/>*<sp/>frac;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum<sp/>=<sp/>Z<sp/>+<sp/>sum;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>sbsp<sp/>is<sp/>singleband<sp/>spect.<sp/>for<sp/>each<sp/>freq<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>X<sp/>is<sp/>singleb<sp/>sp.<sp/>summed<sp/>over<sp/>all<sp/>freq&apos;s<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbsp[fr][lag]<sp/>=<sp/>sum;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X[lag]<sp/>=<sp/>X[lag]<sp/>+<sp/>sum;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Find<sp/>the<sp/>max<sp/>lag<sp/>for<sp/>each<sp/>frequency<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(sum)<sp/>&gt;<sp/><ref refid="max555_8c_1affe776513b24d84b39af8ab0930fef7f" kindref="member">max</ref>[fr])</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="max555_8c_1affe776513b24d84b39af8ab0930fef7f" kindref="member">max</ref>[fr]<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref><sp/>(sum);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>maxchan[fr]<sp/>=<sp/>lag;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ad9edf40c650fd89b96dbaeadc356d588" kindref="member">sb_amp</ref>[lag]<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(X[lag])<sp/>/<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a01f74ea2c91b4212e27661ee0594dc12" kindref="member">total_ap_frac</ref>;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lag<sp/>==<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a965e2eea9f6e29ac26c015ec672ccb40" kindref="member">max_delchan</ref>)</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa0776c89ebf55f3e60197ec8a23eeaca" kindref="member">coh_avg_phase</ref><sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref><sp/>(X[lag]);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>=<sp/>lag<sp/>-<sp/>nl;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(j<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>+=<sp/>4<sp/>*<sp/>nl;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lag<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>=<sp/>2<sp/>*<sp/>nl;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pure<sp/>real<sp/>lsb/dc<sp/>channel<sp/>goes<sp/>in<sp/>middle</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y[j]<sp/>=<sp/>X[lag];</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>FFT<sp/>sband<sp/>spectrum<sp/>-&gt;<sp/>XPower<sp/>spectrum<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>fftplan<sp/>=<sp/>fftw_plan_dft_1d<sp/>(4<sp/>*<sp/>nl,<sp/>(fftw_complex*)<sp/>Y,<sp/>(fftw_complex*)<sp/>Y,<sp/>FFTW_FORWARD,<sp/>FFTW_ESTIMATE);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_execute<sp/>(fftplan);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>scale<sp/>crosspower<sp/>spectra<sp/>for<sp/>correct<sp/>amplitude</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>2*nl;<sp/>i++)</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>=<sp/>nl<sp/>-<sp/>i;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(j<sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sb_factor<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a36123095d4b31a5afbe0a18feee1b15f" kindref="member">total_usb_frac</ref><sp/>&gt;<sp/>0<sp/>?</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sqrt<sp/>(0.5)<sp/>/<sp/>(M_PI<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a36123095d4b31a5afbe0a18feee1b15f" kindref="member">total_usb_frac</ref>)<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sb_factor<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afbaf14e58e6756d707f42966531ac78b" kindref="member">total_lsb_frac</ref><sp/>&gt;<sp/>0<sp/>?</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sqrt<sp/>(0.5)<sp/>/<sp/>(M_PI<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afbaf14e58e6756d707f42966531ac78b" kindref="member">total_lsb_frac</ref>)<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(j<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j<sp/>+=<sp/>4*nl;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a856ebed21629b871666842b329104647" kindref="member">cp_spectrum</ref>[i]<sp/>=<sp/>Y[j]<sp/>*<sp/>sb_factor;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Counter<sp/>rotate<sp/>to<sp/>eliminate<sp/>sband<sp/>delay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/><ref refid="hops__complex_8h_1a0e90a82951116ef72bff59da6c6cc3f7" kindref="member">exp_complex</ref>(-<ref refid="hops__complex_8c_1ac13fd503dc891a8ca5e7fd9025608c8e" kindref="member">cmplx_unit_I</ref><sp/>*<sp/>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a41519ef3183fc1f62f4437b84097ad74" kindref="member">sbd_max</ref><sp/>*<sp/>(i-nl)<sp/>*<sp/>M_PI<sp/>/<sp/>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1abfc9b629d7f09218381de3e340b76748" kindref="member">sbd_sep</ref><sp/>*<sp/>2*nl)));</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a856ebed21629b871666842b329104647" kindref="member">cp_spectrum</ref>[i]<sp/>=<sp/>Z<sp/>*<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a856ebed21629b871666842b329104647" kindref="member">cp_spectrum</ref>[i];</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>requested,<sp/>fit<sp/>video<sp/>bandpass<sp/>params</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>and<sp/>print<sp/>them<sp/>out</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a682498537b5396f1b2ed3890be64b29f" kindref="member">vbp_fit</ref><sp/>==<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>)</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fit__vbp_8c_1a6ee0087c4ab69f2442127ed493e1a784" kindref="member">fit_vbp</ref><sp/>(nl);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>each<sp/>freq,<sp/>interpolate<sp/>through<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>3<sp/>sband<sp/>delays<sp/>to<sp/>find<sp/>sbdbox<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/><ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>;<sp/>fr++)</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a37aa045a8ea79a57a0faa69f17ba9212" kindref="member">sbdbox</ref>[fr]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>fr++)</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;3;<sp/>i++)</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yy[i]<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref><sp/>(sbsp[fr][maxchan[fr]-1+i]);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="applications_2search_2src_2parabola_8c_1a616f4fe3d47ca49068ae0e841e741640" kindref="member">parabola</ref><sp/>(yy,<sp/>-1.0,<sp/>1.0,<sp/>&amp;peak,<sp/>&amp;maxv,<sp/>q);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a37aa045a8ea79a57a0faa69f17ba9212" kindref="member">sbdbox</ref>[fr]<sp/>=<sp/>maxchan[fr]<sp/>+<sp/>peak<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a37aa045a8ea79a57a0faa69f17ba9212" kindref="member">sbdbox</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>]<sp/>=<sp/>nl<sp/>+<sp/>1<sp/>+<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a41519ef3183fc1f62f4437b84097ad74" kindref="member">sbd_max</ref><sp/>/<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1abfc9b629d7f09218381de3e340b76748" kindref="member">sbd_sep</ref>;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>effective<sp/>number<sp/>of<sp/>polarizations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>eff_npol<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" kindref="member">npols</ref><sp/>&gt;<sp/>2<sp/>?<sp/>2<sp/>:<sp/>pass-&gt;<ref refid="structtype__pass_1acf1363a44c484e9848e82ccfed6f1f10" kindref="member">npols</ref>;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Signal<sp/>to<sp/>Noise<sp/>Ratio<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afce31460b126f251c127b6703f252766" kindref="member">delres_max</ref><sp/>*<sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a1f7f73c89b4159c2737738c262822ef6" kindref="member">inv_sigma</ref></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>sqrt((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a01f74ea2c91b4212e27661ee0594dc12" kindref="member">total_ap_frac</ref><sp/>*<sp/>eff_npol)</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/<sp/>(1.0E4<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a177a375145b9df41010b68d3d25561ad" kindref="member">amp_corr_fact</ref>);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>=<sp/><ref refid="apply__funcs_8h_1aaad099793a78ad5c73d55386bda975f8" kindref="member">adjust_snr</ref>(pass,<sp/>&amp;<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;SNR<sp/>%8.2f&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref>);</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Probability<sp/>of<sp/>false<sp/>detection<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1acc0992d8fb85b6bbdada09338138617f" kindref="member">prob_false</ref><sp/>=<sp/>1.0<sp/>-<sp/>(pow<sp/>(1.0<sp/>-<sp/>exp(-<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>/<sp/>2.0),</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1adfb19c3afaddb27e4e3566c825ec119e" kindref="member">pts_searched</ref>));</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1acc0992d8fb85b6bbdada09338138617f" kindref="member">prob_false</ref><sp/>&lt;<sp/>0.01)<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1acc0992d8fb85b6bbdada09338138617f" kindref="member">prob_false</ref><sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1adfb19c3afaddb27e4e3566c825ec119e" kindref="member">pts_searched</ref></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>exp(-<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>/<sp/>2.0);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/>Calculate<sp/>fringe<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a2d1f29de4ede030bb24a8e18c6c84164" kindref="member">timerms_phase</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a430cfd9ac3bdafa8a705403f26ba3f61" kindref="member">timerms_amp</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a215b7ee43374133c792e9de283a93906" kindref="member">freqrms_phase</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab91f95efbf8fb53551885da43290f697" kindref="member">freqrms_amp</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a4c89da490ffbe2434a8131b14226fbc8" kindref="member">inc_avg_amp</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa57cceaaec89dad4fe6d55b5992bd27a" kindref="member">inc_avg_amp_freq</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ap_cnt[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum_ap[i]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>sum_all<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>each<sp/>freq<sp/>&amp;<sp/>ap,<sp/>the<sp/>fringe<sp/>phasor<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>is<sp/>the<sp/>sband<sp/>delay<sp/>spectrum<sp/>at<sp/>the<sp/>max<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>delay<sp/>chan.,<sp/>rotated<sp/>by<sp/>vrot()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>fr++)</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum_freq<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sumwt<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ap<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;<sp/>ap<sp/>&lt;<sp/>pass-&gt;ap_off+pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;<sp/>ap++)</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datum<sp/>=<sp/><ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref>[fr].data<sp/>+<sp/>ap;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[fr][ap]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Flag<sp/>bits<sp/>set<sp/>indicate<sp/>data<sp/>present<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a0db826588b23fc354f43114c30f7b016" kindref="member">flag</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ap_cnt[ap]++;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0)</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[fr][ap]<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[fr][ap]<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>True<sp/>weights<sp/>-<sp/>factor<sp/>of<sp/>2<sp/>inherent<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>sbdelay<sp/>values<sp/>for<sp/>double<sp/>sideband<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sumwt<sp/>+=<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[fr][ap];</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Double-sideband<sp/>relative<sp/>weights,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>take<sp/>mean<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)<sp/>&amp;&amp;<sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0))</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[fr][ap]<sp/>/=<sp/>2.0;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Z<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" kindref="member">sbdelay</ref>[<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a965e2eea9f6e29ac26c015ec672ccb40" kindref="member">max_delchan</ref>]</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><ref refid="vrot_8c_1ab90c5aa4be6dc5f7c2fa3ed39dafe65d" kindref="member">vrot</ref>(ap,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a7d1d3e4b4d9a800d2011bcd570a52cff" kindref="member">dr_max_global</ref>,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ada300f2666fe318679e49c52e7f0f801" kindref="member">mbd_max_global</ref>,fr,datum-&gt;<ref refid="structdata__corel_1aa6c41a7149d8c66fbfcad73e7f0e98c2" kindref="member">sband</ref>,pass);</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a13878661fcb7c8812407e3d67899cb97" kindref="member">phasor</ref>[fr][ap]<sp/>=<sp/>Z;</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a13878661fcb7c8812407e3d67899cb97" kindref="member">phasor</ref>[fr][ap]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wght_phsr<sp/>=<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a13878661fcb7c8812407e3d67899cb97" kindref="member">phasor</ref>[fr][ap]<sp/>*<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[fr][ap];</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum_all<sp/>=<sp/>sum_all<sp/>+<sp/>wght_phsr;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum_freq<sp/>=<sp/>sum_freq<sp/>+<sp/>wght_phsr;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum_ap[ap]<sp/>=<sp/>sum_ap[ap]<sp/>+<sp/>wght_phsr;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Changed<sp/>to<sp/>reflect<sp/>fractional<sp/>APs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/>(sumwt<sp/>&gt;<sp/>0.0)<sp/>?<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a177a375145b9df41010b68d3d25561ad" kindref="member">amp_corr_fact</ref>/sumwt<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ac959924cbebef89d4c48691dbce7d8fe" kindref="member">fringe</ref>[fr]<sp/>=<sp/>sum_freq<sp/>*<sp/>c;</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;status.fringe[%d]<sp/>%f<sp/>%f&quot;</highlight><highlight class="normal">,<sp/>0,<sp/>fr,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ac959924cbebef89d4c48691dbce7d8fe" kindref="member">fringe</ref>[fr]);</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa57cceaaec89dad4fe6d55b5992bd27a" kindref="member">inc_avg_amp_freq</ref><sp/>+=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(sum_freq)<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a177a375145b9df41010b68d3d25561ad" kindref="member">amp_corr_fact</ref>;</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ion__covariance_8c_1a69bef583c20a74a4dd177187c00228a3" kindref="member">ion_covariance</ref><sp/>(pass);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>do<sp/>ionosphere<sp/>covariance<sp/>analysis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ap<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;<sp/>ap<sp/>&lt;<sp/>pass-&gt;ap_off+pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;<sp/>ap++)</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a13878661fcb7c8812407e3d67899cb97" kindref="member">phasor</ref>[pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>][ap]<sp/>=<sp/>sum_ap[ap];</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>][ap]<sp/>=<sp/>ap_cnt[ap];</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa0776c89ebf55f3e60197ec8a23eeaca" kindref="member">coh_avg_phase</ref><sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref><sp/>(sum_all);</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa57cceaaec89dad4fe6d55b5992bd27a" kindref="member">inc_avg_amp_freq</ref><sp/>/=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a01f74ea2c91b4212e27661ee0594dc12" kindref="member">total_ap_frac</ref>;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Noise<sp/>bias<sp/>correction<sp/>?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa57cceaaec89dad4fe6d55b5992bd27a" kindref="member">inc_avg_amp_freq</ref><sp/>/=<sp/>((1.0<sp/>+<sp/>1.0/(2.0<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>/<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>)));</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>NB:<sp/>this<sp/>routine<sp/>calc<sp/>plot<sp/>data<sp/>by<sp/>segment<sp/>in<sp/>addition<sp/>to<sp/>RMS<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="calc__rms_8c_1a9039dc6e0c026f366852c9aab4294196" kindref="member">calc_rms</ref><sp/>(pass);</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/>fftw_destroy_plan<sp/>(fftplan);</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/make_plotdata.c"/>
+  </compounddef>
+</doxygen>

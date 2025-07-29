@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacehops__visualization_1_1fourfit__plot" kind="namespace" language="Python">
+    <compoundname>hops_visualization::fourfit_plot</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1ae4ca281d1341376ea43e8a9d39144620" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.get_numpy_version_tuple</definition>
+        <argsstring>()</argsstring>
+        <name>get_numpy_version_tuple</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="24" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a36a83fb8d78a3b0bc050f0538eb45ddb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.is_version_less_than</definition>
+        <argsstring>(version_tuple_check, version_tuple_reference)</argsstring>
+        <name>is_version_less_than</name>
+        <param>
+          <type>version_tuple_check</type>
+          <defname>version_tuple_check</defname>
+        </param>
+        <param>
+          <type>version_tuple_reference</type>
+          <defname>version_tuple_reference</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="39" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1ab07419aea966e64c11232534d8ffc1f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_amplitude_table</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_amplitude_table</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="782" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="782" bodyend="822"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a5a8dae6fc0fec83a2c0376f7037a034a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_channel_info_table</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_channel_info_table</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="385" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="385" bodyend="508"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a19a3c022c1a43f6a8fd4fd20506717db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_channel_segment_plots_alt</definition>
+        <argsstring>(fig, plot_dict)</argsstring>
+        <name>make_channel_segment_plots_alt</name>
+        <param>
+          <type>fig</type>
+          <defname>fig</defname>
+        </param>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="182" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="182" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1aad89ec8b1fa22d882a0f94ce20be7449" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_channel_segment_validity_plots</definition>
+        <argsstring>(fig, plot_dict)</argsstring>
+        <name>make_channel_segment_validity_plots</name>
+        <param>
+          <type>fig</type>
+          <defname>fig</defname>
+        </param>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="262" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="262" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a7628d22bfed0670845a9471ec1137994" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_coord_text</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_coord_text</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="739" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="739" bodyend="781"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a36ad0d8aa119b76cb361b5a3efbee41e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_data_stats_text</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_data_stats_text</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="860" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="860" bodyend="897"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1ab6d399ca3105bba506a1df279a626816" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_dr_mbd_plot</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_dr_mbd_plot</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="51" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1aa2dbe3679003bc909e6f04083abcf159" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_fourfit_plot</definition>
+        <argsstring>(plot_dict, show_on_screen, filename)</argsstring>
+        <name>make_fourfit_plot</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <param>
+          <type>show_on_screen</type>
+          <defname>show_on_screen</defname>
+        </param>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Function to reproduce a fourfit fringe plot.
+
+Parameters
+----------
+plot_dict : dict
+    Dictionary with key/value pairs for the plot.
+show_on_screen : bool
+    Show the plot on-screen.
+filename : str
+    Path of the filename to save the plot, if empty, plot will not be saved.
+
+Returns
+-------
+None
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="910" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="910" bodyend="972"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a5ce78c7351b5f086aebf2a95c77754de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_fourfit_plot_wrapper</definition>
+        <argsstring>(fringe_data_interface)</argsstring>
+        <name>make_fourfit_plot_wrapper</name>
+        <param>
+          <type>fringe_data_interface</type>
+          <defname>fringe_data_interface</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="973" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="973" bodyend="978"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a2d8d8ad36a089a526af749b66df7ee74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_info_text_box</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_info_text_box</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="509" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="509" bodyend="584"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a6e11ce988de3f9c5426c549546315a01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_model_resid_info_text</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_model_resid_info_text</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="600" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="600" bodyend="690"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a59287368806e550d5970e98a217b3d03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_pcal_plots</definition>
+        <argsstring>(fig, plot_dict)</argsstring>
+        <name>make_pcal_plots</name>
+        <param>
+          <type>fig</type>
+          <defname>fig</defname>
+        </param>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="306" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="306" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a3efacd5ba4a1b26fe5f88f62258ccdc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_rms_table</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_rms_table</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="691" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="691" bodyend="738"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1ab8f25ab6ab083a430575cddbac313a1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_sbd_dtec_plot</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_sbd_dtec_plot</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="97" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="97" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1af7498f17757d0bafda689b03cacaa7f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_sciformat</definition>
+        <argsstring>(float_value, nprec, nmd, np_use_min_digits=True)</argsstring>
+        <name>make_sciformat</name>
+        <param>
+          <type>float_value</type>
+          <defname>float_value</defname>
+        </param>
+        <param>
+          <type>nprec</type>
+          <defname>nprec</defname>
+        </param>
+        <param>
+          <type>nmd</type>
+          <defname>nmd</defname>
+        </param>
+        <param>
+          <type>np_use_min_digits</type>
+          <defname>np_use_min_digits</defname>
+          <defval>True</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="43" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1ad0a32ca86a408f2d8c38e66e8b5375d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_top_info_text</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_top_info_text</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="585" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="585" bodyend="599"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1a1bcac6054b7668465c418e8ea9bcc104" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_window_table</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_window_table</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="823" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="823" bodyend="859"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1af3c684584646855b9a888e24ba5b0d4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.make_xpower_plot</definition>
+        <argsstring>(plot_dict)</argsstring>
+        <name>make_xpower_plot</name>
+        <param>
+          <type>plot_dict</type>
+          <defname>plot_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="145" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="145" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1fourfit__plot_1ab13f84574e5d9e6b1fb6f47e5061cf01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.fourfit_plot.press_event_handler</definition>
+        <argsstring>(event)</argsstring>
+        <name>press_event_handler</name>
+        <param>
+          <type>event</type>
+          <defname>event</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="898" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" bodystart="898" bodyend="909"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/fourfit_plot.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

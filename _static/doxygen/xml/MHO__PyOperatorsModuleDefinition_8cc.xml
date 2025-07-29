@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__PyOperatorsModuleDefinition_8cc" kind="file" language="C++">
+    <compoundname>MHO_PyOperatorsModuleDefinition.cc</compoundname>
+    <includes refid="MHO__PyOperator_8hh" local="yes">MHO_PyOperator.hh</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>MHO_PyOperator.hh</label>
+        <link refid="MHO__PyOperator_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>pybind11/numpy.h</label>
+      </node>
+      <node id="4">
+        <label>pybind11/pybind11.h</label>
+      </node>
+      <node id="1">
+        <label>MHO_PyOperatorsModuleDefinition.cc</label>
+        <link refid="MHO__PyOperatorsModuleDefinition_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_Operator.hh</label>
+        <link refid="MHO__Operator_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__PyOperatorsModuleDefinition_8cc_1a7043d9d872fdca0ec538d37d04325f31" prot="public" static="no">
+        <name>PYBIND11_DETAILED_ERROR_MESSAGES</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/src/MHO_PyOperatorsModuleDefinition.cc" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/src/MHO_PyOperatorsModuleDefinition.cc" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="MHO__PyOperatorsModuleDefinition_8cc_1a64a51e770979feaebcbf8504a52d74cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PYBIND11_MODULE</definition>
+        <argsstring>(pyMHO_Operators, m)</argsstring>
+        <name>PYBIND11_MODULE</name>
+        <param>
+          <type>pyMHO_Operators</type>
+        </param>
+        <param>
+          <type>m</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/src/MHO_PyOperatorsModuleDefinition.cc" line="7" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/src/MHO_PyOperatorsModuleDefinition.cc" bodystart="7" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__PyOperator_8hh" kindref="compound">MHO_PyOperator.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref>;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PYBIND11_DETAILED_ERROR_MESSAGES</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><ref refid="MHO__PyOperatorsModuleDefinition_8cc_1a64a51e770979feaebcbf8504a52d74cd" kindref="member">PYBIND11_MODULE</ref>(pyMHO_Operators,<sp/>m)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>m.doc()<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;module<sp/>to<sp/>provide<sp/>interface<sp/>to<sp/>extend<sp/>MHO_Operators<sp/>with<sp/>python<sp/>classes&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>optional<sp/>module<sp/>docstring</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;<sp/>MHO_Operator,<sp/>MHO_PyOperator<sp/>&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;MHO_Operator&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init&lt;&gt;())</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;Initialize&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171" kindref="member">MHO_Operator::Initialize</ref>)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;Execute&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7" kindref="member">MHO_Operator::Execute</ref>);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/src/MHO_PyOperatorsModuleDefinition.cc"/>
+  </compounddef>
+</doxygen>

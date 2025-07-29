@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfbands" kind="struct" language="C++" prot="public">
+    <compoundname>fbands</compoundname>
+    <includes refid="difx2mark4_8h" local="no">difx2mark4.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfbands_1aa31ea9f4cc994074fd7db0fdabf9bc83" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fbands::code</definition>
+        <argsstring></argsstring>
+        <name>code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="112" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfbands_1a4bf757a8d92287f82904b9f15f5e0d7b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fbands::fhi</definition>
+        <argsstring></argsstring>
+        <name>fhi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="114" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfbands_1af2b6ebdf22219d2adfd2dd1d258befba" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fbands::flo</definition>
+        <argsstring></argsstring>
+        <name>flo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="113" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>fbands</label>
+        <link refid="structfbands"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fhi</edgelabel>
+          <edgelabel>flo</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>code</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="110" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="111" bodyend="115"/>
+    <listofallmembers>
+      <member refid="structfbands_1aa31ea9f4cc994074fd7db0fdabf9bc83" prot="public" virt="non-virtual"><scope>fbands</scope><name>code</name></member>
+      <member refid="structfbands_1a4bf757a8d92287f82904b9f15f5e0d7b" prot="public" virt="non-virtual"><scope>fbands</scope><name>fhi</name></member>
+      <member refid="structfbands_1af2b6ebdf22219d2adfd2dd1d258befba" prot="public" virt="non-virtual"><scope>fbands</scope><name>flo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

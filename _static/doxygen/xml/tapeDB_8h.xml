@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="tapeDB_8h" kind="file" language="C++">
+    <compoundname>tapeDB.h</compoundname>
+    <includedby refid="CorAsc2_8c" local="yes">CorAsc2.c</includedby>
+    <includedby refid="CorPrune_8c" local="yes">CorPrune.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>CorAsc2.c</label>
+        <link refid="CorAsc2_8c"/>
+      </node>
+      <node id="1">
+        <label>tapeDB.h</label>
+        <link refid="tapeDB_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>CorPrune.c</label>
+        <link refid="CorPrune_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structhead__pos" prot="public">head_pos</innerclass>
+    <innerclass refid="structtapeDB" prot="public">tapeDB</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="tapeDB_8h_1ae2f08dc603ae93c402abd918ba4e23e1" prot="public" static="no">
+        <name>ABS</name>
+        <param><defname>a</defname></param>
+        <initializer>(((a) &lt; 0) ? -(a) : (a))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
+        <name>FALSE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1aded4012e77ec37914723bec40a225e46" prot="public" static="no">
+        <name>MAX_INDEX</name>
+        <initializer>(<ref refid="tapeDB_8h_1ab87d93dd7c87916582c154f7d0b5217b" kindref="member">MAX_TAPE_LENGTH</ref> / <ref refid="tapeDB_8h_1a8e081233a9c419bdb72194ab4530762b" kindref="member">POSITION_TOLERENCE</ref>) /* 38 */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" prot="public" static="no">
+        <name>MAX_NAMESIZE</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1aedf6faca00e1d03c4ff920ccd5f5440c" prot="public" static="no">
+        <name>MAX_PASS</name>
+        <initializer>61 /* From mk4_ccfile.h */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1ab87d93dd7c87916582c154f7d0b5217b" prot="public" static="no">
+        <name>MAX_TAPE_LENGTH</name>
+        <initializer>19000 /* Feet */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1a8e081233a9c419bdb72194ab4530762b" prot="public" static="no">
+        <name>POSITION_TOLERENCE</name>
+        <initializer>500 /* Feet */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1a74e1aebb8dddadc1b2b9f06ee4cc654c" prot="public" static="no">
+        <name>TAPEDB_VERSION</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tapeDB_8h_1a0d5f78037835fdbb5d223ee585300be0" prot="public" static="no">
+        <name>TAPEINFO</name>
+        <initializer>&quot;/correlator/tapelib/tapeinfo/&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="tapeDB_8h_1a6f8601e3bac1c36e540db08753811c13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tapehead</definition>
+        <argsstring>(int thisSU, short Ondx, struct head_pos **ptape_footage, struct head_pos **pphintsFootage)</argsstring>
+        <name>tapehead</name>
+        <param>
+          <type>int</type>
+          <declname>thisSU</declname>
+        </param>
+        <param>
+          <type>short</type>
+          <declname>Ondx</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structhead__pos" kindref="compound">head_pos</ref> **</type>
+          <declname>ptape_footage</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structhead__pos" kindref="compound">head_pos</ref> **</type>
+          <declname>pphintsFootage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" line="54" column="5" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h" declline="54" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>tapeDB.h<sp/></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>For<sp/>a<sp/>tape-head<sp/>offset<sp/>database<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Revised:<sp/><sp/>2000<sp/>November<sp/>2,<sp/>JAB<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TAPEDB_VERSION<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="tapeDB_8h_1a74e1aebb8dddadc1b2b9f06ee4cc654c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TAPEDB_VERSION<sp/>2<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="tapeDB_8h_1a0d5f78037835fdbb5d223ee585300be0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TAPEINFO<sp/>&quot;/correlator/tapelib/tapeinfo/&quot;</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="10" refid="tapeDB_8h_1aedf6faca00e1d03c4ff920ccd5f5440c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_PASS<sp/>61<sp/></highlight><highlight class="comment">/*<sp/>From<sp/>mk4_ccfile.h<sp/>*/</highlight><highlight class="preprocessor"><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MAX_NAMESIZE<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NAMESIZE<sp/>32<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MAX_INDEX<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="tapeDB_8h_1ab87d93dd7c87916582c154f7d0b5217b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_TAPE_LENGTH<sp/>19000<sp/></highlight><highlight class="comment">/*<sp/>Feet<sp/>*/</highlight><highlight class="preprocessor"><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="tapeDB_8h_1a8e081233a9c419bdb72194ab4530762b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POSITION_TOLERENCE<sp/>500<sp/></highlight><highlight class="comment">/*<sp/>Feet<sp/>*/</highlight><highlight class="preprocessor"><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="tapeDB_8h_1aded4012e77ec37914723bec40a225e46" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_INDEX<sp/>(MAX_TAPE_LENGTH<sp/>/<sp/>POSITION_TOLERENCE)<sp/></highlight><highlight class="comment">/*<sp/>38<sp/>*/</highlight><highlight class="preprocessor"><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ABS<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="tapeDB_8h_1ae2f08dc603ae93c402abd918ba4e23e1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ABS(a)<sp/><sp/>(((a)<sp/>&lt;<sp/>0)<sp/>?<sp/>-(a)<sp/>:<sp/>(a))<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TRUE<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/><sp/>1<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="tapeDB_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structhead__pos" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhead__pos" kindref="compound">head_pos</ref><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>See<sp/>also<sp/>$SUMAN/su_db.h<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="32" refid="structhead__pos_1ac19af6ad7424643ad8f00134b2f562a6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhead__pos_1ac19af6ad7424643ad8f00134b2f562a6" kindref="member">head_pos_offset</ref>[2];<sp/></highlight><highlight class="comment">/*<sp/>Deci-microns<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[0]<sp/>=<sp/>reverse<sp/>pass,<sp/>[1]<sp/>=<sp/>forward<sp/>(from<sp/>SU_db)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>};<sp/></highlight><highlight class="comment">/*<sp/>tape_footage[]<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structtapeDB" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtapeDB" kindref="compound">tapeDB</ref><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>Overall<sp/>tape<sp/>data,<sp/>one<sp/>per<sp/>tape<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="37" refid="structtapeDB_1a1bf8e1b39104d505aa9905fc77f42841" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1a1bf8e1b39104d505aa9905fc77f42841" kindref="member">record_id</ref>[3];<sp/></highlight><highlight class="comment">/*<sp/>To<sp/>be<sp/>&quot;TDB&quot;<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="38" refid="structtapeDB_1ad071b47f49024aeefa42bd0d48bbb244" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1ad071b47f49024aeefa42bd0d48bbb244" kindref="member">version_no</ref>[2];<sp/></highlight><highlight class="comment">/*<sp/>From<sp/>TAPEDB_VERSION<sp/>above<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="39" refid="structtapeDB_1a9d67b4eb7fab48aa569c82111103c0fa" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1a9d67b4eb7fab48aa569c82111103c0fa" kindref="member">vsn</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];<sp/></highlight><highlight class="comment">/*<sp/>VSN<sp/>from<sp/>sut<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="40" refid="structtapeDB_1aa4d9b5d28314558123214d1656d58dc8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1aa4d9b5d28314558123214d1656d58dc8" kindref="member">station</ref>;<sp/></highlight><highlight class="comment">/*<sp/>From<sp/>sut,<sp/>same<sp/>as<sp/>mk4_site_id<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="41" refid="structtapeDB_1a18f568d9cee8030daa490e1aece3da9e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1a18f568d9cee8030daa490e1aece3da9e" kindref="member">exper_num</ref>;<sp/></highlight><highlight class="comment">/*<sp/>From<sp/>ovex<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="42" refid="structtapeDB_1a8ba335bca48d7c12065bf0cc41c9dc7d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1a8ba335bca48d7c12065bf0cc41c9dc7d" kindref="member">exper_name</ref>[32];<sp/></highlight><highlight class="comment">/*<sp/>From<sp/>ovex<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/><ref refid="structtapeDB_1a0268da4fd92e047a1563408f997cddd6" kindref="member">start_time</ref>;<sp/></highlight><highlight class="comment">/*<sp/>From<sp/>ovex<sp/>(ignore<sp/>HHMMSS)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="44" refid="structtapeDB_1a0f1e1dbbbe7ae87350d81762fe4162b3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1a0f1e1dbbbe7ae87350d81762fe4162b3" kindref="member">site_id</ref>[3];<sp/></highlight><highlight class="comment">/*<sp/>From<sp/>ovex<sp/>st[]<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>(tape_id<sp/>in<sp/>ovex<sp/>is<sp/>usually<sp/>null)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="46" refid="structtapeDB_1a0b89b8739c64be45a956c7f76bd8b97d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1a0b89b8739c64be45a956c7f76bd8b97d" kindref="member">sus</ref>[5];<sp/></highlight><highlight class="comment">/*<sp/>Recently<sp/>used<sp/>SUs<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="47" refid="structtapeDB_1a263956f38ca1eeab6b2b0abeacfebccd" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1a263956f38ca1eeab6b2b0abeacfebccd" kindref="member">head</ref>[<ref refid="tapeDB_8h_1aedf6faca00e1d03c4ff920ccd5f5440c" kindref="member">MAX_PASS</ref>];<sp/></highlight><highlight class="comment">/*<sp/>Head<sp/>number,<sp/>1<sp/>or<sp/>2,<sp/>for<sp/>this<sp/>pass<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="48" refid="structtapeDB_1ae806935e3e6aa61ebe1d24cb5390118b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structtapeDB_1ae806935e3e6aa61ebe1d24cb5390118b" kindref="member">headpos</ref>[<ref refid="tapeDB_8h_1aedf6faca00e1d03c4ff920ccd5f5440c" kindref="member">MAX_PASS</ref>];<sp/></highlight><highlight class="comment">/*<sp/>Reference<sp/>position<sp/>for<sp/>pass,<sp/>deci-microns<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[pass<sp/>number],<sp/>pass<sp/>number<sp/>is<sp/>arbitrary<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhead__pos" kindref="compound">head_pos</ref><sp/><ref refid="structtapeDB_1a756b76a00f5c1ac246e1d542945a2499" kindref="member">pass</ref>[<ref refid="tapeDB_8h_1aedf6faca00e1d03c4ff920ccd5f5440c" kindref="member">MAX_PASS</ref>][<ref refid="tapeDB_8h_1aded4012e77ec37914723bec40a225e46" kindref="member">MAX_INDEX</ref>];<sp/></highlight><highlight class="comment">/*<sp/>Each<sp/>pass<sp/>pair<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[pass<sp/>number][footage/500]<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>};<sp/></highlight><highlight class="comment">/*<sp/>*tapeinfo<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="tapeDB_8h_1a6f8601e3bac1c36e540db08753811c13" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="tapeDB_8h_1a6f8601e3bac1c36e540db08753811c13" kindref="member">tapehead</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>thisSU,<sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/>Ondx,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structhead__pos" kindref="compound">head_pos</ref><sp/>*<sp/>*<sp/>ptape_footage,<sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structhead__pos" kindref="compound">head_pos</ref><sp/>*<sp/>*<sp/>pphintsFootage);<sp/></highlight><highlight class="comment">/*<sp/>In<sp/>tapehead.c<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/tapeDB.h"/>
+  </compounddef>
+</doxygen>

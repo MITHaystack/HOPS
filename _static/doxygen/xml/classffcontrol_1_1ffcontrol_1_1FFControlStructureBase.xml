@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase" kind="class" language="Python" prot="public">
+    <compoundname>ffcontrol::ffcontrol::FFControlStructureBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ctypes.Structure</basecompoundref>
+    <derivedcompoundref refid="classffcontrol_1_1ffcontrol_1_1c__block" prot="public" virt="non-virtual">ffcontrol.ffcontrol.c_block</derivedcompoundref>
+    <derivedcompoundref refid="classffcontrol_1_1ffcontrol_1_1dstats" prot="public" virt="non-virtual">ffcontrol.ffcontrol.dstats</derivedcompoundref>
+    <derivedcompoundref refid="classffcontrol_1_1ffcontrol_1_1gat__struct" prot="public" virt="non-virtual">ffcontrol.ffcontrol.gat_struct</derivedcompoundref>
+    <derivedcompoundref refid="classffcontrol_1_1ffcontrol_1_1istats" prot="public" virt="non-virtual">ffcontrol.ffcontrol.istats</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a9d3a5f745142bd364e7c909484b2359c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.FFControlStructureBase.__eq__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__eq__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="49" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="49" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a2b7631256b24502a34f8f3b4172d57ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.FFControlStructureBase.__ne__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__ne__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="60" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="60" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a87c532352fb382ab60a98077b2c32b3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.FFControlStructureBase.printarray</definition>
+        <argsstring>(self, a)</argsstring>
+        <name>printarray</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>a</type>
+          <defname>a</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> dump data form a parsed array </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="86" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="86" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a097479c422d8dacc00399c7c91a44e51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.FFControlStructureBase.printsummary</definition>
+        <argsstring>(self)</argsstring>
+        <name>printsummary</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> dump parsed control file data </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="71" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="71" bodyend="85"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>general records and utils </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>ffcontrol base class which implements comparison operations eq, ne as well as a summary</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>ffcontrol.ffcontrol.gat_struct</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1gat__struct"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ffcontrol.ffcontrol.FFControlStructureBase</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="4">
+        <label>ffcontrol.ffcontrol.dstats</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1dstats"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ffcontrol.ffcontrol.istats</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1istats"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ffcontrol.ffcontrol.c_block</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1c__block"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ffcontrol.ffcontrol.FFControlStructureBase</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes.Structure</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="47" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="47" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a9d3a5f745142bd364e7c909484b2359c" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::FFControlStructureBase</scope><name>__eq__</name></member>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a2b7631256b24502a34f8f3b4172d57ba" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::FFControlStructureBase</scope><name>__ne__</name></member>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a87c532352fb382ab60a98077b2c32b3a" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::FFControlStructureBase</scope><name>printarray</name></member>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a097479c422d8dacc00399c7c91a44e51" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::FFControlStructureBase</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

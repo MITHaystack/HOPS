@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__LegacyDateConverter_8hh" kind="file" language="C++">
+    <compoundname>MHO_LegacyDateConverter.hh</compoundname>
+    <includes refid="legacy__hops__date_8hh" local="yes">legacy_hops_date.hh</includes>
+    <includes local="no">string</includes>
+    <includedby refid="MHO__BasicFringeUtilities_8cc" local="yes">MHO_BasicFringeUtilities.cc</includedby>
+    <includedby refid="MHO__MK4CorelInterface_8cc" local="yes">MHO_MK4CorelInterface.cc</includedby>
+    <includedby refid="MHO__MK4FringeExport_8cc" local="yes">MHO_MK4FringeExport.cc</includedby>
+    <includedby refid="MHO__MK4StationInterface_8cc" local="yes">MHO_MK4StationInterface.cc</includedby>
+    <includedby refid="MHO__LegacyDateConverter_8cc" local="yes">MHO_LegacyDateConverter.cc</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>legacy_hops_date.hh</label>
+        <link refid="legacy__hops__date_8hh"/>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>MHO_LegacyDateConverter.hh</label>
+        <link refid="MHO__LegacyDateConverter_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>MHO_MK4FringeExport.cc</label>
+        <link refid="MHO__MK4FringeExport_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_BasicFringeUtilities.cc</label>
+        <link refid="MHO__BasicFringeUtilities_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_MK4CorelInterface.cc</label>
+        <link refid="MHO__MK4CorelInterface_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_LegacyDateConverter.cc</label>
+        <link refid="MHO__LegacyDateConverter_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_LegacyDateConverter.hh</label>
+        <link refid="MHO__LegacyDateConverter_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__LegacyDateConverter" prot="public">hops::MHO_LegacyDateConverter</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_LegacyDateConverter_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_LegacyDateConverter_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="legacy__hops__date_8hh" kindref="compound">legacy_hops_date.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classhops_1_1MHO__LegacyDateConverter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__LegacyDateConverter" kindref="compound">MHO_LegacyDateConverter</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22" refid="classhops_1_1MHO__LegacyDateConverter_1a57d826c6f318b4ae49c4871daaa5d950" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1a57d826c6f318b4ae49c4871daaa5d950" kindref="member">MHO_LegacyDateConverter</ref>(){};</highlight></codeline>
+<codeline lineno="23" refid="classhops_1_1MHO__LegacyDateConverter_1aa21a39029ed28b81bdafd0c65d6c250a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1aa21a39029ed28b81bdafd0c65d6c250a" kindref="member">~MHO_LegacyDateConverter</ref>(){};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1a75f2f335fa1f0895f41ac1c8f25d6365" kindref="member">ConvertToISO8601Format</ref>(<ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref><sp/>a_date);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1a434086a95de4144c29a78c6c40e41f9c" kindref="member">ConvertToVexFormat</ref>(<ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref><sp/>a_date);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref><sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1a8072ba8857bf96840d710f2d8266ecfa" kindref="member">ConvertFromVexFormat</ref>(std::string<sp/>vex_date);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref><sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1af1725f76e8c001455b02e170307c3e0b" kindref="member">ConvertFromISO8601Format</ref>(std::string<sp/>iso_date);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref><sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1a6a694072fd78bb5a96a01c421d229822" kindref="member">Now</ref>();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref><sp/><ref refid="classhops_1_1MHO__LegacyDateConverter_1acf25008e8720da883d91a52782a000c7" kindref="member">HopsEpoch</ref>();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyDateConverter.hh"/>
+  </compounddef>
+</doxygen>

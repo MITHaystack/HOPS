@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classafio_1_1afio_1_1fringesum" kind="class" language="Python" prot="public">
+    <compoundname>afio::afio::fringesum</compoundname>
+    <basecompoundref refid="classafio_1_1afio_1_1AFIOStructureBase" prot="public" virt="non-virtual">afio.afio.AFIOStructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classafio_1_1afio_1_1fringesum_1adbcf72a8b94b1732d1f006d312e158f1" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list afio.afio.fringesum::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="197" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>afio.afio.fringesum</label>
+        <link refid="classafio_1_1afio_1_1fringesum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes::Structure</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>afio.afio.fringesum</label>
+        <link refid="classafio_1_1afio_1_1fringesum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes::Structure</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="196" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="196" bodyend="256"/>
+    <listofallmembers>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1aa479315f4e51d0c54b117e940431f009" prot="public" virt="non-virtual"><scope>afio::afio::fringesum</scope><name>__eq__</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1ac1ba246b542db0792a0544259954adc8" prot="public" virt="non-virtual"><scope>afio::afio::fringesum</scope><name>__ne__</name></member>
+      <member refid="classafio_1_1afio_1_1fringesum_1adbcf72a8b94b1732d1f006d312e158f1" prot="private" virt="non-virtual"><scope>afio::afio::fringesum</scope><name>_fields_</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a2a2bb32f44156b3dcd6b7ad2dfa85503" prot="public" virt="non-virtual"><scope>afio::afio::fringesum</scope><name>approximately_equal</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a21ec9262c919b90a67a039ca50a5a17c" prot="public" virt="non-virtual"><scope>afio::afio::fringesum</scope><name>approximately_equal_field</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a86d37a5619ae22284788a803815f2d04" prot="public" virt="non-virtual"><scope>afio::afio::fringesum</scope><name>contains_floats</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a4c0a78ec964fc11651add113384134aa" prot="public" virt="non-virtual"><scope>afio::afio::fringesum</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

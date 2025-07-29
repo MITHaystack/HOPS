@@ -1,0 +1,696 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VexParser" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VexParser</compoundname>
+    <includes refid="MHO__VexParser_8hh" local="no">MHO_VexParser.hh</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__VexParser_1ad3e021510cb11b9174aff63c376fd730" prot="private" static="no">
+        <type>std::list&lt; <ref refid="structhops_1_1MHO__VexLine" kindref="compound">MHO_VexLine</ref> &gt;::iterator</type>
+        <definition>using hops::MHO_VexParser::line_itr =  std::list&lt; MHO_VexLine &gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>line_itr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="146" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1af69b6cdc504a6a007c744dcf3b31d14d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_VexParser::fBlockNames</definition>
+        <argsstring></argsstring>
+        <name>fBlockNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="154" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1af412ebd33ecb620a43dca51a370a0d73" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__VexBlockParser" kindref="compound">MHO_VexBlockParser</ref></type>
+        <definition>MHO_VexBlockParser hops::MHO_VexParser::fBlockParser</definition>
+        <argsstring></argsstring>
+        <name>fBlockParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="157" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a30f5c63b9ade60458badec03972eed2b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fBlockStartFlag</definition>
+        <argsstring></argsstring>
+        <name>fBlockStartFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="136" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a3ef03a67f4238a72189c16af25bd47ea" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, line_itr &gt;</type>
+        <definition>std::map&lt; std::string, line_itr &gt; hops::MHO_VexParser::fBlockStartLines</definition>
+        <argsstring></argsstring>
+        <name>fBlockStartLines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="148" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1ab6b1c24be05fe8a0ca2c72ac7319ba0d" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, line_itr &gt;</type>
+        <definition>std::map&lt; std::string, line_itr &gt; hops::MHO_VexParser::fBlockStopLines</definition>
+        <argsstring></argsstring>
+        <name>fBlockStopLines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="149" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a17d91cd866be72efe1f87db22b2ddc43" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fEndLiteralFlag</definition>
+        <argsstring></argsstring>
+        <name>fEndLiteralFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="141" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a9f3087663841d76ead3ccd6eaed91f7a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fFormatDirectory</definition>
+        <argsstring></argsstring>
+        <name>fFormatDirectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="152" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a3c350f1d27f3534f27d461fb4f75f1a2" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_VexParser::fFoundBlocks</definition>
+        <argsstring></argsstring>
+        <name>fFoundBlocks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="147" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1aa820ccd9fa4cb0ae1cd6846f9d224223" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fLine</definition>
+        <argsstring></argsstring>
+        <name>fLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="144" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a800791faa71b3c8c5a3bed7074b3605a" prot="private" static="no" mutable="no">
+        <type>std::list&lt; <ref refid="structhops_1_1MHO__VexLine" kindref="compound">MHO_VexLine</ref> &gt;</type>
+        <definition>std::list&lt; MHO_VexLine &gt; hops::MHO_VexParser::fLines</definition>
+        <argsstring></argsstring>
+        <name>fLines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="145" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1ab8c73e9dee22293897a4781d10c9af9f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fRefFlag</definition>
+        <argsstring></argsstring>
+        <name>fRefFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="138" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1aab17ef33345f004a499575b089c9d6ec" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fStartLiteralFlag</definition>
+        <argsstring></argsstring>
+        <name>fStartLiteralFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="140" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1ab4c067aaf78662e73ae4f37830714408" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fStatementEndFlag</definition>
+        <argsstring></argsstring>
+        <name>fStatementEndFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="137" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a4316e84ab1f039f73def0ea9c69dd403" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__VexDefinitions" kindref="compound">MHO_VexDefinitions</ref></type>
+        <definition>MHO_VexDefinitions hops::MHO_VexParser::fVexDef</definition>
+        <argsstring></argsstring>
+        <name>fVexDef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="131" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a5f34dd54f6a7efcb2c6513ea8fe2b3ad" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fVexDelim</definition>
+        <argsstring></argsstring>
+        <name>fVexDelim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="134" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1af041a76e2dc3adfa07f5d5cfb9295aa2" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fVexFileName</definition>
+        <argsstring></argsstring>
+        <name>fVexFileName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="128" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1ac9739bf179675149efddfcaa9c5513be" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fVexRevisionFlag</definition>
+        <argsstring></argsstring>
+        <name>fVexRevisionFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="133" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a3d02df9e419a0b650315bbb21e01ab48" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fVexVersion</definition>
+        <argsstring></argsstring>
+        <name>fVexVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="153" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexParser_1a818f834d18accf830892a85e431357f6" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexParser::fWhitespace</definition>
+        <argsstring></argsstring>
+        <name>fWhitespace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a1ca1ce05a417ee6ec45a77046d932d3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VexParser::MHO_VexParser</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_VexParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a9dea2c1606a0b4504d39592825231dd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_VexParser::~MHO_VexParser</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_VexParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a55c6bb88578638bf7142170de43a0403" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_VexParser::ParseVex</definition>
+        <argsstring>()</argsstring>
+        <name>ParseVex</name>
+        <briefdescription>
+<para>Parses Vex file, processes blocks and returns JSON object with Vex revision flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>mho_json object containing Vex revision flag </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="63" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="28" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a6fe2c3e314bb4c356784709934c53c4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::SetVexFile</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>SetVexFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vex file path as string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="43" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="16" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a2a302aa906d37ba6ad00a62bc31dfa06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::SetVexVersion</definition>
+        <argsstring>(const char *version)</argsstring>
+        <name>SetVexVersion</name>
+        <param>
+          <type>const char *</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New vex version as string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="56" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1ae6c29b98794a9093c1b8249aefdc18dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::SetVexVersion</definition>
+        <argsstring>(std::string version)</argsstring>
+        <name>SetVexVersion</name>
+        <param>
+          <type>std::string</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New vex version as string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="49" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="381" bodyend="387"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1acc91e404a51311649d8d80465e009fea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structhops_1_1MHO__VexLine" kindref="compound">MHO_VexLine</ref> &gt;</type>
+        <definition>std::vector&lt; MHO_VexLine &gt; hops::MHO_VexParser::CollectBlockLines</definition>
+        <argsstring>(std::string block_name)</argsstring>
+        <name>CollectBlockLines</name>
+        <param>
+          <type>std::string</type>
+          <declname>block_name</declname>
+        </param>
+        <briefdescription>
+<para>Collects all VexLines for a given block name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>block_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the block to collect lines from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of <ref refid="structhops_1_1MHO__VexLine" kindref="compound">MHO_VexLine</ref> objects representing collected lines. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="104" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="331" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a0b1c209fa999d8700c5b00be5846fbdb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::DetermineFileVersion</definition>
+        <argsstring>()</argsstring>
+        <name>DetermineFileVersion</name>
+        <briefdescription>
+<para>Determines and sets the version of the VEX file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="22" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1ac8020565a79290aee883b19d7b7cb666" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::IndexStatements</definition>
+        <argsstring>()</argsstring>
+        <name>IndexStatements</name>
+        <briefdescription>
+<para>Indexes statements in fLines vector by assigning statement numbers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="85" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="206" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a0ecc9f7d71677f24a0158504faa30675" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_VexParser::IsBlockStart</definition>
+        <argsstring>(std::string line, std::string blk_name)</argsstring>
+        <name>IsBlockStart</name>
+        <param>
+          <type>std::string</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>blk_name</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a given line starts with a specific block name and returns true if it&apos;s an exact match. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>line</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string representing a single line from the file. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>blk_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>String containing the expected block name to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the line starts with the specified block name (true) or not (false). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="126" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="362" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a88e177334bce3e82222bbea9f836d580" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_VexParser::IsPotentialBlockStart</definition>
+        <argsstring>(std::string line)</argsstring>
+        <name>IsPotentialBlockStart</name>
+        <param>
+          <type>std::string</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a line is potentially the start of a block by looking for &apos;$&apos; and ensuring &apos;ref&apos; is not present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>line</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string representing a line from the file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the line could be the start of a block. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="118" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="343" bodyend="360"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a91b12e1aa99a1df2bc1a6ffd9bbf4b23" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::JoinLines</definition>
+        <argsstring>()</argsstring>
+        <name>JoinLines</name>
+        <briefdescription>
+<para>Concatenates incomplete statements split across multiple lines into a single statement. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="93" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="218" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1ac6fdfd9ac8b3f22dad7419b1d8018aeb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::MarkBlocks</definition>
+        <argsstring>()</argsstring>
+        <name>MarkBlocks</name>
+        <briefdescription>
+<para>Marks major parsable sections in VexParser lines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="97" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="253" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1afb5460726303bb215028c8b6eefea2a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::MarkLiterals</definition>
+        <argsstring>()</argsstring>
+        <name>MarkLiterals</name>
+        <briefdescription>
+<para>Marks all literal sections in fLines by setting fIsLiteral to true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="81" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="107" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a4605fa5f824b643073132006799ee95d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::ProcessBlocks</definition>
+        <argsstring>(mho_json &amp;root)</argsstring>
+        <name>ProcessBlocks</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+<para>Processes found blocks and adds them to the root json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>root</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the root mho_json object where blocks will be added. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="110" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="319" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1afc5d0d388e15f845554211747c621f86" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::ReadFile</definition>
+        <argsstring>()</argsstring>
+        <name>ReadFile</name>
+        <briefdescription>
+<para>Reads a VEX file into memory and stores each line as an <ref refid="structhops_1_1MHO__VexLine" kindref="compound">MHO_VexLine</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="45" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1a35be8cd7c7fe5e7ff0ad20c074fc391e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::RemoveComments</definition>
+        <argsstring>()</argsstring>
+        <name>RemoveComments</name>
+        <briefdescription>
+<para>Removes all comment lines from fLines vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="77" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="74" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexParser_1afb974e61d759e8a2173db2bdab0b9d3f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_VexParser::SplitStatements</definition>
+        <argsstring>()</argsstring>
+        <name>SplitStatements</name>
+        <briefdescription>
+<para>Splits multiple &apos;;&apos; separated statements in a single line into separate lines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="89" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexParser.cc" bodystart="137" bodyend="204"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__VexParser" kindref="compound">MHO_VexParser</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Parser for a vex file (stores results in a JSON object)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed May 25 17:04:24 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexParser.hh" bodystart="33" bodyend="158"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__VexParser_1acc91e404a51311649d8d80465e009fea" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>CollectBlockLines</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a0b1c209fa999d8700c5b00be5846fbdb" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>DetermineFileVersion</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1af69b6cdc504a6a007c744dcf3b31d14d" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fBlockNames</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1af412ebd33ecb620a43dca51a370a0d73" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fBlockParser</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a30f5c63b9ade60458badec03972eed2b" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fBlockStartFlag</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a3ef03a67f4238a72189c16af25bd47ea" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fBlockStartLines</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ab6b1c24be05fe8a0ca2c72ac7319ba0d" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fBlockStopLines</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a17d91cd866be72efe1f87db22b2ddc43" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fEndLiteralFlag</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a9f3087663841d76ead3ccd6eaed91f7a" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fFormatDirectory</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a3c350f1d27f3534f27d461fb4f75f1a2" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fFoundBlocks</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1aa820ccd9fa4cb0ae1cd6846f9d224223" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fLine</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a800791faa71b3c8c5a3bed7074b3605a" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fLines</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ab8c73e9dee22293897a4781d10c9af9f" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fRefFlag</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1aab17ef33345f004a499575b089c9d6ec" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fStartLiteralFlag</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ab4c067aaf78662e73ae4f37830714408" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fStatementEndFlag</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a4316e84ab1f039f73def0ea9c69dd403" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fVexDef</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a5f34dd54f6a7efcb2c6513ea8fe2b3ad" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fVexDelim</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1af041a76e2dc3adfa07f5d5cfb9295aa2" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fVexFileName</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ac9739bf179675149efddfcaa9c5513be" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fVexRevisionFlag</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a3d02df9e419a0b650315bbb21e01ab48" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a818f834d18accf830892a85e431357f6" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>fWhitespace</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ac8020565a79290aee883b19d7b7cb666" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>IndexStatements</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a0ecc9f7d71677f24a0158504faa30675" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>IsBlockStart</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a88e177334bce3e82222bbea9f836d580" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>IsPotentialBlockStart</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a91b12e1aa99a1df2bc1a6ffd9bbf4b23" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>JoinLines</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ad3e021510cb11b9174aff63c376fd730" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>line_itr</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ac6fdfd9ac8b3f22dad7419b1d8018aeb" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>MarkBlocks</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1afb5460726303bb215028c8b6eefea2a5" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>MarkLiterals</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a1ca1ce05a417ee6ec45a77046d932d3b" prot="public" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>MHO_VexParser</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a55c6bb88578638bf7142170de43a0403" prot="public" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>ParseVex</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a4605fa5f824b643073132006799ee95d" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>ProcessBlocks</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1afc5d0d388e15f845554211747c621f86" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>ReadFile</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a35be8cd7c7fe5e7ff0ad20c074fc391e" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>RemoveComments</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a6fe2c3e314bb4c356784709934c53c4b" prot="public" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>SetVexFile</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1ae6c29b98794a9093c1b8249aefdc18dd" prot="public" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>SetVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a2a302aa906d37ba6ad00a62bc31dfa06" prot="public" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>SetVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1afb974e61d759e8a2173db2bdab0b9d3f" prot="private" virt="non-virtual"><scope>hops::MHO_VexParser</scope><name>SplitStatements</name></member>
+      <member refid="classhops_1_1MHO__VexParser_1a9dea2c1606a0b4504d39592825231dd7" prot="public" virt="virtual"><scope>hops::MHO_VexParser</scope><name>~MHO_VexParser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

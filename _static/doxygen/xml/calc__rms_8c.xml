@@ -1,0 +1,722 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="calc__rms_8c" kind="file" language="C++">
+    <compoundname>calc_rms.c</compoundname>
+    <includes local="no">math.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <includes refid="hops__complex_8h" local="yes">hops_complex.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="param__struct_8h" local="yes">param_struct.h</includes>
+    <includes refid="pass__struct_8h" local="yes">pass_struct.h</includes>
+    <incdepgraph>
+      <node id="35">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="6">
+        <label>stdarg.h</label>
+      </node>
+      <node id="39">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>plot_struct.h</label>
+        <link refid="plot__struct_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="24">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="44">
+        <label>stdint.h</label>
+      </node>
+      <node id="29">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="34">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="23">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>param_struct.h</label>
+        <link refid="param__struct_8h"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="16">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>sys/types.h</label>
+      </node>
+      <node id="33">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="12">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
+      <node id="37">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>complex.h</label>
+      </node>
+      <node id="31">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>pass_struct.h</label>
+        <link refid="pass__struct_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="11">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="32">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>calc_rms.c</label>
+        <link refid="calc__rms_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="43">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="30">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="9">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="calc__rms_8c_1a9039dc6e0c026f366852c9aab4294196" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void calc_rms</definition>
+        <argsstring>(struct type_pass *pass)</argsstring>
+        <name>calc_rms</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/calc_rms.c" line="21" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/calc_rms.c" bodystart="21" bodyend="338"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Figures<sp/>out<sp/>various<sp/>rms<sp/>values,<sp/>actual<sp/>and<sp/>theoretical.<sp/><sp/>Puts<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>results<sp/>in<sp/>status<sp/>structure<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>April<sp/>17<sp/>1992<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Needs<sp/>examination<sp/>and<sp/>modification<sp/>for<sp/>fractional<sp/>AP<sp/>weights<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hops__complex_8h" kindref="compound">hops_complex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="param__struct_8h" kindref="compound">param_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pass__struct_8h" kindref="compound">pass_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//#include<sp/>&quot;ff_misc_if.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><ref refid="calc__rms_8c_1a9039dc6e0c026f366852c9aab4294196" kindref="member">calc_rms</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>vsum,<sp/>vsumf,<sp/>refpc,<sp/>rempc,<sp/>pcal,<sp/>wght_phsr;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>true_nseg,<sp/>apwt,<sp/>wt,<sp/>totwt,<sp/>totap,<sp/>c;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>wtf,<sp/>wtf_dsb,<sp/>wt_dsb,<sp/>mean_ap,<sp/>ap_in_seg,<sp/>usbfrac,<sp/>lsbfrac;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_tperr,<sp/>rem_tperr;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>refpcwt,<sp/>rempcwt;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_scount_usb,<sp/>ref_scount_lsb,<sp/>rem_scount_usb,<sp/>rem_scount_lsb;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_bias_usb,<sp/>ref_bias_lsb,<sp/>rem_bias_usb,<sp/>rem_bias_lsb;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>j,<sp/>nfr,<sp/>seg,<sp/>ap,<sp/>fr,<sp/>trueap,<sp/>apseg,<sp/>nplot,<sp/>nseg;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>reflcp,<sp/>remlcp;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stnpol[2][4]<sp/>=<sp/>{0,<sp/>1,<sp/>0,<sp/>1,<sp/>0,<sp/>1,<sp/>1,<sp/>0};<sp/></highlight><highlight class="comment">//<sp/>[stn][pol]<sp/>=<sp/>0:L,<sp/>1:R</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*datum;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__param" kindref="compound">type_param</ref><sp/><ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__status" kindref="compound">type_status</ref><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__plot" kindref="compound">type_plot</ref><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="fourfit3_8c_1a30d973fc4251d0d79dcc17004ff1a2d8" kindref="member">ap_per_seg</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>polarization<sp/>state<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>reflcp<sp/>=<sp/>remlcp<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a425f6a555164c64ef40dca34c7359d0f" kindref="member">pol</ref><sp/>==<sp/><ref refid="pass__struct_8h_1a39ec457f686b4335eca0c9e3dcede62f" kindref="member">POLMASK_LL</ref>)<sp/>||<sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a425f6a555164c64ef40dca34c7359d0f" kindref="member">pol</ref><sp/>==<sp/><ref refid="pass__struct_8h_1af5c1f702453f08e14ef6091b7292a07f" kindref="member">POLMASK_LR</ref>))<sp/>reflcp<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a425f6a555164c64ef40dca34c7359d0f" kindref="member">pol</ref><sp/>==<sp/><ref refid="pass__struct_8h_1a39ec457f686b4335eca0c9e3dcede62f" kindref="member">POLMASK_LL</ref>)<sp/>||<sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a425f6a555164c64ef40dca34c7359d0f" kindref="member">pol</ref><sp/>==<sp/><ref refid="pass__struct_8h_1a7317001adabe10724c7b927c33a3a458" kindref="member">POLMASK_RL</ref>))<sp/>remlcp<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Figure<sp/>out<sp/>segmenting<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Default<sp/>-<sp/>segment<sp/>to<sp/>generate<sp/>200<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>dots<sp/>across<sp/>the<sp/>fringe<sp/>plot<sp/>page<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a30d973fc4251d0d79dcc17004ff1a2d8" kindref="member">ap_per_seg</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nplot<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref><sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nplot<sp/>==<sp/>2)<sp/>nplot<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nseg<sp/>=<sp/>200<sp/>/<sp/>nplot;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nseg<sp/>&gt;<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>)<sp/>nseg<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>apseg<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref><sp/>/<sp/>nseg;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>User<sp/>override<sp/>-<sp/>just<sp/>check<sp/>for<sp/>too<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>big<sp/>a<sp/>number<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a30d973fc4251d0d79dcc17004ff1a2d8" kindref="member">ap_per_seg</ref><sp/>&gt;<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>)<sp/>apseg<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>apseg<sp/>=<sp/><ref refid="fourfit3_8c_1a30d973fc4251d0d79dcc17004ff1a2d8" kindref="member">ap_per_seg</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a90704d80cb0caeb959f9f4df46cc88ff" kindref="member">apseg</ref><sp/>=<sp/>apseg;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Number<sp/>of<sp/>segments,<sp/>starting<sp/>at<sp/>AP<sp/>0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>and<sp/>using<sp/>integer<sp/>apseg<sp/>per<sp/>segment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1874f3f0a29bd717874b6dcdb05bae59" kindref="member">nseg</ref><sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref><sp/>/<sp/>apseg;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Remainder<sp/>goes<sp/>into<sp/>last<sp/>segment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref><sp/>%<sp/>apseg)<sp/>!=<sp/>0)<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1874f3f0a29bd717874b6dcdb05bae59" kindref="member">nseg</ref><sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>all<sp/>segments<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>totwt<sp/>=<sp/>0.0;<sp/>totap<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(seg<sp/>=<sp/>0;<sp/>seg<sp/>&lt;<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1874f3f0a29bd717874b6dcdb05bae59" kindref="member">nseg</ref>;<sp/>seg++)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vsum<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wt<sp/>=<sp/>0.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>freqs,<sp/>and<sp/>ap&apos;s<sp/>in<sp/>segment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wt_dsb<sp/>=<sp/>0.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>freqs,<sp/>and<sp/>ap&apos;s<sp/>in<sp/>segment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>forming<sp/>vector<sp/>sum<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>fr++)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vsumf<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpc<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rempc<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpcwt<sp/>=<sp/>rempcwt<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wtf<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wtf_dsb<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ap_in_seg<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usbfrac<sp/>=<sp/>lsbfrac<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_tperr<sp/>=<sp/>rem_tperr<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_scount_usb<sp/>=<sp/>ref_scount_lsb<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_scount_usb<sp/>=<sp/>rem_scount_lsb<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_bias_usb<sp/>=<sp/>ref_bias_lsb<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_bias_usb<sp/>=<sp/>rem_bias_lsb<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ap<sp/>=<sp/>seg<sp/>*<sp/>apseg;<sp/>ap<sp/>&lt;<sp/>(seg+1)*apseg;<sp/>ap++)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ap<sp/>&gt;=<sp/>pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref>)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trueap<sp/>=<sp/>ap<sp/>+<sp/>pass-&gt;<ref refid="structtype__pass_1a3dd5331c9e1529d1b97ac8630af85410" kindref="member">ap_off</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>datum<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[fr].<ref refid="structfreq__corel_1ae186bfc3e79080695500fa54eb08bcf1" kindref="member">data</ref><sp/>+<sp/>trueap;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>apwt<sp/>=<sp/>fabs<sp/>(<ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a50b2b211795c91839c7320d03f14c26c" kindref="member">weights</ref>[fr][trueap]);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wt<sp/>+=<sp/>apwt;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wtf<sp/>+=<sp/>apwt;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref><sp/>+=<sp/>ap<sp/>*<sp/>apwt;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Make<sp/>sure<sp/>we<sp/>account<sp/>for<sp/>double<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>sideband<sp/>normalization<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref><sp/>&gt;=<sp/>0.0)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usbfrac<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" kindref="member">usbfrac</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wtf_dsb<sp/>+=<sp/>apwt;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wt_dsb<sp/>+=<sp/>apwt;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref><sp/>&gt;=<sp/>0.0)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lsbfrac<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" kindref="member">lsbfrac</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wtf_dsb<sp/>+=<sp/>apwt;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wt_dsb<sp/>+=<sp/>apwt;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>State<sp/>count<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(reflcp)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_scount_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[0]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[0];</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_scount_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[1]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[1];</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_bias_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[0]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[0]</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[0]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[0];</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_bias_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[1]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[1]</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[1]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[1];</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_scount_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[2]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[2];</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_scount_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[3]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[3];</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_bias_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[2]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[2]</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[2]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[2];</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_bias_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[3]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[3]</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[3]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[3];</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(remlcp)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_scount_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[0]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[0];</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_scount_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[1]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[1];</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_bias_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[0]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[0]</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[0]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[0];</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_bias_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[1]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[1]</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[1]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[1];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_scount_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[2]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[2];</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_scount_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[3]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[3];</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_bias_usb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[2]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[2]</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[2]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[2];</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem_bias_lsb<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" kindref="member">bigpos</ref>[3]<sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" kindref="member">pos</ref>[3]</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" kindref="member">neg</ref>[3]<sp/>-<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" kindref="member">bigneg</ref>[3];</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>actual<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(apwt<sp/>&gt;<sp/>0.0)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>totap<sp/>+=<sp/>1.0;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wght_phsr<sp/>=<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a13878661fcb7c8812407e3d67899cb97" kindref="member">phasor</ref>[fr][trueap]<sp/>*<sp/>apwt;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vsum<sp/>=<sp/>vsum<sp/>+<sp/>wght_phsr;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vsumf<sp/>=<sp/>vsumf<sp/>+<sp/>wght_phsr;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Phasecals<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" kindref="member">pc_mode</ref>[0]<sp/>==<sp/><ref refid="control_8h_1a831ca2e1f7811bb033ccad20be9ad307" kindref="member">MULTITONE</ref>)<sp/><sp/></highlight><highlight class="comment">//<sp/>reference<sp/>multitone?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcal<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" kindref="member">mt_pcal</ref>[stnpol[0][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]];</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpc<sp/>=<sp/>refpc<sp/>+<sp/>pcal;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>add<sp/>in<sp/>appropriate<sp/>weight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(stnpol[0][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>])</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpcwt<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" kindref="member">pcweight_rcp</ref>;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpcwt<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" kindref="member">pcweight_lcp</ref>;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcal<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" kindref="member">phasecal_lcp</ref>[pass-&gt;<ref refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" kindref="member">pci</ref>[0][fr]]</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(double)<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" kindref="member">pcweight_lcp</ref>;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpc<sp/>=<sp/>refpc<sp/>+<sp/>pcal;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcal<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1a621f2d7737fcfe3ba5a672e7c3b4c5e1" kindref="member">phasecal_rcp</ref>[pass-&gt;<ref refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" kindref="member">pci</ref>[0][fr]]</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" kindref="member">pcweight_rcp</ref>;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpc<sp/>=<sp/>refpc<sp/>+<sp/>pcal;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>refpcwt<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" kindref="member">pcweight_lcp</ref><sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" kindref="member">ref_sdata</ref>.<ref refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" kindref="member">pcweight_rcp</ref>;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" kindref="member">pc_mode</ref>[1]<sp/>==<sp/><ref refid="control_8h_1a831ca2e1f7811bb033ccad20be9ad307" kindref="member">MULTITONE</ref>)<sp/><sp/></highlight><highlight class="comment">//<sp/>remote<sp/>multitone?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcal<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" kindref="member">mt_pcal</ref>[stnpol[1][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]];</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rempc<sp/>=<sp/>rempc<sp/>+<sp/>pcal;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>add<sp/>in<sp/>appropriate<sp/>weight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(stnpol[1][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>])</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rempcwt<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" kindref="member">pcweight_rcp</ref>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rempcwt<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" kindref="member">pcweight_lcp</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcal<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" kindref="member">phasecal_lcp</ref>[pass-&gt;<ref refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" kindref="member">pci</ref>[1][fr]]</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(double)<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" kindref="member">pcweight_lcp</ref>;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rempc<sp/>=<sp/>rempc<sp/>+<sp/>pcal;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcal<sp/>=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1a621f2d7737fcfe3ba5a672e7c3b4c5e1" kindref="member">phasecal_rcp</ref>[pass-&gt;<ref refid="structtype__pass_1abc7fc008ad544d10d67b2f83d7388471" kindref="member">pci</ref>[1][fr]]</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" kindref="member">pcweight_rcp</ref>;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rempc<sp/>=<sp/>rempc<sp/>+<sp/>pcal;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rempcwt<sp/>+=<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" kindref="member">pcweight_lcp</ref><sp/>+<sp/>datum-&gt;<ref refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" kindref="member">rem_sdata</ref>.<ref refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" kindref="member">pcweight_rcp</ref>;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Record<sp/>amp/phase<sp/>in<sp/>plot<sp/>arrays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Also<sp/>compute<sp/>data<sp/>fraction<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>tape<sp/>errors,<sp/>statecounts<sp/>and<sp/>phasecals<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(wtf<sp/>==<sp/>0.0)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a10fa11633b9a69926fdaf8b053d2a5a8" kindref="member">seg_amp</ref>[fr][seg]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref>[fr][seg]<sp/>=<sp/><ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref><sp/>/<sp/>wtf;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a10fa11633b9a69926fdaf8b053d2a5a8" kindref="member">seg_amp</ref>[fr][seg]<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(vsumf)<sp/>/<sp/>wtf_dsb;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ad4569ad22712875b40a14f23ed61cfc3" kindref="member">seg_frac_usb</ref>[fr][seg]<sp/>=</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(usbfrac<sp/>&gt;=<sp/>0.0)<sp/>?<sp/>usbfrac<sp/>/<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)apseg<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a27dc903a2d46708a7bcaeb318ecb87e5" kindref="member">seg_frac_lsb</ref>[fr][seg]<sp/>=</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(lsbfrac<sp/>&gt;=<sp/>0.0)<sp/>?<sp/>lsbfrac<sp/>/<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)apseg<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ref_scount_usb<sp/>==<sp/>0.0)<sp/>ref_scount_usb<sp/>=<sp/>-1.0;<sp/></highlight><highlight class="comment">/*<sp/>No<sp/>data,<sp/>no<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ref_scount_lsb<sp/>==<sp/>0.0)<sp/>ref_scount_lsb<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem_scount_usb<sp/>==<sp/>0.0)<sp/>rem_scount_usb<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem_scount_lsb<sp/>==<sp/>0.0)<sp/>rem_scount_lsb<sp/>=<sp/>-1.0;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1aa8e4bcc4d96ca68f43dfdfbfc7b80a53" kindref="member">seg_refscnt_usb</ref>[fr][seg]<sp/>=<sp/>ref_scount_usb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a70097b17dd2ef03f2954f1c88387999c" kindref="member">seg_refscnt_lsb</ref>[fr][seg]<sp/>=<sp/>ref_scount_lsb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ad0604c164b963607a8cbf3f3e738a413" kindref="member">seg_remscnt_usb</ref>[fr][seg]<sp/>=<sp/>rem_scount_usb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a75a19793c5014b3e80018d8927a19f6f" kindref="member">seg_remscnt_lsb</ref>[fr][seg]<sp/>=<sp/>rem_scount_lsb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ref_bias_usb<sp/>==<sp/>0.0)<sp/>ref_bias_usb<sp/>=<sp/>-2.0<sp/>*<sp/>apseg;<sp/></highlight><highlight class="comment">/*<sp/>No<sp/>data,<sp/>no<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ref_bias_lsb<sp/>==<sp/>0.0)<sp/>ref_bias_lsb<sp/>=<sp/>-2.0<sp/>*<sp/>apseg;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem_bias_usb<sp/>==<sp/>0.0)<sp/>rem_bias_usb<sp/>=<sp/>-2.0<sp/>*<sp/>apseg;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem_bias_lsb<sp/>==<sp/>0.0)<sp/>rem_bias_lsb<sp/>=<sp/>-2.0<sp/>*<sp/>apseg;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1aa7f7a79e4c4019c44d23412afecd96b6" kindref="member">seg_refbias_usb</ref>[fr][seg]<sp/>=<sp/>ref_bias_usb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a2c2d3689f4dcc62501888cfae2606af8" kindref="member">seg_refbias_lsb</ref>[fr][seg]<sp/>=<sp/>ref_bias_lsb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a37d974a14b39a28846190fec41eeac8d" kindref="member">seg_rembias_usb</ref>[fr][seg]<sp/>=<sp/>rem_bias_usb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1aee2bdc0858485845d80d86748e8d1400" kindref="member">seg_rembias_lsb</ref>[fr][seg]<sp/>=<sp/>rem_bias_lsb<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ac934f5d37d6692e751db652f13612f93" kindref="member">seg_referr</ref>[fr][seg]<sp/>=<sp/>ref_tperr<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6936d8ad99f2537c67fb10ee0fd036aa" kindref="member">seg_remerr</ref>[fr][seg]<sp/>=<sp/>rem_tperr<sp/>/<sp/>(double)apseg;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a8b1851d475042f4205048118ecb99717" kindref="member">seg_phs</ref>[fr][seg]<sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref>(vsumf);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pcals<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" kindref="member">pc_mode</ref>[0]<sp/>==<sp/><ref refid="control_8h_1a8187a9af791c0a44ba67edd9cf266961" kindref="member">MANUAL</ref>)</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6ca95704b9dd4b22c593a12dbf1d9fe6" kindref="member">seg_refpcal</ref>[fr][seg]<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a0258ce6fbd5384ff57f7051ea558fa0e" kindref="member">pc_offset</ref>[fr][0][stnpol[0][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]];</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(refpcwt<sp/>==<sp/>0.0)</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6ca95704b9dd4b22c593a12dbf1d9fe6" kindref="member">seg_refpcal</ref>[fr][seg]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6ca95704b9dd4b22c593a12dbf1d9fe6" kindref="member">seg_refpcal</ref>[fr][seg]<sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref>(refpc)<sp/>*<sp/>180.0<sp/>/<sp/>M_PI;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" kindref="member">pc_mode</ref>[1]<sp/>==<sp/><ref refid="control_8h_1a8187a9af791c0a44ba67edd9cf266961" kindref="member">MANUAL</ref>)</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6835e4c1b9988cb53b5b4c4e6dbd3dd3" kindref="member">seg_rempcal</ref>[fr][seg]<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a0258ce6fbd5384ff57f7051ea558fa0e" kindref="member">pc_offset</ref>[fr][1][stnpol[1][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]];</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rempcwt<sp/>==<sp/>0.0)</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6835e4c1b9988cb53b5b4c4e6dbd3dd3" kindref="member">seg_rempcal</ref>[fr][seg]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a6835e4c1b9988cb53b5b4c4e6dbd3dd3" kindref="member">seg_rempcal</ref>[fr][seg]<sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref>(rempc)<sp/>*<sp/>180.0<sp/>/<sp/>M_PI;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Record<sp/>amp/phase<sp/>for<sp/>all<sp/>freqs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref><sp/>&gt;<sp/>1)</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(wt<sp/>==<sp/>0.0)<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a10fa11633b9a69926fdaf8b053d2a5a8" kindref="member">seg_amp</ref>[pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>][seg]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nfr<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref><sp/>+=<sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref>[i][seg];</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref>[i][seg]<sp/>&gt;<sp/>0.0)<sp/>nfr++;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nfr<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref>[pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>][seg]<sp/>=<sp/><ref refid="structtype__plot_1ad5ef8c5765430207e22ba14c275a1e7b" kindref="member">mean_ap</ref><sp/>/<sp/>(double)(nfr);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a10fa11633b9a69926fdaf8b053d2a5a8" kindref="member">seg_amp</ref>[pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>][seg]<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(vsum)<sp/>/<sp/>wt_dsb;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1ab7a7a69c9a1c4ea82e2b4fdf688d741d" kindref="member">plot</ref>.<ref refid="structtype__plot_1a8b1851d475042f4205048118ecb99717" kindref="member">seg_phs</ref>[pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>][seg]<sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref>(vsum);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref>(vsum)<sp/>-<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa0776c89ebf55f3e60197ec8a23eeaca" kindref="member">coh_avg_phase</ref>;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>condition<sp/>to<sp/>lie<sp/>in<sp/>[-pi,pi]<sp/>interval</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/>fmod<sp/>(c,<sp/>2.0<sp/>*<sp/>M_PI);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&gt;<sp/>M_PI)</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>-=<sp/>2.0<sp/>*<sp/>M_PI;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>-<sp/>M_PI)</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>+=<sp/>2.0<sp/>*<sp/>M_PI;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a2d1f29de4ede030bb24a8e18c6c84164" kindref="member">timerms_phase</ref><sp/>+=<sp/>wt_dsb<sp/>*<sp/>c<sp/>*<sp/>c;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Performs<sp/>scalar<sp/>sum<sp/>over<sp/>segments<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>of<sp/>vector<sp/>sums<sp/>within<sp/>segments<sp/>and<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>over<sp/>all<sp/>freqs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(vsum);</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a4c89da490ffbe2434a8131b14226fbc8" kindref="member">inc_avg_amp</ref><sp/>+=<sp/>c<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a177a375145b9df41010b68d3d25561ad" kindref="member">amp_corr_fact</ref>;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(wt_dsb<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/>c<sp/>/<sp/>wt_dsb;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>delres_max<sp/>is<sp/>amplitude<sp/>at<sp/>peak<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/>c<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a177a375145b9df41010b68d3d25561ad" kindref="member">amp_corr_fact</ref><sp/>-<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afce31460b126f251c127b6703f252766" kindref="member">delres_max</ref>;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a430cfd9ac3bdafa8a705403f26ba3f61" kindref="member">timerms_amp</ref><sp/>+=<sp/>wt_dsb<sp/>*<sp/>c*c;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>totwt<sp/>+=<sp/>wt_dsb;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>This<sp/>removes<sp/>noise<sp/>bias<sp/>based<sp/>on<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>SNR<sp/>of<sp/>each<sp/>segment/freq<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a4c89da490ffbe2434a8131b14226fbc8" kindref="member">inc_avg_amp</ref><sp/>/=<sp/>((1.0<sp/>+<sp/>(float)<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1874f3f0a29bd717874b6dcdb05bae59" kindref="member">nseg</ref>/(2.0<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref><sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref>)));</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a4c89da490ffbe2434a8131b14226fbc8" kindref="member">inc_avg_amp</ref><sp/>/=<sp/>totwt;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Correct<sp/>rms<sp/>values<sp/>for<sp/>fringe<sp/>segmenting<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a2d1f29de4ede030bb24a8e18c6c84164" kindref="member">timerms_phase</ref><sp/>=<sp/>sqrt(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a2d1f29de4ede030bb24a8e18c6c84164" kindref="member">timerms_phase</ref><sp/>/<sp/>totwt)<sp/>*<sp/>180.<sp/>/<sp/>M_PI;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;status.delres_max<sp/>=<sp/>%g&quot;</highlight><highlight class="normal">,<sp/>0,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afce31460b126f251c127b6703f252766" kindref="member">delres_max</ref>);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a430cfd9ac3bdafa8a705403f26ba3f61" kindref="member">timerms_amp</ref><sp/>=<sp/>sqrt(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a430cfd9ac3bdafa8a705403f26ba3f61" kindref="member">timerms_amp</ref><sp/>/<sp/>totwt)<sp/>*<sp/>100./<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afce31460b126f251c127b6703f252766" kindref="member">delres_max</ref>;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;status.nseg<sp/>=<sp/>%d&quot;</highlight><highlight class="normal">,0,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1874f3f0a29bd717874b6dcdb05bae59" kindref="member">nseg</ref>);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Calculate<sp/>frequency<sp/>rms<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(fr=0;fr&lt;pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;fr++)</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/><ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ac959924cbebef89d4c48691dbce7d8fe" kindref="member">fringe</ref>[fr])<sp/>-<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa0776c89ebf55f3e60197ec8a23eeaca" kindref="member">coh_avg_phase</ref>;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>condition<sp/>to<sp/>lie<sp/>in<sp/>[-pi,pi]<sp/>interval</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/>fmod<sp/>(c,<sp/>2.0<sp/>*<sp/>M_PI);</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&gt;<sp/>M_PI)</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>-=<sp/>2.0<sp/>*<sp/>M_PI;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&lt;<sp/>-<sp/>M_PI)</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>+=<sp/>2.0<sp/>*<sp/>M_PI;</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a215b7ee43374133c792e9de283a93906" kindref="member">freqrms_phase</ref><sp/>+=<sp/>c<sp/>*<sp/>c;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c<sp/>=<sp/><ref refid="hops__complex_8h_1ad9cc00534cc1f4a02e2c6b1780e5ccdc" kindref="member">abs_complex</ref>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ac959924cbebef89d4c48691dbce7d8fe" kindref="member">fringe</ref>[fr])<sp/>-<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afce31460b126f251c127b6703f252766" kindref="member">delres_max</ref>;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab91f95efbf8fb53551885da43290f697" kindref="member">freqrms_amp</ref><sp/>+=<sp/>c<sp/>*<sp/>c;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref><sp/>&gt;<sp/>2)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>avoid<sp/>0/0<sp/>singularity</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a215b7ee43374133c792e9de283a93906" kindref="member">freqrms_phase</ref><sp/>=<sp/>sqrt(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a215b7ee43374133c792e9de283a93906" kindref="member">freqrms_phase</ref></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/<sp/>(pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref><sp/>-<sp/>2))<sp/>*<sp/>180./M_PI;</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a215b7ee43374133c792e9de283a93906" kindref="member">freqrms_phase</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab91f95efbf8fb53551885da43290f697" kindref="member">freqrms_amp</ref><sp/>=<sp/>sqrt(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab91f95efbf8fb53551885da43290f697" kindref="member">freqrms_amp</ref><sp/>/<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>)<sp/>*<sp/>100.<sp/>/<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afce31460b126f251c127b6703f252766" kindref="member">delres_max</ref>;</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Theoretical<sp/>RMS<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>true_nseg<sp/>is<sp/>meant<sp/>to<sp/>be<sp/>effective<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>number<sp/>of<sp/>segments<sp/>actually<sp/>included<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>the<sp/>fit<sp/>for<sp/>switched<sp/>mode<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>true_nseg<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1874f3f0a29bd717874b6dcdb05bae59" kindref="member">nseg</ref><sp/>*<sp/>totap<sp/>/<sp/>(pass-&gt;<ref refid="structtype__pass_1aab28ad7e084b73985e519840f3b66840" kindref="member">num_ap</ref><sp/>*<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ae53703515f696356cf575ea1be62cc0f" kindref="member">th_timerms_phase</ref><sp/>=<sp/>sqrt(true_nseg)<sp/>*<sp/>180.<sp/>/<sp/>(M_PI<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref>);</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afb91a8d888da9122a84478185de2fed0" kindref="member">th_freqrms_phase</ref><sp/>=<sp/>sqrt(pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>)<sp/>*<sp/>180.<sp/>/<sp/>(M_PI<sp/>*<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref>);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a54300c84f218de2859064d7d15d15eb8" kindref="member">th_timerms_amp</ref><sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ae53703515f696356cf575ea1be62cc0f" kindref="member">th_timerms_phase</ref><sp/>*<sp/>M_PI<sp/>*<sp/>100.<sp/>/<sp/>180.;</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1346050ec4982a33d6e633b7e54fb883" kindref="member">th_freqrms_amp</ref><sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afb91a8d888da9122a84478185de2fed0" kindref="member">th_freqrms_phase</ref><sp/>*<sp/>M_PI<sp/>*<sp/>100.<sp/>/<sp/>180.;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;RMS<sp/>=<sp/>%lg<sp/>%lg<sp/>%lg<sp/>%lg<sp/>%lg<sp/>%lg<sp/>%lg<sp/>%lg<sp/>&quot;</highlight><highlight class="normal">,0,</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a2d1f29de4ede030bb24a8e18c6c84164" kindref="member">timerms_phase</ref>,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a430cfd9ac3bdafa8a705403f26ba3f61" kindref="member">timerms_amp</ref>,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a215b7ee43374133c792e9de283a93906" kindref="member">freqrms_phase</ref>,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab91f95efbf8fb53551885da43290f697" kindref="member">freqrms_amp</ref>,</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ae53703515f696356cf575ea1be62cc0f" kindref="member">th_timerms_phase</ref>,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a54300c84f218de2859064d7d15d15eb8" kindref="member">th_timerms_amp</ref>,</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afb91a8d888da9122a84478185de2fed0" kindref="member">th_freqrms_phase</ref>,<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a1346050ec4982a33d6e633b7e54fb883" kindref="member">th_freqrms_amp</ref>);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/calc_rms.c"/>
+  </compounddef>
+</doxygen>

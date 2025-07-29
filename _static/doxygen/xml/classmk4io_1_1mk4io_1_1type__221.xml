@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1type__221" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::type_221</compoundname>
+    <basecompoundref refid="classmk4io_1_1mk4io_1_1Mk4StructureBase" prot="public" virt="non-virtual">mk4io.mk4io.Mk4StructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1type__221_1a9704838ed4a554e0304b73b6a8bc9bc8" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.type_221::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;record_id&apos;, ctypes.c_char * 3),
+        (&apos;<ref refid="fourfit3_8c_1a82699a6dd4ee034f1a73b9eed053e7bd" kindref="member">version_no</ref>&apos;, ctypes.c_char * 2),
+        (&apos;unused1&apos;, ctypes.c_char),
+        (&apos;padded&apos;, ctypes.c_short),
+        (&apos;ps_length&apos;, ctypes.c_int),
+        (&apos;pplot&apos;, <ref refid="classmk4io_1_1mk4io_1_1mutable__length__char__array" kindref="compound">mutable_length_char_array</ref>),
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="622" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="622" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmk4io_1_1mk4io_1_1type__221_1a608f9411b06143b6836a87fe6cbc1845" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.type_221.__getattribute__</definition>
+        <argsstring>(self, name)</argsstring>
+        <name>__getattribute__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>name</type>
+          <defname>name</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>nasty kludge to get access to &apos;pplot&apos; char array</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="631" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="631" bodyend="637"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_221</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__221"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_221</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__221"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="621" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="621" bodyend="638"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a0772ef701b441c652a3bbde35de2261a" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_221</scope><name>__eq__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__221_1a608f9411b06143b6836a87fe6cbc1845" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_221</scope><name>__getattribute__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a7347e4cacf99a75b7d7788d94e502398" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_221</scope><name>__ne__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__221_1a9704838ed4a554e0304b73b6a8bc9bc8" prot="private" virt="non-virtual"><scope>mk4io::mk4io::type_221</scope><name>_fields_</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1af9c631103b72450dc357ed98d0f7b6d5" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_221</scope><name>approximately_equal</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a27bca4a0801b033de3fdbebe84eae485" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_221</scope><name>contains_floats</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1ae00dca3ceb7ad4ebb8144fbcd6ef51b6" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_221</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacehops__visualization_1_1picking__aedit" kind="namespace" language="Python">
+    <compoundname>hops_visualization::picking_aedit</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1a8179ee8684a5bbb2d3e99a166d9b3991" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.amp</definition>
+        <argsstring></argsstring>
+        <name>amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1a79a9006b6a9b0893bd0d181effcbd274" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.ax</definition>
+        <argsstring></argsstring>
+        <name>ax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1a6e2a6c8b6fe464b07a75ab82b31e1ea1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1a21b99c0c346fae5fd63eb4ea51844a52" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.fig</definition>
+        <argsstring></argsstring>
+        <name>fig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1a75a8ac1982f1afadb660b4aa741e4b99" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.fname</definition>
+        <argsstring></argsstring>
+        <name>fname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1addfde37af27978b98790b98579a640f4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.markerfacecolor</definition>
+        <argsstring></argsstring>
+        <name>markerfacecolor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1ad6c850bd71278743f36b1d61c0c789e1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.markersize</definition>
+        <argsstring></argsstring>
+        <name>markersize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1ab89caf9afb4b65ec5742586e236483d6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.picker</definition>
+        <argsstring></argsstring>
+        <name>picker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization::picking_aedit.t</definition>
+        <argsstring></argsstring>
+        <name>t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacehops__visualization_1_1picking__aedit_1ad2d5b7e2d56cef3465cb1f426496eb14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.picking_aedit.pick_action</definition>
+        <argsstring>(event)</argsstring>
+        <name>pick_action</name>
+        <param>
+          <type>event</type>
+          <defname>event</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" bodystart="34" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Demonstration of &apos;picking&apos;, or interacting with datapoints with a mouse click
+</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__207__v1" kind="struct" language="C++" prot="public">
+    <compoundname>type_207_v1</compoundname>
+    <includes refid="type__207_8h" local="no">type_207.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__207__v1_1a9297bb5528c51d0b77ec1e9cf524f0c6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_207_v1::pcal_mode</definition>
+        <argsstring></argsstring>
+        <name>pcal_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="37" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a85db7e9cce89a6d7cd6997d3b4eea9b7" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_207_v1::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="34" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a67e89f6e543de4b3c6914d377bedf7b5" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_207_v1::ref_errate[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>ref_errate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="49" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a5417aa5ff702c71dcd7a605e5315681f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::ref_pcamp[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>ref_pcamp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1ae1d187b7103a876aa75bd404367842f4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::ref_pcfreq[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>ref_pcfreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a50a88950a4c841c1d1e3cd542eba82ed" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::ref_pcoffset[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>ref_pcoffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1ab54db80ee8448e92fc1f9b9559dcb93e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::ref_pcphase[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>ref_pcphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1afb98a05f5d4894a00971edc34d55eeea" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_207_v1::ref_pcrate</definition>
+        <argsstring></argsstring>
+        <name>ref_pcrate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="47" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1ad8dd31ba2e75e5d991bc1273cfbb89d9" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_207_v1::rem_errate[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>rem_errate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="50" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a29c4c838fb21eab402893d25aebc0f04" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::rem_pcamp[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>rem_pcamp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1aa5910a69009c314f2ce137ca9528510d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::rem_pcfreq[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>rem_pcfreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1ada984ea5ba0a7509e6afa4902b0cb22d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::rem_pcoffset[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>rem_pcoffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a575db3f2137bf62a3b64add08b12c26a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbandf" kindref="compound">sbandf</ref></type>
+        <definition>struct sbandf type_207_v1::rem_pcphase[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>rem_pcphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1ae02e3752a432e2d165595dc30f8953bc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_207_v1::rem_pcrate</definition>
+        <argsstring></argsstring>
+        <name>rem_pcrate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="48" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a815331c1957f23f5a3d1629e10546734" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_207_v1::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="36" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a6430dd4b444b844a0735910154881365" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_207_v1::unused2</definition>
+        <argsstring></argsstring>
+        <name>unused2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__207__v1_1a4fe57b913a52b4d01b8645e5e5f06a1c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_207_v1::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="35" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>sbandf</label>
+        <link refid="structsbandf"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>type_207_v1</label>
+        <link refid="structtype__207__v1"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_errate</edgelabel>
+          <edgelabel>ref_pcrate</edgelabel>
+          <edgelabel>rem_errate</edgelabel>
+          <edgelabel>rem_pcrate</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>pcal_mode</edgelabel>
+          <edgelabel>unused2</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ref_pcamp</edgelabel>
+          <edgelabel>ref_pcfreq</edgelabel>
+          <edgelabel>ref_pcoffset</edgelabel>
+          <edgelabel>ref_pcphase</edgelabel>
+          <edgelabel>rem_pcamp</edgelabel>
+          <edgelabel>rem_pcfreq</edgelabel>
+          <edgelabel>rem_pcoffset</edgelabel>
+          <edgelabel>rem_pcphase</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="33" bodyend="51"/>
+    <listofallmembers>
+      <member refid="structtype__207__v1_1a9297bb5528c51d0b77ec1e9cf524f0c6" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>pcal_mode</name></member>
+      <member refid="structtype__207__v1_1a85db7e9cce89a6d7cd6997d3b4eea9b7" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>record_id</name></member>
+      <member refid="structtype__207__v1_1a67e89f6e543de4b3c6914d377bedf7b5" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>ref_errate</name></member>
+      <member refid="structtype__207__v1_1a5417aa5ff702c71dcd7a605e5315681f" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>ref_pcamp</name></member>
+      <member refid="structtype__207__v1_1ae1d187b7103a876aa75bd404367842f4" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>ref_pcfreq</name></member>
+      <member refid="structtype__207__v1_1a50a88950a4c841c1d1e3cd542eba82ed" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>ref_pcoffset</name></member>
+      <member refid="structtype__207__v1_1ab54db80ee8448e92fc1f9b9559dcb93e" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>ref_pcphase</name></member>
+      <member refid="structtype__207__v1_1afb98a05f5d4894a00971edc34d55eeea" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>ref_pcrate</name></member>
+      <member refid="structtype__207__v1_1ad8dd31ba2e75e5d991bc1273cfbb89d9" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>rem_errate</name></member>
+      <member refid="structtype__207__v1_1a29c4c838fb21eab402893d25aebc0f04" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>rem_pcamp</name></member>
+      <member refid="structtype__207__v1_1aa5910a69009c314f2ce137ca9528510d" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>rem_pcfreq</name></member>
+      <member refid="structtype__207__v1_1ada984ea5ba0a7509e6afa4902b0cb22d" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>rem_pcoffset</name></member>
+      <member refid="structtype__207__v1_1a575db3f2137bf62a3b64add08b12c26a" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>rem_pcphase</name></member>
+      <member refid="structtype__207__v1_1ae02e3752a432e2d165595dc30f8953bc" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>rem_pcrate</name></member>
+      <member refid="structtype__207__v1_1a815331c1957f23f5a3d1629e10546734" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>unused1</name></member>
+      <member refid="structtype__207__v1_1a6430dd4b444b844a0735910154881365" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>unused2</name></member>
+      <member refid="structtype__207__v1_1a4fe57b913a52b4d01b8645e5e5f06a1c" prot="public" virt="non-virtual"><scope>type_207_v1</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

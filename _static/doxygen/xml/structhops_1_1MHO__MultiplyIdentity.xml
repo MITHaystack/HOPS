@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__MultiplyIdentity" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_MultiplyIdentity</compoundname>
+    <includes refid="MHO__CompoundReductions_8hh" local="no">MHO_CompoundReductions.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhops_1_1MHO__MultiplyIdentity_1a449f64a45aca3ba4a6fbbf7cd2c8c5e1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>XValueType</type>
+        <definition>static XValueType hops::MHO_MultiplyIdentity&lt; XValueType &gt;::value</definition>
+        <argsstring>()</argsstring>
+        <name>value</name>
+        <briefdescription>
+<para>Returns the identity for the multiplication operation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>XValueType </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="199" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="199" bodyend="199"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="191" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="192" bodyend="200"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__MultiplyIdentity_1a449f64a45aca3ba4a6fbbf7cd2c8c5e1" prot="public" virt="non-virtual"><scope>hops::MHO_MultiplyIdentity</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

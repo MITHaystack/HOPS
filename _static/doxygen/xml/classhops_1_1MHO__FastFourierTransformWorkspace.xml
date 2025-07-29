@@ -1,0 +1,468 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FastFourierTransformWorkspace" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FastFourierTransformWorkspace</compoundname>
+    <includes refid="MHO__FastFourierTransformWorkspace_8hh" local="no">MHO_FastFourierTransformWorkspace.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XFloatType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a08aeb49ae6e52bf74bd572dff627bf3b" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; XFloatType &gt; *</type>
+        <definition>std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fCirculant</definition>
+        <argsstring></argsstring>
+        <name>fCirculant</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="153" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1abbc4a13be2d98d2b5a12080315c0f263" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; XFloatType &gt; *</type>
+        <definition>std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fConjugateTwiddle</definition>
+        <argsstring></argsstring>
+        <name>fConjugateTwiddle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="151" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a1c19c920224397a848f434ecb1c780ca" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fM</definition>
+        <argsstring></argsstring>
+        <name>fM</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="148" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a86a142782c052fbdc5d8936a55116b69" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fN</definition>
+        <argsstring></argsstring>
+        <name>fN</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="147" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1aa114fdfbf9e9737ebcb78b5e216ee0ea" prot="public" static="no" mutable="no">
+        <type>unsigned int *</type>
+        <definition>unsigned int* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fPermutation</definition>
+        <argsstring></argsstring>
+        <name>fPermutation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="149" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a22cada253110e6e121822bb9093e69a1" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; XFloatType &gt; *</type>
+        <definition>std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fScale</definition>
+        <argsstring></argsstring>
+        <name>fScale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="152" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1ab0d47a3c1299a0ab8a360b692d08ff8e" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; XFloatType &gt; *</type>
+        <definition>std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fTwiddle</definition>
+        <argsstring></argsstring>
+        <name>fTwiddle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="150" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a113fa3b176c6ed71e32919cb1b7594e9" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; XFloatType &gt; *</type>
+        <definition>std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::fWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="154" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a325551b9910cef1db7a25aa2de4408d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::MHO_FastFourierTransformWorkspace</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FastFourierTransformWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="27" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a9d5341b087432e94b3f0895e7aa7f125" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::MHO_FastFourierTransformWorkspace</definition>
+        <argsstring>(const MHO_FastFourierTransformWorkspace &amp;copy)</argsstring>
+        <name>MHO_FastFourierTransformWorkspace</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__FastFourierTransformWorkspace" kindref="compound">MHO_FastFourierTransformWorkspace</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="52" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="52" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a535df40839e3cdedc1b82e78be7bf5fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::MHO_FastFourierTransformWorkspace</definition>
+        <argsstring>(unsigned int n)</argsstring>
+        <name>MHO_FastFourierTransformWorkspace</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="39" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="39" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1adc51a60a98dd35c1779f495dbe1d0e21" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::~MHO_FastFourierTransformWorkspace</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FastFourierTransformWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="65" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1ab8101e3656b51d94a91b16d5ee299247" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::complex&lt; XFloatType &gt; *</type>
+        <definition>const std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetCirculant</definition>
+        <argsstring>() const</argsstring>
+        <name>GetCirculant</name>
+        <briefdescription>
+<para>Getter for circulant. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current circulant value of type XFloatType </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="136" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a8f6eabea41c7ec70215d8803b132f353" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::complex&lt; XFloatType &gt; *</type>
+        <definition>const std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetConjTwiddle</definition>
+        <argsstring>() const</argsstring>
+        <name>GetConjTwiddle</name>
+        <briefdescription>
+<para>Getter for conj twiddle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Conjugate twiddle value of type XFloatType* </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="122" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="122" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1ae35e498aac46bf4649ad34ca266fa7e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetM</definition>
+        <argsstring>()</argsstring>
+        <name>GetM</name>
+        <briefdescription>
+<para>Getter for m. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>unsigned int value of fM </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="101" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="101" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1ae2d8882320a6a1210b807592ad013236" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetN</definition>
+        <argsstring>()</argsstring>
+        <name>GetN</name>
+        <briefdescription>
+<para>Getter for n. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current value of unsigned integer n </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="94" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1aa6af52e36b1d138c1b550443c297e87d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const unsigned int *</type>
+        <definition>const unsigned int* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetPermutation</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPermutation</name>
+        <briefdescription>
+<para>Getter for permutation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to unsigned integer containing the permutation value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="108" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a9e699f39d8412f49ec542909180fb499" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::complex&lt; XFloatType &gt; *</type>
+        <definition>const std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetScale</definition>
+        <argsstring>() const</argsstring>
+        <name>GetScale</name>
+        <briefdescription>
+<para>Getter for scale. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to XFloatType representing the current scale. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="129" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="129" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a096cccaf7db756fc451c8bd9d51abe5f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::complex&lt; XFloatType &gt; *</type>
+        <definition>const std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetTwiddle</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTwiddle</name>
+        <briefdescription>
+<para>Getter for twiddle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current value of twiddle as XFloatType pointer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="115" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1adddcb7438ab96fbf3937460967178697" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::complex&lt; XFloatType &gt; *</type>
+        <definition>std::complex&lt; XFloatType &gt;* hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::GetWorkspace</definition>
+        <argsstring>() const</argsstring>
+        <name>GetWorkspace</name>
+        <briefdescription>
+<para>Getter for workspace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to XFloatType workspace </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="143" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="143" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a6248dfb8c7c5d8ead87fb61fd320aaea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::IsRadix2</definition>
+        <argsstring>()</argsstring>
+        <name>IsRadix2</name>
+        <briefdescription>
+<para>Checks if the current workspace is for radix-2 FFT. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if radix is 2, false otherwise (Bluestein). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="87" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a57a9e940670fa431811679850361f20d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::Resize</definition>
+        <argsstring>(unsigned int n)</argsstring>
+        <name>Resize</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Resizes the internal data structure to a new size and fills it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New size for the data structure. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="72" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="72" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1ae3e7240eefce48368a3bfd481070a6ba" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::Allocate</definition>
+        <argsstring>(unsigned int n)</argsstring>
+        <name>Allocate</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="200" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="200" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a62663477ce2c25a7d9841b912a68663b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::Deallocate</definition>
+        <argsstring>()</argsstring>
+        <name>Deallocate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="157" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="157" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformWorkspace_1a6edd8a6f7ec769062498013b8f09378e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;::Fill</definition>
+        <argsstring>()</argsstring>
+        <name>Fill</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="175" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="175" bodyend="198"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>navtive FFT workspace definitions </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon Jul 31 15:44:01 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::complex&lt; XFloatType &gt;</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FastFourierTransformWorkspace&lt; XFloatType &gt;</label>
+        <link refid="classhops_1_1MHO__FastFourierTransformWorkspace"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fCirculant</edgelabel>
+          <edgelabel>fConjugateTwiddle</edgelabel>
+          <edgelabel>fScale</edgelabel>
+          <edgelabel>fTwiddle</edgelabel>
+          <edgelabel>fWorkspace</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fM</edgelabel>
+          <edgelabel>fN</edgelabel>
+          <edgelabel>fPermutation</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" line="24" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformWorkspace.hh" bodystart="25" bodyend="228"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1ae3e7240eefce48368a3bfd481070a6ba" prot="private" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>Allocate</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a62663477ce2c25a7d9841b912a68663b" prot="private" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>Deallocate</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a08aeb49ae6e52bf74bd572dff627bf3b" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fCirculant</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1abbc4a13be2d98d2b5a12080315c0f263" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fConjugateTwiddle</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a6edd8a6f7ec769062498013b8f09378e" prot="private" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>Fill</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a1c19c920224397a848f434ecb1c780ca" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fM</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a86a142782c052fbdc5d8936a55116b69" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fN</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1aa114fdfbf9e9737ebcb78b5e216ee0ea" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fPermutation</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a22cada253110e6e121822bb9093e69a1" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fScale</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1ab0d47a3c1299a0ab8a360b692d08ff8e" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fTwiddle</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a113fa3b176c6ed71e32919cb1b7594e9" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>fWorkspace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1ab8101e3656b51d94a91b16d5ee299247" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetCirculant</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a8f6eabea41c7ec70215d8803b132f353" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetConjTwiddle</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1ae35e498aac46bf4649ad34ca266fa7e9" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetM</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1ae2d8882320a6a1210b807592ad013236" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetN</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1aa6af52e36b1d138c1b550443c297e87d" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetPermutation</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a9e699f39d8412f49ec542909180fb499" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetScale</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a096cccaf7db756fc451c8bd9d51abe5f" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetTwiddle</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1adddcb7438ab96fbf3937460967178697" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>GetWorkspace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a6248dfb8c7c5d8ead87fb61fd320aaea" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>IsRadix2</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a325551b9910cef1db7a25aa2de4408d4" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>MHO_FastFourierTransformWorkspace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a535df40839e3cdedc1b82e78be7bf5fe" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>MHO_FastFourierTransformWorkspace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a9d5341b087432e94b3f0895e7aa7f125" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>MHO_FastFourierTransformWorkspace</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1a57a9e940670fa431811679850361f20d" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>Resize</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformWorkspace_1adc51a60a98dd35c1779f495dbe1d0e21" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransformWorkspace</scope><name>~MHO_FastFourierTransformWorkspace</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

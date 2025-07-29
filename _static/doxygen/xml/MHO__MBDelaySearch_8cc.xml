@@ -1,0 +1,1224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__MBDelaySearch_8cc" kind="file" language="C++">
+    <compoundname>MHO_MBDelaySearch.cc</compoundname>
+    <includes refid="MHO__MBDelaySearch_8hh" local="yes">MHO_MBDelaySearch.hh</includes>
+    <incdepgraph>
+      <node id="87">
+        <label>MHO_BitReversalPermutation.hh</label>
+        <link refid="MHO__BitReversalPermutation_8hh"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>atomic</label>
+      </node>
+      <node id="67">
+        <label>MHO_UUIDGenerator.hh</label>
+        <link refid="MHO__UUIDGenerator_8hh"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>iomanip</label>
+      </node>
+      <node id="93">
+        <label>limits</label>
+      </node>
+      <node id="88">
+        <label>MHO_FastFourierTransformUtilities.hh</label>
+        <link refid="MHO__FastFourierTransformUtilities_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>assert.h</label>
+      </node>
+      <node id="42">
+        <label>iterator</label>
+      </node>
+      <node id="48">
+        <label>MHO_NDArrayView.hh</label>
+        <link refid="MHO__NDArrayView_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>cstdint</label>
+      </node>
+      <node id="73">
+        <label>MHO_ElementTypes.hh</label>
+        <link refid="MHO__ElementTypes_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>MHO_ClassIdentity.hh</label>
+        <link refid="MHO__ClassIdentity_8hh"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>endian.h</label>
+      </node>
+      <node id="57">
+        <label>stdint.h</label>
+      </node>
+      <node id="79">
+        <label>MHO_UnaryOperator.hh</label>
+        <link refid="MHO__UnaryOperator_8hh"/>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>MHO_DelayRate.hh</label>
+        <link refid="MHO__DelayRate_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>MHO_Meta.hh</label>
+        <link refid="MHO__Meta_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cmath</label>
+      </node>
+      <node id="69">
+        <label>MHO_Taggable.hh</label>
+        <link refid="MHO__Taggable_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>MHO_MultidimensionalFastFourierTransformInterface.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransformInterface_8hh"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>stdexcept</label>
+      </node>
+      <node id="31">
+        <label>MHO_IntervalLabelInterface.hh</label>
+        <link refid="MHO__IntervalLabelInterface_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+      <node id="54">
+        <label>MHO_MD5HashGenerator.hh</label>
+        <link refid="MHO__MD5HashGenerator_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>MHO_MultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransform_8hh"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>cinttypes</label>
+      </node>
+      <node id="33">
+        <label>map</label>
+      </node>
+      <node id="82">
+        <label>MHO_BinaryOperator.hh</label>
+        <link refid="MHO__BinaryOperator_8hh"/>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>MHO_FileStreamer.hh</label>
+        <link refid="MHO__FileStreamer_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>stddef.h</label>
+      </node>
+      <node id="55">
+        <label>fstream</label>
+      </node>
+      <node id="46">
+        <label>MHO_NDArrayMath.hh</label>
+        <link refid="MHO__NDArrayMath_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>ostream</label>
+      </node>
+      <node id="58">
+        <label>MHO_UUID.hh</label>
+        <link refid="MHO__UUID_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>MHO_NDArrayWrapper_0.hh</label>
+        <link refid="MHO__NDArrayWrapper__0_8hh"/>
+      </node>
+      <node id="36">
+        <label>MHO_VectorContainer.hh</label>
+        <link refid="MHO__VectorContainer_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MHO_Axis.hh</label>
+        <link refid="MHO__Axis_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>MHO_IndexLabelInterface.hh</label>
+        <link refid="MHO__IndexLabelInterface_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>MHO_NDArrayWrapper_1.hh</label>
+        <link refid="MHO__NDArrayWrapper__1_8hh"/>
+      </node>
+      <node id="1">
+        <label>MHO_MBDelaySearch.cc</label>
+        <link refid="MHO__MBDelaySearch_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>random</label>
+      </node>
+      <node id="5">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>string.h</label>
+      </node>
+      <node id="41">
+        <label>MHO_BidirectionalIterator.hh</label>
+        <link refid="MHO__BidirectionalIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>bitset</label>
+      </node>
+      <node id="34">
+        <label>tuple</label>
+      </node>
+      <node id="74">
+        <label>MHO_AxisTypes.hh</label>
+        <link refid="MHO__AxisTypes_8hh"/>
+      </node>
+      <node id="29">
+        <label>ctime</label>
+      </node>
+      <node id="28">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="91">
+        <label>MHO_SubSample.hh</label>
+        <link refid="MHO__SubSample_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="83">
+        <label>MHO_EndZeroPadder.hh</label>
+        <link refid="MHO__EndZeroPadder_8hh"/>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>MHO_FastFourierTransformCalls.hh</label>
+        <link refid="MHO__FastFourierTransformCalls_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>vector</label>
+      </node>
+      <node id="49">
+        <label>MHO_BidirectionalIndexedIterator.hh</label>
+        <link refid="MHO__BidirectionalIndexedIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>utility</label>
+      </node>
+      <node id="39">
+        <label>array</label>
+      </node>
+      <node id="78">
+        <label>MHO_CyclicRotator.hh</label>
+        <link refid="MHO__CyclicRotator_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>sstream</label>
+      </node>
+      <node id="20">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>MHO_BidirectionalStrideIterator.hh</label>
+        <link refid="MHO__BidirectionalStrideIterator_8hh"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="94">
+        <label>MHO_InspectingOperator.hh</label>
+        <link refid="MHO__InspectingOperator_8hh"/>
+        <childnode refid="80" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>MHO_NDArrayWrapper.hh</label>
+        <link refid="MHO__NDArrayWrapper_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>cstdlib</label>
+      </node>
+      <node id="30">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>MHO_Operator.hh</label>
+        <link refid="MHO__Operator_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="47">
+        <label>cstddef</label>
+      </node>
+      <node id="59">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_MBDelaySearch.hh</label>
+        <link refid="MHO__MBDelaySearch_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>mutex</label>
+      </node>
+      <node id="75">
+        <label>MHO_BaselineContainers.hh</label>
+        <link refid="MHO__BaselineContainers_8hh"/>
+      </node>
+      <node id="77">
+        <label>MHO_FringeContainers.hh</label>
+        <link refid="MHO__FringeContainers_8hh"/>
+      </node>
+      <node id="22">
+        <label>thread</label>
+      </node>
+      <node id="95">
+        <label>MHO_UniformGridPointsCalculator.hh</label>
+        <link refid="MHO__UniformGridPointsCalculator_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_traits</label>
+      </node>
+      <node id="52">
+        <label>MHO_Serializable.hh</label>
+        <link refid="MHO__Serializable_8hh"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>set</label>
+      </node>
+      <node id="10">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="4">
+        <label>complex</label>
+      </node>
+      <node id="71">
+        <label>MHO_ContainerDefinitions.hh</label>
+        <link refid="MHO__ContainerDefinitions_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>algorithm</label>
+      </node>
+      <node id="60">
+        <label>picohash.h</label>
+        <link refid="picohash_8h"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>stdio.h</label>
+      </node>
+      <node id="45">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>cstring</label>
+      </node>
+      <node id="92">
+        <label>MHO_ExtremaSearch.hh</label>
+        <link refid="MHO__ExtremaSearch_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>MHO_StationContainers.hh</label>
+        <link refid="MHO__StationContainers_8hh"/>
+      </node>
+      <node id="62">
+        <label>inttypes.h</label>
+      </node>
+      <node id="89">
+        <label>MHO_FastFourierTransformWorkspace.hh</label>
+        <link refid="MHO__FastFourierTransformWorkspace_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>MHO_TableContainer.hh</label>
+        <link refid="MHO__TableContainer_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__MBDelaySearch_8hh" kindref="compound">MHO_MBDelaySearch.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><ref refid="classhops_1_1MHO__MBDelaySearch_1a01f6d4fa5fa6934b33bcaa33333bf507" kindref="member">MHO_MBDelaySearch::MHO_MBDelaySearch</ref>()</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac530663982e0c1fb776b2bb0bb1cd965" kindref="member">fInitialized</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af3184229468b7be59e2b6d3144b3f8c6" kindref="member">fMBDMaxBin</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aad24643ad0c018cca25e4a0b4c797095" kindref="member">fSBDMaxBin</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1647bdc8554e33409e9d33889377590b" kindref="member">fDRMaxBin</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac5c919be10071061ddd572b27c8136ed" kindref="member">fSBDStart</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1229e0a1e2821bb1c119802317347ed9" kindref="member">fSBDStop</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa59d076da2e91b79c27d94e67f9c1064" kindref="member">fMBDBinMap</ref>.clear();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//the<sp/>window<sp/>limits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6370ae309995d1aed54fba3e2166f5c6" kindref="member">fSBDWinSet</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aba0cbc274efc1e904638df0619396eb4" kindref="member">fMBDWinSet</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a7b5514b495cd6986325fcb4a2d3c3fc7" kindref="member">fDRWinSet</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a3f265b975b291b4d8b302b867a77ed51" kindref="member">fSBDWin</ref>[0]<sp/>=<sp/>1e30;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a3f265b975b291b4d8b302b867a77ed51" kindref="member">fSBDWin</ref>[1]<sp/>=<sp/>-1e30;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8ee8813f24e9a31248f22a8c61e65b1a" kindref="member">fMBDWin</ref>[0]<sp/>=<sp/>1e30;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8ee8813f24e9a31248f22a8c61e65b1a" kindref="member">fMBDWin</ref>[1]<sp/>=<sp/>-1e30;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae0e5b0dfdeaac5f221a721ea506931f7" kindref="member">fDRWin</ref>[0]<sp/>=<sp/>1e30;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae0e5b0dfdeaac5f221a721ea506931f7" kindref="member">fDRWin</ref>[1]<sp/>=<sp/>-1e30;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a3fd30d067f98625a5155c58fb66f6313" kindref="member">fCoarseSBD</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a694fbeae9d868994bbd03df80443a7e8" kindref="member">fCoarseMBD</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a20c19fa494cd7decdd5408c42a8a7512" kindref="member">fCoarseDR</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a7f6c8619ad500bf201056e8606e27048" kindref="member">fSBDBinSep</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a20a8c9d15cb2674415b8450e35483a16" kindref="member">fDRBinSep</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa44a98b599c775a9dc17f27f68d785db" kindref="member">fMBDBinSep</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6910a20da16dca4f419af1a91c074b7c" kindref="member">fNPointsSearched</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><ref refid="classhops_1_1MHO__MBDelaySearch_1a62efdc4a136bee00a4defb1fd0321300" kindref="member">MHO_MBDelaySearch::~MHO_MBDelaySearch</ref>(){};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ad502fee097a883471fb1e4c51f1d7ce1" kindref="member">MHO_MBDelaySearch::InitializeImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType*<sp/>in)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac530663982e0c1fb776b2bb0bb1cd965" kindref="member">fInitialized</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(in<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//calculate<sp/>the<sp/>frequency<sp/>grid<sp/>for<sp/>MBD<sp/>search</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_UniformGridPointsCalculator<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>double<sp/>&gt;<sp/>in_freq_pts(std::get&lt;<sp/>CHANNEL_AXIS<sp/>&gt;(*in).GetData(),</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>CHANNEL_AXIS<sp/>&gt;(*in).GetData()<sp/>+<sp/>std::get&lt;<sp/>CHANNEL_AXIS<sp/>&gt;(*in).GetSize());</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>double<sp/>&gt;<sp/>freq_pts;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>freq_eps<sp/>=<sp/>1e-4;<sp/></highlight><highlight class="comment">//tolerance<sp/>of<sp/>0.1kHz</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//dsb<sp/>channel<sp/>pairs<sp/>share<sp/>a<sp/>sky_freq<sp/>so<sp/>we<sp/>need<sp/>combine<sp/>them<sp/>at<sp/>the<sp/>same<sp/>location</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>eliminates<sp/>non-unique<sp/>(within<sp/>the<sp/>tolerance)<sp/>adjacent<sp/>frequencies</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a24ae957141ae8a5b32213de4bff6e7c2" kindref="member">GetUniquePoints</ref>(in_freq_pts,<sp/>freq_eps,<sp/>freq_pts,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af716e7e14172c5d1f2fa867f04802c9e" kindref="member">fChannelIndexToFreqPointIndex</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a151aed4607a4efbc020477927010cdd5" kindref="member">SetPoints</ref>(freq_pts);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a621d461d1f4449e3e981ff2764581613" kindref="member">Calculate</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac84d000d058d5b115b1364e154b93fd8" kindref="member">fGridStart</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ad373995fcae740ff6eb5744d8fdb35f6" kindref="member">GetGridStart</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a2c36cff0c0428b514603e332f64cc219" kindref="member">fGridSpace</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1aee29df2ab7258e6b75229b792d9d5798" kindref="member">GetGridSpacing</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ab1ca7b84725f7a77577b0fb614488126" kindref="member">GetNGridPoints</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a73232b82b54d18fcd911a910077af3ad" kindref="member">fAverageFreq</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a28c57154ba3ce661e1b4f9f9f6c66c8f" kindref="member">GetGridAverage</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa59d076da2e91b79c27d94e67f9c1064" kindref="member">fMBDBinMap</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" kindref="member">fGridCalc</ref>.<ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a58a1275cd58fcd5f35d71b7e54a1ce1e" kindref="member">GetGridIndexMap</ref>();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8d5d8e8a869b8a106c7e4e3b4d516dab" kindref="member">fNSBD</ref><sp/>=<sp/>in-&gt;GetDimension(<ref refid="MHO__BaselineContainers_8hh_1a7833826050c86ab6132bf256f1cec006" kindref="member">FREQ_AXIS</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a85cfd49775e8d2d22b8ad0bd7fa15db6" kindref="member">fNDR</ref><sp/>=<sp/>in-&gt;GetDimension(<ref refid="MHO__BaselineContainers_8hh_1a897cf2a16955f6e17aaa6b91d0a77b85" kindref="member">TIME_AXIS</ref>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MBDelaySearch_1ac5c919be10071061ddd572b27c8136ed" kindref="member">fSBDStart</ref><sp/>==<sp/>-1)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac5c919be10071061ddd572b27c8136ed" kindref="member">fSBDStart</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MBDelaySearch_1a1229e0a1e2821bb1c119802317347ed9" kindref="member">fSBDStop</ref><sp/>==<sp/>-1)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1229e0a1e2821bb1c119802317347ed9" kindref="member">fSBDStop</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8d5d8e8a869b8a106c7e4e3b4d516dab" kindref="member">fNSBD</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;calibration&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MBD<sp/>search,<sp/>N<sp/>grid<sp/>points<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//resize<sp/>workspaces<sp/>(TODO...make<sp/>conditional<sp/>on<sp/>current<sp/>size<sp/>--<sp/>if<sp/>already<sp/>configured)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>.<ref refid="classhops_1_1MHO__TableContainer_1a296d158a9afa689ada830cc24759e86f" kindref="member">Resize</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref>);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//,<sp/>fNDR);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a9c0f907e3eab6e9af4a8255b175ce9d0" kindref="member">fMBDAmpWorkspace</ref>.<ref refid="classhops_1_1MHO__TableContainer_1a296d158a9afa689ada830cc24759e86f" kindref="member">Resize</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref>);<sp/></highlight><highlight class="comment">//,<sp/>fNDR);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//copy<sp/>the<sp/>tags/axes<sp/>for<sp/>the<sp/>SBD<sp/>DR<sp/>workspace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//copy<sp/>this<sp/>slice<sp/>into<sp/>local<sp/>workspace<sp/>table<sp/>container</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sbd_dims<sp/>=<sp/>in-&gt;GetDimensionArray();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbd_dims[<ref refid="MHO__BaselineContainers_8hh_1abaabaed5bff3c94d39d886e0dcfda551" kindref="member">POLPROD_AXIS</ref>]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbd_dims[<ref refid="MHO__BaselineContainers_8hh_1a7833826050c86ab6132bf256f1cec006" kindref="member">FREQ_AXIS</ref>]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//auto<sp/>sbd_dr_dim<sp/>=<sp/>fSBDDrWorkspace.GetDimensionArray();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>.<ref refid="classhops_1_1MHO__TableContainer_1a296d158a9afa689ada830cc24759e86f" kindref="member">Resize</ref>(&amp;(sbd_dims[0]));</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>.<ref refid="classhops_1_1MHO__NDArrayWrapper_1aa8c5dd06d0440052d4cbc8ceada33ef0" kindref="member">ZeroArray</ref>();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>.<ref refid="classhops_1_1MHO__Taggable_1a9ff0c9e91598da64f382e40e790641e6" kindref="member">CopyTags</ref>(*in);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>CHANNEL_AXIS<sp/>&gt;(<ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>)<sp/>=<sp/>std::get&lt;<sp/>CHANNEL_AXIS<sp/>&gt;(*in);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>TIME_AXIS<sp/>&gt;(<ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>)<sp/>=<sp/>std::get&lt;<sp/>TIME_AXIS<sp/>&gt;(*in);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>FREQ_AXIS<sp/>&gt;(<ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>)(0)<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1874a8ea95372cf6ef18425b81976fc1" kindref="member">fDelayRateCalc</ref>.<ref refid="classhops_1_1MHO__DelayRate_1a1f4d45df9eb28da25b5dbdec4b72e1c0" kindref="member">SetReferenceFrequency</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1ab620a16fef3c2263e111c91c26ad53f0" kindref="member">fRefFreq</ref>);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1874a8ea95372cf6ef18425b81976fc1" kindref="member">fDelayRateCalc</ref>.<ref refid="classhops_1_1MHO__BinaryOperator_1ab98c0e7cdbc7f23197964387625f9e66" kindref="member">SetArgs</ref>(&amp;<ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a92cc7fd73c25a3867a5835fa63341535" kindref="member">fWeights</ref>,<sp/>&amp;<ref refid="classhops_1_1MHO__MBDelaySearch_1a2421eee719f6e390d107454d99f5c0ab" kindref="member">sbd_dr_data</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1874a8ea95372cf6ef18425b81976fc1" kindref="member">fDelayRateCalc</ref>.<ref refid="classhops_1_1MHO__BinaryOperator_1aa9d4b322af4ea6f5e98afc218681abe1" kindref="member">Initialize</ref>();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1af6437b9d519f790db58bab45c8559082" kindref="member">check_step_fatal</ref>(ok,<sp/></highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Delay<sp/>rate<sp/>search<sp/>fft<sp/>engine<sp/>initialization<sp/>failed.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//set<sp/>up<sp/>FFT<sp/>and<sp/>rotator<sp/>engines</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" kindref="member">SetArgs</ref>(&amp;<ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a8e49b888c2afb4c39329bc1e31f6bd0b" kindref="member">DeselectAllAxes</ref>();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5f9dc49f66367e30a50aa4153d6b6614" kindref="member">SelectAxis</ref>(0);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76b6d126eae8c01d867ef260ef35dd09" kindref="member">SetForward</ref>();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" kindref="member">Initialize</ref>();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1af6437b9d519f790db58bab45c8559082" kindref="member">check_step_fatal</ref>(ok,<sp/></highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MBD<sp/>search<sp/>fft<sp/>engine<sp/>initialization<sp/>failed.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae504e2a866b9c1d9eadd3c1c73accabe" kindref="member">fCyclicRotator</ref>.SetOffset(0,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref><sp/>/<sp/>2);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae504e2a866b9c1d9eadd3c1c73accabe" kindref="member">fCyclicRotator</ref>.SetArgs(&amp;<ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae504e2a866b9c1d9eadd3c1c73accabe" kindref="member">fCyclicRotator</ref>.Initialize();</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1af6437b9d519f790db58bab45c8559082" kindref="member">check_step_fatal</ref>(ok,<sp/></highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MBD<sp/>search<sp/>cyclic<sp/>rotation<sp/>initialization<sp/>failed.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac530663982e0c1fb776b2bb0bb1cd965" kindref="member">fInitialized</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac530663982e0c1fb776b2bb0bb1cd965" kindref="member">fInitialized</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6c7d8f119fa61cbd9355e2d078e1a57a" kindref="member">MHO_MBDelaySearch::ExecuteImpl</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XArgType*<sp/>in)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa4caf730d5a4137c55f1baa57e987871" kindref="member">fMax</ref><sp/>=<sp/>-0.0;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MBDelaySearch_1ac530663982e0c1fb776b2bb0bb1cd965" kindref="member">fInitialized</ref><sp/>&amp;&amp;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8d5d8e8a869b8a106c7e4e3b4d516dab" kindref="member">fNSBD</ref><sp/>&gt;<sp/>1)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1a3905593f1e349c73e9d066b0e700d8" kindref="member">fSBDAxis</ref><sp/>=<sp/>std::get&lt;<sp/>FREQ_AXIS<sp/>&gt;(*in);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>chan_ax<sp/>=<sp/>std::get&lt;<sp/>CHANNEL_AXIS<sp/>&gt;(*in);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a7f6c8619ad500bf201056e8606e27048" kindref="member">fSBDBinSep</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1a3905593f1e349c73e9d066b0e700d8" kindref="member">fSBDAxis</ref>(1)<sp/>-<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1a3905593f1e349c73e9d066b0e700d8" kindref="member">fSBDAxis</ref>(0);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//loop<sp/>over<sp/>the<sp/>single-band<sp/>delay<sp/>&apos;lags&apos;,<sp/>computing<sp/>the<sp/>MBD/DR<sp/>function</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//find<sp/>the<sp/>max<sp/>for<sp/>each<sp/>SBD,<sp/>and<sp/>globally</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6910a20da16dca4f419af1a91c074b7c" kindref="member">fNPointsSearched</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>first<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>sbd_idx<sp/>=<sp/>0;<sp/>sbd_idx<sp/>&lt;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8d5d8e8a869b8a106c7e4e3b4d516dab" kindref="member">fNSBD</ref>;<sp/>sbd_idx++)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbd<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1a3905593f1e349c73e9d066b0e700d8" kindref="member">fSBDAxis</ref>(sbd_idx);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>do_sbd_search<sp/>=<sp/>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a3f265b975b291b4d8b302b867a77ed51" kindref="member">fSBDWin</ref>[0]<sp/>&lt;=<sp/>sbd)<sp/>&amp;&amp;<sp/>(sbd<sp/>&lt;=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a3f265b975b291b4d8b302b867a77ed51" kindref="member">fSBDWin</ref>[1]);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<ref refid="classhops_1_1MHO__MBDelaySearch_1a6370ae309995d1aed54fba3e2166f5c6" kindref="member">fSBDWinSet</ref><sp/>||<sp/>do_sbd_search)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//first<sp/>select<sp/>the<sp/>slice<sp/>of<sp/>visibilities<sp/>which<sp/>correspond<sp/>to<sp/>this<sp/>SBD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//and<sp/>copy<sp/>this<sp/>slice<sp/>into<sp/>local<sp/>workspace<sp/>table<sp/>container</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>sbd_dims<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>.<ref refid="classhops_1_1MHO__NDArrayWrapper_1ada0ccecfc1c12a4d94ce3abcb2114912" kindref="member">GetDimensionArray</ref>();</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>a<sp/>=<sp/>sbd_dims[<ref refid="MHO__BaselineContainers_8hh_1a843b672baf3c6931695722ce03e47628" kindref="member">CHANNEL_AXIS</ref>];</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>b<sp/>=<sp/>sbd_dims[<ref refid="MHO__BaselineContainers_8hh_1a897cf2a16955f6e17aaa6b91d0a77b85" kindref="member">TIME_AXIS</ref>];</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>a;<sp/>i++)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>b;<sp/>j++)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" kindref="member">fSBDDrWorkspace</ref>(0,<sp/>i,<sp/>j,<sp/>0)<sp/>=<sp/>(*in)(0,<sp/>i,<sp/>j,<sp/>sbd_idx);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//run<sp/>the<sp/>transformation<sp/>to<sp/>delay<sp/>rate<sp/>space<sp/>(this<sp/>also<sp/>involves<sp/>a<sp/>zero<sp/>padded<sp/>FFT)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1874a8ea95372cf6ef18425b81976fc1" kindref="member">fDelayRateCalc</ref>.<ref refid="classhops_1_1MHO__BinaryOperator_1af0716d50495400b0510af28a5ec75c8e" kindref="member">Execute</ref>();</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//copy<sp/>and<sp/>cache<sp/>the<sp/>delay-rate<sp/>axis<sp/>just<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(first)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref><sp/>=<sp/>std::get&lt;<sp/>TIME_AXIS<sp/>&gt;(<ref refid="classhops_1_1MHO__MBDelaySearch_1a2421eee719f6e390d107454d99f5c0ab" kindref="member">sbd_dr_data</ref>);<sp/></highlight><highlight class="comment">//upon<sp/>retrieval<sp/>this<sp/>here<sp/>is<sp/>fringe-rate</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref><sp/>*=<sp/>1.0<sp/>/<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ab620a16fef3c2263e111c91c26ad53f0" kindref="member">fRefFreq</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>convert<sp/>to<sp/>delay<sp/>rate<sp/>by<sp/>dividing<sp/>by<sp/>reference<sp/>frequency</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a20a8c9d15cb2674415b8450e35483a16" kindref="member">fDRBinSep</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref>(1)<sp/>-<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref>(0);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>NDRBin<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref>.<ref refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4_1ad05b89692cf6a0ca968a9ab70446bd12" kindref="member">GetSize</ref>();<sp/></highlight><highlight class="comment">//sbd_dr_data.GetDimensionArray();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>dr_idx<sp/>=<sp/>0;<sp/>dr_idx<sp/>&lt;<sp/>NDRBin;<sp/>dr_idx++)</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dr<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref>(dr_idx);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>do_dr_search<sp/>=<sp/>(<ref refid="classhops_1_1MHO__MBDelaySearch_1ae0e5b0dfdeaac5f221a721ea506931f7" kindref="member">fDRWin</ref>[0]<sp/>&lt;=<sp/>dr)<sp/>&amp;&amp;<sp/>(dr<sp/>&lt;=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae0e5b0dfdeaac5f221a721ea506931f7" kindref="member">fDRWin</ref>[1]);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<ref refid="classhops_1_1MHO__MBDelaySearch_1a7b5514b495cd6986325fcb4a2d3c3fc7" kindref="member">fDRWinSet</ref><sp/>||<sp/>do_dr_search)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//zero<sp/>out<sp/>MBD<sp/>workspace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>.<ref refid="classhops_1_1MHO__NDArrayWrapper_1aa8c5dd06d0440052d4cbc8ceada33ef0" kindref="member">ZeroArray</ref>();</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//copy<sp/>in<sp/>the<sp/>data<sp/>from<sp/>each<sp/>channel<sp/>for<sp/>this<sp/>SDB/DR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>nch<sp/>=<sp/>std::get&lt;<sp/>CHANNEL_AXIS<sp/>&gt;(*in).GetSize();</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>ch<sp/>=<sp/>0;<sp/>ch<sp/>&lt;<sp/>nch;<sp/>ch++)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>mbd_bin<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa59d076da2e91b79c27d94e67f9c1064" kindref="member">fMBDBinMap</ref>[<ref refid="classhops_1_1MHO__MBDelaySearch_1af716e7e14172c5d1f2fa867f04802c9e" kindref="member">fChannelIndexToFreqPointIndex</ref>[ch]];</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>(mbd_bin)<sp/>+=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a2421eee719f6e390d107454d99f5c0ab" kindref="member">sbd_dr_data</ref>(0,<sp/>ch,<sp/>dr_idx,<sp/>0);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(first)</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//only<sp/>need<sp/>to<sp/>do<sp/>this<sp/>once,<sp/>in<sp/>order<sp/>to</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//set<sp/>up<sp/>the<sp/>mbd<sp/>delay<sp/>axis<sp/>(in<sp/>frequency<sp/>space)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76c42f20af267617d7e1dbb835c33716" kindref="member">EnableAxisLabelTransformation</ref>();</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>mbd_ax<sp/>=<sp/>&amp;(std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>));</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*mbd_ax)(i)<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac84d000d058d5b115b1364e154b93fd8" kindref="member">fGridStart</ref><sp/>+<sp/>i<sp/>*<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a2c36cff0c0428b514603e332f64cc219" kindref="member">fGridSpace</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>run<sp/>an<sp/>FFT<sp/>along<sp/>the<sp/>MBD<sp/>axis<sp/>and<sp/>cyclic<sp/>rotate</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" kindref="member">Execute</ref>();</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(first)</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>grab<sp/>the<sp/>transformed<sp/>(to<sp/>delay<sp/>space)<sp/>mbd<sp/>axis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" kindref="member">fMBDAxis</ref><sp/>=<sp/>std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//turn<sp/>off<sp/>for<sp/>all<sp/>other<sp/>iterations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" kindref="member">fFFTEngine</ref>.<ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1af017acd142a8a83640ea15506ac97dea" kindref="member">DisableAxisLabelTransformation</ref>();</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>first<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa44a98b599c775a9dc17f27f68d785db" kindref="member">fMBDBinSep</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" kindref="member">fMBDAxis</ref>(1)<sp/>-<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" kindref="member">fMBDAxis</ref>(0);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1af6437b9d519f790db58bab45c8559082" kindref="member">check_step_fatal</ref>(ok,<sp/></highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MBD<sp/>search<sp/>fft<sp/>engine<sp/>execution.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>total_mbd_dr_size<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>.<ref refid="classhops_1_1MHO__NDArrayWrapper_1a0074f7e71474cd03305a7201b02c98e1" kindref="member">GetSize</ref>();</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>total_mbd_dr_size;<sp/>i++)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mbd<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" kindref="member">fMBDAxis</ref>(i);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>do_mbd_search<sp/>=<sp/>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a8ee8813f24e9a31248f22a8c61e65b1a" kindref="member">fMBDWin</ref>[0]<sp/>&lt;=<sp/>mbd)<sp/>&amp;&amp;<sp/>(mbd<sp/>&lt;=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8ee8813f24e9a31248f22a8c61e65b1a" kindref="member">fMBDWin</ref>[1]);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<ref refid="classhops_1_1MHO__MBDelaySearch_1aba0cbc274efc1e904638df0619396eb4" kindref="member">fMBDWinSet</ref><sp/>||<sp/>do_mbd_search)</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//since<sp/>we<sp/>don&apos;t<sp/>care<sp/>about<sp/>the<sp/>actual<sp/>amplitude<sp/>(just<sp/>searching<sp/>for<sp/>the<sp/>max<sp/>location)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>is<sp/>faster<sp/>since<sp/>it<sp/>doesn&apos;t<sp/>need<sp/>to<sp/>take<sp/>a<sp/>square<sp/>root</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tmp_max<sp/>=<sp/>std::norm(<ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>[i]);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(tmp_max<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa4caf730d5a4137c55f1baa57e987871" kindref="member">fMax</ref>)</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa4caf730d5a4137c55f1baa57e987871" kindref="member">fMax</ref><sp/>=<sp/>tmp_max;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//index<sp/>shift<sp/>here<sp/>is<sp/>because<sp/>we<sp/>haven&apos;t<sp/>yet<sp/>applied<sp/>the<sp/>cyclic<sp/>rotator<sp/>to<sp/>the<sp/>mbd<sp/>axis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af3184229468b7be59e2b6d3144b3f8c6" kindref="member">fMBDMaxBin</ref><sp/>=<sp/>(i<sp/>+<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref><sp/>/<sp/>2)<sp/>%<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" kindref="member">fNGridPoints</ref>;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aad24643ad0c018cca25e4a0b4c797095" kindref="member">fSBDMaxBin</ref><sp/>=<sp/>sbd_idx;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1647bdc8554e33409e9d33889377590b" kindref="member">fDRMaxBin</ref><sp/>=<sp/>dr_idx;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6910a20da16dca4f419af1a91c074b7c" kindref="member">fNPointsSearched</ref><sp/>+=<sp/>1;<sp/></highlight><highlight class="comment">//just<sp/>count<sp/>each<sp/>search<sp/>point<sp/>we<sp/>visit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//only<sp/>need<sp/>to<sp/>do<sp/>this<sp/>once<sp/>after<sp/>the<sp/>last<sp/>iter<sp/>(to<sp/>properly<sp/>set-up<sp/>the<sp/>MBD<sp/>axis)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae504e2a866b9c1d9eadd3c1c73accabe" kindref="member">fCyclicRotator</ref>.Execute();</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1af6437b9d519f790db58bab45c8559082" kindref="member">check_step_fatal</ref>(ok,<sp/></highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MBD<sp/>search<sp/>cyclic<sp/>rotation<sp/>execution.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" kindref="member">fMBDAxis</ref><sp/>=<sp/>std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" kindref="member">fMBDWorkspace</ref>);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa4caf730d5a4137c55f1baa57e987871" kindref="member">fMax</ref><sp/>=<sp/>std::sqrt(<ref refid="classhops_1_1MHO__MBDelaySearch_1aa4caf730d5a4137c55f1baa57e987871" kindref="member">fMax</ref>);<sp/></highlight><highlight class="comment">//always<sp/>calculate<sp/>max<sp/>that<sp/>we&apos;ve<sp/>seen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__MBDelaySearch_1a694fbeae9d868994bbd03df80443a7e8" kindref="member">fCoarseMBD</ref><sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a3fd30d067f98625a5155c58fb66f6313" kindref="member">fCoarseSBD</ref><sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a20c19fa494cd7decdd5408c42a8a7512" kindref="member">fCoarseDR</ref><sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a694fbeae9d868994bbd03df80443a7e8" kindref="member">fCoarseMBD</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" kindref="member">fMBDAxis</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1af3184229468b7be59e2b6d3144b3f8c6" kindref="member">fMBDMaxBin</ref>);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a3fd30d067f98625a5155c58fb66f6313" kindref="member">fCoarseSBD</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a1a3905593f1e349c73e9d066b0e700d8" kindref="member">fSBDAxis</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1aad24643ad0c018cca25e4a0b4c797095" kindref="member">fSBDMaxBin</ref>);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a20c19fa494cd7decdd5408c42a8a7512" kindref="member">fCoarseDR</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a1647bdc8554e33409e9d33889377590b" kindref="member">fDRMaxBin</ref>);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;calibration&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MHO_MBDelaySearch<sp/>failed<sp/>to<sp/>find<sp/>fringe<sp/>peak<sp/>on<sp/>this<sp/>pass,<sp/>max<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa4caf730d5a4137c55f1baa57e987871" kindref="member">fMax</ref><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;calibration&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MHO_MBDelaySearch<sp/>could<sp/>not<sp/>execute,<sp/>intialization<sp/>failure.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ad7bb39d859b0aa05d9cf8b7fda930826" kindref="member">MHO_MBDelaySearch::GetNPointsSearched</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="259"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//factor<sp/>of<sp/>4<sp/>is<sp/>due<sp/>to<sp/>the<sp/>fact<sp/>that<sp/>the<sp/>SBD<sp/>search<sp/>space</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//has<sp/>been<sp/>zero-padded<sp/>for<sp/>interpolation<sp/>(e.g.<sp/>all<sp/>points<sp/>visited<sp/>are<sp/>not<sp/>independent)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6910a20da16dca4f419af1a91c074b7c" kindref="member">fNPointsSearched</ref><sp/>/<sp/>4;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a63959d685fa630f323d3689aef6697d2" kindref="member">MHO_MBDelaySearch::SetWindow</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>win,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>high)</highlight></codeline>
+<codeline lineno="266"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(low<sp/>&lt;=<sp/>high)</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>win[0]<sp/>=<sp/>low;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>win[1]<sp/>=<sp/>high;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>win[1]<sp/>=<sp/>low;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>win[0]<sp/>=<sp/>high;</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a029357e11953acbebcc2b4da6026e8a5" kindref="member">MHO_MBDelaySearch::GetWindow</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis&lt; double &gt;</ref>&amp;<sp/><ref refid="aedit__proto_8h_1aeee00b3bc47e51ca2fac66dbabf09747" kindref="member">axis</ref>,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>win_set,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>win,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bin_width,</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>high)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="281"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>low<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>high<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="aedit__proto_8h_1aeee00b3bc47e51ca2fac66dbabf09747" kindref="member">axis</ref>.GetSize()<sp/>&gt;=<sp/>2)<sp/></highlight><highlight class="comment">//get<sp/>the<sp/>axis<sp/>limits<sp/>first</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>low<sp/>=<sp/><ref refid="aedit__proto_8h_1aeee00b3bc47e51ca2fac66dbabf09747" kindref="member">axis</ref>.at(0);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>high<sp/>=<sp/><ref refid="aedit__proto_8h_1aeee00b3bc47e51ca2fac66dbabf09747" kindref="member">axis</ref>.at(<ref refid="aedit__proto_8h_1aeee00b3bc47e51ca2fac66dbabf09747" kindref="member">axis</ref>.GetSize()<sp/>-<sp/>1)<sp/>+<sp/>bin_width;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(win_set)<sp/></highlight><highlight class="comment">//if<sp/>the<sp/>window<sp/>was<sp/>set,<sp/>clamp<sp/>the<sp/>domain<sp/>to<sp/>smallest<sp/>region</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>low<sp/>=<sp/><ref refid="max555_8c_1affe776513b24d84b39af8ab0930fef7f" kindref="member">std::max</ref>(win[0],<sp/>low);</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>high<sp/>=<sp/><ref refid="max555_8c_1ac6afabdc09a49a433ee19d8a9486056d" kindref="member">std::min</ref>(win[1],<sp/>high);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="294"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight><highlight class="comment">//configure<sp/>the<sp/>search<sp/>windows<sp/>(using<sp/>floating<sp/>point<sp/>limits)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight><highlight class="comment">//default<sp/>is<sp/>the<sp/>full<sp/>range</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ad1a116da802bdf1f2bd04ebd479aac43" kindref="member">MHO_MBDelaySearch::SetSBDWindow</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>high)</highlight></codeline>
+<codeline lineno="299"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;calibration&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;mbd<sp/>search<sp/>SBD<sp/>window<sp/>set<sp/>to<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>low<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>high<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6370ae309995d1aed54fba3e2166f5c6" kindref="member">fSBDWinSet</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a63959d685fa630f323d3689aef6697d2" kindref="member">SetWindow</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a3f265b975b291b4d8b302b867a77ed51" kindref="member">fSBDWin</ref>,<sp/>low,<sp/>high);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a0b69afee9d1f1ceb7927296f4411276f" kindref="member">MHO_MBDelaySearch::SetMBDWindow</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>high)</highlight></codeline>
+<codeline lineno="306"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;calibration&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;mbd<sp/>search<sp/>MBD<sp/>window<sp/>set<sp/>to<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>low<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>high<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aba0cbc274efc1e904638df0619396eb4" kindref="member">fMBDWinSet</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a63959d685fa630f323d3689aef6697d2" kindref="member">SetWindow</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a8ee8813f24e9a31248f22a8c61e65b1a" kindref="member">fMBDWin</ref>,<sp/>low,<sp/>high);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae3fd88ae87d7cb5615ec68a0f04f9b84" kindref="member">MHO_MBDelaySearch::SetDRWindow</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>high)</highlight></codeline>
+<codeline lineno="313"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;calibration&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;mbd<sp/>search<sp/>DR<sp/>window<sp/>set<sp/>to<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>low<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>high<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a7b5514b495cd6986325fcb4a2d3c3fc7" kindref="member">fDRWinSet</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a63959d685fa630f323d3689aef6697d2" kindref="member">SetWindow</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1ae0e5b0dfdeaac5f221a721ea506931f7" kindref="member">fDRWin</ref>,<sp/>low,<sp/>high);</highlight></codeline>
+<codeline lineno="317"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight><highlight class="comment">//retrieve<sp/>the<sp/>window<sp/>limits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1adca3a4b567724f902570f4a6272b72df" kindref="member">MHO_MBDelaySearch::GetSBDWindow</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>high)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="321"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a029357e11953acbebcc2b4da6026e8a5" kindref="member">GetWindow</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1a1a3905593f1e349c73e9d066b0e700d8" kindref="member">fSBDAxis</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a6370ae309995d1aed54fba3e2166f5c6" kindref="member">fSBDWinSet</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a3f265b975b291b4d8b302b867a77ed51" kindref="member">fSBDWin</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a7f6c8619ad500bf201056e8606e27048" kindref="member">fSBDBinSep</ref>,<sp/>low,<sp/>high);</highlight></codeline>
+<codeline lineno="323"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a262f8cedd9db8b11b54e0a66d286f3e8" kindref="member">MHO_MBDelaySearch::GetMBDWindow</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>high)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="326"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a029357e11953acbebcc2b4da6026e8a5" kindref="member">GetWindow</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" kindref="member">fMBDAxis</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aba0cbc274efc1e904638df0619396eb4" kindref="member">fMBDWinSet</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a8ee8813f24e9a31248f22a8c61e65b1a" kindref="member">fMBDWin</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1aa44a98b599c775a9dc17f27f68d785db" kindref="member">fMBDBinSep</ref>,<sp/>low,<sp/>high);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ac9a7d09d145a259ca96d0e51963f490f" kindref="member">MHO_MBDelaySearch::GetDRWindow</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>low,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>high)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="331"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a029357e11953acbebcc2b4da6026e8a5" kindref="member">GetWindow</ref>(<ref refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" kindref="member">fDRAxis</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a7b5514b495cd6986325fcb4a2d3c3fc7" kindref="member">fDRWinSet</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1ae0e5b0dfdeaac5f221a721ea506931f7" kindref="member">fDRWin</ref>,<sp/><ref refid="classhops_1_1MHO__MBDelaySearch_1a20a8c9d15cb2674415b8450e35483a16" kindref="member">fDRBinSep</ref>,<sp/>low,<sp/>high);</highlight></codeline>
+<codeline lineno="333"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MBDelaySearch.cc"/>
+  </compounddef>
+</doxygen>

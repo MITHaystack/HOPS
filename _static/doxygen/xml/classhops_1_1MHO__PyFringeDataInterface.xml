@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyFringeDataInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PyFringeDataInterface</compoundname>
+    <includes refid="MHO__PyFringeDataInterface_8hh" local="no">MHO_PyFringeDataInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyFringeDataInterface_1a5c8d926526d6a72e182fa6f01e355466" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref></type>
+        <definition>MHO_PyContainerStoreInterface hops::MHO_PyFringeDataInterface::fContainerInterface</definition>
+        <argsstring></argsstring>
+        <name>fContainerInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="65" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyFringeDataInterface_1ae32427a6534d24dd0b8cb69fda3d9754" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+        <definition>MHO_FringeData* hops::MHO_PyFringeDataInterface::fFringeData</definition>
+        <argsstring></argsstring>
+        <name>fFringeData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="61" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyFringeDataInterface_1ab20c740e214534c2450a27f17fb0fae1" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__PyParameterStoreInterface" kindref="compound">MHO_PyParameterStoreInterface</ref></type>
+        <definition>MHO_PyParameterStoreInterface hops::MHO_PyFringeDataInterface::fParameterInterface</definition>
+        <argsstring></argsstring>
+        <name>fParameterInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="66" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyFringeDataInterface_1a3a19c55be2ed03af615a20b69750acf6" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__PyScanStoreInterface" kindref="compound">MHO_PyScanStoreInterface</ref></type>
+        <definition>MHO_PyScanStoreInterface hops::MHO_PyFringeDataInterface::fScanInterface</definition>
+        <argsstring></argsstring>
+        <name>fScanInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="64" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeDataInterface_1a7ac9a40f2e3587d94a59adea1b77e478" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyFringeDataInterface::MHO_PyFringeDataInterface</definition>
+        <argsstring>(MHO_FringeData *fdata)</argsstring>
+        <name>MHO_PyFringeDataInterface</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="36" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeDataInterface_1afdc7ddef41085038abe711062155d826" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PyFringeDataInterface::~MHO_PyFringeDataInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PyFringeDataInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="42" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeDataInterface_1a82cfada7fd56216e0ec3de4850950a14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref> &amp;</type>
+        <definition>MHO_PyContainerStoreInterface&amp; hops::MHO_PyFringeDataInterface::GetContainerStore</definition>
+        <argsstring>()</argsstring>
+        <name>GetContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="46" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeDataInterface_1a48b7121e11a8819eaeb2c5f04027ad0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__PyParameterStoreInterface" kindref="compound">MHO_PyParameterStoreInterface</ref> &amp;</type>
+        <definition>MHO_PyParameterStoreInterface&amp; hops::MHO_PyFringeDataInterface::GetParameterStore</definition>
+        <argsstring>()</argsstring>
+        <name>GetParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="44" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeDataInterface_1ae08710b363ed7e9ee3c48bde7283f09c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>py::dict</type>
+        <definition>py::dict hops::MHO_PyFringeDataInterface::GetPlotData</definition>
+        <argsstring>() const</argsstring>
+        <name>GetPlotData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="53" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeDataInterface_1a1c274374b4007d70583dcf010ccf3095" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__PyScanStoreInterface" kindref="compound">MHO_PyScanStoreInterface</ref> &amp;</type>
+        <definition>MHO_PyScanStoreInterface&amp; hops::MHO_PyFringeDataInterface::GetScanStore</definition>
+        <argsstring>()</argsstring>
+        <name>GetScanStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="48" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeDataInterface_1a6ed1cc31100b098d2a2b8138e8d69e81" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>py::dict</type>
+        <definition>py::dict hops::MHO_PyFringeDataInterface::GetVex</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="51" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="51" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>python bindings for the <ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> class </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue Feb 13 22:27:35 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyFringeDataInterface.hh" bodystart="34" bodyend="67"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1a5c8d926526d6a72e182fa6f01e355466" prot="private" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>fContainerInterface</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1ae32427a6534d24dd0b8cb69fda3d9754" prot="private" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>fFringeData</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1ab20c740e214534c2450a27f17fb0fae1" prot="private" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>fParameterInterface</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1a3a19c55be2ed03af615a20b69750acf6" prot="private" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>fScanInterface</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1a82cfada7fd56216e0ec3de4850950a14" prot="public" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>GetContainerStore</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1a48b7121e11a8819eaeb2c5f04027ad0d" prot="public" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>GetParameterStore</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1ae08710b363ed7e9ee3c48bde7283f09c" prot="public" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>GetPlotData</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1a1c274374b4007d70583dcf010ccf3095" prot="public" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>GetScanStore</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1a6ed1cc31100b098d2a2b8138e8d69e81" prot="public" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>GetVex</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1a7ac9a40f2e3587d94a59adea1b77e478" prot="public" virt="non-virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>MHO_PyFringeDataInterface</name></member>
+      <member refid="classhops_1_1MHO__PyFringeDataInterface_1afdc7ddef41085038abe711062155d826" prot="public" virt="virtual"><scope>hops::MHO_PyFringeDataInterface</scope><name>~MHO_PyFringeDataInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

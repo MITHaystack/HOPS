@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_97c56eb6a7eb3868ca1aa467eb57ec16" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__Message_8hh">MHO_Message.hh</innerfile>
+    <innerfile refid="MHO__Profiler_8hh">MHO_Profiler.hh</innerfile>
+    <innerfile refid="MHO__SelfName_8hh">MHO_SelfName.hh</innerfile>
+    <innerfile refid="MHO__TestAssertions_8hh">MHO_TestAssertions.hh</innerfile>
+    <innerfile refid="MHO__Timer_8hh">MHO_Timer.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/"/>
+  </compounddef>
+</doxygen>

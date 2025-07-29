@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BinaryFileStreamerSingleType" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_BinaryFileStreamerSingleType</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_01_4" prot="public" virt="non-virtual">hops::MHO_BinaryFileStreamerMultiType&lt; XValueType &gt;</derivedcompoundref>
+    <includes refid="MHO__BinaryFileStreamer_8hh" local="no">MHO_BinaryFileStreamer.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1a366485a0b1d32c4968155893eae28fb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;::MHO_BinaryFileStreamerSingleType</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BinaryFileStreamerSingleType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1a8bbcfe5084ffc3d8595d0fd4ca31015e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;::~MHO_BinaryFileStreamerSingleType</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BinaryFileStreamerSingleType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1a0d7913e84a30c518a18b2fb582752dad" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;::AddBytesWritten</definition>
+        <argsstring>(uint64_t)=0</argsstring>
+        <name>AddBytesWritten</name>
+        <param>
+          <type>uint64_t</type>
+        </param>
+        <briefdescription>
+<para>Increments the total bytes written by the provided value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>to add to the total bytes written (uint64_t) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="81" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1a82ebbc896cf44f57009a8f333a52b23d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;::GetNBytesWritten</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetNBytesWritten</name>
+        <briefdescription>
+<para>Getter for nbytes written. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Number of bytes written as uint64_t. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="89" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1a224d2eaff3399495d422c8c83890d862" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>std::fstream &amp;</type>
+        <definition>virtual std::fstream&amp; hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;::GetStream</definition>
+        <argsstring>()=0</argsstring>
+        <name>GetStream</name>
+        <briefdescription>
+<para>Getter for stream (std::fstream) object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to std::fstream object. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="67" column="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1a61d314667e94951ae7c4af01ee9f31e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;::ResetByteCount</definition>
+        <argsstring>()=0</argsstring>
+        <name>ResetByteCount</name>
+        <briefdescription>
+<para>Resets the byte count to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="73" column="22"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1a4af19f81d702f2f4e5b646cbf852006a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref> &amp;</type>
+        <definition>MHO_BinaryFileStreamer&amp; operator&lt;&lt;</definition>
+        <argsstring>(MHO_BinaryFileStreamerSingleType&lt; XValueType &gt; &amp;s, const XValueType &amp;obj)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__BinaryFileStreamerSingleType" kindref="compound">MHO_BinaryFileStreamerSingleType</ref>&lt; XValueType &gt; &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="52" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="52" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1ad681f77bb7a4c4c22c843d5d77b5a9e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref> &amp;</type>
+        <definition>MHO_BinaryFileStreamer&amp; operator&gt;&gt;</definition>
+        <argsstring>(MHO_BinaryFileStreamerSingleType&lt; XValueType &gt; &amp;s, XValueType &amp;obj)</argsstring>
+        <name>operator&gt;&gt;</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__BinaryFileStreamerSingleType" kindref="compound">MHO_BinaryFileStreamerSingleType</ref>&lt; XValueType &gt; &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>XValueType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="45" column="46" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="45" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamerSingleType_1afd6ede58e3d368658b44f54812d53eb6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref> &amp;</type>
+        <definition>virtual MHO_BinaryFileStreamer&amp; hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;::Self</definition>
+        <argsstring>()=0</argsstring>
+        <name>Self</name>
+        <briefdescription>
+<para>Returns a reference to the current instance of <ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref>&amp;: Reference to the current instance </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="98" column="40"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BinaryFileStreamerSingleType" kindref="compound">MHO_BinaryFileStreamerSingleType</ref> - template class for a single-type streamer, generic for most POD types. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_01_4"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerSingleType"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_00_01XValueTypeS_8_8_8_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="39" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="40" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a0d7913e84a30c518a18b2fb582752dad" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>AddBytesWritten</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a82ebbc896cf44f57009a8f333a52b23d" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>GetNBytesWritten</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a224d2eaff3399495d422c8c83890d862" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>GetStream</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a366485a0b1d32c4968155893eae28fb2" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>MHO_BinaryFileStreamerSingleType</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a4af19f81d702f2f4e5b646cbf852006a" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1ad681f77bb7a4c4c22c843d5d77b5a9e8" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>operator&gt;&gt;</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a61d314667e94951ae7c4af01ee9f31e5" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>ResetByteCount</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1afd6ede58e3d368658b44f54812d53eb6" prot="protected" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>Self</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a8bbcfe5084ffc3d8595d0fd4ca31015e" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamerSingleType</scope><name>~MHO_BinaryFileStreamerSingleType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

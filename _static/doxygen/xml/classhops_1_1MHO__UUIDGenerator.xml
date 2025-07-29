@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__UUIDGenerator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_UUIDGenerator</compoundname>
+    <includes refid="MHO__UUIDGenerator_8hh" local="no">MHO_UUIDGenerator.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__UUIDGenerator_1a1c97a506bf9b8d9bef75b82ed7a3a1c2" prot="private" static="no" mutable="no">
+        <type>std::random_device</type>
+        <definition>std::random_device hops::MHO_UUIDGenerator::fRandomDev</definition>
+        <argsstring></argsstring>
+        <name>fRandomDev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="49" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__UUIDGenerator_1a7a007b66cad2fdcf6fae890eb1c4f2b2" prot="private" static="no" mutable="no">
+        <type>std::mt19937 *</type>
+        <definition>std::mt19937* hops::MHO_UUIDGenerator::fRandomGen</definition>
+        <argsstring></argsstring>
+        <name>fRandomGen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="50" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__UUIDGenerator_1ab7b5d6c9445f80b83b20a385ebe372c3" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t hops::MHO_UUIDGenerator::fSyncWord[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>fSyncWord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="47" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__UUIDGenerator_1a9a2ceaec60a52f22837a76b9cdd15305" prot="private" static="no" mutable="no">
+        <type>std::uniform_int_distribution&lt; uint32_t &gt; *</type>
+        <definition>std::uniform_int_distribution&lt; uint32_t &gt;* hops::MHO_UUIDGenerator::fUniformDist</definition>
+        <argsstring></argsstring>
+        <name>fUniformDist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="51" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__UUIDGenerator_1a9b118d1542dc21ea2ee4978ceddefae9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_UUIDGenerator::MHO_UUIDGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_UUIDGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_UUIDGenerator.cc" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUIDGenerator_1a44f207c93ebba3aa67b3059ed11d3552" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_UUIDGenerator::~MHO_UUIDGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_UUIDGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_UUIDGenerator.cc" bodystart="14" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUIDGenerator_1a35750a1d8771191ef5f8e190b022c7c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_UUIDGenerator::ConvertUUIDToString</definition>
+        <argsstring>(MHO_UUID &amp;uuid)</argsstring>
+        <name>ConvertUUIDToString</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Convert the UUID to a string <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>&amp; which is a UUID passed by reference </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>ss string which is the string version of the UUID </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="38" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_UUIDGenerator.cc" bodystart="47" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUIDGenerator_1a09af8ae263cb817be258ca7295362703" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_UUIDGenerator::GenerateUUID</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateUUID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Generate a 128 bit psuedo-random UUID by following the RFC 4122 standard <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>None</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>uuid <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="32" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_UUIDGenerator.cc" bodystart="20" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUIDGenerator_1afe963485d2c1bf2c4c84d592a417ff68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_UUIDGenerator::GenerateUUIDAsString</definition>
+        <argsstring>()</argsstring>
+        <name>GenerateUUIDAsString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Create a <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> UUID and convert it to a string <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>None</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>uuid string </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="44" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_UUIDGenerator.cc" bodystart="61" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> A class to provide pseudo-randomly generated UUID strings, based on RFC-4122 <ulink url="https://tools.ietf.org/html/rfc4122">https://tools.ietf.org/html/rfc4122</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUIDGenerator.hh" bodystart="23" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1a35750a1d8771191ef5f8e190b022c7c1" prot="public" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>ConvertUUIDToString</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1a1c97a506bf9b8d9bef75b82ed7a3a1c2" prot="private" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>fRandomDev</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1a7a007b66cad2fdcf6fae890eb1c4f2b2" prot="private" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>fRandomGen</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1ab7b5d6c9445f80b83b20a385ebe372c3" prot="private" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>fSyncWord</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1a9a2ceaec60a52f22837a76b9cdd15305" prot="private" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>fUniformDist</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1a09af8ae263cb817be258ca7295362703" prot="public" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>GenerateUUID</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1afe963485d2c1bf2c4c84d592a417ff68" prot="public" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>GenerateUUIDAsString</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1a9b118d1542dc21ea2ee4978ceddefae9" prot="public" virt="non-virtual"><scope>hops::MHO_UUIDGenerator</scope><name>MHO_UUIDGenerator</name></member>
+      <member refid="classhops_1_1MHO__UUIDGenerator_1a44f207c93ebba3aa67b3059ed11d3552" prot="public" virt="virtual"><scope>hops::MHO_UUIDGenerator</scope><name>~MHO_UUIDGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="refringe_8h" kind="file" language="C++">
+    <compoundname>refringe.h</compoundname>
+    <includedby refid="fourfit3_8c" local="yes">fourfit3.c</includedby>
+    <includedby refid="check__rflist_8c" local="yes">check_rflist.c</includedby>
+    <includedby refid="refringe__list_8c" local="yes">refringe_list.c</includedby>
+    <includedby refid="ffsearch_8h" local="yes">ffsearch.h</includedby>
+    <includedby refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <invincdepgraph>
+      <node id="7">
+        <label>search.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
+      </node>
+      <node id="4">
+        <label>refringe_list.c</label>
+        <link refid="refringe__list_8c"/>
+      </node>
+      <node id="1">
+        <label>refringe.h</label>
+        <link refid="refringe_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>fringe_search.c</label>
+        <link refid="fringe__search_8c"/>
+      </node>
+      <node id="5">
+        <label>ffsearch.h</label>
+        <link refid="ffsearch_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>parse_cmdline.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="2">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="3">
+        <label>check_rflist.c</label>
+        <link refid="check__rflist_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structbsgstruct" prot="public">bsgstruct</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="refringe_8h_1a9b4af92f60911374e82bb841e897f8b3" prot="public" static="no">
+        <name>ALREADY_USED</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/refringe.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/refringe.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="refringe_8h_1adcb067dd333473689d7bf49009b1d928" prot="public" static="no">
+        <name>END_OF_LIST</name>
+        <initializer>-2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/refringe.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/refringe.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/><sp/>REFRINGE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>REFRINGE_H__<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="refringe_8h_1a9b4af92f60911374e82bb841e897f8b3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALREADY_USED<sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="refringe_8h_1adcb067dd333473689d7bf49009b1d928" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>END_OF_LIST<sp/><sp/>-2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="structbsgstruct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9" refid="structbsgstruct_1ac72edcf94d3d3b536734e4f3283ccc4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structbsgstruct_1ac72edcf94d3d3b536734e4f3283ccc4b" kindref="member">files_index</ref>;</highlight></codeline>
+<codeline lineno="10" refid="structbsgstruct_1aa98bb5f1681fcaa58b8bfb6c297ef4a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>[3];</highlight></codeline>
+<codeline lineno="11" refid="structbsgstruct_1ab348c563767dc7b610af403b88e22ee6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structbsgstruct_1ab348c563767dc7b610af403b88e22ee6" kindref="member">subgroup</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structbsgstruct" kindref="compound">bsgstruct</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/refringe.h"/>
+  </compounddef>
+</doxygen>

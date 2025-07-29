@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="init__scan_8c" kind="file" language="C++">
+    <compoundname>init_scan.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes refid="vex_8h" local="yes">vex.h</includes>
+    <includes refid="mk4__vex_8h" local="yes">mk4_vex.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <incdepgraph>
+      <node id="11">
+        <label>lvex.h</label>
+        <link refid="lvex_8h"/>
+      </node>
+      <node id="14">
+        <label>stdarg.h</label>
+      </node>
+      <node id="4">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="15">
+        <label>sys/times.h</label>
+      </node>
+      <node id="21">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="13">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ivex.h</label>
+        <link refid="ivex_8h"/>
+      </node>
+      <node id="16">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>init_scan.c</label>
+        <link refid="init__scan_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cvex.h</label>
+        <link refid="cvex_8h"/>
+      </node>
+      <node id="17">
+        <label>string.h</label>
+      </node>
+      <node id="12">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="19">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>evex.h</label>
+        <link refid="evex_8h"/>
+      </node>
+      <node id="18">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="10">
+        <label>svex.h</label>
+        <link refid="svex_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="20">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="init__scan_8c_1a9dbd68898be1eb6edbe097f20c915e79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void init_scan</definition>
+        <argsstring>(struct scan_struct *scan, int nstat)</argsstring>
+        <name>init_scan</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>scan</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nstat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/init_scan.c" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/init_scan.c" bodystart="20" bodyend="126"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>routine<sp/>initializes<sp/>the<sp/>info<sp/>structure,<sp/>after<sp/>it<sp/>has<sp/>been<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>suitably<sp/>allocated.<sp/><sp/>This<sp/>allows<sp/>us<sp/>to<sp/>examine<sp/>the<sp/>filled<sp/>in<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>structure<sp/>after<sp/>the<sp/>fact<sp/>for<sp/>any<sp/>critical<sp/>missing<sp/>information<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scan<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>structure<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scan<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Duly<sp/>initialized<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>January<sp/>6<sp/>1998<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vex_8h" kindref="compound">vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__vex_8h" kindref="compound">mk4_vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="init__scan_8c_1a9dbd68898be1eb6edbe097f20c915e79" kindref="member">init_scan</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*<ref refid="structscan" kindref="compound">scan</ref>,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nstat)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>j,<sp/>k,<sp/>l;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*st;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structchan__struct" kindref="compound">chan_struct</ref><sp/>*ch;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;exper_num<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;exper_name[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;correlator[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;scan_name[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1af5203aa3f8df327a8983fab719f77acc" kindref="member">clear_date</ref><sp/>(&amp;(<ref refid="structscan" kindref="compound">scan</ref>-&gt;start_time));</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1af5203aa3f8df327a8983fab719f77acc" kindref="member">clear_date</ref><sp/>(&amp;(<ref refid="structscan" kindref="compound">scan</ref>-&gt;ffit_reftime));</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;tai_utc<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;a1_tai<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;neop<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1af5203aa3f8df327a8983fab719f77acc" kindref="member">clear_date</ref><sp/>(&amp;(<ref refid="structscan" kindref="compound">scan</ref>-&gt;eop_reftime));</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;eop_interval<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;10;<sp/>i++)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;ut1_utc[i]<sp/>=<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;x_wobble[i]<sp/>=<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;y_wobble[i]<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.source_name[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.iau_name[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.source_type<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.calibrator<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.ra_hrs<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.ra_mins<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.ra_secs<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.dec_degs<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.dec_mins<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.dec_secs<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1af5203aa3f8df327a8983fab719f77acc" kindref="member">clear_date</ref><sp/>(&amp;(<ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position_epoch));</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position_ref_frame<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.ra_rate<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.dec_rate<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;nst<sp/>=<sp/>nstat;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;nstat;<sp/>i++)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st<sp/>=<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;st<sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a266619d6727a91faae426e99222ef2d7" kindref="member">start_offset</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a97502f8e6191b06c672e739b625dff6d" kindref="member">stop_offset</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a70b57ab5377795975a939021c966570b" kindref="member">start_tapepos</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a6bb6ede13741a0a552c13b55c429d578" kindref="member">tape_motion</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a358fdb7e5293acca826e8b043705100d" kindref="member">early_start</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a7f1b074d30d55f152a0d29bc426f2abc" kindref="member">late_finish</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a3ff2a7cd4a46f70d990652713ae1dc65" kindref="member">tape_gap</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1ac3d94f885692e1147c4c0cb0080dac4c" kindref="member">subpass</ref><sp/>=<sp/><ref refid="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" kindref="member">C_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a9cdd80b8f6728cbb251c471092ab0030" kindref="member">passno</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a5477b302032f4ba27bdb24b8ac56de1d" kindref="member">drive_no</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a746841fbde6c194aafdedc606d7be925" kindref="member">site_type</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1af6366fbb80d495702bc869cb96659805" kindref="member">site_name</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a8e0f89fac47f41bf1b326301a7413ab2" kindref="member">site_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a97e8aee8feb60df946cd4fec72233f2a" kindref="member">mk4_site_id</ref><sp/>=<sp/><ref refid="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" kindref="member">C_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;3;<sp/>j++)<sp/>st-&gt;<ref refid="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" kindref="member">coordinates</ref>[j]<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1af5203aa3f8df327a8983fab719f77acc" kindref="member">clear_date</ref><sp/>(&amp;(st-&gt;<ref refid="structstation__struct_1aa249421265c1c6c68ebaf9dadc399977" kindref="member">coordinate_epoch</ref>));</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;3;<sp/>j++)<sp/>st-&gt;<ref refid="structstation__struct_1a3649f3686a3efaa76179a911b8ba7151" kindref="member">site_velocity</ref>[j]<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a223f03fbf664f60d8da1bc168b2cf8c0" kindref="member">zenith_atm</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1ad69d90888d1388164d48a638830df4b4" kindref="member">occucode</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1ae825df983ffe16c309b5623f96515126" kindref="member">axis_type</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a661261bc2fdff7677d1fad76a887bdbf" kindref="member">axis_offset</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a990d94bc9da457a7e890ec73fa24cd46" kindref="member">recorder_type</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1ab7d03e5d71ec6916079633c5ee878ad0" kindref="member">rack_type</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a814b999829f4f51ca0e33f4397c379c8" kindref="member">record_density</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a7007efd465ab11efa751fd289b56c6b2" kindref="member">tape_length</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a429c2caf6f903457959081c4848f834c" kindref="member">recorder_id</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a2282cd9ce912fcb46bd9f7e688be37ee" kindref="member">clock_early</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1af5203aa3f8df327a8983fab719f77acc" kindref="member">clear_date</ref><sp/>(&amp;(st-&gt;<ref refid="structstation__struct_1a6e05d9b0f20f075f56c2098b53c36c82" kindref="member">clockrate_epoch</ref>));</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" kindref="member">clockrate</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a817b6af709c26e5968392c4b296cca77" kindref="member">tape_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a8e81d776ed155d1d593760ffc9d60864" kindref="member">samplerate</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a5536c7bda0f333b9fc6f39d87e56ec0e" kindref="member">track_format</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1ad170d68bad1277ab160c9f49472657a7" kindref="member">modulation</ref><sp/>=<sp/><ref refid="ovex_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a93f1cce1da7283a86459de290542c5e1" kindref="member">pass_direction</ref><sp/>=<sp/><ref refid="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" kindref="member">C_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;4;<sp/>j++)<sp/>st-&gt;<ref refid="structstation__struct_1a81a158180e3dafc11e9a10cc73bb159b" kindref="member">head_position</ref>[j]<sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a618d5c05372a49481ae21b848c27b4f4" kindref="member">roll</ref><sp/>=<sp/><ref refid="ovex_8h_1a29e413f6725b2ba32d165ffaa35b01e5" kindref="member">OFF</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a7139575e75b8f78ff4dfa3c06ec49be5" kindref="member">roll_increment</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st-&gt;<ref refid="structstation__struct_1a53e57b3059a9883d51becf12ebe42660" kindref="member">roll_period</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(j=1;<sp/>j&lt;=4;<sp/>j++)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=0;<sp/>k&lt;34;<sp/>k++)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(l=0;<sp/>l&lt;32;<sp/>l++)<sp/>st-&gt;<ref refid="structstation__struct_1a4dff8c60edb8bc99ece30a323ad9a3c4" kindref="member">roll_seq</ref>[j][k][l]<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(j=0;<sp/>j&lt;16;<sp/>j++)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch<sp/>=<sp/>st-&gt;<ref refid="structstation__struct_1a2ec6764e0f4e6673001e80c0aeb15476" kindref="member">channels</ref><sp/>+<sp/>j;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a151d5d452c24ec490a59799f3da6f404" kindref="member">polarization</ref><sp/>=<sp/><ref refid="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" kindref="member">C_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a198a87ce0e2dd69100642afff49398dd" kindref="member">sky_frequency</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a05ed789db01fe497c1e3e33d8334145d" kindref="member">net_sideband</ref><sp/>=<sp/><ref refid="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" kindref="member">C_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1aaf6877105412bc1d0e04fa9d54711461" kindref="member">bandwidth</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1abd44e27247d40002c8d4b69c463bb4dc" kindref="member">band_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1aa9a3203cb2c33b5a24257d1d8d719cbc" kindref="member">chan_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1af22a41a9e8d403579d72331583637c3a" kindref="member">bbc_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a78d9d5ab0369089d9059504ca9516898" kindref="member">pcal_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1adf646ac59fdda3e03a645eb133506483" kindref="member">if_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a832af496c4591d9514d4ef5d50efefe0" kindref="member">bbc_no</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a85f23795a149f13b2251c0b74558edfe" kindref="member">if_name</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1abc73fc8503f2e5ad2154d9910e14488e" kindref="member">if_total_lo</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a32053a195b68fb6fc80281be98cfd5b2" kindref="member">if_sideband</ref><sp/>=<sp/><ref refid="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" kindref="member">C_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a656c8c37280a1ede7371e38aef8f5255" kindref="member">pcal_spacing</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a75f2d414e08dfa103427e56131ff985f" kindref="member">pcal_base_freq</ref><sp/>=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=0;<sp/>k&lt;16;<sp/>k++)<sp/>ch-&gt;<ref refid="structchan__struct_1a634bcbc81f56119dc9eaa58cbea509ea" kindref="member">pcal_detect</ref>[k]<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(k=0;<sp/>k&lt;4;<sp/>k++)<sp/>ch-&gt;<ref refid="structchan__struct_1a130f805b58a561102efba8a976e8d46c" kindref="member">sign_tracks</ref>[k]<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a94a399109bd65a0236b6213391b5f861" kindref="member">sign_headstack</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(k=0;<sp/>k&lt;4;<sp/>k++)<sp/>ch-&gt;<ref refid="structchan__struct_1a31f25ee3d18ffcabb858a6feeaaf057f" kindref="member">mag_tracks</ref>[k]<sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch-&gt;<ref refid="structchan__struct_1a63df25c8178747ec4fb5134e5b419e89" kindref="member">mag_headstack</ref><sp/>=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/init_scan.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_52326d5a1d122211127cb51a03913880" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="conv2date_8c">conv2date.c</innerfile>
+    <innerfile refid="createRoot_8c">createRoot.c</innerfile>
+    <innerfile refid="createType1s_8c">createType1s.c</innerfile>
+    <innerfile refid="createType3s_8c">createType3s.c</innerfile>
+    <innerfile refid="d2m4__pcal__copy__record_8c">d2m4_pcal_copy_record.c</innerfile>
+    <innerfile refid="d2m4__pcal__count__unique__polarizations_8c">d2m4_pcal_count_unique_polarizations.c</innerfile>
+    <innerfile refid="d2m4__pcal__create__list_8c">d2m4_pcal_create_list.c</innerfile>
+    <innerfile refid="d2m4__pcal__dump__record_8c">d2m4_pcal_dump_record.c</innerfile>
+    <innerfile refid="d2m4__pcal__free__list_8c">d2m4_pcal_free_list.c</innerfile>
+    <innerfile refid="d2m4__pcal__free__record_8c">d2m4_pcal_free_record.c</innerfile>
+    <innerfile refid="d2m4__pcal__init__record_8c">d2m4_pcal_init_record.c</innerfile>
+    <innerfile refid="d2m4__pcal__merge__datastreams__in__list_8c">d2m4_pcal_merge_datastreams_in_list.c</innerfile>
+    <innerfile refid="d2m4__pcal__merge__record_8c">d2m4_pcal_merge_record.c</innerfile>
+    <innerfile refid="d2m4__pcal__populate__record_8c">d2m4_pcal_populate_record.c</innerfile>
+    <innerfile refid="fill__fblock_8c">fill_fblock.c</innerfile>
+    <innerfile refid="get__vis_8c">get_vis.c</innerfile>
+    <innerfile refid="new__type1_8c">new_type1.c</innerfile>
+    <innerfile refid="normalize_8c">normalize.c</innerfile>
+    <innerfile refid="other_8c">other.c</innerfile>
+    <innerfile refid="applications_2difx2mark4_2src_2root__id_8c">applications/difx2mark4/src/root_id.c</innerfile>
+    <innerfile refid="single__code_8c">single_code.c</innerfile>
+    <innerfile refid="swabr_8c">swabr.c</innerfile>
+    <innerfile refid="write__t100_8c">write_t100.c</innerfile>
+    <innerfile refid="write__t101_8c">write_t101.c</innerfile>
+    <innerfile refid="write__t120_8c">write_t120.c</innerfile>
+    <innerfile refid="write__t300_8c">write_t300.c</innerfile>
+    <innerfile refid="write__t301_8c">write_t301.c</innerfile>
+    <innerfile refid="write__t302_8c">write_t302.c</innerfile>
+    <innerfile refid="write__t303_8c">write_t303.c</innerfile>
+    <innerfile refid="write__t309_8c">write_t309.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/"/>
+  </compounddef>
+</doxygen>

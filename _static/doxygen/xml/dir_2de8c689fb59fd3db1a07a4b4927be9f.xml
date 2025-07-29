@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_2de8c689fb59fd3db1a07a4b4927be9f" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="construct__cblock_8c">construct_cblock.c</innerfile>
+    <innerfile refid="copy__cblock__parts_8c">copy_cblock_parts.c</innerfile>
+    <innerfile refid="create__fsm_8c">create_fsm.c</innerfile>
+    <innerfile refid="criteria__match_8c">criteria_match.c</innerfile>
+    <innerfile refid="default__cblock_8c">default_cblock.c</innerfile>
+    <innerfile refid="get__bfstring_8c">get_bfstring.c</innerfile>
+    <innerfile refid="init__tokens_8c">init_tokens.c</innerfile>
+    <innerfile refid="lex_8c">lex.c</innerfile>
+    <innerfile refid="nullify__cblock_8c">nullify_cblock.c</innerfile>
+    <innerfile refid="parse__control__file_8c">parse_control_file.c</innerfile>
+    <innerfile refid="parser_8c">parser.c</innerfile>
+    <innerfile refid="read__control__file_8c">read_control_file.c</innerfile>
+    <innerfile refid="skip__data_8c">skip_data.c</innerfile>
+    <innerfile refid="skip__index_8c">skip_index.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/src/"/>
+  </compounddef>
+</doxygen>

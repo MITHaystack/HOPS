@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="datef__to__datec_8c" kind="file" language="C++">
+    <compoundname>datef_to_datec.c</compoundname>
+    <includes refid="general_8h" local="yes">general.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <incdepgraph>
+      <node id="12">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="4">
+        <label>stdarg.h</label>
+      </node>
+      <node id="5">
+        <label>sys/times.h</label>
+      </node>
+      <node id="2">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="1">
+        <label>datef_to_datec.c</label>
+        <link refid="datef__to__datec_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>string.h</label>
+      </node>
+      <node id="10">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="8">
+        <label>stdio.h</label>
+      </node>
+      <node id="11">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="datef__to__datec_8c_1a24e6a3f200c63b98cdcbe9ab0158f460" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void datef_to_datec</definition>
+        <argsstring>(struct datef *input, struct datec *output)</argsstring>
+        <name>datef_to_datec</name>
+        <param>
+          <type>struct <ref refid="structdatef" kindref="compound">datef</ref> *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdatec" kindref="compound">datec</ref> *</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/datef_to_datec.c" line="5" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/datef_to_datec.c" bodystart="5" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="general_8h" kindref="compound">general.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><ref refid="datef__to__datec_8c_1a24e6a3f200c63b98cdcbe9ab0158f460" kindref="member">datef_to_datec</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdatef" kindref="compound">datef</ref><sp/>*input,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdatec" kindref="compound">datec</ref><sp/>*<ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>doy;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nday[]<sp/>=<sp/>{31,<sp/>28,<sp/>31,<sp/>30,<sp/>31,<sp/>30,<sp/>31,<sp/>31,<sp/>30,<sp/>31,<sp/>30,<sp/>31};</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>-&gt;year<sp/>=<sp/>input-&gt;<ref refid="structdatef_1ae73fad0c941d3769a672373f36ce2d44" kindref="member">year</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>doy<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;(input-&gt;<ref refid="structdatef_1a519c8b6aab0bd50b7d8cf879f63ad725" kindref="member">month</ref><sp/>-<sp/>1);<sp/>i++)<sp/>doy<sp/>+=<sp/>nday[i];</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(((input-&gt;<ref refid="structdatef_1ae73fad0c941d3769a672373f36ce2d44" kindref="member">year</ref><sp/>%<sp/>4)<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>(input-&gt;<ref refid="structdatef_1a519c8b6aab0bd50b7d8cf879f63ad725" kindref="member">month</ref><sp/>&gt;<sp/>2))<sp/>doy++;<sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>-&gt;day_of_year<sp/>=<sp/>doy<sp/>+<sp/>input-&gt;<ref refid="structdatef_1ab0d32daf92ab312d1277176460af701e" kindref="member">day</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>-&gt;month<sp/>=<sp/>input-&gt;<ref refid="structdatef_1a519c8b6aab0bd50b7d8cf879f63ad725" kindref="member">month</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>-&gt;day_of_month<sp/>=<sp/>input-&gt;<ref refid="structdatef_1ab0d32daf92ab312d1277176460af701e" kindref="member">day</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>-&gt;hour<sp/>=<sp/>input-&gt;<ref refid="structdatef_1ae599b78e2c960ade86704f2737b90da3" kindref="member">hour</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>-&gt;minute<sp/>=<sp/>input-&gt;<ref refid="structdatef_1ac44340af84d321d5966a06110c32538c" kindref="member">minute</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>-&gt;second<sp/>=<sp/>input-&gt;<ref refid="structdatef_1a9fa47b9ba5549d0c224ffe447a14b814" kindref="member">second</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/datef_to_datec.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_a06008c3e245d1092ba6894d6caedef2" kind="dir">
+    <compoundname>Containers</compoundname>
+    <innerdir refid="dir_d96ffed6ffa43f352b53294eba873c74">include</innerdir>
+    <innerdir refid="dir_008fc8a7b3a56a37b15760ff3b717164">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/"/>
+  </compounddef>
+</doxygen>

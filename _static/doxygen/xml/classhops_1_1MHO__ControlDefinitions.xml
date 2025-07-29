@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ControlDefinitions" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ControlDefinitions</compoundname>
+    <includes refid="MHO__ControlDefinitions_8hh" local="no">MHO_ControlDefinitions.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1a6ab2eb57bce36cffd696f6cddae475e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ControlDefinitions::MHO_ControlDefinitions</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ControlDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="71" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1a0d304ecaf8a953a5e52373fbe469e9ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ControlDefinitions::~MHO_ControlDefinitions</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ControlDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="72" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="72" bodyend="72"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1a18dcd455a25d165c722a8d66e3fea3b9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_ControlDefinitions::CommentFlag</definition>
+        <argsstring>()</argsstring>
+        <name>CommentFlag</name>
+        <briefdescription>
+<para>Returns a string containing an asterisk (*). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A string containing an asterisk (*) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="103" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="103" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1a3ce270b4e4c88cdce0015c71554e413e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fc" kindref="member">control_element_type</ref></type>
+        <definition>control_element_type hops::MHO_ControlDefinitions::DetermineControlType</definition>
+        <argsstring>(std::string etype)</argsstring>
+        <name>DetermineControlType</name>
+        <param>
+          <type>std::string</type>
+          <declname>etype</declname>
+        </param>
+        <briefdescription>
+<para>Determines control type based on input string type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>etype</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string representing control element type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>control_element_type corresponding to input string. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="112" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlDefinitions.cc" bodystart="36" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1a5a561ffa6087260a8bc837467680e7fc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlDefinitions::GetControlFormat</definition>
+        <argsstring>()</argsstring>
+        <name>GetControlFormat</name>
+        <briefdescription>
+<para>Getter for composite/complete control format as a json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>mho_json object containing all element formats keyed by keyword names </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="120" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlDefinitions.cc" bodystart="85" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1af41a75cc212446c191f699d8c84e5a44" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlDefinitions::GetFormatDirectory</definition>
+        <argsstring>()</argsstring>
+        <name>GetFormatDirectory</name>
+        <briefdescription>
+<para>Getter for the control (json) format directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string representing the format directory. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="80" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlDefinitions.cc" bodystart="9" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1aee417a595cd2ce37e6dca1ce47f85deb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ControlDefinitions::GetKeywordNames</definition>
+        <argsstring>()</argsstring>
+        <name>GetKeywordNames</name>
+        <briefdescription>
+<para>Getter for control keyword names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Vector of string keyword names </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="87" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlDefinitions.cc" bodystart="16" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlDefinitions_1aefddad40d1abe980c0c3d770ababe4e2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_ControlDefinitions::WhitespaceDelim</definition>
+        <argsstring>()</argsstring>
+        <name>WhitespaceDelim</name>
+        <briefdescription>
+<para>Returns a string containing whitespace characters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing whitespace characters (space, tab, carriage return, and newline). </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="95" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="95" bodyend="95"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ControlDefinitions" kindref="compound">MHO_ControlDefinitions</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" line="68" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh" bodystart="69" bodyend="124"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1a18dcd455a25d165c722a8d66e3fea3b9" prot="public" virt="non-virtual"><scope>hops::MHO_ControlDefinitions</scope><name>CommentFlag</name></member>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1a3ce270b4e4c88cdce0015c71554e413e" prot="public" virt="non-virtual"><scope>hops::MHO_ControlDefinitions</scope><name>DetermineControlType</name></member>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1a5a561ffa6087260a8bc837467680e7fc" prot="public" virt="non-virtual"><scope>hops::MHO_ControlDefinitions</scope><name>GetControlFormat</name></member>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1af41a75cc212446c191f699d8c84e5a44" prot="public" virt="non-virtual"><scope>hops::MHO_ControlDefinitions</scope><name>GetFormatDirectory</name></member>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1aee417a595cd2ce37e6dca1ce47f85deb" prot="public" virt="non-virtual"><scope>hops::MHO_ControlDefinitions</scope><name>GetKeywordNames</name></member>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1a6ab2eb57bce36cffd696f6cddae475e0" prot="public" virt="non-virtual"><scope>hops::MHO_ControlDefinitions</scope><name>MHO_ControlDefinitions</name></member>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1aefddad40d1abe980c0c3d770ababe4e2" prot="public" virt="non-virtual"><scope>hops::MHO_ControlDefinitions</scope><name>WhitespaceDelim</name></member>
+      <member refid="classhops_1_1MHO__ControlDefinitions_1a0d304ecaf8a953a5e52373fbe469e9ea" prot="public" virt="virtual"><scope>hops::MHO_ControlDefinitions</scope><name>~MHO_ControlDefinitions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

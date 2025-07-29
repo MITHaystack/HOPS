@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Object Specification &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Data Object: visibilities" href="VisibilityData.html" />
+    <link rel="prev" title="Containers" href="Containers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Containers.html">Containers</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Object Specification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#meta-data-containers">Meta-Data Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#n-dimensional-array-containers">N-Dimensional Array Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-container-extensions">Data Container Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="VisibilityData.html">Data Object: <cite>visibilities</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="WeightData.html">Data Object: <cite>weights</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="StationData.html">Data Object: <cite>station_data</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="PcalData.html">Data Object: <cite>pcal</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ObjectTags.html">Data Object: <cite>object_tags</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Containers.html">Containers</a></li>
+      <li class="breadcrumb-item active">Data Object Specification</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/containers/Objects.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-object-specification">
+<span id="sec-objects"></span><h1>Data Object Specification<a class="headerlink" href="#data-object-specification" title="Link to this heading"></a></h1>
+<p>Generally speaking the data in HOPS4 is organized around roughly two
+object categories. These are as follows:</p>
+<ol class="arabic simple">
+<li><p>Meta Data Containers: These serve to store small quantities of
+station and baseline meta-data associated with an observation. The types
+of which are typically heterogeneous and may have a nested structure.</p></li>
+<li><p>Array/Table Containers: These serve to organize large n-dimensional arrays
+of a single data type (e.g. complex visibility data and correction/calibration table data).</p></li>
+</ol>
+<section id="meta-data-containers">
+<h2>Meta-Data Containers<a class="headerlink" href="#meta-data-containers" title="Link to this heading"></a></h2>
+<p>To store high structured heterogeneous metadata we have chosen to exploit
+the nlohmann::json library which makes it possible to store disparate
+types within in the same object and which can be retrieved by the
+same type of key (e.g. a name string). The process of insertion of values into
+json objects is relatively trivial, however it should be noted that at
+the time of retrieval, the object type must be known in order for a proper cast
+to be done before the data can be used directly.</p>
+<p>Since we would like to avoid tight coupling to external libraries (in case they
+need to be replaced), we have chosen to wrap most of the interaction with the
+nlohmann::json library through the classes <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__JSONWrapper.html">hops::MHO_JSONWrapper</a> and
+<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a>. We have also chosen to capture a version of this
+single-header library under the <cite>extern</cite> directory, so it can be distributed along
+with the rest of the HOPS4 source code.</p>
+</section>
+<section id="n-dimensional-array-containers">
+<h2>N-Dimensional Array Containers<a class="headerlink" href="#n-dimensional-array-containers" title="Link to this heading"></a></h2>
+<p>The following basic set of class templates can used to
+construct most in-memory objects used for the manipulation of correlated
+observation data and its associated station data:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ScalarContainer.html">hops::MHO_ScalarContainer</a>.- encapsulates scalar-like data</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__VectorContainer.html">hops::MHO_VectorContainer</a> - encapsulates vector-like data</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Axis.html">hops::MHO_Axis</a> -  encapsulates vector-like data to be used as a coordinate axis</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a> -  encapsulates a collection of axes</p></li>
+<li><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> - encapsulates rank-N tensor-like data with
+associated axes collection (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a>)</p></li>
+</ol>
+<p>These template classes are to serve as a simple wrapper around the
+management of the raw memory needed to store a data item and keep track
+of its associated unit(s), and the values associated
+with the coordinate axes along each dimension and their units. Additional
+metadata <cite>tags</cite> can be attached to these objects as well.</p>
+<p>The container types listed above represent the majority of the
+memory intensive data needed within HOPS and can largely be derived from
+a N-dimensional array of some numeric or integral type. Therefore a
+generic template class for N-dimensional arrays is needed. This is
+implemented by the template class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__NDArrayWrapper.html">hops::MHO_NDArrayWrapper</a>. The following
+shows a stub of this class to demonstrate its structure:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XValueType</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">RANK</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_NDArrayWrapper</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_ExtensibleElement</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="k">using</span><span class="w"> </span><span class="n">value_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XValueType</span><span class="p">;</span>
+<span class="w">        </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="n">RANK</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">rank</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">MHO_NDArrayWrapper</span><span class="p">();</span>
+<span class="w">     </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MHO_NDArrayWrapper</span><span class="p">();</span>
+
+<span class="w"> </span><span class="c1">//access operator</span>
+<span class="w"> </span><span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">XIndexTypeS</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">std</span><span class="o">::</span><span class="n">enable_if</span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="k">sizeof</span><span class="p">...(</span><span class="n">XIndexTypeS</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">RANK</span><span class="p">),</span><span class="w"> </span><span class="n">XValueType</span><span class="o">&amp;</span><span class="w"> </span><span class="o">&gt;::</span><span class="n">type</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="n">XIndexTypeS</span><span class="p">...</span><span class="w"> </span><span class="n">idx</span><span class="p">){...};</span>
+
+<span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">iterator</span><span class="w"> </span><span class="p">{...};</span>
+<span class="w">     </span><span class="k">class</span><span class="w"> </span><span class="nc">strided_iterator</span><span class="w"> </span><span class="p">{...};</span>
+
+<span class="w">    </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">        </span><span class="n">XValueType</span><span class="o">*</span><span class="w"> </span><span class="n">fDataPtr</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">fExternallyManaged</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XValueType</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">fData</span><span class="p">;</span><span class="w"> </span><span class="c1">//internally managed data</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">fDimensions</span><span class="p">[</span><span class="n">RANK</span><span class="p">];</span><span class="w"> </span><span class="c1">//size of each dimension</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">fTotalArraySize</span><span class="p">;</span><span class="w"> </span><span class="c1">//total size of array</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The underlying storage of the N-dimensional array data is done as a
+single contiguous chunk of memory which can either be a piece of
+externally or internally managed memory. Indexing into this chunk of
+memory is done using C-like row-major order, where for an array of rank
+D, with dimension sizes <span class="math notranslate nohighlight">\(\{N_0, N_1, \cdots N_{D-1}\}\)</span>, the
+location of the data specified by the indexes
+<span class="math notranslate nohighlight">\(\{n_0, n_1, \cdots, n_{D-1}\}\)</span> can found at an offset from the
+start, <span class="math notranslate nohighlight">\(z\)</span>, that is given by:</p>
+<div class="math notranslate nohighlight">
+\[z = \sum_{k=0}^{D-1} \left ( \prod_{j=k+1}^{D-1} N_j \right) n_k\]</div>
+<p>Access to the underlying data stored within a class of this type can
+then proceed in two main ways. The first is through the aforementioned
+row-major order indexing operation, and the second is through the use of
+iterators. An example of several of the provided methods is shown for a
+three dimensional array in the following code snippet. Iterators are most commonly
+utilized for efficient incremental (continuous or strided) access to the
+array data as they can be computed using pointer arithmetic, while
+random access is best done via indexes using the operator().</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">MHO_NDArrayWrapper</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ex</span><span class="p">;</span>
+<span class="c1">//declare the dimensions of the 3d array</span>
+<span class="n">ex</span><span class="p">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+
+<span class="c1">//access via un-checked index tuples</span>
+<span class="n">ex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">//access via bounds-checked index tuples</span>
+<span class="n">ex</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">//access via un-checked offset from start</span>
+<span class="n">ex</span><span class="p">[</span><span class="mi">999</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">//access to underlying raw memory</span>
+<span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">GetData</span><span class="p">();</span>
+<span class="n">ptr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">//access via iterator</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">//skip-by-10 access via strided iterator</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">sit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="n">stride_begin</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">*</span><span class="p">(</span><span class="o">++</span><span class="n">sit</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">//access to ex(0,1,0);</span>
+</pre></div>
+</div>
+<p>In addition to the raw data stored in the N-dimensional array, in the
+case of the <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> it is important to associate a
+coordinate axis with each dimension in order to provide various data
+operators with the ability to look-up the location of a datum beyond a
+simple integer-index. To enable this, we pair an N-dimensional
+array with a tuple of axis objects (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AxisPack.html">hops::MHO_AxisPack</a>) associated with each dimension.
+The following code shows an outline of the template class
+structure for a <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> (along with other) objects.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XValueType</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_ScalarContainer</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_ScalarContainerBase</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_NDArrayWrapper</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XValueType</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Taggable</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XValueType</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_VectorContainer</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_VectorContainerBase</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_NDArrayWrapper</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XValueType</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Taggable</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XValueType</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_Axis</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_AxisBase</span><span class="p">,</span>
+<span class="w">                </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_VectorContainer</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XValueType</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">                </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_IndexLabelInterface</span><span class="p">,</span>
+<span class="w">                </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_IntervalLabelInterface</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">XAxisTypeS</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_AxisPack</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XAxisTypeS</span><span class="p">...</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="k">virtual</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Serializable</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XValueType</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">XAxisPackType</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_TableContainer</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_TableContainerBase</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_NDArrayWrapper</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XValueType</span><span class="p">,</span><span class="w"> </span><span class="n">XAxisPackType</span><span class="o">::</span><span class="n">NAXES</span><span class="o">::</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">public</span><span class="w"> </span><span class="n">XAxisPackType</span><span class="p">,</span>
+<span class="w">                          </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Taggable</span><span class="w"> </span><span class="p">{};</span>
+</pre></div>
+</div>
+<p>The axis objects themselves also inherit from
+<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IndexLabelInterface.html">hops::MHO_IndexLabelInterface</a> and <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IntervalLabelInterface.html">hops::MHO_IntervalLabelInterface</a>.
+These classes provide the to associate and index or a pair of indexes with additional
+key-value pairs. A simple example of this might be tagging a
+section of the frequency axis with a particular channel ID (e.g
+<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">32]</span></code> <span class="math notranslate nohighlight">\(\leftrightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">{&quot;channel_id&quot;:</span> <span class="pre">&quot;X17LY&quot;}</span></code>). These two classes
+supports tagging axis locations with any type that is supported by the
+underlying json library.</p>
+<p>A graphical representation of a <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TableContainer.html">hops::MHO_TableContainer</a> object is shown below:</p>
+<figure class="align-default">
+<img alt="../../../_images/data-container-baseline.png" src="../../../_images/data-container-baseline.png" />
+</figure>
+<p>The table container class is composed of an N-dimensional array, coupled with axes to
+provide coordinate values along each dimension. The axes themselves also
+allow for arbitrary intervals to be labeled by key:value pairs in
+order to allow for local look-up of meta data. For example, on the
+the channel axis, the index labels may be channel names, while interval labels
+maybe or sampler names among other possibilities.</p>
+<p>It should be noted that the coordinate axes are present merely to label
+the data, but are not meant to provide a reverse look-up capability,
+(e.g example inverting the polarization-product code “LL” to infer a
+0-th index location of 0). For efficiency, array access should still be
+done using unsigned integer index values.</p>
+<section id="container-dictionary-and-store">
+<h3>Container Dictionary and Store<a class="headerlink" href="#container-dictionary-and-store" title="Link to this heading"></a></h3>
+<p>The data containers in HOPS4 are organized by the dictionary class:
+<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> and the storage class: <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>.
+Because the majority of the data containers in HOPS4 are instances of handful of template
+classes, the dictionary class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> is responsible
+for the explicit instantiation (full specialization of all template parameters)
+of each type in use by HOPS4. It also inherits from <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ClassIdentityMap.html">hops::MHO_ClassIdentityMap</a> which
+allows for the association of each class type and its 128-bit class UUID. This class UUID is
+used to identify the object type on disk or in a byte stream, so that it can be cast to
+the appropriate type after stream. The storage class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a> is
+used to store all of the in-memory containers. Objects can be retrieved from the store
+by specifying a the exact object UUID or an associated <cite>shortname</cite> (human readable string).
+Collections of objects can be retrieved from the store by specifying the class UUID.</p>
+<p>For convenience the following series of tables contains the names/aliases, types, and descriptions
+of the data container types which are which are explicitly instantiated by the container dictionary.
+The following table contains alias for the table element types:</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Table Container Element Types</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>visibility_element_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;</span> <span class="pre">double</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>the (in-memory) visibility table primitive</p></td>
+</tr>
+<tr class="row-odd"><td><p>weight_element_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+<td><p>the (in-memory) weight table primitive</p></td>
+</tr>
+<tr class="row-even"><td><p>pcal_phasor_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;double&gt;</span></code></p></td>
+<td><p>the multi-tone pcal phasor primitive</p></td>
+</tr>
+<tr class="row-odd"><td><p>spline_coeff_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+<td><p>coefficient used for polynomial splines</p></td>
+</tr>
+<tr class="row-even"><td><p>flag_element_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">char</span></code></p></td>
+<td><p>flag table primitive</p></td>
+</tr>
+<tr class="row-odd"><td><p>visibility_element_store_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">std::complex&lt;</span> <span class="pre">float</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>the (on-disk) visibility table primitive</p></td>
+</tr>
+<tr class="row-even"><td><p>weight_element_store_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>the (on-disk) weight table primitive</p></td>
+</tr>
+</tbody>
+</table>
+<p>The coordinate axis types are declared as follows:</p>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Coordinate Axis Types</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>polprod_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;</span> <span class="pre">std::string</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>axis for polarization-product labels (XX, YX, XR, RL, RR, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>pol_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;</span> <span class="pre">std::string</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>axis for polarization labels (X, Y, R, L, etc.)</p></td>
+</tr>
+<tr class="row-even"><td><p>channel_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;</span> <span class="pre">double</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>channels axis, with sky_frequency of each channel edge (MHz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>frequency_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;</span> <span class="pre">double</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>frequency axis, typically sub-channel axis (MHz)</p></td>
+</tr>
+<tr class="row-even"><td><p>time_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;</span> <span class="pre">double</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>time and/or AP axis</p></td>
+</tr>
+<tr class="row-odd"><td><p>coord_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;</span> <span class="pre">std::string</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>station coordinate name (delay, phase, parallactic_angle, az, el, u, v, w)</p></td>
+</tr>
+<tr class="row-even"><td><p>coeff_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;</span> <span class="pre">int</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>spline coefficient index 0,1,2…(typical 6 is max)</p></td>
+</tr>
+</tbody>
+</table>
+<p>The coordinate axis packs (collections of axes applied to each dimention of a table) are declared as follows:</p>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Axis Pack Types</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>baseline_axis_pack</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_AxisPack&lt;</span> <span class="pre">polprod_axis_type,</span> <span class="pre">channel_axis_type,</span> <span class="pre">time_axis_type,</span> <span class="pre">frequency_axis_type</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>axis pack used for visibility and weight types</p></td>
+</tr>
+<tr class="row-odd"><td><p>station_coord_axis_pack</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_AxisPack&lt;</span> <span class="pre">coord_axis_type,</span> <span class="pre">time_axis_type,</span> <span class="pre">coeff_axis_type</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>axis pack used for the station coordinate spline-model table</p></td>
+</tr>
+<tr class="row-even"><td><p>multitone_pcal_axis_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_AxisPack&lt;</span> <span class="pre">pol_axis_type,</span> <span class="pre">time_axis_type,</span> <span class="pre">frequency_axis_type</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>axis pack used with multi-tone phase-cal table data</p></td>
+</tr>
+</tbody>
+</table>
+<p>Finally, the table container types are declared by combining and element type
+with an axis pack tuple as a pair of template parameters. This allows for a
+wide variety of table types to be declared easily and with re-use of similar
+coordinate axes. Some examples of these table container declarations are as
+follows:</p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Table Container Types</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>visibility_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_TableContainer&lt;</span> <span class="pre">visibility_element_type,</span> <span class="pre">baseline_axis_pack</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>visibility data table (in-memory)</p></td>
+</tr>
+<tr class="row-odd"><td><p>visibility_store_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_TableContainer&lt;</span> <span class="pre">visibility_element_store_type,</span> <span class="pre">baseline_axis_pack</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>visibility data table (on-disk)</p></td>
+</tr>
+<tr class="row-even"><td><p>weight_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_TableContainer&lt;</span> <span class="pre">weight_element_type,</span> <span class="pre">baseline_axis_pack</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>weight data table (in-memory)</p></td>
+</tr>
+<tr class="row-odd"><td><p>weight_store_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_TableContainer&lt;</span> <span class="pre">weight_element_store_type,</span> <span class="pre">baseline_axis_pack</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>weight data table (on-disk)</p></td>
+</tr>
+<tr class="row-even"><td><p>station_coord_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_TableContainer&lt;</span> <span class="pre">spline_coeff_type,</span> <span class="pre">station_coord_axis_pack</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>station coordinate spline-model table</p></td>
+</tr>
+<tr class="row-odd"><td><p>multitone_pcal_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_TableContainer&lt;</span> <span class="pre">pcal_phasor_type,</span> <span class="pre">multitone_pcal_axis_type</span> <span class="pre">&gt;</span></code></p></td>
+<td><p>phase-cal table data</p></td>
+</tr>
+</tbody>
+</table>
+<p>For further information on some of these concrete table container types, see the descriptions
+under:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="VisibilityData.html"><span class="doc">visibilities</span></a></p></li>
+<li><p><a class="reference internal" href="WeightData.html"><span class="doc">weights</span></a></p></li>
+<li><p><a class="reference internal" href="PcalData.html"><span class="doc">pcal</span></a></p></li>
+<li><p><a class="reference internal" href="StationData.html"><span class="doc">station data</span></a></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="adding-metadata-to-table-containers">
+<h3>Adding Metadata to Table Containers<a class="headerlink" href="#adding-metadata-to-table-containers" title="Link to this heading"></a></h3>
+<p>Adding metadata to a table container object is quite straight forward. Since all
+table container types inherit from <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Taggable.html">hops::MHO_Taggable</a> they permit the
+addition of nearly arbitrary key:value meta data via the json library. It is however,
+encouraged that this mechanism is primarily used for scalar (i.e. single valued) key:value pairs,
+while more complex nested metadata is specified via the use of <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a>.</p>
+</section>
+<section id="adding-new-container-types">
+<h3>Adding New Container Types<a class="headerlink" href="#adding-new-container-types" title="Link to this heading"></a></h3>
+<p>It is not expected that the current set of data container types is comprehensive for
+either current or future data processing. However, adding new data types is relatively simple.
+To declare a new table container type, all that is need is that the table data element
+and axis pack be specified and added to the container dictionary. As an example, consider
+a three dimensional table consisting of integers, with three coordinate axis (the first consisting of string labels,
+the second of integer labels, and the last of doubles). This object can be declared as:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">my_new_axis_pack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MHO_AxisPack</span><span class="o">&lt;</span><span class="w"> </span><span class="n">MHO_Axis</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">MHO_Axis</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">MHO_Axis</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">my_new_table_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MHO_TableContainer</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">my_new_axis_pack</span><span class="w"> </span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Then all that is needed in order to use this new table container type (both for disk-I/O and in the container store)
+is to add its definition to the container dictionary <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerDictionary.html">hops::MHO_ContainerDictionary</a> via the <code class="docutils literal notranslate"><span class="pre">AddClassType</span></code> function:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//add to the constructor: MHO_ContainerDictionary::MHO_ContainerDictionary()</span>
+<span class="n">AddClassType</span><span class="o">&lt;</span><span class="w"> </span><span class="n">my_new_table_type</span><span class="w"> </span><span class="o">&gt;</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-container-extensions">
+<h2>Data Container Extensions<a class="headerlink" href="#data-container-extensions" title="Link to this heading"></a></h2>
+<p>The primary goal of the containers is to provide a relatively simple and
+efficient representation of commonly used data types that hides the
+details of memory management and array indexing/access from the user.
+They should not be overburdened with too much extraneous functionality
+(beyond simple operator overloads like assignment, scalar multiply, etc.)
+that is specific to a particular operation as this greatly over
+complicates these classes and makes them brittle.</p>
+<p>However, there are some cases where this sort of decoupling may induce a
+performance cost. An example of this occurs in the case of SIMD/GPU
+acceleration. In order to make use of GPU processing the data must be
+copied to a buffer on the device, processed, and then the results must
+be passed back to the host. However, if there are several operations to
+be performed in succession on the GPU, only first and last transfer need
+to occur, with intervening transfers being unnecessary as input data is
+already present on the device. However, in order to eliminate the
+intermediate transfers a handle to the device buffer must be kept
+persistent in memory. So the questions arises, where should we keep this
+device buffer object? Should it be kept as a member of the data
+operator? That would be a poor choice, since if it is private it will
+not accessible to other operators to make use of, and if it is public
+then it will introduce the possibility of tight coupling with other
+portions of the code making use of the buffer. On the other hand, a
+pointer to a device buffer is too specific to belong in something as
+basic as a data container. However, it is a good candidate for something
+to may be stored in an extension.</p>
+<p>In order to provide the ability to append extensions to the data
+containers, they must all inherit from a base class,
+<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtensibleElement.html">hops::MHO_ExtensibleElement</a>, which in turn stores a vector of
+type-erased <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> pointers to the extensions themselves. The extensions
+are templated on the the class providing the additional functionality
+and must all inherit from the base class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtendedElement.html">hops::MHO_ExtendedElement</a> (so
+they can be stored in the vector) A brief
+sketch of the code that allows for this is shown below.
+One draw back of this method is that requires <span class="math notranslate nohighlight">\(N\)</span> <code class="docutils literal notranslate"><span class="pre">dynamic_cast</span></code>
+calls any time a particular extension is modified or accessed via the data container.
+This is an acceptable trade off for infrequent access to expensive (to construct)
+extensions, but should be used rather sparingly as <code class="docutils literal notranslate"><span class="pre">dynamic_cast</span></code> has
+high overhead.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="c1">//forward declare these types</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_Element</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_ExtensibleElement</span><span class="p">;</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XExtensionType</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MHO_ExtendedElement</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_Element</span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">MHO_Element</span><span class="p">();</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MHO_Element</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_ExtensibleElement</span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">MHO_ExtensibleElement</span><span class="p">();</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MHO_ExtensibleElement</span><span class="p">();</span>
+<span class="w">        </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XExtensionType</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XExtensionType</span><span class="w"> </span><span class="o">&gt;*</span><span class="w"> </span><span class="n">MakeExtension</span><span class="p">();</span>
+<span class="w">        </span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XExtensionType</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="w"> </span><span class="n">XExtensionType</span><span class="w"> </span><span class="o">&gt;*</span><span class="w"> </span><span class="n">AsExtension</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">protected</span><span class="o">:</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">MHO_Element</span><span class="o">*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">fExtensions</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XExtensionType</span><span class="o">&gt;</span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="n">XExtensionType</span><span class="o">&gt;*</span>
+<span class="n">MHO_ExtensibleElement</span><span class="o">::</span><span class="n">MakeExtension</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="n">XExtensionType</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">extention</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fExtensions</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">fExtensions</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">extention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="n">XExtensionType</span><span class="o">&gt;*&gt;</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">extention</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">){</span><span class="k">delete</span><span class="w"> </span><span class="n">extention</span><span class="p">;</span><span class="w"> </span><span class="n">fExtensions</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">extention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="n">XExtensionType</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fExtensions</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">extention</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">extention</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XExtensionType</span><span class="o">&gt;</span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="n">XExtensionType</span><span class="o">&gt;*</span>
+<span class="n">MHO_ExtensibleElement</span><span class="o">::</span><span class="n">AsExtension</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="n">XExtensionType</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">extention</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fExtensions</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">fExtensions</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">extention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">MHO_ExtendedElement</span><span class="o">&lt;</span><span class="n">XExtensionType</span><span class="o">&gt;*&gt;</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">extention</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">){</span><span class="k">return</span><span class="w"> </span><span class="n">extention</span><span class="p">;};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">////////////////////////////////////////////////////////////////////////////////</span>
+<span class="c1">////////////////////////////////////////////////////////////////////////////////</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XExtensionType</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_ExtendedElement</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Element</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">XExtensionType</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">MHO_ExtendedElement</span><span class="p">(</span><span class="n">MHO_ExtensibleElement</span><span class="o">*</span><span class="w"> </span><span class="n">parent</span><span class="p">)</span><span class="o">:</span>
+<span class="w">            </span><span class="n">XExtensionType</span><span class="p">(</span><span class="n">parent</span><span class="p">),</span>
+<span class="w">            </span><span class="n">fParent</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{};</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MHO_ExtendedElement</span><span class="p">(){};</span>
+
+<span class="w">    </span><span class="k">protected</span><span class="o">:</span>
+
+<span class="w">        </span><span class="n">MHO_ExtensibleElement</span><span class="o">*</span><span class="w"> </span><span class="n">fParent</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://davekilian.com/cpp-type-erasure.html">https://davekilian.com/cpp-type-erasure.html</a></p>
+</aside>
+</aside>
+<p>This extensible element mechanism is made use of in <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerJSONConverter.html">hops::MHO_ContainerJSONConverter</a> and
+in <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerHDF5Converter.html">hops::MHO_ContainerHDF5Converter</a> for data format conversion, as well as
+in <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OpenCLNDArrayBuffer.html">hops::MHO_OpenCLNDArrayBuffer</a> for OpenCL buffer construction/manipulation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Containers.html" class="btn btn-neutral float-left" title="Containers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="VisibilityData.html" class="btn btn-neutral float-right" title="Data Object: visibilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

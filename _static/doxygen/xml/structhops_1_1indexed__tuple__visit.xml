@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1indexed__tuple__visit" kind="struct" language="C++" prot="public">
+    <compoundname>hops::indexed_tuple_visit</compoundname>
+    <includes refid="MHO__Meta_8hh" local="no">MHO_Meta.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>NTypes</declname>
+        <defname>NTypes</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhops_1_1indexed__tuple__visit_1ae453a92329ed96d5225a618d322f5532" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XTupleType</type>
+          </param>
+          <param>
+            <type>typename XFunctorType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>static void hops::indexed_tuple_visit&lt; NTypes &gt;::visit</definition>
+        <argsstring>(XTupleType &amp;tup, XFunctorType &amp;functor)</argsstring>
+        <name>visit</name>
+        <param>
+          <type>XTupleType &amp;</type>
+          <declname>tup</declname>
+        </param>
+        <param>
+          <type>XFunctorType &amp;</type>
+          <declname>functor</declname>
+        </param>
+        <briefdescription>
+<para>Applies a functor to all elements of an XTupleType tuple and recursively visits the next type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input tuple of type XTupleType&amp; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>param2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Functor of type XFunctorType&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="193" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="193" bodyend="198"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1indexed__tuple__visit" kindref="compound">indexed_tuple_visit</ref> - generic apply functor (which takes and index value!) to all elements of a tuple. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="185" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="186" bodyend="199"/>
+    <listofallmembers>
+      <member refid="structhops_1_1indexed__tuple__visit_1ae453a92329ed96d5225a618d322f5532" prot="public" virt="non-virtual"><scope>hops::indexed_tuple_visit</scope><name>visit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

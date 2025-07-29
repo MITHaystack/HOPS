@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1phasecal" kind="namespace" language="Python">
+    <compoundname>vpal::phasecal</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1phasecal_1afd309f5449373301bb1db84aaa930567" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.phasecal.mult_corr</definition>
+        <argsstring>(Rxx_full, bp_good=None, bad_nans=False)</argsstring>
+        <name>mult_corr</name>
+        <param>
+          <type>Rxx_full</type>
+          <defname>Rxx_full</defname>
+        </param>
+        <param>
+          <type>bp_good</type>
+          <defname>bp_good</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>bad_nans</type>
+          <defname>bad_nans</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Compute multiple correlation coefficients for selected
+bandpols, whose indices are in the sequence bp_good.
+
+  C.T is C transposed,
+  Rxx is the matrix of cross-correlations between the band-pol series
+         with the i-th bandpol excluded.
+
+Input parameters:
+  Rxx_full[nbandpol,nbandpol] correlation matrix of the cable delay
+             time sequences in the rows of delps[nbandpol,:]
+  bp_good: list of indices of good band-pols
+  bad_nans:
+      False: return in R_mult only the multiple correlations for the
+             bandpols listed in bp_good. len(R_mult) == len(bp_good).
+      True:  return in R_mult the multiple correlations at the locations
+             listed in bp_good, and fill the rest with NaNs.
+             len(R_mult) == np.size(Rxx_full,0).
+
+Returns:
+  R_mult, array of multiple correlation coefficients, one for each
+          bandpol indicated in bp_good. The size of R_mult depends on
+          the boolean value in bad_nans parameter.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" bodystart="14" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1phasecal_1af52d271dad0cfa4b6749b94b6fdf9d58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.phasecal.write_numbers</definition>
+        <argsstring>(fout, prefix, numbers, bp_good)</argsstring>
+        <name>write_numbers</name>
+        <param>
+          <type>fout</type>
+          <defname>fout</defname>
+        </param>
+        <param>
+          <type>prefix</type>
+          <defname>prefix</defname>
+        </param>
+        <param>
+          <type>numbers</type>
+          <defname>numbers</defname>
+        </param>
+        <param>
+          <type>bp_good</type>
+          <defname>bp_good</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Write a line of numbers at the positions at bp_good, and blanks at others.
+The numbers can be multiple correlations or correlation medians and
+they are supposed to be printed just at the locations of the
+cross-correlation matrix columns.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" line="122" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" bodystart="122" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1phasecal_1abf7dbc4aa3ee8e009c2a8246ff609d18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.phasecal.write_title</definition>
+        <argsstring>(fout, title, station, experiment_number, experiment_code, bp_sym, threshold_median)</argsstring>
+        <name>write_title</name>
+        <param>
+          <type>fout</type>
+          <defname>fout</defname>
+        </param>
+        <param>
+          <type>title</type>
+          <defname>title</defname>
+        </param>
+        <param>
+          <type>station</type>
+          <defname>station</defname>
+        </param>
+        <param>
+          <type>experiment_number</type>
+          <defname>experiment_number</defname>
+        </param>
+        <param>
+          <type>experiment_code</type>
+          <defname>experiment_code</defname>
+        </param>
+        <param>
+          <type>bp_sym</type>
+          <defname>bp_sym</defname>
+        </param>
+        <param>
+          <type>threshold_median</type>
+          <defname>threshold_median</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Write title in file fout.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" line="141" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" bodystart="142" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1phasecal_1a980fc0465f23921e78aecc34f128c942" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.phasecal.write_xcorrmx</definition>
+        <argsstring>(fout, title, Rxx_full, bp_good, station, experiment_number, experiment_code, bp_sym)</argsstring>
+        <name>write_xcorrmx</name>
+        <param>
+          <type>fout</type>
+          <defname>fout</defname>
+        </param>
+        <param>
+          <type>title</type>
+          <defname>title</defname>
+        </param>
+        <param>
+          <type>Rxx_full</type>
+          <defname>Rxx_full</defname>
+        </param>
+        <param>
+          <type>bp_good</type>
+          <defname>bp_good</defname>
+        </param>
+        <param>
+          <type>station</type>
+          <defname>station</defname>
+        </param>
+        <param>
+          <type>experiment_number</type>
+          <defname>experiment_number</defname>
+        </param>
+        <param>
+          <type>experiment_code</type>
+          <defname>experiment_code</defname>
+        </param>
+        <param>
+          <type>bp_sym</type>
+          <defname>bp_sym</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Save the cross-correlation matrix in file fout.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" line="91" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" bodystart="92" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>phasecal.py
+
+Module providing some useful functions for the phase calibration software.</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/phasecal.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_730935399589b544a579302a37a46c03" kind="dir">
+    <compoundname>cpp_src</compoundname>
+    <innerdir refid="dir_692e4fa8827bc0493914a8892ac7caba">Applications</innerdir>
+    <innerdir refid="dir_91ae3e556fa9cad9030b784323206cc7">Calibration</innerdir>
+    <innerdir refid="dir_a06008c3e245d1092ba6894d6caedef2">Containers</innerdir>
+    <innerdir refid="dir_c845d92bb8a5c5488679fccc6a213ce0">Control</innerdir>
+    <innerdir refid="dir_ffd3462840ed92d3b36f06c2f7a1a3a4">DiFXInterface</innerdir>
+    <innerdir refid="dir_d14d15cadc30134a390deae00e4dfae9">Fringe</innerdir>
+    <innerdir refid="dir_b8ce078ed9f8fd90d71e02c796d93353">Initialization</innerdir>
+    <innerdir refid="dir_ff42852cc454de79d2ecb9482f4de9d8">Math</innerdir>
+    <innerdir refid="dir_32348ece3c89569e6a714937ae854c89">Message</innerdir>
+    <innerdir refid="dir_0c8523deb6301657d04bd2a03358f9f8">MK4Interface</innerdir>
+    <innerdir refid="dir_4546011bd625f1142c4c4ae06dcdb5ba">Operators</innerdir>
+    <innerdir refid="dir_26953edb3cb67a8e3bae1da7766c1e03">Plugins</innerdir>
+    <innerdir refid="dir_150f406a44a04ce55518da03ec553ece">Utilities</innerdir>
+    <innerdir refid="dir_2d98c6b8f23a5c53321666bdc86a2d6a">Vex2JSON</innerdir>
+    <innerfile refid="hops__version_8hh">hops_version.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/"/>
+  </compounddef>
+</doxygen>

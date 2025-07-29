@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdef__list" kind="struct" language="C++" prot="public">
+    <compoundname>def_list</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdef__list_1a2f937c624fab6b60643eeaf4c6515b1c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int def_list::blockno</definition>
+        <argsstring></argsstring>
+        <name>blockno</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="142" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdef__list_1acd880820aeeec32936702c689587bbfd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int def_list::defno</definition>
+        <argsstring></argsstring>
+        <name>defno</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="143" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>def_list</label>
+        <link refid="structdef__list"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>blockno</edgelabel>
+          <edgelabel>defno</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="140" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="141" bodyend="144"/>
+    <listofallmembers>
+      <member refid="structdef__list_1a2f937c624fab6b60643eeaf4c6515b1c" prot="public" virt="non-virtual"><scope>def_list</scope><name>blockno</name></member>
+      <member refid="structdef__list_1acd880820aeeec32936702c689587bbfd" prot="public" virt="non-virtual"><scope>def_list</scope><name>defno</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

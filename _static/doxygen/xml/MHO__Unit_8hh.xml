@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__Unit_8hh" kind="file" language="C++">
+    <compoundname>MHO_Unit.hh</compoundname>
+    <includes local="no">array</includes>
+    <includes local="no">string</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>MHO_Unit.hh</label>
+        <link refid="MHO__Unit_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>array</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classhops_1_1MHO__Unit" prot="public">hops::MHO_Unit</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="classhops_1_1MHO__Unit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Unit_1ab12a00da456c4eb2deebd0ca9aa17f1e" kindref="member">MHO_Unit</ref>():<sp/>fStringRep(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19" refid="classhops_1_1MHO__Unit_1ab12a00da456c4eb2deebd0ca9aa17f1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Unit_1ab12a00da456c4eb2deebd0ca9aa17f1e" kindref="member">MHO_Unit</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>unit);</highlight></codeline>
+<codeline lineno="20" refid="classhops_1_1MHO__Unit_1ada0f7b738aa104fcc48a531d53a9d575" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit_1ada0f7b738aa104fcc48a531d53a9d575" kindref="member">~MHO_Unit</ref>();</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//setter<sp/>and<sp/>getter<sp/>for<sp/>string<sp/>representation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classhops_1_1MHO__Unit_1a855a156457c0bbfe77d6b75e83a2cd0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit_1a855a156457c0bbfe77d6b75e83a2cd0f" kindref="member">SetUnitString</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>unit)<sp/>{<sp/>Parse(unit);<sp/>};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="classhops_1_1MHO__Unit_1aef6f562167866be38bac0eabc82179ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__Unit_1aef6f562167866be38bac0eabc82179ad" kindref="member">GetUnitString</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ConstructString();<sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>operator<sp/>overloads<sp/>for<sp/>multiplication<sp/>and<sp/>division</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classhops_1_1MHO__Unit_1acc1dd4cdfc27b35eb76c5c3603b4a718" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref><sp/><ref refid="classhops_1_1MHO__Unit_1acc1dd4cdfc27b35eb76c5c3603b4a718" kindref="member">operator*</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29" refid="classhops_1_1MHO__Unit_1aece442c72221001a2c28ff726c861a40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref><sp/><ref refid="classhops_1_1MHO__Unit_1aece442c72221001a2c28ff726c861a40" kindref="member">operator/</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>operator<sp/>overloads<sp/>for<sp/>compound<sp/>assignment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classhops_1_1MHO__Unit_1aa9e6324dc57f705467bf99bb181598ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/><ref refid="classhops_1_1MHO__Unit_1aa9e6324dc57f705467bf99bb181598ce" kindref="member">operator*=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="33" refid="classhops_1_1MHO__Unit_1ac6eca8df2bdece05780614b809783d1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/><ref refid="classhops_1_1MHO__Unit_1ac6eca8df2bdece05780614b809783d1b" kindref="member">operator/=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//raise<sp/>the<sp/>unit<sp/>to<sp/>an<sp/>integer<sp/>power</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classhops_1_1MHO__Unit_1a33faad42625b7fc57bb9edaceebd3463" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit_1a33faad42625b7fc57bb9edaceebd3463" kindref="member">RaiseToPower</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>power);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//invert<sp/>the<sp/>unit:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="classhops_1_1MHO__Unit_1aeba1949d73182e73062adf1daa25e5ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit_1aeba1949d73182e73062adf1daa25e5ae" kindref="member">Invert</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>equality<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="classhops_1_1MHO__Unit_1a172f08e54b9160ba98d98a1c80e06466" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit_1a172f08e54b9160ba98d98a1c80e06466" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/>other)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//assignment<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="classhops_1_1MHO__Unit_1a7d0605f6e3096862f4b2c95e08fbb908" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/><ref refid="classhops_1_1MHO__Unit_1a7d0605f6e3096862f4b2c95e08fbb908" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Unit" kindref="compound">MHO_Unit</ref>&amp;<sp/>other);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fStringRep;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//the<sp/>base<sp/>SI<sp/>units<sp/>specified<sp/>are:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//[<sp/>length,<sp/>time,<sp/>mass,<sp/>ampere,<sp/>temperature,<sp/>luminosity,<sp/>quantity<sp/>(mole)<sp/>]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//but<sp/>we<sp/>don&apos;t<sp/>deal<sp/>with<sp/>mole&apos;s<sp/>very<sp/>much<sp/>so<sp/>I<sp/>think<sp/>we<sp/>would<sp/>would<sp/>probably<sp/>rather<sp/>use:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//[<sp/>length,<sp/>time,<sp/>mass,<sp/>ampere,<sp/>temperature,<sp/>luminosity,<sp/>radians<sp/>]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::array&lt;<sp/>int,<sp/>7<sp/>&gt;<sp/>fExp;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Parse(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>repl);<sp/></highlight><highlight class="comment">//takes<sp/>a<sp/>string<sp/>and<sp/>determines<sp/>the<sp/>appropriate<sp/>unit<sp/>exponents,<sp/>and<sp/>sets<sp/>them<sp/>in<sp/>fExp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//should<sp/>be<sp/>able<sp/>to<sp/>handle<sp/>statements<sp/>like<sp/>&quot;m/s&quot;<sp/>&quot;s^{-1}&quot;<sp/>or<sp/>&quot;kg*m^2/s^2&quot;<sp/>as<sp/>well<sp/>as<sp/>some<sp/>compound<sp/>SI<sp/>units<sp/>like<sp/>joule<sp/>&quot;J&quot;<sp/>or<sp/>tesla<sp/>&quot;T&quot;,<sp/>etc.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>virutal<sp/>std::string<sp/>ConstructString()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//constructs<sp/>a<sp/>human<sp/>readable<sp/>string<sp/>from<sp/>the<sp/>base<sp/>unit<sp/>exponents</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//at<sp/>some<sp/>point<sp/>we<sp/>may<sp/>want<sp/>to<sp/>add<sp/>the<sp/>ability<sp/>to<sp/>support<sp/>common<sp/>pre-factors<sp/>(e.g.<sp/>k<sp/>for<sp/>kilo,<sp/>M<sp/>for<sp/>Mega,<sp/>u<sp/>for<sp/>micro,<sp/>etc.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh"/>
+  </compounddef>
+</doxygen>

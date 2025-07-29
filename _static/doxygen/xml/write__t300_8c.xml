@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="write__t300_8c" kind="file" language="C++">
+    <compoundname>write_t300.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes refid="difx2mark4_8h" local="yes">difx2mark4.h</includes>
+    <incdepgraph>
+      <node id="15">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="14">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_writes.h</label>
+        <link refid="type__writes_8h"/>
+      </node>
+      <node id="1">
+        <label>write_t300.c</label>
+        <link refid="write__t300_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>limits.h</label>
+      </node>
+      <node id="11">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+      <node id="16">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>difxio/difx_input.h</label>
+      </node>
+      <node id="10">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>time.h</label>
+      </node>
+      <node id="3">
+        <label>difx2mark4.h</label>
+        <link refid="difx2mark4_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="write__t300_8c_1abd40046947986cd039d1c7b9384dee75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void write_t300</definition>
+        <argsstring>(struct type_300 *pt300, FILE *fout)</argsstring>
+        <name>write_t300</name>
+        <param>
+          <type>struct <ref refid="structtype__300" kindref="compound">type_300</ref> *</type>
+          <declname>pt300</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t300.c" line="8" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t300.c" bodystart="8" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>do<sp/>an<sp/>Endian<sp/>flip<sp/>and<sp/>write<sp/>out<sp/>a<sp/>type<sp/>300<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>initial<sp/>code<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rjc<sp/><sp/>2010.8.31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="difx2mark4_8h" kindref="compound">difx2mark4.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="write__t300_8c_1abd40046947986cd039d1c7b9384dee75" kindref="member">write_t300</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__300" kindref="compound">type_300</ref><sp/>*pt300,<sp/>FILE<sp/>*fout)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__300" kindref="compound">type_300</ref><sp/>t300;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy<sp/>(&amp;t300,<sp/>pt300,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__300" kindref="compound">type_300</ref>));</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>t300.model_start.year<sp/><sp/><sp/><sp/>=<sp/><ref refid="difx2mark4_8h_1a6331634a3d2bfeb179e40818eb3eac89" kindref="member">short_reverse</ref><sp/>(pt300-&gt;<ref refid="structtype__300_1a9960d108cbd1152d69bc8d55fe06c54a" kindref="member">model_start</ref>.<ref refid="structdate_1aef68a8508dda64a80f5fe08202e0da4c" kindref="member">year</ref>);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>t300.model_start.day<sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="difx2mark4_8h_1a6331634a3d2bfeb179e40818eb3eac89" kindref="member">short_reverse</ref><sp/>(pt300-&gt;<ref refid="structtype__300_1a9960d108cbd1152d69bc8d55fe06c54a" kindref="member">model_start</ref>.<ref refid="structdate_1aad570045b0c46ad2ec1333516b19d826" kindref="member">day</ref>);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>t300.model_start.hour<sp/><sp/><sp/><sp/>=<sp/><ref refid="difx2mark4_8h_1a6331634a3d2bfeb179e40818eb3eac89" kindref="member">short_reverse</ref><sp/>(pt300-&gt;<ref refid="structtype__300_1a9960d108cbd1152d69bc8d55fe06c54a" kindref="member">model_start</ref>.<ref refid="structdate_1a86616c8f14820a1b884493b3f70d6790" kindref="member">hour</ref>);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>t300.model_start.minute<sp/><sp/>=<sp/><ref refid="difx2mark4_8h_1a6331634a3d2bfeb179e40818eb3eac89" kindref="member">short_reverse</ref><sp/>(pt300-&gt;<ref refid="structtype__300_1a9960d108cbd1152d69bc8d55fe06c54a" kindref="member">model_start</ref>.<ref refid="structdate_1a0a89d97324551f72b471a80cad3b7b9e" kindref="member">minute</ref>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>t300.model_start.second<sp/><sp/>=<sp/><ref refid="difx2mark4_8h_1a42803addab17b848d2a94c8d8d381ae0" kindref="member">float_reverse</ref><sp/>(pt300-&gt;<ref refid="structtype__300_1a9960d108cbd1152d69bc8d55fe06c54a" kindref="member">model_start</ref>.<ref refid="structdate_1afda99d94a7ee7ff3dda1dbce576ba524" kindref="member">second</ref>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>t300.model_interval<sp/>=<sp/><ref refid="difx2mark4_8h_1a42803addab17b848d2a94c8d8d381ae0" kindref="member">float_reverse</ref><sp/>(pt300-&gt;<ref refid="structtype__300_1adf27c1aee71fb5c469e0d64f2fda4678" kindref="member">model_interval</ref>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>t300.nsplines<sp/>=<sp/><ref refid="difx2mark4_8h_1a6331634a3d2bfeb179e40818eb3eac89" kindref="member">short_reverse</ref><sp/>(pt300-&gt;<ref refid="structtype__300_1ad9d544bac6ded0dc8f642b119017fa88" kindref="member">nsplines</ref>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>fwrite<sp/>(&amp;t300,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__300" kindref="compound">type_300</ref>),<sp/>1,<sp/>fout);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>vim:<sp/>shiftwidth=4:softtabstop=4:expandtab:cindent:cinoptions={1sf1s^-1s</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/write_t300.c"/>
+  </compounddef>
+</doxygen>

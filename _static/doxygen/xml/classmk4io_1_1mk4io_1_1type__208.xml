@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1type__208" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::type_208</compoundname>
+    <basecompoundref refid="classmk4io_1_1mk4io_1_1Mk4StructureBase" prot="public" virt="non-virtual">mk4io.mk4io.Mk4StructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1type__208_1acadd5fb5e041eea8d78c08a0b9fbd0b9" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.type_208::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="525" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="525" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_208</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__208"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_208</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__208"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="524" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="524" bodyend="559"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a0772ef701b441c652a3bbde35de2261a" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_208</scope><name>__eq__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a7347e4cacf99a75b7d7788d94e502398" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_208</scope><name>__ne__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__208_1acadd5fb5e041eea8d78c08a0b9fbd0b9" prot="private" virt="non-virtual"><scope>mk4io::mk4io::type_208</scope><name>_fields_</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1af9c631103b72450dc357ed98d0f7b6d5" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_208</scope><name>approximately_equal</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a27bca4a0801b033de3fdbebe84eae485" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_208</scope><name>contains_floats</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1ae00dca3ceb7ad4ebb8144fbcd6ef51b6" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_208</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

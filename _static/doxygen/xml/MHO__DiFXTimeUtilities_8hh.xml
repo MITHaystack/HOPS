@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__DiFXTimeUtilities_8hh" kind="file" language="C++">
+    <compoundname>MHO_DiFXTimeUtilities.hh</compoundname>
+    <includes refid="MHO__Clock_8hh" local="yes">MHO_Clock.hh</includes>
+    <includedby refid="MHO__DiFXPCalProcessor_8hh" local="yes">MHO_DiFXPCalProcessor.hh</includedby>
+    <includedby refid="MHO__DiFXScanProcessor_8hh" local="yes">MHO_DiFXScanProcessor.hh</includedby>
+    <includedby refid="MHO__DiFXBaselineProcessor_8cc" local="yes">MHO_DiFXBaselineProcessor.cc</includedby>
+    <incdepgraph>
+      <node id="19">
+        <label>atomic</label>
+      </node>
+      <node id="4">
+        <label>iomanip</label>
+      </node>
+      <node id="29">
+        <label>legacy_hops_date.hh</label>
+        <link refid="legacy__hops__date_8hh"/>
+      </node>
+      <node id="12">
+        <label>cstdint</label>
+      </node>
+      <node id="2">
+        <label>MHO_Clock.hh</label>
+        <link refid="MHO__Clock_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>stdexcept</label>
+      </node>
+      <node id="23">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>date/date.h</label>
+      </node>
+      <node id="10">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>ostream</label>
+      </node>
+      <node id="21">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_DiFXTimeUtilities.hh</label>
+        <link refid="MHO__DiFXTimeUtilities_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>ctime</label>
+      </node>
+      <node id="26">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>vector</label>
+      </node>
+      <node id="6">
+        <label>sstream</label>
+      </node>
+      <node id="18">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>math.h</label>
+      </node>
+      <node id="11">
+        <label>cstdlib</label>
+      </node>
+      <node id="28">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>iostream</label>
+      </node>
+      <node id="14">
+        <label>mutex</label>
+      </node>
+      <node id="3">
+        <label>chrono</label>
+      </node>
+      <node id="20">
+        <label>thread</label>
+      </node>
+      <node id="16">
+        <label>set</label>
+      </node>
+      <node id="9">
+        <label>date/tz.h</label>
+      </node>
+      <node id="17">
+        <label>stdio.h</label>
+      </node>
+      <node id="24">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>TestVexStripper.cc</label>
+        <link refid="TestVexStripper_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_DiFXScanProcessor.cc</label>
+        <link refid="MHO__DiFXScanProcessor_8cc"/>
+      </node>
+      <node id="4">
+        <label>MHO_DiFXInterface.hh</label>
+        <link refid="MHO__DiFXInterface_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_DiFXTimeUtilities.hh</label>
+        <link refid="MHO__DiFXTimeUtilities_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_DiFXPCalProcessor.hh</label>
+        <link refid="MHO__DiFXPCalProcessor_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>difx2hops.cc</label>
+        <link refid="difx2hops_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_DiFXPCalProcessor.cc</label>
+        <link refid="MHO__DiFXPCalProcessor_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_DiFXScanProcessor.hh</label>
+        <link refid="MHO__DiFXScanProcessor_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MHO_DiFXBaselineProcessor.cc</label>
+        <link refid="MHO__DiFXBaselineProcessor_8cc"/>
+      </node>
+      <node id="7">
+        <label>MHO_DiFXInterface.cc</label>
+        <link refid="MHO__DiFXInterface_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__DiFXTimeUtilities_8hh_1a2de821a9696d978348b011922d137465" prot="public" static="no">
+        <name>DIFX_J2000_MJD_EPOCH_OFFSET</name>
+        <initializer>51544.50000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXTimeUtilities.hh" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXTimeUtilities.hh" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__DiFXTimeUtilities_8hh_1a744b328fb90650335b2b10e5958fb775" prot="public" static="no">
+        <name>DIFX_J2000_MJD_EPOCH_UTC_ISO8601</name>
+        <initializer>&quot;2000-01-01T12:00:00.000000000Z&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXTimeUtilities.hh" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXTimeUtilities.hh" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_DiFXTimeUtilities_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_DiFXTimeUtilities_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Clock_8hh" kindref="compound">MHO_Clock.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//this<sp/>is<sp/>the<sp/>nominal<sp/>DiFX<sp/>MJD<sp/>epoch<sp/>start...however,<sp/>it<sp/>will<sp/>be<sp/>off<sp/>by<sp/>however</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//many<sp/>leap<sp/>seconds<sp/>have<sp/>been<sp/>inserted<sp/>between<sp/>this<sp/>time<sp/>and<sp/>the<sp/>time<sp/>point<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//interest...so<sp/>when<sp/>UTC<sp/>times<sp/>are<sp/>calculated<sp/>from<sp/>DiFX<sp/>MJD<sp/>values,<sp/>this<sp/>epoch</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//start<sp/>must<sp/>be<sp/>corrected<sp/>by<sp/>the<sp/>number<sp/>of<sp/>leap<sp/>seconds<sp/>inserted<sp/>(total<sp/>of<sp/>5<sp/>as<sp/>of<sp/>2025)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="MHO__DiFXTimeUtilities_8hh_1a744b328fb90650335b2b10e5958fb775" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DIFX_J2000_MJD_EPOCH_UTC_ISO8601<sp/>&quot;2000-01-01T12:00:00.000000000Z&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="MHO__DiFXTimeUtilities_8hh_1a2de821a9696d978348b011922d137465" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DIFX_J2000_MJD_EPOCH_OFFSET<sp/>51544.50000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//given<sp/>a<sp/>mjd<sp/>date<sp/>and<sp/>number<sp/>of<sp/>seconds,<sp/>compute<sp/>the<sp/>vex<sp/>string<sp/>representation</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/>get_vexdate_from_mjd_sec(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mjd,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sec)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>total_mjd<sp/>=<sp/>(double)mjd<sp/>+<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)sec<sp/>/<sp/>86400.0;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>difx_mjd_epoch<sp/>=<sp/><ref refid="classhops_1_1hops__clock_1a713e5a0c6a1d5a2534424d01bedcf883" kindref="member">hops_clock::from_iso8601_format</ref>(<ref refid="MHO__DiFXTimeUtilities_8hh_1a744b328fb90650335b2b10e5958fb775" kindref="member">DIFX_J2000_MJD_EPOCH_UTC_ISO8601</ref>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//figure<sp/>out<sp/>the<sp/>approximate<sp/>time<sp/>of<sp/>this<sp/>mjd<sp/>(ignoring<sp/>leap<sp/>seconds)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>approx_tp<sp/>=<sp/><ref refid="classhops_1_1hops__clock_1afc9abdc870bc2ce4847a03e36ef9da90" kindref="member">hops_clock::from_mjd</ref>(difx_mjd_epoch,<sp/><ref refid="MHO__DiFXTimeUtilities_8hh_1a2de821a9696d978348b011922d137465" kindref="member">DIFX_J2000_MJD_EPOCH_OFFSET</ref>,<sp/>total_mjd);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//calculate<sp/>the<sp/>number<sp/>of<sp/>leap<sp/>seconds</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>n_leaps<sp/>=<sp/><ref refid="classhops_1_1hops__clock_1ab8aa1400707003acbe5282b5363dd88c" kindref="member">hops_clock::get_leap_seconds_between</ref>(difx_mjd_epoch,<sp/>approx_tp);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>correct<sp/>the<sp/>nominal<sp/>difx<sp/>start<sp/>epoch<sp/>to<sp/>deal<sp/>with<sp/>the<sp/>number<sp/>of<sp/>leap<sp/>seconds</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>actual_epoch_start<sp/>=<sp/>difx_mjd_epoch<sp/>+<sp/>n_leaps;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;the<sp/>leap-second<sp/>corrected<sp/>difx<sp/>mjd<sp/>epoch<sp/>start<sp/>is:<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1hops__clock_1a49c203d7999ba785360e966637aa696c" kindref="member">hops_clock::to_iso8601_format</ref>(actual_epoch_start)<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>mjd_tp<sp/>=<sp/><ref refid="classhops_1_1hops__clock_1afc9abdc870bc2ce4847a03e36ef9da90" kindref="member">hops_clock::from_mjd</ref>(actual_epoch_start,<sp/><ref refid="MHO__DiFXTimeUtilities_8hh_1a2de821a9696d978348b011922d137465" kindref="member">DIFX_J2000_MJD_EPOCH_OFFSET</ref>,<sp/>total_mjd);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;the<sp/>MJD<sp/>value:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>total_mjd<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>as<sp/>a<sp/>vex<sp/>timestamp<sp/>is:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classhops_1_1hops__clock_1a8cc7394b4281c10218a3080e34161a40" kindref="member">hops_clock::to_vex_format</ref>(mjd_tp)<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1hops__clock_1a8cc7394b4281c10218a3080e34161a40" kindref="member">hops_clock::to_vex_format</ref>(mjd_tp);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>include<sp/>guard:<sp/>MHO_DiFXTimeUtilities_HH__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXTimeUtilities.hh"/>
+  </compounddef>
+</doxygen>

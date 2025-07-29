@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Selection and Filtering &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="System Management and Configuration" href="system_management_configuration.html" />
+    <link rel="prev" title="Frequency Domain Processing" href="frequency_domain_processing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Initialization.html">Initialization</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="data_labeling_organization.html">Data Labeling and Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="phase_delay_corrections.html">Phase and Delay Corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarization_processing.html">Polarization Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frequency_domain_processing.html">Frequency Domain Processing</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Selection and Filtering</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-dataselectionbuilder">MHO_DataSelectionBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-minweightbuilder">MHO_MinWeightBuilder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="system_management_configuration.html">System Management and Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Initialization.html">Initialization</a></li>
+      <li class="breadcrumb-item active">Data Selection and Filtering</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/initialization/data_selection_filtering.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-selection-and-filtering">
+<h1>Data Selection and Filtering<a class="headerlink" href="#data-selection-and-filtering" title="Link to this heading"></a></h1>
+<p>The data selection and filtering components provide builders for operators that
+control which data is included in the fringe fitting process based on various
+selection criteria and quality metrics.</p>
+<section id="mho-dataselectionbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DataSelectionBuilder.html">MHO_DataSelectionBuilder</a><a class="headerlink" href="#mho-dataselectionbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DataSelectionBuilder.html">MHO_DataSelectionBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds a data selection operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Constructs and initializes data selection operator</div>
+<div class="line">Acts on fringe data for selection operations</div>
+<div class="line">Uses MHO_Tokenizer for processing</div>
+<div class="line">Inherits from MHO_OperatorBuilder</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DataSelectionBuilder.html">MHO_DataSelectionBuilder</a> class builds a data selection operator that
+controls which data is included in the fringe fitting process. This operator can
+apply various selection criteria to filter data based on time ranges, frequency
+ranges, polarization products, or other data characteristics.</p>
+<p>The builder uses the MHO_Tokenizer for processing selection criteria and provides
+flexible data selection capabilities for fringe fitting operations.</p>
+</section>
+<section id="mho-minweightbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MinWeightBuilder.html">MHO_MinWeightBuilder</a><a class="headerlink" href="#mho-minweightbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MinWeightBuilder.html">MHO_MinWeightBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds MHO_MinWeight operator for weight-based filtering</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Constructs and adds MHO_MinWeight operator to toolbox</div>
+<div class="line">Cuts data with weight less than threshold</div>
+<div class="line">Implements quality-based data filtering</div>
+<div class="line">Returns bool indicating successful construction</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MinWeightBuilder.html">MHO_MinWeightBuilder</a> class builds a minimum weight operator that filters
+data based on weight thresholds. This operator removes data points that have weights
+below a specified minimum value, effectively filtering out low-quality or unreliable
+data from the fringe fitting process.</p>
+<p>The builder provides boolean feedback on the success of the operator construction
+and is essential for maintaining data quality in VLBI processing pipelines.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="frequency_domain_processing.html" class="btn btn-neutral float-left" title="Frequency Domain Processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="system_management_configuration.html" class="btn btn-neutral float-right" title="System Management and Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

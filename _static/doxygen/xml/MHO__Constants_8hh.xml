@@ -1,0 +1,435 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__Constants_8hh" kind="file" language="C++">
+    <compoundname>MHO_Constants.hh</compoundname>
+    <includes local="no">cmath</includes>
+    <includes local="no">complex</includes>
+    <includedby refid="MHO__CircularFieldRotationCorrection_8hh" local="yes">MHO_CircularFieldRotationCorrection.hh</includedby>
+    <includedby refid="MHO__DCBlock_8hh" local="yes">MHO_DCBlock.hh</includedby>
+    <includedby refid="MHO__EstimatePCManual_8hh" local="yes">MHO_EstimatePCManual.hh</includedby>
+    <includedby refid="MHO__IonosphericPhaseCorrection_8hh" local="yes">MHO_IonosphericPhaseCorrection.hh</includedby>
+    <includedby refid="MHO__LinearDParCorrection_8hh" local="yes">MHO_LinearDParCorrection.hh</includedby>
+    <includedby refid="MHO__LSBOffset_8hh" local="yes">MHO_LSBOffset.hh</includedby>
+    <includedby refid="MHO__ManualChannelDelayCorrection_8hh" local="yes">MHO_ManualChannelDelayCorrection.hh</includedby>
+    <includedby refid="MHO__ManualChannelPhaseCorrection_8hh" local="yes">MHO_ManualChannelPhaseCorrection.hh</includedby>
+    <includedby refid="MHO__ManualPolDelayCorrection_8hh" local="yes">MHO_ManualPolDelayCorrection.hh</includedby>
+    <includedby refid="MHO__ManualPolPhaseCorrection_8hh" local="yes">MHO_ManualPolPhaseCorrection.hh</includedby>
+    <includedby refid="MHO__MinWeight_8hh" local="yes">MHO_MinWeight.hh</includedby>
+    <includedby refid="MHO__MixedPolYShift_8hh" local="yes">MHO_MixedPolYShift.hh</includedby>
+    <includedby refid="MHO__MultitonePhaseCorrection_8hh" local="yes">MHO_MultitonePhaseCorrection.hh</includedby>
+    <includedby refid="MHO__Notches_8hh" local="yes">MHO_Notches.hh</includedby>
+    <includedby refid="MHO__Passband_8hh" local="yes">MHO_Passband.hh</includedby>
+    <includedby refid="MHO__PhaseCalibrationTrim_8hh" local="yes">MHO_PhaseCalibrationTrim.hh</includedby>
+    <includedby refid="MHO__PolProductSummation_8hh" local="yes">MHO_PolProductSummation.hh</includedby>
+    <includedby refid="MHO__StationDelayCorrection_8hh" local="yes">MHO_StationDelayCorrection.hh</includedby>
+    <includedby refid="MHO__CircularFieldRotationCorrection_8cc" local="yes">MHO_CircularFieldRotationCorrection.cc</includedby>
+    <includedby refid="MHO__EstimatePCManual_8cc" local="yes">MHO_EstimatePCManual.cc</includedby>
+    <includedby refid="MHO__IonosphericPhaseCorrection_8cc" local="yes">MHO_IonosphericPhaseCorrection.cc</includedby>
+    <includedby refid="MHO__ComputePlotData_8cc" local="yes">MHO_ComputePlotData.cc</includedby>
+    <includedby refid="MHO__MathUtilities_8cc" local="yes">MHO_MathUtilities.cc</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>cmath</label>
+      </node>
+      <node id="1">
+        <label>MHO_Constants.hh</label>
+        <link refid="MHO__Constants_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>complex</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="13">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="34">
+        <label>MHO_MinWeight.cc</label>
+        <link refid="MHO__MinWeight_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_EstimatePCManual.cc</label>
+        <link refid="MHO__EstimatePCManual_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="17">
+        <label>MHO_LinearDParCorrectionBuilder.cc</label>
+        <link refid="MHO__LinearDParCorrectionBuilder_8cc"/>
+      </node>
+      <node id="37">
+        <label>MHO_MixedPolYShift.cc</label>
+        <link refid="MHO__MixedPolYShift_8cc"/>
+      </node>
+      <node id="29">
+        <label>MHO_ManualPolDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualPolDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="30">
+        <label>MHO_ManualPolPhaseCorrection.hh</label>
+        <link refid="MHO__ManualPolPhaseCorrection_8hh"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_CircularFieldRotationCorrection.cc</label>
+        <link refid="MHO__CircularFieldRotationCorrection_8cc"/>
+      </node>
+      <node id="15">
+        <label>MHO_LinearDParCorrection.cc</label>
+        <link refid="MHO__LinearDParCorrection_8cc"/>
+      </node>
+      <node id="55">
+        <label>MHO_StationDelayCorrection.cc</label>
+        <link refid="MHO__StationDelayCorrection_8cc"/>
+      </node>
+      <node id="18">
+        <label>MHO_LSBOffset.hh</label>
+        <link refid="MHO__LSBOffset_8hh"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_DCBlockBuilder.cc</label>
+        <link refid="MHO__DCBlockBuilder_8cc"/>
+      </node>
+      <node id="48">
+        <label>MHO_PassbandBuilder.cc</label>
+        <link refid="MHO__PassbandBuilder_8cc"/>
+      </node>
+      <node id="36">
+        <label>MHO_MixedPolYShift.hh</label>
+        <link refid="MHO__MixedPolYShift_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>MHO_PolProductSummation.cc</label>
+        <link refid="MHO__PolProductSummation_8cc"/>
+      </node>
+      <node id="39">
+        <label>MHO_MultitonePhaseCorrection.hh</label>
+        <link refid="MHO__MultitonePhaseCorrection_8hh"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>MHO_PhaseCalibrationTrim.cc</label>
+        <link refid="MHO__PhaseCalibrationTrim_8cc"/>
+      </node>
+      <node id="22">
+        <label>MHO_ManualChannelDelayCorrection.cc</label>
+        <link refid="MHO__ManualChannelDelayCorrection_8cc"/>
+      </node>
+      <node id="28">
+        <label>MHO_ManualPolDelayCorrection.cc</label>
+        <link refid="MHO__ManualPolDelayCorrection_8cc"/>
+      </node>
+      <node id="26">
+        <label>MHO_ManualChannelPhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualChannelPhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_EstimatePCManual.hh</label>
+        <link refid="MHO__EstimatePCManual_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>MHO_Passband.hh</label>
+        <link refid="MHO__Passband_8hh"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>MHO_PolProductSummationBuilder.cc</label>
+        <link refid="MHO__PolProductSummationBuilder_8cc"/>
+      </node>
+      <node id="57">
+        <label>MHO_MathUtilities.cc</label>
+        <link refid="MHO__MathUtilities_8cc"/>
+      </node>
+      <node id="24">
+        <label>MHO_ManualChannelPhaseCorrection.hh</label>
+        <link refid="MHO__ManualChannelPhaseCorrection_8hh"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MHO_ManualChannelDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualChannelDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="43">
+        <label>MHO_Notches.hh</label>
+        <link refid="MHO__Notches_8hh"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>MHO_PolProductSummation.hh</label>
+        <link refid="MHO__PolProductSummation_8hh"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>MHO_Passband.cc</label>
+        <link refid="MHO__Passband_8cc"/>
+      </node>
+      <node id="27">
+        <label>MHO_ManualPolDelayCorrection.hh</label>
+        <link refid="MHO__ManualPolDelayCorrection_8hh"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_Constants.hh</label>
+        <link refid="MHO__Constants_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>MHO_NotchesBuilder.cc</label>
+        <link refid="MHO__NotchesBuilder_8cc"/>
+      </node>
+      <node id="20">
+        <label>MHO_LSBOffsetBuilder.cc</label>
+        <link refid="MHO__LSBOffsetBuilder_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_CircularFieldRotationCorrection.hh</label>
+        <link refid="MHO__CircularFieldRotationCorrection_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MHO_ManualChannelDelayCorrection.hh</label>
+        <link refid="MHO__ManualChannelDelayCorrection_8hh"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>TestPCalExtraction.cc</label>
+        <link refid="TestPCalExtraction_8cc"/>
+      </node>
+      <node id="54">
+        <label>MHO_StationDelayCorrection.hh</label>
+        <link refid="MHO__StationDelayCorrection_8hh"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_CircularFieldRotationBuilder.cc</label>
+        <link refid="MHO__CircularFieldRotationBuilder_8cc"/>
+      </node>
+      <node id="33">
+        <label>MHO_MinWeight.hh</label>
+        <link refid="MHO__MinWeight_8hh"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+      <node id="49">
+        <label>MHO_PhaseCalibrationTrim.hh</label>
+        <link refid="MHO__PhaseCalibrationTrim_8hh"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>MHO_MixedPolYShiftBuilder.cc</label>
+        <link refid="MHO__MixedPolYShiftBuilder_8cc"/>
+      </node>
+      <node id="14">
+        <label>MHO_LinearDParCorrection.hh</label>
+        <link refid="MHO__LinearDParCorrection_8hh"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>MHO_ManualChannelPhaseCorrection.cc</label>
+        <link refid="MHO__ManualChannelPhaseCorrection_8cc"/>
+      </node>
+      <node id="11">
+        <label>MHO_IonosphericPhaseCorrection.hh</label>
+        <link refid="MHO__IonosphericPhaseCorrection_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_DCBlock.hh</label>
+        <link refid="MHO__DCBlock_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>MHO_ManualPolPhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualPolPhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="35">
+        <label>MHO_MinWeightBuilder.cc</label>
+        <link refid="MHO__MinWeightBuilder_8cc"/>
+      </node>
+      <node id="12">
+        <label>MHO_IonosphericPhaseCorrection.cc</label>
+        <link refid="MHO__IonosphericPhaseCorrection_8cc"/>
+      </node>
+      <node id="44">
+        <label>MHO_Notches.cc</label>
+        <link refid="MHO__Notches_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_DCBlock.cc</label>
+        <link refid="MHO__DCBlock_8cc"/>
+      </node>
+      <node id="41">
+        <label>MHO_MultitonePhaseCorrection.cc</label>
+        <link refid="MHO__MultitonePhaseCorrection_8cc"/>
+      </node>
+      <node id="42">
+        <label>MHO_MultitonePhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__MultitonePhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="31">
+        <label>MHO_ManualPolPhaseCorrection.cc</label>
+        <link refid="MHO__ManualPolPhaseCorrection_8cc"/>
+      </node>
+      <node id="56">
+        <label>MHO_StationDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__StationDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="19">
+        <label>MHO_LSBOffset.cc</label>
+        <link refid="MHO__LSBOffset_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__Constants" prot="public">hops::MHO_Constants</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_Constants_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_Constants_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;complex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="classhops_1_1MHO__Constants" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__Constants" kindref="compound">MHO_Constants</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__Constants" kindref="compound">MHO_Constants</ref>()<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//class<sp/>is<sp/>non-constructable,<sp/>just<sp/>a<sp/>namespace<sp/>for<sp/>constants</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24" refid="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" kindref="member">pi</ref><sp/>=<sp/>3.14159265358979323846264338;</highlight></codeline>
+<codeline lineno="25" refid="classhops_1_1MHO__Constants_1af5b2d60fa7659b598c3c1e95ce9119f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Constants_1af5b2d60fa7659b598c3c1e95ce9119f8" kindref="member">deg_to_rad</ref><sp/>=<sp/><ref refid="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" kindref="member">pi</ref><sp/>/<sp/>180.0;</highlight></codeline>
+<codeline lineno="26" refid="classhops_1_1MHO__Constants_1a370e7a6ca61e9c47e27af1dd3386c092" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Constants_1a370e7a6ca61e9c47e27af1dd3386c092" kindref="member">rad_to_deg</ref><sp/>=<sp/>180.0<sp/>/<sp/><ref refid="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" kindref="member">pi</ref>;</highlight></codeline>
+<codeline lineno="27" refid="classhops_1_1MHO__Constants_1a65d1bca67abe06c0e20ff220ec205c56" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Constants_1a65d1bca67abe06c0e20ff220ec205c56" kindref="member">nanosec_to_second</ref><sp/>=<sp/>1e-9;</highlight></codeline>
+<codeline lineno="28" refid="classhops_1_1MHO__Constants_1a010ce039565b123183d3e3e8136e1051" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__Constants_1a010ce039565b123183d3e3e8136e1051" kindref="member">imag_unit</ref>{0.0,<sp/>1.0};</highlight></codeline>
+<codeline lineno="29" refid="classhops_1_1MHO__Constants_1a3789ae01a3accf976a8e8c124093007d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Constants_1a3789ae01a3accf976a8e8c124093007d" kindref="member">MHz_to_Hz</ref><sp/>=<sp/>1e6;</highlight></codeline>
+<codeline lineno="30" refid="classhops_1_1MHO__Constants_1a0fc08eb08a8aa8e84dda488d70033716" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>constexpr<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Constants_1a0fc08eb08a8aa8e84dda488d70033716" kindref="member">ion_k</ref><sp/>=<sp/>-8.448e9;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh"/>
+  </compounddef>
+</doxygen>

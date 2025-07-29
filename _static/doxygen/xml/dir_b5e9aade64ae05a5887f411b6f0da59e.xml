@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b5e9aade64ae05a5887f411b6f0da59e" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__AbsoluteValue_8hh">MHO_AbsoluteValue.hh</innerfile>
+    <innerfile refid="MHO__BinaryOperator_8hh">MHO_BinaryOperator.hh</innerfile>
+    <innerfile refid="MHO__ComplexConjugator_8hh">MHO_ComplexConjugator.hh</innerfile>
+    <innerfile refid="MHO__CompoundReductions_8hh">MHO_CompoundReductions.hh</innerfile>
+    <innerfile refid="MHO__CyclicRotator_8hh">MHO_CyclicRotator.hh</innerfile>
+    <innerfile refid="MHO__ElementTypeCaster_8hh">MHO_ElementTypeCaster.hh</innerfile>
+    <innerfile refid="MHO__EndZeroPadder_8hh">MHO_EndZeroPadder.hh</innerfile>
+    <innerfile refid="MHO__ExtremaSearch_8hh">MHO_ExtremaSearch.hh</innerfile>
+    <innerfile refid="MHO__FastFourierTransform_8hh">MHO_FastFourierTransform.hh</innerfile>
+    <innerfile refid="MHO__FFTWTypes_8hh">MHO_FFTWTypes.hh</innerfile>
+    <innerfile refid="MHO__FunctorBroadcaster_8hh">MHO_FunctorBroadcaster.hh</innerfile>
+    <innerfile refid="MHO__InspectingOperator_8hh">MHO_InspectingOperator.hh</innerfile>
+    <innerfile refid="MHO__MultidimensionalFastFourierTransform_8hh">MHO_MultidimensionalFastFourierTransform.hh</innerfile>
+    <innerfile refid="MHO__MultidimensionalFastFourierTransformFFTW_8hh">MHO_MultidimensionalFastFourierTransformFFTW.hh</innerfile>
+    <innerfile refid="MHO__MultidimensionalFastFourierTransformInterface_8hh">MHO_MultidimensionalFastFourierTransformInterface.hh</innerfile>
+    <innerfile refid="MHO__NaNMasker_8hh">MHO_NaNMasker.hh</innerfile>
+    <innerfile refid="MHO__Operator_8hh">MHO_Operator.hh</innerfile>
+    <innerfile refid="MHO__OperatorToolbox_8hh">MHO_OperatorToolbox.hh</innerfile>
+    <innerfile refid="MHO__Reducer_8hh">MHO_Reducer.hh</innerfile>
+    <innerfile refid="MHO__SelectRepack_8hh">MHO_SelectRepack.hh</innerfile>
+    <innerfile refid="MHO__SubSample_8hh">MHO_SubSample.hh</innerfile>
+    <innerfile refid="MHO__TransformingOperator_8hh">MHO_TransformingOperator.hh</innerfile>
+    <innerfile refid="MHO__UnaryFunctor_8hh">MHO_UnaryFunctor.hh</innerfile>
+    <innerfile refid="MHO__UnaryInPlaceOperator_8hh">MHO_UnaryInPlaceOperator.hh</innerfile>
+    <innerfile refid="MHO__UnaryOperator_8hh">MHO_UnaryOperator.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/"/>
+  </compounddef>
+</doxygen>

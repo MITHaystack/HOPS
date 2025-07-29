@@ -1,0 +1,659 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="fourmer_8h" kind="file" language="C++">
+    <compoundname>fourmer.h</compoundname>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <includedby refid="fourmer_8c" local="yes">fourmer.c</includedby>
+    <includedby refid="append__sdata_8c" local="yes">append_sdata.c</includedby>
+    <includedby refid="do__record__merge_8c" local="yes">do_record_merge.c</includedby>
+    <includedby refid="gen__new__chan__id_8c" local="yes">gen_new_chan_id.c</includedby>
+    <includedby refid="print__cdata__cmp_8c" local="yes">print_cdata_cmp.c</includedby>
+    <includedby refid="scan__name__edit_8c" local="yes">scan_name_edit.c</includedby>
+    <incdepgraph>
+      <node id="30">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>stdarg.h</label>
+      </node>
+      <node id="7">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="34">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>sys/times.h</label>
+      </node>
+      <node id="13">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="17">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="39">
+        <label>stdint.h</label>
+      </node>
+      <node id="22">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="40">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="16">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>fourmer.h</label>
+        <link refid="fourmer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="9">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>sys/types.h</label>
+      </node>
+      <node id="28">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="44">
+        <label>string.h</label>
+      </node>
+      <node id="5">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="32">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>complex.h</label>
+      </node>
+      <node id="24">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="47">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="14">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="38">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>stdio.h</label>
+      </node>
+      <node id="48">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="23">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="2">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>do_record_merge.c</label>
+        <link refid="do__record__merge_8c"/>
+      </node>
+      <node id="2">
+        <label>fourmer.c</label>
+        <link refid="fourmer_8c"/>
+      </node>
+      <node id="5">
+        <label>gen_new_chan_id.c</label>
+        <link refid="gen__new__chan__id_8c"/>
+      </node>
+      <node id="1">
+        <label>fourmer.h</label>
+        <link refid="fourmer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>print_cdata_cmp.c</label>
+        <link refid="print__cdata__cmp_8c"/>
+      </node>
+      <node id="3">
+        <label>append_sdata.c</label>
+        <link refid="append__sdata_8c"/>
+      </node>
+      <node id="7">
+        <label>scan_name_edit.c</label>
+        <link refid="scan__name__edit_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="fourmer_8h_1a0646dbfb737e2fd3ecfb137cc82df653" prot="public" static="no">
+        <name>IDX_INC</name>
+        <initializer>100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fourmer_8h_1a1d5dab30b404fab91608086105afc78c" prot="public" static="no">
+        <name>MAX_BUFFER</name>
+        <initializer>256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" prot="public" static="no">
+        <name>MAX_CHARS</name>
+        <initializer>512</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fourmer_8h_1a30def4259200bbdcc432fc1d942366cd" prot="public" static="no">
+        <name>MAX_FPATH</name>
+        <initializer>1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fourmer_8h_1a07e2b531c72985b064c431c05dfbc5fc" prot="public" static="no">
+        <name>MAX_LINES</name>
+        <initializer>4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="fourmer_8h_1a37d117a18f2caca344d77090e377640e" prot="public" static="no">
+        <name>NUM_CH_MAP</name>
+        <initializer>2*<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="fourmer_8h_1ac4693c7c31653d6304e6b816726f4482" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int msglev</definition>
+        <argsstring></argsstring>
+        <name>msglev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="18" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/src/CorAsc2.c" bodystart="73" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" declline="18" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="fourmer_8h_1a283459038e4aa0c6729e72187f6a7d88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void append_sdata</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_sdata</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="41" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="141" bodyend="150" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" declline="41" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="fourmer_8h_1a2ceee5895b9978cd0cf92347dc3d4157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* gen_new_chan_id</definition>
+        <argsstring>(char *old, int isA, int isroot)</argsstring>
+        <name>gen_new_chan_id</name>
+        <param>
+          <type>char *</type>
+          <declname>old</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>isA</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>isroot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="24" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/gen_new_chan_id.c" bodystart="34" bodyend="48" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="fourmer_8h_1ab517b11a59a0af15ca11b7998ce53c5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void print_cdata_cmp</definition>
+        <argsstring>(char *AName, char *BName, struct mk4_corel *cdataA, struct mk4_corel *cdataB)</argsstring>
+        <name>print_cdata_cmp</name>
+        <param>
+          <type>char *</type>
+          <declname>AName</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>BName</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+          <declname>cdataA</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+          <declname>cdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="34" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/print_cdata_cmp.c" bodystart="12" bodyend="107" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" declline="34" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="fourmer_8h_1ac1e2d9c1fc94530cf6e56b570a3abd60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void relabel_chan_def</definition>
+        <argsstring>(char *line, int isA)</argsstring>
+        <name>relabel_chan_def</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>isA</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="29" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/gen_new_chan_id.c" bodystart="57" bodyend="71" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" declline="29" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="fourmer_8h_1a8f1485584a85d416c83b3c9be279799c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void scan_name_edit</definition>
+        <argsstring>(char lineA[][MAX_CHARS], int nA, char lineB[][MAX_CHARS], int nB)</argsstring>
+        <name>scan_name_edit</name>
+        <param>
+          <type>char</type>
+          <declname>lineA</declname>
+          <array>[][MAX_CHARS]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nA</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>lineB</declname>
+          <array>[][MAX_CHARS]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" line="46" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c" bodystart="51" bodyend="76" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h" declline="46" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>fourmer.h<sp/>1342<sp/>2016-05-31<sp/>14:01:08Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>support<sp/>for<sp/>fourmer</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="fourmer_8h_1a07e2b531c72985b064c431c05dfbc5fc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_LINES<sp/><sp/><sp/>4096<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>max<sp/>lines<sp/>in<sp/>an<sp/>input<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_CHARS<sp/><sp/><sp/>512<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>max<sp/>chars<sp/>in<sp/>a<sp/>line</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="fourmer_8h_1a1d5dab30b404fab91608086105afc78c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BUFFER<sp/><sp/>256<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>max<sp/>lines<sp/>in<sp/>a<sp/>merged<sp/>section</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="fourmer_8h_1a0646dbfb737e2fd3ecfb137cc82df653" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IDX_INC<sp/><sp/><sp/><sp/><sp/>100<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>how<sp/>much<sp/>to<sp/>shift<sp/>indices</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="fourmer_8h_1a37d117a18f2caca344d77090e377640e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NUM_CH_MAP<sp/><sp/>2*MAX_CHAN<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>size<sp/>of<sp/>index<sp/>remapping</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="fourmer_8h_1a30def4259200bbdcc432fc1d942366cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_FPATH<sp/><sp/><sp/>1024<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>MAX_PATH?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="fourmer_8h_1ac4693c7c31653d6304e6b816726f4482" kindref="member">msglev</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>Generate<sp/>a<sp/>new<sp/>channel<sp/>id<sp/>based<sp/>on<sp/>the<sp/>old,<sp/>whether<sp/>it<sp/>is<sp/>the</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>A<sp/>file<sp/>(or<sp/>the<sp/>B<sp/>file)<sp/>and<sp/>whether<sp/>it<sp/>is<sp/>the<sp/>root<sp/>or<sp/>post-root.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="fourmer_8h_1a2ceee5895b9978cd0cf92347dc3d4157" kindref="member">gen_new_chan_id</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*old,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isA,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isroot);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>Relabel<sp/>a<sp/>channel<sp/>within<sp/>a<sp/>line<sp/>based<sp/>on<sp/>whether<sp/>it<sp/>is<sp/>the<sp/>A<sp/>or<sp/>B<sp/>file.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fourmer_8h_1ac1e2d9c1fc94530cf6e56b570a3abd60" kindref="member">relabel_chan_def</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isA);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>A<sp/>verbose<sp/>comparison<sp/>diagnostic<sp/>if<sp/>needed</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fourmer_8h_1ab517b11a59a0af15ca11b7998ce53c5e" kindref="member">print_cdata_cmp</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*AName,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*BName,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref><sp/>*cdataA,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref><sp/>*cdataB);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>Append<sp/>sdataB<sp/>to<sp/>sdataC<sp/>and<sp/>edit<sp/>channel<sp/>names<sp/>in<sp/>the<sp/>process.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fourmer_8h_1a283459038e4aa0c6729e72187f6a7d88" kindref="member">append_sdata</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>Reconciliation<sp/>of<sp/>scan<sp/>name</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fourmer_8h_1a8f1485584a85d416c83b3c9be279799c" kindref="member">scan_name_edit</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourmer_8c_1a3530a3b9203a1c89f9d8a33671bbd357" kindref="member">lineA</ref>[][<ref refid="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" kindref="member">MAX_CHARS</ref>],<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nA,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="fourmer_8c_1a4784b4f94a56de203595552f24d0e48a" kindref="member">lineB</ref>[][<ref refid="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" kindref="member">MAX_CHARS</ref>],<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nB);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/include/fourmer.h"/>
+  </compounddef>
+</doxygen>

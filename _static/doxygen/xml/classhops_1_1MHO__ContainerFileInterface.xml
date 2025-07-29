@@ -1,0 +1,659 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ContainerFileInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ContainerFileInterface</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__ContainerDictionary" prot="public" virt="non-virtual">hops::MHO_ContainerDictionary</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__HDF5ContainerFileInterface" prot="public" virt="non-virtual">hops::MHO_HDF5ContainerFileInterface</derivedcompoundref>
+    <includes refid="MHO__ContainerFileInterface_8hh" local="no">MHO_ContainerFileInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerFileInterface_1a43e4a920d0480c48186ab8157f13c1dd" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref></type>
+        <definition>MHO_BinaryFileInterface hops::MHO_ContainerFileInterface::fFileInterface</definition>
+        <argsstring></argsstring>
+        <name>fFileInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="112" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerFileInterface_1ae6239573561470c72cd14a6ae8122ff8" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ContainerFileInterface::fFilename</definition>
+        <argsstring></argsstring>
+        <name>fFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="110" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerFileInterface_1a7d6ca6795553c35cf42f00e26a383878" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ContainerFileInterface::fIndexFilename</definition>
+        <argsstring></argsstring>
+        <name>fIndexFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="111" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1a3ece0ef3788fe519892ea4983a827d17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerFileInterface::MHO_ContainerFileInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ContainerFileInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="6" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1a2e5835d844a97b1e11eb32c509f1eecb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerFileInterface::~MHO_ContainerFileInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ContainerFileInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="29" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="9" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1a8518914bbc5d3df1df6618310d25b69f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerFileInterface::ConvertObjectInStoreToJSON</definition>
+        <argsstring>(MHO_ContainerStore &amp;store, const MHO_UUID &amp;obj_uuid, mho_json &amp;json_obj, int level_of_detail=eJSONBasic)</argsstring>
+        <name>ConvertObjectInStoreToJSON</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_uuid</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>json_obj</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level_of_detail</declname>
+          <defval>eJSONBasic</defval>
+        </param>
+        <briefdescription>
+<para>Converts a specific object in store to JSON representation at given detail level. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> for accessing objects and types. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj_uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>UUID of the object to convert to JSON. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>json_obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json where converted object will be stored. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level_of_detail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Detail level for converting the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="83" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="170" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1a1dac18faefcad63f0e22791ce83db6c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerFileInterface::ConvertObjectInStoreToJSONAndRaw</definition>
+        <argsstring>(MHO_ContainerStore &amp;store, const MHO_UUID &amp;obj_uuid, mho_json &amp;json_obj, std::size_t &amp;rank, const char *&amp;raw_data, std::size_t &amp;raw_data_byte_size, std::string &amp;raw_data_descriptor, int level_of_detail=eJSONBasic)</argsstring>
+        <name>ConvertObjectInStoreToJSONAndRaw</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_uuid</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>json_obj</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>rank</declname>
+        </param>
+        <param>
+          <type>const char *&amp;</type>
+          <declname>raw_data</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>raw_data_byte_size</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>raw_data_descriptor</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level_of_detail</declname>
+          <defval>eJSONBasic</defval>
+        </param>
+        <briefdescription>
+<para>Converts an object in store to JSON and raw data, providing access to raw bytes for hops2flat. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> for accessing objects </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj_uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>UUID of the object to convert </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>json_obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output mho_json object containing converted JSON representation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rank</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output rank of the converted object (specialization for RANK-0) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername><ref refid="structraw__data" kindref="compound">raw_data</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output pointer to raw data bytes (null if not available) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>raw_data_byte_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output size of raw data in bytes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>raw_data_descriptor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output string describing raw data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level_of_detail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input level of detail for conversion </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="99" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="203" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1aaa4c6f5291045b0ec9f8aba2cae285cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerFileInterface::ConvertStoreToJSON</definition>
+        <argsstring>(MHO_ContainerStore &amp;store, mho_json &amp;json_obj, int level_of_detail=eJSONBasic)</argsstring>
+        <name>ConvertStoreToJSON</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>json_obj</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level_of_detail</declname>
+          <defval>eJSONBasic</defval>
+        </param>
+        <briefdescription>
+<para>Converts a container store to JSON representation with specified detail level. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> object containing data to convert. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>json_obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object that will hold the converted JSON data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level_of_detail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Integer specifying the level of detail for the JSON conversion. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="141" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1ab4eaf43ba3563c8663c42243bc473358" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerFileInterface::PopulateStoreFromFile</definition>
+        <argsstring>(MHO_ContainerStore &amp;store, bool do_clear_store=false)</argsstring>
+        <name>PopulateStoreFromFile</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>do_clear_store</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Populates a store from a file, optionally clearing it first. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>currently this function reads the file keys and then the all the file objects note: we may want to split this functionality so we can inspect the file first and then only read the objects of interest <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>do_clear_store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Boolean flag indicating whether to clear the store before populating </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="21" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1a06d80ffe9c3d5bfc819f61dc337fc1d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerFileInterface::SetFilename</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>SetFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Setter for filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New filename to set as a std::string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="36" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="11" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1a66cc762564be2d246981b1215db01588" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerFileInterface::SetIndexFileName</definition>
+        <argsstring>(std::string index_filename)</argsstring>
+        <name>SetIndexFileName</name>
+        <param>
+          <type>std::string</type>
+          <declname>index_filename</declname>
+        </param>
+        <briefdescription>
+<para>Setter for index file name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>index file is optional, if we don&apos;t have an index file, the regular file will be read in 2-passes, first to extract the keys, then to extract the objects likewise, when writing a store to file, if there is no index file specified, none will be created <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index_filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new index file name to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="46" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="16" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerFileInterface_1ae5cdfda109dff476bdea68de3d2854f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerFileInterface::WriteStoreToFile</definition>
+        <argsstring>(MHO_ContainerStore &amp;store)</argsstring>
+        <name>WriteStoreToFile</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> &amp;</type>
+          <declname>store</declname>
+        </param>
+        <briefdescription>
+<para>Writes object in a <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> to file using <ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref> and factory map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> containing objects to write. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="64" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerFileInterface.cc" bodystart="91" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ContainerFileInterface" kindref="compound">MHO_ContainerFileInterface</ref> - a <ref refid="classhops_1_1MHO__ContainerDictionary" kindref="compound">MHO_ContainerDictionary</ref> which can read/write objects to file. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sun Feb 13 15:48:42 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__ContainerFileInterface"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_HDF5ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__HDF5ContainerFileInterface"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="13">
+        <label>size_t</label>
+      </node>
+      <node id="17">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="20">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>json</label>
+      </node>
+      <node id="12">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="14">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__ContainerFileInterface"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>int</label>
+      </node>
+      <node id="5">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>uint8_t</label>
+      </node>
+      <node id="18">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="7">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>char</label>
+      </node>
+      <node id="11">
+        <label>std::string</label>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" line="25" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerFileInterface.hh" bodystart="26" bodyend="113"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1aacb4044308825b39e1f5267ba5b60464" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>AddClassType</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a0103c4975042d0957488ac71c9807d29" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>AddClassType</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a9ce28a29369978d3a129718baf7a910c" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>AddToMap</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a8518914bbc5d3df1df6618310d25b69f" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>ConvertObjectInStoreToJSON</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a1dac18faefcad63f0e22791ce83db6c8" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>ConvertObjectInStoreToJSONAndRaw</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1aaa4c6f5291045b0ec9f8aba2cae285cc" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>ConvertStoreToJSON</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1aa9593b215788c588c77f6781609b2465" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fClassName2UUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a7c19c181ba151d9f18cadf93723061f3" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fFactoryMap</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a43e4a920d0480c48186ab8157f13c1dd" prot="private" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fFileInterface</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1ae6239573561470c72cd14a6ae8122ff8" prot="private" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fFilename</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a7d6ca6795553c35cf42f00e26a383878" prot="private" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fIndexFilename</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1dff8aca0d05dd0aff93a23c3952b6ce" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fJSONConverterMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a4a3b31a0eaac82497f553cb73c05e3d3" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fMD5Generator</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a2de36e66bf0a4e9d56b4729a56b55269" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>fUUID2ClassName</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ae11557634aed6caa84c4650da0f35a0d" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>GenerateContainerFromUUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a18722990995da99e0bfedbbae39ef67c" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>GetClassNameFromObject</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ab5fab332ff20bda9ff5cb2058af53933" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>GetClassNameFromUUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>GetUUIDFor</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1e04611ffbc80e9cce0fcaf26b3d9880" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>GetUUIDFromClassName</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1adb7d3b4cfa2b147704b58f8ad55d7d6a" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>IsTypePresent</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1adeb4c0465fb1605b42912194894bd1ec" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>MHO_ClassIdentityMap</name></member>
+      <member refid="classhops_1_1MHO__ContainerDictionary_1a7e895874e73e23d01a719010684b6110" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>MHO_ContainerDictionary</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a3ece0ef3788fe519892ea4983a827d17" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>MHO_ContainerFileInterface</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1ab4eaf43ba3563c8663c42243bc473358" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>PopulateStoreFromFile</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a06d80ffe9c3d5bfc819f61dc337fc1d9" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>SetFilename</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a66cc762564be2d246981b1215db01588" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>SetIndexFileName</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1ae5cdfda109dff476bdea68de3d2854f9" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>WriteStoreToFile</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ac7bc672558d8f417c3ca2b709ea323b2" prot="public" virt="virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>~MHO_ClassIdentityMap</name></member>
+      <member refid="classhops_1_1MHO__ContainerDictionary_1a58644b41c40da33bb07a4d4c42508711" prot="public" virt="virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>~MHO_ContainerDictionary</name></member>
+      <member refid="classhops_1_1MHO__ContainerFileInterface_1a2e5835d844a97b1e11eb32c509f1eecb" prot="public" virt="virtual"><scope>hops::MHO_ContainerFileInterface</scope><name>~MHO_ContainerFileInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classMHO__CheckForNaN" kind="class" language="C++" prot="public">
+    <compoundname>MHO_CheckForNaN</compoundname>
+    <includes refid="MHO__CheckForNaN_8hh" local="no">MHO_CheckForNaN.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMHO__CheckForNaN_1ad296ed17d13acc02617a4a3821bcd5b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MHO_CheckForNaN&lt; double &gt;::isnan</definition>
+        <argsstring>(const double &amp;value)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a given double value is NaN. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input double value to check for NaN. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if value is NaN, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="59" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classMHO__CheckForNaN_1a81ffa78559d439998273e743e8c4bcd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MHO_CheckForNaN&lt; float &gt;::isnan</definition>
+        <argsstring>(const float &amp;value)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type>const float &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a float value is NaN using std::isnan. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input float value to check for NaN. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the input value is NaN. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="48" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="48" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classMHO__CheckForNaN_1a0f29b70504dacd1a38a38bb5502d44b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MHO_CheckForNaN&lt; long double &gt;::isnan</definition>
+        <argsstring>(const long double &amp;value)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type>const long double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a given value is Not-a-Number (NaN) using standard library&apos;s <ref refid="classMHO__CheckForNaN_1a81ffa78559d439998273e743e8c4bcd7" kindref="member">isnan()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input long double value to check for NaN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the input value is NaN or not </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="70" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="70" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classMHO__CheckForNaN_1aef7779ec7a780dc4111ba96883b4c5a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MHO_CheckForNaN&lt; std::complex&lt; double &gt; &gt;::isnan</definition>
+        <argsstring>(const std::complex&lt; double &gt; &amp;value)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type>const std::complex&lt; double &gt; &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a complex double value is NaN by examining its real and imaginary parts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input complex double value to check for NaN. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if either real or imaginary part is NaN, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="92" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="92" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classMHO__CheckForNaN_1aca19638eaa1390171454189b16d2a4fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MHO_CheckForNaN&lt; std::complex&lt; float &gt; &gt;::isnan</definition>
+        <argsstring>(const std::complex&lt; float &gt; &amp;value)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type>const std::complex&lt; float &gt; &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a complex float value is NaN by examining its real and imaginary parts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input complex float value to check for NaN. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if either real or imaginary part is NaN, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="81" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classMHO__CheckForNaN_1a5a2377b739ae47c77618179e5b587d5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MHO_CheckForNaN&lt; std::complex&lt; long double &gt; &gt;::isnan</definition>
+        <argsstring>(const std::complex&lt; long double &gt; &amp;value)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type>const std::complex&lt; long double &gt; &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a complex long double value is NaN by examining its real and imaginary parts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input complex number to check for NaN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if either real or imaginary part is NaN, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="103" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="103" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>checks if a value is NaN for various numerical types </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Aug 12 11:16:36 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="6" column="1"/>
+    <listofallmembers>
+      <member refid="classMHO__CheckForNaN_1a81ffa78559d439998273e743e8c4bcd7" prot="public" virt="non-virtual"><scope>MHO_CheckForNaN</scope><name>isnan</name></member>
+      <member refid="classMHO__CheckForNaN_1ad296ed17d13acc02617a4a3821bcd5b6" prot="public" virt="non-virtual"><scope>MHO_CheckForNaN</scope><name>isnan</name></member>
+      <member refid="classMHO__CheckForNaN_1a0f29b70504dacd1a38a38bb5502d44b7" prot="public" virt="non-virtual"><scope>MHO_CheckForNaN</scope><name>isnan</name></member>
+      <member refid="classMHO__CheckForNaN_1aca19638eaa1390171454189b16d2a4fd" prot="public" virt="non-virtual"><scope>MHO_CheckForNaN</scope><name>isnan</name></member>
+      <member refid="classMHO__CheckForNaN_1aef7779ec7a780dc4111ba96883b4c5a7" prot="public" virt="non-virtual"><scope>MHO_CheckForNaN</scope><name>isnan</name></member>
+      <member refid="classMHO__CheckForNaN_1a5a2377b739ae47c77618179e5b587d5b" prot="public" virt="non-virtual"><scope>MHO_CheckForNaN</scope><name>isnan</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

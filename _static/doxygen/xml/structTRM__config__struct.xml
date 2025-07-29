@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structTRM__config__struct" kind="struct" language="C++" prot="public">
+    <compoundname>TRM_config_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structTRM__config__struct_1ab8a9880d22b51c8dadf206a024c6a413" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structbad__frame__struct" kindref="compound">bad_frame_struct</ref></type>
+        <definition>struct bad_frame_struct TRM_config_struct::invalid_frame_control</definition>
+        <argsstring></argsstring>
+        <name>invalid_frame_control</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTRM__config__struct_1a247dbd318460282566416df0c9b37f9d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short TRM_config_struct::mux1_1bit</definition>
+        <argsstring></argsstring>
+        <name>mux1_1bit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTRM__config__struct_1ac8b4a97a6596d2336f34096063f2fcc6" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short TRM_config_struct::mux1_2bit[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>mux1_2bit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="42" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTRM__config__struct_1a230ae733d025c24df64a1083ef0c3425" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short TRM_config_struct::mux2_1bit[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>mux2_1bit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="41" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTRM__config__struct_1a159d06eea98cfecf1fecb747db8326b1" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short TRM_config_struct::mux2_2bit[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>mux2_2bit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="40" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTRM__config__struct_1a309e4e5f7655ba8b19bdf122bafe31af" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short TRM_config_struct::mux4_1bit[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>mux4_1bit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="39" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTRM__config__struct_1a5b9f7eacd7d90ddcd712939d64be0783" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short TRM_config_struct::mux4_2bit[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>mux4_2bit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structTRM__config__struct_1a6cefb76d13cadf449b8cd15666a86832" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double TRM_config_struct::parity_error_limit</definition>
+        <argsstring></argsstring>
+        <name>parity_error_limit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="4">
+        <label>bad_frame_struct</label>
+        <link refid="structbad__frame__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>CRC_error</edgelabel>
+          <edgelabel>PE_limit_exceeded</edgelabel>
+          <edgelabel>lost_sync</edgelabel>
+          <edgelabel>unexpected_sync</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>TRM_config_struct</label>
+        <link refid="structTRM__config__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>parity_error_limit</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mux1_1bit</edgelabel>
+          <edgelabel>mux1_2bit</edgelabel>
+          <edgelabel>mux2_1bit</edgelabel>
+          <edgelabel>mux2_2bit</edgelabel>
+          <edgelabel>mux4_1bit</edgelabel>
+          <edgelabel>mux4_2bit</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>invalid_frame_control</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="36" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="37" bodyend="46"/>
+    <listofallmembers>
+      <member refid="structTRM__config__struct_1ab8a9880d22b51c8dadf206a024c6a413" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>invalid_frame_control</name></member>
+      <member refid="structTRM__config__struct_1a247dbd318460282566416df0c9b37f9d" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>mux1_1bit</name></member>
+      <member refid="structTRM__config__struct_1ac8b4a97a6596d2336f34096063f2fcc6" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>mux1_2bit</name></member>
+      <member refid="structTRM__config__struct_1a230ae733d025c24df64a1083ef0c3425" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>mux2_1bit</name></member>
+      <member refid="structTRM__config__struct_1a159d06eea98cfecf1fecb747db8326b1" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>mux2_2bit</name></member>
+      <member refid="structTRM__config__struct_1a309e4e5f7655ba8b19bdf122bafe31af" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>mux4_1bit</name></member>
+      <member refid="structTRM__config__struct_1a5b9f7eacd7d90ddcd712939d64be0783" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>mux4_2bit</name></member>
+      <member refid="structTRM__config__struct_1a6cefb76d13cadf449b8cd15666a86832" prot="public" virt="non-virtual"><scope>TRM_config_struct</scope><name>parity_error_limit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

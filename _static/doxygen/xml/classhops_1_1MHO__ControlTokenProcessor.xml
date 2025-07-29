@@ -1,0 +1,429 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ControlTokenProcessor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ControlTokenProcessor</compoundname>
+    <includes refid="MHO__ControlTokenProcessor_8hh" local="no">MHO_ControlTokenProcessor.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a4879a027fe840555387218b2956f8390" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ControlTokenProcessor::MHO_ControlTokenProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ControlTokenProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="6" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1acb700f45a7b43c6e3314eeab70b6e5d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ControlTokenProcessor::~MHO_ControlTokenProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ControlTokenProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a3269b9fbbd1c0e6ce0861ef74563d5b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessBool</definition>
+        <argsstring>(const MHO_Token &amp;token)</argsstring>
+        <name>ProcessBool</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Processes a boolean token and returns its value as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input boolean token to process. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json representation of the boolean token&apos;s value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="95" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="124" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1adfcca137b99f58a04503ef934bb23bf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessFixedLengthListString</definition>
+        <argsstring>(const std::vector&lt; MHO_Token &gt; &amp;tokens)</argsstring>
+        <name>ProcessFixedLengthListString</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Process a fixed-length list string from tokens and return as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> objects. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing values from input tokens. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="79" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="72" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1ade7124584b39f78392addebed27929d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessInt</definition>
+        <argsstring>(const MHO_Token &amp;token)</argsstring>
+        <name>ProcessInt</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Processes an integer token and converts it to a json value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input token of type <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref>&amp;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Json representation of the integer value from the token. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="39" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="9" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a954887300e55c8b86bd33c3b3a885ac7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessListInt</definition>
+        <argsstring>(const std::vector&lt; MHO_Token &gt; &amp;tokens)</argsstring>
+        <name>ProcessListInt</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Processes a list of tokens as integers and returns them as an mho_json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> objects to process </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing the processed integer values </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="63" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="39" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a5ad53b433800f3b0f654235a42e79a6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessListReal</definition>
+        <argsstring>(const std::vector&lt; MHO_Token &gt; &amp;tokens)</argsstring>
+        <name>ProcessListReal</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Processes a list of tokens as real numbers and returns them as JSON. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> objects. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>JSON object containing processed real number values. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="87" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="103" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1aa24ceec609c0b1406bbe0aa1ab207d6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessListString</definition>
+        <argsstring>(const std::vector&lt; MHO_Token &gt; &amp;tokens)</argsstring>
+        <name>ProcessListString</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Processes a list of (string) tokens and converts them into an mho_json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> objects </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing values from input tokens </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="71" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="60" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a6eb043d13044488831e21be864592fd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessReal</definition>
+        <argsstring>(const MHO_Token &amp;token)</argsstring>
+        <name>ProcessReal</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Processes a real (number) token and converts it to an mho_json value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> containing a real number. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json representation of the input token&apos;s value if conversion succeeds, otherwise empty. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="55" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="27" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1ac9f98dd681897daee240c8d1e8af9009" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlTokenProcessor::ProcessString</definition>
+        <argsstring>(const MHO_Token &amp;token)</argsstring>
+        <name>ProcessString</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <briefdescription>
+<para>Processes a given <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> and returns its associated JSON data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input token containing value to be processed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json representing the processed token&apos;s value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="47" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="21" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a83c316748500d35ec222ac4ac842da9a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ControlTokenProcessor::ConvertBool</definition>
+        <argsstring>(const MHO_Token &amp;token, bool &amp;val)</argsstring>
+        <name>ConvertBool</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Converts an <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> to a boolean value and stores it in val. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input token to convert to boolean </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(bool&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if conversion was successful, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="123" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="180" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a8b22efa913363bdcc912558f07f427d9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ControlTokenProcessor::ConvertFloat</definition>
+        <argsstring>(const MHO_Token &amp;token, double &amp;val)</argsstring>
+        <name>ConvertFloat</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Converts a token&apos;s float value to double and checks for conversion success. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input token containing float value as string. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if conversion is successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="105" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="136" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlTokenProcessor_1a847b53109271c9b834211d9449d1ada3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ControlTokenProcessor::ConvertInteger</definition>
+        <argsstring>(const MHO_Token &amp;token, int &amp;val)</argsstring>
+        <name>ConvertInteger</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &amp;</type>
+          <declname>token</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Converts a <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> to an integer and validates it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>token</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input token to convert. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if conversion is successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="114" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlTokenProcessor.cc" bodystart="151" bodyend="178"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ControlTokenProcessor" kindref="compound">MHO_ControlTokenProcessor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Jun 13 22:27:21 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlTokenProcessor.hh" bodystart="28" bodyend="124"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a83c316748500d35ec222ac4ac842da9a" prot="private" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ConvertBool</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a8b22efa913363bdcc912558f07f427d9" prot="private" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ConvertFloat</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a847b53109271c9b834211d9449d1ada3" prot="private" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ConvertInteger</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a4879a027fe840555387218b2956f8390" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>MHO_ControlTokenProcessor</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a3269b9fbbd1c0e6ce0861ef74563d5b3" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessBool</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1adfcca137b99f58a04503ef934bb23bf5" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessFixedLengthListString</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1ade7124584b39f78392addebed27929d1" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessInt</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a954887300e55c8b86bd33c3b3a885ac7" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessListInt</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a5ad53b433800f3b0f654235a42e79a6d" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessListReal</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1aa24ceec609c0b1406bbe0aa1ab207d6e" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessListString</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1a6eb043d13044488831e21be864592fd2" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessReal</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1ac9f98dd681897daee240c8d1e8af9009" prot="public" virt="non-virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>ProcessString</name></member>
+      <member refid="classhops_1_1MHO__ControlTokenProcessor_1acb700f45a7b43c6e3314eeab70b6e5d1" prot="public" virt="virtual"><scope>hops::MHO_ControlTokenProcessor</scope><name>~MHO_ControlTokenProcessor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

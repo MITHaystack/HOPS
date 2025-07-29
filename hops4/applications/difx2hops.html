@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>difx2hops &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="hops2hdf5" href="hops2hdf5.html" />
+    <link rel="prev" title="hops2flat" href="hops2flat.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">difx2hops</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#positional-arguments">Positional Arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../hops4.html">HOPS4 Applications and Libraries</a></li>
+      <li class="breadcrumb-item active">difx2hops</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/hops4/applications/difx2hops.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="difx2hops">
+<h1>difx2hops<a class="headerlink" href="#difx2hops" title="Link to this heading"></a></h1>
+<p>Convert DiFX output to HOPS-readable format.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">difx2hops [OPTIONS] input_dirs... [output_dir]</span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><cite>difx2hops</cite> processes one or more DiFX output directories and generates HOPS-compatible output.
+Various optional filtering, labeling and other configuration options (similar to difx2mark4) are supported.</p>
+</section>
+<section id="positional-arguments">
+<h2>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">input_dirs</span></code></p></td>
+<td><p>REQUIRED. One or more input directories to be converted.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">output_dir</span></code></p></td>
+<td><p>Optional. Output directory where results (HOPS format) will be written. If unspecified, defaults to <code class="docutils literal notranslate"><span class="pre">&lt;cwd&gt;/&lt;exp-num&gt;</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-h,</span> <span class="pre">--help</span></code></p></td>
+<td><p>Print this help message and exit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-i,</span> <span class="pre">--input-dirs</span> <span class="pre">TEXT</span> <span class="pre">...</span></code> (REQUIRED)</p></td>
+<td><p>Same as positional <code class="docutils literal notranslate"><span class="pre">input_dirs</span></code>; directories to convert.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-o,</span> <span class="pre">--output-dir</span> <span class="pre">TEXT</span></code></p></td>
+<td><p>Same as positional <code class="docutils literal notranslate"><span class="pre">output_dir</span></code>; destination for output files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-m,</span> <span class="pre">--message-level</span> <span class="pre">INT</span></code></p></td>
+<td><p>Set message verbosity level. Range: -2 (debug) to 5 (silent).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-s,</span> <span class="pre">--scode</span> <span class="pre">TEXT</span></code></p></td>
+<td><p>Path to file mapping 2-character station codes to 1-character Mk4 station IDs. Format per line: <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">Xx</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-e,</span> <span class="pre">--exp-num</span> <span class="pre">INT</span></code></p></td>
+<td><p>Experiment identification number.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-r,</span> <span class="pre">--raw-mode</span></code></p></td>
+<td><p>Enable raw mode (skip auto-correlation normalization).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-P,</span> <span class="pre">--preserve-difx-names</span></code></p></td>
+<td><p>Use original DiFX scan names instead of DOY-HHMM format.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-b,</span> <span class="pre">--band</span> <span class="pre">[TEXT,</span> <span class="pre">FLOAT,</span> <span class="pre">FLOAT]</span> <span class="pre">...</span></code> (Excludes: <code class="docutils literal notranslate"><span class="pre">--legacy-bands</span></code>)</p></td>
+<td><p>Define frequency band codes. Each band is a triplet: <code class="docutils literal notranslate"><span class="pre">&lt;code&gt;</span> <span class="pre">&lt;freq_low&gt;</span> <span class="pre">&lt;freq_high&gt;</span></code> in MHz. If unspecified and <code class="docutils literal notranslate"><span class="pre">-L</span></code> is not passed, no band assignment is made.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-L,</span> <span class="pre">--legacy-bands</span></code> (Excludes: <code class="docutils literal notranslate"><span class="pre">--band</span></code>)</p></td>
+<td><p>Use legacy band definitions (default: off). The bands are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">:</span>  <span class="p">(</span><span class="mi">0</span><span class="p">,</span>     <span class="mf">1e+06</span><span class="p">)</span> <span class="n">MHz</span>
+<span class="n">I</span><span class="p">:</span>  <span class="p">(</span><span class="mi">100</span><span class="p">,</span>   <span class="mi">150</span><span class="p">)</span>   <span class="n">MHz</span>
+<span class="n">G</span><span class="p">:</span>  <span class="p">(</span><span class="mi">150</span><span class="p">,</span>   <span class="mi">225</span><span class="p">)</span>   <span class="n">MHz</span>
+<span class="n">P</span><span class="p">:</span>  <span class="p">(</span><span class="mi">225</span><span class="p">,</span>   <span class="mi">390</span><span class="p">)</span>   <span class="n">MHz</span>
+<span class="n">L</span><span class="p">:</span>  <span class="p">(</span><span class="mi">390</span><span class="p">,</span>   <span class="mi">1750</span><span class="p">)</span>  <span class="n">MHz</span>
+<span class="n">S</span><span class="p">:</span>  <span class="p">(</span><span class="mi">1750</span><span class="p">,</span>  <span class="mi">3900</span><span class="p">)</span>  <span class="n">MHz</span>
+<span class="n">C</span><span class="p">:</span>  <span class="p">(</span><span class="mi">3900</span><span class="p">,</span>  <span class="mi">6200</span><span class="p">)</span>  <span class="n">MHz</span>
+<span class="n">X</span><span class="p">:</span>  <span class="p">(</span><span class="mi">6200</span><span class="p">,</span>  <span class="mi">10900</span><span class="p">)</span> <span class="n">MHz</span>
+<span class="n">K</span><span class="p">:</span>  <span class="p">(</span><span class="mi">10900</span><span class="p">,</span> <span class="mi">36000</span><span class="p">)</span> <span class="n">MHz</span>
+<span class="n">Q</span><span class="p">:</span>  <span class="p">(</span><span class="mi">36000</span><span class="p">,</span> <span class="mi">46000</span><span class="p">)</span> <span class="n">MHz</span>
+<span class="n">V</span><span class="p">:</span>  <span class="p">(</span><span class="mi">46000</span><span class="p">,</span> <span class="mi">56000</span><span class="p">)</span> <span class="n">MHz</span>
+<span class="n">W</span><span class="p">:</span>  <span class="p">(</span><span class="mi">56000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span> <span class="n">MHz</span>
+</pre></div>
+</div>
+<p>Narrower bands take precedence during assignment.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-C,</span> <span class="pre">--legacy-station-codes</span></code></p></td>
+<td><p>Use legacy station code map for assigning Mk4 station IDs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-g,</span> <span class="pre">--freq-groups</span> <span class="pre">TEXT</span> <span class="pre">...</span></code></p></td>
+<td><p>Include only the specified frequency groups.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-w,</span> <span class="pre">--bandwidth</span> <span class="pre">FLOAT</span></code></p></td>
+<td><p>Include only channels matching this bandwidth (in MHz).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-a,</span> <span class="pre">--attach-difx-input</span></code></p></td>
+<td><p>Attach the original DiFX <code class="docutils literal notranslate"><span class="pre">.input</span></code> file to the visibility object tags.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hops2flat.html" class="btn btn-neutral float-left" title="hops2flat" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hops2hdf5.html" class="btn btn-neutral float-right" title="hops2hdf5" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

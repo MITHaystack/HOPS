@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__GaussianWhiteNoiseSignal_8hh" kind="file" language="C++">
+    <compoundname>MHO_GaussianWhiteNoiseSignal.hh</compoundname>
+    <includes refid="MHO__SimulatedSignalGenerator_8hh" local="yes">MHO_SimulatedSignalGenerator.hh</includes>
+    <includes local="no">random</includes>
+    <includedby refid="TestSignalFFT_8cc" local="yes">TestSignalFFT.cc</includedby>
+    <includedby refid="MHO__GaussianWhiteNoiseSignal_8cc" local="yes">MHO_GaussianWhiteNoiseSignal.cc</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>MHO_GaussianWhiteNoiseSignal.hh</label>
+        <link refid="MHO__GaussianWhiteNoiseSignal_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cmath</label>
+      </node>
+      <node id="4">
+        <label>random</label>
+      </node>
+      <node id="2">
+        <label>MHO_SimulatedSignalGenerator.hh</label>
+        <link refid="MHO__SimulatedSignalGenerator_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>MHO_GaussianWhiteNoiseSignal.hh</label>
+        <link refid="MHO__GaussianWhiteNoiseSignal_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TestSignalFFT.cc</label>
+        <link refid="TestSignalFFT_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_GaussianWhiteNoiseSignal.cc</label>
+        <link refid="MHO__GaussianWhiteNoiseSignal_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__GaussianWhiteNoiseSignal" prot="public">hops::MHO_GaussianWhiteNoiseSignal</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_GaussianWhiteNoiseSignal_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_GaussianWhiteNoiseSignal_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__SimulatedSignalGenerator_8hh" kindref="compound">MHO_SimulatedSignalGenerator.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal" kindref="compound">MHO_GaussianWhiteNoiseSignal</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator" kindref="compound">MHO_SimulatedSignalGenerator</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae4a77107a0c76295b25b28b9d27a6bca" kindref="member">MHO_GaussianWhiteNoiseSignal</ref>();</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae8ba0c6d1246917c7614bc2991aeaf1d" kindref="member">~MHO_GaussianWhiteNoiseSignal</ref>();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ad91f7aa4c3610c5ee92cdab0d5e2a412" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ad91f7aa4c3610c5ee92cdab0d5e2a412" kindref="member">SetRandomSeed</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed)<sp/>{<sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a153e33a233b50eb0264fb451e4e066f8" kindref="member">fSeed</ref><sp/>=<sp/>std::mt19937::result_type(seed);<sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a55f414f6f2f59fa2668293877daf8c69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a55f414f6f2f59fa2668293877daf8c69" kindref="member">SetMean</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mean)<sp/>{<sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a30f610115fc739fe9d5177b742729cbb" kindref="member">fMean</ref><sp/>=<sp/>mean;<sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae4d82c8803e29b048d9ec912609f1b9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae4d82c8803e29b048d9ec912609f1b9b" kindref="member">SetStandardDeviation</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>std_dev)<sp/>{<sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ac8e660566bdfdbbe11c00d44de7b7d59" kindref="member">fStandardDeviation</ref><sp/>=<sp/>std::fabs(std_dev);<sp/>};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//implementation<sp/>specific</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1adbd94a35d33d3af1533f563b1002fd89" kindref="member">Initialize</ref>()<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a07b458a917979108534272a1118eb3ba" kindref="member">GenerateSample</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>sample)<sp/></highlight><highlight class="keyword">const<sp/>override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a30f610115fc739fe9d5177b742729cbb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a30f610115fc739fe9d5177b742729cbb" kindref="member">fMean</ref>;</highlight></codeline>
+<codeline lineno="65" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ac8e660566bdfdbbe11c00d44de7b7d59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ac8e660566bdfdbbe11c00d44de7b7d59" kindref="member">fStandardDeviation</ref>;</highlight></codeline>
+<codeline lineno="66" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a153e33a233b50eb0264fb451e4e066f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::mt19937::result_type<sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a153e33a233b50eb0264fb451e4e066f8" kindref="member">fSeed</ref>;</highlight></codeline>
+<codeline lineno="67" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1add4c8f35d3e0774c4d87ad234a18e019" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::mt19937*<sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1add4c8f35d3e0774c4d87ad234a18e019" kindref="member">fGenerator</ref>;</highlight></codeline>
+<codeline lineno="68" refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ace49ff566c6c4d1d89b975d0316f3a82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::normal_distribution&lt;<sp/>double<sp/>&gt;*<sp/><ref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ace49ff566c6c4d1d89b975d0316f3a82" kindref="member">fDistribution</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh"/>
+  </compounddef>
+</doxygen>

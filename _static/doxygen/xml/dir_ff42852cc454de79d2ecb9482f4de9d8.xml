@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_ff42852cc454de79d2ecb9482f4de9d8" kind="dir">
+    <compoundname>Math</compoundname>
+    <innerdir refid="dir_158de98f8b9180e98dec16a5c6f07451">include</innerdir>
+    <innerdir refid="dir_7d37709c3006278800184bcbe356fdb7">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/"/>
+  </compounddef>
+</doxygen>

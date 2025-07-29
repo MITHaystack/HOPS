@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_dc6216a0b8e75156bb66ed59375eba3c" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="tapeDB_8h">tapeDB.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/include/"/>
+  </compounddef>
+</doxygen>

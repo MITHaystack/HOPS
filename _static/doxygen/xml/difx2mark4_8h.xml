@@ -1,0 +1,1179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="difx2mark4_8h" kind="file" language="C++">
+    <compoundname>difx2mark4.h</compoundname>
+    <includes local="no">difxio/difx_input.h</includes>
+    <includes local="no">limits.h</includes>
+    <includes local="no">time.h</includes>
+    <includes refid="type__000_8h" local="yes">type_000.h</includes>
+    <includes refid="type__100_8h" local="yes">type_100.h</includes>
+    <includes refid="type__101_8h" local="yes">type_101.h</includes>
+    <includes refid="type__120_8h" local="yes">type_120.h</includes>
+    <includes refid="type__300_8h" local="yes">type_300.h</includes>
+    <includes refid="type__301_8h" local="yes">type_301.h</includes>
+    <includes refid="type__302_8h" local="yes">type_302.h</includes>
+    <includes refid="type__303_8h" local="yes">type_303.h</includes>
+    <includes refid="type__309_8h" local="yes">type_309.h</includes>
+    <includes refid="type__writes_8h" local="yes">type_writes.h</includes>
+    <includedby refid="difx2mark4_8c" local="yes">difx2mark4.c</includedby>
+    <includedby refid="conv2date_8c" local="yes">conv2date.c</includedby>
+    <includedby refid="createRoot_8c" local="yes">createRoot.c</includedby>
+    <includedby refid="createType1s_8c" local="yes">createType1s.c</includedby>
+    <includedby refid="createType3s_8c" local="yes">createType3s.c</includedby>
+    <includedby refid="fill__fblock_8c" local="yes">fill_fblock.c</includedby>
+    <includedby refid="get__vis_8c" local="yes">get_vis.c</includedby>
+    <includedby refid="new__type1_8c" local="yes">new_type1.c</includedby>
+    <includedby refid="normalize_8c" local="yes">normalize.c</includedby>
+    <includedby refid="applications_2difx2mark4_2src_2root__id_8c" local="yes">root_id.c</includedby>
+    <includedby refid="single__code_8c" local="yes">single_code.c</includedby>
+    <includedby refid="write__t100_8c" local="yes">write_t100.c</includedby>
+    <includedby refid="write__t101_8c" local="yes">write_t101.c</includedby>
+    <includedby refid="write__t120_8c" local="yes">write_t120.c</includedby>
+    <includedby refid="write__t300_8c" local="yes">write_t300.c</includedby>
+    <includedby refid="write__t301_8c" local="yes">write_t301.c</includedby>
+    <includedby refid="write__t302_8c" local="yes">write_t302.c</includedby>
+    <includedby refid="write__t303_8c" local="yes">write_t303.c</includedby>
+    <includedby refid="write__t309_8c" local="yes">write_t309.c</includedby>
+    <incdepgraph>
+      <node id="13">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="12">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_writes.h</label>
+        <link refid="type__writes_8h"/>
+      </node>
+      <node id="3">
+        <label>limits.h</label>
+      </node>
+      <node id="9">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="14">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>difxio/difx_input.h</label>
+      </node>
+      <node id="8">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>time.h</label>
+      </node>
+      <node id="1">
+        <label>difx2mark4.h</label>
+        <link refid="difx2mark4_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="19">
+        <label>write_t303.c</label>
+        <link refid="write__t303_8c"/>
+      </node>
+      <node id="11">
+        <label>root_id.c</label>
+        <link refid="applications_2difx2mark4_2src_2root__id_8c"/>
+      </node>
+      <node id="5">
+        <label>createType1s.c</label>
+        <link refid="createType1s_8c"/>
+      </node>
+      <node id="16">
+        <label>write_t300.c</label>
+        <link refid="write__t300_8c"/>
+      </node>
+      <node id="3">
+        <label>conv2date.c</label>
+        <link refid="conv2date_8c"/>
+      </node>
+      <node id="9">
+        <label>new_type1.c</label>
+        <link refid="new__type1_8c"/>
+      </node>
+      <node id="13">
+        <label>write_t100.c</label>
+        <link refid="write__t100_8c"/>
+      </node>
+      <node id="6">
+        <label>createType3s.c</label>
+        <link refid="createType3s_8c"/>
+      </node>
+      <node id="2">
+        <label>difx2mark4.c</label>
+        <link refid="difx2mark4_8c"/>
+      </node>
+      <node id="15">
+        <label>write_t120.c</label>
+        <link refid="write__t120_8c"/>
+      </node>
+      <node id="4">
+        <label>createRoot.c</label>
+        <link refid="createRoot_8c"/>
+      </node>
+      <node id="17">
+        <label>write_t301.c</label>
+        <link refid="write__t301_8c"/>
+      </node>
+      <node id="20">
+        <label>write_t309.c</label>
+        <link refid="write__t309_8c"/>
+      </node>
+      <node id="10">
+        <label>normalize.c</label>
+        <link refid="normalize_8c"/>
+      </node>
+      <node id="14">
+        <label>write_t101.c</label>
+        <link refid="write__t101_8c"/>
+      </node>
+      <node id="7">
+        <label>fill_fblock.c</label>
+        <link refid="fill__fblock_8c"/>
+      </node>
+      <node id="1">
+        <label>difx2mark4.h</label>
+        <link refid="difx2mark4_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>get_vis.c</label>
+        <link refid="get__vis_8c"/>
+      </node>
+      <node id="18">
+        <label>write_t302.c</label>
+        <link refid="write__t302_8c"/>
+      </node>
+      <node id="12">
+        <label>single_code.c</label>
+        <link refid="single__code_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structCommandLineOptions" prot="public">CommandLineOptions</innerclass>
+    <innerclass refid="structvis__record_1_1components" prot="public">vis_record::components</innerclass>
+    <innerclass refid="structfbands" prot="public">fbands</innerclass>
+    <innerclass refid="structfblock__tag" prot="public">fblock_tag</innerclass>
+    <innerclass refid="structfblock__tag_8stn" prot="public">fblock_tag.stn</innerclass>
+    <innerclass refid="structstations" prot="public">stations</innerclass>
+    <innerclass refid="structvis__record" prot="public">vis_record</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="difx2mark4_8h_1ab8419652e77d81a8ee56d31f12ee042b" prot="public" static="no">
+        <name>DIFXIO_VERSION_MAJOR</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="41" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a80c899b1fa4d5e1e7db4ab3989179783" prot="public" static="no">
+        <name>DIFXIO_VERSION_MINOR</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a2aa2be391e1bb8951ffbf0cb787d4075" prot="public" static="no">
+        <name>EXP_CODE_LEN</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a887e1f03fc86df40bb36cb1f5b5e7cbb" prot="public" static="no">
+        <name>MAGLIM</name>
+        <initializer>10000.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a93c8d7ab3ca8b65f933c5c899bbff113" prot="public" static="no">
+        <name>MAX_DFRQ</name>
+        <initializer>800</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a5d28e6bb7fc3071ff539d078842a2e82" prot="public" static="no">
+        <name>MAX_FBANDS</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1aaec5b314a300a0200053191c10c417bf" prot="public" static="no">
+        <name>MAX_FPPAIRS</name>
+        <initializer>48000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a7ffa49171ebf2b6ffe0a77924efa955b" prot="public" static="no">
+        <name>MAX_INPUT_FILES</name>
+        <initializer>4096</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a005a7e8db35752f648d251dd13836c1d" prot="public" static="no">
+        <name>MAX_STN</name>
+        <initializer>50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a06e04d000a2fd3821b8e287fdc446c19" prot="public" static="no">
+        <name>MAX_VIS</name>
+        <initializer>8192</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a35cd72f0adb0fcf864e2ec698bec110f" prot="public" static="no">
+        <name>NUMFILS</name>
+        <initializer>500</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="difx2mark4_8h_1a81b8da61d578c868b52ab7bc9777db0b" prot="public" static="no">
+        <name>NVRMAX</name>
+        <initializer>98304000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77" prot="public" static="no" strong="no">
+        <type></type>
+        <name>booleans</name>
+        <enumvalue id="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" prot="public">
+          <name>FALSE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" prot="public">
+          <name>TRUE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="37" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="37" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="difx2mark4_8h_1a36be5d6b48b1ee0a19df640623a7ccde" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void conv2date</definition>
+        <argsstring>(double, struct date *)</argsstring>
+        <name>conv2date</name>
+        <param>
+          <type>double</type>
+          <declname>dmjd</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>pdate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="150" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/conv2date.c" bodystart="16" bodyend="69" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="150" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a9f5c195683537e3884f3352c7c675110" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int createRoot</definition>
+        <argsstring>(DifxInput *, struct fblock_tag *, int, int, char *, char *, char *, struct stations *, struct CommandLineOptions *, char *)</argsstring>
+        <name>createRoot</name>
+        <param>
+          <type>DifxInput *</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfblock__tag" kindref="compound">fblock_tag</ref> *</type>
+          <declname>pfb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>jobId</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>scanId</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>rcode</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstations" kindref="compound">stations</ref> *</type>
+          <declname>stns</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref> *</type>
+          <declname>opts</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>rootname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="152" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/createRoot.c" bodystart="14" bodyend="855" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="152" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1ab56d7261ae1f752e090c7681e0562b42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int createType1s</definition>
+        <argsstring>(DifxInput *, struct fblock_tag *, int *, int, char *, char *, struct stations *, struct CommandLineOptions *, char *)</argsstring>
+        <name>createType1s</name>
+        <param>
+          <type>DifxInput *</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfblock__tag" kindref="compound">fblock_tag</ref> *</type>
+          <declname>pfb</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>jobId</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>scanId</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>rcode</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstations" kindref="compound">stations</ref> *</type>
+          <declname>stns</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref> *</type>
+          <declname>opts</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>rootname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="156" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/createType1s.c" bodystart="26" bodyend="450" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="156" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1acc92dc8d13bacbf9a423535a461b20af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int createType3s</definition>
+        <argsstring>(DifxInput *, struct fblock_tag *, int, int, int, char *, char *, struct stations *, struct CommandLineOptions *)</argsstring>
+        <name>createType3s</name>
+        <param>
+          <type>DifxInput *</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfblock__tag" kindref="compound">fblock_tag</ref> *</type>
+          <declname>pfb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>startJob</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>endJob</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>scanId</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>rcode</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstations" kindref="compound">stations</ref> *</type>
+          <declname>stns</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref> *</type>
+          <declname>opts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="159" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/createType3s.c" bodystart="27" bodyend="1039" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="159" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a10b390babf706732507ebf085294e792" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double double_reverse</definition>
+        <argsstring>(double)</argsstring>
+        <name>double_reverse</name>
+        <param>
+          <type>double</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="185" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="97" bodyend="118" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="185" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a42803addab17b848d2a94c8d8d381ae0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float float_reverse</definition>
+        <argsstring>(float)</argsstring>
+        <name>float_reverse</name>
+        <param>
+          <type>float</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="184" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="81" bodyend="94" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="184" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1aedba64af82bf5224682912f2a08ee0ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_vis</definition>
+        <argsstring>(DifxInput *, char *, struct CommandLineOptions *, int *, int *, int *, vis_record **, char *, struct fblock_tag *)</argsstring>
+        <name>get_vis</name>
+        <param>
+          <type>DifxInput *</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>vf_name</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref> *</type>
+          <declname>opts</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>nvrtot</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>nvis</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>vrsize</declname>
+        </param>
+        <param>
+          <type><ref refid="structvis__record" kindref="compound">vis_record</ref> **</type>
+          <declname>vrec</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>corrdate</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfblock__tag" kindref="compound">fblock_tag</ref> *</type>
+          <declname>pfb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="162" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/get_vis.c" bodystart="21" bodyend="209" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="162" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a4d11fffa59699c21c109ee5ee51a1b7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char</type>
+        <definition>char getband</definition>
+        <argsstring>(double)</argsstring>
+        <name>getband</name>
+        <param>
+          <type>double</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="154" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/createRoot.c" bodystart="857" bodyend="867" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="154" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1ab0229178a06d9cdcae445e573be776dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int int_reverse</definition>
+        <argsstring>(int)</argsstring>
+        <name>int_reverse</name>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="182" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="41" bodyend="54" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="182" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1aa53a0cb3deb5af0916ad970eda4f12df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long</type>
+        <definition>long long_reverse</definition>
+        <argsstring>(long)</argsstring>
+        <name>long_reverse</name>
+        <param>
+          <type>long</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="183" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="57" bodyend="78" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="183" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a99a35b80522723d137cbd5c39000bc91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int new_type1</definition>
+        <argsstring>(DifxInput *, struct fblock_tag *, int, int, int, int, int *, double *, struct stations *, char *, struct CommandLineOptions *, FILE **, int, char *, char *, char *, char *, int, int)</argsstring>
+        <name>new_type1</name>
+        <param>
+          <type>DifxInput *</type>
+        </param>
+        <param>
+          <type>struct <ref refid="structfblock__tag" kindref="compound">fblock_tag</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int *</type>
+        </param>
+        <param>
+          <type>double *</type>
+        </param>
+        <param>
+          <type>struct <ref refid="structstations" kindref="compound">stations</ref> *</type>
+        </param>
+        <param>
+          <type>char *</type>
+        </param>
+        <param>
+          <type>struct <ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref> *</type>
+        </param>
+        <param>
+          <type>FILE **</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>char *</type>
+        </param>
+        <param>
+          <type>char *</type>
+        </param>
+        <param>
+          <type>char *</type>
+        </param>
+        <param>
+          <type>char *</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="165" column="5" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="165" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1ac1f452a57bfdd684dfa96996b6c29567" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void normalize</definition>
+        <argsstring>(struct CommandLineOptions *, vis_record *, int, int *, int *, struct fblock_tag *)</argsstring>
+        <name>normalize</name>
+        <param>
+          <type>struct <ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref> *</type>
+          <declname>opts</declname>
+        </param>
+        <param>
+          <type><ref refid="structvis__record" kindref="compound">vis_record</ref> *</type>
+          <declname>vrec</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nvrtot</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>nvis</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>vrsize</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfblock__tag" kindref="compound">fblock_tag</ref> *</type>
+          <declname>pfb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="171" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/normalize.c" bodystart="16" bodyend="211" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="171" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a8a191dd824d0dcce94f1c7825cafb356" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* root_id</definition>
+        <argsstring>(int, int, int, int, int)</argsstring>
+        <name>root_id</name>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>day</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hour</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="174" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/root_id.c" bodystart="59" bodyend="87" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="174" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1ac23688f7d5c3092b03b7d3cddfcd34b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* root_id_break</definition>
+        <argsstring>(time_t, int, int, int, int, int)</argsstring>
+        <name>root_id_break</name>
+        <param>
+          <type>time_t</type>
+          <declname>now</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>day</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hour</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="175" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/root_id.c" bodystart="89" bodyend="94" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="175" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a4e9c6dc97cedda6b6a45afa5ce6815f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int root_id_delta</definition>
+        <argsstring>(time_t)</argsstring>
+        <name>root_id_delta</name>
+        <param>
+          <type>time_t</type>
+          <declname>now</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="176" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/root_id.c" bodystart="23" bodyend="30" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="176" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1a6331634a3d2bfeb179e40818eb3eac89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>short</type>
+        <definition>short short_reverse</definition>
+        <argsstring>(short)</argsstring>
+        <name>short_reverse</name>
+        <param>
+          <type>short</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="180" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="15" bodyend="25" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="180" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1aa115776987a18ee8374eb5818aee03e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char</type>
+        <definition>char single_code</definition>
+        <argsstring>(char *, char *)</argsstring>
+        <name>single_code</name>
+        <param>
+          <type>char *</type>
+          <declname>station</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>fname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="178" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/single_code.c" bodystart="6" bodyend="89" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="178" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="difx2mark4_8h_1abdef71412540e47cc8fc53d97acf535b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned short</type>
+        <definition>unsigned short unsig_reverse</definition>
+        <argsstring>(unsigned short)</argsstring>
+        <name>unsig_reverse</name>
+        <param>
+          <type>unsigned short</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="181" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/swabr.c" bodystart="28" bodyend="38" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" declline="181" declcolumn="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/***************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Copyright<sp/>(C)<sp/>2010<sp/>by<sp/>Roger<sp/>Cappallo<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/><sp/>This<sp/>program<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify<sp/><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/><sp/><sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by<sp/><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>3<sp/>of<sp/>the<sp/>License,<sp/>or<sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>This<sp/>program<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/>along<sp/>with<sp/>this<sp/>program;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Free<sp/>Software<sp/>Foundation,<sp/>Inc.,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/>59<sp/>Temple<sp/>Place<sp/>-<sp/>Suite<sp/>330,<sp/>Boston,<sp/>MA<sp/><sp/>02111-1307,<sp/>USA.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>***************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__DIFX2MARK4_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__DIFX2MARK4_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;difxio/difx_input.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="difx2mark4_8h_1a7ffa49171ebf2b6ffe0a77924efa955b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_INPUT_FILES<sp/>4096</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="difx2mark4_8h_1a06e04d000a2fd3821b8e287fdc446c19" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_VIS<sp/>8192</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="difx2mark4_8h_1a005a7e8db35752f648d251dd13836c1d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_STN<sp/>50</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="difx2mark4_8h_1a5d28e6bb7fc3071ff539d078842a2e82" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_FBANDS<sp/>20<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="difx2mark4_8h_1a2aa2be391e1bb8951ffbf0cb787d4075" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EXP_CODE_LEN<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="difx2mark4_8h_1a35cd72f0adb0fcf864e2ec698bec110f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NUMFILS<sp/>500<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>max<sp/>number<sp/>of<sp/>type<sp/>1<sp/>output<sp/>files</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="difx2mark4_8h_1a887e1f03fc86df40bb36cb1f5b5e7cbb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAGLIM<sp/>10000.0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>threshold<sp/>magnitude<sp/>for<sp/>vis.<sp/>rejection</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="difx2mark4_8h_1aaec5b314a300a0200053191c10c417bf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_FPPAIRS<sp/>48000<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dimensioned<sp/>for<sp/>b-lines<sp/>x<sp/>chans<sp/>x<sp/>pol_prods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="difx2mark4_8h_1a93c8d7ab3ca8b65f933c5c899bbff113" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_DFRQ<sp/>800<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>allowed<sp/>max<sp/>number<sp/>of<sp/>*DiFX*<sp/>frequencies</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="difx2mark4_8h_1a81b8da61d578c868b52ab7bc9777db0b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NVRMAX<sp/>98304000<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//max<sp/>#<sp/>of<sp/>vis<sp/>records,<sp/>4*64*3000*128</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77" kindref="member">booleans</ref><sp/>{<ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>,<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//define<sp/>these<sp/>if<sp/>some<sp/>how<sp/>they<sp/>were<sp/>not<sp/>passed<sp/>at<sp/>compile<sp/>time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DIFXIO_VERSION_MAJOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="difx2mark4_8h_1ab8419652e77d81a8ee56d31f12ee042b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DIFXIO_VERSION_MAJOR<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DIFXIO_VERSION_MINOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="difx2mark4_8h_1a80c899b1fa4d5e1e7db4ab3989179783" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DIFXIO_VERSION_MINOR<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structCommandLineOptions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51" refid="structCommandLineOptions_1a52dc5d39ed55f9fadf25435791ba834f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a52dc5d39ed55f9fadf25435791ba834f" kindref="member">exp_no</ref>[<ref refid="difx2mark4_8h_1a2aa2be391e1bb8951ffbf0cb787d4075" kindref="member">EXP_CODE_LEN</ref>+1];</highlight></codeline>
+<codeline lineno="52" refid="structCommandLineOptions_1ab965da9de6c882c191ae37eeb0168251" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structCommandLineOptions_1ab965da9de6c882c191ae37eeb0168251" kindref="member">baseFile</ref>[<ref refid="difx2mark4_8h_1a7ffa49171ebf2b6ffe0a77924efa955b" kindref="member">MAX_INPUT_FILES</ref>];</highlight></codeline>
+<codeline lineno="53" refid="structCommandLineOptions_1a5541796d34c1cd8b1ea78b00c189a876" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a5541796d34c1cd8b1ea78b00c189a876" kindref="member">scodeFile</ref>[PATH_MAX];</highlight></codeline>
+<codeline lineno="54" refid="structCommandLineOptions_1a6aa23bd1c4fca750d55760465b48aee4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>**<ref refid="structCommandLineOptions_1a6aa23bd1c4fca750d55760465b48aee4" kindref="member">in</ref>;</highlight></codeline>
+<codeline lineno="55" refid="structCommandLineOptions_1aa0db92674a9be68e6d52713c4e0cb6fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structCommandLineOptions_1aa0db92674a9be68e6d52713c4e0cb6fa" kindref="member">scan</ref>;</highlight></codeline>
+<codeline lineno="56" refid="structCommandLineOptions_1a6638a1298e4ea1f6938f9248ebdab7d1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a6638a1298e4ea1f6938f9248ebdab7d1" kindref="member">nBaseFile</ref>;</highlight></codeline>
+<codeline lineno="57" refid="structCommandLineOptions_1a734312c99830b58d879c0289392cd097" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a734312c99830b58d879c0289392cd097" kindref="member">writemodel</ref>;</highlight></codeline>
+<codeline lineno="58" refid="structCommandLineOptions_1a400c1e7dd70b796b1ae00aeebd3a1111" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a400c1e7dd70b796b1ae00aeebd3a1111" kindref="member">pretend</ref>;</highlight></codeline>
+<codeline lineno="59" refid="structCommandLineOptions_1ad49cd2ece892b70916d3e0adec65015b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1ad49cd2ece892b70916d3e0adec65015b" kindref="member">scale</ref>;</highlight></codeline>
+<codeline lineno="60" refid="structCommandLineOptions_1aecfaabcd631e34f9b362351db25d34eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1aecfaabcd631e34f9b362351db25d34eb" kindref="member">verbose</ref>;</highlight></codeline>
+<codeline lineno="61" refid="structCommandLineOptions_1a817adfd73036aabbdb55515422c94715" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a817adfd73036aabbdb55515422c94715" kindref="member">localdir</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>some<sp/>overrides<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="structCommandLineOptions_1a6ba959aea464982324215377f751c150" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a6ba959aea464982324215377f751c150" kindref="member">specAvg</ref>;</highlight></codeline>
+<codeline lineno="64" refid="structCommandLineOptions_1a7677454eed8503853417813ac36755fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a7677454eed8503853417813ac36755fc" kindref="member">doalldifx</ref>;</highlight></codeline>
+<codeline lineno="65" refid="structCommandLineOptions_1a4fc378dbba7c7f7c22932b80e3fa72da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a4fc378dbba7c7f7c22932b80e3fa72da" kindref="member">nOutChan</ref>;</highlight></codeline>
+<codeline lineno="66" refid="structCommandLineOptions_1a2096c4ac216df07be3c8cea48364d605" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a2096c4ac216df07be3c8cea48364d605" kindref="member">startChan</ref>;</highlight></codeline>
+<codeline lineno="67" refid="structCommandLineOptions_1ad19a0fb3d4ec2ffac3f369589ccdf59b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1ad19a0fb3d4ec2ffac3f369589ccdf59b" kindref="member">keepOrder</ref>;</highlight></codeline>
+<codeline lineno="68" refid="structCommandLineOptions_1aed2467726661c84c74158cf526f74189" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1aed2467726661c84c74158cf526f74189" kindref="member">dontCombine</ref>;</highlight></codeline>
+<codeline lineno="69" refid="structCommandLineOptions_1a4441bc420de4397137b320939694f45e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a4441bc420de4397137b320939694f45e" kindref="member">overrideVersion</ref>;</highlight></codeline>
+<codeline lineno="70" refid="structCommandLineOptions_1add10c269a150ab3f78a0ca88602219ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1add10c269a150ab3f78a0ca88602219ed" kindref="member">sniffTime</ref>;</highlight></codeline>
+<codeline lineno="71" refid="structCommandLineOptions_1adbe453c8db3fd367da5c18e34648f775" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1adbe453c8db3fd367da5c18e34648f775" kindref="member">pulsarBin</ref>;</highlight></codeline>
+<codeline lineno="72" refid="structCommandLineOptions_1a732612a66efb7707edaee67221076917" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a732612a66efb7707edaee67221076917" kindref="member">phaseCentre</ref>;</highlight></codeline>
+<codeline lineno="73" refid="structCommandLineOptions_1a11d89338b4a9cba688448b0161f30b40" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1a11d89338b4a9cba688448b0161f30b40" kindref="member">jobMatrixDeltaT</ref>;<sp/></highlight><highlight class="comment">/*<sp/>seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="structCommandLineOptions_1aecd2c4078e75cdb4f7af6bfc8edd7645" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1aecd2c4078e75cdb4f7af6bfc8edd7645" kindref="member">raw</ref>;</highlight></codeline>
+<codeline lineno="75" refid="structCommandLineOptions_1ae436237798fd83e246a2f3aae655a9b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1ae436237798fd83e246a2f3aae655a9b3" kindref="member">fgroups</ref>[16];</highlight></codeline>
+<codeline lineno="76" refid="structCommandLineOptions_1ae4f69f4497cbab4e62f492ceb24cda58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions_1ae4f69f4497cbab4e62f492ceb24cda58" kindref="member">bandwidth</ref>[8];</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="structvis__record" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81" refid="structvis__record_1a85405915991a6d1834311c6acc4836c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1a85405915991a6d1834311c6acc4836c8" kindref="member">sync</ref>;</highlight></codeline>
+<codeline lineno="82" refid="structvis__record_1a44f88b31ebb56755c0c8cf939dd739fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1a44f88b31ebb56755c0c8cf939dd739fe" kindref="member">version</ref>;</highlight></codeline>
+<codeline lineno="83" refid="structvis__record_1ae9c0eea3dd3ba3035daa7a46c27df19d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1ae9c0eea3dd3ba3035daa7a46c27df19d" kindref="member">baseline</ref>;</highlight></codeline>
+<codeline lineno="84" refid="structvis__record_1aee479aa1e80ceba4571eea1f1f05420e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1aee479aa1e80ceba4571eea1f1f05420e" kindref="member">nvis</ref>;</highlight></codeline>
+<codeline lineno="85" refid="structvis__record_1ae6eb8fd5e339b0abf16eed96c885063e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1ae6eb8fd5e339b0abf16eed96c885063e" kindref="member">mjd</ref>;</highlight></codeline>
+<codeline lineno="86" refid="structvis__record_1ad89ec1f263d922d9bdda9157760412f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1ad89ec1f263d922d9bdda9157760412f4" kindref="member">iat</ref>;</highlight></codeline>
+<codeline lineno="87" refid="structvis__record_1a830b2f4cb30b160daec5532a1978fd1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1a830b2f4cb30b160daec5532a1978fd1b" kindref="member">config_index</ref>;</highlight></codeline>
+<codeline lineno="88" refid="structvis__record_1a89617b95ffe9234eaaedf7f444580637" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1a89617b95ffe9234eaaedf7f444580637" kindref="member">source_index</ref>;</highlight></codeline>
+<codeline lineno="89" refid="structvis__record_1a58f62a78e010c80ab32393d3b60fbac7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1a58f62a78e010c80ab32393d3b60fbac7" kindref="member">freq_index</ref>;</highlight></codeline>
+<codeline lineno="90" refid="structvis__record_1a61ec6c432bc645ff99be9528a2b8d33e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>pols[2];</highlight></codeline>
+<codeline lineno="91" refid="structvis__record_1a54bd8c05879c90e7fa66d2f1ac2d124f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1a54bd8c05879c90e7fa66d2f1ac2d124f" kindref="member">pulsar_bin</ref>;</highlight></codeline>
+<codeline lineno="92" refid="structvis__record_1a14b52e86107eb4d38bb957e5775a7f3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1a14b52e86107eb4d38bb957e5775a7f3a" kindref="member">weight</ref>;</highlight></codeline>
+<codeline lineno="93" refid="structvis__record_1ad7eeb28ccff8050306fa76488f31edaa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>uvw[3];</highlight></codeline>
+<codeline lineno="94" refid="structvis__record_1_1components" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structvis__record_1_1components" kindref="compound">components</ref></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96" refid="structvis__record_1_1components_1a4246119ff16957291d74d5ad98bbd0b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1_1components_1a4246119ff16957291d74d5ad98bbd0b7" kindref="member">real</ref>;</highlight></codeline>
+<codeline lineno="97" refid="structvis__record_1_1components_1aa6571447b7a9caac1634d03ca2112aad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structvis__record_1_1components_1aa6571447b7a9caac1634d03ca2112aad" kindref="member">imag</ref>;</highlight></codeline>
+<codeline lineno="98" refid="structvis__record_1af2b0cbf801a53bd6c26c2dbd2448e4a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>comp[<ref refid="difx2mark4_8h_1a06e04d000a2fd3821b8e287fdc446c19" kindref="member">MAX_VIS</ref>];</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structvis__record" kindref="compound">vis_record</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="structstations" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstations" kindref="compound">stations</ref></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103" refid="structstations_1ac3b2b09494de596a90d4014121aecd58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structstations_1ac3b2b09494de596a90d4014121aecd58" kindref="member">inscan</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>in<sp/>scan<sp/>according<sp/>to<sp/>vex<sp/>SCHED<sp/>block</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structstations_1a94f820da5b097578368382585f8f7c14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structstations_1a94f820da5b097578368382585f8f7c14" kindref="member">invis</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>visibilities<sp/>found<sp/>in<sp/>.difx/<sp/>data<sp/>for<sp/>this<sp/>antenna</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="structstations_1af17f5f0c3e710549bfa4d7effef382b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structstations_1af17f5f0c3e710549bfa4d7effef382b1" kindref="member">mk4_id</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>single<sp/>char<sp/>mk4<sp/>station<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="structstations_1a94fd8563f197140371275aeb937334f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structstations_1a94fd8563f197140371275aeb937334f0" kindref="member">intl_name</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>two<sp/>letter<sp/>international<sp/>stn<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="structstations_1aa2c668bf6efa37d3f0680914edb0ad63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structstations_1aa2c668bf6efa37d3f0680914edb0ad63" kindref="member">difx_name</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>two<sp/>letter<sp/>code<sp/>used<sp/>by<sp/>difx</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="structfbands" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfbands" kindref="compound">fbands</ref></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112" refid="structfbands_1aa31ea9f4cc994074fd7db0fdabf9bc83" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structfbands_1aa31ea9f4cc994074fd7db0fdabf9bc83" kindref="member">code</ref>;</highlight></codeline>
+<codeline lineno="113" refid="structfbands_1af2b6ebdf22219d2adfd2dd1d258befba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structfbands_1af2b6ebdf22219d2adfd2dd1d258befba" kindref="member">flo</ref>;</highlight></codeline>
+<codeline lineno="114" refid="structfbands_1a4bf757a8d92287f82904b9f15f5e0d7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structfbands_1a4bf757a8d92287f82904b9f15f5e0d7b" kindref="member">fhi</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="structfblock__tag" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfblock__tag" kindref="compound">fblock_tag</ref></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="119" refid="structfblock__tag_8stn" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>chan_id[8];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>channel<sp/>id<sp/>for<sp/>identifying<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>sideband;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>U<sp/>or<sp/>L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>pol;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>R<sp/>or<sp/>L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ant;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>antenna<sp/>table<sp/>index</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>find;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>frequency<sp/>table<sp/>index</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bs;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>quantization<sp/>bits/sample</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>first_time;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>true<sp/>iff<sp/>first<sp/>entry<sp/>in<sp/>table<sp/>of<sp/>chan_id<sp/>for<sp/>ant<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit__proto_8h_1ae4775653f5dbec8abc3cb8fe77c4809f" kindref="member">zoom</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>true<sp/>iff<sp/>this<sp/>channel<sp/>is<sp/>zoom<sp/>mode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_spec_chan;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>#<sp/>of<sp/>spectral<sp/>channels<sp/>output<sp/>from<sp/>difx</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pcal_int;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pcal<sp/>interval<sp/>(MHz)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>freq;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>LO<sp/>frequency<sp/>(MHz);<sp/>negative<sp/>for<sp/>LSB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bw;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bandwidth<sp/>(MHz)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="structfblock__tag_1a6ffbdc0fa99513a8f9acb2dc725045c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><ref refid="structfblock__tag_1a6ffbdc0fa99513a8f9acb2dc725045c8" kindref="member">stn</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>reference<sp/>|<sp/>remote</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__000_8h" kindref="compound">type_000.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__100_8h" kindref="compound">type_100.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__101_8h" kindref="compound">type_101.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__120_8h" kindref="compound">type_120.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__300_8h" kindref="compound">type_300.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__301_8h" kindref="compound">type_301.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__302_8h" kindref="compound">type_302.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__303_8h" kindref="compound">type_303.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__309_8h" kindref="compound">type_309.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>function<sp/>prototypes<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__writes_8h" kindref="compound">type_writes.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>conv2date.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a36be5d6b48b1ee0a19df640623a7ccde" kindref="member">conv2date</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref><sp/>*);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>createRoot.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a9f5c195683537e3884f3352c7c675110" kindref="member">createRoot</ref><sp/>(DifxInput<sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfblock__tag" kindref="compound">fblock_tag</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstations" kindref="compound">stations</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a4d11fffa59699c21c109ee5ee51a1b7d" kindref="member">getband</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>createType1s.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1ab56d7261ae1f752e090c7681e0562b42" kindref="member">createType1s</ref><sp/>(DifxInput<sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfblock__tag" kindref="compound">fblock_tag</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstations" kindref="compound">stations</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>createType3s.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1acc92dc8d13bacbf9a423535a461b20af" kindref="member">createType3s</ref><sp/>(DifxInput<sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfblock__tag" kindref="compound">fblock_tag</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstations" kindref="compound">stations</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref><sp/>*);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get_vis.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1aedba64af82bf5224682912f2a08ee0ed" kindref="member">get_vis</ref><sp/>(DifxInput<sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structvis__record" kindref="compound">vis_record</ref><sp/>**,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfblock__tag" kindref="compound">fblock_tag</ref><sp/>*);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>new_type1.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="difx2mark4_8h_1a99a35b80522723d137cbd5c39000bc91" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a99a35b80522723d137cbd5c39000bc91" kindref="member">new_type1</ref><sp/>(DifxInput<sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfblock__tag" kindref="compound">fblock_tag</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstations" kindref="compound">stations</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref><sp/>*,<sp/>FILE<sp/>**,<sp/></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>write_t120.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight><highlight class="comment">//void<sp/>write_t120<sp/>(struct<sp/>type_120<sp/>*,<sp/>FILE<sp/>*);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>normalize.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1ac1f452a57bfdd684dfa96996b6c29567" kindref="member">normalize</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structCommandLineOptions" kindref="compound">CommandLineOptions</ref><sp/>*,<sp/><ref refid="structvis__record" kindref="compound">vis_record</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfblock__tag" kindref="compound">fblock_tag</ref><sp/>*);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>root_id.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="difx2mark4_8h_1a8a191dd824d0dcce94f1c7825cafb356" kindref="member">root_id</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="difx2mark4_8h_1ac23688f7d5c3092b03b7d3cddfcd34b6" kindref="member">root_id_break</ref>(time_t,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a4e9c6dc97cedda6b6a45afa5ce6815f5" kindref="member">root_id_delta</ref>(time_t);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>single_code.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1aa115776987a18ee8374eb5818aee03e9" kindref="member">single_code</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>swabr.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a6331634a3d2bfeb179e40818eb3eac89" kindref="member">short_reverse</ref><sp/>(</highlight><highlight class="keywordtype">short</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1abdef71412540e47cc8fc53d97acf535b" kindref="member">unsig_reverse</ref><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1ab0229178a06d9cdcae445e573be776dd" kindref="member">int_reverse</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1aa53a0cb3deb5af0916ad970eda4f12df" kindref="member">long_reverse</ref><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a42803addab17b848d2a94c8d8d381ae0" kindref="member">float_reverse</ref><sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a10b390babf706732507ebf085294e792" kindref="member">double_reverse</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight><highlight class="comment">//<sp/>vim:<sp/>shiftwidth=4:softtabstop=4:expandtab:cindent:cinoptions={1sf1s^-1s</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h"/>
+  </compounddef>
+</doxygen>

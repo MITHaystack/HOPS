@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structibaselist" kind="struct" language="C++" prot="public">
+    <compoundname>ibaselist</compoundname>
+    <includes refid="aedit_8h" local="no">aedit.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structibaselist_1a403cebb16bea5497ed89a2f6b2644850" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ibaselist::baseline[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="57" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structibaselist_1a053bfd5bff408abe0143a8b6a3a6d38c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ibaselist::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="57" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ibaselist</label>
+        <link refid="structibaselist"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>baseline</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>index</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="57" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="57" bodyend="57"/>
+    <listofallmembers>
+      <member refid="structibaselist_1a403cebb16bea5497ed89a2f6b2644850" prot="public" virt="non-virtual"><scope>ibaselist</scope><name>baseline</name></member>
+      <member refid="structibaselist_1a053bfd5bff408abe0143a8b6a3a6d38c" prot="public" virt="non-virtual"><scope>ibaselist</scope><name>index</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

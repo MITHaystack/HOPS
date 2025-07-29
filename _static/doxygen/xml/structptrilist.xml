@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structptrilist" kind="struct" language="C++" prot="public">
+    <compoundname>ptrilist</compoundname>
+    <includes refid="aedit_8h" local="no">aedit.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structptrilist_1a3434d412ae904ba59e06e4b7be4f51f3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ptrilist::present</definition>
+        <argsstring></argsstring>
+        <name>present</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="58" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structptrilist_1a3470df6157b6b870d792d9805498911c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ptrilist::triangle[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>triangle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="58" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ptrilist</label>
+        <link refid="structptrilist"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>triangle</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>present</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="58" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="58" bodyend="58"/>
+    <listofallmembers>
+      <member refid="structptrilist_1a3434d412ae904ba59e06e4b7be4f51f3" prot="public" virt="non-virtual"><scope>ptrilist</scope><name>present</name></member>
+      <member refid="structptrilist_1a3470df6157b6b870d792d9805498911c" prot="public" virt="non-virtual"><scope>ptrilist</scope><name>triangle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

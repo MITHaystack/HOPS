@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mk4stub_8h" kind="file" language="C++">
+    <compoundname>mk4stub.h</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="mk4stub_8h_1ac706a7c6c429e7ec17356bd688291deb" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* datadir</definition>
+        <argsstring></argsstring>
+        <name>datadir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4stub.h" line="1" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/environment.c" bodystart="33" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4stub.h" declline="1" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="mk4stub_8h_1ac706a7c6c429e7ec17356bd688291deb" kindref="member">datadir</ref>;</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4stub.h"/>
+  </compounddef>
+</doxygen>

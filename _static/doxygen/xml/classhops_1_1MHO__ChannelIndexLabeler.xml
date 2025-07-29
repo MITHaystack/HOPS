@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ChannelIndexLabeler" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ChannelIndexLabeler</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__ChannelLabeler" prot="public" virt="non-virtual">hops::MHO_ChannelLabeler&lt; XArrayType &gt;</derivedcompoundref>
+    <includes refid="MHO__EncodeDecodeValue_8hh" local="no">MHO_EncodeDecodeValue.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ChannelIndexLabeler_1acfd75935a0d587f73358bfb674d3866b" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ChannelIndexLabeler::fDefaultChannelChars</definition>
+        <argsstring></argsstring>
+        <name>fDefaultChannelChars</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="163" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ChannelIndexLabeler_1ac56b158dbb15375a6b1e5e909815a44d" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ChannelIndexLabeler::fExtendedChannelChars</definition>
+        <argsstring></argsstring>
+        <name>fExtendedChannelChars</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="164" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelIndexLabeler_1a1d38d8aed2fbda05f907571fc6fcc374" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ChannelIndexLabeler::MHO_ChannelIndexLabeler</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ChannelIndexLabeler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="98" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="98" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelIndexLabeler_1ae5535711ff82459f8166fe18d91cfe38" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ChannelIndexLabeler::~MHO_ChannelIndexLabeler</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ChannelIndexLabeler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="107" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelIndexLabeler_1a2618bd99a658f1c4d3e26f06086ed499" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_ChannelIndexLabeler::DecodeLabelToValue</definition>
+        <argsstring>(const std::string &amp;label) const</argsstring>
+        <name>DecodeLabelToValue</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>label</declname>
+        </param>
+        <briefdescription>
+<para>Decodes a channel label to its corresponding value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>label</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input channel label string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Decoded channel value as uint64_t. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="147" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="147" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelIndexLabeler_1af90a8a20a36393f52eb71b8f20583945" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ChannelIndexLabeler::EncodeValueToLabel</definition>
+        <argsstring>(const uint64_t &amp;value) const</argsstring>
+        <name>EncodeValueToLabel</name>
+        <param>
+          <type>const uint64_t &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Encodes a uint64_t value into a label string using default and extended encoding schemes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input value to be encoded as a label. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Encoded label string representation of the input value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="130" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="130" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelIndexLabeler_1a48038970d16391f65f6e9d8b71783f95" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ChannelIndexLabeler::SetDefaultChannelChars</definition>
+        <argsstring>(const std::string &amp;ch_set)</argsstring>
+        <name>SetDefaultChannelChars</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>ch_set</declname>
+        </param>
+        <briefdescription>
+<para>Setter for channel chars - provides the option to use different character sets. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ch_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input character set to use as defaults </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="114" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelIndexLabeler_1a18ab9b1b4b1304660fef3f1107a27dc4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ChannelIndexLabeler::SetExtendedChannelChars</definition>
+        <argsstring>(const std::string &amp;ex_set)</argsstring>
+        <name>SetExtendedChannelChars</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>ex_set</declname>
+        </param>
+        <briefdescription>
+<para>Setter for extended channel chars. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ex_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New set of extended channel characters </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="121" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="121" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ChannelIndexLabeler" kindref="compound">MHO_ChannelIndexLabeler</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_ChannelLabeler&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__ChannelLabeler"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ChannelIndexLabeler</label>
+        <link refid="classhops_1_1MHO__ChannelIndexLabeler"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::string</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ChannelIndexLabeler</label>
+        <link refid="classhops_1_1MHO__ChannelIndexLabeler"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fDefaultChannelChars</edgelabel>
+          <edgelabel>fExtendedChannelChars</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" line="95" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_EncodeDecodeValue.hh" bodystart="96" bodyend="165"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a2618bd99a658f1c4d3e26f06086ed499" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>DecodeLabelToValue</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1af90a8a20a36393f52eb71b8f20583945" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>EncodeValueToLabel</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1acfd75935a0d587f73358bfb674d3866b" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>fDefaultChannelChars</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1ac56b158dbb15375a6b1e5e909815a44d" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>fExtendedChannelChars</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a1d38d8aed2fbda05f907571fc6fcc374" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>MHO_ChannelIndexLabeler</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a48038970d16391f65f6e9d8b71783f95" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>SetDefaultChannelChars</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a18ab9b1b4b1304660fef3f1107a27dc4" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>SetExtendedChannelChars</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1ae5535711ff82459f8166fe18d91cfe38" prot="public" virt="virtual"><scope>hops::MHO_ChannelIndexLabeler</scope><name>~MHO_ChannelIndexLabeler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

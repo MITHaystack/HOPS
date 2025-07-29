@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::ChannelToBandMap</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a0f7c196a507f8d8a51031e7b6997e4a2" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ChannelToBandMap::band_list</definition>
+        <argsstring></argsstring>
+        <name>band_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="247" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a7f7f35d7e4ab91e955641eb7a4554178" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ChannelToBandMap::band_pol_to_channel</definition>
+        <argsstring></argsstring>
+        <name>band_pol_to_channel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="250" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a619f48682bad742c83d181b6460adb1c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ChannelToBandMap::channel_to_band_pol</definition>
+        <argsstring></argsstring>
+        <name>channel_to_band_pol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="249" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="249" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a914d867bcec4e2d72d37ecae377a5c5a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ChannelToBandMap::map_type</definition>
+        <argsstring></argsstring>
+        <name>map_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="246" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1aa5d743f0574f9bd29c76c07eaedef893" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ChannelToBandMap::pol_list</definition>
+        <argsstring></argsstring>
+        <name>pol_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="248" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="248" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1ad7dd6942995d171fcf8acb1520d7c1cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.__init__</definition>
+        <argsstring>(self, map_type, filename=None)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a914d867bcec4e2d72d37ecae377a5c5a" kindref="member">map_type</ref></type>
+          <defname>map_type</defname>
+        </param>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="242" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="242" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1aca19568e12df25de8f177d794afc8234" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.construct_band_pol_keys</definition>
+        <argsstring>(self, bands_to_use, pols_to_use)</argsstring>
+        <name>construct_band_pol_keys</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bands_to_use</type>
+          <defname>bands_to_use</defname>
+        </param>
+        <param>
+          <type>pols_to_use</type>
+          <defname>pols_to_use</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="350" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="350" bodyend="358"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a228da59a22fb217c9b16c8f396bcfb41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.does_ovex_contain_current_channel_setup</definition>
+        <argsstring>(self, ovex_filename, mk4_site_id)</argsstring>
+        <name>does_ovex_contain_current_channel_setup</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>ovex_filename</type>
+          <defname>ovex_filename</defname>
+        </param>
+        <param>
+          <type>mk4_site_id</type>
+          <defname>mk4_site_id</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>check ovex file for the current channel setup for a specified station</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="326" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="326" bodyend="349"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a5e89b0c55f86871059cc472be048bcf6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.get_band_pol_from_channel_name</definition>
+        <argsstring>(self, channel_name)</argsstring>
+        <name>get_band_pol_from_channel_name</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>channel_name</type>
+          <defname>channel_name</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="311" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="311" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1ab14a0ef4620d1f9a1eab650f15bc9266" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.get_channels_from_band_pol</definition>
+        <argsstring>(self, band, pol)</argsstring>
+        <name>get_channels_from_band_pol</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>band</type>
+          <defname>band</defname>
+        </param>
+        <param>
+          <type>pol</type>
+          <defname>pol</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="319" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="319" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a392ea96bd8678d73abb14f9bdef937d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.intersecting_band_subset</definition>
+        <argsstring>(self, bands_to_use)</argsstring>
+        <name>intersecting_band_subset</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bands_to_use</type>
+          <defname>bands_to_use</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="359" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="359" bodyend="366"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a6bc1226553f90fb09a7bd91e0fb575f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.intersecting_pol_subset</definition>
+        <argsstring>(self, pols_to_use)</argsstring>
+        <name>intersecting_pol_subset</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>pols_to_use</type>
+          <defname>pols_to_use</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="367" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="367" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a8381107a8e401e793a5809711ad10c85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ChannelToBandMap.list_types</definition>
+        <argsstring>(self)</argsstring>
+        <name>list_types</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="308" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="308" bodyend="310"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ChannelToBandMap</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ChannelToBandMap</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="240" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="240" bodyend="379"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1ad7dd6942995d171fcf8acb1520d7c1cf" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a0f7c196a507f8d8a51031e7b6997e4a2" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>band_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a7f7f35d7e4ab91e955641eb7a4554178" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>band_pol_to_channel</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a619f48682bad742c83d181b6460adb1c" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>channel_to_band_pol</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1aca19568e12df25de8f177d794afc8234" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>construct_band_pol_keys</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a228da59a22fb217c9b16c8f396bcfb41" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>does_ovex_contain_current_channel_setup</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a5e89b0c55f86871059cc472be048bcf6" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>get_band_pol_from_channel_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1ab14a0ef4620d1f9a1eab650f15bc9266" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>get_channels_from_band_pol</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a392ea96bd8678d73abb14f9bdef937d7" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>intersecting_band_subset</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a6bc1226553f90fb09a7bd91e0fb575f2" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>intersecting_pol_subset</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a8381107a8e401e793a5809711ad10c85" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>list_types</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1a914d867bcec4e2d72d37ecae377a5c5a" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>map_type</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap_1aa5d743f0574f9bd29c76c07eaedef893" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ChannelToBandMap</scope><name>pol_list</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ControlElementParser" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ControlElementParser</compoundname>
+    <includes refid="MHO__ControlElementParser_8hh" local="no">MHO_ControlElementParser.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlElementParser_1afcad5916c5f8b2a358390e0214dca6d5" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlElementParser::fElementFormats</definition>
+        <argsstring></argsstring>
+        <name>fElementFormats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="66" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlElementParser_1adc3a533da605d102bf493d4093b58bac" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ControlTokenProcessor" kindref="compound">MHO_ControlTokenProcessor</ref></type>
+        <definition>MHO_ControlTokenProcessor hops::MHO_ControlElementParser::fTokenProcessor</definition>
+        <argsstring></argsstring>
+        <name>fTokenProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="68" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlElementParser_1acd12a8a2a06f3cabf3f4dc444d402264" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ControlElementParser::MHO_ControlElementParser</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ControlElementParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlElementParser.cc" bodystart="7" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlElementParser_1a2d554b02d3f1f7b044b84afe45024874" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ControlElementParser::~MHO_ControlElementParser</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ControlElementParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlElementParser.cc" bodystart="12" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlElementParser_1afb6946407fe47283111fd911f02198a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlElementParser::ParseControlStatement</definition>
+        <argsstring>(const MHO_ControlStatement &amp;control_statement)</argsstring>
+        <name>ParseControlStatement</name>
+        <param>
+          <type>const <ref refid="structhops_1_1MHO__ControlStatement" kindref="compound">MHO_ControlStatement</ref> &amp;</type>
+          <declname>control_statement</declname>
+        </param>
+        <briefdescription>
+<para>Parses a control statement into a JSON object, handling different formats and providing warnings for unsupported or deprecated elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>control_statement</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input control statement to parse </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object representing the parsed control statement </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="44" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlElementParser.cc" bodystart="14" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlElementParser_1ad452a8f48bcfc6adfa2e2bb099fea02d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlElementParser::ParseTokens</definition>
+        <argsstring>(const std::string &amp;element_name, mho_json &amp;format, const std::vector&lt; MHO_Token &gt; &amp;tokens)</argsstring>
+        <name>ParseTokens</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Parses tokens based on element name and format, returning processed data as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the control element being parsed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the format definition for the control element </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of MHO_Tokens containing the input tokens </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Processed data as mho_json based on the control element type </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="55" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlElementParser.cc" bodystart="59" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlElementParser_1a89f1519a7a6344be72a0f392bc149ab7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlElementParser::ProcessCompound</definition>
+        <argsstring>(const std::string &amp;element_name, mho_json &amp;format, const std::vector&lt; MHO_Token &gt; &amp;tokens)</argsstring>
+        <name>ProcessCompound</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Parses compound elements from tokens and formats them into a JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element being processed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Format definition for parsing the element </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of MHO_Tokens containing the element data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>JSON object representing the parsed compound element </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="64" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlElementParser.cc" bodystart="106" bodyend="152"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ControlElementParser" kindref="compound">MHO_ControlElementParser</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu May 26 16:55:16 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlElementParser.hh" bodystart="33" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ControlElementParser_1afcad5916c5f8b2a358390e0214dca6d5" prot="private" virt="non-virtual"><scope>hops::MHO_ControlElementParser</scope><name>fElementFormats</name></member>
+      <member refid="classhops_1_1MHO__ControlElementParser_1adc3a533da605d102bf493d4093b58bac" prot="private" virt="non-virtual"><scope>hops::MHO_ControlElementParser</scope><name>fTokenProcessor</name></member>
+      <member refid="classhops_1_1MHO__ControlElementParser_1acd12a8a2a06f3cabf3f4dc444d402264" prot="public" virt="non-virtual"><scope>hops::MHO_ControlElementParser</scope><name>MHO_ControlElementParser</name></member>
+      <member refid="classhops_1_1MHO__ControlElementParser_1afb6946407fe47283111fd911f02198a2" prot="public" virt="non-virtual"><scope>hops::MHO_ControlElementParser</scope><name>ParseControlStatement</name></member>
+      <member refid="classhops_1_1MHO__ControlElementParser_1ad452a8f48bcfc6adfa2e2bb099fea02d" prot="private" virt="non-virtual"><scope>hops::MHO_ControlElementParser</scope><name>ParseTokens</name></member>
+      <member refid="classhops_1_1MHO__ControlElementParser_1a89f1519a7a6344be72a0f392bc149ab7" prot="private" virt="non-virtual"><scope>hops::MHO_ControlElementParser</scope><name>ProcessCompound</name></member>
+      <member refid="classhops_1_1MHO__ControlElementParser_1a2d554b02d3f1f7b044b84afe45024874" prot="public" virt="virtual"><scope>hops::MHO_ControlElementParser</scope><name>~MHO_ControlElementParser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

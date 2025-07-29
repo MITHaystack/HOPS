@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1utility_1_1Bar" kind="class" language="Python" prot="public">
+    <compoundname>vpal::utility::Bar</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1Bar_1a128ca3f3eb353d7b091ca788ac632d13" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.Bar::cursor_chars</definition>
+        <argsstring></argsstring>
+        <name>cursor_chars</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="400" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="400" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1Bar_1a509e1c4b134d2cc63fdaa2c5ed838147" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.Bar::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="401" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="401" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1Bar_1adaa7defed64aafaef37b378e4244274e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.Bar::tick_count</definition>
+        <argsstring></argsstring>
+        <name>tick_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="403" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="403" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1Bar_1a15c2c329474c8a347dd8b0921ff09b57" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.Bar::total_n_ticks</definition>
+        <argsstring></argsstring>
+        <name>total_n_ticks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="402" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="402" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1utility_1_1Bar_1a3bcaf28cc27998bbb9d4a42450af7b51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.Bar.__init__</definition>
+        <argsstring>(self, status, max)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1utility_1_1Bar_1a509e1c4b134d2cc63fdaa2c5ed838147" kindref="member">status</ref></type>
+          <defname>status</defname>
+        </param>
+        <param>
+          <type><ref refid="calc__normalization_8c_1affe776513b24d84b39af8ab0930fef7f" kindref="member">max</ref></type>
+          <defname>max</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="399" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="399" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1utility_1_1Bar_1a5e5c3c24b267792e82391aec8c324da4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.Bar.finish</definition>
+        <argsstring>(self)</argsstring>
+        <name>finish</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="416" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="416" bodyend="420"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1utility_1_1Bar_1a2f7a36260f267af33f6b5956d48bec5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.Bar.next</definition>
+        <argsstring>(self)</argsstring>
+        <name>next</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="410" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="410" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1utility_1_1Bar_1ae5deac53f9668642c6dfbda297c9040c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.Bar.start</definition>
+        <argsstring>(self)</argsstring>
+        <name>start</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="406" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="406" bodyend="409"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Dumb spinning cursor progress.Bar-like class for when the progress module is unavailable</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.utility.Bar</label>
+        <link refid="classvpal_1_1utility_1_1Bar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.utility.Bar</label>
+        <link refid="classvpal_1_1utility_1_1Bar"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="395" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="395" bodyend="420"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1utility_1_1Bar_1a3bcaf28cc27998bbb9d4a42450af7b51" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1utility_1_1Bar_1a128ca3f3eb353d7b091ca788ac632d13" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>cursor_chars</name></member>
+      <member refid="classvpal_1_1utility_1_1Bar_1a5e5c3c24b267792e82391aec8c324da4" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>finish</name></member>
+      <member refid="classvpal_1_1utility_1_1Bar_1a2f7a36260f267af33f6b5956d48bec5a" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>next</name></member>
+      <member refid="classvpal_1_1utility_1_1Bar_1ae5deac53f9668642c6dfbda297c9040c" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>start</name></member>
+      <member refid="classvpal_1_1utility_1_1Bar_1a509e1c4b134d2cc63fdaa2c5ed838147" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>status</name></member>
+      <member refid="classvpal_1_1utility_1_1Bar_1adaa7defed64aafaef37b378e4244274e" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>tick_count</name></member>
+      <member refid="classvpal_1_1utility_1_1Bar_1a15c2c329474c8a347dd8b0921ff09b57" prot="public" virt="non-virtual"><scope>vpal::utility::Bar</scope><name>total_n_ticks</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

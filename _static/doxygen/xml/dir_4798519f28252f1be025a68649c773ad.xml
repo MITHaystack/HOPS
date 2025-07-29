@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_4798519f28252f1be025a68649c773ad" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="adhoc__flag_8c">adhoc_flag.c</innerfile>
+    <innerfile refid="adjust__snr_8c">adjust_snr.c</innerfile>
+    <innerfile refid="apply__cmplxbp_8c">apply_cmplxbp.c</innerfile>
+    <innerfile refid="apply__filter_8c">apply_filter.c</innerfile>
+    <innerfile refid="apply__notches_8c">apply_notches.c</innerfile>
+    <innerfile refid="apply__passband_8c">apply_passband.c</innerfile>
+    <innerfile refid="apply__video__bp_8c">apply_video_bp.c</innerfile>
+    <innerfile refid="calc__normalization_8c">calc_normalization.c</innerfile>
+    <innerfile refid="calc__rms_8c">calc_rms.c</innerfile>
+    <innerfile refid="compute__field__rotations_8c">compute_field_rotations.c</innerfile>
+    <innerfile refid="create__fname_8c">create_fname.c</innerfile>
+    <innerfile refid="delay__rate_8c">delay_rate.c</innerfile>
+    <innerfile refid="est__pc__manual_8c">est_pc_manual.c</innerfile>
+    <innerfile refid="freq__spacing_8c">freq_spacing.c</innerfile>
+    <innerfile refid="fringe__search_8c">fringe_search.c</innerfile>
+    <innerfile refid="gate__off_8c">gate_off.c</innerfile>
+    <innerfile refid="interp_8c">interp.c</innerfile>
+    <innerfile refid="ion__covariance_8c">ion_covariance.c</innerfile>
+    <innerfile refid="ion__search_8c">ion_search.c</innerfile>
+    <innerfile refid="norm__fx_8c">norm_fx.c</innerfile>
+    <innerfile refid="norm__xf_8c">norm_xf.c</innerfile>
+    <innerfile refid="organize__data_8c">organize_data.c</innerfile>
+    <innerfile refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c">fourfit_libs/ffsearch/src/parse_cmdline.c</innerfile>
+    <innerfile refid="pcalibrate_8c">pcalibrate.c</innerfile>
+    <innerfile refid="precorrect_8c">precorrect.c</innerfile>
+    <innerfile refid="report__actions_8c">report_actions.c</innerfile>
+    <innerfile refid="rotate__pcal_8c">rotate_pcal.c</innerfile>
+    <innerfile refid="sampler__delays_8c">sampler_delays.c</innerfile>
+    <innerfile refid="fourfit__libs_2ffsearch_2src_2search_8c">fourfit_libs/ffsearch/src/search.c</innerfile>
+    <innerfile refid="search__windows_8c">search_windows.c</innerfile>
+    <innerfile refid="ffsearch_2src_2update_8c">ffsearch/src/update.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/"/>
+  </compounddef>
+</doxygen>

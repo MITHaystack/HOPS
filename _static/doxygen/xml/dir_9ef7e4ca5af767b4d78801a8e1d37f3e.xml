@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_9ef7e4ca5af767b4d78801a8e1d37f3e" kind="dir">
+    <compoundname>fourfit_libs</compoundname>
+    <innerdir refid="dir_f79eaa419c9665ed0522066c5c6851c4">ffcontrol</innerdir>
+    <innerdir refid="dir_0908837483934fe24781ea7898fec311">ffcore</innerdir>
+    <innerdir refid="dir_278308b947a9d3d19de751244af66d4b">ffio</innerdir>
+    <innerdir refid="dir_85c02f264b7a99962a0503cb6605bebc">ffmath</innerdir>
+    <innerdir refid="dir_de95cbaa0f0c0c60f30a64ffd12dfdd2">ffplot</innerdir>
+    <innerdir refid="dir_86b85e15943ea3cbc40c546f382f4970">ffsearch</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/"/>
+  </compounddef>
+</doxygen>

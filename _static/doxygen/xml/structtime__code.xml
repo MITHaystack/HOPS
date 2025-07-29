@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtime__code" kind="struct" language="C++" prot="public">
+    <compoundname>time_code</compoundname>
+    <includes refid="hetetimecode_8h" local="no">hetetimecode.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" prot="public" static="no" mutable="no">
+        <type><ref refid="hetetimecode_8h_1a13ba3371e20c9b196b2d58823f210371" kindref="member">IPP_word</ref></type>
+        <definition>IPP_word time_code::time[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hetetimecode.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hetetimecode.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>time_code</label>
+        <link refid="structtime__code"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hetetimecode.h" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/hetetimecode.h" bodystart="15" bodyend="17"/>
+    <listofallmembers>
+      <member refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" prot="public" virt="non-virtual"><scope>time_code</scope><name>time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

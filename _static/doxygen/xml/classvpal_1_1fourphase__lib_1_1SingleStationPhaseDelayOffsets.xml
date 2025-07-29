@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets" kind="class" language="Python" prot="public">
+    <compoundname>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</compoundname>
+    <basecompoundref refid="classvpal_1_1report__lib_1_1JsonSerializableObject" prot="public" virt="non-virtual">vpal.report_lib.JsonSerializableObject</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1acdd9854ef804247a02f3bd2eb57ac83e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.SingleStationPhaseDelayOffsets::pc_delay_offsets</definition>
+        <argsstring></argsstring>
+        <name>pc_delay_offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="424" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="424" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1adfa884dae4bc5a45ba11536e26a5342f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.SingleStationPhaseDelayOffsets::pc_phase_offsets</definition>
+        <argsstring></argsstring>
+        <name>pc_phase_offsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="425" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="425" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a2aa9d10e58f50750eea859ff4941cf4d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.SingleStationPhaseDelayOffsets::station_id</definition>
+        <argsstring></argsstring>
+        <name>station_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="422" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="422" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1ad657b37c886fa0cf2beedfc9f7dfa461" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.SingleStationPhaseDelayOffsets::used_scans</definition>
+        <argsstring></argsstring>
+        <name>used_scans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="423" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="423" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1af3ccb9e2cc63878b55f23988891d5a9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.__init__</definition>
+        <argsstring>(self, station_id)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a2aa9d10e58f50750eea859ff4941cf4d" kindref="member">station_id</ref></type>
+          <defname>station_id</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="420" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="420" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a91cb5b82ab7756d44aaa3720a82c82aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.add_phase_delay_offsets</definition>
+        <argsstring>(self, scan_name, delay_offsets, phase_offsets)</argsstring>
+        <name>add_phase_delay_offsets</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>scan_name</type>
+          <defname>scan_name</defname>
+        </param>
+        <param>
+          <type>delay_offsets</type>
+          <defname>delay_offsets</defname>
+        </param>
+        <param>
+          <type>phase_offsets</type>
+          <defname>phase_offsets</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>add the phase/delay offsets derived from a particular scan</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="427" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="427" bodyend="432"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1ad387f0ce490443509553f78225a1e2e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.apply_sigma_cut</definition>
+        <argsstring>(self, sigma_cut_factor)</argsstring>
+        <name>apply_sigma_cut</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>sigma_cut_factor</type>
+          <defname>sigma_cut_factor</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>remove data points which are more then sigma_cut_factor*sigma away from the mean value </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="565" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="565" bodyend="598"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a4370a90a66c896a27c0a23d2952cbd2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.export_json</definition>
+        <argsstring>(self)</argsstring>
+        <name>export_json</name>
+        <reimplements refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1a5c3ae4ed6d06099f454ead9b988b691c">export_json</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>export this object as a dict for json export</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="433" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="433" bodyend="445"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a3123c7b8277a5321106e4dc3f884e878" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_all_delay_offset_values</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_all_delay_offset_values</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="485" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="485" bodyend="491"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a73ff3e1d64e36df10210acbc0faa781f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_all_phase_offset_values</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_all_phase_offset_values</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="492" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="492" bodyend="498"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1acf3e99ae4144cd82fe0e521a541b39f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_delay_offset_error</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_delay_offset_error</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="532" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="532" bodyend="542"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1af870e0df0e5f80bbb0041cda57a37168" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_delay_offset_mad</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_delay_offset_mad</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="521" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="521" bodyend="531"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a78c12b0c2f9e58d59b3bccdf3e4b6a20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_delay_offset_mean</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_delay_offset_mean</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="499" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="499" bodyend="509"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a4c8dfc881fbe95bb434136d70a46f3cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_delay_offset_median</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_delay_offset_median</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="510" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="510" bodyend="520"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1ab8257238bb138012a0d37f95d02d91f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_n_cut_entries</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_n_cut_entries</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="474" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="474" bodyend="484"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a3e68767688be9dea726a48bc647ab0e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_n_total_entries</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_n_total_entries</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="457" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="457" bodyend="462"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a9908c216f234821941e91105e182c369" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_n_used_entries</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_n_used_entries</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="463" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="463" bodyend="473"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a407f0d88e57295b2ab134fac04b43202" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_phase_offset_error</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_phase_offset_error</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="554" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="554" bodyend="564"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1afd79afbab7e0d0a10a9c5ed7bfaa9391" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.get_phase_offset_mean</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_phase_offset_mean</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="543" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="543" bodyend="553"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a4dd8781e66ee92f212b7b1fc0c25e18c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.SingleStationPhaseDelayOffsets.use_data_point</definition>
+        <argsstring>(self, data_point)</argsstring>
+        <name>use_data_point</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>data_point</type>
+          <defname>data_point</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> quick check to see if this data point is use-able after cuts are applied </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="446" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="446" bodyend="456"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>container object for the y-x phase/delay offsets of a particular station</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fourphase_lib.SingleStationPhaseDelayOffsets</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fourphase_lib.SingleStationPhaseDelayOffsets</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="417" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="417" bodyend="602"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1af3ccb9e2cc63878b55f23988891d5a9c" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a91cb5b82ab7756d44aaa3720a82c82aa" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>add_phase_delay_offsets</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1ad387f0ce490443509553f78225a1e2e0" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>apply_sigma_cut</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a4370a90a66c896a27c0a23d2952cbd2e" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>export_json</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a3123c7b8277a5321106e4dc3f884e878" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_all_delay_offset_values</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a73ff3e1d64e36df10210acbc0faa781f" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_all_phase_offset_values</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1acf3e99ae4144cd82fe0e521a541b39f8" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_delay_offset_error</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1af870e0df0e5f80bbb0041cda57a37168" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_delay_offset_mad</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a78c12b0c2f9e58d59b3bccdf3e4b6a20" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_delay_offset_mean</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a4c8dfc881fbe95bb434136d70a46f3cb" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_delay_offset_median</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1ab8257238bb138012a0d37f95d02d91f5" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_n_cut_entries</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a3e68767688be9dea726a48bc647ab0e6" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_n_total_entries</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a9908c216f234821941e91105e182c369" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_n_used_entries</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a407f0d88e57295b2ab134fac04b43202" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_phase_offset_error</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1afd79afbab7e0d0a10a9c5ed7bfaa9391" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>get_phase_offset_mean</name></member>
+      <member refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1aa016c5f55c3299e6e7525fb4b31a3377" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>import_json</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1acdd9854ef804247a02f3bd2eb57ac83e" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>pc_delay_offsets</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1adfa884dae4bc5a45ba11536e26a5342f" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>pc_phase_offsets</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a2aa9d10e58f50750eea859ff4941cf4d" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>station_id</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1a4dd8781e66ee92f212b7b1fc0c25e18c" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>use_data_point</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1SingleStationPhaseDelayOffsets_1ad657b37c886fa0cf2beedfc9f7dfa461" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::SingleStationPhaseDelayOffsets</scope><name>used_scans</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

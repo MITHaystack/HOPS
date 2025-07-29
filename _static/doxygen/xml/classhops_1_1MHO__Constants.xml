@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Constants" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Constants</compoundname>
+    <includes refid="MHO__Constants_8hh" local="no">MHO_Constants.hh</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Constants_1af5b2d60fa7659b598c3c1e95ce9119f8" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static double</type>
+        <definition>constexpr static double hops::MHO_Constants::deg_to_rad</definition>
+        <argsstring></argsstring>
+        <name>deg_to_rad</name>
+        <initializer>= <ref refid="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" kindref="member">pi</ref> / 180.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="25" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Constants_1a010ce039565b123183d3e3e8136e1051" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static std::complex&lt; double &gt;</type>
+        <definition>constexpr static std::complex&lt; double &gt; hops::MHO_Constants::imag_unit</definition>
+        <argsstring></argsstring>
+        <name>imag_unit</name>
+        <initializer>{0.0, 1.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="28" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Constants_1a0fc08eb08a8aa8e84dda488d70033716" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static double</type>
+        <definition>constexpr static double hops::MHO_Constants::ion_k</definition>
+        <argsstring></argsstring>
+        <name>ion_k</name>
+        <initializer>= -8.448e9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="30" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Constants_1a3789ae01a3accf976a8e8c124093007d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static double</type>
+        <definition>constexpr static double hops::MHO_Constants::MHz_to_Hz</definition>
+        <argsstring></argsstring>
+        <name>MHz_to_Hz</name>
+        <initializer>= 1e6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="29" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Constants_1a65d1bca67abe06c0e20ff220ec205c56" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static double</type>
+        <definition>constexpr static double hops::MHO_Constants::nanosec_to_second</definition>
+        <argsstring></argsstring>
+        <name>nanosec_to_second</name>
+        <initializer>= 1e-9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="27" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static double</type>
+        <definition>constexpr static double hops::MHO_Constants::pi</definition>
+        <argsstring></argsstring>
+        <name>pi</name>
+        <initializer>= 3.14159265358979323846264338</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="24" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Constants_1a370e7a6ca61e9c47e27af1dd3386c092" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static double</type>
+        <definition>constexpr static double hops::MHO_Constants::rad_to_deg</definition>
+        <argsstring></argsstring>
+        <name>rad_to_deg</name>
+        <initializer>= 180.0 / <ref refid="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" kindref="member">pi</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="26" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Constants_1a2b2ff3d00f825a173e942dea1828202a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Constants::MHO_Constants</definition>
+        <argsstring>()=delete</argsstring>
+        <name>MHO_Constants</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="21" column="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>a namespace class for storing constants </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Thu Jun 1 13:05:18 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_Constants</label>
+        <link refid="classhops_1_1MHO__Constants"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>MHz_to_Hz</edgelabel>
+          <edgelabel>deg_to_rad</edgelabel>
+          <edgelabel>ion_k</edgelabel>
+          <edgelabel>nanosec_to_second</edgelabel>
+          <edgelabel>pi</edgelabel>
+          <edgelabel>rad_to_deg</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>imag_unit</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::complex&lt; double &gt;</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Constants.hh" bodystart="19" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Constants_1af5b2d60fa7659b598c3c1e95ce9119f8" prot="public" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>deg_to_rad</name></member>
+      <member refid="classhops_1_1MHO__Constants_1a010ce039565b123183d3e3e8136e1051" prot="public" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>imag_unit</name></member>
+      <member refid="classhops_1_1MHO__Constants_1a0fc08eb08a8aa8e84dda488d70033716" prot="public" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>ion_k</name></member>
+      <member refid="classhops_1_1MHO__Constants_1a2b2ff3d00f825a173e942dea1828202a" prot="private" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>MHO_Constants</name></member>
+      <member refid="classhops_1_1MHO__Constants_1a3789ae01a3accf976a8e8c124093007d" prot="public" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>MHz_to_Hz</name></member>
+      <member refid="classhops_1_1MHO__Constants_1a65d1bca67abe06c0e20ff220ec205c56" prot="public" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>nanosec_to_second</name></member>
+      <member refid="classhops_1_1MHO__Constants_1a742e93c01ed1452253ed3ea6928e9f98" prot="public" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>pi</name></member>
+      <member refid="classhops_1_1MHO__Constants_1a370e7a6ca61e9c47e27af1dd3386c092" prot="public" virt="non-virtual"><scope>hops::MHO_Constants</scope><name>rad_to_deg</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

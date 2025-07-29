@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceafio_1_1afio" kind="namespace" language="Python">
+    <compoundname>afio::afio</compoundname>
+    <innerclass refid="classafio_1_1afio_1_1afile__structure" prot="public">afio::afio::afile_structure</innerclass>
+    <innerclass refid="classafio_1_1afio_1_1AFIOStructureBase" prot="public">afio::afio::AFIOStructureBase</innerclass>
+    <innerclass refid="classafio_1_1afio_1_1corelsum" prot="public">afio::afio::corelsum</innerclass>
+    <innerclass refid="classafio_1_1afio_1_1fringesum" prot="public">afio::afio::fringesum</innerclass>
+    <innerclass refid="classafio_1_1afio_1_1quadsum" prot="public">afio::afio::quadsum</innerclass>
+    <innerclass refid="classafio_1_1afio_1_1rootsum" prot="public">afio::afio::rootsum</innerclass>
+    <innerclass refid="classafio_1_1afio_1_1trianglesum" prot="public">afio::afio::trianglesum</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceafio_1_1afio_1a8a0988cf12991409fe4395762dd4333d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.afio_load</definition>
+        <argsstring>()</argsstring>
+        <name>afio_load</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> load the c-code afile parsing library </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="332" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="332" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceafio_1_1afio_1a5a104a15cc5aab08691634992a221c1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.afiofp_approximately_equal</definition>
+        <argsstring>(a, b, abs_tol=1e-14, rel_tol=1e-6)</argsstring>
+        <name>afiofp_approximately_equal</name>
+        <param>
+          <type>a</type>
+          <defname>a</defname>
+        </param>
+        <param>
+          <type>b</type>
+          <defname>b</defname>
+        </param>
+        <param>
+          <type>abs_tol</type>
+          <defname>abs_tol</defname>
+          <defval>1e-14</defval>
+        </param>
+        <param>
+          <type>rel_tol</type>
+          <defname>rel_tol</defname>
+          <defval>1e-6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>simple floating point comparison </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="9" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="9" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceafio_1_1afio_1a6977ac95996187d29c4c21c1209c974f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.alist</definition>
+        <argsstring>(filename)</argsstring>
+        <name>alist</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> read and construct and afile object </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="372" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="372" bodyend="378"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>provides access to a-file data via c-library</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

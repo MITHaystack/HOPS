@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdiscinfo" kind="struct" language="C++" prot="public">
+    <compoundname>discinfo</compoundname>
+    <includes refid="lvex_8h" local="no">lvex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdiscinfo_1a801c214788f8314f376d7b68d7b3f713" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char discinfo::disc_model_num[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>disc_model_num</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="18" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdiscinfo_1ab7bbb8df61f63e37a888d9ab1f407e48" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char discinfo::disc_serial_num[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>disc_serial_num</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdiscinfo_1ae2dff67de444f60a0a7a1cebd8cd43ac" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int discinfo::disc_size</definition>
+        <argsstring></argsstring>
+        <name>disc_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>discinfo</label>
+        <link refid="structdiscinfo"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>disc_model_num</edgelabel>
+          <edgelabel>disc_serial_num</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>disc_size</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="15" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="16" bodyend="20"/>
+    <listofallmembers>
+      <member refid="structdiscinfo_1a801c214788f8314f376d7b68d7b3f713" prot="public" virt="non-virtual"><scope>discinfo</scope><name>disc_model_num</name></member>
+      <member refid="structdiscinfo_1ab7bbb8df61f63e37a888d9ab1f407e48" prot="public" virt="non-virtual"><scope>discinfo</scope><name>disc_serial_num</name></member>
+      <member refid="structdiscinfo_1ae2dff67de444f60a0a7a1cebd8cd43ac" prot="public" virt="non-virtual"><scope>discinfo</scope><name>disc_size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structT1__R144" kind="struct" language="C++" prot="public">
+    <compoundname>T1_R144</compoundname>
+    <includes refid="T1_8h" local="no">T1.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structT1__R144_1a799fb5d868cbad3413c6d77f577e0b15" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::cFNumEx</definition>
+        <argsstring></argsstring>
+        <name>cFNumEx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="144" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1a6e9813f135e706fa7735d66cba9c2726" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::cFNumRx</definition>
+        <argsstring></argsstring>
+        <name>cFNumRx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="145" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1a770a9edd461b32b8851c0fc419e55c4f" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::chkSumEx</definition>
+        <argsstring></argsstring>
+        <name>chkSumEx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="146" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1ace482cf06dfee74d330601ea6c27197e" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::chkSumRx</definition>
+        <argsstring></argsstring>
+        <name>chkSumRx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="147" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1a3a5561b7a3190b9008b952a30fc5d9f5" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::chnIdEx</definition>
+        <argsstring></argsstring>
+        <name>chnIdEx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="142" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1ad06bdc411bb15d6cec67e0b5b4376a8b" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::chnIdRx</definition>
+        <argsstring></argsstring>
+        <name>chnIdRx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="143" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1ac6179002dffdc9c41c404fc24b8d8342" prot="public" static="no" mutable="no">
+        <type><ref refid="structT1__RecHdr" kindref="compound">T1_RecHdr</ref></type>
+        <definition>T1_RecHdr T1_R144::recHdr</definition>
+        <argsstring></argsstring>
+        <name>recHdr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="139" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1a86c26c6bd8ce03fbd814be81116c364b" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::suIdEx</definition>
+        <argsstring></argsstring>
+        <name>suIdEx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="140" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R144_1ab29f15f0b039b4370af82d1950f96189" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R144::suIdRx</definition>
+        <argsstring></argsstring>
+        <name>suIdRx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="141" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>T1_RecHdr</label>
+        <link refid="structT1__RecHdr"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cFOffset</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>recId</edgelabel>
+          <edgelabel>recVer</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>index</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>recFmt</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>uint16_t</label>
+      </node>
+      <node id="5">
+        <label>uint32_t</label>
+      </node>
+      <node id="6">
+        <label>uint8_t</label>
+      </node>
+      <node id="1">
+        <label>T1_R144</label>
+        <link refid="structT1__R144"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>recHdr</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cFNumEx</edgelabel>
+          <edgelabel>cFNumRx</edgelabel>
+          <edgelabel>chkSumEx</edgelabel>
+          <edgelabel>chkSumRx</edgelabel>
+          <edgelabel>chnIdEx</edgelabel>
+          <edgelabel>chnIdRx</edgelabel>
+          <edgelabel>suIdEx</edgelabel>
+          <edgelabel>suIdRx</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="138" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="138" bodyend="148"/>
+    <listofallmembers>
+      <member refid="structT1__R144_1a799fb5d868cbad3413c6d77f577e0b15" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>cFNumEx</name></member>
+      <member refid="structT1__R144_1a6e9813f135e706fa7735d66cba9c2726" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>cFNumRx</name></member>
+      <member refid="structT1__R144_1a770a9edd461b32b8851c0fc419e55c4f" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>chkSumEx</name></member>
+      <member refid="structT1__R144_1ace482cf06dfee74d330601ea6c27197e" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>chkSumRx</name></member>
+      <member refid="structT1__R144_1a3a5561b7a3190b9008b952a30fc5d9f5" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>chnIdEx</name></member>
+      <member refid="structT1__R144_1ad06bdc411bb15d6cec67e0b5b4376a8b" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>chnIdRx</name></member>
+      <member refid="structT1__R144_1ac6179002dffdc9c41c404fc24b8d8342" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>recHdr</name></member>
+      <member refid="structT1__R144_1a86c26c6bd8ce03fbd814be81116c364b" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>suIdEx</name></member>
+      <member refid="structT1__R144_1ab29f15f0b039b4370af82d1950f96189" prot="public" virt="non-virtual"><scope>T1_R144</scope><name>suIdRx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

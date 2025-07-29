@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structauto__per__lag" kind="struct" language="C++" prot="public">
+    <compoundname>auto_per_lag</compoundname>
+    <includes refid="type__120_8h" local="no">type_120.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structauto__per__lag_1a64832aea8028f4e0acf61b356f85fb2d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int auto_per_lag::cosbits</definition>
+        <argsstring></argsstring>
+        <name>cosbits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="48" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structauto__per__lag_1af2461478bc141c039832c18f1db49656" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int auto_per_lag::coscor</definition>
+        <argsstring></argsstring>
+        <name>coscor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="45" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="46" bodyend="49"/>
+    <listofallmembers>
+      <member refid="structauto__per__lag_1a64832aea8028f4e0acf61b356f85fb2d" prot="public" virt="non-virtual"><scope>auto_per_lag</scope><name>cosbits</name></member>
+      <member refid="structauto__per__lag_1af2461478bc141c039832c18f1db49656" prot="public" virt="non-virtual"><scope>auto_per_lag</scope><name>coscor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

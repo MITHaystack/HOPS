@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__SimulatedSignalGenerator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_SimulatedSignalGenerator</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__GaussianWhiteNoiseSignal" prot="public" virt="non-virtual">hops::MHO_GaussianWhiteNoiseSignal</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__SingleToneSignal" prot="public" virt="non-virtual">hops::MHO_SingleToneSignal</derivedcompoundref>
+    <includes refid="MHO__SimulatedSignalGenerator_8hh" local="no">MHO_SimulatedSignalGenerator.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_SimulatedSignalGenerator::fSamplingFrequency</definition>
+        <argsstring></argsstring>
+        <name>fSamplingFrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="69" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SimulatedSignalGenerator_1ac75073821d0b8a599a1b3e3e1011bb94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_SimulatedSignalGenerator::MHO_SimulatedSignalGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_SimulatedSignalGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SimulatedSignalGenerator_1a4b30b516c46885e75c938e36d6667cf3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_SimulatedSignalGenerator::~MHO_SimulatedSignalGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_SimulatedSignalGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="21" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" bodystart="21" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SimulatedSignalGenerator_1a7b1760b72d76aa7ede8062e74daa8f33" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_SimulatedSignalGenerator::GetSample</definition>
+        <argsstring>(const double &amp;sample_time, double &amp;sample) const</argsstring>
+        <name>GetSample</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>sample_time</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+<para>Getter for sample. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sample_time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time for which to retrieve the sample </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sample</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if successful, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SimulatedSignalGenerator_1a2b883bf6d6c376a72203972707d6bb57" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double hops::MHO_SimulatedSignalGenerator::GetSamplingFrequency</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSamplingFrequency</name>
+        <briefdescription>
+<para>Getter for sampling frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current sampling frequency as a double. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="38" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SimulatedSignalGenerator_1a16d5e44fc4c068568abebd337e7d7895" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_SimulatedSignalGenerator::Initialize</definition>
+        <argsstring>()=0</argsstring>
+        <name>Initialize</name>
+        <reimplementedby refid="classhops_1_1MHO__SingleToneSignal_1a11ba1cd4149e2d3c9cf54263c461e5dd">Initialize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1adbd94a35d33d3af1533f563b1002fd89">Initialize</reimplementedby>
+        <briefdescription>
+<para>Function Initialize. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="45" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SimulatedSignalGenerator_1a988154cd80a59a18e62a6d7cc0401109" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_SimulatedSignalGenerator::SetSamplingFrequency</definition>
+        <argsstring>(double sample_freq)</argsstring>
+        <name>SetSamplingFrequency</name>
+        <param>
+          <type>double</type>
+          <declname>sample_freq</declname>
+        </param>
+        <briefdescription>
+<para>Setter for sampling frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sample_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input sampling frequency in Hertz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="30" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" bodystart="30" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SimulatedSignalGenerator_1aa8bd998b7c21562b8de01939bb894179" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_SimulatedSignalGenerator::GenerateSample</definition>
+        <argsstring>(const double &amp;sample_time, double &amp;sample) const =0</argsstring>
+        <name>GenerateSample</name>
+        <reimplementedby refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a07b458a917979108534272a1118eb3ba">GenerateSample</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SingleToneSignal_1a4fca3c8f99e4b4f008a0553e931ab334">GenerateSample</reimplementedby>
+        <param>
+          <type>const double &amp;</type>
+          <declname>sample_time</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+<para>Generates a sample based on given time and updates it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sample_time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input sampling time in seconds. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sample</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if sample generation is successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="65" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon Dec 19 16:33:05 2022 -0500 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_SingleToneSignal</label>
+        <link refid="classhops_1_1MHO__SingleToneSignal"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_GaussianWhiteNoiseSignal</label>
+        <link refid="classhops_1_1MHO__GaussianWhiteNoiseSignal"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_SimulatedSignalGenerator</label>
+        <link refid="classhops_1_1MHO__SimulatedSignalGenerator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_SimulatedSignalGenerator</label>
+        <link refid="classhops_1_1MHO__SimulatedSignalGenerator"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fSamplingFrequency</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh" bodystart="18" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" prot="protected" virt="non-virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>fSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1aa8bd998b7c21562b8de01939bb894179" prot="protected" virt="pure-virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>GenerateSample</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a7b1760b72d76aa7ede8062e74daa8f33" prot="public" virt="non-virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>GetSample</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a2b883bf6d6c376a72203972707d6bb57" prot="public" virt="virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>GetSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a16d5e44fc4c068568abebd337e7d7895" prot="public" virt="pure-virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1ac75073821d0b8a599a1b3e3e1011bb94" prot="public" virt="non-virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>MHO_SimulatedSignalGenerator</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a988154cd80a59a18e62a6d7cc0401109" prot="public" virt="virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>SetSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a4b30b516c46885e75c938e36d6667cf3" prot="public" virt="virtual"><scope>hops::MHO_SimulatedSignalGenerator</scope><name>~MHO_SimulatedSignalGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

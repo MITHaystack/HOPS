@@ -1,0 +1,358 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structchan__struct" kind="struct" language="C++" prot="public">
+    <compoundname>chan_struct</compoundname>
+    <includes refid="ovex_8h" local="no">ovex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structchan__struct_1abd44e27247d40002c8d4b69c463bb4dc" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::band_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>band_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="90" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1aaf6877105412bc1d0e04fa9d54711461" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double chan_struct::bandwidth</definition>
+        <argsstring></argsstring>
+        <name>bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="89" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1af22a41a9e8d403579d72331583637c3a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::bbc_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>bbc_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="92" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a832af496c4591d9514d4ef5d50efefe0" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short chan_struct::bbc_no</definition>
+        <argsstring></argsstring>
+        <name>bbc_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="95" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1aa9a3203cb2c33b5a24257d1d8d719cbc" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::chan_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="91" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a6c77f60ba569f1efb65777352ffb9cd0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::chan_name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>chan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="85" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1adf646ac59fdda3e03a645eb133506483" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::if_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>if_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="94" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a85f23795a149f13b2251c0b74558edfe" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::if_name[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>if_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="96" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a32053a195b68fb6fc80281be98cfd5b2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::if_sideband</definition>
+        <argsstring></argsstring>
+        <name>if_sideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="98" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1abc73fc8503f2e5ad2154d9910e14488e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double chan_struct::if_total_lo</definition>
+        <argsstring></argsstring>
+        <name>if_total_lo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="97" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a63df25c8178747ec4fb5134e5b419e89" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short chan_struct::mag_headstack</definition>
+        <argsstring></argsstring>
+        <name>mag_headstack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="105" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a31f25ee3d18ffcabb858a6feeaaf057f" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short chan_struct::mag_tracks[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>mag_tracks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="104" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a05ed789db01fe497c1e3e33d8334145d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::net_sideband</definition>
+        <argsstring></argsstring>
+        <name>net_sideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a75f2d414e08dfa103427e56131ff985f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float chan_struct::pcal_base_freq</definition>
+        <argsstring></argsstring>
+        <name>pcal_base_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="100" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a634bcbc81f56119dc9eaa58cbea509ea" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short chan_struct::pcal_detect[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>pcal_detect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="101" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a78d9d5ab0369089d9059504ca9516898" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::pcal_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>pcal_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="93" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a656c8c37280a1ede7371e38aef8f5255" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float chan_struct::pcal_spacing</definition>
+        <argsstring></argsstring>
+        <name>pcal_spacing</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="99" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a151d5d452c24ec490a59799f3da6f404" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char chan_struct::polarization</definition>
+        <argsstring></argsstring>
+        <name>polarization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="86" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a94a399109bd65a0236b6213391b5f861" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short chan_struct::sign_headstack</definition>
+        <argsstring></argsstring>
+        <name>sign_headstack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="103" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a130f805b58a561102efba8a976e8d46c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short chan_struct::sign_tracks[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>sign_tracks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="102" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structchan__struct_1a198a87ce0e2dd69100642afff49398dd" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double chan_struct::sky_frequency</definition>
+        <argsstring></argsstring>
+        <name>sky_frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="87" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>chan_struct</label>
+        <link refid="structchan__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>if_total_lo</edgelabel>
+          <edgelabel>sky_frequency</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pcal_base_freq</edgelabel>
+          <edgelabel>pcal_spacing</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>bbc_no</edgelabel>
+          <edgelabel>mag_headstack</edgelabel>
+          <edgelabel>mag_tracks</edgelabel>
+          <edgelabel>pcal_detect</edgelabel>
+          <edgelabel>sign_headstack</edgelabel>
+          <edgelabel>sign_tracks</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>band_id</edgelabel>
+          <edgelabel>bbc_id</edgelabel>
+          <edgelabel>chan_id</edgelabel>
+          <edgelabel>chan_name</edgelabel>
+          <edgelabel>if_id</edgelabel>
+          <edgelabel>if_name</edgelabel>
+          <edgelabel>if_sideband</edgelabel>
+          <edgelabel>net_sideband</edgelabel>
+          <edgelabel>pcal_id</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="83" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="84" bodyend="106"/>
+    <listofallmembers>
+      <member refid="structchan__struct_1abd44e27247d40002c8d4b69c463bb4dc" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>band_id</name></member>
+      <member refid="structchan__struct_1aaf6877105412bc1d0e04fa9d54711461" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>bandwidth</name></member>
+      <member refid="structchan__struct_1af22a41a9e8d403579d72331583637c3a" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>bbc_id</name></member>
+      <member refid="structchan__struct_1a832af496c4591d9514d4ef5d50efefe0" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>bbc_no</name></member>
+      <member refid="structchan__struct_1aa9a3203cb2c33b5a24257d1d8d719cbc" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>chan_id</name></member>
+      <member refid="structchan__struct_1a6c77f60ba569f1efb65777352ffb9cd0" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>chan_name</name></member>
+      <member refid="structchan__struct_1adf646ac59fdda3e03a645eb133506483" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>if_id</name></member>
+      <member refid="structchan__struct_1a85f23795a149f13b2251c0b74558edfe" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>if_name</name></member>
+      <member refid="structchan__struct_1a32053a195b68fb6fc80281be98cfd5b2" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>if_sideband</name></member>
+      <member refid="structchan__struct_1abc73fc8503f2e5ad2154d9910e14488e" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>if_total_lo</name></member>
+      <member refid="structchan__struct_1a63df25c8178747ec4fb5134e5b419e89" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>mag_headstack</name></member>
+      <member refid="structchan__struct_1a31f25ee3d18ffcabb858a6feeaaf057f" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>mag_tracks</name></member>
+      <member refid="structchan__struct_1a05ed789db01fe497c1e3e33d8334145d" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>net_sideband</name></member>
+      <member refid="structchan__struct_1a75f2d414e08dfa103427e56131ff985f" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>pcal_base_freq</name></member>
+      <member refid="structchan__struct_1a634bcbc81f56119dc9eaa58cbea509ea" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>pcal_detect</name></member>
+      <member refid="structchan__struct_1a78d9d5ab0369089d9059504ca9516898" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>pcal_id</name></member>
+      <member refid="structchan__struct_1a656c8c37280a1ede7371e38aef8f5255" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>pcal_spacing</name></member>
+      <member refid="structchan__struct_1a151d5d452c24ec490a59799f3da6f404" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>polarization</name></member>
+      <member refid="structchan__struct_1a94a399109bd65a0236b6213391b5f861" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>sign_headstack</name></member>
+      <member refid="structchan__struct_1a130f805b58a561102efba8a976e8d46c" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>sign_tracks</name></member>
+      <member refid="structchan__struct_1a198a87ce0e2dd69100642afff49398dd" prot="public" virt="non-virtual"><scope>chan_struct</scope><name>sky_frequency</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

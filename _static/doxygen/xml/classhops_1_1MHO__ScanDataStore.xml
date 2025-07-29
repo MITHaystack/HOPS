@@ -1,0 +1,866 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ScanDataStore" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ScanDataStore</compoundname>
+    <includes refid="MHO__ScanDataStore_8hh" local="no">MHO_ScanDataStore.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a4acb94b44f6611eb44b13b7d805dbb1e" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> * &gt;</type>
+        <definition>std::map&lt; std::string, MHO_ContainerStore* &gt; hops::MHO_ScanDataStore::fActiveBaselineContainers</definition>
+        <argsstring></argsstring>
+        <name>fActiveBaselineContainers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="201" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1af37df6b3f3d5457a39118f12e348d4a3" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> * &gt;</type>
+        <definition>std::map&lt; std::string, MHO_ContainerStore* &gt; hops::MHO_ScanDataStore::fActiveFringeContainers</definition>
+        <argsstring></argsstring>
+        <name>fActiveFringeContainers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="211" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1afac33058706136b8ca24fd06ab672153" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> * &gt;</type>
+        <definition>std::map&lt; std::string, MHO_ContainerStore* &gt; hops::MHO_ScanDataStore::fActiveStationContainers</definition>
+        <argsstring></argsstring>
+        <name>fActiveStationContainers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="206" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a0ab147f15f2c4eea803810fdcdf93c18" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fAllFiles</definition>
+        <argsstring></argsstring>
+        <name>fAllFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="189" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1af50e46e95e5fa856cd4d3c10f49fbd39" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fBaselineCodes</definition>
+        <argsstring></argsstring>
+        <name>fBaselineCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="199" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a806b9c092463a3615d61215082f2220a" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt; std::string, std::string &gt; hops::MHO_ScanDataStore::fBaselineFileMap</definition>
+        <argsstring></argsstring>
+        <name>fBaselineFileMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="200" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1ae0b5c16b349f55942bd6e32dca719317" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fCorFiles</definition>
+        <argsstring></argsstring>
+        <name>fCorFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="190" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a482148e3d0ddaa3928108b991fdbb568" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ScanDataStore::fDirectory</definition>
+        <argsstring></argsstring>
+        <name>fDirectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="185" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1af61ceca6191eb7aca3d4754d97b6213c" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__DirectoryInterface" kindref="compound">MHO_DirectoryInterface</ref></type>
+        <definition>MHO_DirectoryInterface hops::MHO_ScanDataStore::fDirInterface</definition>
+        <argsstring></argsstring>
+        <name>fDirInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="188" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a6294baa0cc988455361f1d8e6d95bf95" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fFringeCodes</definition>
+        <argsstring></argsstring>
+        <name>fFringeCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="209" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1ace92fba66d30ae386a466a61b763d334" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt; std::string, std::string &gt; hops::MHO_ScanDataStore::fFringeFileMap</definition>
+        <argsstring></argsstring>
+        <name>fFringeFileMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="210" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1abedfc93f52ba16485ae822edea6b7853" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fFringeFiles</definition>
+        <argsstring></argsstring>
+        <name>fFringeFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="193" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a036eb03ca0779baa5d92a83951570166" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fJSONFiles</definition>
+        <argsstring></argsstring>
+        <name>fJSONFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="192" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a4226cc37f35d2bfd45ac43e205532733" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ScanDataStore::fRootFileData</definition>
+        <argsstring></argsstring>
+        <name>fRootFileData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="196" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1acd6ce5ed9bdc95af511716cfd0c26ca1" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ScanDataStore::fRootFileName</definition>
+        <argsstring></argsstring>
+        <name>fRootFileName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="195" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1aeafc3405bc896a200f82853ee8ebe06e" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fStaFiles</definition>
+        <argsstring></argsstring>
+        <name>fStaFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="191" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a7036894d104178e388b62ab7bf3cae51" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::fStationCodes</definition>
+        <argsstring></argsstring>
+        <name>fStationCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="204" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ScanDataStore_1a064a5d859a1738abf3281376ed7115ed" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt; std::string, std::string &gt; hops::MHO_ScanDataStore::fStationFileMap</definition>
+        <argsstring></argsstring>
+        <name>fStationFileMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="205" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1acaa34f7d1fc053b9c3a1c27a7f697c94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ScanDataStore::MHO_ScanDataStore</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ScanDataStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="6" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1acc9116cc23ee3e8329d43b093916a5c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ScanDataStore::~MHO_ScanDataStore</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ScanDataStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a54e1a52b8de8ba09b5702a1d37d8197d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ScanDataStore::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="177" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="293" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1ab8c41c3bffac657b36c7ea1b989b4456" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ScanDataStore::GetBaselineFilename</definition>
+        <argsstring>(std::string baseline) const</argsstring>
+        <name>GetBaselineFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline</declname>
+        </param>
+        <briefdescription>
+<para>Getter for baseline filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input baseline string used to lookup its corresponding filename. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The filename associated with the input baseline or an empty string if not found. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="151" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="215" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1af1304258fc944b994a2009fc19aceec7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::GetBaselinesPresent</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaselinesPresent</name>
+        <briefdescription>
+<para>Getter for baselines present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing baseline codes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="105" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="105" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a8117f0b0aa1475382c38c711a4279ce0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ScanDataStore::GetFringeFilename</definition>
+        <argsstring>(std::string fringe_basename) const</argsstring>
+        <name>GetFringeFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>fringe_basename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="174" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="280" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1af0c8ff19709ed26f469fe80de211c1e9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::GetFringesPresent</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFringesPresent</name>
+        <briefdescription>
+<para>Getter for fringes present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing the fringe codes. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="119" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="119" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1ae43a58dabb27c7e0b32f88c3460e0ffa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ScanDataStore::GetNBaselines</definition>
+        <argsstring>()</argsstring>
+        <name>GetNBaselines</name>
+        <briefdescription>
+<para>Getter for number of baselines. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Size of fBaselineCodes vector </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="84" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1abe13f94a7e3c14688793e1131df4bf48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ScanDataStore::GetNFringes</definition>
+        <argsstring>()</argsstring>
+        <name>GetNFringes</name>
+        <briefdescription>
+<para>Getter for number of fringes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Size of fringe codes vector as std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="98" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a56806bd9e511aa8a8ee02e88a00eb5b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ScanDataStore::GetNStations</definition>
+        <argsstring>()</argsstring>
+        <name>GetNStations</name>
+        <briefdescription>
+<para>Getter for number of stations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Number of stations as std::size_t. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="91" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1acd4504547babe6a5cb480517919e687b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ScanDataStore::GetRootFileBasename</definition>
+        <argsstring>()</argsstring>
+        <name>GetRootFileBasename</name>
+        <briefdescription>
+<para>Getter for root file basename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing the basename of the root file </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="133" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a65876bfb0034d67722da73e6d4c0dea7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ScanDataStore::GetRootFileData</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRootFileData</name>
+        <briefdescription>
+<para>Getter for root file data (as json) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>JSON object containing root file data </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="126" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="181" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1ae7cacdb413b13825b186899420908558" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ScanDataStore::GetStationFilename</definition>
+        <argsstring>(std::string station) const</argsstring>
+        <name>GetStationFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>station</declname>
+        </param>
+        <briefdescription>
+<para>Getter for station filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The station name to search for in the internal map. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The corresponding filename if found, otherwise an empty string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="170" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="247" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1aab7b0ce1c83fc3a2b1ad1c8036bcca75" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ScanDataStore::GetStationsPresent</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStationsPresent</name>
+        <briefdescription>
+<para>Getter for stations present. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing station codes </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="112" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="112" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1ac5f6781466a3f91e37bc396ee2af5486" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <briefdescription>
+<para>Initializes data store by clearing, reading directory files, mapping stations and fringes, and determining root file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if initialization is successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="13" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a8c115e33374862e1d7adf6f68737627e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::IsBaselinePresent</definition>
+        <argsstring>(std::string bl) const</argsstring>
+        <name>IsBaselinePresent</name>
+        <param>
+          <type>std::string</type>
+          <declname>bl</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a baseline code is present in the internal list. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The baseline code to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the baseline code is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="60" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="75" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1af718cb182eef1b66a0861c2eb239e00f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::IsFringePresent</definition>
+        <argsstring>(std::string basename) const</argsstring>
+        <name>IsFringePresent</name>
+        <param>
+          <type>std::string</type>
+          <declname>basename</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a fringe file is present for a given using its basename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>basename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input basename string to search for in fringe codes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the fringe with the given basename is present </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="77" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="63" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a9262a1e83f5a7343d3b4c6e42c611cc6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::IsStationPresent</definition>
+        <argsstring>(std::string st) const</argsstring>
+        <name>IsStationPresent</name>
+        <param>
+          <type>std::string</type>
+          <declname>st</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a station is present in the list of station codes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>st</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The station name to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the station is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="87" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a48b1f769e1bb1923f223360401d0e16d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::IsValid</definition>
+        <argsstring>()</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+<para>Checks if root file and baseline/station files exist for valid data processing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if all required files are present, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="43" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a75c61055e33f44cf225d3ce6709d92cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::LoadBaseline</definition>
+        <argsstring>(std::string baseline, MHO_ContainerStore *store)</argsstring>
+        <name>LoadBaseline</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>store</declname>
+        </param>
+        <briefdescription>
+<para>Loads baseline data into a store from a file mapped to the given baseline. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input baseline string used to lookup the corresponding file </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(MHO_ContainerStore*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if loaded successfully, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="143" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="196" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a43a29b9fb063f1732965affc3875b7b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::LoadFringe</definition>
+        <argsstring>(std::string fringe_basename, MHO_ContainerStore *store)</argsstring>
+        <name>LoadFringe</name>
+        <param>
+          <type>std::string</type>
+          <declname>fringe_basename</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>store</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="173" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="261" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a9e37329ff80cf0149403f94ba98fe048" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ScanDataStore::LoadStation</definition>
+        <argsstring>(std::string station, MHO_ContainerStore *store)</argsstring>
+        <name>LoadStation</name>
+        <param>
+          <type>std::string</type>
+          <declname>station</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>store</declname>
+        </param>
+        <briefdescription>
+<para>Loads station data into a container store if found in the map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Station name to load data for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>store</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Container store to populate with loaded data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if loaded successfully, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="162" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="228" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1ac49d9ac431ca6ab8af1259fdf32a58a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ScanDataStore::SetDirectory</definition>
+        <argsstring>(std::string dir)</argsstring>
+        <name>SetDirectory</name>
+        <param>
+          <type>std::string</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+<para>Setter for (scan) directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New directory path as std::string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="38" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a8a1159ca114c2a459cf44c3a5766cedd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ScanDataStore::DetermineRootFile</definition>
+        <argsstring>()</argsstring>
+        <name>DetermineRootFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="180" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="99" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1ab6631cb8493fddbcf4358f5d16163062" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ScanDataStore::MapBaselines</definition>
+        <argsstring>()</argsstring>
+        <name>MapBaselines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="181" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="129" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1a7c136a51ecfef240eac2c79cc3754a64" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ScanDataStore::MapFringes</definition>
+        <argsstring>()</argsstring>
+        <name>MapFringes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="183" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="169" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ScanDataStore_1ae348acd7bcb8aa9d201be717597e4fb1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ScanDataStore::MapStations</definition>
+        <argsstring>()</argsstring>
+        <name>MapStations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="182" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ScanDataStore.cc" bodystart="149" bodyend="167"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class to catalog and organize data files that are associated with a single scan, and handle retrieval for specific baselilnes. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Jan 27 16:41:52 2023 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ScanDataStore.hh" bodystart="28" bodyend="212"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a54e1a52b8de8ba09b5702a1d37d8197d" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a8a1159ca114c2a459cf44c3a5766cedd" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>DetermineRootFile</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a4acb94b44f6611eb44b13b7d805dbb1e" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fActiveBaselineContainers</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1af37df6b3f3d5457a39118f12e348d4a3" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fActiveFringeContainers</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1afac33058706136b8ca24fd06ab672153" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fActiveStationContainers</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a0ab147f15f2c4eea803810fdcdf93c18" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fAllFiles</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1af50e46e95e5fa856cd4d3c10f49fbd39" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fBaselineCodes</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a806b9c092463a3615d61215082f2220a" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fBaselineFileMap</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ae0b5c16b349f55942bd6e32dca719317" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fCorFiles</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a482148e3d0ddaa3928108b991fdbb568" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fDirectory</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1af61ceca6191eb7aca3d4754d97b6213c" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fDirInterface</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a6294baa0cc988455361f1d8e6d95bf95" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fFringeCodes</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ace92fba66d30ae386a466a61b763d334" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fFringeFileMap</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1abedfc93f52ba16485ae822edea6b7853" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fFringeFiles</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a036eb03ca0779baa5d92a83951570166" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fJSONFiles</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a4226cc37f35d2bfd45ac43e205532733" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fRootFileData</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1acd6ce5ed9bdc95af511716cfd0c26ca1" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fRootFileName</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1aeafc3405bc896a200f82853ee8ebe06e" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fStaFiles</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a7036894d104178e388b62ab7bf3cae51" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fStationCodes</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a064a5d859a1738abf3281376ed7115ed" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>fStationFileMap</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ab8c41c3bffac657b36c7ea1b989b4456" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetBaselineFilename</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1af1304258fc944b994a2009fc19aceec7" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetBaselinesPresent</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a8117f0b0aa1475382c38c711a4279ce0" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetFringeFilename</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1af0c8ff19709ed26f469fe80de211c1e9" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetFringesPresent</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ae43a58dabb27c7e0b32f88c3460e0ffa" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetNBaselines</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1abe13f94a7e3c14688793e1131df4bf48" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetNFringes</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a56806bd9e511aa8a8ee02e88a00eb5b2" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetNStations</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1acd4504547babe6a5cb480517919e687b" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetRootFileBasename</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a65876bfb0034d67722da73e6d4c0dea7" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetRootFileData</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ae7cacdb413b13825b186899420908558" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetStationFilename</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1aab7b0ce1c83fc3a2b1ad1c8036bcca75" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>GetStationsPresent</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ac5f6781466a3f91e37bc396ee2af5486" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a8c115e33374862e1d7adf6f68737627e" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>IsBaselinePresent</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1af718cb182eef1b66a0861c2eb239e00f" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>IsFringePresent</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a9262a1e83f5a7343d3b4c6e42c611cc6" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>IsStationPresent</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a48b1f769e1bb1923f223360401d0e16d" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>IsValid</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a75c61055e33f44cf225d3ce6709d92cb" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>LoadBaseline</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a43a29b9fb063f1732965affc3875b7b7" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>LoadFringe</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a9e37329ff80cf0149403f94ba98fe048" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>LoadStation</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ab6631cb8493fddbcf4358f5d16163062" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>MapBaselines</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1a7c136a51ecfef240eac2c79cc3754a64" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>MapFringes</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ae348acd7bcb8aa9d201be717597e4fb1" prot="private" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>MapStations</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1acaa34f7d1fc053b9c3a1c27a7f697c94" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>MHO_ScanDataStore</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1ac49d9ac431ca6ab8af1259fdf32a58a8" prot="public" virt="non-virtual"><scope>hops::MHO_ScanDataStore</scope><name>SetDirectory</name></member>
+      <member refid="classhops_1_1MHO__ScanDataStore_1acc9116cc23ee3e8329d43b093916a5c6" prot="public" virt="virtual"><scope>hops::MHO_ScanDataStore</scope><name>~MHO_ScanDataStore</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

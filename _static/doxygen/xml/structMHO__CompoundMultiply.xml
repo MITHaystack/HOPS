@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structMHO__CompoundMultiply" kind="struct" language="C++" prot="public">
+    <compoundname>MHO_CompoundMultiply</compoundname>
+    <includes refid="MHO__CompoundReductions_8hh" local="no">MHO_CompoundReductions.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structMHO__CompoundMultiply_1a7ad58b1efe69754e1547cc1bae267ce8" prot="public" static="no" mutable="no">
+        <type>const XValueType</type>
+        <definition>const XValueType MHO_CompoundMultiply&lt; XValueType &gt;::identity</definition>
+        <argsstring></argsstring>
+        <name>identity</name>
+        <initializer>= <ref refid="structMHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt; XValueType &gt;::<ref refid="structvalue" kindref="compound">value</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="337" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="337" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structMHO__CompoundMultiply_1a545de782032557305c38ff147e41bd05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MHO_CompoundMultiply&lt; XValueType &gt;::operator()</definition>
+        <argsstring>(XValueType &amp;a, const XValueType &amp;b)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>XValueType &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="335" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="335" bodyend="335"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>MHO_CompoundMultiply&lt; XValueType &gt;</label>
+        <link refid="structMHO__CompoundMultiply"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>identity</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>const XValueType</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="333" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="334" bodyend="338"/>
+    <listofallmembers>
+      <member refid="structMHO__CompoundMultiply_1a7ad58b1efe69754e1547cc1bae267ce8" prot="public" virt="non-virtual"><scope>MHO_CompoundMultiply</scope><name>identity</name></member>
+      <member refid="structMHO__CompoundMultiply_1a545de782032557305c38ff147e41bd05" prot="public" virt="non-virtual"><scope>MHO_CompoundMultiply</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

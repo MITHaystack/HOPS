@@ -1,0 +1,856 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OperatorBuilder" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_OperatorBuilder</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__ChannelLabelerBuilder" prot="public" virt="non-virtual">hops::MHO_ChannelLabelerBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__CircularFieldRotationBuilder" prot="public" virt="non-virtual">hops::MHO_CircularFieldRotationBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__DCBlockBuilder" prot="public" virt="non-virtual">hops::MHO_DCBlockBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__DataSelectionBuilder" prot="public" virt="non-virtual">hops::MHO_DataSelectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__LSBOffsetBuilder" prot="public" virt="non-virtual">hops::MHO_LSBOffsetBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__LinearDParCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_LinearDParCorrectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ManualChannelDelayCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_ManualChannelDelayCorrectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_ManualChannelPhaseCorrectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ManualPolDelayCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_ManualPolDelayCorrectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ManualPolPhaseCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_ManualPolPhaseCorrectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MinWeightBuilder" prot="public" virt="non-virtual">hops::MHO_MinWeightBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MixedPolYShiftBuilder" prot="public" virt="non-virtual">hops::MHO_MixedPolYShiftBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultitonePhaseCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_MultitonePhaseCorrectionBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__NotchesBuilder" prot="public" virt="non-virtual">hops::MHO_NotchesBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__PassbandBuilder" prot="public" virt="non-virtual">hops::MHO_PassbandBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__PolProductSummationBuilder" prot="public" virt="non-virtual">hops::MHO_PolProductSummationBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__PythonOperatorBuilder" prot="public" virt="non-virtual">hops::MHO_PythonOperatorBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__SamplerLabelerBuilder" prot="public" virt="non-virtual">hops::MHO_SamplerLabelerBuilder</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__StationDelayCorrectionBuilder" prot="public" virt="non-virtual">hops::MHO_StationDelayCorrectionBuilder</derivedcompoundref>
+    <includes refid="MHO__OperatorBuilder_8hh" local="no">MHO_OperatorBuilder.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilder_1ae50472a8a3daeec0655cf85fdaaf35cf" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_OperatorBuilder::fAttributes</definition>
+        <argsstring></argsstring>
+        <name>fAttributes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="162" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilder_1a076a0ebceaa46443a8fe9e6feab5598c" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_OperatorBuilder::fConditions</definition>
+        <argsstring></argsstring>
+        <name>fConditions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="161" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilder_1a446f8996af6c790981fb52b79e17e61f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+        <definition>MHO_ContainerStore* hops::MHO_OperatorBuilder::fContainerStore</definition>
+        <argsstring></argsstring>
+        <name>fContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="156" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilder_1a710c592e8aa8d33264aa78f5910efd8c" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_OperatorBuilder::fFormat</definition>
+        <argsstring></argsstring>
+        <name>fFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="160" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilder_1a96641993c4ee83b5dcf7bebb8eab7fbf" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+        <definition>MHO_FringeData* hops::MHO_OperatorBuilder::fFringeData</definition>
+        <argsstring></argsstring>
+        <name>fFringeData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="153" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilder_1a43237b05f41b152f504c987df53bd72b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+        <definition>MHO_OperatorToolbox* hops::MHO_OperatorBuilder::fOperatorToolbox</definition>
+        <argsstring></argsstring>
+        <name>fOperatorToolbox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="150" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OperatorBuilder_1a2d103267ff6a55e48c73368f88a62af8" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+        <definition>MHO_ParameterStore* hops::MHO_OperatorBuilder::fParameterStore</definition>
+        <argsstring></argsstring>
+        <name>fParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="157" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a7892c773fd245b2948f8c8673d5e4acd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OperatorBuilder::MHO_OperatorBuilder</definition>
+        <argsstring>(MHO_OperatorToolbox *toolbox, MHO_ContainerStore *cstore=nullptr, MHO_ParameterStore *pstore=nullptr)</argsstring>
+        <name>MHO_OperatorBuilder</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>cstore</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>pstore</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="38" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="38" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a57f2ad9c7838dc8e730cdf97a059a16f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OperatorBuilder::MHO_OperatorBuilder</definition>
+        <argsstring>(MHO_OperatorToolbox *toolbox, MHO_FringeData *fdata)</argsstring>
+        <name>MHO_OperatorBuilder</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="31" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a1337a10e489d53f77d77e95dac5a78f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_OperatorBuilder::~MHO_OperatorBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OperatorBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a9ca5f236585f7523d7206188109591e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OperatorBuilder::Build</definition>
+        <argsstring>()=0</argsstring>
+        <name>Build</name>
+        <reimplementedby refid="classhops_1_1MHO__ChannelLabelerBuilder_1a3c53101921be7c7db37d090c54caa30a">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CircularFieldRotationBuilder_1a98ed3bc43946fce83f7246938d4d43b2">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DataSelectionBuilder_1a7b7a712f350582b4ba6d8489c57b2344">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DCBlockBuilder_1a8e58ee390ad75d0ecd361f4db79b970a">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LinearDParCorrectionBuilder_1a13aaed0c1c4c17cf5ee5cdd1ee632066">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LSBOffsetBuilder_1a2145da45ad4372c2c0aebbe7b80b42c9">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelDelayCorrectionBuilder_1a05e4c6836d55dcd08d0f9a98df4d26f2">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder_1a2d2479ac7eccccfc6e0ef1bdcb7bb874">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolDelayCorrectionBuilder_1ad1841b6c4f36c7ea35d02003cddeb25f">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolPhaseCorrectionBuilder_1ad8913abeef7df059e5d7f433a74cf263">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MinWeightBuilder_1a88f228c032439c9cf1187c34781b52ab">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedPolYShiftBuilder_1ad99f64cc1b758e1d66ca6cb83d0af322">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultitonePhaseCorrectionBuilder_1a8320b6f673f89d129a9a5dd1fbdf61da">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__NotchesBuilder_1a77180a0af0a3da652e6d177a9e491a8e">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PassbandBuilder_1ac976047c715b996e279da7fdb66fc32f">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PolProductSummationBuilder_1a3c25a953754891d6dee16336f08ef700">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SamplerLabelerBuilder_1abe476df2ec121b6a2586c2e6780f5b99">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__StationDelayCorrectionBuilder_1a3dfde920d1d62f92ba99084029ed0dc7">Build</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PythonOperatorBuilder_1a59b11a205dd92df0474373844261cbd1">Build</reimplementedby>
+        <briefdescription>
+<para>Builds the object and passes it to toolbox if successful, otherwise returns false. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success or failure </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="111" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a21591a64fc853e3f2c54b3186b18a38c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_OperatorBuilder::SetAttributes</definition>
+        <argsstring>(const mho_json &amp;attr)</argsstring>
+        <name>SetAttributes</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <briefdescription>
+<para>Setter for attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input attribute data of type const mho_json&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="103" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="103" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a1f08918250a2d4b01b7aa0527cbae698" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_OperatorBuilder::SetConditions</definition>
+        <argsstring>(const mho_json &amp;cond)</argsstring>
+        <name>SetConditions</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>cond</declname>
+        </param>
+        <briefdescription>
+<para>Setter for applicability conditions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cond</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input conditions of type const mho_json&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="95" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="95" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a5bd82217af9600a31013b06e604483a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_OperatorBuilder::SetContainerStore</definition>
+        <argsstring>(MHO_ContainerStore *cstore)</argsstring>
+        <name>SetContainerStore</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>cstore</declname>
+        </param>
+        <briefdescription>
+<para>Setter for container store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cstore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="78" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a2033969b55c8ba07c6470ac8864e6d7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_OperatorBuilder::SetFormat</definition>
+        <argsstring>(const mho_json &amp;format)</argsstring>
+        <name>SetFormat</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Setter for format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new format for the operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="87" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a33f14a9be573486bb9aeb00578106d54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_OperatorBuilder::SetFringeData</definition>
+        <argsstring>(MHO_FringeData *fdata)</argsstring>
+        <name>SetFringeData</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <briefdescription>
+<para>Setter for fringe data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fdata</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> structure </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="62" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a0b6feeb5da8afe7d1cc5eeb7317d76e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_OperatorBuilder::SetParameterStore</definition>
+        <argsstring>(MHO_ParameterStore *pstore)</argsstring>
+        <name>SetParameterStore</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>pstore</declname>
+        </param>
+        <briefdescription>
+<para>Setter for parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pstore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="70" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a61a2c3becb21cd1ee2bc59fc42458b86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_OperatorBuilder::SetToolbox</definition>
+        <argsstring>(MHO_OperatorToolbox *toolbox)</argsstring>
+        <name>SetToolbox</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <briefdescription>
+<para>Setter for toolbox. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>toolbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the <ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> object to be set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="54" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OperatorBuilder_1a69adf0a5a08b4ac142aa650c8ba032aa" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_OperatorBuilder::IsConfigurationOk</definition>
+        <argsstring>()</argsstring>
+        <name>IsConfigurationOk</name>
+        <briefdescription>
+<para>Function IsConfigurationOk provided for derived class to validate fAttributes against fFormat and/or fConditions but the default implementation tries to check a few things. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="123" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="123" bodyend="147"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Abtract base class for a builder object (creates an operator for later use) </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Wed May 31 17:11:03 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>hops::MHO_LSBOffsetBuilder</label>
+        <link refid="classhops_1_1MHO__LSBOffsetBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_CircularFieldRotationBuilder</label>
+        <link refid="classhops_1_1MHO__CircularFieldRotationBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_DCBlockBuilder</label>
+        <link refid="classhops_1_1MHO__DCBlockBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_ManualChannelDelayCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__ManualChannelDelayCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ChannelLabelerBuilder</label>
+        <link refid="classhops_1_1MHO__ChannelLabelerBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_LinearDParCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__LinearDParCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>hops::MHO_MultitonePhaseCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__MultitonePhaseCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>hops::MHO_SamplerLabelerBuilder</label>
+        <link refid="classhops_1_1MHO__SamplerLabelerBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_ManualPolPhaseCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__ManualPolPhaseCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>hops::MHO_StationDelayCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__StationDelayCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>hops::MHO_PythonOperatorBuilder</label>
+        <link refid="classhops_1_1MHO__PythonOperatorBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_NotchesBuilder</label>
+        <link refid="classhops_1_1MHO__NotchesBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OperatorBuilder</label>
+        <link refid="classhops_1_1MHO__OperatorBuilder"/>
+      </node>
+      <node id="17">
+        <label>hops::MHO_PolProductSummationBuilder</label>
+        <link refid="classhops_1_1MHO__PolProductSummationBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_MixedPolYShiftBuilder</label>
+        <link refid="classhops_1_1MHO__MixedPolYShiftBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>hops::MHO_MinWeightBuilder</label>
+        <link refid="classhops_1_1MHO__MinWeightBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>hops::MHO_PassbandBuilder</label>
+        <link refid="classhops_1_1MHO__PassbandBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_ManualPolDelayCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__ManualPolDelayCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_ManualChannelPhaseCorrectionBuilder</label>
+        <link refid="classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_DataSelectionBuilder</label>
+        <link refid="classhops_1_1MHO__DataSelectionBuilder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="23">
+        <label>size_t</label>
+      </node>
+      <node id="27">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="30">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="14" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="17">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="21" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="14" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ParameterStore</label>
+        <link refid="classhops_1_1MHO__ParameterStore"/>
+      </node>
+      <node id="18">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="19" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="14" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>json</label>
+      </node>
+      <node id="12">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="24">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>key_pair</label>
+      </node>
+      <node id="22">
+        <label>int</label>
+      </node>
+      <node id="14">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>std::set&lt; std::string &gt;</label>
+        <childnode refid="11" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>uint8_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OperatorBuilder</label>
+        <link refid="classhops_1_1MHO__OperatorBuilder"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fAttributes</edgelabel>
+          <edgelabel>fConditions</edgelabel>
+          <edgelabel>fFormat</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fFringeData</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>fOperatorToolbox</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_ScanDataStore</label>
+        <link refid="classhops_1_1MHO__ScanDataStore"/>
+      </node>
+      <node id="28">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="14" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>std::map&lt; hops::MHO_Serializable *, key_pair &gt;</label>
+        <childnode refid="8" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="6">
+        <label>hops::MHO_ContainerStore</label>
+        <link refid="classhops_1_1MHO__ContainerStore"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fObjectsToIds</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fShortNameSet</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>fShortNameToIds</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fIdsToObjects</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fDictionary</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="21" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>hops::MHO_OperatorToolbox</label>
+        <link refid="classhops_1_1MHO__OperatorToolbox"/>
+      </node>
+      <node id="16">
+        <label>std::map&lt; key_pair, hops::MHO_Serializable * &gt;</label>
+        <childnode refid="8" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="21">
+        <label>char</label>
+      </node>
+      <node id="4">
+        <label>hops::MHO_FringeData</label>
+        <link refid="classhops_1_1MHO__FringeData"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fControlFormat</edgelabel>
+          <edgelabel>fControlStatements</edgelabel>
+          <edgelabel>fPlotData</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fScanStore</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>std::string</label>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_OperatorBuilder.hh" bodystart="27" bodyend="163"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a9ca5f236585f7523d7206188109591e1" prot="public" virt="pure-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>Build</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1ae50472a8a3daeec0655cf85fdaaf35cf" prot="protected" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>fAttributes</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a076a0ebceaa46443a8fe9e6feab5598c" prot="protected" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>fConditions</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a446f8996af6c790981fb52b79e17e61f" prot="protected" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>fContainerStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a710c592e8aa8d33264aa78f5910efd8c" prot="protected" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>fFormat</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a96641993c4ee83b5dcf7bebb8eab7fbf" prot="protected" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>fFringeData</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a43237b05f41b152f504c987df53bd72b" prot="protected" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>fOperatorToolbox</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a2d103267ff6a55e48c73368f88a62af8" prot="protected" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a69adf0a5a08b4ac142aa650c8ba032aa" prot="protected" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>IsConfigurationOk</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a57f2ad9c7838dc8e730cdf97a059a16f" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>MHO_OperatorBuilder</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a7892c773fd245b2948f8c8673d5e4acd" prot="public" virt="non-virtual"><scope>hops::MHO_OperatorBuilder</scope><name>MHO_OperatorBuilder</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a21591a64fc853e3f2c54b3186b18a38c" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>SetAttributes</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a1f08918250a2d4b01b7aa0527cbae698" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>SetConditions</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a5bd82217af9600a31013b06e604483a9" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>SetContainerStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a2033969b55c8ba07c6470ac8864e6d7f" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>SetFormat</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a33f14a9be573486bb9aeb00578106d54" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>SetFringeData</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a0b6feeb5da8afe7d1cc5eeb7317d76e8" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>SetParameterStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a61a2c3becb21cd1ee2bc59fc42458b86" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>SetToolbox</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a1337a10e489d53f77d77e95dac5a78f8" prot="public" virt="virtual"><scope>hops::MHO_OperatorBuilder</scope><name>~MHO_OperatorBuilder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

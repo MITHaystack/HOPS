@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_36456e4eab78d2da1fa9681fb069c9cc" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="assess__data_8c">assess_data.c</innerfile>
+    <innerfile refid="baseline__avg_8c">baseline_avg.c</innerfile>
+    <innerfile refid="check__source_8c">check_source.c</innerfile>
+    <innerfile refid="check__times_8c">check_times.c</innerfile>
+    <innerfile refid="check__tribase_8c">check_tribase.c</innerfile>
+    <innerfile refid="get__int__time_8c">get_int_time.c</innerfile>
+    <innerfile refid="index__data_8c">index_data.c</innerfile>
+    <innerfile refid="applications_2average_2src_2parse__cmdline_8c">applications/average/src/parse_cmdline.c</innerfile>
+    <innerfile refid="average_2src_2read__data_8c">average/src/read_data.c</innerfile>
+    <innerfile refid="average_2src_2sort__data_8c">average/src/sort_data.c</innerfile>
+    <innerfile refid="average_2src_2sorter_8c">average/src/sorter.c</innerfile>
+    <innerfile refid="triangle__avg_8c">triangle_avg.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/"/>
+  </compounddef>
+</doxygen>

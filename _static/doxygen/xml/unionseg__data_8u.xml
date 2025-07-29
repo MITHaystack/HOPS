@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionseg__data_8u" kind="union" language="C++" prot="public">
+    <compoundname>seg_data.u</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionseg__data_8u_1aac7f73634dcfeb703a9363a0abbda688" prot="public" static="no" mutable="no">
+        <type><ref refid="structfringesum" kindref="compound">fringesum</ref></type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>fdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="31" column="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionseg__data_8u_1ac89b122b57eba0d8720a64441d5b0745" prot="public" static="no" mutable="no">
+        <type><ref refid="structtrianglesum" kindref="compound">trianglesum</ref></type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>tdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="32" column="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="29" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="30" bodyend="33"/>
+    <listofallmembers>
+      <member refid="unionseg__data_8u_1aac7f73634dcfeb703a9363a0abbda688" prot="public" virt="non-virtual"><scope>seg_data.u</scope><name>fdata</name></member>
+      <member refid="unionseg__data_8u_1ac89b122b57eba0d8720a64441d5b0745" prot="public" virt="non-virtual"><scope>seg_data.u</scope><name>tdata</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

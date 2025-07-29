@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ffcore_8h" kind="file" language="C++">
+    <compoundname>ffcore.h</compoundname>
+    <includedby refid="fourfit3_8c" local="yes">fourfit3.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="1">
+        <label>ffcore.h</label>
+        <link refid="ffcore_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ffcore_8h_1a9506c78558732ec7470e682054020337" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_corel_data</definition>
+        <argsstring>(fstruct *fs, struct scan_struct *ovex, char *filename, struct mk4_corel *cdata)</argsstring>
+        <name>get_corel_data</name>
+        <param>
+          <type><ref refid="structfstruct" kindref="compound">fstruct</ref> *</type>
+          <declname>fs</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>ovex</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+          <declname>cdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" line="7" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/get_corel_data.c" bodystart="37" bodyend="77" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" declline="7" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ffcore_8h_1a25006d8390ed9ea55abb49e53422f06c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int make_passes</definition>
+        <argsstring>(struct scan_struct *ovex, struct freq_corel *corel, struct type_param *param, struct type_pass **pass, int *npass)</argsstring>
+        <name>make_passes</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>ovex</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfreq__corel" kindref="compound">freq_corel</ref> *</type>
+          <declname>corel</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> **</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>npass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" line="6" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/make_passes.c" bodystart="29" bodyend="358" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" declline="6" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ffcore_8h_1ae5a7b5833c5851f0eb88b728aaee206e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int read_sdata</definition>
+        <argsstring>(struct fileset *fset, struct mk4_sdata *sdata)</argsstring>
+        <name>read_sdata</name>
+        <param>
+          <type>struct <ref refid="structfileset" kindref="compound">fileset</ref> *</type>
+          <declname>fset</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" line="5" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/read_sdata.c" bodystart="23" bodyend="50" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" declline="5" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ffcore_8h_1aaf8e4eef76ea83a51b16168f43702f41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int set_defaults</definition>
+        <argsstring>()</argsstring>
+        <name>set_defaults</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" line="4" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/set_defaults.c" bodystart="18" bodyend="50" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h" declline="4" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>FFCORE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FFCORE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcore_8h_1aaf8e4eef76ea83a51b16168f43702f41" kindref="member">set_defaults</ref>();</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcore_8h_1ae5a7b5833c5851f0eb88b728aaee206e" kindref="member">read_sdata</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfileset" kindref="compound">fileset</ref><sp/>*fset,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="fourfit3_8c_1a67a98e2a5d464ae68b26343d8eebfec2" kindref="member">sdata</ref>);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcore_8h_1a25006d8390ed9ea55abb49e53422f06c" kindref="member">make_passes</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*ovex,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/>*corel,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>**pass,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*npass);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffcore_8h_1a9506c78558732ec7470e682054020337" kindref="member">get_corel_data</ref><sp/>(<ref refid="structfstruct" kindref="compound">fstruct</ref>*<sp/>fs,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref>*<sp/>ovex,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>filename,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref>*<sp/><ref refid="fourfit3_8c_1ac338fd2bd47bb64e711c167a64c196a1" kindref="member">cdata</ref>);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/ffcore.h"/>
+  </compounddef>
+</doxygen>

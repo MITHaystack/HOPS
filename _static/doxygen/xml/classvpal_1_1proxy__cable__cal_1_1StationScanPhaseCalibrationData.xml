@@ -1,0 +1,537 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a725eb526c2618d4fed032a74f1870f26" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::azimuth</definition>
+        <argsstring></argsstring>
+        <name>azimuth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="501" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="501" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1abdf40c9baa7515f8d110fd61d6c0b723" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::channel_name_list</definition>
+        <argsstring></argsstring>
+        <name>channel_name_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="505" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="505" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a28ae17a33a2a5e5e8f78ab5f519a5c60" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::elevation</definition>
+        <argsstring></argsstring>
+        <name>elevation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="502" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="502" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1abe65e7d59b0831efb0c392943c47a400" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::exp_name</definition>
+        <argsstring></argsstring>
+        <name>exp_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="497" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="497" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1ac6526c8fe8f80f19b10f7d8e82e73d58" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::fit_results</definition>
+        <argsstring></argsstring>
+        <name>fit_results</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="509" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="509" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a97f73746e85ca751d45c38ef17944dea" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::fourfit_ref_time</definition>
+        <argsstring></argsstring>
+        <name>fourfit_ref_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="504" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="504" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a9ed432d3b57fd64d576e3fd968229773" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::max_channel_bandwidth</definition>
+        <argsstring></argsstring>
+        <name>max_channel_bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="506" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="506" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1adb76b66637b6ddedbcd822e312f1e21b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::mk4_site_id</definition>
+        <argsstring></argsstring>
+        <name>mk4_site_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="493" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="493" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a98ef66ab84ce810499aed322f9f99abd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::ovex_data_file</definition>
+        <argsstring></argsstring>
+        <name>ovex_data_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="490" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="490" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4317b0e83334fd9c6dcbd16afcbd3429" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::root_suffix</definition>
+        <argsstring></argsstring>
+        <name>root_suffix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="491" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="491" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1aaf6f2ad1748ed0921321dda18e4610e3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::sample_rate</definition>
+        <argsstring></argsstring>
+        <name>sample_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="500" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="500" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4f8564fbc8e5efb1bd9b12ef8b60d82e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::scan_name</definition>
+        <argsstring></argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="495" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="495" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a1fde14d1b2071a4be99a781cc705a103" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::single_channel_phasor_collections</definition>
+        <argsstring></argsstring>
+        <name>single_channel_phasor_collections</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="508" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="508" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a32070741b8ccfa930bb2cf63ad1bc9f4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::site_name</definition>
+        <argsstring></argsstring>
+        <name>site_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="499" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="499" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a6f50bfa5ecdf2dd117f87d77f3024dd1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::source_name</definition>
+        <argsstring></argsstring>
+        <name>source_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="496" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="496" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1ae84a951409a1e93e89572a3c0dc46a4b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::start_time</definition>
+        <argsstring></argsstring>
+        <name>start_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="503" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="503" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a784f6edf504ffb75c5e1b0e221b9fe86" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::station_code</definition>
+        <argsstring></argsstring>
+        <name>station_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="498" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="498" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4b8150761bf9b35abf8518d8452d4cb3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::station_data_file</definition>
+        <argsstring></argsstring>
+        <name>station_data_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="492" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="492" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1abec79779ddadfee1341be171d88d6180" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="510" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="510" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a1c44585587912c431fd518c9e2c40ef9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationScanPhaseCalibrationData::verbosity</definition>
+        <argsstring></argsstring>
+        <name>verbosity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="494" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="494" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a5877d95c78bd368f0cd01771b779de4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.__init__</definition>
+        <argsstring>(self, mk4_site_id, ovex_data_file, verbosity=0)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1adb76b66637b6ddedbcd822e312f1e21b" kindref="member">mk4_site_id</ref></type>
+          <defname>mk4_site_id</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a98ef66ab84ce810499aed322f9f99abd" kindref="member">ovex_data_file</ref></type>
+          <defname>ovex_data_file</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a1c44585587912c431fd518c9e2c40ef9" kindref="member">verbosity</ref></type>
+          <defname>verbosity</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="489" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="489" bodyend="515"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1aa1e2af9d05fcc998e2f9970fd2c5d44e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.apply_phase_reference_collection</definition>
+        <argsstring>(self, ref_station_spc)</argsstring>
+        <name>apply_phase_reference_collection</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>ref_station_spc</type>
+          <defname>ref_station_spc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Correct this single channel phasor collection by a set of reference phasors for the same channel.
+This rotates the phasor so that the reference phasor collection has a phase of zero for each tone</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="671" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="671" bodyend="677"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4b98dd4cabc15ea008376f39182df627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.convert_integer_phasor_to_float</definition>
+        <argsstring>(self, u, v, acc_period, sample_period=1e-6)</argsstring>
+        <name>convert_integer_phasor_to_float</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>u</type>
+          <defname>u</defname>
+        </param>
+        <param>
+          <type>v</type>
+          <defname>v</defname>
+        </param>
+        <param>
+          <type>acc_period</type>
+          <defname>acc_period</defname>
+        </param>
+        <param>
+          <type>sample_period</type>
+          <defname>sample_period</defname>
+          <defval>1e-6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>convert integer pcal data to double (taken from pcal_interp.c) </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="649" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="649" bodyend="670"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1af543186c5abb9abe334d3ca51eb302bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.extract_ovex</definition>
+        <argsstring>(self)</argsstring>
+        <name>extract_ovex</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>read in the station channel set up data from the ovex file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="516" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="516" bodyend="562"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a2d76209f29b28ac48ad4248309360b34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.extract_pcal</definition>
+        <argsstring>(self)</argsstring>
+        <name>extract_pcal</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>read in the station p-cal phasor data for this scan and convert to usable format</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="563" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="563" bodyend="648"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a9c432376115266d2b2b866a55eb04993" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.fit_band_delay</definition>
+        <argsstring>(self, channel_to_band_map, band_pol, delay_fitter, cut_threshold, verbosity=0)</argsstring>
+        <name>fit_band_delay</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>channel_to_band_map</type>
+          <defname>channel_to_band_map</defname>
+        </param>
+        <param>
+          <type>band_pol</type>
+          <defname>band_pol</defname>
+        </param>
+        <param>
+          <type>delay_fitter</type>
+          <defname>delay_fitter</defname>
+        </param>
+        <param>
+          <type>cut_threshold</type>
+          <defname>cut_threshold</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a1c44585587912c431fd518c9e2c40ef9" kindref="member">verbosity</ref></type>
+          <defname>verbosity</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="718" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="718" bodyend="729"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a001800b75a7f9491e9673725981fc0eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.get_band_reference_frequencies</definition>
+        <argsstring>(self, channel_to_band_map)</argsstring>
+        <name>get_band_reference_frequencies</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>channel_to_band_map</type>
+          <defname>channel_to_band_map</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>use the frequencies of the channels which span a band to
+determine an appropriate reference frequency</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="696" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="696" bodyend="717"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1af4b352579f31f56303cda893fbf28706" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationScanPhaseCalibrationData.get_tone_phasors_grouped_by_band</definition>
+        <argsstring>(self, channel_to_band_map)</argsstring>
+        <name>get_tone_phasors_grouped_by_band</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>channel_to_band_map</type>
+          <defname>channel_to_band_map</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> use the channel to band map to select tones/phasor which should be fit together
+to determine a delay, returns a dictionary contains lists of frequency-phasor pairs
+dictionary keys are the band:pol </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="678" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="678" bodyend="695"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.StationScanPhaseCalibrationData</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.StationScanPhaseCalibrationData</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="487" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="487" bodyend="733"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a5877d95c78bd368f0cd01771b779de4d" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1aa1e2af9d05fcc998e2f9970fd2c5d44e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>apply_phase_reference_collection</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a725eb526c2618d4fed032a74f1870f26" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>azimuth</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1abdf40c9baa7515f8d110fd61d6c0b723" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>channel_name_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4b98dd4cabc15ea008376f39182df627" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>convert_integer_phasor_to_float</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a28ae17a33a2a5e5e8f78ab5f519a5c60" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>elevation</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1abe65e7d59b0831efb0c392943c47a400" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>exp_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1af543186c5abb9abe334d3ca51eb302bb" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>extract_ovex</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a2d76209f29b28ac48ad4248309360b34" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>extract_pcal</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a9c432376115266d2b2b866a55eb04993" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>fit_band_delay</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1ac6526c8fe8f80f19b10f7d8e82e73d58" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>fit_results</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a97f73746e85ca751d45c38ef17944dea" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>fourfit_ref_time</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a001800b75a7f9491e9673725981fc0eb" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>get_band_reference_frequencies</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1af4b352579f31f56303cda893fbf28706" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>get_tone_phasors_grouped_by_band</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a9ed432d3b57fd64d576e3fd968229773" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>max_channel_bandwidth</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1adb76b66637b6ddedbcd822e312f1e21b" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>mk4_site_id</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a98ef66ab84ce810499aed322f9f99abd" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>ovex_data_file</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4317b0e83334fd9c6dcbd16afcbd3429" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>root_suffix</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1aaf6f2ad1748ed0921321dda18e4610e3" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>sample_rate</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4f8564fbc8e5efb1bd9b12ef8b60d82e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>scan_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a1fde14d1b2071a4be99a781cc705a103" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>single_channel_phasor_collections</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a32070741b8ccfa930bb2cf63ad1bc9f4" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>site_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a6f50bfa5ecdf2dd117f87d77f3024dd1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>source_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1ae84a951409a1e93e89572a3c0dc46a4b" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>start_time</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a784f6edf504ffb75c5e1b0e221b9fe86" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>station_code</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a4b8150761bf9b35abf8518d8452d4cb3" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>station_data_file</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1abec79779ddadfee1341be171d88d6180" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>valid</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData_1a1c44585587912c431fd518c9e2c40ef9" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationScanPhaseCalibrationData</scope><name>verbosity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases" kind="class" language="Python" prot="public">
+    <compoundname>vpal::ffres2pcp_lib::SingleStationPCPhases</compoundname>
+    <basecompoundref refid="classvpal_1_1report__lib_1_1JsonSerializableObject" prot="public" virt="non-virtual">vpal.report_lib.JsonSerializableObject</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a642a7074c41a75f034fc8a71a1f2cafb" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.SingleStationPCPhases::mean_pc_phases</definition>
+        <argsstring></argsstring>
+        <name>mean_pc_phases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="102" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ac5b795481681728541749443a013859e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.SingleStationPCPhases::pc_phases</definition>
+        <argsstring></argsstring>
+        <name>pc_phases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="101" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a73287426374a6e36ae3da5680aab9aab" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.SingleStationPCPhases::pol</definition>
+        <argsstring></argsstring>
+        <name>pol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="99" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ac7b88f295c240951c45ddf5ea9a6ad7c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.SingleStationPCPhases::scan_baselines_used</definition>
+        <argsstring></argsstring>
+        <name>scan_baselines_used</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="100" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a40589046383e726514d7be855884ae15" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.SingleStationPCPhases::station_id</definition>
+        <argsstring></argsstring>
+        <name>station_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="98" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a47f9abbde867b6c98ab6086ac534ce0b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.SingleStationPCPhases::stddev_pc_phases</definition>
+        <argsstring></argsstring>
+        <name>stddev_pc_phases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="103" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1aca185ae58740c8eef59596865249eb13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.__init__</definition>
+        <argsstring>(self, station_id, pol)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a40589046383e726514d7be855884ae15" kindref="member">station_id</ref></type>
+          <defname>station_id</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a73287426374a6e36ae3da5680aab9aab" kindref="member">pol</ref></type>
+          <defname>pol</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="97" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="97" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1af6e610f3c94132e21daf5cc57d26391b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.add_pc_phases</definition>
+        <argsstring>(self, scan_name, baseline, pol, pc_phases_dict)</argsstring>
+        <name>add_pc_phases</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>scan_name</type>
+          <defname>scan_name</defname>
+        </param>
+        <param>
+          <type><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref></type>
+          <defname>baseline</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a73287426374a6e36ae3da5680aab9aab" kindref="member">pol</ref></type>
+          <defname>pol</defname>
+        </param>
+        <param>
+          <type>pc_phases_dict</type>
+          <defname>pc_phases_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> add a set of phases derived from a scan/baseline to the collection </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="113" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="113" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ad9a212596f829cfa3e3ce5c183f14a18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.apply_sigma_cut</definition>
+        <argsstring>(self, sigma_cut_factor)</argsstring>
+        <name>apply_sigma_cut</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>sigma_cut_factor</type>
+          <defname>sigma_cut_factor</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> we expect each channel to have a mean phase and standard deviation (sigma)
+this function eliminates outliers by iterating over each channel
+and removing all data points which lie beyond the range of sigma_cut_factor*sigma from the channel mean </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="177" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="177" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ab5778b491816c8e11d58a9b40b3acb83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.compute_mean_phases</definition>
+        <argsstring>(self)</argsstring>
+        <name>compute_mean_phases</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> compute the mean phases of each channel </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="154" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="154" bodyend="168"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a113db7ba79c0d0ecbff91e54719dc58b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.export_json</definition>
+        <argsstring>(self)</argsstring>
+        <name>export_json</name>
+        <reimplements refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1a5c3ae4ed6d06099f454ead9b988b691c">export_json</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> create a dict to be used as json output </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="121" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="121" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a6d975e0d1526393c2e17aa31c0654137" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.get_channel_n_datapoints</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_channel_n_datapoints</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get number of data points associated with each channel </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="132" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="132" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a3543f13db1863613b23c584552716b1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.get_mean_phases</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_mean_phases</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get mean phases of each channel </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="144" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="144" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ab0ffd1911f6b8fcea6b0544e2e8096c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.get_stddev_phases</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_stddev_phases</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get the std. dev. of the phases of each channel </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="149" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="149" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a1523b1a7d79f19785a3508569e44f07e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.is_empty</definition>
+        <argsstring>(self)</argsstring>
+        <name>is_empty</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>determine if this object has any pc phases data or not </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="106" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="106" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a8e867b546d102ed1ef334b47c19d6790" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.SingleStationPCPhases.merge</definition>
+        <argsstring>(self, obj)</argsstring>
+        <name>merge</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>obj</type>
+          <defname>obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> merge in the data from another object of the same time (assuming it matches the station and pol) </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="169" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="169" bodyend="176"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>container class for the pc_phases (corrections) of a single polarization of a single station
+the values stored in this class must be corrected for the baseline order of the involved stations,
+such that this station is treated as if it were always a remote station
+the value of scan_baselines_used, keeps track of which scans and baselines were used when
+computing the average values of the pc_phases </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.SingleStationPCPhases</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.SingleStationPCPhases</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="90" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="90" bodyend="204"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1aca185ae58740c8eef59596865249eb13" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1af6e610f3c94132e21daf5cc57d26391b" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>add_pc_phases</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ad9a212596f829cfa3e3ce5c183f14a18" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>apply_sigma_cut</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ab5778b491816c8e11d58a9b40b3acb83" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>compute_mean_phases</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a113db7ba79c0d0ecbff91e54719dc58b" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>export_json</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a6d975e0d1526393c2e17aa31c0654137" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>get_channel_n_datapoints</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a3543f13db1863613b23c584552716b1f" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>get_mean_phases</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ab0ffd1911f6b8fcea6b0544e2e8096c6" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>get_stddev_phases</name></member>
+      <member refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1aa016c5f55c3299e6e7525fb4b31a3377" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>import_json</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a1523b1a7d79f19785a3508569e44f07e" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>is_empty</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a642a7074c41a75f034fc8a71a1f2cafb" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>mean_pc_phases</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a8e867b546d102ed1ef334b47c19d6790" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>merge</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ac5b795481681728541749443a013859e" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>pc_phases</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a73287426374a6e36ae3da5680aab9aab" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>pol</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1ac7b88f295c240951c45ddf5ea9a6ad7c" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>scan_baselines_used</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a40589046383e726514d7be855884ae15" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>station_id</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases_1a47f9abbde867b6c98ab6086ac534ce0b" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::SingleStationPCPhases</scope><name>stddev_pc_phases</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

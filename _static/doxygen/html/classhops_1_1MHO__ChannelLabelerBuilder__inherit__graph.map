@@ -1,0 +1,5 @@
+<map id="hops::MHO_ChannelLabelerBuilder" name="hops::MHO_ChannelLabelerBuilder">
+<area shape="rect" id="node1" title="Class MHO_ChannelLabelerBuilder." alt="" coords="111,80,295,121"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__OperatorBuilder.html" title="Abtract base class for a builder object (creates an operator for later use)" alt="" coords="5,5,189,32"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__ChannelQuantity.html" title="class for storing and mapping per&#45;channel control quantities (a typical task for fourfit control file..." alt="" coords="213,5,403,32"/>
+</map>

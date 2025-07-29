@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__VexLine" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VexLine</compoundname>
+    <includes refid="MHO__VexLine_8hh" local="no">MHO_VexLine.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__VexLine_1a31eb864341e673096a13c3e64bc87167" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexLine::fContents</definition>
+        <argsstring></argsstring>
+        <name>fContents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" line="24" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__VexLine_1af96b6fc748ed2163809facf5f152b2ce" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_VexLine::fIsLiteral</definition>
+        <argsstring></argsstring>
+        <name>fIsLiteral</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" line="25" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__VexLine_1a844a830f19a3fc61252f4491e70263d7" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_VexLine::fLineNumber</definition>
+        <argsstring></argsstring>
+        <name>fLineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" line="22" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__VexLine_1a2a5f77922cbd7762f7249624d1f39f66" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_VexLine::fStatementNumber</definition>
+        <argsstring></argsstring>
+        <name>fStatementNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" line="23" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__VexLine" kindref="compound">MHO_VexLine</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>data structure to store a line from a vex file (for parsing/manipulation)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri May 27 12:45:21 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>size_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_VexLine</label>
+        <link refid="structhops_1_1MHO__VexLine"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fIsLiteral</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fContents</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fLineNumber</edgelabel>
+          <edgelabel>fStatementNumber</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>bool</label>
+      </node>
+      <node id="3">
+        <label>std::string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh" bodystart="21" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__VexLine_1a31eb864341e673096a13c3e64bc87167" prot="public" virt="non-virtual"><scope>hops::MHO_VexLine</scope><name>fContents</name></member>
+      <member refid="structhops_1_1MHO__VexLine_1af96b6fc748ed2163809facf5f152b2ce" prot="public" virt="non-virtual"><scope>hops::MHO_VexLine</scope><name>fIsLiteral</name></member>
+      <member refid="structhops_1_1MHO__VexLine_1a844a830f19a3fc61252f4491e70263d7" prot="public" virt="non-virtual"><scope>hops::MHO_VexLine</scope><name>fLineNumber</name></member>
+      <member refid="structhops_1_1MHO__VexLine_1a2a5f77922cbd7762f7249624d1f39f66" prot="public" virt="non-virtual"><scope>hops::MHO_VexLine</scope><name>fStatementNumber</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

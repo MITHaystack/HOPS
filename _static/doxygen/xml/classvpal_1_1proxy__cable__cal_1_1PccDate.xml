@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1PccDate" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::PccDate</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1a419906b35fa94b8fb532cc32e9fe4c68" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccDate::day</definition>
+        <argsstring></argsstring>
+        <name>day</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="78" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1a3cf736d74313a6b8327fe7a94379e3f8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccDate::hour</definition>
+        <argsstring></argsstring>
+        <name>hour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="79" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1a3c1feb8e617228f0ce68861f4265085d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccDate::minute</definition>
+        <argsstring></argsstring>
+        <name>minute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="80" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1a9e33e321880830f5bdf99d85f0650e8f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccDate::second</definition>
+        <argsstring></argsstring>
+        <name>second</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="81" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1a0595505a6469511a253323eebfd2b300" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.PccDate::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="77" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1aa715e2de769654fa41c92c6881fe9593" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.PccDate.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="76" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="76" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1ae9a7197930ff3cd91c84e03101530f58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.PccDate.__lt__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__lt__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="83" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="83" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1aa9385137d23cb40e0c13cdc3ad488955" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.PccDate.as_string</definition>
+        <argsstring>(self)</argsstring>
+        <name>as_string</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="121" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="121" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1ac8439f339dbf1a59d2713e109470cacc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.PccDate.get_time_delta_seconds</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>get_time_delta_seconds</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>compute difference in time </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="107" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="107" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1PccDate_1ab96607412fc8e3c5893abbbbce10d1b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.PccDate.initialize_from_date</definition>
+        <argsstring>(self, mk4_date)</argsstring>
+        <name>initialize_from_date</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>mk4_date</type>
+          <defname>mk4_date</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="100" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="100" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>simple date class </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.PccDate</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1PccDate"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.PccDate</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1PccDate"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="74" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="74" bodyend="134"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1aa715e2de769654fa41c92c6881fe9593" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1ae9a7197930ff3cd91c84e03101530f58" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>__lt__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1aa9385137d23cb40e0c13cdc3ad488955" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>as_string</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1a419906b35fa94b8fb532cc32e9fe4c68" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>day</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1ac8439f339dbf1a59d2713e109470cacc" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>get_time_delta_seconds</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1a3cf736d74313a6b8327fe7a94379e3f8" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>hour</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1ab96607412fc8e3c5893abbbbce10d1b3" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>initialize_from_date</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1a3c1feb8e617228f0ce68861f4265085d" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>minute</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1a9e33e321880830f5bdf99d85f0650e8f" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>second</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1PccDate_1a0595505a6469511a253323eebfd2b300" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::PccDate</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

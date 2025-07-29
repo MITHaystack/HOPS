@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d2m4__pcal__populate__record_8c" kind="file" language="C++">
+    <compoundname>d2m4_pcal_populate_record.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="d2m4__pcal__record_8h" local="yes">d2m4_pcal_record.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>d2m4_pcal_record.h</label>
+        <link refid="d2m4__pcal__record_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="1">
+        <label>d2m4_pcal_populate_record.c</label>
+        <link refid="d2m4__pcal__populate__record_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="d2m4__pcal__populate__record_8c_1a158259687b806ea9419b8d466ef7d070" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void d2m4_pcal_populate_record</definition>
+        <argsstring>(struct d2m4_pcal_record *rec, char *line_buffer)</argsstring>
+        <name>d2m4_pcal_populate_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>rec</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>line_buffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_populate_record.c" line="7" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_populate_record.c" bodystart="7" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2m4__pcal__record_8h" kindref="compound">d2m4_pcal_record.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__populate__record_8c_1a158259687b806ea9419b8d466ef7d070" kindref="member">d2m4_pcal_populate_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>line_buffer)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ri;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dstr<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nchars<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mchars<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nrecords<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref>*<sp/>ph<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>sscanf(line_buffer,<sp/></highlight><highlight class="stringliteral">&quot;%s%lf%lf%d%d%d%n&quot;</highlight><highlight class="normal">,<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" kindref="member">antenna</ref>,<sp/>&amp;(rec-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>),<sp/>&amp;(rec-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref>),<sp/>&amp;<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref>,<sp/>&amp;(rec-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref>),<sp/>&amp;(rec-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>),<sp/>&amp;mchars);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>nchars<sp/>+=<sp/>mchars;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>nrecords<sp/>=<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref><sp/>*<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>D2M4_PCAL_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;PCAL<sp/>AP<sp/>record<sp/>data:<sp/>%s<sp/>%lf<sp/>%lf<sp/>%d<sp/>%d<sp/>%d<sp/>\n&quot;</highlight><highlight class="normal">,<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" kindref="member">antenna</ref>,<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>,<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref>,<sp/><ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref>,<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref>,<sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref><sp/>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>allocate<sp/>space<sp/>for<sp/>all<sp/>the<sp/>records</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>rec-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref><sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref>*)<sp/>malloc(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref>)*nrecords<sp/>);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//loop<sp/>over<sp/>the<sp/>total<sp/>number<sp/>of<sp/>phasor<sp/>records</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//this<sp/>is<sp/>assumed<sp/>to<sp/>be<sp/>dstr*nchannels*ntones</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//(although<sp/>not<sp/>all<sp/>of<sp/>these<sp/>may<sp/>be<sp/>filled<sp/>with<sp/>valid<sp/>data<sp/>(this<sp/>is<sp/>indicated<sp/>by<sp/>freq<sp/>of<sp/>-1))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(ri=0;<sp/>ri&lt;nrecords;<sp/>ri++)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ph<sp/>=<sp/>&amp;(rec-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri]);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ph-&gt;<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref><sp/>=<sp/><ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref>;<sp/></highlight><highlight class="comment">//keep<sp/>track<sp/>of<sp/>the<sp/>original<sp/>data<sp/>stream<sp/>at<sp/>the<sp/>individual<sp/>phasor<sp/>level</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//I<sp/>believe<sp/>in<sp/>RJC&apos;s<sp/>notation<sp/>&apos;cquad&apos;<sp/>is<sp/>the<sp/>real<sp/>component,<sp/>and<sp/>&apos;squad&apos;<sp/>is<sp/>the<sp/>imaginary<sp/>component</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sscanf(line_buffer+nchars,<sp/></highlight><highlight class="stringliteral">&quot;%d<sp/>%c<sp/>%lf%lf%n&quot;</highlight><highlight class="normal">,<sp/><sp/>&amp;(ph-&gt;<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref>),<sp/>&amp;(ph-&gt;<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref>),<sp/>&amp;(ph-&gt;<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref>),<sp/>&amp;(ph-&gt;<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref>),<sp/>&amp;mchars);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#ifdef<sp/>D2M4_PCAL_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;phasor<sp/>data:<sp/>%d<sp/>%d<sp/>%c<sp/>%lf<sp/>%lf\n&quot;</highlight><highlight class="normal">,<sp/>ph-&gt;<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref>,<sp/>ph-&gt;<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref>,<sp/>ph-&gt;<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref>,<sp/>ph-&gt;<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref>,<sp/>ph-&gt;<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nchars<sp/>+=<sp/>mchars;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_populate_record.c"/>
+  </compounddef>
+</doxygen>

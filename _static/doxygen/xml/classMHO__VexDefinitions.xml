@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classMHO__VexDefinitions" kind="class" language="C++" prot="public">
+    <compoundname>MHO_VexDefinitions</compoundname>
+    <includes refid="MHO__VexDefinitions_8hh" local="no">MHO_VexDefinitions.hh</includes>
+    <briefdescription>
+<para>Basic definitions of various tokens and and patterns special for parsing VEX files. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue Jun 21 11:08:31 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="6" column="1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

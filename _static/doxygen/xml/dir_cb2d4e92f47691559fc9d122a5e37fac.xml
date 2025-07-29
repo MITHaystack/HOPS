@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_cb2d4e92f47691559fc9d122a5e37fac" kind="dir">
+    <compoundname>mk4util</compoundname>
+    <innerdir refid="dir_a9cd4a31284cbea32c0beb9190310289">include</innerdir>
+    <innerdir refid="dir_232a63e2a82f65c9f768d25810934ad8">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/"/>
+  </compounddef>
+</doxygen>

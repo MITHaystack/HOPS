@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpolars" kind="struct" language="C++" prot="public">
+    <compoundname>polars</compoundname>
+    <includes refid="type__210_8h" local="no">type_210.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpolars_1a0b3950288a1a94be25ad69377bf1116e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float polars::ampl</definition>
+        <argsstring></argsstring>
+        <name>ampl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="11" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpolars_1aa247f1415642d6628798e25b74cd185e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float polars::phase</definition>
+        <argsstring></argsstring>
+        <name>phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="12" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>polars</label>
+        <link refid="structpolars"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ampl</edgelabel>
+          <edgelabel>phase</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="9" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="10" bodyend="13"/>
+    <listofallmembers>
+      <member refid="structpolars_1a0b3950288a1a94be25ad69377bf1116e" prot="public" virt="non-virtual"><scope>polars</scope><name>ampl</name></member>
+      <member refid="structpolars_1aa247f1415642d6628798e25b74cd185e" prot="public" virt="non-virtual"><scope>polars</scope><name>phase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

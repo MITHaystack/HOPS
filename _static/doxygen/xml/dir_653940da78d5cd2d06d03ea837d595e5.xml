@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_653940da78d5cd2d06d03ea837d595e5" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="check__rflist_8c">check_rflist.c</innerfile>
+    <innerfile refid="clear__freq__corel_8c">clear_freq_corel.c</innerfile>
+    <innerfile refid="clear__pass_8c">clear_pass.c</innerfile>
+    <innerfile refid="compute__model_8c">compute_model.c</innerfile>
+    <innerfile refid="compute__qf_8c">compute_qf.c</innerfile>
+    <innerfile refid="create__lockfile_8c">create_lockfile.c</innerfile>
+    <innerfile refid="diff__file__phase_8c">diff_file_phase.c</innerfile>
+    <innerfile refid="fill__param_8c">fill_param.c</innerfile>
+    <innerfile refid="fourfit__signal__handler_8c">fourfit_signal_handler.c</innerfile>
+    <innerfile refid="generate__cblock_8c">generate_cblock.c</innerfile>
+    <innerfile refid="get__corel__data_8c">get_corel_data.c</innerfile>
+    <innerfile refid="make__flist_8c">make_flist.c</innerfile>
+    <innerfile refid="make__passes_8c">make_passes.c</innerfile>
+    <innerfile refid="pcal__interp_8c">pcal_interp.c</innerfile>
+    <innerfile refid="read__sdata_8c">read_sdata.c</innerfile>
+    <innerfile refid="refringe__list_8c">refringe_list.c</innerfile>
+    <innerfile refid="set__defaults_8c">set_defaults.c</innerfile>
+    <innerfile refid="set__pointers_8c">set_pointers.c</innerfile>
+    <innerfile refid="stcount__interp_8c">stcount_interp.c</innerfile>
+    <innerfile refid="time__range_8c">time_range.c</innerfile>
+    <innerfile refid="ffcore_2src_2update_8c">ffcore/src/update.c</innerfile>
+    <innerfile refid="vrot_8c">vrot.c</innerfile>
+    <innerfile refid="wait__for__write__lock_8c">wait_for_write_lock.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/"/>
+  </compounddef>
+</doxygen>

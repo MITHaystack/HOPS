@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdstats" kind="struct" language="C++" prot="public">
+    <compoundname>dstats</compoundname>
+    <includes refid="general_8h" local="no">general.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdstats_1aeba583bfbeea8309a140d8bc199c8e2c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dstats::ref</definition>
+        <argsstring></argsstring>
+        <name>ref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="25" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdstats_1aa7f6241b845f04285059195bd97cdd1e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double dstats::rem</definition>
+        <argsstring></argsstring>
+        <name>rem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="26" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>dstats</label>
+        <link refid="structdstats"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="24" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structdstats_1aeba583bfbeea8309a140d8bc199c8e2c" prot="public" virt="non-virtual"><scope>dstats</scope><name>ref</name></member>
+      <member refid="structdstats_1aa7f6241b845f04285059195bd97cdd1e" prot="public" virt="non-virtual"><scope>dstats</scope><name>rem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

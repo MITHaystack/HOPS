@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structgat__struct" kind="struct" language="C++" prot="public">
+    <compoundname>gat_struct</compoundname>
+    <includes refid="control_8h" local="no">control.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structgat__struct_1aa1624583b24edc87950544cb4fd52090" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short gat_struct::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="14" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structgat__struct_1af1e19e51acda04b421049e11e4e26678" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short gat_struct::on_delay</definition>
+        <argsstring></argsstring>
+        <name>on_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="13" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>gat_struct</label>
+        <link refid="structgat__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>on_delay</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="11" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="12" bodyend="15"/>
+    <listofallmembers>
+      <member refid="structgat__struct_1aa1624583b24edc87950544cb4fd52090" prot="public" virt="non-virtual"><scope>gat_struct</scope><name>duration</name></member>
+      <member refid="structgat__struct_1af1e19e51acda04b421049e11e4e26678" prot="public" virt="non-virtual"><scope>gat_struct</scope><name>on_delay</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

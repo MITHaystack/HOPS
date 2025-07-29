@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_26953edb3cb67a8e3bae1da7766c1e03" kind="dir">
+    <compoundname>Plugins</compoundname>
+    <innerdir refid="dir_a7f85dca1d9cad931d7bd4b89571ac6c">CUDA</innerdir>
+    <innerdir refid="dir_c308a59eafa98348538c534617a3f49b">HDF5</innerdir>
+    <innerdir refid="dir_cbaa4243dba62e6c31a85be2a7f37267">OpenCL</innerdir>
+    <innerdir refid="dir_f1ba8c0e7d28a93252eea320364e0857">PythonBindings</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/"/>
+  </compounddef>
+</doxygen>

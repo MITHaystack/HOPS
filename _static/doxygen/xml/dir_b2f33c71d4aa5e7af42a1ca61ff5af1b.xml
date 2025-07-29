@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b" kind="dir">
+    <compoundname>source</compoundname>
+    <innerdir refid="dir_0c6283dd7716efebfcf76fdb98d8e794">c_src</innerdir>
+    <innerdir refid="dir_730935399589b544a579302a37a46c03">cpp_src</innerdir>
+    <innerdir refid="dir_3a5cd54c2ec608c33032a11cbff54533">python_src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1type__222" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::type_222</compoundname>
+    <basecompoundref refid="classmk4io_1_1mk4io_1_1Mk4StructureBase" prot="public" virt="non-virtual">mk4io.mk4io.Mk4StructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1type__222_1a6ee2ee471b7f198e2e786cfaafa4ce4d" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.type_222::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;record_id&apos;, ctypes.c_char * 3),
+        (&apos;<ref refid="fourfit3_8c_1a82699a6dd4ee034f1a73b9eed053e7bd" kindref="member">version_no</ref>&apos;, ctypes.c_char * 2),
+        (&apos;unused1&apos;, ctypes.c_char),
+        (&apos;padded&apos;, ctypes.c_short),
+        (&apos;setstring_hash&apos;, ctypes.c_uint),
+        (&apos;control_hash&apos;, ctypes.c_uint),
+        (&apos;setstring_length&apos;, ctypes.c_int),
+        (&apos;cf_length&apos;, ctypes.c_int),
+        (&apos;control_contents&apos;, <ref refid="classmk4io_1_1mk4io_1_1mutable__length__char__array" kindref="compound">mutable_length_char_array</ref> )
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="639" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="639" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmk4io_1_1mk4io_1_1type__222_1a2031d63e4b5a9c06c4c72f9eea63a30b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.type_222.__getattribute__</definition>
+        <argsstring>(self, name)</argsstring>
+        <name>__getattribute__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>name</type>
+          <defname>name</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>another horrible kludge to get access to the &apos;control_contents&apos; array</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="670" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="670" bodyend="680"/>
+      </memberdef>
+      <memberdef kind="function" id="classmk4io_1_1mk4io_1_1type__222_1a3f59cf3c1a953a2f67d3d5e94df0fc19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.type_222.get_control_file_contents</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_control_file_contents</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get contents of the control file as string </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="665" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="665" bodyend="669"/>
+      </memberdef>
+      <memberdef kind="function" id="classmk4io_1_1mk4io_1_1type__222_1a367d71756427f2e43ea23e03758c1aaa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.type_222.get_control_file_padded_length</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_control_file_padded_length</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get the 8 byte padded length of the control file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="656" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="656" bodyend="660"/>
+      </memberdef>
+      <memberdef kind="function" id="classmk4io_1_1mk4io_1_1type__222_1af12253f110f3c347af3ea5414f4f3b10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.type_222.get_setstring</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_setstring</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get the string associated with the fourfit command line &apos;set&apos; option </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="661" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="661" bodyend="664"/>
+      </memberdef>
+      <memberdef kind="function" id="classmk4io_1_1mk4io_1_1type__222_1adbae0a3391699c61beccfcf234c41d37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.type_222.get_setstring_padded_length</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_setstring_padded_length</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get the 8 byte padded length of the set-command string </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="651" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="651" bodyend="655"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_222</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__222"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_222</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__222"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="638" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="638" bodyend="681"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a0772ef701b441c652a3bbde35de2261a" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>__eq__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__222_1a2031d63e4b5a9c06c4c72f9eea63a30b" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>__getattribute__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a7347e4cacf99a75b7d7788d94e502398" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>__ne__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__222_1a6ee2ee471b7f198e2e786cfaafa4ce4d" prot="private" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>_fields_</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1af9c631103b72450dc357ed98d0f7b6d5" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>approximately_equal</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a27bca4a0801b033de3fdbebe84eae485" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>contains_floats</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__222_1a3f59cf3c1a953a2f67d3d5e94df0fc19" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>get_control_file_contents</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__222_1a367d71756427f2e43ea23e03758c1aaa" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>get_control_file_padded_length</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__222_1af12253f110f3c347af3ea5414f4f3b10" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>get_setstring</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__222_1adbae0a3391699c61beccfcf234c41d37" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>get_setstring_padded_length</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1ae00dca3ceb7ad4ebb8144fbcd6ef51b6" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_222</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

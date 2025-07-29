@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__LegacyRootCodeGenerator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_LegacyRootCodeGenerator</compoundname>
+    <includes refid="MHO__LegacyRootCodeGenerator_8hh" local="no">MHO_LegacyRootCodeGenerator.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a973c76e04cbac402f1a0fd34be887d0c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_LegacyRootCodeGenerator::fDay</definition>
+        <argsstring></argsstring>
+        <name>fDay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="51" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__LegacyRootCodeGenerator_1aba399f122f8447e1654e14e3b1a26a23" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_LegacyRootCodeGenerator::fHour</definition>
+        <argsstring></argsstring>
+        <name>fHour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="52" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a72837e1e59f5db0012ccc4ec3425cd2e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_LegacyRootCodeGenerator::fMin</definition>
+        <argsstring></argsstring>
+        <name>fMin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="53" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a750cfddea763c2e95aa73d3dc56d0cea" prot="private" static="no" mutable="no">
+        <type>time_t</type>
+        <definition>time_t hops::MHO_LegacyRootCodeGenerator::fNow</definition>
+        <argsstring></argsstring>
+        <name>fNow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="49" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a1c2de3c45111c99194f31accd74c31b0" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_LegacyRootCodeGenerator::fSec</definition>
+        <argsstring></argsstring>
+        <name>fSec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="54" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a5e4fe41e2ebc3f73e1609773ed3fa324" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_LegacyRootCodeGenerator::fYear</definition>
+        <argsstring></argsstring>
+        <name>fYear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="50" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1ad827268ee49d8e0e7e5dfffd1a6616d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_LegacyRootCodeGenerator::MHO_LegacyRootCodeGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_LegacyRootCodeGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1ac50f6f9d71b26c8da50fc7b5c73cc466" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_LegacyRootCodeGenerator::~MHO_LegacyRootCodeGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_LegacyRootCodeGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1adc2d55da164378e5a2f636999cabffe9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_LegacyRootCodeGenerator::GetCode</definition>
+        <argsstring>()</argsstring>
+        <name>GetCode</name>
+        <briefdescription>
+<para>get a single code corresponding to the current time </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing the generated code. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="34" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" bodystart="9" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1ab2771a20700bc9c6b756174f42ae346f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_LegacyRootCodeGenerator::GetCodes</definition>
+        <argsstring>(std::size_t N)</argsstring>
+        <name>GetCodes</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Getter for multiple root codes get a pre-assigned sequential list of N root codes to avoid collisions/duplicates if sub-Delta-T time intervals are encountered when processing a single experiment;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of root codes to generate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of generated root codes as strings </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="46" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" bodystart="22" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a0a14401707a9e5db1bcb8e5c1c7d2ab4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_LegacyRootCodeGenerator::root_id</definition>
+        <argsstring>(int year, int day, int hour, int min, int sec)</argsstring>
+        <name>root_id</name>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>day</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hour</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sec</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns a root ID string based on input time parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value3</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value4</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value5</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A string representing the root ID. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="85" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" bodystart="78" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a8b481acbc406b06a4d875ffea6fb714a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_LegacyRootCodeGenerator::root_id_break</definition>
+        <argsstring>(time_t now, int year, int day, int hour, int min, int sec)</argsstring>
+        <name>root_id_break</name>
+        <param>
+          <type>time_t</type>
+          <declname>now</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>day</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>hour</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sec</declname>
+        </param>
+        <briefdescription>
+<para>Determines and returns root ID based on time parameters and comparison with HOPS_ROOT_BREAK. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>now</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current time in seconds since epoch </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>year</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Year component of time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>day</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Day of year component of time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>hour</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Hour component of time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minute component of time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second component of time </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Root ID as a string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="98" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" bodystart="114" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1af8ab91487f378283385377ce0baa9fa6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_LegacyRootCodeGenerator::root_id_delta</definition>
+        <argsstring>(time_t now)</argsstring>
+        <name>root_id_delta</name>
+        <param>
+          <type>time_t</type>
+          <declname>now</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns delta value based on current time comparison with the HOPS_ROOT_BREAK time essentially copied directly from the c utils library, to avoid introducing a library dependency and converted to return a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>now</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current time in seconds since epoch </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Delta value (4 if now &lt; HOPS_ROOT_BREAK, otherwise 1) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="65" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" bodystart="42" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__LegacyRootCodeGenerator_1a26c9556ee9b056378bcb601cdda061ff" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_LegacyRootCodeGenerator::root_id_later</definition>
+        <argsstring>(time_t now)</argsstring>
+        <name>root_id_later</name>
+        <param>
+          <type>time_t</type>
+          <declname>now</declname>
+        </param>
+        <briefdescription>
+<para>Generates a root ID string based on the input time_t value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>now</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time_t value used to generate the root ID. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated root ID as std::string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="73" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" bodystart="50" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__LegacyRootCodeGenerator" kindref="compound">MHO_LegacyRootCodeGenerator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>generate the 6-character timestamp-like root codes for converted filenames</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 27 11:59:40 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LegacyRootCodeGenerator.hh" bodystart="23" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a973c76e04cbac402f1a0fd34be887d0c" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>fDay</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1aba399f122f8447e1654e14e3b1a26a23" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>fHour</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a72837e1e59f5db0012ccc4ec3425cd2e" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>fMin</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a750cfddea763c2e95aa73d3dc56d0cea" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>fNow</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a1c2de3c45111c99194f31accd74c31b0" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>fSec</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a5e4fe41e2ebc3f73e1609773ed3fa324" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>fYear</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1adc2d55da164378e5a2f636999cabffe9" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>GetCode</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1ab2771a20700bc9c6b756174f42ae346f" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>GetCodes</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1ad827268ee49d8e0e7e5dfffd1a6616d7" prot="public" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>MHO_LegacyRootCodeGenerator</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a0a14401707a9e5db1bcb8e5c1c7d2ab4" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>root_id</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a8b481acbc406b06a4d875ffea6fb714a" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>root_id_break</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1af8ab91487f378283385377ce0baa9fa6" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>root_id_delta</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1a26c9556ee9b056378bcb601cdda061ff" prot="private" virt="non-virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>root_id_later</name></member>
+      <member refid="classhops_1_1MHO__LegacyRootCodeGenerator_1ac50f6f9d71b26c8da50fc7b5c73cc466" prot="public" virt="virtual"><scope>hops::MHO_LegacyRootCodeGenerator</scope><name>~MHO_LegacyRootCodeGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

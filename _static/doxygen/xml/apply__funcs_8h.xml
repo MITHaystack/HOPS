@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="apply__funcs_8h" kind="file" language="C++">
+    <compoundname>apply_funcs.h</compoundname>
+    <includedby refid="make__plotdata_8c" local="yes">make_plotdata.c</includedby>
+    <includedby refid="adjust__snr_8c" local="yes">adjust_snr.c</includedby>
+    <includedby refid="apply__cmplxbp_8c" local="yes">apply_cmplxbp.c</includedby>
+    <includedby refid="apply__notches_8c" local="yes">apply_notches.c</includedby>
+    <includedby refid="apply__passband_8c" local="yes">apply_passband.c</includedby>
+    <includedby refid="apply__video__bp_8c" local="yes">apply_video_bp.c</includedby>
+    <includedby refid="compute__field__rotations_8c" local="yes">compute_field_rotations.c</includedby>
+    <includedby refid="norm__fx_8c" local="yes">norm_fx.c</includedby>
+    <includedby refid="norm__xf_8c" local="yes">norm_xf.c</includedby>
+    <invincdepgraph>
+      <node id="6">
+        <label>apply_passband.c</label>
+        <link refid="apply__passband_8c"/>
+      </node>
+      <node id="5">
+        <label>apply_notches.c</label>
+        <link refid="apply__notches_8c"/>
+      </node>
+      <node id="10">
+        <label>norm_xf.c</label>
+        <link refid="norm__xf_8c"/>
+      </node>
+      <node id="2">
+        <label>make_plotdata.c</label>
+        <link refid="make__plotdata_8c"/>
+      </node>
+      <node id="3">
+        <label>adjust_snr.c</label>
+        <link refid="adjust__snr_8c"/>
+      </node>
+      <node id="4">
+        <label>apply_cmplxbp.c</label>
+        <link refid="apply__cmplxbp_8c"/>
+      </node>
+      <node id="7">
+        <label>apply_video_bp.c</label>
+        <link refid="apply__video__bp_8c"/>
+      </node>
+      <node id="9">
+        <label>norm_fx.c</label>
+        <link refid="norm__fx_8c"/>
+      </node>
+      <node id="8">
+        <label>compute_field_rotations.c</label>
+        <link refid="compute__field__rotations_8c"/>
+      </node>
+      <node id="1">
+        <label>apply_funcs.h</label>
+        <link refid="apply__funcs_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="apply__funcs_8h_1aaad099793a78ad5c73d55386bda975f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double adjust_snr</definition>
+        <argsstring>(struct type_pass *pass, struct type_status *status)</argsstring>
+        <name>adjust_snr</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="24" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/adjust_snr.c" bodystart="96" bodyend="128" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="24" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="apply__funcs_8h_1a1fcdb75c824f3d512af4efb62c707ce4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void apply_cmplxbp</definition>
+        <argsstring>(int sb, struct freq_corel *fdata, hops_complex *xp_spectrum, int npts, struct type_pass *pass)</argsstring>
+        <name>apply_cmplxbp</name>
+        <param>
+          <type>int</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfreq__corel" kindref="compound">freq_corel</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <param>
+          <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref> *</type>
+          <declname>xp_spectrum</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>npts</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="21" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_cmplxbp.c" bodystart="14" bodyend="19" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="21" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="apply__funcs_8h_1a996fefa5b80704c6d5b785a15b0eaa9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void apply_notches</definition>
+        <argsstring>(int sb, int ap, struct freq_corel *fdata, hops_complex *xp_spectrum, int npts, struct data_corel *datum, struct type_status *status, struct type_param *param)</argsstring>
+        <name>apply_notches</name>
+        <param>
+          <type>int</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ap</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfreq__corel" kindref="compound">freq_corel</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <param>
+          <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref> *</type>
+          <declname>xp_spectrum</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>npts</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdata__corel" kindref="compound">data_corel</ref> *</type>
+          <declname>datum</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_notches.c" bodystart="102" bodyend="186" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="13" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="apply__funcs_8h_1a155d44ce851d17e5342c6cd53c9946c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void apply_passband</definition>
+        <argsstring>(int sb, int ap, struct freq_corel *fdata, hops_complex *xp_spectrum, int npts, struct data_corel *datum, struct type_status *status, struct type_param *param)</argsstring>
+        <name>apply_passband</name>
+        <param>
+          <type>int</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ap</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfreq__corel" kindref="compound">freq_corel</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <param>
+          <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref> *</type>
+          <declname>xp_spectrum</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>npts</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdata__corel" kindref="compound">data_corel</ref> *</type>
+          <declname>datum</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="9" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_passband.c" bodystart="20" bodyend="178" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="9" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="apply__funcs_8h_1aac686533488574ef5b7a35506d9c0c34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void apply_video_bp</definition>
+        <argsstring>(hops_complex *xp_spec, int npts, struct type_pass *pass)</argsstring>
+        <name>apply_video_bp</name>
+        <param>
+          <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref> *</type>
+          <declname>xp_spec</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>npts</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/apply_video_bp.c" bodystart="19" bodyend="47" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="17" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="apply__funcs_8h_1a5b119fc25a592dfb2b77747b80f13739" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void compute_field_rotations_fixed</definition>
+        <argsstring>(hops_complex cpolvalue[4], double *par_angle, double *elevation, int *mount_type)</argsstring>
+        <name>compute_field_rotations_fixed</name>
+        <param>
+          <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+          <declname>cpolvalue</declname>
+          <array>[4]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>par_angle</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>elevation</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>mount_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="27" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/compute_field_rotations.c" bodystart="22" bodyend="54" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="27" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="apply__funcs_8h_1a6ee0087c4ab69f2442127ed493e1a784" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fit_vbp</definition>
+        <argsstring>(int npts)</argsstring>
+        <name>fit_vbp</name>
+        <param>
+          <type>int</type>
+          <declname>npts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/src/fit_vbp.c" bodystart="19" bodyend="102" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h" declline="19" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>capture<sp/>some<sp/>(random)<sp/>interfaces<sp/>used<sp/>by<sp/>norm_fx()</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>presumes<sp/>other<sp/>.h<sp/>files<sp/>included<sp/>first<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>APPLY_FUNCS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>APPLY_FUNCS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="apply__funcs_8h_1a155d44ce851d17e5342c6cd53c9946c6" kindref="member">apply_passband</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ap,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/>*fdata,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>*xp_spectrum,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npts,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*datum,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="apply__funcs_8h_1a996fefa5b80704c6d5b785a15b0eaa9c" kindref="member">apply_notches</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ap,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/>*fdata,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>*xp_spectrum,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npts,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdata__corel" kindref="compound">data_corel</ref><sp/>*datum,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__param" kindref="compound">type_param</ref><sp/>*<ref refid="fourfit3_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="apply__funcs_8h_1aac686533488574ef5b7a35506d9c0c34" kindref="member">apply_video_bp</ref><sp/>(<ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>*xp_spec,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npts,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="apply__funcs_8h_1a6ee0087c4ab69f2442127ed493e1a784" kindref="member">fit_vbp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npts);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="apply__funcs_8h_1a1fcdb75c824f3d512af4efb62c707ce4" kindref="member">apply_cmplxbp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sb,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfreq__corel" kindref="compound">freq_corel</ref><sp/>*fdata,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>*xp_spectrum,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npts,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="apply__funcs_8h_1aaad099793a78ad5c73d55386bda975f8" kindref="member">adjust_snr</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="apply__funcs_8h_1a5b119fc25a592dfb2b77747b80f13739" kindref="member">compute_field_rotations_fixed</ref>(<ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref><sp/>cpolvalue[4],</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*par_angle,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*elevation,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*mount_type);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NYI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//extern<sp/>void<sp/>compute_field_rotations_byap(hops_complex<sp/>cpolvalue[4],</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>double<sp/>*parangdeg,<sp/>double<sp/>*elevdeg,<sp/>int<sp/>*mount_type,<sp/>int<sp/>ap);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>APPLY_FUNCS_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/apply_funcs.h"/>
+  </compounddef>
+</doxygen>

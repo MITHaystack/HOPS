@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmodpoly" kind="struct" language="C++" prot="public">
+    <compoundname>modpoly</compoundname>
+    <includes refid="mk4__typedefs_8h" local="no">mk4_typedefs.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmodpoly_1aadf6cc1c3efa1c31bb1457049447a179" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int modpoly::whatever</definition>
+        <argsstring></argsstring>
+        <name>whatever</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="25" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>modpoly</label>
+        <link refid="structmodpoly"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>whatever</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/mk4_typedefs.h" bodystart="24" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structmodpoly_1aadf6cc1c3efa1c31bb1457049447a179" prot="public" virt="non-virtual"><scope>modpoly</scope><name>whatever</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

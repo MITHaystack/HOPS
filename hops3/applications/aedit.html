@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aedit &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="afio" href="../libraries/afio.html" />
+    <link rel="prev" title="alist" href="alist.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hops4/hops4.html">HOPS4</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../hops3.html">HOPS3</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fourfit.html">fourfit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alist.html">alist</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">aedit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#syntax">SYNTAX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-flags">OPTION FLAGS:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arguments">ARGUMENTS:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment">ENVIRONMENT:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-description-of-aedit">GENERAL DESCRIPTION OF AEDIT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#action-commands">Action commands:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-control-commands">Plot control commands:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-selection-commands">Data selection commands:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#experiment-overview-commands-parameters">Experiment overview commands/parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#io-control-commands">IO control commands:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/afio.html">afio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/dfio.html">dfio - Mark4 Correlator I/O types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/mk4util.html">mk4util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../libraries/msg.html">msg</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../hops3.html">HOPS3 Applications and Libraries</a></li>
+      <li class="breadcrumb-item active">aedit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/hops3/applications/aedit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aedit">
+<h1>aedit<a class="headerlink" href="#aedit" title="Link to this heading"></a></h1>
+<section id="synopsis">
+<h2>SYNOPSIS<a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>Performs a variety of operations on A-file format data</p>
+</section>
+<section id="syntax">
+<h2>SYNTAX<a class="headerlink" href="#syntax" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aedit<span class="w"> </span><span class="o">[</span>-b<span class="w"> </span><span class="s2">&quot;command string&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">[</span>-r<span class="w"> </span>runfile<span class="o">]</span><span class="w"> </span><span class="o">[</span>-x<span class="o">]</span><span class="w"> </span><span class="o">[</span>-f<span class="w"> </span>data<span class="w"> </span>file<span class="w"> </span>list<span class="o">]</span>
+</pre></div>
+</div>
+<p>Where all arguments are optional</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if the -f flag appears, it must appear LAST, and if the -b flag appears, it must be the ONLY flag</p>
+</div>
+</section>
+<section id="option-flags">
+<h2>OPTION FLAGS:<a class="headerlink" href="#option-flags" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">&quot;command</span> <span class="pre">string&quot;</span></code></dt><dd><p>This flag is intended to facilitate the use of
+aedit in shell scripts.  The command string is
+a series of up to 10 valid aedit commands
+separated by semicolons, and the whole thing
+enclosed in quotes to protect it from the shell.
+The commands are executed by aedit, and then the
+program exits immediately.  Aedit can thus be
+very simply used as a filter.  For more complex
+operations in “batch” mode, use runfiles and the
+-r option.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">runfile</span></code></dt><dd><p>Aedit supports runfiles (consisting of aedit
+commands as if typed at the terminal), which
+may be nested.  If this flag is present, the
+specified runfile is executed immediately when
+the program starts up, thus allowing invocation
+of aedit in a script file for unattended
+processing.  Runfiles can also be executed after
+the program has started, using the “run” command.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-x</span></code></dt><dd><p>By default, aedit uses a command-line interface.
+This option, currently unsupported, is for a
+planned GUI front-end to aedit based on X-windows</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">&lt;list</span> <span class="pre">of</span> <span class="pre">data</span> <span class="pre">files&gt;</span></code></dt><dd><p>This flag, if present, must be the last flag on
+the command line.  It is followed by any number
+of input A-format data files, which are read
+sequentially as soon as the program starts.
+Data can also be read in after the program has
+started, using the “read” command.</p>
+</dd>
+</dl>
+</section>
+<section id="arguments">
+<h2>ARGUMENTS:<a class="headerlink" href="#arguments" title="Link to this heading"></a></h2>
+<p>None</p>
+</section>
+<section id="environment">
+<h2>ENVIRONMENT:<a class="headerlink" href="#environment" title="Link to this heading"></a></h2>
+<p>AHELP, DISPLAY, DATADIR, SCHEDDIR, AFILEDIR, CORDATA</p>
+</section>
+<section id="general-description-of-aedit">
+<h2>GENERAL DESCRIPTION OF AEDIT<a class="headerlink" href="#general-description-of-aedit" title="Link to this heading"></a></h2>
+<p>The program “aedit” is a general purpose A-file manipulation
+program.  The information present in one or more A-files may
+be plotted, filtered, sorted and edited in a variety of ways,
+before being written out in the form of a new A-file.  The user
+interface to the program is presently implemented only for
+ASCII terminals, but many functions of the program interact
+with the user via a graphical interface.</p>
+<ol class="arabic simple">
+<li><p>General “aedit” characteristics</p></li>
+</ol>
+<p>Commands are given to aedit by keyboard, and a full minimum
+match capability is supported for all aedit names.  Multiple
+commands are allowed on one input line, the only requirement
+being that commands are separated by the semicolon “;”
+character.  Commands typically consist of the command name
+followed by 0 or more arguments.  The arguments are separated
+from the command name and each other by either spaces or
+commas.  Aedit can handle long lines, but it is of course bad
+practice to wrap lines on terminals in general.  Upwards of
+about 250 characters may start to cause problems even for aedit.
+In general, aedit is not case sensitive.  Case sensitivity
+is needed for UNIX filenames and for certain quantities from
+A-files (station codes, frequency codes, source names).</p>
+<p>Aedit uses the concept of inputs.  That is, you set up
+certain variables in the program that determine how the “action”
+commands will behave.  Most of the commands that aedit
+understands are of the input-setting variety.  Many are quite
+particular about syntax, and will complain if the user types
+nonsense (e.g. timerange).  At any time, the current state of
+the input parameters can be listed on the screen with the
+command “inputs”.</p>
+<p>When aedit reads data from an A-file, it parses the ascii
+information and stores it as binary data in memory.  This allows
+very rapid manipulation of the data once read in, with
+seemingly complex tasks appearing to be instantaneous.  There
+is a flag field associated with each A-file line in memory,
+and these flags are manipulated by the edit and unflag commands.
+A full description of the data currently in memory can be
+obtained with the “summary” command.  This is essential when
+deciding on plotting and editing options.  The “write” command
+ignores flagged data, permitting aedit to be used as a simple
+and efficient filtering program.</p>
+<p>A command “run” is available, which provides a flexible and
+general command file capability.  Nesting of command files to a
+depth of 10 is allowed.  The “run” command executes in batch mode,
+and cursor operations are therefore disabled.</p>
+<p>Aedit features a shell escape.  By starting an input line with the
+character “!”, you can access standard UNIX commands outside of
+aedit.  You can escape to a complete new shell by typing “!csh” or
+“!sh”, and when you have finished, return to aedit where you left
+off by typing cntl-D.  This feature is useful for spooling plot
+files to a printer, preparing run files, running “alist” to prepare
+new data for aedit, and any other tasks that you wish to perform
+without terminating the aedit session.</p>
+<p>Plotting is implemented by using the PGPLOT package from CalTech.
+The output device may be specified with the “device” command, or
+you may leave “device” at the default value (“?”), which will
+cause PGPLOT to query you for a device at the time of plotting.
+Your response will then be automatically entered into the “device”
+input.  A list of available device types can be obtained by responding
+with a query.  For more information of devices, see “help device”</p>
+<p>Aedit comes with full on-line help.  In general, the syntax is
+“help command”, but just “help” will work.</p>
+<p>The command line for aedit is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aedit</span> <span class="p">[</span><span class="o">-</span><span class="n">b</span> <span class="s2">&quot;command string&quot;</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span> <span class="n">filename</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">x</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">f</span> <span class="n">filename</span><span class="p">]</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>where all flags are optional.  The -b flag allows you to specify a
+few quick commands to be executed, after which the program exits.  It
+facilitates the use of aedit as a filter in shell scripts.  An example
+that removes low SNR scans from a file might be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aedit</span> <span class="o">-</span><span class="n">b</span> <span class="s2">&quot;snrmin 7; read afile.in; write afile.out&quot;</span>
+</pre></div>
+</div>
+<p>The “-x” option means start up the xwindow interface (not yet supported).
+The “-r” option means execute the specified run file on startup, and
+must be immediately followed by the name of a file containing valid
+aedit commands.  The “-f” option means “read this(ese) data file(s) on
+startup”, and must be immediately followed by a standard, wildcardable
+UNIX filename specifier or specifiers.  In this way, you can read many
+files at once into aedit without going through a laborious one-at-a-time
+“read” cycle within the program. If specified, the “-f” flag must be the
+last flag.</p>
+<p>Below is a list of all current aedit commands:</p>
+</section>
+<section id="action-commands">
+<h2>Action commands:<a class="headerlink" href="#action-commands" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span>        <span class="n">clear</span>       <span class="n">edit</span>        <span class="n">exit</span>         <span class="n">fplot</span>
+<span class="n">help</span>         <span class="n">inputs</span>      <span class="n">nobatch</span>     <span class="n">parameter</span>    <span class="n">plist</span>
+<span class="n">plot</span>         <span class="n">pwrite</span>      <span class="n">read</span>        <span class="n">run</span>          <span class="n">setyear</span>
+<span class="n">sort</span>         <span class="n">summary</span>     <span class="n">unflag</span>      <span class="n">unsort</span>       <span class="n">write</span>
+<span class="n">zoom</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-control-commands">
+<h2>Plot control commands:<a class="headerlink" href="#plot-control-commands" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span>         <span class="n">xscale</span>      <span class="n">yscale</span>      <span class="n">axis</span>         <span class="n">mode</span>
+<span class="n">reference</span>    <span class="n">remote</span>
+</pre></div>
+</div>
+</section>
+<section id="data-selection-commands">
+<h2>Data selection commands:<a class="headerlink" href="#data-selection-commands" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">baselines</span>    <span class="n">experiment</span>  <span class="n">fraction</span>    <span class="n">frequencies</span>  <span class="n">length</span>
+<span class="n">nfreq</span>        <span class="n">prange</span>      <span class="n">procrange</span>   <span class="n">qcodes</span>      <span class="n">snrmax</span>
+<span class="n">snrmin</span>       <span class="n">sources</span>     <span class="n">stations</span>    <span class="n">timerange</span>   <span class="nb">type</span>
+</pre></div>
+</div>
+</section>
+<section id="experiment-overview-commands-parameters">
+<h2>Experiment overview commands/parameters<a class="headerlink" href="#experiment-overview-commands-parameters" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">schedread</span>    <span class="n">psplot</span>      <span class="n">psfile</span>
+</pre></div>
+</div>
+</section>
+<section id="io-control-commands">
+<h2>IO control commands:<a class="headerlink" href="#io-control-commands" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">device</span>       <span class="n">outversion</span>
+</pre></div>
+</div>
+<p>For further information, see the individual help for these commands
+using the aedit help facility–type “help” at the aedit prompt.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="alist.html" class="btn btn-neutral float-left" title="alist" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../libraries/afio.html" class="btn btn-neutral float-right" title="afio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

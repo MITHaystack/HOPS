@@ -1,0 +1,385 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1ffres2pcp__lib_1_1Configuration" kind="class" language="Python" prot="public">
+    <compoundname>vpal::ffres2pcp_lib::Configuration</compoundname>
+    <basecompoundref refid="classvpal_1_1report__lib_1_1JsonSerializableObject" prot="public" virt="non-virtual">vpal.report_lib.JsonSerializableObject</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a5f647608f74142f970456e7ed8f20a0f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::channel_discard_tolerance</definition>
+        <argsstring></argsstring>
+        <name>channel_discard_tolerance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="64" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a3de3654f327ed94e3c74c728d2ca2ec9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::control_file</definition>
+        <argsstring></argsstring>
+        <name>control_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="50" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a106ec73dbc74c1df920e1a00346c06da" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::dtec_nominal_error</definition>
+        <argsstring></argsstring>
+        <name>dtec_nominal_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="60" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a870263ce7894f54bcc90a8922e3167b4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::dtec_tolerance</definition>
+        <argsstring></argsstring>
+        <name>dtec_tolerance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="56" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a4d1ebf19785b5f08e08bf9af4f47c902" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::exp_directory</definition>
+        <argsstring></argsstring>
+        <name>exp_directory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="44" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a2d03bd8784775531c1f8f946bf6bf31b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::frequency_group</definition>
+        <argsstring></argsstring>
+        <name>frequency_group</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ac4af9436d366d3754fb927160960af57" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::max_number_to_select</definition>
+        <argsstring></argsstring>
+        <name>max_number_to_select</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="59" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ae5f9d9dd6a3c6948aaf1d59f91cad7ec" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::max_snr</definition>
+        <argsstring></argsstring>
+        <name>max_snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="54" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a98b0eeedca7f36f08fc9f012cde938c1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::min_qcode</definition>
+        <argsstring></argsstring>
+        <name>min_qcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="55" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a8c158ba4715ca5d7fe93a369ceb5837e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::min_snr</definition>
+        <argsstring></argsstring>
+        <name>min_snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="53" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a32720c0daf5e1018e88203dd938877f7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="45" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a4d3505c2aa201ae968cdedc77d208a6d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::nchannel_discard_threshold</definition>
+        <argsstring></argsstring>
+        <name>nchannel_discard_threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="63" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ab45d9d1c8687e754383cf816c50cb710" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::network_reference_station</definition>
+        <argsstring></argsstring>
+        <name>network_reference_station</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="46" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ade9774827dc162fa63fe42eb65daf01f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::network_reference_station_pol</definition>
+        <argsstring></argsstring>
+        <name>network_reference_station_pol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="47" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1aedef5f89963216c72a70b4e34ff67af1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::num_proc</definition>
+        <argsstring></argsstring>
+        <name>num_proc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a2eb4cdf3a604e31bc57c9f1d994a5b18" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::sigma_cut_factor</definition>
+        <argsstring></argsstring>
+        <name>sigma_cut_factor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="61" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a6788744ab7eab93cad667964e1bb2cfb" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::start_scan_limit</definition>
+        <argsstring></argsstring>
+        <name>start_scan_limit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="57" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a2d2308e90d5ecd956aa3ecb1622cf323" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::stop_scan_limit</definition>
+        <argsstring></argsstring>
+        <name>stop_scan_limit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="58" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a0469884ba4524c33178629fa99ca1a07" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::target_stations</definition>
+        <argsstring></argsstring>
+        <name>target_stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="49" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1aeeb67b04960ceec76f2498c7a75147d2" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::use_progress_ticker</definition>
+        <argsstring></argsstring>
+        <name>use_progress_ticker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="62" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a58116f5a7e55709bc5dc290803c6de37" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.Configuration::verbosity</definition>
+        <argsstring></argsstring>
+        <name>verbosity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="52" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a3a53efe787af21814fa0a6bf2c2905e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.Configuration.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="43" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a3db22e453afa71581fcdb3253b5a5de5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.Configuration.export_json</definition>
+        <argsstring>(self)</argsstring>
+        <name>export_json</name>
+        <reimplements refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1a5c3ae4ed6d06099f454ead9b988b691c">export_json</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="66" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="66" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>configuration object for ffres2pcp</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.Configuration</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1Configuration"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.Configuration</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1Configuration"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="40" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a3a53efe787af21814fa0a6bf2c2905e4" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a5f647608f74142f970456e7ed8f20a0f" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>channel_discard_tolerance</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a3de3654f327ed94e3c74c728d2ca2ec9" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>control_file</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a106ec73dbc74c1df920e1a00346c06da" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>dtec_nominal_error</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a870263ce7894f54bcc90a8922e3167b4" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>dtec_tolerance</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a4d1ebf19785b5f08e08bf9af4f47c902" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>exp_directory</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a3db22e453afa71581fcdb3253b5a5de5" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>export_json</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a2d03bd8784775531c1f8f946bf6bf31b" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>frequency_group</name></member>
+      <member refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1aa016c5f55c3299e6e7525fb4b31a3377" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>import_json</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ac4af9436d366d3754fb927160960af57" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>max_number_to_select</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ae5f9d9dd6a3c6948aaf1d59f91cad7ec" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>max_snr</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a98b0eeedca7f36f08fc9f012cde938c1" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>min_qcode</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a8c158ba4715ca5d7fe93a369ceb5837e" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>min_snr</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a32720c0daf5e1018e88203dd938877f7" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>mode</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a4d3505c2aa201ae968cdedc77d208a6d" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>nchannel_discard_threshold</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ab45d9d1c8687e754383cf816c50cb710" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>network_reference_station</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1ade9774827dc162fa63fe42eb65daf01f" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>network_reference_station_pol</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1aedef5f89963216c72a70b4e34ff67af1" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>num_proc</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a2eb4cdf3a604e31bc57c9f1d994a5b18" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>sigma_cut_factor</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a6788744ab7eab93cad667964e1bb2cfb" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>start_scan_limit</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a2d2308e90d5ecd956aa3ecb1622cf323" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>stop_scan_limit</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a0469884ba4524c33178629fa99ca1a07" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>target_stations</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1aeeb67b04960ceec76f2498c7a75147d2" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>use_progress_ticker</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1Configuration_1a58116f5a7e55709bc5dc290803c6de37" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::Configuration</scope><name>verbosity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

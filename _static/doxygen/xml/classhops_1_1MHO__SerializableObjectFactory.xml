@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__SerializableObjectFactory" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_SerializableObjectFactory</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__SerializableObjectFactorySpecific" prot="public" virt="non-virtual">hops::MHO_SerializableObjectFactorySpecific&lt; XClassType &gt;</derivedcompoundref>
+    <includes refid="MHO__SerializableObjectFactory_8hh" local="no">MHO_SerializableObjectFactory.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SerializableObjectFactory_1a7c4ab5c51d9318e3abb7fbd781a0992f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_SerializableObjectFactory::MHO_SerializableObjectFactory</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_SerializableObjectFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SerializableObjectFactory_1ab9780bfffe2663015a4aae2984ce53d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_SerializableObjectFactory::~MHO_SerializableObjectFactory</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_SerializableObjectFactory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SerializableObjectFactory_1a9b8c63425af1d7800de55222286716f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *</type>
+        <definition>virtual MHO_Serializable* hops::MHO_SerializableObjectFactory::Build</definition>
+        <argsstring>()</argsstring>
+        <name>Build</name>
+        <reimplementedby refid="classhops_1_1MHO__SerializableObjectFactorySpecific_1adb48ff3b6bdcd62934235069725a648c">Build</reimplementedby>
+        <briefdescription>
+<para>Virtual function to build and return an instance of a <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> object. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" line="34" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SerializableObjectFactory_1a552fc450a850b3959150d628d0c6f4c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *</type>
+        <definition>virtual MHO_Serializable* hops::MHO_SerializableObjectFactory::BuildFromFileInterface</definition>
+        <argsstring>(MHO_BinaryFileInterface &amp;)</argsstring>
+        <name>BuildFromFileInterface</name>
+        <reimplementedby refid="classhops_1_1MHO__SerializableObjectFactorySpecific_1a206ba0a7097cf18f5cbcde0f1bfcadda">BuildFromFileInterface</reimplementedby>
+        <param>
+          <type><ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Builds an <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> object from a given <ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!inter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an <ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to an <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> object, or nullptr if failed </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" line="43" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SerializableObjectFactory_1ad2f8ebdd2930bff813a9b9bb8bdf0db6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_SerializableObjectFactory::WriteToFileInterface</definition>
+        <argsstring>(MHO_BinaryFileInterface &amp;, const MHO_Serializable *, const std::string &amp;shortname=&quot;&quot;)</argsstring>
+        <name>WriteToFileInterface</name>
+        <reimplementedby refid="classhops_1_1MHO__SerializableObjectFactorySpecific_1ac79f0401e0e8ef7bfcbfdb9090184059">WriteToFileInterface</reimplementedby>
+        <param>
+          <type><ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *</type>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>shortname</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Writes an object to a binary file interface using a short name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!inter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to <ref refid="classhops_1_1MHO__BinaryFileInterface" kindref="compound">MHO_BinaryFileInterface</ref> for writing operations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!object</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to const <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> object to be written </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Short name associated with the object (default is empty string) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success of write operation </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" line="54" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" bodystart="54" bodyend="58"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__SerializableObjectFactory" kindref="compound">MHO_SerializableObjectFactory</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sun Feb 13 19:54:27 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_SerializableObjectFactorySpecific&lt; XClassType &gt;</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactorySpecific"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_SerializableObjectFactory.hh" bodystart="23" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__SerializableObjectFactory_1a9b8c63425af1d7800de55222286716f5" prot="public" virt="virtual"><scope>hops::MHO_SerializableObjectFactory</scope><name>Build</name></member>
+      <member refid="classhops_1_1MHO__SerializableObjectFactory_1a552fc450a850b3959150d628d0c6f4c2" prot="public" virt="virtual"><scope>hops::MHO_SerializableObjectFactory</scope><name>BuildFromFileInterface</name></member>
+      <member refid="classhops_1_1MHO__SerializableObjectFactory_1a7c4ab5c51d9318e3abb7fbd781a0992f" prot="public" virt="non-virtual"><scope>hops::MHO_SerializableObjectFactory</scope><name>MHO_SerializableObjectFactory</name></member>
+      <member refid="classhops_1_1MHO__SerializableObjectFactory_1ad2f8ebdd2930bff813a9b9bb8bdf0db6" prot="public" virt="virtual"><scope>hops::MHO_SerializableObjectFactory</scope><name>WriteToFileInterface</name></member>
+      <member refid="classhops_1_1MHO__SerializableObjectFactory_1ab9780bfffe2663015a4aae2984ce53d3" prot="public" virt="virtual"><scope>hops::MHO_SerializableObjectFactory</scope><name>~MHO_SerializableObjectFactory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

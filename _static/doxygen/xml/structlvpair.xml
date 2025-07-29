@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structlvpair" kind="struct" language="C++" prot="public">
+    <compoundname>lvpair</compoundname>
+    <includes refid="general_8h" local="no">general.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlvpair_1a8346756d7d23a103a82c7865ff4f90f9" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char lvpair::label[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>label</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="64" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlvpair_1a62cd008188cb6b59e2e66bc1c8114288" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char lvpair::value[25]</definition>
+        <argsstring>[25]</argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="65" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>lvpair</label>
+        <link refid="structlvpair"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>label</edgelabel>
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="63" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="63" bodyend="66"/>
+    <listofallmembers>
+      <member refid="structlvpair_1a8346756d7d23a103a82c7865ff4f90f9" prot="public" virt="non-virtual"><scope>lvpair</scope><name>label</name></member>
+      <member refid="structlvpair_1a62cd008188cb6b59e2e66bc1c8114288" prot="public" virt="non-virtual"><scope>lvpair</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

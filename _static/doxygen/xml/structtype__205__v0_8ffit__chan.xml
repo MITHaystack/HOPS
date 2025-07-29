@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__205__v0_8ffit__chan" kind="struct" language="C++" prot="public">
+    <compoundname>type_205_v0.ffit_chan</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__205__v0_8ffit__chan_1af0946467af265f5ab21ba69e2b3729dd" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition></definition>
+        <argsstring>[4]</argsstring>
+        <name>channels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="29" column="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205__v0_8ffit__chan_1abe91f718b58901ac755c311a6bda14b7" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>ffit_chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="27" column="25"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205__v0_8ffit__chan_1afd94c6a26d6b6571e8d9398446227ae8" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>unused</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="28" column="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="25" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="26" bodyend="30"/>
+    <listofallmembers>
+      <member refid="structtype__205__v0_8ffit__chan_1af0946467af265f5ab21ba69e2b3729dd" prot="public" virt="non-virtual"><scope>type_205_v0.ffit_chan</scope><name>channels</name></member>
+      <member refid="structtype__205__v0_8ffit__chan_1abe91f718b58901ac755c311a6bda14b7" prot="public" virt="non-virtual"><scope>type_205_v0.ffit_chan</scope><name>ffit_chan_id</name></member>
+      <member refid="structtype__205__v0_8ffit__chan_1afd94c6a26d6b6571e8d9398446227ae8" prot="public" virt="non-virtual"><scope>type_205_v0.ffit_chan</scope><name>unused</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCvex__Block" kind="struct" language="C++" prot="public">
+    <compoundname>Cvex_Block</compoundname>
+    <includes refid="cvex_8h" local="no">cvex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCvex__Block_1a2ce4ab9380ee677c0ad2012609935edf" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Cvex_Block::blockId[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>blockId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="127" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Block_1a49ba36fe0d38c45757892eed7c36f2f3" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structCvex__BlockMode" kindref="compound">Cvex_BlockMode</ref> *</type>
+        <definition>struct Cvex_BlockMode* Cvex_Block::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="126" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Block_1a1969c2ccae165c129a895e02ea018807" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short Cvex_Block::mux[MAX_MUXS_P_BLK]</definition>
+        <argsstring>[MAX_MUXS_P_BLK]</argsstring>
+        <name>mux</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="128" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>Cvex_BlockMode</label>
+        <link refid="structCvex__BlockMode"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>enableTap</edgelabel>
+          <edgelabel>headerMode</edgelabel>
+          <edgelabel>invalidateOnTapMove</edgelabel>
+          <edgelabel>lCellRotrMode</edgelabel>
+          <edgelabel>lCellXDly</edgelabel>
+          <edgelabel>lCellYDly</edgelabel>
+          <edgelabel>rCellRotrMode</edgelabel>
+          <edgelabel>rCellXDly</edgelabel>
+          <edgelabel>rCellYDly</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>Cvex_Block</label>
+        <link refid="structCvex__Block"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mux</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>blockId</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="125" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="125" bodyend="129"/>
+    <listofallmembers>
+      <member refid="structCvex__Block_1a2ce4ab9380ee677c0ad2012609935edf" prot="public" virt="non-virtual"><scope>Cvex_Block</scope><name>blockId</name></member>
+      <member refid="structCvex__Block_1a49ba36fe0d38c45757892eed7c36f2f3" prot="public" virt="non-virtual"><scope>Cvex_Block</scope><name>mode</name></member>
+      <member refid="structCvex__Block_1a1969c2ccae165c129a895e02ea018807" prot="public" virt="non-virtual"><scope>Cvex_Block</scope><name>mux</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structblk__stmt" kind="struct" language="C++" prot="public">
+    <compoundname>blk_stmt</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structblk__stmt_1a28e02341894bbcdd861ee4f998c7f4ab" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char blk_stmt::name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="135" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structblk__stmt_1a890cdff67110fb0395ed4d82c3abe125" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int blk_stmt::nstmt</definition>
+        <argsstring></argsstring>
+        <name>nstmt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="136" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structblk__stmt_1a1f48681b69ac00a11b7e22f3fc1b1c60" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char blk_stmt::stmt[MAXSTMT][32]</definition>
+        <argsstring>[MAXSTMT][32]</argsstring>
+        <name>stmt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="137" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>blk_stmt</label>
+        <link refid="structblk__stmt"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>name</edgelabel>
+          <edgelabel>stmt</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>nstmt</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="133" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="134" bodyend="138"/>
+    <listofallmembers>
+      <member refid="structblk__stmt_1a28e02341894bbcdd861ee4f998c7f4ab" prot="public" virt="non-virtual"><scope>blk_stmt</scope><name>name</name></member>
+      <member refid="structblk__stmt_1a890cdff67110fb0395ed4d82c3abe125" prot="public" virt="non-virtual"><scope>blk_stmt</scope><name>nstmt</name></member>
+      <member refid="structblk__stmt_1a1f48681b69ac00a11b7e22f3fc1b1c60" prot="public" virt="non-virtual"><scope>blk_stmt</scope><name>stmt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

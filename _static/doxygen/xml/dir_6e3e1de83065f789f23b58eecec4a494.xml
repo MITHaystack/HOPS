@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_6e3e1de83065f789f23b58eecec4a494" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="ap__mean_8c">ap_mean.c</innerfile>
+    <innerfile refid="bcd__to__2int_8c">bcd_to_2int.c</innerfile>
+    <innerfile refid="interp555_8c">interp555.c</innerfile>
+    <innerfile refid="linterp_8c">linterp.c</innerfile>
+    <innerfile refid="max555_8c">max555.c</innerfile>
+    <innerfile refid="minvert_8c">minvert.c</innerfile>
+    <innerfile refid="fourfit__libs_2ffmath_2src_2parabola_8c">fourfit_libs/ffmath/src/parabola.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/"/>
+  </compounddef>
+</doxygen>

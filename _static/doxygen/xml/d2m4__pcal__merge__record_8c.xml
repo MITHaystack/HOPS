@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d2m4__pcal__merge__record_8c" kind="file" language="C++">
+    <compoundname>d2m4_pcal_merge_record.c</compoundname>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="d2m4__pcal__record_8h" local="yes">d2m4_pcal_record.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>d2m4_pcal_record.h</label>
+        <link refid="d2m4__pcal__record_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>d2m4_pcal_merge_record.c</label>
+        <link refid="d2m4__pcal__merge__record_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdlib.h</label>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="4">
+        <label>math.h</label>
+      </node>
+      <node id="6">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="d2m4__pcal__merge__record_8c_1a6f1255ddaa3c111364ccc0b1276d2af4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int d2m4_pcal_can_merge_records</definition>
+        <argsstring>(struct d2m4_pcal_record *rec1, struct d2m4_pcal_record *rec2)</argsstring>
+        <name>d2m4_pcal_can_merge_records</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>rec1</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>rec2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_record.c" line="7" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_record.c" bodystart="7" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="d2m4__pcal__merge__record_8c_1acfcdecde4de4a84f3dca7cef59a87445" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+        <definition>struct d2m4_pcal_record* d2m4_pcal_merge_record</definition>
+        <argsstring>(struct d2m4_pcal_record *record1, struct d2m4_pcal_record *record2)</argsstring>
+        <name>d2m4_pcal_merge_record</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record1</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+          <declname>record2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_record.c" line="30" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_record.c" bodystart="30" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2m4__pcal__record_8h" kindref="compound">d2m4_pcal_record.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d2m4__pcal__merge__record_8c_1a6f1255ddaa3c111364ccc0b1276d2af4" kindref="member">d2m4_pcal_can_merge_records</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec1,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec2)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(rec1<sp/>!=<sp/>NULL<sp/>&amp;&amp;<sp/>rec2<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//better<sp/>have<sp/>the<sp/>same<sp/>antenna,<sp/>tint<sp/>and<sp/>mjd<sp/>if<sp/>we<sp/>are<sp/>merging<sp/>two<sp/>records</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//we<sp/>are<sp/>also<sp/>enforcing<sp/>the<sp/>same<sp/>number<sp/>of<sp/>tones<sp/>per<sp/>channel<sp/>---<sp/>but<sp/>maybe<sp/>this<sp/>isn&apos;t<sp/>necessary?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>(<sp/>strcmp(rec1-&gt;<ref refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" kindref="member">antenna</ref>,<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" kindref="member">antenna</ref>)<sp/>==<sp/>0<sp/>)<sp/>&amp;&amp;<sp/><sp/><sp/></highlight><highlight class="comment">//check<sp/>the<sp/>antenna<sp/>IDs<sp/>are<sp/>the<sp/>same</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>fabs(rec1-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref><sp/>-<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref>)<sp/>&lt;<sp/><ref refid="d2m4__pcal__record_8h_1aa0a8bba43708a6f968425f64157432fe" kindref="member">AP_TOL</ref>*rec1-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref><sp/><sp/>)<sp/>&amp;&amp;<sp/><sp/></highlight><highlight class="comment">//check<sp/>the<sp/>relative<sp/>difference<sp/>between<sp/>the<sp/>two<sp/>integration<sp/>times<sp/>is<sp/>less<sp/>than<sp/>AP_TOL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>fabs(rec1-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref><sp/>-<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>)<sp/>&lt;<sp/><ref refid="d2m4__pcal__record_8h_1aa0a8bba43708a6f968425f64157432fe" kindref="member">AP_TOL</ref>*rec1-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref><sp/><sp/>)<sp/></highlight><highlight class="comment">//&amp;&amp;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//(<sp/>rec1-&gt;ntones<sp/>==<sp/>rec2-&gt;ntones)<sp/>//check<sp/>the<sp/>difference<sp/>between<sp/>the<sp/>mjds<sp/>is<sp/>less<sp/>than<sp/>AP_TOL*tint<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(rec1-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref><sp/>!=<sp/>NULL<sp/>&amp;&amp;<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/><ref refid="d2m4__pcal__merge__record_8c_1acfcdecde4de4a84f3dca7cef59a87445" kindref="member">d2m4_pcal_merge_record</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record1,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>record2)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ri<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n1<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n2<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ch<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nt<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_ntones<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_total_phasors<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>merged_record<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec1<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>rec2<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/><ref refid="d2m4__pcal__merge__record_8c_1a6f1255ddaa3c111364ccc0b1276d2af4" kindref="member">d2m4_pcal_can_merge_records</ref>(record1,<sp/>record2)<sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rec1<sp/>=<sp/>record1;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rec2<sp/>=<sp/>record2;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//swap<sp/>position<sp/>of<sp/>records<sp/>if<sp/>frequency<sp/>order<sp/>is<sp/>different</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>record2-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[0].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref><sp/>&lt;<sp/>record1-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[0].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref>)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rec1<sp/>=<sp/>record2;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rec2<sp/>=<sp/>record1;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//make<sp/>some<sp/>space<sp/>for<sp/>the<sp/>merged<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record<sp/>=<sp/><sp/>malloc(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref><sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2m4__pcal__record_8h_1a2e74f227dc44adde0ac32d2911b4469d" kindref="member">d2m4_pcal_init_record</ref>(merged_record);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy(merged_record-&gt;<ref refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" kindref="member">antenna</ref>,<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" kindref="member">antenna</ref>);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" kindref="member">tint</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref><sp/>+<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_ntones<sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(max_ntones<sp/>&lt;<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_ntones<sp/>=<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref><sp/>=<sp/>max_ntones;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//determine<sp/>how<sp/>much<sp/>phasor<sp/>space<sp/>we<sp/>need</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n1<sp/>=<sp/>(rec1-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref><sp/>*<sp/>max_ntones);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n2<sp/>=<sp/>(rec2-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref><sp/>*<sp/>max_ntones);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n_total_phasors<sp/>=<sp/>n1<sp/>+<sp/>n2;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//make<sp/>some<sp/>space<sp/>for<sp/>the<sp/>phasors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref><sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref>*)<sp/>malloc(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref>)*n_total_phasors<sp/>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>we<sp/>loop<sp/>over<sp/>each<sp/>phasor<sp/>record<sp/>and<sp/>add<sp/>them<sp/>into<sp/>the<sp/>merged<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(ch=0;<sp/>ch&lt;rec1-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref>;<sp/>ch++)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(nt=0;<sp/>nt&lt;max_ntones;<sp/>nt++)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ri<sp/>=<sp/>nt<sp/>+<sp/>ch*max_ntones;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nt<sp/>&lt;<sp/>rec1-&gt;ntones)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;merging<sp/>rec1<sp/>%d<sp/>%d<sp/><sp/>$c\n<sp/>&quot;,<sp/>ch,<sp/>nt,<sp/>rec1-&gt;phasors[<sp/>nt<sp/>+<sp/>ch*(rec1-&gt;ntones)<sp/>].polarization);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec1-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)<sp/>].<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec1-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)<sp/>].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec1-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)<sp/>].<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec1-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)<sp/>].<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref><sp/>=<sp/>rec1-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec1-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)<sp/>].<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//insert<sp/>dummy<sp/>pcal<sp/>phasor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref><sp/>=<sp/></highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(ch=0;<sp/>ch&lt;rec2-&gt;<ref refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" kindref="member">nchannels</ref>;<sp/>ch++)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(nt=0;<sp/>nt&lt;max_ntones;<sp/>nt++)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ri<sp/>=<sp/>n1<sp/>+<sp/>nt<sp/>+<sp/>ch*max_ntones;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nt<sp/>&lt;<sp/>rec2-&gt;ntones)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref><sp/>=<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec2-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)].<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref><sp/>=<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec2-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref><sp/>=<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec2-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)].<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref><sp/>=<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec2-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)].<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref><sp/>=<sp/>rec2-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[<sp/>nt<sp/>+<sp/>ch*(rec2-&gt;<ref refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" kindref="member">ntones</ref>)<sp/>].<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//insert<sp/>dummy<sp/>pcal<sp/>phasor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" kindref="member">polarization</ref><sp/>=<sp/></highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" kindref="member">frequency</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" kindref="member">dstr</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" kindref="member">real</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" kindref="member">phasors</ref>[ri].<ref refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" kindref="member">imag</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>merged_record;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ERROR!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_record.c"/>
+  </compounddef>
+</doxygen>

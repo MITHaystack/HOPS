@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__HDF5Converter" prot="public" virt="non-virtual">hops::MHO_HDF5Converter</basecompoundref>
+    <includes refid="MHO__ContainerHDF5Converter_8hh" local="no">MHO_ContainerHDF5Converter.hh</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1acfec5a799bbd3fadbd298a4d1e2dfb57" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref> *</type>
+        <definition>MHO_ObjectTags* hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;::fContainer</definition>
+        <argsstring></argsstring>
+        <name>fContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="419" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="417" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a1e238def0bc7a86b6000dd3125091d80" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;::MHO_ContainerHDF5Converter</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ContainerHDF5Converter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="334" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="334" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1aacc4b13d584da00f0b200a701f57cafc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;::MHO_ContainerHDF5Converter</definition>
+        <argsstring>(MHO_ExtensibleElement *element)</argsstring>
+        <name>MHO_ContainerHDF5Converter</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ExtensibleElement" kindref="compound">MHO_ExtensibleElement</ref> *</type>
+          <declname>element</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="336" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="336" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a787e06837fe7f2b3a11a0e48b6a28987" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;::~MHO_ContainerHDF5Converter</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ContainerHDF5Converter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="341" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="341" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a47d45901a21dea1fca99f51ef1aa7dbe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;::SetObjectToConvert</definition>
+        <argsstring>(MHO_Serializable *obj)</argsstring>
+        <name>SetObjectToConvert</name>
+        <reimplements refid="classhops_1_1MHO__HDF5Converter_1a556d48be4d523150fb1f42581e5105fa">SetObjectToConvert</reimplements>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="343" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="343" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1abc3fbc7e4346746ee7b95a3ab9bed2e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;::WriteToHDF5File</definition>
+        <argsstring>(hid_t file_id, std::string group_prefix)</argsstring>
+        <name>WriteToHDF5File</name>
+        <reimplements refid="classhops_1_1MHO__HDF5Converter_1ad0aba59f896a02250a753919dde375f5">WriteToHDF5File</reimplements>
+        <param>
+          <type>hid_t</type>
+          <declname>file_id</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>group_prefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="345" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="345" bodyend="351"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a06d3018bb1a7c9a0c4f53689fc22d06f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;::ConstructHDF5</definition>
+        <argsstring>(hid_t file_id, std::string group_prefix, const MHO_ObjectTags *obj)</argsstring>
+        <name>ConstructHDF5</name>
+        <param>
+          <type>hid_t</type>
+          <declname>file_id</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>group_prefix</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="355" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="355" bodyend="417"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</label>
+        <link refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_HDF5Converter</label>
+        <link refid="classhops_1_1MHO__HDF5Converter"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</label>
+        <link refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>json</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_HDF5Converter</label>
+        <link refid="classhops_1_1MHO__HDF5Converter"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fMetaData</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" line="331" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_ContainerHDF5Converter.hh" bodystart="332" bodyend="420"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a06d3018bb1a7c9a0c4f53689fc22d06f" prot="private" virt="non-virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>ConstructHDF5</name></member>
+      <member refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1acfec5a799bbd3fadbd298a4d1e2dfb57" prot="private" virt="non-virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>fContainer</name></member>
+      <member refid="classhops_1_1MHO__HDF5Converter_1a6d40beab547a7a1be27eb7bf392e1980" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>fMetaData</name></member>
+      <member refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a1e238def0bc7a86b6000dd3125091d80" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>MHO_ContainerHDF5Converter</name></member>
+      <member refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1aacc4b13d584da00f0b200a701f57cafc" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>MHO_ContainerHDF5Converter</name></member>
+      <member refid="classhops_1_1MHO__HDF5Converter_1afd236afe8ba425fe4f713b41588e423b" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>MHO_HDF5Converter</name></member>
+      <member refid="classhops_1_1MHO__HDF5Converter_1a1af1a0c6e2d48df3d947941d384b8f2f" prot="public" virt="virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>SetObjectMetaData</name></member>
+      <member refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a47d45901a21dea1fca99f51ef1aa7dbe" prot="public" virt="virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>SetObjectToConvert</name></member>
+      <member refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1abc3fbc7e4346746ee7b95a3ab9bed2e9" prot="public" virt="virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>WriteToHDF5File</name></member>
+      <member refid="classhops_1_1MHO__ContainerHDF5Converter_3_01MHO__ObjectTags_01_4_1a787e06837fe7f2b3a11a0e48b6a28987" prot="public" virt="virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>~MHO_ContainerHDF5Converter</name></member>
+      <member refid="classhops_1_1MHO__HDF5Converter_1aacecc18775c5a22721edd20985fe2633" prot="public" virt="virtual"><scope>hops::MHO_ContainerHDF5Converter&lt; MHO_ObjectTags &gt;</scope><name>~MHO_HDF5Converter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

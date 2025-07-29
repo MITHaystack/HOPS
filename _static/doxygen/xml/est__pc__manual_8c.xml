@@ -1,0 +1,1134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="est__pc__manual_8c" kind="file" language="C++">
+    <compoundname>est_pc_manual.c</compoundname>
+    <includes local="no">math.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="param__struct_8h" local="yes">param_struct.h</includes>
+    <includes refid="pass__struct_8h" local="yes">pass_struct.h</includes>
+    <incdepgraph>
+      <node id="36">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="7">
+        <label>stdarg.h</label>
+      </node>
+      <node id="40">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>plot_struct.h</label>
+        <link refid="plot__struct_8h"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="23">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="45">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>stdlib.h</label>
+      </node>
+      <node id="28">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="35">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="22">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>est_pc_manual.c</label>
+        <link refid="est__pc__manual_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>param_struct.h</label>
+        <link refid="param__struct_8h"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="15">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>sys/types.h</label>
+      </node>
+      <node id="34">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="11">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="38">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>complex.h</label>
+      </node>
+      <node id="30">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>pass_struct.h</label>
+        <link refid="pass__struct_8h"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="10">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="33">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="44">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="29">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="8">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="est__pc__manual_8c_1aa4047829f56e080306d3873df9de4c7b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char control_filename[]</definition>
+        <argsstring>[]</argsstring>
+        <name>control_filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/parse_cmdline.c" bodystart="39" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" declline="19" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__fringe" kindref="compound">mk4_fringe</ref></type>
+        <definition>struct mk4_fringe fringe</definition>
+        <argsstring></argsstring>
+        <name>fringe</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourfit/fourfit3.c" bodystart="54" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" declline="20" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="est__pc__manual_8c_1ac420eacbe279442be27fd533d151533e" prot="public" static="yes" mutable="no">
+        <type>char</type>
+        <definition>char opname[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>opname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="30" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref></type>
+        <definition>struct type_param param</definition>
+        <argsstring></argsstring>
+        <name>param</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourfit/fourfit3.c" bodystart="52" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" declline="20" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char progname[]</definition>
+        <argsstring>[]</argsstring>
+        <name>progname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/msg/src/msg.c" bodystart="3" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" declline="20" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref></type>
+        <definition>struct type_status status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourfit/fourfit3.c" bodystart="53" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" declline="20" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="est__pc__manual_8c_1a6a5dc2e24352b94f08711db76ea095a7" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int stnpol[2][4]</definition>
+        <argsstring>[2][4]</argsstring>
+        <name>stnpol</name>
+        <initializer>= {0, 1, 0, 1, 0, 1, 1, 0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="25" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="est__pc__manual_8c_1a24d958ad38498d3ce251948f0260eac6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void adj_delays</definition>
+        <argsstring>(double sbd[], double esd[], double delta_delay, int first, int final, int rr, int how)</argsstring>
+        <name>adj_delays</name>
+        <param>
+          <type>double</type>
+          <declname>sbd</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>esd</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta_delay</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>final</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rr</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>how</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="190" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="190" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a0f926f3f46a8e8fdc49cd250e9dd0438" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void est_delays</definition>
+        <argsstring>(struct type_pass *pass, int first, int final, int rr, int how)</argsstring>
+        <name>est_delays</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>final</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rr</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>how</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="248" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="248" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1ab803432d78d24e37ae273ffa5b09b5da" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void est_offset</definition>
+        <argsstring>(struct type_pass *pass, int rr)</argsstring>
+        <name>est_offset</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="323" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="323" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a020f165cc7cddf3f192d653100eda2b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void est_pc_manual</definition>
+        <argsstring>(int mode, char *rootfile, struct type_pass *pass)</argsstring>
+        <name>est_pc_manual</name>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>rootfile</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="338" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="338" bodyend="367"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a3d99e7fcd339474b98c92b8b16ec4948" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void est_phases</definition>
+        <argsstring>(struct type_pass *pass, int first, int final, int rr, int keep)</argsstring>
+        <name>est_phases</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>final</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rr</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="98" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="98" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a5ea8a4bf41b5f13640c1c54091a33fad" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void masthead</definition>
+        <argsstring>(int mode, char *rf, struct type_pass *pass, int first_ch, int final_ch)</argsstring>
+        <name>masthead</name>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>rf</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first_ch</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>final_ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="67" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="67" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a2a050a14ebcf4f26feb394f77e36daff" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>static double pbranch</definition>
+        <argsstring>(double phase)</argsstring>
+        <name>pbranch</name>
+        <param>
+          <type>double</type>
+          <declname>phase</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="86" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="86" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a19ba512284f1d5bf88e964ecb714eb1d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int pol_letter</definition>
+        <argsstring>(int pol, int rr)</argsstring>
+        <name>pol_letter</name>
+        <param>
+          <type>int</type>
+          <declname>pol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="56" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="56" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1ac3e0961b73e4ce968a92e7a5fee0a252" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char* pol_string</definition>
+        <argsstring>(int pol)</argsstring>
+        <name>pol_string</name>
+        <param>
+          <type>int</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="43" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="43" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a31350ee2a92235604654d2c1e92e2cf5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void rest_pn</definition>
+        <argsstring>(void)</argsstring>
+        <name>rest_pn</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="37" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a9886f509f91806e7b7fbcae2b587f8c0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void save_pn</definition>
+        <argsstring>(void)</argsstring>
+        <name>save_pn</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="31" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="31" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="est__pc__manual_8c_1a07d5582f342ec6f29bac6963c3f967ab" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int sbd_cmp</definition>
+        <argsstring>(const void *a, const void *b)</argsstring>
+        <name>sbd_cmp</name>
+        <param>
+          <type>const void *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" line="174" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c" bodystart="174" bodyend="180"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>If<sp/>invoked,<sp/>estimate<sp/>ph<sp/>phase<sp/>and</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>delay<sp/>values<sp/>to<sp/>use<sp/>in<sp/>manual<sp/>mode.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>pc_phase_?<sp/>and<sp/>delay_offs_?<sp/>values<sp/>report.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>This<sp/>is<sp/>adapted<sp/>from<sp/>fearfit<sp/>test<sp/>code.<sp/>gbc<sp/>5/8/2017</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="param__struct_8h" kindref="compound">param_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pass__struct_8h" kindref="compound">pass_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="est__pc__manual_8c_1aa4047829f56e080306d3873df9de4c7b" kindref="member">control_filename</ref>[];</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref>[];</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structmk4__fringe" kindref="compound">mk4_fringe</ref><sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__param" kindref="compound">type_param</ref><sp/><ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__status" kindref="compound">type_status</ref><sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stnpol[2][4]<sp/>=<sp/>{0,<sp/>1,<sp/>0,<sp/>1,<sp/>0,<sp/>1,<sp/>1,<sp/>0};<sp/></highlight><highlight class="comment">//<sp/>[stn][pol]<sp/>=<sp/>0:L,<sp/>1:R</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>Rename<sp/>the<sp/>program<sp/>name<sp/>to<sp/>make<sp/>the<sp/>output<sp/>easier<sp/>to<sp/>parse<sp/>and<sp/>use</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>opname[256];</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>save_pn(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ln<sp/>=<sp/>strlen(<ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref>);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(opname,<sp/><ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref>,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(opname));</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(<ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref>,<sp/></highlight><highlight class="stringliteral">&quot;*est&quot;</highlight><highlight class="normal">,<sp/>ln-1);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>rest_pn(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy(<ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref>,<sp/>opname);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>some<sp/>things<sp/>for<sp/>a<sp/>library,<sp/>later<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*pol_string(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pol)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*polstr;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(pol)<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:<sp/>polstr<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;LL&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:<sp/>polstr<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;RR&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:<sp/>polstr<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;LR&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:<sp/>polstr<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;RL&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/>polstr<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;??&quot;</highlight><highlight class="normal">;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(polstr);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>return<sp/>the<sp/>proper<sp/>lower<sp/>case<sp/>letter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pol_letter(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>pol,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rr)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*polstr<sp/>=<sp/>pol_string(pol);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(polstr[rr])<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;L&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="charliteral">&apos;l&apos;</highlight><highlight class="normal">);<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="charliteral">&apos;r&apos;</highlight><highlight class="normal">);<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(</highlight><highlight class="charliteral">&apos;?&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>generate<sp/>information<sp/>about<sp/>where<sp/>the<sp/>results<sp/>came<sp/>from<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>masthead(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mode,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*rf,</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>first_ch,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>final_ch)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;rf:<sp/><sp/>%s&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>rf);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;cf:<sp/><sp/>%s&quot;</highlight><highlight class="normal">,<sp/>3,<sp/><ref refid="est__pc__manual_8c_1aa4047829f56e080306d3873df9de4c7b" kindref="member">control_filename</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;on:<sp/>%.8s<sp/>-<sp/>%.8s<sp/>[%c%c]<sp/>fq<sp/>%c<sp/>pol<sp/>%s<sp/>ch<sp/>%c..%c<sp/>mode<sp/>%03X&quot;</highlight><highlight class="normal">,<sp/>3,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a5d039a56134f495a716c172aa8d94028" kindref="member">ref_name</ref>,<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a53a92c1ffbe4b75bdc4433bdd907f7ff" kindref="member">rem_name</ref>,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>[0],<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>[1],</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[0].<ref refid="structfreq__corel_1a932d416dc5899efbbc8b700f17de162d" kindref="member">fgroup</ref>,<sp/>pol_string((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>),</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[first_ch].<ref refid="structfreq__corel_1a99a5c15e2518b197ef3408ae2a65e793" kindref="member">freq_code</ref>,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[final_ch].<ref refid="structfreq__corel_1a99a5c15e2518b197ef3408ae2a65e793" kindref="member">freq_code</ref>,<sp/>mode);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;snr<sp/>%.3f<sp/>amp<sp/>%.6f<sp/>phs<sp/>%.6f&quot;</highlight><highlight class="normal">,<sp/>3,</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref>,<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1afce31460b126f251c127b6703f252766" kindref="member">delres_max</ref>,<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1abf8af8a252876d9dad222b48e403ec86" kindref="member">resphase</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;sbd<sp/>%.6f<sp/>mbd<sp/>%.6f<sp/>frr<sp/>%.6f&quot;</highlight><highlight class="normal">,<sp/>3,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a41519ef3183fc1f62f4437b84097ad74" kindref="member">sbd_max</ref>,<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ada300f2666fe318679e49c52e7f0f801" kindref="member">mbd_max_global</ref>,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a7d1d3e4b4d9a800d2011bcd570a52cff" kindref="member">dr_max_global</ref><sp/>*<sp/><ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1afcd199da31a26e7885853c902b413b90" kindref="member">ref_freq</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>move<sp/>phase<sp/>to<sp/>principal<sp/>branch<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pbranch(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phase)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>phase<sp/>=<sp/>(<sp/>fmod(phase,<sp/>360.0)<sp/>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(phase<sp/>&lt;<sp/>-180.0)<sp/>phase<sp/>+=<sp/>360.0;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(phase<sp/>&gt;<sp/><sp/>180.0)<sp/>phase<sp/>-=<sp/>360.0;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(phase);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>This<sp/>routine<sp/>calculates<sp/>adjustments<sp/>to<sp/>channel<sp/>phases</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>designed<sp/>to<sp/>remove<sp/>the<sp/>multiband<sp/>delay<sp/>(however<sp/>anchored).</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>est_phases(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>first,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>keep)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buf[720],<sp/>tmp[80],<sp/>*pb;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ch,<sp/>ss,<sp/>pol,<sp/>nd;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inp_phase,<sp/>est_phase,<sp/>sbmult,<sp/>delta_delay,<sp/>phase_bias;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*epb<sp/>=<sp/>getenv(</highlight><highlight class="stringliteral">&quot;HOPS_EST_PC_BIAS&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*epd<sp/>=<sp/>getenv(</highlight><highlight class="stringliteral">&quot;HOPS_EST_PC_DLYM&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>phases<sp/>on<sp/>%s<sp/>station&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>rr<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;ref&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;rem&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>support<sp/>for<sp/>bias<sp/>operation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(keep)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase_bias<sp/>=<sp/>(epb)<sp/>?<sp/>atof(epb)<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>phase<sp/>bias<sp/>%f<sp/>(mod<sp/>res<sp/>phase<sp/>is<sp/>%f)&quot;</highlight><highlight class="normal">,<sp/>3,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase_bias,<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1aa0776c89ebf55f3e60197ec8a23eeaca" kindref="member">coh_avg_phase</ref><sp/>*<sp/>(180.0<sp/>/<sp/>M_PI));</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(epb<sp/>||<sp/>epd)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>HOPS_EST_PC_BIAS<sp/>%s<sp/>..._DLYM<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>epb,<sp/>epd);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>header<sp/>for<sp/>the<sp/>section<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>pol<sp/>=<sp/>pol_letter(pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>,<sp/>!rr);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(buf,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;if<sp/>station<sp/>%c\n<sp/>pc_phases_%c<sp/>&quot;</highlight><highlight class="normal">,<ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>[!rr],<sp/>pol);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first,<sp/>pb<sp/>=<sp/>buf<sp/>+<sp/>strlen(buf);<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++,<sp/>pb++)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*pb<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[ch].<ref refid="structfreq__corel_1a99a5c15e2518b197ef3408ae2a65e793" kindref="member">freq_code</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>*pb<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(buf,<sp/>3);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(buf[nd<sp/>=<sp/>ss<sp/>=<sp/>0]<sp/>=<sp/>0,<sp/>ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>assume<sp/>it<sp/>is<sp/>all<sp/>usb<sp/>or<sp/>lsb<sp/>for<sp/>this<sp/>estimate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbmult<sp/>=<sp/>(<ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a36123095d4b31a5afbe0a18feee1b15f" kindref="member">total_usb_frac</ref><sp/>&gt;<sp/>0)<sp/>?<sp/>1.0<sp/>:<sp/>-1.0;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>est_phase<sp/>=<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab3b98158cf39c2e84d773e1b2f683832" kindref="member">pc_phase</ref>[ch][0][stnpol[0][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]]</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab3b98158cf39c2e84d773e1b2f683832" kindref="member">pc_phase</ref>[ch][1][stnpol[1][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]];</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>est_phase<sp/>*=<sp/>180.0<sp/>/<sp/>M_PI;<sp/><sp/></highlight><highlight class="comment">/*<sp/>radians<sp/>to<sp/>degrees<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>inp_phase<sp/>=<sp/>pbranch(est_phase);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>what<sp/>we<sp/>need<sp/>to<sp/>do<sp/>to<sp/>remove<sp/>the<sp/>multiband<sp/>delay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delta_delay<sp/>=<sp/>(<ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1add42b49167c3850bd9c19feee9df305f" kindref="member">mbd_anchor</ref><sp/>==<sp/><ref refid="control_8h_1a7c60e913478d07a44ac15c6fb2c5937f" kindref="member">MODEL</ref>)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1aaa4d66ecf4d348831574f2b8863e9bca" kindref="member">resid_mbd</ref></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1aaa4d66ecf4d348831574f2b8863e9bca" kindref="member">resid_mbd</ref><sp/>-<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1a7dcbe6cc06df99a593027fb4577d9af2" kindref="member">resid_sbd</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>allow<sp/>this<sp/>factor<sp/>to<sp/>be<sp/>adjusted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delta_delay<sp/>*=<sp/>(epd)<sp/>?<sp/>atof(epd)<sp/>:<sp/>1.0;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>est_phase<sp/>+=<sp/>sbmult<sp/>*<sp/>(<ref refid="hops__complex_8h_1abd07b943c929b39ce8da27d7a90895ee" kindref="member">arg_complex</ref>(<ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ac959924cbebef89d4c48691dbce7d8fe" kindref="member">fringe</ref>[ch])<sp/>*<sp/>180.0<sp/>/<sp/>M_PI</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>360.0<sp/>*<sp/>delta_delay<sp/>*</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[ch].<ref refid="structfreq__corel_1aa3a89400497ddcd5df56ce62c067dfa3" kindref="member">frequency</ref><sp/>-<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a8300085e1d4eef1b1868555b1b8547a0" kindref="member">t205</ref>-&gt;<ref refid="structtype__205_1a69b3e7c7af83e14382fcb3242d9c5799" kindref="member">ref_freq</ref>));</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>bias<sp/>the<sp/>phase<sp/>calculation<sp/>to<sp/>preserve<sp/>existing<sp/>resid<sp/>phase<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(keep)<sp/>est_phase<sp/>+=<sp/>phase_bias;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>canonicalize<sp/>for<sp/>comparision<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>est_phase<sp/>=<sp/>pbranch(est_phase);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs(inp_phase<sp/>-<sp/>est_phase)<sp/>&gt;<sp/>0.01)<sp/>nd<sp/>++;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>remove<sp/>input<sp/>phase<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rr)<sp/>inp_phase<sp/>=<sp/><sp/><sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab3b98158cf39c2e84d773e1b2f683832" kindref="member">pc_phase</ref>[ch][1][stnpol[1][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]];</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>inp_phase<sp/>=<sp/>-<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1ab3b98158cf39c2e84d773e1b2f683832" kindref="member">pc_phase</ref>[ch][0][stnpol[0][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]];</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>est_phase<sp/>+=<sp/>inp_phase<sp/>*<sp/>180.0<sp/>/<sp/>M_PI;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rr)<sp/>est_phase<sp/>=<sp/>pbranch(est_phase);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>est_phase<sp/>=<sp/>pbranch(-est_phase);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>snprintf(tmp,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(tmp),<sp/></highlight><highlight class="stringliteral">&quot;<sp/>%+8.3f&quot;</highlight><highlight class="normal">,<sp/>est_phase);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncat(buf,<sp/>tmp,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buf)-1);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>eight<sp/>phases<sp/>per<sp/>line<sp/>for<sp/>a<sp/>line<sp/>length<sp/>of<sp/>73<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(++ss<sp/>==<sp/>8)<sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(buf,<sp/>3);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buf[ss<sp/>=<sp/>0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buf[0])<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(buf,<sp/>3);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>phases<sp/>%s<sp/>(%d)&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>nd<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;converging&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;converged&quot;</highlight><highlight class="normal">,<sp/>nd);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>a<sp/>comparison<sp/>routine<sp/>for<sp/>use<sp/>by<sp/>qsort()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sbd_cmp(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*b)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>da<sp/>=<sp/>*(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)a,<sp/>db<sp/>=<sp/>*(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)b;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(da&lt;db)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(da&gt;db)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>1);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="183"><highlight class="comment"><sp/>*<sp/>This<sp/>routine<sp/>adjusts<sp/>delays<sp/>according<sp/>to<sp/>the<sp/>method<sp/>specified<sp/>in<sp/>&apos;how&apos;:</highlight></codeline>
+<codeline lineno="184"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>0x02:<sp/>use<sp/>median<sp/>channel<sp/>SBD</highlight></codeline>
+<codeline lineno="185"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>0x04:<sp/>average<sp/>channel<sp/>SBD</highlight></codeline>
+<codeline lineno="186"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>0x08:<sp/>use<sp/>total<sp/>SBD<sp/>channel</highlight></codeline>
+<codeline lineno="187"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>0x10:<sp/>use<sp/>original<sp/>SBD<sp/>values</highlight></codeline>
+<codeline lineno="188"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>0x20:<sp/>use<sp/>heuristics<sp/>to<sp/>discard<sp/>outliers</highlight></codeline>
+<codeline lineno="189"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>adj_delays(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbd[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>esd[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_delay,</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>first,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>how)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cpy[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tol,<sp/>medly,<sp/>ave,<sp/>tot<sp/>=<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a41519ef3183fc1f62f4437b84097ad74" kindref="member">sbd_max</ref><sp/>*<sp/>1e3;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ch,<sp/>med;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>start<sp/>with<sp/>a<sp/>clean<sp/>slate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>esd[ch]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>for<sp/>methods<sp/>requiring<sp/>a<sp/>median<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>how<sp/>&amp;<sp/>0x026<sp/>)<sp/>{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first,<sp/>ave=0.0;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cpy[ch]<sp/>=<sp/>sbd[ch];</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ave<sp/>+=<sp/>sbd[ch];</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ave<sp/>/=<sp/>(</highlight><highlight class="keyword">final</highlight><highlight class="normal"><sp/>-<sp/>first<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qsort(cpy<sp/>+<sp/>first,<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal"><sp/>-<sp/>first<sp/>+<sp/>1,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">),<sp/>&amp;sbd_cmp);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>med<sp/>=<sp/>(first<sp/>+<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">)<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>medly<sp/>=<sp/>cpy[med];</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>median,average,total<sp/>delays<sp/>are<sp/>%.3f,%.3f,%.3f&quot;</highlight><highlight class="normal">,3,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>medly,ave,tot);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>heuristic<sp/>is<sp/>to<sp/>replace<sp/>outliers<sp/>with<sp/>the<sp/>median<sp/>delay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(how<sp/>&amp;<sp/>0x20)<sp/>{</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tol<sp/>=<sp/>fabs(cpy[med]<sp/>-<sp/>tot);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>tolerance<sp/>%.3f,<sp/>retaining<sp/>%.3f+/-%.3f&quot;</highlight><highlight class="normal">,3,tol,medly,3*tol);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>tol<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs(<sp/>(sbd[ch]<sp/>-<sp/>medly)<sp/>/<sp/>tol<sp/>)<sp/>&gt;<sp/>3)<sp/>sbd[ch]<sp/>=<sp/>medly;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>recompute<sp/>average<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first,<sp/>ave=0.0;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>ave<sp/>+=<sp/>sbd[ch];</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ave<sp/>/=<sp/>(</highlight><highlight class="keyword">final</highlight><highlight class="normal"><sp/>-<sp/>first<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>revised<sp/>average<sp/>delay<sp/>is<sp/>%.3f&quot;</highlight><highlight class="normal">,3,ave);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(how<sp/>&amp;<sp/>0x02)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>use<sp/>the<sp/>median<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>using<sp/>median<sp/>delay<sp/>(mode<sp/>%x)&quot;</highlight><highlight class="normal">,3,how);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>esd[ch]<sp/>=<sp/>medly<sp/>-<sp/>delta_delay;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(how<sp/>&amp;<sp/>0x04)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>compute<sp/>and<sp/>use<sp/>average<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>using<sp/>ave<sp/>delay<sp/>(mode<sp/>%x)&quot;</highlight><highlight class="normal">,3,how);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>esd[ch]<sp/>=<sp/>ave<sp/>-<sp/>delta_delay;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(how<sp/>&amp;<sp/>0x08)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>use<sp/>total<sp/>SBD<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>using<sp/>total<sp/>SBD<sp/>delay<sp/>(mode<sp/>%x)&quot;</highlight><highlight class="normal">,3,how);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>esd[ch]<sp/>=<sp/>tot<sp/>-<sp/>delta_delay;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(how<sp/>&amp;<sp/>0x10)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>use<sp/>the<sp/>measured<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>using<sp/>measured<sp/>SBD<sp/>delay<sp/>(mode<sp/>%x)&quot;</highlight><highlight class="normal">,3,how);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>esd[ch]<sp/>=<sp/>sbd[ch]<sp/>-<sp/>delta_delay;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!rr)<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>esd[ch]<sp/>=<sp/>-esd[ch];</highlight></codeline>
+<codeline lineno="241"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="244"><highlight class="comment"><sp/>*<sp/><sp/>This<sp/>routine<sp/>calculates<sp/>adjustments<sp/>to<sp/>channel<sp/>delays</highlight></codeline>
+<codeline lineno="245"><highlight class="comment"><sp/>*<sp/><sp/>designed<sp/>to<sp/>remove<sp/>the<sp/>sbd.<sp/><sp/>Several<sp/>methods<sp/>and<sp/>options</highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/>*<sp/><sp/>are<sp/>available<sp/>via<sp/>the<sp/>&apos;how&apos;<sp/>argument.<sp/><sp/>See<sp/>adj_delays().</highlight></codeline>
+<codeline lineno="247"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>est_delays(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>first,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rr,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>how)</highlight></codeline>
+<codeline lineno="250"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buf[720],<sp/>tmp[80];</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbd[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>],<sp/>rdy[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>],<sp/>esd[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_delay;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ch,<sp/>ss,<sp/>pol,<sp/>nd;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*pb,<sp/>*epd<sp/>=<sp/>getenv(</highlight><highlight class="stringliteral">&quot;HOPS_EST_PC_MDLY&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>delays<sp/>on<sp/>%s<sp/>station&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>rr<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;ref&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;rem&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(epd)<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>HOPS_EST_PC_MDLY<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>epd);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>restrict<sp/>operation<sp/>to<sp/>only<sp/>one<sp/>delay<sp/>calculation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((((how<sp/>&amp;<sp/>0x02)&gt;&gt;1)<sp/>+<sp/>((how<sp/>&amp;<sp/>0x04)&gt;&gt;2)<sp/>+</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((how<sp/>&amp;<sp/>0x08)&gt;&gt;3)<sp/>+<sp/>((how<sp/>&amp;<sp/>0x10)&gt;&gt;4))<sp/>&gt;<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>too<sp/>many<sp/>delay<sp/>modes<sp/>selected:<sp/>0x%02x&quot;</highlight><highlight class="normal">,3,how);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>consider<sp/>a<sp/>delay<sp/>correction<sp/>due<sp/>to<sp/>mbd<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(how<sp/>&amp;<sp/>0x100)<sp/>{</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//delta_delay<sp/>=<sp/>(param.mbd_anchor<sp/>==<sp/>MODEL)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/>fringe.t208-&gt;resid_mbd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>fringe.t208-&gt;resid_mbd<sp/>-<sp/>fringe.t208-&gt;resid_sbd;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delta_delay<sp/>=<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1aaa4d66ecf4d348831574f2b8863e9bca" kindref="member">resid_mbd</ref>;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delta_delay<sp/>*=<sp/>((epd)<sp/>?<sp/>atof(epd)<sp/>:<sp/>1.0)<sp/>*<sp/>1000.0;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>post-MDLY<sp/>sbd<sp/>adjustment<sp/>%f<sp/>ns&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>delta_delay);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delta_delay<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>build<sp/>an<sp/>array<sp/>of<sp/>per-channel<sp/>sbd<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>{</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cf.<sp/>status.sbdbox[MAXFREQ]<sp/>&lt;=&gt;<sp/>status.sbd_max<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbd[ch]<sp/>=<sp/>(<ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1a37aa045a8ea79a57a0faa69f17ba9212" kindref="member">sbdbox</ref>[ch]<sp/>-<sp/><ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1afc491296aa5330791465a1f62bdf9050" kindref="member">nlags</ref><sp/>-<sp/>1)<sp/>*<sp/><ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>.<ref refid="structtype__status_1abfc9b629d7f09218381de3e340b76748" kindref="member">sbd_sep</ref>;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sbd[ch]<sp/>*=<sp/>1000.0;<sp/><sp/></highlight><highlight class="comment">/*<sp/>us<sp/>to<sp/>ns<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(!rr)<sp/>sbd[ch]<sp/>=<sp/>-<sp/>sbd[ch];</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>calculate<sp/>original<sp/>delays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rdy[ch]<sp/>=<sp/>(rr)</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1af9f56633bde3053c35ad64b546b94d71" kindref="member">delay_offs</ref>[ch].<ref refid="structdstats_1aeba583bfbeea8309a140d8bc199c8e2c" kindref="member">ref</ref></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" kindref="member">delay_offs_pol</ref>[ch][stnpol[0][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]].<ref refid="structdstats_1aeba583bfbeea8309a140d8bc199c8e2c" kindref="member">ref</ref></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1af9f56633bde3053c35ad64b546b94d71" kindref="member">delay_offs</ref>[ch].<ref refid="structdstats_1aa7f6241b845f04285059195bd97cdd1e" kindref="member">rem</ref></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" kindref="member">delay_offs_pol</ref>[ch][stnpol[1][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>]].<ref refid="structdstats_1aa7f6241b845f04285059195bd97cdd1e" kindref="member">rem</ref>;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>make<sp/>sense<sp/>of<sp/>it<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>adj_delays(sbd,<sp/>esd,<sp/>delta_delay,<sp/>first,<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">,<sp/>rr,<sp/>how);</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>header<sp/>for<sp/>the<sp/>section<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>pol<sp/>=<sp/>pol_letter(pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>,<sp/>!rr);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(buf,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;if<sp/>station<sp/>%c\n<sp/>delay_offs_%c<sp/>&quot;</highlight><highlight class="normal">,<ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>[!rr],<sp/>pol);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ch<sp/>=<sp/>first,<sp/>pb<sp/>=<sp/>buf<sp/>+<sp/>strlen(buf);<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++,<sp/>pb++)</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*pb<sp/>=<sp/>pass-&gt;<ref refid="structtype__pass_1a36753e69c2f92c25ff0879a179c37146" kindref="member">pass_data</ref>[ch].<ref refid="structfreq__corel_1a99a5c15e2518b197ef3408ae2a65e793" kindref="member">freq_code</ref>;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>*pb<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(buf,<sp/>3);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(buf[nd<sp/>=<sp/>ss<sp/>=<sp/>0]<sp/>=<sp/>0,<sp/>ch<sp/>=<sp/>first;<sp/>ch<sp/>&lt;=<sp/></highlight><highlight class="keyword">final</highlight><highlight class="normal">;<sp/>ch++)<sp/>{</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esd[ch]<sp/>+=<sp/>rdy[ch];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>work<sp/>relative<sp/>to<sp/>input<sp/>value<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs(esd[ch]<sp/>-<sp/>rdy[ch])<sp/>&gt;<sp/>0.01)<sp/>nd<sp/>++;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>snprintf(tmp,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(tmp),<sp/></highlight><highlight class="stringliteral">&quot;<sp/>%+8.3f&quot;</highlight><highlight class="normal">,<sp/>esd[ch]);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncat(buf,<sp/>tmp,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buf)-1);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>eight<sp/>delays<sp/>per<sp/>line<sp/>for<sp/>a<sp/>line<sp/>length<sp/>of<sp/>73<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(++ss<sp/>==<sp/>8)<sp/>{</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(buf,<sp/>3);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buf[ss<sp/>=<sp/>0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buf[0])<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(buf,<sp/>3);</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est:<sp/>delays<sp/>%s<sp/>(%d)&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>nd<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;converging&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;converged&quot;</highlight><highlight class="normal">,<sp/>nd);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>est_offset(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rr)</highlight></codeline>
+<codeline lineno="324"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ofs;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ip<sp/>=<sp/>stnpol[rr][pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>];</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="est__pc__manual_8c_1a9d22394e80281a076c2d925cdfb132c6" kindref="member">progname</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*est<sp/>phs<sp/>%.3f<sp/>ip-%d<sp/>ref<sp/>%.3f<sp/>rem<sp/>%.3f&quot;</highlight><highlight class="normal">,3,</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1abf8af8a252876d9dad222b48e403ec86" kindref="member">resphase</ref>,<sp/>ip,<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" kindref="member">pc_phase_offset</ref>[ip].<ref refid="structdstats_1aeba583bfbeea8309a140d8bc199c8e2c" kindref="member">ref</ref>,</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" kindref="member">pc_phase_offset</ref>[ip].<ref refid="structdstats_1aa7f6241b845f04285059195bd97cdd1e" kindref="member">rem</ref>);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>ofs<sp/>=<sp/>(rr)</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/>(<ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1abf8af8a252876d9dad222b48e403ec86" kindref="member">resphase</ref><sp/><sp/><sp/>-<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" kindref="member">pc_phase_offset</ref>[ip].<ref refid="structdstats_1aeba583bfbeea8309a140d8bc199c8e2c" kindref="member">ref</ref><sp/>)</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>(-<sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" kindref="member">t208</ref>-&gt;<ref refid="structtype__208_1abf8af8a252876d9dad222b48e403ec86" kindref="member">resphase</ref><sp/>+<sp/>pass-&gt;<ref refid="structtype__pass_1aefe15865d52ff9a0c8d4129a333d6b0a" kindref="member">control</ref>.<ref refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" kindref="member">pc_phase_offset</ref>[ip].<ref refid="structdstats_1aa7f6241b845f04285059195bd97cdd1e" kindref="member">rem</ref><sp/>);</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;if<sp/>station<sp/>%c\n<sp/>pc_phase_offset_%c<sp/>%+8.3f&quot;</highlight><highlight class="normal">,3,</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="est__pc__manual_8c_1ab19e738fad8df4a4c38b5e0806566ef0" kindref="member">fringe</ref>.<ref refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" kindref="member">t202</ref>-&gt;<ref refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" kindref="member">baseline</ref>[!rr],<sp/>pol_letter(pass-&gt;<ref refid="structtype__pass_1af5a80fc4b33f7e06a4dceee6936874dd" kindref="member">pol</ref>,<sp/>!rr),<sp/>ofs);</highlight></codeline>
+<codeline lineno="336"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="est__pc__manual_8c_1a020f165cc7cddf3f192d653100eda2b5" kindref="member">est_pc_manual</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mode,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*rootfile,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass)</highlight></codeline>
+<codeline lineno="339"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>first_ch,<sp/>final_ch;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>doref,<sp/>dophs,<sp/>dodly,<sp/>dooff,<sp/>domrp;</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" kindref="member">pc_mode</ref>[0]<sp/>!=<sp/><ref refid="control_8h_1a8187a9af791c0a44ba67edd9cf266961" kindref="member">MANUAL</ref><sp/>||<sp/><ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a3b677adfcbb5102a87d8a5d41b77de15" kindref="member">pc_mode</ref>[1]<sp/>!=<sp/><ref refid="control_8h_1a8187a9af791c0a44ba67edd9cf266961" kindref="member">MANUAL</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;estimating<sp/>pc<sp/>phases<sp/>and<sp/>delays&quot;</highlight><highlight class="normal">,<sp/>1);</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/>save_pn();</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>doref<sp/>=<sp/>(mode&gt;0)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!doref)<sp/>mode<sp/>*=<sp/>-1;<sp/></highlight><highlight class="comment">/*<sp/>so<sp/>that<sp/>mode<sp/>is<sp/>now<sp/>positive<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>dophs<sp/>=<sp/>mode<sp/>&amp;<sp/>0x001;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>per-channel<sp/>phase<sp/>correction<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>dodly<sp/>=<sp/>mode<sp/>&amp;<sp/>0x13e;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>0x02<sp/>0x04<sp/>0x08<sp/>0x10<sp/>0x20<sp/>0x100<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>dooff<sp/>=<sp/>mode<sp/>&amp;<sp/>0x040;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>estimate<sp/>phase<sp/>offset<sp/>value<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>domrp<sp/>=<sp/>mode<sp/>&amp;<sp/>0x080;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>phase<sp/>bias<sp/>HOPS_EST_PC_BIAS<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>first_ch<sp/>=<sp/>(<ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1af440e1de7b43fe6aaed95ffc9ca85a99" kindref="member">first_plot</ref><sp/>==<sp/>0)<sp/>?<sp/>0<sp/>:<sp/><ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1af440e1de7b43fe6aaed95ffc9ca85a99" kindref="member">first_plot</ref>;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>final_ch<sp/>=<sp/>(<ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a1100c988a198a3e388809ec9857fcf74" kindref="member">nplot_chans</ref><sp/>==<sp/>0)<sp/>?<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref><sp/>:<sp/><ref refid="est__pc__manual_8c_1aa665147429eaf1e446ee01b47099af4e" kindref="member">param</ref>.<ref refid="structtype__param_1a1100c988a198a3e388809ec9857fcf74" kindref="member">nplot_chans</ref>;</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>final_ch<sp/>+=<sp/>first_ch<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/>masthead(mode,<sp/>rootfile,<sp/>pass,<sp/>first_ch,<sp/>final_ch);</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dophs)<sp/>est_phases(pass,<sp/>first_ch,<sp/>final_ch,<sp/>doref,<sp/>domrp);</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dodly)<sp/>est_delays(pass,<sp/>first_ch,<sp/>final_ch,<sp/>doref,<sp/>dodly);</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dooff)<sp/>est_offset(pass,<sp/>doref);</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;*-----------------------------------&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;------------------------------------&quot;</highlight><highlight class="normal">,3);</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>rest_pn();</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;done<sp/>with<sp/><sp/>pc<sp/>phases<sp/>and<sp/>delays&quot;</highlight><highlight class="normal">,<sp/>1);</highlight></codeline>
+<codeline lineno="367"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="370"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="371"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/est_pc_manual.c"/>
+  </compounddef>
+</doxygen>

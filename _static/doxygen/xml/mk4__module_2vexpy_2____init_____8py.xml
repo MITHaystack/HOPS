@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mk4__module_2vexpy_2____init_____8py" kind="file" language="Python">
+    <compoundname>mk4_module/vexpy/__init__.py</compoundname>
+    <innernamespace refid="namespacevexpy">vexpy</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacevexpy" refkind="compound"><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>QUASAR</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>STAR</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>SATELLITE</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>DUMMY</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>B1950</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>J2000</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>CONTINUOUS</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>START_STOP</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>ADAPTIVE</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>FIXED</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>EARTH_ORBIT</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>EQUATORIAL</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>X_YNS</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>AZEL</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>X_YEW</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MARK3A</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MARK4</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>VLBA</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>VLBAG</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>S2</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>K4</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MARK5A</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MARK5B</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>ON</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>OFF</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>C_UNDEFINED</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>I_UNDEFINED</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>F_UNDEFINED</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>OVEX</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>MAX_CHAN</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>VexStructureBase</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>source_struct</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>chan_struct</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>station_struct</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>scan_struct</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>vex</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>load_vexpy_library</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>get_ovex</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.vexpy<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>get_file_station_polarizations</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/__init__.py"/>
+  </compounddef>
+</doxygen>

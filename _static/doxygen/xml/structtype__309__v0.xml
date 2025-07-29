@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__309__v0" kind="struct" language="C++" prot="public">
+    <compoundname>type_309_v0</compoundname>
+    <includes refid="type__309_8h" local="no">type_309.h</includes>
+    <innerclass refid="structtype__309__v0_1_1ch__tag" prot="public">type_309_v0::ch_tag</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__309__v0_1a2e5953c9ef248c3378b35203b05d3797" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_309_v0::acc_period</definition>
+        <argsstring></argsstring>
+        <name>acc_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="23" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1a1ecb7a2c12543011e6a0123d05dfff16" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__309__v0_1_1ch__tag" kindref="compound">type_309_v0::ch_tag</ref></type>
+        <definition>struct type_309_v0::ch_tag type_309_v0::chan[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>chan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="29" column="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1a8662149ab3f69230ca3642f9b3b44384" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_309_v0::ntones</definition>
+        <argsstring></argsstring>
+        <name>ntones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="21" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1a94d970ca9869cb0e935434fb5d49d87f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_309_v0::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="17" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1a825710c81f890658be1b49e89f8289fa" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_309_v0::rot</definition>
+        <argsstring></argsstring>
+        <name>rot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="22" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1a08a324851d5020d326d95d48a36e933d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_309_v0::su</definition>
+        <argsstring></argsstring>
+        <name>su</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="20" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1a8465a00329cc4bda80510f4bb0b0fab3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_309_v0::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="19" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1a22be466b3a0ef3d7478c963a40296943" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_309_v0::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="18" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>type_309_v0::ch_tag</label>
+        <link refid="structtype__309__v0_1_1ch__tag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>chan_name</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>acc</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_309_v0</label>
+        <link refid="structtype__309__v0"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>acc_period</edgelabel>
+          <edgelabel>rot</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ntones</edgelabel>
+          <edgelabel>su</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>chan</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="15" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="16" bodyend="30"/>
+    <listofallmembers>
+      <member refid="structtype__309__v0_1a2e5953c9ef248c3378b35203b05d3797" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>acc_period</name></member>
+      <member refid="structtype__309__v0_1a1ecb7a2c12543011e6a0123d05dfff16" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>chan</name></member>
+      <member refid="structtype__309__v0_1a8662149ab3f69230ca3642f9b3b44384" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>ntones</name></member>
+      <member refid="structtype__309__v0_1a94d970ca9869cb0e935434fb5d49d87f" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>record_id</name></member>
+      <member refid="structtype__309__v0_1a825710c81f890658be1b49e89f8289fa" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>rot</name></member>
+      <member refid="structtype__309__v0_1a08a324851d5020d326d95d48a36e933d" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>su</name></member>
+      <member refid="structtype__309__v0_1a8465a00329cc4bda80510f4bb0b0fab3" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>unused1</name></member>
+      <member refid="structtype__309__v0_1a22be466b3a0ef3d7478c963a40296943" prot="public" virt="non-virtual"><scope>type_309_v0</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

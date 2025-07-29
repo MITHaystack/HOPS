@@ -1,0 +1,5 @@
+<map id="hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;" name="hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;">
+<area shape="rect" id="node1" title="Class MHO_BinaryFileStreamerSingleType &#45; template class for a single&#45;type streamer,..." alt="" coords="21,5,225,47"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_01_4.html" title="Class MHO_BinaryFileStreamerMultiType&lt;XValueType&gt; declare the specialization for the base case of the..." alt="" coords="21,95,225,136"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_00_01XValueTypeS_8_8_8_01_4.html" title="Class MHO_BinaryFileStreamerMultiType&lt;XValueType, XValueTypeS...&gt; sets up the typelist recursion." alt="" coords="5,184,241,240"/>
+</map>

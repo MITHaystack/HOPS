@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__304_8trackstats" kind="struct" language="C++" prot="public">
+    <compoundname>type_304.trackstats</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__304_8trackstats_1a277bfea159770b5c6a867208b6caf65f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>bad_frames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="21" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_8trackstats_1aab1ab14329432ca89f400579744932b9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>crc_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="24" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_8trackstats_1ae18a4d4830028f90f158755e5e80fec5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>error_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="19" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_8trackstats_1adcdc1ac079a91d513a5a759b0fb9c1dc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>frames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="20" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_8trackstats_1a0a7f84bbd841f6aadf407542f2f6c1af" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>missing_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="23" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_8trackstats_1a1fb086e7608614306c150ee430ed79dc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>slip_sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="22" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="17" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" bodystart="18" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structtype__304_8trackstats_1a277bfea159770b5c6a867208b6caf65f" prot="public" virt="non-virtual"><scope>type_304.trackstats</scope><name>bad_frames</name></member>
+      <member refid="structtype__304_8trackstats_1aab1ab14329432ca89f400579744932b9" prot="public" virt="non-virtual"><scope>type_304.trackstats</scope><name>crc_error</name></member>
+      <member refid="structtype__304_8trackstats_1ae18a4d4830028f90f158755e5e80fec5" prot="public" virt="non-virtual"><scope>type_304.trackstats</scope><name>error_count</name></member>
+      <member refid="structtype__304_8trackstats_1adcdc1ac079a91d513a5a759b0fb9c1dc" prot="public" virt="non-virtual"><scope>type_304.trackstats</scope><name>frames</name></member>
+      <member refid="structtype__304_8trackstats_1a0a7f84bbd841f6aadf407542f2f6c1af" prot="public" virt="non-virtual"><scope>type_304.trackstats</scope><name>missing_sync</name></member>
+      <member refid="structtype__304_8trackstats_1a1fb086e7608614306c150ee430ed79dc" prot="public" virt="non-virtual"><scope>type_304.trackstats</scope><name>slip_sync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,520 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VexDefinitions" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VexDefinitions</compoundname>
+    <includes refid="MHO__VexDefinitions_8hh" local="no">MHO_VexDefinitions.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__VexDefinitions_1a1053a8a9f1d68b66f7f186e91204780a" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_VexDefinitions::fBlockNames</definition>
+        <argsstring></argsstring>
+        <name>fBlockNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="227" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexDefinitions_1a65c0fd11f6d774621543e7c9f8d86f79" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexDefinitions::fFormatDirectory</definition>
+        <argsstring></argsstring>
+        <name>fFormatDirectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="225" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexDefinitions_1abf6b19241e90577ee50963fac9bcd680" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexDefinitions::fVexVersion</definition>
+        <argsstring></argsstring>
+        <name>fVexVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="226" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1ad8537aa67bfa9c6601e8158c45a7f9c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MHO_VexDefinitions::MHO_VexDefinitions</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_VexDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="71" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexDefinitions.cc" bodystart="10" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1ae7b3bf81fcf1a693cea89ce59c562b4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>MHO_VexDefinitions::~MHO_VexDefinitions</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_VexDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="72" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexDefinitions.cc" bodystart="16" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1afcd180205743281ec338a6dac3fc2fe0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_VexDefinitions::GetBlockNames</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBlockNames</name>
+        <briefdescription>
+<para>Getter for block names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;std::string containing block names. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="93" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1ab7b350b40381f31e807bb2f6fd9492fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string MHO_VexDefinitions::GetFormatDirectory</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFormatDirectory</name>
+        <briefdescription>
+<para>Getter for format directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string - The format directory path. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="86" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexDefinitions.cc" bodystart="69" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a937d9de734ef6165074aff4815a080fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void MHO_VexDefinitions::SetVexVersion</definition>
+        <argsstring>(std::string version)</argsstring>
+        <name>SetVexVersion</name>
+        <param>
+          <type>std::string</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New vex version as string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="79" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexDefinitions.cc" bodystart="19" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1ab65774e96f078bad7b886c3de03584b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::AssignmentDelim</definition>
+        <argsstring>()</argsstring>
+        <name>AssignmentDelim</name>
+        <briefdescription>
+<para>Returns a string &apos;=;&apos; as the assignment delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing &apos;=;&apos;. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="143" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="143" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1ad38c4e79c0e0c700df50be3e98d89451" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::AssignmentOp</definition>
+        <argsstring>()</argsstring>
+        <name>AssignmentOp</name>
+        <briefdescription>
+<para>Returns a string literal &apos;=&apos;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing the assignment operator (&apos;=&apos;). </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="135" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a582c4de9ef37ed55edc65126e154b7f8" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::BlockStartFlag</definition>
+        <argsstring>()</argsstring>
+        <name>BlockStartFlag</name>
+        <briefdescription>
+<para>Returns a static string representing the start block flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing the character &apos;$&apos;. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="110" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1aeccf94959a9948e07a0206ca0342c28a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::CommentFlag</definition>
+        <argsstring>()</argsstring>
+        <name>CommentFlag</name>
+        <briefdescription>
+<para>Returns a string containing an asterisk (*). This is a static function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A string containing an asterisk (*) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="199" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="199" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a84bff47f2c95552e4b5f18d0fe2148f2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string MHO_VexDefinitions::DetermineFileVersion</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>DetermineFileVersion</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Determines and returns the version of a VEX file given its filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the VEX file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A string representing the file&apos;s version (e.g., &apos;1.5&apos;, &apos;2.0&apos;, or &apos;ovex&apos;), or &apos;unknown&apos; if not determined. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="102" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexDefinitions.cc" bodystart="85" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a9d3b0c85701ad60ece979b8e324ddef0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760a" kindref="member">vex_element_type</ref></type>
+        <definition>vex_element_type MHO_VexDefinitions::DetermineType</definition>
+        <argsstring>(std::string etype)</argsstring>
+        <name>DetermineType</name>
+        <param>
+          <type>std::string</type>
+          <declname>etype</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="220" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexDefinitions.cc" bodystart="138" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1abda8d27db8e618b113219776c14d18e7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::ElementDelim</definition>
+        <argsstring>()</argsstring>
+        <name>ElementDelim</name>
+        <briefdescription>
+<para>Returns a static string &apos;:&apos; as an element delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing &apos;:&apos; </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="159" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="159" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1acff5fe4da1f007619516eeb1751ea68b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::EndLiteralFlag</definition>
+        <argsstring>()</argsstring>
+        <name>EndLiteralFlag</name>
+        <briefdescription>
+<para>Returns a static string &apos;end_literal&apos;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing &apos;end_literal&apos; </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="191" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="191" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a65fea74d477aa23634c686a68fdb17b9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MHO_VexDefinitions::IsOptionalField</definition>
+        <argsstring>(std::string &amp;field_name)</argsstring>
+        <name>IsOptionalField</name>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>field_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="222" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexDefinitions.cc" bodystart="199" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a901cf6cc76e8864d3a4756434389204b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::OptionalFlag</definition>
+        <argsstring>()</argsstring>
+        <name>OptionalFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="218" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="218" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a9c837366efe3fe54c25e40dc3d9f6fe4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::OVexRevisionFlag</definition>
+        <argsstring>()</argsstring>
+        <name>OVexRevisionFlag</name>
+        <briefdescription>
+<para>Returns a string containing the OVEX revision flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing &apos;$OVEX_REV&apos;. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="175" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="175" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a7640707cb99ceb68a2d7e2d9216336a7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::RefTag</definition>
+        <argsstring>()</argsstring>
+        <name>RefTag</name>
+        <briefdescription>
+<para>Returns a static string &apos;ref&apos;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing &apos;ref&apos; </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="118" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="118" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a6e83b3418e1c5688d60211db4f222d6b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::StartLiteralFlag</definition>
+        <argsstring>()</argsstring>
+        <name>StartLiteralFlag</name>
+        <briefdescription>
+<para>Returns a static string &apos;start_literal&apos;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing &apos;start_literal&apos; </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="183" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="183" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a48e45a02366aaff5007e84419adf95f0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::StartTagDelim</definition>
+        <argsstring>()</argsstring>
+        <name>StartTagDelim</name>
+        <briefdescription>
+<para>Returns a string containing whitespace characters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing whitespace </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="151" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="151" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a9978b06ecd0328298e88c898c96b20be" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::StatementEndFlag</definition>
+        <argsstring>()</argsstring>
+        <name>StatementEndFlag</name>
+        <briefdescription>
+<para>Returns a string representing the statement end flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A std::string containing &apos;;&apos;. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="207" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="207" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1ad8a79bdf24d7796afe44d7004b375da1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::StatementLineEnd</definition>
+        <argsstring>()</argsstring>
+        <name>StatementLineEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>       @brief Returns a string representing the end of a statement line.
+
+       @return A std::string containing &apos;;
+</verbatim> &apos;. <simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="216" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="216" bodyend="216"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1ade816e24601ec05a9228fc2dde5d07cd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::VexRevisionFlag</definition>
+        <argsstring>()</argsstring>
+        <name>VexRevisionFlag</name>
+        <briefdescription>
+<para>Returns a static string &apos;VEX_rev&apos; for revision flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing &apos;VEX_rev&apos; </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="167" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="167" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexDefinitions_1a948718db5c5bff74ed92bb7d29242939" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_VexDefinitions::WhitespaceDelim</definition>
+        <argsstring>()</argsstring>
+        <name>WhitespaceDelim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>       @brief Returns a string containing whitespace characters.
+
+       @return A std::string containing space (&apos; &apos;), tab (\t), carriage return (\r
+</verbatim> ), and newline (<linebreak/>
+) characters. <simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="127" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="127" bodyend="127"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__VexDefinitions" kindref="compound">MHO_VexDefinitions</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" line="68" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh" bodystart="69" bodyend="228"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__VexDefinitions_1ab65774e96f078bad7b886c3de03584b3" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>AssignmentDelim</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1ad38c4e79c0e0c700df50be3e98d89451" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>AssignmentOp</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a582c4de9ef37ed55edc65126e154b7f8" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>BlockStartFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1aeccf94959a9948e07a0206ca0342c28a" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>CommentFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a84bff47f2c95552e4b5f18d0fe2148f2" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>DetermineFileVersion</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a9d3b0c85701ad60ece979b8e324ddef0" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>DetermineType</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1abda8d27db8e618b113219776c14d18e7" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>ElementDelim</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1acff5fe4da1f007619516eeb1751ea68b" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>EndLiteralFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a1053a8a9f1d68b66f7f186e91204780a" prot="private" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>fBlockNames</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a65c0fd11f6d774621543e7c9f8d86f79" prot="private" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>fFormatDirectory</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1abf6b19241e90577ee50963fac9bcd680" prot="private" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>fVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1afcd180205743281ec338a6dac3fc2fe0" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>GetBlockNames</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1ab7b350b40381f31e807bb2f6fd9492fe" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>GetFormatDirectory</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a65fea74d477aa23634c686a68fdb17b9" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>IsOptionalField</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1ad8537aa67bfa9c6601e8158c45a7f9c8" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>MHO_VexDefinitions</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a901cf6cc76e8864d3a4756434389204b" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>OptionalFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a9c837366efe3fe54c25e40dc3d9f6fe4" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>OVexRevisionFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a7640707cb99ceb68a2d7e2d9216336a7" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>RefTag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a937d9de734ef6165074aff4815a080fa" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>SetVexVersion</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a6e83b3418e1c5688d60211db4f222d6b" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>StartLiteralFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a48e45a02366aaff5007e84419adf95f0" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>StartTagDelim</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a9978b06ecd0328298e88c898c96b20be" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>StatementEndFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1ad8a79bdf24d7796afe44d7004b375da1" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>StatementLineEnd</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1ade816e24601ec05a9228fc2dde5d07cd" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>VexRevisionFlag</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1a948718db5c5bff74ed92bb7d29242939" prot="public" virt="non-virtual"><scope>hops::MHO_VexDefinitions</scope><name>WhitespaceDelim</name></member>
+      <member refid="classhops_1_1MHO__VexDefinitions_1ae7b3bf81fcf1a693cea89ce59c562b4d" prot="public" virt="virtual"><scope>hops::MHO_VexDefinitions</scope><name>~MHO_VexDefinitions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

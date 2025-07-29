@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCvex__Mode" kind="struct" language="C++" prot="public">
+    <compoundname>Cvex_Mode</compoundname>
+    <includes refid="cvex_8h" local="no">cvex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCvex__Mode_1af281c68c52b3a9dfbad73146377d7cd4" prot="public" static="no" mutable="no">
+        <type><ref refid="structCvex__Board" kindref="compound">Cvex_Board</ref></type>
+        <definition>Cvex_Board Cvex_Mode::board[MAX_BRDS_P_CORR]</definition>
+        <argsstring>[MAX_BRDS_P_CORR]</argsstring>
+        <name>board</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="81" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Mode_1a2d3cf87d9fe470072131cc989f79ba9a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Cvex_Mode::defId[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>defId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="79" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Mode_1a6f8442d3b7afeaa5df255a14ee38d0fe" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short Cvex_Mode::numOfBoards</definition>
+        <argsstring></argsstring>
+        <name>numOfBoards</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="80" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Mode_1ab516d4ae90e06e6f41b699dcbf9e7dff" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short Cvex_Mode::numOfXPolPairs</definition>
+        <argsstring></argsstring>
+        <name>numOfXPolPairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="82" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Mode_1a2bb5fe3a8a9c3653fcef7f3730f01745" prot="public" static="no" mutable="no">
+        <type><ref refid="structCvex__XPolPair" kindref="compound">Cvex_XPolPair</ref></type>
+        <definition>Cvex_XPolPair Cvex_Mode::xPolPair[MAX_XPOL_P_BRD]</definition>
+        <argsstring>[MAX_XPOL_P_BRD]</argsstring>
+        <name>xPolPair</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="83" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="9">
+        <label>Cvex_Chip</label>
+        <link refid="structCvex__Chip"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>input</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>relChipNum</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Cvex_Mode</label>
+        <link refid="structCvex__Mode"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>xPolPair</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>numOfBoards</edgelabel>
+          <edgelabel>numOfXPolPairs</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>board</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Cvex_Section</label>
+        <link refid="structCvex__Section"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>phyChipNum</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Cvex_Snake</label>
+        <link refid="structCvex__Snake"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lenOfSnakePath</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>path</edgelabel>
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Cvex_BlockMode</label>
+        <link refid="structCvex__BlockMode"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>enableTap</edgelabel>
+          <edgelabel>headerMode</edgelabel>
+          <edgelabel>invalidateOnTapMove</edgelabel>
+          <edgelabel>lCellRotrMode</edgelabel>
+          <edgelabel>lCellXDly</edgelabel>
+          <edgelabel>lCellYDly</edgelabel>
+          <edgelabel>rCellRotrMode</edgelabel>
+          <edgelabel>rCellXDly</edgelabel>
+          <edgelabel>rCellYDly</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Cvex_ChipMode</label>
+        <link refid="structCvex__ChipMode"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>numOfBlocks</edgelabel>
+          <edgelabel>numOfSnakes</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>block</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>snake</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Cvex_XPolPair</label>
+        <link refid="structCvex__XPolPair"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>chn1Id</edgelabel>
+          <edgelabel>chn2Id</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="11">
+        <label>Cvex_Block</label>
+        <link refid="structCvex__Block"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mux</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>blockId</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Cvex_BoardParms</label>
+        <link refid="structCvex__BoardParms"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>accumRatio</edgelabel>
+          <edgelabel>bocfShsmpRatio</edgelabel>
+          <edgelabel>dataShsmpRatio</edgelabel>
+          <edgelabel>sampleCntPerLagEnable</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="8">
+        <label>Cvex_SectionMode</label>
+        <link refid="structCvex__SectionMode"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>numOfChips</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>chip</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Cvex_Board</label>
+        <link refid="structCvex__Board"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>numOfSections</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>segId</edgelabel>
+          <edgelabel>sliceId</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>section</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="78" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="78" bodyend="84"/>
+    <listofallmembers>
+      <member refid="structCvex__Mode_1af281c68c52b3a9dfbad73146377d7cd4" prot="public" virt="non-virtual"><scope>Cvex_Mode</scope><name>board</name></member>
+      <member refid="structCvex__Mode_1a2d3cf87d9fe470072131cc989f79ba9a" prot="public" virt="non-virtual"><scope>Cvex_Mode</scope><name>defId</name></member>
+      <member refid="structCvex__Mode_1a6f8442d3b7afeaa5df255a14ee38d0fe" prot="public" virt="non-virtual"><scope>Cvex_Mode</scope><name>numOfBoards</name></member>
+      <member refid="structCvex__Mode_1ab516d4ae90e06e6f41b699dcbf9e7dff" prot="public" virt="non-virtual"><scope>Cvex_Mode</scope><name>numOfXPolPairs</name></member>
+      <member refid="structCvex__Mode_1a2bb5fe3a8a9c3653fcef7f3730f01745" prot="public" virt="non-virtual"><scope>Cvex_Mode</scope><name>xPolPair</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

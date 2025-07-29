@@ -1,0 +1,1006 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BasicFringeInfo" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BasicFringeInfo</compoundname>
+    <includes refid="MHO__BasicFringeInfo_8hh" local="no">MHO_BasicFringeInfo.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a8dfa0326eecd2b67d1bc61709213ec35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BasicFringeInfo::MHO_BasicFringeInfo</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BasicFringeInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1aef3e20583692761799cc7f44db2021f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BasicFringeInfo::~MHO_BasicFringeInfo</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BasicFringeInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a2e9b4128bc20dbb0d03282b41a6db9e7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_drate_error_v1</definition>
+        <argsstring>(double snr, double ref_freq, double total_nap, double ap_delta)</argsstring>
+        <name>calculate_drate_error_v1</name>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>total_nap</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ap_delta</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns the delay rate error using SNR, reference frequency, total nap, and ap delta. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference frequency in GHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>total_nap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total number of accumulation periods </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ap_delta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accumulation period time-delta </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>delay rate error calculated using the provided parameters </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="111" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="77" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a26b3151dc82f3a342a00c1d4da0923d7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_drate_error_v2</definition>
+        <argsstring>(double snr, double ref_freq, double integration_time)</argsstring>
+        <name>calculate_drate_error_v2</name>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>integration_time</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns the delay rate error using SNR, reference frequency, and integration time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio (SNR) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference frequency in GHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>integration_time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Integration time </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>delay rate error calculated as sqrt(12.0) / (2.0 * M_PI * snr * ref_freq * integration_time) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="122" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="87" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a0e3d591d0132dfadf69de8dc00f37fad" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_mbd_no_ion_error</definition>
+        <argsstring>(double freq_spread, double snr)</argsstring>
+        <name>calculate_mbd_no_ion_error</name>
+        <param>
+          <type>double</type>
+          <declname>freq_spread</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <briefdescription>
+<para>Calculates Multi-Band Delay error assuming no ionospheric effects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>freq_spread</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency spread in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal-to-Noise Ratio (SNR) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Multi-Band Delay error without ionospheric effects </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="88" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="58" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a48d0c580d46b76e81da5c6eb96e9709c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_pfd</definition>
+        <argsstring>(double snr, double pts_searched)</argsstring>
+        <name>calculate_pfd</name>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>pts_searched</declname>
+        </param>
+        <briefdescription>
+<para>Calculates Probability of False Detection (PFD) given Signal-to-Noise Ratio (SNR) and number of points searched. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal-to-Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pts_searched</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of points searched </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Probability of False Detection </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="132" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="94" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1ac99a5d8674d6feaaca658825d95df619" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_phase_delay_error</definition>
+        <argsstring>(double sbavg, double snr, double ref_freq)</argsstring>
+        <name>calculate_phase_delay_error</name>
+        <param>
+          <type>double</type>
+          <declname>sbavg</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <briefdescription>
+<para>Calculates phase delay error given sbavg, snr and reference frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sbavg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Average sideband </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference frequency </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Phase delay error as a double value </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="153" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="119" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1ae8873e1f955d42097967d9547cc36445" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_phase_error</definition>
+        <argsstring>(double sbavg, double snr)</argsstring>
+        <name>calculate_phase_error</name>
+        <param>
+          <type>double</type>
+          <declname>sbavg</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <briefdescription>
+<para>Calculates phase error given sideband average and signal-to-noise ratio. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sbavg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Average sideband </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Phase error in degrees </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="142" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="111" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a23273aa2433bf09f1fc988f1b2b0236a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_sbd_error</definition>
+        <argsstring>(double sbd_sep, double snr, double sbavg)</argsstring>
+        <name>calculate_sbd_error</name>
+        <param>
+          <type>double</type>
+          <declname>sbd_sep</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sbavg</declname>
+        </param>
+        <briefdescription>
+<para>Calculates Single Band Delay (SBD) error using separation, SNR and average SBD. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sbd_sep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Single Band Delay separation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sbavg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Average sideband </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Calculated SBD error </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="99" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="64" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a8e1390e85a62818b713e71df5ccf6c91" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_snr</definition>
+        <argsstring>(double effective_npol, double ap_period, double samp_period, double total_ap_frac, double amp, double bw_corr_factor)</argsstring>
+        <name>calculate_snr</name>
+        <param>
+          <type>double</type>
+          <declname>effective_npol</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ap_period</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>samp_period</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>total_ap_frac</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>amp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bw_corr_factor</declname>
+        </param>
+        <briefdescription>
+<para>Calculates Signal to Noise Ratio (SNR) using given parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>effective_npol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Effective number of polarizations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ap_period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accumulation period </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>samp_period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sampling period (assumes Nyquist sampling) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>total_ap_frac</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>total accumulation period weights used in amplitude summation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>amp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Amplitude of the fringe (correlation coeff) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bw_corr_factor</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bandwidth correction factor (corrects for &apos;notches&apos;, etc.) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Calculated SNR value </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="78" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="41" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a5638ac4b70f64e1fc03401110f20b7d3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_theory_freqrms_amp</definition>
+        <argsstring>(double nchan, double snr)</argsstring>
+        <name>calculate_theory_freqrms_amp</name>
+        <param>
+          <type>double</type>
+          <declname>nchan</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <briefdescription>
+<para>Calculates theoretical frequency RMS amplitude error using given number of channels and signal-to-noise ratio. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nchan</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of channels </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Theoretical frequency RMS amplitude error as a double value </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="193" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="152" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1aa20fbab7c4f6c6530074c3935b4ff20c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_theory_freqrms_phase</definition>
+        <argsstring>(double nchan, double snr)</argsstring>
+        <name>calculate_theory_freqrms_phase</name>
+        <param>
+          <type>double</type>
+          <declname>nchan</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <briefdescription>
+<para>Calculates theoretical frequency RMS phase error using number of channels and signal-to-noise ratio. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nchan</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of channels </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal-to-Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Theoretical frequency RMS phase error as a double value </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="183" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="146" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1ae67f7128c1983afaf2f7ba6aeb4f85ff" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_theory_timerms_amp</definition>
+        <argsstring>(double nseg, double snr)</argsstring>
+        <name>calculate_theory_timerms_amp</name>
+        <param>
+          <type>double</type>
+          <declname>nseg</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <briefdescription>
+<para>Calculates theoretical time-averaged amplitude error using nseg and SNR. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nseg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of segments </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal-to-Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Theoretical time-averaged amplitude error as a double </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="173" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="139" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a2dfa46c0b2b9bf12aff1d9c801158362" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_BasicFringeInfo::calculate_theory_timerms_phase</definition>
+        <argsstring>(double nseg, double snr)</argsstring>
+        <name>calculate_theory_timerms_phase</name>
+        <param>
+          <type>double</type>
+          <declname>nseg</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <briefdescription>
+<para>Calculates theoretical RMS phase error for given number of (averaging) segments and SNR. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nseg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Effective number of segments actually included in fit </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Theoretical RMS phase error in degrees. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="163" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="127" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1aa4e7b6fc8eeb15fe085a2f778f3dd64b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeInfo::correct_phases_mbd_anchor_sbd</definition>
+        <argsstring>(double ref_freq, double freq0, double frequency_spacing, double delta_mbd, double &amp;totphase_deg, double &amp;resphase_deg)</argsstring>
+        <name>correct_phases_mbd_anchor_sbd</name>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>freq0</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>frequency_spacing</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta_mbd</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>totphase_deg</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>resphase_deg</declname>
+        </param>
+        <briefdescription>
+<para>Corrects phase for MBD (anchoring to SBD) using reference frequency and frequency spacing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference frequency in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial frequency in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frequency_spacing</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency spacing in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_mbd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- integer ambiguity (Multi-Band Delay - Single Band delay) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>totphase_deg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total phase degree (output) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>resphase_deg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Residual phase degree (output) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="206" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="159" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1aa57287a0dda8eaec7932f00ee6e5e9bd" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BasicFringeInfo::ion_covariance</definition>
+        <argsstring>(int nfreq, double famp, double snr, double ref_freq, const std::vector&lt; double &gt; &amp;chan_freqs, const std::vector&lt; std::complex&lt; double &gt; &gt; &amp;chan_phasors, std::vector&lt; double &gt; &amp;ion_sigmas)</argsstring>
+        <name>ion_covariance</name>
+        <param>
+          <type>int</type>
+          <declname>nfreq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>famp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>chan_freqs</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::complex&lt; double &gt; &gt; &amp;</type>
+          <declname>chan_phasors</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>ion_sigmas</declname>
+        </param>
+        <briefdescription>
+<para>Only used by <ref refid="classhops_1_1MHO__IonosphericFringeFitter" kindref="compound">MHO_IonosphericFringeFitter</ref>, for computing the ionosphere dTEC/MBD covariance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nfreq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of frequency channels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>famp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Amplitude of fringe </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal-to-noise ratio for ionospheric delay calculation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference frequency in MHz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>chan_freqs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of channel frequencies in MHz. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>chan_phasors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of complex phasor values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ion_sigmas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output vector of ion sigams </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="222" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="171" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_BasicFringeInfo::leftpadzeros_integer</definition>
+        <argsstring>(unsigned int n_places, int value)</argsstring>
+        <name>leftpadzeros_integer</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>n_places</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Pads an integer with leading zeros up to a specified number of places. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n_places</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of places to pad the integer with leading zeros. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The integer value to be padded. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A string representation of the padded integer. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="46" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="7" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1a865ebf04855ea9b5801d66c04d855dc2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_BasicFringeInfo::make_legacy_datetime_format</definition>
+        <argsstring>(legacy_hops_date ldate)</argsstring>
+        <name>make_legacy_datetime_format</name>
+        <param>
+          <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+          <declname>ldate</declname>
+        </param>
+        <briefdescription>
+<para>Formats legacy date/time as HHMMSS.xx for output. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ldate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> to format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Formatted datetime string </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="55" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="16" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BasicFringeInfo_1aa6b0b87bd859381afe560fb4c7f17872" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_BasicFringeInfo::make_legacy_datetime_format_v2</definition>
+        <argsstring>(legacy_hops_date ldate)</argsstring>
+        <name>make_legacy_datetime_format_v2</name>
+        <param>
+          <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+          <declname>ldate</declname>
+        </param>
+        <briefdescription>
+<para>Converts <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> to format: YYYY:DDD:HHMMSS. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ldate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input date in <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>formatted date string </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="64" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc" bodystart="28" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BasicFringeInfo" kindref="compound">MHO_BasicFringeInfo</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>collection of very simple static helper functions used when computing fringe information/parameters</para>
+<para><simplesect kind="author"><para>J. Barrettj - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Sep 20 14:38:33 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" line="28" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_BasicFringeInfo.hh" bodystart="29" bodyend="225"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a2e9b4128bc20dbb0d03282b41a6db9e7" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_drate_error_v1</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a26b3151dc82f3a342a00c1d4da0923d7" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_drate_error_v2</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a0e3d591d0132dfadf69de8dc00f37fad" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_mbd_no_ion_error</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a48d0c580d46b76e81da5c6eb96e9709c" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_pfd</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1ac99a5d8674d6feaaca658825d95df619" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_phase_delay_error</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1ae8873e1f955d42097967d9547cc36445" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_phase_error</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a23273aa2433bf09f1fc988f1b2b0236a" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_sbd_error</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a8e1390e85a62818b713e71df5ccf6c91" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_snr</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a5638ac4b70f64e1fc03401110f20b7d3" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_theory_freqrms_amp</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1aa20fbab7c4f6c6530074c3935b4ff20c" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_theory_freqrms_phase</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1ae67f7128c1983afaf2f7ba6aeb4f85ff" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_theory_timerms_amp</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a2dfa46c0b2b9bf12aff1d9c801158362" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>calculate_theory_timerms_phase</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1aa4e7b6fc8eeb15fe085a2f778f3dd64b" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>correct_phases_mbd_anchor_sbd</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1aa57287a0dda8eaec7932f00ee6e5e9bd" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>ion_covariance</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>leftpadzeros_integer</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a865ebf04855ea9b5801d66c04d855dc2" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>make_legacy_datetime_format</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1aa6b0b87bd859381afe560fb4c7f17872" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>make_legacy_datetime_format_v2</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1a8dfa0326eecd2b67d1bc61709213ec35" prot="public" virt="non-virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>MHO_BasicFringeInfo</name></member>
+      <member refid="classhops_1_1MHO__BasicFringeInfo_1aef3e20583692761799cc7f44db2021f4" prot="public" virt="virtual"><scope>hops::MHO_BasicFringeInfo</scope><name>~MHO_BasicFringeInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

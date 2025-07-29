@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__308" kind="struct" language="C++" prot="public">
+    <compoundname>type_308</compoundname>
+    <includes refid="type__308_8h" local="no">type_308.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__308_1a8fc53dc605b286e53233f827b2767f5b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_308::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_1ab8d6f40f6a845f20bda9543f7484bcbc" prot="public" static="no" mutable="no">
+        <type>struct type_308::@11</type>
+        <definition>struct type_308::@11 type_308::pcal[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>pcal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="23" column="18"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_1a043a05ba788976937c64cb618b6fc17b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_308::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="12" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_1a63bc36ff5e9642836aeb0cc6980c19cc" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_308::time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_1ae729afe9806068d2af02073f5f2db7b0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_308::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_1a8b3e39ef653789c6ca14e72572ffca61" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_308::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="13" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="2">
+        <label>anonymous:pcal</label>
+      </node>
+      <node id="1">
+        <label>type_308</label>
+        <link refid="structtype__308"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pcal</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" bodystart="11" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structtype__308_1a8fc53dc605b286e53233f827b2767f5b" prot="public" virt="non-virtual"><scope>type_308</scope><name>duration</name></member>
+      <member refid="structtype__308_1ab8d6f40f6a845f20bda9543f7484bcbc" prot="public" virt="non-virtual"><scope>type_308</scope><name>pcal</name></member>
+      <member refid="structtype__308_1a043a05ba788976937c64cb618b6fc17b" prot="public" virt="non-virtual"><scope>type_308</scope><name>record_id</name></member>
+      <member refid="structtype__308_1a63bc36ff5e9642836aeb0cc6980c19cc" prot="public" virt="non-virtual"><scope>type_308</scope><name>time</name></member>
+      <member refid="structtype__308_1ae729afe9806068d2af02073f5f2db7b0" prot="public" virt="non-virtual"><scope>type_308</scope><name>unused1</name></member>
+      <member refid="structtype__308_1a8b3e39ef653789c6ca14e72572ffca61" prot="public" virt="non-virtual"><scope>type_308</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

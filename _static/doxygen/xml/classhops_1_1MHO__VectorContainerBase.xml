@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VectorContainerBase" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VectorContainerBase</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__VectorContainer" prot="public" virt="non-virtual">hops::MHO_VectorContainer&lt; XValueType &gt;</derivedcompoundref>
+    <includes refid="MHO__Meta_8hh" local="no">MHO_Meta.hh</includes>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Axis&lt; double &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_VectorContainerBase</label>
+        <link refid="classhops_1_1MHO__VectorContainerBase"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_Axis&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_VectorContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__VectorContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="383" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="384" bodyend="384"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

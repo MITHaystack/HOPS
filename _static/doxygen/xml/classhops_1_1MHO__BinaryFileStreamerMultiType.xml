@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BinaryFileStreamerMultiType" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BinaryFileStreamerMultiType</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__BinaryFileStreamer" prot="public" virt="non-virtual">hops::MHO_BinaryFileStreamer</derivedcompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+        <declname>XValueTypeS</declname>
+        <defname>XValueTypeS</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BinaryFileStreamerMultiType" kindref="compound">MHO_BinaryFileStreamerMultiType</ref> declares a multi-type streamer with a variadic template parameter for the types to be streamed. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_BinaryFileStreamer</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueTypeS &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="263" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="263" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

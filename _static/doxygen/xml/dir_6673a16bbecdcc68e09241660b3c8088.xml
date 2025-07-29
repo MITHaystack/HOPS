@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_6673a16bbecdcc68e09241660b3c8088" kind="dir">
+    <compoundname>fringex</compoundname>
+    <innerdir refid="dir_b75496fd0467feca063d0dac760df1c5">include</innerdir>
+    <innerdir refid="dir_3e65f70508369b22575889971b6fd7fe">src</innerdir>
+    <innerfile refid="fringex_8c">fringex.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/"/>
+  </compounddef>
+</doxygen>

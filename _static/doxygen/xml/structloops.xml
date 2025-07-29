@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structloops" kind="struct" language="C++" prot="public">
+    <compoundname>loops</compoundname>
+    <includes refid="fringex_8h" local="no">fringex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structloops_1a7811283963cc10ad16dcecb607aa7c45" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double loops::delays[MAXDELAYS]</definition>
+        <argsstring>[MAXDELAYS]</argsstring>
+        <name>delays</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="96" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structloops_1a9592074c3a20fb2c95b0fb7c2ea88a8b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int loops::ndelays</definition>
+        <argsstring></argsstring>
+        <name>ndelays</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="95" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structloops_1ae3bcdd45e4b484eb7fcd13161f663f4f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int loops::nnsec</definition>
+        <argsstring></argsstring>
+        <name>nnsec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="91" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structloops_1adda459bcbfe6c5341692b3011873fee5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int loops::nrates</definition>
+        <argsstring></argsstring>
+        <name>nrates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="93" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structloops_1aeaa25aae1d53cc39d8ae3943b6e4a96d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double loops::nsecs[MAXNSECS]</definition>
+        <argsstring>[MAXNSECS]</argsstring>
+        <name>nsecs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="92" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structloops_1a50490c20444a9bb0e04431c174324d2e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double loops::rates[MAXRATES]</definition>
+        <argsstring>[MAXRATES]</argsstring>
+        <name>rates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="94" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>loops</label>
+        <link refid="structloops"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>delays</edgelabel>
+          <edgelabel>nsecs</edgelabel>
+          <edgelabel>rates</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ndelays</edgelabel>
+          <edgelabel>nnsec</edgelabel>
+          <edgelabel>nrates</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="89" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="90" bodyend="97"/>
+    <listofallmembers>
+      <member refid="structloops_1a7811283963cc10ad16dcecb607aa7c45" prot="public" virt="non-virtual"><scope>loops</scope><name>delays</name></member>
+      <member refid="structloops_1a9592074c3a20fb2c95b0fb7c2ea88a8b" prot="public" virt="non-virtual"><scope>loops</scope><name>ndelays</name></member>
+      <member refid="structloops_1ae3bcdd45e4b484eb7fcd13161f663f4f" prot="public" virt="non-virtual"><scope>loops</scope><name>nnsec</name></member>
+      <member refid="structloops_1adda459bcbfe6c5341692b3011873fee5" prot="public" virt="non-virtual"><scope>loops</scope><name>nrates</name></member>
+      <member refid="structloops_1aeaa25aae1d53cc39d8ae3943b6e4a96d" prot="public" virt="non-virtual"><scope>loops</scope><name>nsecs</name></member>
+      <member refid="structloops_1a50490c20444a9bb0e04431c174324d2e" prot="public" virt="non-virtual"><scope>loops</scope><name>rates</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

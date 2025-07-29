@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__ZeroComplexArray__kernel_8cl" kind="file" language="C++">
+    <compoundname>MHO_ZeroComplexArray_kernel.cl</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#include<sp/>&quot;hopsocl_defines.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__kernel<sp/>void</highlight></codeline>
+<codeline><highlight class="normal">ZeroComplexArray(const<sp/>unsigned<sp/>int<sp/>array_size,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>array)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>i_global<sp/>=<sp/>get_global_id(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(i_global<sp/>&lt;<sp/>array_size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>array[i_global]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Math/cl/MHO_ZeroComplexArray_kernel.cl"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,351 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ffmath_8h" kind="file" language="C++">
+    <compoundname>ffmath.h</compoundname>
+    <includedby refid="pcal__interp_8c" local="yes">pcal_interp.c</includedby>
+    <includedby refid="stcount__interp_8c" local="yes">stcount_interp.c</includedby>
+    <includedby refid="minvert_8c" local="yes">minvert.c</includedby>
+    <includedby refid="fit__vbp_8c" local="yes">fit_vbp.c</includedby>
+    <includedby refid="make__plotdata_8c" local="yes">make_plotdata.c</includedby>
+    <includedby refid="interp_8c" local="yes">interp.c</includedby>
+    <includedby refid="ion__covariance_8c" local="yes">ion_covariance.c</includedby>
+    <includedby refid="ion__search_8c" local="yes">ion_search.c</includedby>
+    <invincdepgraph>
+      <node id="9">
+        <label>ion_search.c</label>
+        <link refid="ion__search_8c"/>
+      </node>
+      <node id="3">
+        <label>stcount_interp.c</label>
+        <link refid="stcount__interp_8c"/>
+      </node>
+      <node id="5">
+        <label>fit_vbp.c</label>
+        <link refid="fit__vbp_8c"/>
+      </node>
+      <node id="2">
+        <label>pcal_interp.c</label>
+        <link refid="pcal__interp_8c"/>
+      </node>
+      <node id="6">
+        <label>make_plotdata.c</label>
+        <link refid="make__plotdata_8c"/>
+      </node>
+      <node id="8">
+        <label>ion_covariance.c</label>
+        <link refid="ion__covariance_8c"/>
+      </node>
+      <node id="4">
+        <label>minvert.c</label>
+        <link refid="minvert_8c"/>
+      </node>
+      <node id="7">
+        <label>interp.c</label>
+        <link refid="interp_8c"/>
+      </node>
+      <node id="1">
+        <label>ffmath.h</label>
+        <link refid="ffmath_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ffmath_8h_1a00f15d3b33e949a14b3fcaebcb4f2bbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ap_mean</definition>
+        <argsstring>(double start, double stop, double *coords, double *val1, double *val2, int n, int *nstart, double *result1, double *result2)</argsstring>
+        <name>ap_mean</name>
+        <param>
+          <type>double</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>stop</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>coords</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>val1</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>val2</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>nstart</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>result1</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>result2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="4" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/ap_mean.c" bodystart="30" bodyend="197" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="4" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ffmath_8h_1aab71dd13b954d0e8e63ad27345d4695f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void bcd_to_2int</definition>
+        <argsstring>(int input, int ndigits, int npoint, int result[2])</argsstring>
+        <name>bcd_to_2int</name>
+        <param>
+          <type>int</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ndigits</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>npoint</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>result</declname>
+          <array>[2]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="5" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/bcd_to_2int.c" bodystart="18" bodyend="35" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="5" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="ffmath_8h_1ab05d92c15f8ae5f2fe56098d10c9a345" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void interp555</definition>
+        <argsstring>(double drf[5][5][5], double xi[3], double *drfval)</argsstring>
+        <name>interp555</name>
+        <param>
+          <type>double</type>
+          <declname>drf</declname>
+          <array>[5][5][5]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>xi</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>drfval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="6" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/interp555.c" bodystart="6" bodyend="42" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="6" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="ffmath_8h_1a57b8842ba880dfbf6d1b7ca335a7e126" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int linterp</definition>
+        <argsstring>(double coord1, double value1, double coord2, double value2, double coord, double *value)</argsstring>
+        <name>linterp</name>
+        <param>
+          <type>double</type>
+          <declname>coord1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>coord2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>coord</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="7" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/linterp.c" bodystart="20" bodyend="69" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="7" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ffmath_8h_1aea074dcf34218c472a79b94ecb2addac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void max555</definition>
+        <argsstring>(double drf[5][5][5], double xlim[3][2], double xi[3], double *drfmax)</argsstring>
+        <name>max555</name>
+        <param>
+          <type>double</type>
+          <declname>drf</declname>
+          <array>[5][5][5]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>xlim</declname>
+          <array>[3][2]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>xi</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>drfmax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="8" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/max555.c" bodystart="12" bodyend="97" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="8" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="ffmath_8h_1a6dbff9042dc004dcd0ad8b6ee871f8b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int minvert3</definition>
+        <argsstring>(double a[3][3], double ainv[3][3])</argsstring>
+        <name>minvert3</name>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+          <array>[3][3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ainv</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="10" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/minvert.c" bodystart="11" bodyend="61" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="10" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ffmath_8h_1a6c92770ceac7884c03b8b07115f5140d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int minvert5</definition>
+        <argsstring>(double a[5][5], double ainv[5][5])</argsstring>
+        <name>minvert5</name>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+          <array>[5][5]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ainv</declname>
+          <array>[5][5]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="11" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/minvert.c" bodystart="64" bodyend="114" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="11" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="ffmath_8h_1a3fe5bc74fc56400a0aa2ebeeaa12948b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parabola</definition>
+        <argsstring>(double y[3], double lower, double upper, double *x_max, double *amp_max, double q[3])</argsstring>
+        <name>parabola</name>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>lower</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>upper</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>x_max</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>amp_max</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" line="12" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/src/parabola.c" bodystart="25" bodyend="63" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h" declline="12" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>FFMATH_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FFMATH_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1a00f15d3b33e949a14b3fcaebcb4f2bbe" kindref="member">ap_mean</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>start,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>stop,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*coords,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*val1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*val2,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*nstart,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*result1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*result2);</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1aab71dd13b954d0e8e63ad27345d4695f" kindref="member">bcd_to_2int</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>input,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ndigits,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npoint,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>result[2]);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1ab05d92c15f8ae5f2fe56098d10c9a345" kindref="member">interp555</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>drf[5][5][5],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xi[3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*drfval);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1a57b8842ba880dfbf6d1b7ca335a7e126" kindref="member">linterp</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>coord1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value1,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>coord2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>coord,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<ref refid="structvalue" kindref="compound">value</ref>);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1aea074dcf34218c472a79b94ecb2addac" kindref="member">max555</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>drf[5][5][5],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xlim[3][2],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xi[3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*drfmax);<sp/><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//extern<sp/>int<sp/>minvert<sp/>(size_t<sp/>n,<sp/><sp/>double*<sp/>a,<sp/>double*<sp/>ainv);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1a6dbff9042dc004dcd0ad8b6ee871f8b9" kindref="member">minvert3</ref>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a[3][3],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ainv[3][3]);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1a6c92770ceac7884c03b8b07115f5140d" kindref="member">minvert5</ref>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a[5][5],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ainv[5][5]);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ffmath_8h_1a3fe5bc74fc56400a0aa2ebeeaa12948b" kindref="member">parabola</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y[3],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lower,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>upper,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>x_max,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>amp_max,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>q[3]);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>include<sp/>guard:<sp/>FFMATH_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/include/ffmath.h"/>
+  </compounddef>
+</doxygen>

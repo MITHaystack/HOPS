@@ -1,0 +1,1177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MultitonePhaseCorrection" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MultitonePhaseCorrection</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; visibility_type &gt;</basecompoundref>
+    <includes refid="MHO__MultitonePhaseCorrection_8hh" local="no">MHO_MultitonePhaseCorrection.hh</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__MultitonePhaseCorrection_1a2b045b7d7752a06de4123b521d6aad50" prot="private" static="no">
+        <type><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" kindref="compound">MHO_MultidimensionalFastFourierTransform</ref>&lt; <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">pcal_type</ref> &gt;</type>
+        <definition>using hops::MHO_MultitonePhaseCorrection::FFT_ENGINE_TYPE =  MHO_MultidimensionalFastFourierTransform&lt; pcal_type &gt;</definition>
+        <argsstring></argsstring>
+        <name>FFT_ENGINE_TYPE</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="144" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__MultitonePhaseCorrection_1af5998417b8434be3c3a7230453474d66" prot="private" static="no">
+        <type><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&lt; <ref refid="namespacehops_1a5b27a5854e62b4faacbedfe4e91cb322" kindref="member">frequency_axis_type</ref> &gt;</type>
+        <definition>using hops::MHO_MultitonePhaseCorrection::pcal_axis_pack =  MHO_AxisPack&lt; frequency_axis_type &gt;</definition>
+        <argsstring></argsstring>
+        <name>pcal_axis_pack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="138" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__MultitonePhaseCorrection_1a04398cb61117f5f32f580fc7dfefdd9d" prot="private" static="no">
+        <type><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref>&lt; std::complex&lt; double &gt;, <ref refid="classhops_1_1MHO__AxisPack" kindref="compound">pcal_axis_pack</ref> &gt;</type>
+        <definition>using hops::MHO_MultitonePhaseCorrection::pcal_type =  MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</definition>
+        <argsstring></argsstring>
+        <name>pcal_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="139" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1aa8e3aa85ffbea3d1b9b6968caead7d5a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultitonePhaseCorrection::fApplyPCDelay</definition>
+        <argsstring></argsstring>
+        <name>fApplyPCDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="234" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1aba6809488fe8464cec5c5ed56a10e501" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fBandwidthKey</definition>
+        <argsstring></argsstring>
+        <name>fBandwidthKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="218" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1aef8caf15b79bc1de97e820c4e29b376d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fChannelLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fChannelLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="216" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a137fb37edb66d6844af58b16e028c0ba" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_MultitonePhaseCorrection::fDegToRad</definition>
+        <argsstring></argsstring>
+        <name>fDegToRad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="189" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a50943faf84f97b1eedeb2d1f66220bb2" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" kindref="compound">FFT_ENGINE_TYPE</ref></type>
+        <definition>FFT_ENGINE_TYPE hops::MHO_MultitonePhaseCorrection::fFFTEngine</definition>
+        <argsstring></argsstring>
+        <name>fFFTEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="151" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1ab7fb39928f113a9bd2db454896a9591e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultitonePhaseCorrection::fHavePCToneMask</definition>
+        <argsstring></argsstring>
+        <name>fHavePCToneMask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="226" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a42a69124648f6427ffe46d31cb314378" prot="private" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_MultitonePhaseCorrection::fImagUnit</definition>
+        <argsstring></argsstring>
+        <name>fImagUnit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="188" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a52624cfd888463f367bef8ea5c4f4116" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fLowerSideband</definition>
+        <argsstring></argsstring>
+        <name>fLowerSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="220" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1ad09973a7cbdb3de5c0d999a622adff1e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_MultitonePhaseCorrection::fMHzToHz</definition>
+        <argsstring></argsstring>
+        <name>fMHzToHz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="191" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a58b3c4147202bc964c5603d9df5cc2ca" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fMk4ID</definition>
+        <argsstring></argsstring>
+        <name>fMk4ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="196" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a637d48105d1fefeefccf061263b98e94" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_MultitonePhaseCorrection::fNanoSecToSecond</definition>
+        <argsstring></argsstring>
+        <name>fNanoSecToSecond</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="190" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a2a67c8e57d122cc02ddae86338b6947b" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__PhaseCalibrationTrim" kindref="compound">MHO_PhaseCalibrationTrim</ref></type>
+        <definition>MHO_PhaseCalibrationTrim hops::MHO_MultitonePhaseCorrection::fPCalTrimmer</definition>
+        <argsstring></argsstring>
+        <name>fPCalTrimmer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="231" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a584cef0367d23749452b537d30a2108d" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+        <definition>multitone_pcal_type* hops::MHO_MultitonePhaseCorrection::fPCData</definition>
+        <argsstring></argsstring>
+        <name>fPCData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="201" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a20644b7cc7c024da8fe8a4c4b44aebb1" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MultitonePhaseCorrection::fPCPeriod</definition>
+        <argsstring></argsstring>
+        <name>fPCPeriod</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="200" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a23a2d587ed871872ae7e96e97ded7132" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; hops::MHO_MultitonePhaseCorrection::fPCToneMaskBitmasks</definition>
+        <argsstring></argsstring>
+        <name>fPCToneMaskBitmasks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="228" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a3f9c38dde1c24d640c5708e000d66727" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fPCToneMaskBitmasksKey</definition>
+        <argsstring></argsstring>
+        <name>fPCToneMaskBitmasksKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="225" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1aede96c30e403cb606d6e2f17768121e3" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fPCToneMaskChannels</definition>
+        <argsstring></argsstring>
+        <name>fPCToneMaskChannels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="227" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a09e932a9b7ea44c6110f3d6aa23e395f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fPCToneMaskChannelsKey</definition>
+        <argsstring></argsstring>
+        <name>fPCToneMaskChannelsKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="224" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a5e91d9bf3a841cc84bb5d60b9fe8c9c2" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">pcal_type</ref></type>
+        <definition>pcal_type hops::MHO_MultitonePhaseCorrection::fPCWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fPCWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="208" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a3c69390f3ad81c5374f35b02f7bce37d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_MultitonePhaseCorrection::fPi</definition>
+        <argsstring></argsstring>
+        <name>fPi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="192" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a7cf0647fb12323e4621e675461324ba1" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fRefStationKey</definition>
+        <argsstring></argsstring>
+        <name>fRefStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="213" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1aaabefae7e506ee36d42b2cef7f44edf5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fRefStationMk4IDKey</definition>
+        <argsstring></argsstring>
+        <name>fRefStationMk4IDKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="215" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1aca9c7f04256b356adce6708e15030e46" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fRemStationKey</definition>
+        <argsstring></argsstring>
+        <name>fRemStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="212" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a87b1bdb1db9de3503bc1570453ec5c95" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fRemStationMk4IDKey</definition>
+        <argsstring></argsstring>
+        <name>fRemStationMk4IDKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="214" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a229f4be1394aaa5ec15fd07269263538" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fSidebandLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fSidebandLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="217" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a294c6ac6464afcdbb404143ac523e2b9" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fSkyFreqKey</definition>
+        <argsstring></argsstring>
+        <name>fSkyFreqKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="219" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a9873515a5d6a5c9d2a18e5b1e96de5f4" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fStationCode</definition>
+        <argsstring></argsstring>
+        <name>fStationCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="195" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1abc6ffa92b70d37b4349a3cfee584280d" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MultitonePhaseCorrection::fStationIndex</definition>
+        <argsstring></argsstring>
+        <name>fStationIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="197" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1ad8a08d60207942358f15b3f680c8bc4b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fStationKey</definition>
+        <argsstring></argsstring>
+        <name>fStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="211" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1ab584fd1876abf12cee2ecb9042f5c284" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MultitonePhaseCorrection::fUpperSideband</definition>
+        <argsstring></argsstring>
+        <name>fUpperSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="221" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a1bfe4486f7e62d98328ddf34e18ec591" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref> *</type>
+        <definition>weight_type* hops::MHO_MultitonePhaseCorrection::fWeights</definition>
+        <argsstring></argsstring>
+        <name>fWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="204" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultitonePhaseCorrection_1a30b11df9f070bf819db6effd0514abec" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MultitonePhaseCorrection::fWorkspaceSize</definition>
+        <argsstring></argsstring>
+        <name>fWorkspaceSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="207" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a8438d4e807e076f38da58d9f73ccca8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MultitonePhaseCorrection::MHO_MultitonePhaseCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MultitonePhaseCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="24" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1ac1d83650bc8aa007de00abbd2438df04" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MultitonePhaseCorrection::~MHO_MultitonePhaseCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MultitonePhaseCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1ac0aeaaa49459d0c5d98324f1ed21386c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::SetMultitonePCData</definition>
+        <argsstring>(multitone_pcal_type *pcal)</argsstring>
+        <name>SetMultitonePCData</name>
+        <param>
+          <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>pcal</declname>
+        </param>
+        <briefdescription>
+<para>Setter for multitone pcdata. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pcal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to multitone_pcal_type data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="71" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="64" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a61af96852ae8ecb030d6fb08138a3efe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::SetPCPeriod</definition>
+        <argsstring>(std::size_t pc_period)</argsstring>
+        <name>SetPCPeriod</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>pc_period</declname>
+        </param>
+        <briefdescription>
+<para>Setter for phase cal averaging period. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pc_period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the phase cal averaging period in (integer) APs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="64" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1adb0f3c6f756a08039263ec30881eb783" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::SetStation</definition>
+        <argsstring>(std::string station)</argsstring>
+        <name>SetStation</name>
+        <param>
+          <type>std::string</type>
+          <declname>station</declname>
+        </param>
+        <briefdescription>
+<para>Setter for station code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Two-character station code </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1ac472c8376898415c515da2430a619cfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::SetStationMk4ID</definition>
+        <argsstring>(std::string station_id)</argsstring>
+        <name>SetStationMk4ID</name>
+        <param>
+          <type>std::string</type>
+          <declname>station_id</declname>
+        </param>
+        <briefdescription>
+<para>Setter for station mk4id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New Mk4ID to be set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1ad5b78941678fc75980350fd6f94ee284" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::SetWeights</definition>
+        <argsstring>(weight_type *w)</argsstring>
+        <name>SetWeights</name>
+        <param>
+          <type><ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref> *</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>Setter for weights. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to weight_type array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="79" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="79" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a928a7d8af1c769076c407363c529ef6b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultitonePhaseCorrection::ExecuteInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Applies multi-tone phase calibration to visibility data in-place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer for processing. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if execution was successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="117" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="141" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a3a1c59b9be1c94f8fad78e55f3c9f978" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultitonePhaseCorrection::ExecuteOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input visibility data and executes in-place correction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility data to be copied. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(visibility_type*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of ExecuteInPlace operation on the copied data. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="126" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="215" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a74423cfede2f1536b4b3c6912ac20528" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_MultitonePhaseCorrection::InitializeInPlace</definition>
+        <argsstring>(visibility_type *) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+        </param>
+        <briefdescription>
+<para>Initializes visibility_type object in-place and checks if fPCData is nullptr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to visibility_type object to initialize </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="90" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="90" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1ae2e4e5588fb137776073b841ca2ff2af" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_MultitonePhaseCorrection::InitializeOutOfPlace</definition>
+        <argsstring>(const visibility_type *, visibility_type *) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+        </param>
+        <briefdescription>
+<para>Initializes out-of-place visibility data (only if fPCData != nullptr). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to const visibility_type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output pointer to visibility_type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization succeeds, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="104" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="104" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a0e680dd35b38aa8cba751fd85592e54b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::InterpolatePCData</definition>
+        <argsstring>(double pcal_minus_visib_toffset)</argsstring>
+        <name>InterpolatePCData</name>
+        <param>
+          <type>double</type>
+          <declname>pcal_minus_visib_toffset</declname>
+        </param>
+        <briefdescription>
+<para>Temporally interpolates phase calibration (Pcal) tone phasors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pcal_minus_visib_toffset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time offset between the visibility data start and pcal data start </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="134" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="74" bodyend="138"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1ae8ae70585cf3649d09a57d7e1822adee" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::ApplyPCData</definition>
+        <argsstring>(std::size_t pc_pol, std::size_t vis_pp, visibility_type *in)</argsstring>
+        <name>ApplyPCData</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>pc_pol</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>vis_pp</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="181" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="221" bodyend="676"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1ae3bbe8c3c076b6906306197a5a96816a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::DetermineChannelToneIndexes</definition>
+        <argsstring>(double lower_freq, double upper_freq, std::size_t &amp;lower_idx, std::size_t &amp;upper_idx)</argsstring>
+        <name>DetermineChannelToneIndexes</name>
+        <param>
+          <type>double</type>
+          <declname>lower_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>upper_freq</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>lower_idx</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>upper_idx</declname>
+        </param>
+        <briefdescription>
+<para>Determines start index and number of tones within one channel&apos;s frequency range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower frequency limit in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper frequency limit in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lower_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="178" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="724" bodyend="745"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a8f44d6eeb1038061b93a389875a8f82b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::FitPCData</definition>
+        <argsstring>(std::size_t ntones, double chan_center_freq, double sampler_delay, double *phase_spline, std::string net_sideband)</argsstring>
+        <name>FitPCData</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>ntones</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>chan_center_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sampler_delay</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>phase_spline</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>net_sideband</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="184" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="747" bodyend="837"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a0a329c165d0351127443d25d6be38723" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::InitializeFFTEngine</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeFFTEngine</name>
+        <briefdescription>
+<para>Initializes FFT engine with workspace and settings for forward DFT. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="150" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="839" bodyend="847"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a6d7023ec4a2d94e692f0f4ad4013df02" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultitonePhaseCorrection::IsApplicable</definition>
+        <argsstring>(const visibility_type *in)</argsstring>
+        <name>IsApplicable</name>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a visibility_type object is applicable for correction based on Mk4ID and station code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type object to check applicability </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the input object is applicable for correction </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="159" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="678" bodyend="715"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1a0c71d732b91c6fe6c6dd0e2aeb09faf3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultitonePhaseCorrection::make_upper</definition>
+        <argsstring>(std::string &amp;s)</argsstring>
+        <name>make_upper</name>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="237" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="237" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultitonePhaseCorrection_1af1c25b3751188c676531bdc1c096db79" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultitonePhaseCorrection::PolMatch</definition>
+        <argsstring>(std::size_t station_idx, std::string &amp;pc_pol, std::string &amp;polprod)</argsstring>
+        <name>PolMatch</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>station_idx</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>pc_pol</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>polprod</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the first character of pc_pol matches the station_idx-th character of polprod after converting both to uppercase. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the character in polprod to compare </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pc_pol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input polarization code string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polprod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Polarization product string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if characters match, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="169" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MultitonePhaseCorrection.cc" bodystart="717" bodyend="722"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MultitonePhaseCorrection" kindref="compound">MHO_MultitonePhaseCorrection</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jan 27 10:36:00 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MultitonePhaseCorrection</label>
+        <link refid="classhops_1_1MHO__MultitonePhaseCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MultitonePhaseCorrection</label>
+        <link refid="classhops_1_1MHO__MultitonePhaseCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" line="39" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MultitonePhaseCorrection.hh" bodystart="40" bodyend="244"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ae8ae70585cf3649d09a57d7e1822adee" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>ApplyPCData</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ae3bbe8c3c076b6906306197a5a96816a" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>DetermineChannelToneIndexes</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a928a7d8af1c769076c407363c529ef6b" prot="protected" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a3a1c59b9be1c94f8fad78e55f3c9f978" prot="protected" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1aa8e3aa85ffbea3d1b9b6968caead7d5a" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fApplyPCDelay</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1aba6809488fe8464cec5c5ed56a10e501" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fBandwidthKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1aef8caf15b79bc1de97e820c4e29b376d" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fChannelLabelKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a137fb37edb66d6844af58b16e028c0ba" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fDegToRad</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a50943faf84f97b1eedeb2d1f66220bb2" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fFFTEngine</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a2b045b7d7752a06de4123b521d6aad50" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>FFT_ENGINE_TYPE</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ab7fb39928f113a9bd2db454896a9591e" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fHavePCToneMask</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a42a69124648f6427ffe46d31cb314378" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fImagUnit</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a8f44d6eeb1038061b93a389875a8f82b" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>FitPCData</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a52624cfd888463f367bef8ea5c4f4116" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fLowerSideband</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ad09973a7cbdb3de5c0d999a622adff1e" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fMHzToHz</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a58b3c4147202bc964c5603d9df5cc2ca" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fMk4ID</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a637d48105d1fefeefccf061263b98e94" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fNanoSecToSecond</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a2a67c8e57d122cc02ddae86338b6947b" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCalTrimmer</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a584cef0367d23749452b537d30a2108d" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCData</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a20644b7cc7c024da8fe8a4c4b44aebb1" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCPeriod</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a23a2d587ed871872ae7e96e97ded7132" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCToneMaskBitmasks</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a3f9c38dde1c24d640c5708e000d66727" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCToneMaskBitmasksKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1aede96c30e403cb606d6e2f17768121e3" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCToneMaskChannels</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a09e932a9b7ea44c6110f3d6aa23e395f" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCToneMaskChannelsKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a5e91d9bf3a841cc84bb5d60b9fe8c9c2" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPCWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a3c69390f3ad81c5374f35b02f7bce37d" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fPi</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a7cf0647fb12323e4621e675461324ba1" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fRefStationKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1aaabefae7e506ee36d42b2cef7f44edf5" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fRefStationMk4IDKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1aca9c7f04256b356adce6708e15030e46" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fRemStationKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a87b1bdb1db9de3503bc1570453ec5c95" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fRemStationMk4IDKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a229f4be1394aaa5ec15fd07269263538" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fSidebandLabelKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a294c6ac6464afcdbb404143ac523e2b9" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fSkyFreqKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a9873515a5d6a5c9d2a18e5b1e96de5f4" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fStationCode</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1abc6ffa92b70d37b4349a3cfee584280d" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fStationIndex</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ad8a08d60207942358f15b3f680c8bc4b" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fStationKey</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ab584fd1876abf12cee2ecb9042f5c284" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fUpperSideband</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a1bfe4486f7e62d98328ddf34e18ec591" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fWeights</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a30b11df9f070bf819db6effd0514abec" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>fWorkspaceSize</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a0a329c165d0351127443d25d6be38723" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>InitializeFFTEngine</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a74423cfede2f1536b4b3c6912ac20528" prot="protected" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ae2e4e5588fb137776073b841ca2ff2af" prot="protected" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a0e680dd35b38aa8cba751fd85592e54b" prot="protected" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>InterpolatePCData</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a6d7023ec4a2d94e692f0f4ad4013df02" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>IsApplicable</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a0c71d732b91c6fe6c6dd0e2aeb09faf3" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>make_upper</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a8438d4e807e076f38da58d9f73ccca8c" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>MHO_MultitonePhaseCorrection</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1af5998417b8434be3c3a7230453474d66" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>pcal_axis_pack</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a04398cb61117f5f32f580fc7dfefdd9d" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>pcal_type</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1af1c25b3751188c676531bdc1c096db79" prot="private" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>PolMatch</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ac0aeaaa49459d0c5d98324f1ed21386c" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetMultitonePCData</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1a61af96852ae8ecb030d6fb08138a3efe" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetPCPeriod</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1adb0f3c6f756a08039263ec30881eb783" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetStation</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ac472c8376898415c515da2430a619cfb" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetStationMk4ID</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ad5b78941678fc75980350fd6f94ee284" prot="public" virt="non-virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>SetWeights</name></member>
+      <member refid="classhops_1_1MHO__MultitonePhaseCorrection_1ac1d83650bc8aa007de00abbd2438df04" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>~MHO_MultitonePhaseCorrection</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_MultitonePhaseCorrection</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

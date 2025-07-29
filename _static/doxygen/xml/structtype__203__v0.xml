@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__203__v0" kind="struct" language="C++" prot="public">
+    <compoundname>type_203_v0</compoundname>
+    <includes refid="type__203_8h" local="no">type_203.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__203__v0_1a3bb5e4658960482aacb24f58f4237f11" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structch__struct" kindref="compound">ch_struct</ref></type>
+        <definition>struct ch_struct type_203_v0::channels[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>channels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__203__v0_1ac49dac36f3998d4cce351ee249e483fd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_203_v0::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="36" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__203__v0_1a10c58f7a652abc1f31fb1b56844b3d22" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_203_v0::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__203__v0_1ac7fbecb21107977d766f7d2ca0c5bf8e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_203_v0::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="37" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>type_203_v0</label>
+        <link refid="structtype__203__v0"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>ch_struct</label>
+        <link refid="structch__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>rem_freq</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>refpol</edgelabel>
+          <edgelabel>refsb</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>rempol</edgelabel>
+          <edgelabel>remsb</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>index</edgelabel>
+          <edgelabel>sample_rate</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_203.h" bodystart="35" bodyend="40"/>
+    <listofallmembers>
+      <member refid="structtype__203__v0_1a3bb5e4658960482aacb24f58f4237f11" prot="public" virt="non-virtual"><scope>type_203_v0</scope><name>channels</name></member>
+      <member refid="structtype__203__v0_1ac49dac36f3998d4cce351ee249e483fd" prot="public" virt="non-virtual"><scope>type_203_v0</scope><name>record_id</name></member>
+      <member refid="structtype__203__v0_1a10c58f7a652abc1f31fb1b56844b3d22" prot="public" virt="non-virtual"><scope>type_203_v0</scope><name>unused1</name></member>
+      <member refid="structtype__203__v0_1ac7fbecb21107977d766f7d2ca0c5bf8e" prot="public" virt="non-virtual"><scope>type_203_v0</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

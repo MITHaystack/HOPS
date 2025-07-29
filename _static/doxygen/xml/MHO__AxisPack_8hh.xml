@@ -1,0 +1,2655 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__AxisPack_8hh" kind="file" language="C++">
+    <compoundname>MHO_AxisPack.hh</compoundname>
+    <includes refid="MHO__Axis_8hh" local="yes">MHO_Axis.hh</includes>
+    <includes refid="MHO__Meta_8hh" local="yes">MHO_Meta.hh</includes>
+    <includedby refid="MHO__MBDelaySearch_8hh" local="yes">MHO_MBDelaySearch.hh</includedby>
+    <includedby refid="MHO__ContainerDefinitions_8hh" local="yes">MHO_ContainerDefinitions.hh</includedby>
+    <includedby refid="MHO__ContainerDictionary_8hh" local="yes">MHO_ContainerDictionary.hh</includedby>
+    <includedby refid="MHO__ContainerJSONConverter_8hh" local="yes">MHO_ContainerJSONConverter.hh</includedby>
+    <includedby refid="MHO__TableContainer_8hh" local="yes">MHO_TableContainer.hh</includedby>
+    <includedby refid="MHO__ContainerHDF5Converter_8hh" local="yes">MHO_ContainerHDF5Converter.hh</includedby>
+    <includedby refid="MHO__HDF5Attributes_8hh" local="yes">MHO_HDF5Attributes.hh</includedby>
+    <includedby refid="MHO__HDF5ConversionHelpers_8hh" local="yes">MHO_HDF5ConversionHelpers.hh</includedby>
+    <includedby refid="MHO__HDF5ConverterDictionary_8hh" local="yes">MHO_HDF5ConverterDictionary.hh</includedby>
+    <includedby refid="MHO__HDF5Datasets_8hh" local="yes">MHO_HDF5Datasets.hh</includedby>
+    <incdepgraph>
+      <node id="17">
+        <label>atomic</label>
+      </node>
+      <node id="65">
+        <label>MHO_UUIDGenerator.hh</label>
+        <link refid="MHO__UUIDGenerator_8hh"/>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>iomanip</label>
+      </node>
+      <node id="59">
+        <label>assert.h</label>
+      </node>
+      <node id="40">
+        <label>iterator</label>
+      </node>
+      <node id="46">
+        <label>MHO_NDArrayView.hh</label>
+        <link refid="MHO__NDArrayView_8hh"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>cstdint</label>
+      </node>
+      <node id="51">
+        <label>MHO_ClassIdentity.hh</label>
+        <link refid="MHO__ClassIdentity_8hh"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>endian.h</label>
+      </node>
+      <node id="55">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>MHO_Meta.hh</label>
+        <link refid="MHO__Meta_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>cmath</label>
+      </node>
+      <node id="67">
+        <label>MHO_Taggable.hh</label>
+        <link refid="MHO__Taggable_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>stdexcept</label>
+      </node>
+      <node id="27">
+        <label>MHO_IntervalLabelInterface.hh</label>
+        <link refid="MHO__IntervalLabelInterface_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="52">
+        <label>MHO_MD5HashGenerator.hh</label>
+        <link refid="MHO__MD5HashGenerator_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>cinttypes</label>
+      </node>
+      <node id="30">
+        <label>map</label>
+      </node>
+      <node id="9">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>MHO_FileStreamer.hh</label>
+        <link refid="MHO__FileStreamer_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>stddef.h</label>
+      </node>
+      <node id="53">
+        <label>fstream</label>
+      </node>
+      <node id="44">
+        <label>MHO_NDArrayMath.hh</label>
+        <link refid="MHO__NDArrayMath_8hh"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>ostream</label>
+      </node>
+      <node id="56">
+        <label>MHO_UUID.hh</label>
+        <link refid="MHO__UUID_8hh"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>MHO_NDArrayWrapper_0.hh</label>
+        <link refid="MHO__NDArrayWrapper__0_8hh"/>
+      </node>
+      <node id="33">
+        <label>MHO_VectorContainer.hh</label>
+        <link refid="MHO__VectorContainer_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_Axis.hh</label>
+        <link refid="MHO__Axis_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_IndexLabelInterface.hh</label>
+        <link refid="MHO__IndexLabelInterface_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>MHO_NDArrayWrapper_1.hh</label>
+        <link refid="MHO__NDArrayWrapper__1_8hh"/>
+      </node>
+      <node id="66">
+        <label>random</label>
+      </node>
+      <node id="1">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>string.h</label>
+      </node>
+      <node id="39">
+        <label>MHO_BidirectionalIterator.hh</label>
+        <link refid="MHO__BidirectionalIterator_8hh"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>tuple</label>
+      </node>
+      <node id="25">
+        <label>ctime</label>
+      </node>
+      <node id="24">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>vector</label>
+      </node>
+      <node id="47">
+        <label>MHO_BidirectionalIndexedIterator.hh</label>
+        <link refid="MHO__BidirectionalIndexedIterator_8hh"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>utility</label>
+      </node>
+      <node id="36">
+        <label>array</label>
+      </node>
+      <node id="7">
+        <label>sstream</label>
+      </node>
+      <node id="16">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>MHO_BidirectionalStrideIterator.hh</label>
+        <link refid="MHO__BidirectionalStrideIterator_8hh"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>MHO_NDArrayWrapper.hh</label>
+        <link refid="MHO__NDArrayWrapper_8hh"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>cstdlib</label>
+      </node>
+      <node id="26">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>iostream</label>
+      </node>
+      <node id="45">
+        <label>cstddef</label>
+      </node>
+      <node id="57">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>mutex</label>
+      </node>
+      <node id="18">
+        <label>thread</label>
+      </node>
+      <node id="32">
+        <label>type_traits</label>
+      </node>
+      <node id="50">
+        <label>MHO_Serializable.hh</label>
+        <link refid="MHO__Serializable_8hh"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>set</label>
+      </node>
+      <node id="6">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="29">
+        <label>complex</label>
+      </node>
+      <node id="35">
+        <label>algorithm</label>
+      </node>
+      <node id="58">
+        <label>picohash.h</label>
+        <link refid="picohash_8h"/>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>stdio.h</label>
+      </node>
+      <node id="43">
+        <label>MHO_ExtensibleElement.hh</label>
+        <link refid="MHO__ExtensibleElement_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>cstring</label>
+      </node>
+      <node id="60">
+        <label>inttypes.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="181">
+        <label>MHO_FringePlotInfo.hh</label>
+        <link refid="MHO__FringePlotInfo_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="167" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>MHO_ChannelLabelerBuilder.cc</label>
+        <link refid="MHO__ChannelLabelerBuilder_8cc"/>
+      </node>
+      <node id="7">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="60">
+        <label>MHO_MinWeight.cc</label>
+        <link refid="MHO__MinWeight_8cc"/>
+      </node>
+      <node id="151">
+        <label>hops2hdf5.cc</label>
+        <link refid="hops2hdf5_8cc"/>
+      </node>
+      <node id="35">
+        <label>MHO_EstimatePCManual.cc</label>
+        <link refid="MHO__EstimatePCManual_8cc"/>
+      </node>
+      <node id="140">
+        <label>MHO_PyFringeDataInterface.hh</label>
+        <link refid="MHO__PyFringeDataInterface_8hh"/>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="71">
+        <label>MHO_NormFX.hh</label>
+        <link refid="MHO__NormFX_8hh"/>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>MHO_DoubleSidebandChannelLabeler.hh</label>
+        <link refid="MHO__DoubleSidebandChannelLabeler_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="145">
+        <label>MHO_MK4FringeExport.cc</label>
+        <link refid="MHO__MK4FringeExport_8cc"/>
+      </node>
+      <node id="106">
+        <label>MHO_FringeData.cc</label>
+        <link refid="MHO__FringeData_8cc"/>
+      </node>
+      <node id="193">
+        <label>MHO_OpenCLFastFourierTransformPlan.cc</label>
+        <link refid="MHO__OpenCLFastFourierTransformPlan_8cc"/>
+      </node>
+      <node id="173">
+        <label>MHO_SelectRepack.hh</label>
+        <link refid="MHO__SelectRepack_8hh"/>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+      </node>
+      <node id="144">
+        <label>MHO_MK4FringeExport.hh</label>
+        <link refid="MHO__MK4FringeExport_8hh"/>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="145" relation="include">
+        </childnode>
+      </node>
+      <node id="190">
+        <label>MHO_MultidimensionalFastFourierTransformFFTW.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransformFFTW_8hh"/>
+      </node>
+      <node id="182">
+        <label>MHO_InitialFringeInfo.hh</label>
+        <link refid="MHO__InitialFringeInfo_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>TestVexStripper.cc</label>
+        <link refid="TestVexStripper_8cc"/>
+      </node>
+      <node id="179">
+        <label>MHO_ContainerStore.cc</label>
+        <link refid="MHO__ContainerStore_8cc"/>
+      </node>
+      <node id="171">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="43">
+        <label>MHO_LinearDParCorrectionBuilder.cc</label>
+        <link refid="MHO__LinearDParCorrectionBuilder_8cc"/>
+      </node>
+      <node id="99">
+        <label>MHO_WeightChannelizer.cc</label>
+        <link refid="MHO__WeightChannelizer_8cc"/>
+      </node>
+      <node id="178">
+        <label>MHO_ContainerStore.hh</label>
+        <link refid="MHO__ContainerStore_8hh"/>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="179" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="180" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="181" relation="include">
+        </childnode>
+        <childnode refid="182" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>MHO_MixedPolYShift.cc</label>
+        <link refid="MHO__MixedPolYShift_8cc"/>
+      </node>
+      <node id="112">
+        <label>MHO_DefaultPythonPlotVisitor.cc</label>
+        <link refid="MHO__DefaultPythonPlotVisitor_8cc"/>
+      </node>
+      <node id="73">
+        <label>MHO_SingleSidebandNormFX.cc</label>
+        <link refid="MHO__SingleSidebandNormFX_8cc"/>
+      </node>
+      <node id="184">
+        <label>MHO_ClassIdentityMap.hh</label>
+        <link refid="MHO__ClassIdentityMap_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>MHO_MixedPolYShiftBuilder.hh</label>
+        <link refid="MHO__MixedPolYShiftBuilder_8hh"/>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="142">
+        <label>MHO_PyGenericOperator.hh</label>
+        <link refid="MHO__PyGenericOperator_8hh"/>
+        <childnode refid="139" relation="include">
+        </childnode>
+      </node>
+      <node id="170">
+        <label>MHO_MK4StationInterface.hh</label>
+        <link refid="MHO__MK4StationInterface_8hh"/>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="200">
+        <label>MHO_HDF5Attributes.hh</label>
+        <link refid="MHO__HDF5Attributes_8hh"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="202" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>MHO_ManualPolDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualPolDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="56">
+        <label>MHO_ManualPolPhaseCorrection.hh</label>
+        <link refid="MHO__ManualPolPhaseCorrection_8hh"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="202">
+        <label>MHO_HDF5Datasets.hh</label>
+        <link refid="MHO__HDF5Datasets_8hh"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+      </node>
+      <node id="120">
+        <label>MHO_LinearDParCorrectionBuilder.hh</label>
+        <link refid="MHO__LinearDParCorrectionBuilder_8hh"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="150">
+        <label>MHO_AFileInfoExtractor.cc</label>
+        <link refid="MHO__AFileInfoExtractor_8cc"/>
+      </node>
+      <node id="143">
+        <label>MHO_ScanDataStore.cc</label>
+        <link refid="MHO__ScanDataStore_8cc"/>
+      </node>
+      <node id="37">
+        <label>MHO_InterpolateFringePeak.cc</label>
+        <link refid="MHO__InterpolateFringePeak_8cc"/>
+      </node>
+      <node id="92">
+        <label>MHO_StationModel.hh</label>
+        <link refid="MHO__StationModel_8hh"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MHO_CircularFieldRotationCorrection.cc</label>
+        <link refid="MHO__CircularFieldRotationCorrection_8cc"/>
+      </node>
+      <node id="109">
+        <label>MHO_FringeFitterFactory.hh</label>
+        <link refid="MHO__FringeFitterFactory_8hh"/>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>MHO_LinearDParCorrection.cc</label>
+        <link refid="MHO__LinearDParCorrection_8cc"/>
+      </node>
+      <node id="29">
+        <label>MHO_DelayRate.hh</label>
+        <link refid="MHO__DelayRate_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>MHO_DiFXVisibilityProcessor.hh</label>
+        <link refid="MHO__DiFXVisibilityProcessor_8hh"/>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="163" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>MHO_ChannelLabeler.hh</label>
+        <link refid="MHO__ChannelLabeler_8hh"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="204">
+        <label>MHO_PyTableContainer.hh</label>
+        <link refid="MHO__PyTableContainer_8hh"/>
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="176" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+        <childnode refid="205" relation="include">
+        </childnode>
+        <childnode refid="206" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>MHO_StationDelayCorrection.cc</label>
+        <link refid="MHO__StationDelayCorrection_8cc"/>
+      </node>
+      <node id="162">
+        <label>MHO_DiFXScanProcessor.cc</label>
+        <link refid="MHO__DiFXScanProcessor_8cc"/>
+      </node>
+      <node id="191">
+        <label>MHO_MultidimensionalFastFourierTransformInterface.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransformInterface_8hh"/>
+        <childnode refid="189" relation="include">
+        </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
+        <childnode refid="192" relation="include">
+        </childnode>
+        <childnode refid="194" relation="include">
+        </childnode>
+        <childnode refid="195" relation="include">
+        </childnode>
+      </node>
+      <node id="166">
+        <label>MHO_ComputePlotData.hh</label>
+        <link refid="MHO__ComputePlotData_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="167" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>MHO_LSBOffset.hh</label>
+        <link refid="MHO__LSBOffset_8hh"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="125">
+        <label>MHO_ManualPolPhaseCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualPolPhaseCorrectionBuilder_8hh"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="198">
+        <label>MHO_ContainerHDF5Converter.hh</label>
+        <link refid="MHO__ContainerHDF5Converter_8hh"/>
+        <childnode refid="199" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TestSignalFFT.cc</label>
+        <link refid="TestSignalFFT_8cc"/>
+      </node>
+      <node id="94">
+        <label>MHO_VisibilityChannelizer.hh</label>
+        <link refid="MHO__VisibilityChannelizer_8hh"/>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MHO_BasicFringeUtilities.cc</label>
+        <link refid="MHO__BasicFringeUtilities_8cc"/>
+      </node>
+      <node id="25">
+        <label>MHO_DCBlockBuilder.cc</label>
+        <link refid="MHO__DCBlockBuilder_8cc"/>
+      </node>
+      <node id="146">
+        <label>MHO_PyScanStoreInterface.hh</label>
+        <link refid="MHO__PyScanStoreInterface_8hh"/>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>MHO_PassbandBuilder.cc</label>
+        <link refid="MHO__PassbandBuilder_8cc"/>
+      </node>
+      <node id="62">
+        <label>MHO_MixedPolYShift.hh</label>
+        <link refid="MHO__MixedPolYShift_8hh"/>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="83">
+        <label>MHO_PolProductSummation.cc</label>
+        <link refid="MHO__PolProductSummation_8cc"/>
+      </node>
+      <node id="121">
+        <label>MHO_LSBOffsetBuilder.hh</label>
+        <link refid="MHO__LSBOffsetBuilder_8hh"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="183">
+        <label>MHO_ContainerJSONConverter.hh</label>
+        <link refid="MHO__ContainerJSONConverter_8hh"/>
+        <childnode refid="184" relation="include">
+        </childnode>
+      </node>
+      <node id="189">
+        <label>MHO_MultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__MultidimensionalFastFourierTransform_8hh"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="176">
+        <label>MHO_PyFringeFitterInstance.hh</label>
+        <link refid="MHO__PyFringeFitterInstance_8hh"/>
+      </node>
+      <node id="206">
+        <label>MHO_PyUnaryTableOperator.hh</label>
+        <link refid="MHO__PyUnaryTableOperator_8hh"/>
+      </node>
+      <node id="26">
+        <label>MHO_DelayModel.hh</label>
+        <link refid="MHO__DelayModel_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>MHO_MultitonePhaseCorrection.hh</label>
+        <link refid="MHO__MultitonePhaseCorrection_8hh"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+      </node>
+      <node id="196">
+        <label>MHO_Reducer.hh</label>
+        <link refid="MHO__Reducer_8hh"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="126">
+        <label>MHO_MinWeightBuilder.hh</label>
+        <link refid="MHO__MinWeightBuilder_8hh"/>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="100">
+        <label>MHO_ContainerFileInterface.hh</label>
+        <link refid="MHO__ContainerFileInterface_8hh"/>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+      </node>
+      <node id="81">
+        <label>MHO_PhaseCalibrationTrim.cc</label>
+        <link refid="MHO__PhaseCalibrationTrim_8cc"/>
+      </node>
+      <node id="132">
+        <label>MHO_BasicFringeDataConfiguration.cc</label>
+        <link refid="MHO__BasicFringeDataConfiguration_8cc"/>
+      </node>
+      <node id="48">
+        <label>MHO_ManualChannelDelayCorrection.cc</label>
+        <link refid="MHO__ManualChannelDelayCorrection_8cc"/>
+      </node>
+      <node id="65">
+        <label>MHO_MixedSidebandNormFX.hh</label>
+        <link refid="MHO__MixedSidebandNormFX_8hh"/>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>MHO_ManualPolDelayCorrection.cc</label>
+        <link refid="MHO__ManualPolDelayCorrection_8cc"/>
+      </node>
+      <node id="174">
+        <label>MHO_HDF5ConverterDictionary.cc</label>
+        <link refid="MHO__HDF5ConverterDictionary_8cc"/>
+      </node>
+      <node id="52">
+        <label>MHO_ManualChannelPhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualChannelPhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="34">
+        <label>MHO_EstimatePCManual.hh</label>
+        <link refid="MHO__EstimatePCManual_8hh"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_IonosphericFringeFitter.hh</label>
+        <link refid="MHO__IonosphericFringeFitter_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>MHO_Passband.hh</label>
+        <link refid="MHO__Passband_8hh"/>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="115">
+        <label>MHO_OperatorBuilderManager.cc</label>
+        <link refid="MHO__OperatorBuilderManager_8cc"/>
+      </node>
+      <node id="139">
+        <label>MHO_PythonOperatorBuilder.hh</label>
+        <link refid="MHO__PythonOperatorBuilder_8hh"/>
+      </node>
+      <node id="14">
+        <label>fplot4.cc</label>
+        <link refid="fplot4_8cc"/>
+      </node>
+      <node id="84">
+        <label>MHO_PolProductSummationBuilder.cc</label>
+        <link refid="MHO__PolProductSummationBuilder_8cc"/>
+      </node>
+      <node id="36">
+        <label>MHO_InterpolateFringePeak.hh</label>
+        <link refid="MHO__InterpolateFringePeak_8hh"/>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="159">
+        <label>MHO_DiFXInterface.hh</label>
+        <link refid="MHO__DiFXInterface_8hh"/>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>MHO_SamplerLabeler.hh</label>
+        <link refid="MHO__SamplerLabeler_8hh"/>
+        <childnode refid="86" relation="include">
+        </childnode>
+      </node>
+      <node id="163">
+        <label>MHO_DiFXVisibilityProcessor.cc</label>
+        <link refid="MHO__DiFXVisibilityProcessor_8cc"/>
+      </node>
+      <node id="13">
+        <label>alist4.cc</label>
+        <link refid="alist4_8cc"/>
+      </node>
+      <node id="50">
+        <label>MHO_ManualChannelPhaseCorrection.hh</label>
+        <link refid="MHO__ManualChannelPhaseCorrection_8hh"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="194">
+        <label>MHO_OpenCLFastFourierTransformRadix2Stage.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh"/>
+      </node>
+      <node id="86">
+        <label>MHO_SamplerLabelerBuilder.cc</label>
+        <link refid="MHO__SamplerLabelerBuilder_8cc"/>
+      </node>
+      <node id="180">
+        <label>MHO_BasicFringeUtilities.hh</label>
+        <link refid="MHO__BasicFringeUtilities_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>MHO_ManualChannelDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualChannelDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="131">
+        <label>MHO_BasicFringeDataConfiguration.hh</label>
+        <link refid="MHO__BasicFringeDataConfiguration_8hh"/>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>MHO_Notches.hh</label>
+        <link refid="MHO__Notches_8hh"/>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+      </node>
+      <node id="141">
+        <label>MHO_PyContainersModuleDefinition.cc</label>
+        <link refid="MHO__PyContainersModuleDefinition_8cc"/>
+      </node>
+      <node id="82">
+        <label>MHO_PolProductSummation.hh</label>
+        <link refid="MHO__PolProductSummation_8hh"/>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>MHO_DelayModel.cc</label>
+        <link refid="MHO__DelayModel_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_MBDelaySearch.cc</label>
+        <link refid="MHO__MBDelaySearch_8cc"/>
+      </node>
+      <node id="93">
+        <label>MHO_StationModel.cc</label>
+        <link refid="MHO__StationModel_8cc"/>
+      </node>
+      <node id="168">
+        <label>MHO_MK4CorelInterface.hh</label>
+        <link refid="MHO__MK4CorelInterface_8hh"/>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="169" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_AxisPack.hh</label>
+        <link refid="MHO__AxisPack_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
+        </childnode>
+        <childnode refid="185" relation="include">
+        </childnode>
+        <childnode refid="198" relation="include">
+        </childnode>
+        <childnode refid="200" relation="include">
+        </childnode>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="199" relation="include">
+        </childnode>
+        <childnode refid="202" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>MHO_SingleSidebandNormFX.hh</label>
+        <link refid="MHO__SingleSidebandNormFX_8hh"/>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>MHO_Passband.cc</label>
+        <link refid="MHO__Passband_8cc"/>
+      </node>
+      <node id="129">
+        <label>MHO_NotchesBuilder.hh</label>
+        <link refid="MHO__NotchesBuilder_8hh"/>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MHO_FringeFitterFactory.cc</label>
+        <link refid="MHO__FringeFitterFactory_8cc"/>
+      </node>
+      <node id="114">
+        <label>MHO_ChannelLabelerBuilder.hh</label>
+        <link refid="MHO__ChannelLabelerBuilder_8hh"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="164">
+        <label>MHO_DiFXPCalProcessor.hh</label>
+        <link refid="MHO__DiFXPCalProcessor_8hh"/>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="165" relation="include">
+        </childnode>
+      </node>
+      <node id="97">
+        <label>mark42hops.cc</label>
+        <link refid="mark42hops_8cc"/>
+      </node>
+      <node id="177">
+        <label>MHO_ContainerDictionary.hh</label>
+        <link refid="MHO__ContainerDictionary_8hh"/>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="178" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="154" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>MHO_MK4ScanConverter.cc</label>
+        <link refid="MHO__MK4ScanConverter_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_MBDelaySearchCUDA.hh</label>
+        <link refid="MHO__MBDelaySearchCUDA_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>MHO_ManualPolDelayCorrection.hh</label>
+        <link refid="MHO__ManualPolDelayCorrection_8hh"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="197">
+        <label>MHO_SubSample.hh</label>
+        <link refid="MHO__SubSample_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+      </node>
+      <node id="187">
+        <label>MHO_EndZeroPadder.hh</label>
+        <link refid="MHO__EndZeroPadder_8hh"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="133">
+        <label>MHO_FringeControlInitialization.hh</label>
+        <link refid="MHO__FringeControlInitialization_8hh"/>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>MHO_DelayRate.cc</label>
+        <link refid="MHO__DelayRate_8cc"/>
+      </node>
+      <node id="104">
+        <label>MHO_ScanDataStore.hh</label>
+        <link refid="MHO__ScanDataStore_8hh"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="143" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>MHO_NotchesBuilder.cc</label>
+        <link refid="MHO__NotchesBuilder_8cc"/>
+      </node>
+      <node id="4">
+        <label>MHO_BasicFringeFitter.hh</label>
+        <link refid="MHO__BasicFringeFitter_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="169">
+        <label>MHO_MK4CorelInterface.cc</label>
+        <link refid="MHO__MK4CorelInterface_8cc"/>
+      </node>
+      <node id="175">
+        <label>MHO_PyContainerStoreInterface.hh</label>
+        <link refid="MHO__PyContainerStoreInterface_8hh"/>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="176" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>MHO_LSBOffsetBuilder.cc</label>
+        <link refid="MHO__LSBOffsetBuilder_8cc"/>
+      </node>
+      <node id="66">
+        <label>MHO_MixedSidebandNormFX.cc</label>
+        <link refid="MHO__MixedSidebandNormFX_8cc"/>
+      </node>
+      <node id="192">
+        <label>MHO_OpenCLFastFourierTransformPlan.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformPlan_8hh"/>
+        <childnode refid="193" relation="include">
+        </childnode>
+      </node>
+      <node id="128">
+        <label>MHO_MultitonePhaseCorrectionBuilder.hh</label>
+        <link refid="MHO__MultitonePhaseCorrectionBuilder_8hh"/>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>MHO_CircularFieldRotationCorrection.hh</label>
+        <link refid="MHO__CircularFieldRotationCorrection_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="149">
+        <label>MHO_ContainerFileInterface.cc</label>
+        <link refid="MHO__ContainerFileInterface_8cc"/>
+      </node>
+      <node id="172">
+        <label>MHO_ElementTypeCaster.hh</label>
+        <link refid="MHO__ElementTypeCaster_8hh"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+      </node>
+      <node id="186">
+        <label>MHO_CyclicRotator.hh</label>
+        <link refid="MHO__CyclicRotator_8hh"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="119">
+        <label>MHO_DCBlockBuilder.hh</label>
+        <link refid="MHO__DCBlockBuilder_8hh"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>MHO_ManualChannelDelayCorrection.hh</label>
+        <link refid="MHO__ManualChannelDelayCorrection_8hh"/>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>TestPCalExtraction.cc</label>
+        <link refid="TestPCalExtraction_8cc"/>
+      </node>
+      <node id="89">
+        <label>MHO_StationDelayCorrection.hh</label>
+        <link refid="MHO__StationDelayCorrection_8hh"/>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="107">
+        <label>MHO_FringeFitter.hh</label>
+        <link refid="MHO__FringeFitter_8hh"/>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>MHO_CircularFieldRotationBuilder.cc</label>
+        <link refid="MHO__CircularFieldRotationBuilder_8cc"/>
+      </node>
+      <node id="135">
+        <label>MHO_PassbandBuilder.hh</label>
+        <link refid="MHO__PassbandBuilder_8hh"/>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+      </node>
+      <node id="102">
+        <label>ComparePcal.cc</label>
+        <link refid="ComparePcal_8cc"/>
+      </node>
+      <node id="15">
+        <label>hops2keys.cc</label>
+        <link refid="hops2keys_8cc"/>
+      </node>
+      <node id="59">
+        <label>MHO_MinWeight.hh</label>
+        <link refid="MHO__MinWeight_8hh"/>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="123">
+        <label>MHO_ManualChannelPhaseCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualChannelPhaseCorrectionBuilder_8hh"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="167">
+        <label>MHO_FringePlotInfo.cc</label>
+        <link refid="MHO__FringePlotInfo_8cc"/>
+      </node>
+      <node id="110">
+        <label>MHO_FringePlotVisitor.hh</label>
+        <link refid="MHO__FringePlotVisitor_8hh"/>
+        <childnode refid="111" relation="include">
+        </childnode>
+      </node>
+      <node id="155">
+        <label>difx2hops.cc</label>
+        <link refid="difx2hops_8cc"/>
+      </node>
+      <node id="153">
+        <label>MHO_HDF5ContainerFileInterface.cc</label>
+        <link refid="MHO__HDF5ContainerFileInterface_8cc"/>
+      </node>
+      <node id="42">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+      <node id="117">
+        <label>MHO_DataSelectionBuilder.hh</label>
+        <link refid="MHO__DataSelectionBuilder_8hh"/>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>MHO_PhaseCalibrationTrim.hh</label>
+        <link refid="MHO__PhaseCalibrationTrim_8hh"/>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="203">
+        <label>MHO_TableContainerBufferBuilder.hh</label>
+        <link refid="MHO__TableContainerBufferBuilder_8hh"/>
+      </node>
+      <node id="64">
+        <label>MHO_MixedPolYShiftBuilder.cc</label>
+        <link refid="MHO__MixedPolYShiftBuilder_8cc"/>
+      </node>
+      <node id="87">
+        <label>MHO_SBDTableGenerator.hh</label>
+        <link refid="MHO__SBDTableGenerator_8hh"/>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>MHO_OperatorBuilder.hh</label>
+        <link refid="MHO__OperatorBuilder_8hh"/>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+      </node>
+      <node id="205">
+        <label>MHO_PyUnaryOperator.hh</label>
+        <link refid="MHO__PyUnaryOperator_8hh"/>
+      </node>
+      <node id="2">
+        <label>MHO_MBDelaySearch.hh</label>
+        <link refid="MHO__MBDelaySearch_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="165">
+        <label>MHO_DiFXPCalProcessor.cc</label>
+        <link refid="MHO__DiFXPCalProcessor_8cc"/>
+      </node>
+      <node id="103">
+        <label>hops2flat.cc</label>
+        <link refid="hops2flat_8cc"/>
+      </node>
+      <node id="40">
+        <label>MHO_LinearDParCorrection.hh</label>
+        <link refid="MHO__LinearDParCorrection_8hh"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="152">
+        <label>MHO_HDF5ContainerFileInterface.hh</label>
+        <link refid="MHO__HDF5ContainerFileInterface_8hh"/>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="153" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_MBDelaySearchCUDA.cc</label>
+        <link refid="MHO__MBDelaySearchCUDA_8cc"/>
+      </node>
+      <node id="51">
+        <label>MHO_ManualChannelPhaseCorrection.cc</label>
+        <link refid="MHO__ManualChannelPhaseCorrection_8cc"/>
+      </node>
+      <node id="38">
+        <label>MHO_IonosphericPhaseCorrection.hh</label>
+        <link refid="MHO__IonosphericPhaseCorrection_8hh"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="134">
+        <label>MHO_FringeControlInitialization.cc</label>
+        <link refid="MHO__FringeControlInitialization_8cc"/>
+      </node>
+      <node id="130">
+        <label>MHO_OperatorBuilderManager.hh</label>
+        <link refid="MHO__OperatorBuilderManager_8hh"/>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="116">
+        <label>MHO_CircularFieldRotationBuilder.hh</label>
+        <link refid="MHO__CircularFieldRotationBuilder_8hh"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MHO_DCBlock.hh</label>
+        <link refid="MHO__DCBlock_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>MHO_ManualPolPhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__ManualPolPhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="61">
+        <label>MHO_MinWeightBuilder.cc</label>
+        <link refid="MHO__MinWeightBuilder_8cc"/>
+      </node>
+      <node id="39">
+        <label>MHO_IonosphericPhaseCorrection.cc</label>
+        <link refid="MHO__IonosphericPhaseCorrection_8cc"/>
+      </node>
+      <node id="199">
+        <label>MHO_HDF5ConverterDictionary.hh</label>
+        <link refid="MHO__HDF5ConverterDictionary_8hh"/>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="174" relation="include">
+        </childnode>
+      </node>
+      <node id="111">
+        <label>MHO_DefaultPythonPlotVisitor.hh</label>
+        <link refid="MHO__DefaultPythonPlotVisitor_8hh"/>
+        <childnode refid="112" relation="include">
+        </childnode>
+      </node>
+      <node id="105">
+        <label>MHO_FringeData.hh</label>
+        <link refid="MHO__FringeData_8hh"/>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+      </node>
+      <node id="156">
+        <label>MHO_DiFXBaselineProcessor.hh</label>
+        <link refid="MHO__DiFXBaselineProcessor_8hh"/>
+        <childnode refid="157" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="118">
+        <label>MHO_DataSelectionBuilder.cc</label>
+        <link refid="MHO__DataSelectionBuilder_8cc"/>
+      </node>
+      <node id="75">
+        <label>MHO_Notches.cc</label>
+        <link refid="MHO__Notches_8cc"/>
+      </node>
+      <node id="138">
+        <label>MHO_StationDelayCorrectionBuilder.hh</label>
+        <link refid="MHO__StationDelayCorrectionBuilder_8hh"/>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>TestMultiObjectStreaming.cc</label>
+        <link refid="TestMultiObjectStreaming_8cc"/>
+      </node>
+      <node id="108">
+        <label>fourfit4.cc</label>
+        <link refid="fourfit4_8cc"/>
+      </node>
+      <node id="158">
+        <label>MHO_DiFXScanProcessor.hh</label>
+        <link refid="MHO__DiFXScanProcessor_8hh"/>
+        <childnode refid="159" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MHO_ContainerDefinitions.hh</label>
+        <link refid="MHO__ContainerDefinitions_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="154" relation="include">
+        </childnode>
+        <childnode refid="155" relation="include">
+        </childnode>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="164" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="168" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="172" relation="include">
+        </childnode>
+        <childnode refid="173" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+        <childnode refid="174" relation="include">
+        </childnode>
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+        <childnode refid="141" relation="include">
+        </childnode>
+        <childnode refid="176" relation="include">
+        </childnode>
+        <childnode refid="142" relation="include">
+        </childnode>
+      </node>
+      <node id="147">
+        <label>MHO_Snapshot.hh</label>
+        <link refid="MHO__Snapshot_8hh"/>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="148" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="122">
+        <label>MHO_ManualChannelDelayCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualChannelDelayCorrectionBuilder_8hh"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="136">
+        <label>MHO_PolProductSummationBuilder.hh</label>
+        <link refid="MHO__PolProductSummationBuilder_8hh"/>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="98">
+        <label>MHO_WeightChannelizer.hh</label>
+        <link refid="MHO__WeightChannelizer_8hh"/>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>MHO_DCBlock.cc</label>
+        <link refid="MHO__DCBlock_8cc"/>
+      </node>
+      <node id="32">
+        <label>MHO_DiFXBaselineProcessor.cc</label>
+        <link refid="MHO__DiFXBaselineProcessor_8cc"/>
+      </node>
+      <node id="188">
+        <label>MHO_ExtremaSearch.hh</label>
+        <link refid="MHO__ExtremaSearch_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="154">
+        <label>MHO_ContainerDictionary.cc</label>
+        <link refid="MHO__ContainerDictionary_8cc"/>
+      </node>
+      <node id="148">
+        <label>MHO_Snapshot.cc</label>
+        <link refid="MHO__Snapshot_8cc"/>
+      </node>
+      <node id="69">
+        <label>MHO_MultitonePhaseCorrection.cc</label>
+        <link refid="MHO__MultitonePhaseCorrection_8cc"/>
+      </node>
+      <node id="124">
+        <label>MHO_ManualPolDelayCorrectionBuilder.hh</label>
+        <link refid="MHO__ManualPolDelayCorrectionBuilder_8hh"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+      </node>
+      <node id="88">
+        <label>MHO_SBDTableGenerator.cc</label>
+        <link refid="MHO__SBDTableGenerator_8cc"/>
+      </node>
+      <node id="95">
+        <label>MHO_VisibilityChannelizer.cc</label>
+        <link refid="MHO__VisibilityChannelizer_8cc"/>
+      </node>
+      <node id="70">
+        <label>MHO_MultitonePhaseCorrectionBuilder.cc</label>
+        <link refid="MHO__MultitonePhaseCorrectionBuilder_8cc"/>
+      </node>
+      <node id="195">
+        <label>MHO_OpenCLMultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh"/>
+      </node>
+      <node id="161">
+        <label>MHO_DiFXInterface.cc</label>
+        <link refid="MHO__DiFXInterface_8cc"/>
+      </node>
+      <node id="101">
+        <label>CompareCorFiles.cc</label>
+        <link refid="CompareCorFiles_8cc"/>
+      </node>
+      <node id="96">
+        <label>MHO_MK4ScanConverter.hh</label>
+        <link refid="MHO__MK4ScanConverter_8hh"/>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>MHO_ManualPolPhaseCorrection.cc</label>
+        <link refid="MHO__ManualPolPhaseCorrection_8cc"/>
+      </node>
+      <node id="91">
+        <label>MHO_StationDelayCorrectionBuilder.cc</label>
+        <link refid="MHO__StationDelayCorrectionBuilder_8cc"/>
+      </node>
+      <node id="201">
+        <label>MHO_HDF5ConversionHelpers.hh</label>
+        <link refid="MHO__HDF5ConversionHelpers_8hh"/>
+        <childnode refid="198" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>MHO_InitialFringeInfo.cc</label>
+        <link refid="MHO__InitialFringeInfo_8cc"/>
+      </node>
+      <node id="45">
+        <label>MHO_LSBOffset.cc</label>
+        <link refid="MHO__LSBOffset_8cc"/>
+      </node>
+      <node id="185">
+        <label>MHO_TableContainer.hh</label>
+        <link refid="MHO__TableContainer_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+        <childnode refid="183" relation="include">
+        </childnode>
+        <childnode refid="166" relation="include">
+        </childnode>
+        <childnode refid="186" relation="include">
+        </childnode>
+        <childnode refid="187" relation="include">
+        </childnode>
+        <childnode refid="188" relation="include">
+        </childnode>
+        <childnode refid="189" relation="include">
+        </childnode>
+        <childnode refid="190" relation="include">
+        </childnode>
+        <childnode refid="191" relation="include">
+        </childnode>
+        <childnode refid="196" relation="include">
+        </childnode>
+        <childnode refid="197" relation="include">
+        </childnode>
+        <childnode refid="198" relation="include">
+        </childnode>
+        <childnode refid="200" relation="include">
+        </childnode>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="199" relation="include">
+        </childnode>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="203" relation="include">
+        </childnode>
+        <childnode refid="194" relation="include">
+        </childnode>
+        <childnode refid="195" relation="include">
+        </childnode>
+        <childnode refid="204" relation="include">
+        </childnode>
+      </node>
+      <node id="137">
+        <label>MHO_SamplerLabelerBuilder.hh</label>
+        <link refid="MHO__SamplerLabelerBuilder_8hh"/>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__AxisPack" prot="public">hops::MHO_AxisPack</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__AxisPack_8hh_1a7cd9be18ed070a4a1d79b12bd2b98465" prot="public" static="no">
+        <name>DefAxisPack1</name>
+        <param><defname>TYPE1</defname></param>
+        <initializer>using MHO_AxisPack_##TYPE1 = MHO_AxisPack&lt; MHO_Axis##TYPE1 &gt;;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="223" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__AxisPack_8hh_1a405817bfbcf5e9aa2e384d65502714d7" prot="public" static="no">
+        <name>DefAxisPack2</name>
+        <param><defname>TYPE1</defname></param>
+        <param><defname>TYPE2</defname></param>
+        <initializer>using MHO_AxisPack_##TYPE1##_##TYPE2 = MHO_AxisPack&lt; MHO_Axis##TYPE1, MHO_Axis##TYPE2 &gt;;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="225" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__AxisPack_8hh_1a280869185d0f8af23c6f3e40748f4058" prot="public" static="no">
+        <name>DefAxisPack3</name>
+        <param><defname>TYPE1</defname></param>
+        <param><defname>TYPE2</defname></param>
+        <param><defname>TYPE3</defname></param>
+        <initializer>    using MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3 = MHO_AxisPack&lt; MHO_Axis##TYPE1, MHO_Axis##TYPE2, MHO_Axis##TYPE3 &gt;;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="227" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__AxisPack_8hh_1aaf7942e6f70c57263e9814e4d86cdd73" prot="public" static="no">
+        <name>DefAxisPack4</name>
+        <param><defname>TYPE1</defname></param>
+        <param><defname>TYPE2</defname></param>
+        <param><defname>TYPE3</defname></param>
+        <param><defname>TYPE4</defname></param>
+        <initializer>    using MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4 =                                                                 \
+        MHO_AxisPack&lt; MHO_Axis##TYPE1, MHO_Axis##TYPE2, MHO_Axis##TYPE3, MHO_Axis##TYPE4 &gt;;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="230" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_AxisPack_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_AxisPack_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Axis_8hh" kindref="compound">MHO_Axis.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Meta_8hh" kindref="compound">MHO_Meta.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="classhops_1_1MHO__AxisPack" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/>XAxisTypeS<sp/>&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>std::tuple&lt;<sp/>XAxisTypeS...<sp/>&gt;,<sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24" refid="classhops_1_1MHO__AxisPack_1a97d3191f9d78587a59463c964f1741f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a97d3191f9d78587a59463c964f1741f2" kindref="member">MHO_AxisPack</ref>():<sp/>std::tuple&lt;<sp/>XAxisTypeS...<sp/>&gt;(){};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="classhops_1_1MHO__AxisPack_1a7af5ff29cd6491992c7a55affcbbdfb7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a7af5ff29cd6491992c7a55affcbbdfb7" kindref="member">MHO_AxisPack</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t*<sp/>dim):<sp/>std::tuple&lt;<sp/>XAxisTypeS...<sp/>&gt;()<sp/>{<sp/><ref refid="classhops_1_1MHO__AxisPack_1a6427a57d65bd292a8ed22ac5493b1120" kindref="member">resize_axis_pack</ref>(dim);<sp/>};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//copy<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="classhops_1_1MHO__AxisPack_1a11075da44e02fa84077451969e96e160" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a11075da44e02fa84077451969e96e160" kindref="member">MHO_AxisPack</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&amp;<sp/>obj):<sp/>std::tuple&lt;<sp/>XAxisTypeS...<sp/>&gt;(obj){};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classhops_1_1MHO__AxisPack_1a772204f02d5f364068244a0171fd136a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__AxisPack_1a772204f02d5f364068244a0171fd136a" kindref="member">~MHO_AxisPack</ref>(){};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//declare<sp/>some<sp/>convenience<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classhops_1_1MHO__AxisPack_1a19fdf49503f75f200cdf845946b9387f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::integral_constant&lt;<sp/>std::size_t,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">...(XAxisTypeS)<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__AxisPack_1a19fdf49503f75f200cdf845946b9387f" kindref="member">NAXES</ref>;</highlight></codeline>
+<codeline lineno="35" refid="classhops_1_1MHO__AxisPack_1a762c26c2a3aa75bf3b7310911602025d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::tuple&lt;<sp/>XAxisTypeS...<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__AxisPack_1a762c26c2a3aa75bf3b7310911602025d" kindref="member">axis_pack_tuple_type</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="classhops_1_1MHO__AxisPack_1a149fb3951e131da85a7620f954de71cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>uint64_t<sp/><ref refid="classhops_1_1MHO__AxisPack_1a149fb3951e131da85a7620f954de71cc" kindref="member">GetSerializedSize</ref>()</highlight><highlight class="keyword"><sp/>const<sp/>override</highlight></codeline>
+<codeline lineno="44"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint64_t<sp/>total_size<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>total_size<sp/>+=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="namespacehops_1a79b4811cd0a8f2e7e35c6d3f85ce8b1b" kindref="member">MHO_ClassVersion</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a12fca3fc077761f690e3b6107616d4dc" kindref="member">compute_total_size</ref>(total_size);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>total_size;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//assignment<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&amp;</highlight></codeline>
+<codeline lineno="55" refid="classhops_1_1MHO__AxisPack_1a1b21532f4cf15fb98d251078cf490f25" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a1b21532f4cf15fb98d251078cf490f25" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&amp;<sp/>rhs)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="classhops_1_1MHO__AxisPack_1a09f74e81fb7a5006f1b081d20152533a" kindref="member">copy</ref>(rhs);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N<sp/>=<sp/>0<sp/>&gt;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>(N<sp/>==<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">...(XAxisTypeS)),<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type</highlight></codeline>
+<codeline lineno="71" refid="classhops_1_1MHO__AxisPack_1a6427a57d65bd292a8ed22ac5493b1120" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a6427a57d65bd292a8ed22ac5493b1120" kindref="member">resize_axis_pack</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t*<sp/>){};<sp/></highlight><highlight class="comment">//terminating<sp/>case,<sp/>do<sp/>nothing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N<sp/>=<sp/>0<sp/>&gt;</highlight></codeline>
+<codeline lineno="80" refid="classhops_1_1MHO__AxisPack_1a9fa7ca7a8a187f132bbbd0926fa8fecd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>(N<sp/>&lt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">...(XAxisTypeS)),<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type<sp/><ref refid="classhops_1_1MHO__AxisPack_1a9fa7ca7a8a187f132bbbd0926fa8fecd" kindref="member">resize_axis_pack</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::size_t*<sp/>dim)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//resize<sp/>the<sp/>N-th<sp/>element<sp/>of<sp/>the<sp/>tuple</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>N<sp/>&gt;(*this).Resize(dim[N]);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>run<sp/>the<sp/>induction</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>resize_axis_pack&lt;<sp/>N<sp/>+<sp/>1<sp/>&gt;(dim);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>//inductive<sp/>access<sp/>to<sp/>all<sp/>elements<sp/>of<sp/>the<sp/>tuple,<sp/>so<sp/>we<sp/>compute<sp/>total<sp/>size<sp/>for<sp/>streaming</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N<sp/>=<sp/>0<sp/>&gt;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>(N<sp/>==<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">...(XAxisTypeS)),<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type</highlight></codeline>
+<codeline lineno="97" refid="classhops_1_1MHO__AxisPack_1a12fca3fc077761f690e3b6107616d4dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a12fca3fc077761f690e3b6107616d4dc" kindref="member">compute_total_size</ref>(uint64_t&amp;<sp/>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{};<sp/></highlight><highlight class="comment">//terminating<sp/>case,<sp/>do<sp/>nothing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N<sp/>=<sp/>0<sp/>&gt;</highlight></codeline>
+<codeline lineno="107" refid="classhops_1_1MHO__AxisPack_1ad96e3b8b8631f0f09bd8d316ae608b7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>(N<sp/>&lt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">...(XAxisTypeS)),<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type<sp/><ref refid="classhops_1_1MHO__AxisPack_1ad96e3b8b8631f0f09bd8d316ae608b7a" kindref="member">compute_total_size</ref>(uint64_t&amp;<sp/>total_size)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="108"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>total_size<sp/>+=<sp/>std::get&lt;<sp/>N<sp/>&gt;(*this).GetSerializedSize();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>run<sp/>the<sp/>induction</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>compute_total_size&lt;<sp/>N<sp/>+<sp/>1<sp/>&gt;(total_size);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N<sp/>=<sp/>0<sp/>&gt;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>(N<sp/>==<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">...(XAxisTypeS)),<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type</highlight></codeline>
+<codeline lineno="123" refid="classhops_1_1MHO__AxisPack_1a09f74e81fb7a5006f1b081d20152533a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__AxisPack_1a09f74e81fb7a5006f1b081d20152533a" kindref="member">copy</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&amp;)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{};<sp/></highlight><highlight class="comment">//terminating<sp/>case,<sp/>do<sp/>nothing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>N<sp/>=<sp/>0<sp/>&gt;</highlight></codeline>
+<codeline lineno="133" refid="classhops_1_1MHO__AxisPack_1ad8294143b2252cfe83df77ffc10f8b42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std::enable_if&lt;<sp/>(N<sp/>&lt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">...(XAxisTypeS)),<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>&gt;::type<sp/><ref refid="classhops_1_1MHO__AxisPack_1ad8294143b2252cfe83df77ffc10f8b42" kindref="member">copy</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&amp;<sp/>rhs)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::get&lt;<sp/>N<sp/>&gt;(*this).Copy(std::get&lt;<sp/>N<sp/>&gt;(rhs));</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>copy&lt;<sp/>N<sp/>+<sp/>1<sp/>&gt;(rhs);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="140" refid="classhops_1_1MHO__AxisPack_1a4a6f38e71ec46f2144f0dc3fcf83f3d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XStream<sp/>&gt;<sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>XStream&amp;<sp/><ref refid="classhops_1_1MHO__AxisPack_1a4a6f38e71ec46f2144f0dc3fcf83f3d0" kindref="member">operator&lt;&lt;</ref>(XStream&amp;<sp/>s,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&amp;<sp/>aData)</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(aData.<ref refid="classhops_1_1MHO__Serializable_1a71a1fcfba885db79a6bc9914fb73786d" kindref="member">GetVersion</ref>())</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&lt;&lt;<sp/>aData.<ref refid="classhops_1_1MHO__Serializable_1a71a1fcfba885db79a6bc9914fb73786d" kindref="member">GetVersion</ref>();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aData.StreamOutData_V0(s);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;containers&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;error,<sp/>cannot<sp/>stream<sp/>out<sp/>MHO_Axis<sp/>object<sp/>with<sp/>unknown<sp/>version:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>aData.<ref refid="classhops_1_1MHO__Serializable_1a71a1fcfba885db79a6bc9914fb73786d" kindref="member">GetVersion</ref>()<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="classhops_1_1MHO__AxisPack_1ad5e1ce3ea28ef19cba6d3bd5232a56c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XStream<sp/>&gt;<sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>XStream&amp;<sp/><ref refid="classhops_1_1MHO__AxisPack_1ad5e1ce3ea28ef19cba6d3bd5232a56c9" kindref="member">operator&gt;&gt;</ref>(XStream&amp;<sp/>s,<sp/><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>&amp;<sp/>aData)</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehops_1a79b4811cd0a8f2e7e35c6d3f85ce8b1b" kindref="member">MHO_ClassVersion</ref><sp/>vers;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>&gt;&gt;<sp/>vers;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal">(vers)</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aData.StreamInData_V0(s);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhops_1_1MHO__ClassIdentity_1a811508b3d8159f06c83aa7e5068ac95d" kindref="member">MHO_ClassIdentity::ClassVersionErrorMsg</ref>(aData,<sp/>vers);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Flag<sp/>this<sp/>as<sp/>an<sp/>unknown<sp/>object<sp/>version<sp/>so<sp/>we<sp/>can<sp/>skip<sp/>over<sp/>this<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhops_1_1MHO__ObjectStreamState_1a7cd9b24c9a25bc3c88e5e622a1182d99" kindref="member">MHO_ObjectStreamState&lt; XStream &gt;::SetUnknown</ref>(s);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XStream<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>StreamInData_V0(XStream&amp;<sp/>s)<sp/>{<sp/><ref refid="namespacehops_1a41bd4d58a4b5e7caefd28e2f16f935c6" kindref="member">istream_tuple</ref>(s,<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XStream<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>StreamOutData_V0(XStream&amp;<sp/>s)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/><ref refid="namespacehops_1ad032a709a8441f20b6a217c616cbff2a" kindref="member">ostream_tuple</ref>(s,<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>MHO_UUID<sp/>DetermineTypeUUID()</highlight><highlight class="keyword"><sp/>const<sp/>override</highlight></codeline>
+<codeline lineno="199"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_MD5HashGenerator<sp/>gen;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gen.Initialize();</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>name<sp/>=<sp/><ref refid="structhops_1_1MHO__ClassIdentity_1aa82481443af729eea9ba1ed001256202" kindref="member">MHO_ClassIdentity::ClassName</ref>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gen<sp/>&lt;&lt;<sp/>name;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gen.Finalize();</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>gen.GetDigestAsUUID();</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="207"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="comment">//TODO<sp/>FIXME<sp/>--<sp/>find<sp/>away<sp/>to<sp/>loop<sp/>over<sp/>macro<sp/>arguments<sp/>so<sp/>we<sp/>dont<sp/>need<sp/>so<sp/>many</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="comment">//boilerplate<sp/>definitions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219" refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref><sp/>=<sp/>int;</highlight></codeline>
+<codeline lineno="220" refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref><sp/>=<sp/>double;</highlight></codeline>
+<codeline lineno="221" refid="namespacehops_1a9163387793470606909d77fa3a33513d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref><sp/>=<sp/>std::string;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223" refid="MHO__AxisPack_8hh_1a7cd9be18ed070a4a1d79b12bd2b98465" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DefAxisPack1(TYPE1)<sp/>using<sp/>MHO_AxisPack_##TYPE1<sp/>=<sp/>MHO_AxisPack&lt;<sp/>MHO_Axis##TYPE1<sp/>&gt;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225" refid="MHO__AxisPack_8hh_1a405817bfbcf5e9aa2e384d65502714d7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DefAxisPack2(TYPE1,<sp/>TYPE2)<sp/>using<sp/>MHO_AxisPack_##TYPE1##_##TYPE2<sp/>=<sp/>MHO_AxisPack&lt;<sp/>MHO_Axis##TYPE1,<sp/>MHO_Axis##TYPE2<sp/>&gt;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227" refid="MHO__AxisPack_8hh_1a280869185d0f8af23c6f3e40748f4058" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DefAxisPack3(TYPE1,<sp/>TYPE2,<sp/>TYPE3)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="228"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>using<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3<sp/>=<sp/>MHO_AxisPack&lt;<sp/>MHO_Axis##TYPE1,<sp/>MHO_Axis##TYPE2,<sp/>MHO_Axis##TYPE3<sp/>&gt;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230" refid="MHO__AxisPack_8hh_1aaf7942e6f70c57263e9814e4d86cdd73" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DefAxisPack4(TYPE1,<sp/>TYPE2,<sp/>TYPE3,<sp/>TYPE4)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="231"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>using<sp/>MHO_AxisPack_##TYPE1##_##TYPE2##_##TYPE3##_##TYPE4<sp/>=<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="232"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_AxisPack&lt;<sp/>MHO_Axis##TYPE1,<sp/>MHO_Axis##TYPE2,<sp/>MHO_Axis##TYPE3,<sp/>MHO_Axis##TYPE4<sp/>&gt;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236" refid="namespacehops_1a448113d66dc1468c6e1cb3d65186b154" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a448113d66dc1468c6e1cb3d65186b154" kindref="member">DefAxisPack1</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="237" refid="namespacehops_1aa7e371fcc850757bd8f8ddabdc45a391" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a448113d66dc1468c6e1cb3d65186b154" kindref="member">DefAxisPack1</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="238" refid="namespacehops_1af0b40fe097c506704348d20cbb196a65" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a448113d66dc1468c6e1cb3d65186b154" kindref="member">DefAxisPack1</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="243" refid="namespacehops_1ade8c9bff2715f81444d7cab0b21cb843" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="244" refid="namespacehops_1a218c756b89f12b4f2bbbbe3d0359fe4c" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="245" refid="namespacehops_1a64e43b68b8ad8020d3e67f571727d591" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="246" refid="namespacehops_1af8c28795e28809f4ab0954bd75015984" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="247" refid="namespacehops_1aa22d36ca42fb01dda36333b5c7315db2" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="248" refid="namespacehops_1a64f880b2026005fdf21b355ee1b569ff" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="249" refid="namespacehops_1a32476257141883bbd3d56c82d6994932" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="250" refid="namespacehops_1ae54372173572de85288948ee08de11d9" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a88037b70c7c9da061fc7d9fffffc599d" kindref="member">DefAxisPack2</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight></codeline>
+<codeline lineno="254" refid="namespacehops_1a667f8a782613a5683117c78038717c2c" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="255" refid="namespacehops_1a80e034e55c47ecdf7a55f9327500b6dd" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="256" refid="namespacehops_1a51d40f4ff6a3b4cc54e77325cd3e7275" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="257" refid="namespacehops_1a9fa11b02bf1e60ab37c873c700dcf62e" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="258" refid="namespacehops_1a5f282101376bb44a8fb444e2c2f5a487" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="259" refid="namespacehops_1afedd69475409d572aa711574ec278751" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="260" refid="namespacehops_1ac73c62965b8ea352a88f0cb186917208" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="261" refid="namespacehops_1a52dc1927ea457f651a4b2a06e693bae9" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="262" refid="namespacehops_1aba073cb004e87fc62ffbcc8f7da467ee" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264" refid="namespacehops_1a27019be0ec1e3b7a6eae6c97c68c8fb4" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="265" refid="namespacehops_1a4edeabf2eea790774debcbe393b2a6e6" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="266" refid="namespacehops_1a2cb525d99f3aee9047aeafe2a34a4410" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="267" refid="namespacehops_1af4770804e01ce20a06ad3dfebde65677" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="268" refid="namespacehops_1ab494f9fd9472378e9666241117e1980b" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="269" refid="namespacehops_1af5c1c84049c26d336c9256e65a383a28" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="270" refid="namespacehops_1a2b99e2484f51306d4ac7e6e59158c3c6" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="271" refid="namespacehops_1af53445d9c9ff147eea83603cb3a11554" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="272" refid="namespacehops_1aa5010d8d4cb192034d518b6241709b48" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274" refid="namespacehops_1acf104c2fd7a030ccf399824229326593" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="275" refid="namespacehops_1a020f89283201497f076765a2bba6976d" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="276" refid="namespacehops_1ac4ff07ff31378956b5bb0dade8bfd260" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="277" refid="namespacehops_1a1debf395b0334ff89f0440d8c74d213b" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="278" refid="namespacehops_1a1eeaa8ab4170cf606c3870b349d4d6e8" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="279" refid="namespacehops_1a2f2267797758d1c21a9058c872878628" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="280" refid="namespacehops_1a1d906fec37b5d1b69cdf8e8f01b0ecfa" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="281" refid="namespacehops_1a655e80d6c21f3f1de4efbd3e6241d83d" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="282" refid="namespacehops_1ad3ca30d20396f068c26c7d994c987eef" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a667f8a782613a5683117c78038717c2c" kindref="member">DefAxisPack3</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286" refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="287" refid="namespacehops_1a87a63e11638f637565865590d02c8c75" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="288" refid="namespacehops_1ae65a279180baa783d4b67532f6857972" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="289" refid="namespacehops_1a02a31899087f8b916474b5eaa7ee9bcb" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="290" refid="namespacehops_1a5d046471922264d099d40201b9542990" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="291" refid="namespacehops_1af7453ec2d35e002d35b6d7b3989b48de" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="292" refid="namespacehops_1a2480bb3119efcffb136e5e3b21705269" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="293" refid="namespacehops_1a30129a8dbd69efa63869e22031c8479b" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="294" refid="namespacehops_1abf22c32e1a191f3933d86847b374566e" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296" refid="namespacehops_1a40904beb2f614dd9a90c9ee3c73393d5" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="297" refid="namespacehops_1a69648e2b71941f75387b96a46720702a" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="298" refid="namespacehops_1a6b2fd1e67990e8a854972f1911dfd53b" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="299" refid="namespacehops_1ac849b8e1dfa5b4ed412af7de5cf3f7cf" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="300" refid="namespacehops_1a3d1252351591ac7b892b3a5ede8d9512" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="301" refid="namespacehops_1a5086759d5ed7dfa116aa1a387c0d054d" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="302" refid="namespacehops_1aa7ce7b028ba950c44c93989b0a101cf8" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="303" refid="namespacehops_1aecf9204c7cd5a9d2a03e8bdda7e96ce3" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="304" refid="namespacehops_1a6081caee5e8bea69ea3d72f6ccc14aaa" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306" refid="namespacehops_1a72420512dd0b0f45978e4096829c2738" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="307" refid="namespacehops_1a4b94f21f0fdacaf8125f6a8503e2e4ba" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="308" refid="namespacehops_1a0dda627124fb1e3611ce5d988c2d425a" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="309" refid="namespacehops_1acdd63a2acb8a0a53bdb7100fbdae2141" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="310" refid="namespacehops_1ab7b8ab8523594917975102925ff4eb90" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="311" refid="namespacehops_1ada3618e7c2fd363d26215ecac252b8dc" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="312" refid="namespacehops_1a1afe84c835e9235d0fcb196a80583df3" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="313" refid="namespacehops_1aee7c77def0bbf82329b2013d56ca7687" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="314" refid="namespacehops_1a06538744f5f3b5e698a01f9db838d68c" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318" refid="namespacehops_1a6cb91eeafce50d168227bc076051b4fb" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="319" refid="namespacehops_1af49e9f0731c96049c026789d9b8b4c89" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="320" refid="namespacehops_1aaece5e59c881e0f8928bf1be2e7fcdf1" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="321" refid="namespacehops_1a8cf7ad7a7d6ee0940bff4777d70beaf9" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="322" refid="namespacehops_1a181df0db06c15284692e99f222eab953" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="323" refid="namespacehops_1a570e91d6f080ecd892093db18a5223e1" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="324" refid="namespacehops_1a71fab5189e2def6882362236a4ddf99c" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="325" refid="namespacehops_1abe8c0bedfb3ca91945e86d76ee449189" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="326" refid="namespacehops_1a88fea3689419f898691a3caa86f963fd" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328" refid="namespacehops_1ab204685e0c58f0681f31434ff157c4d1" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="329" refid="namespacehops_1ae781b85d95cf58ba6bba5a7249189595" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="330" refid="namespacehops_1ac17dd4ea91770c5e9dc26de233f1496b" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="331" refid="namespacehops_1a1fe58dcd3cdd981efccd3a635951054f" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="332" refid="namespacehops_1a0ed3bdb4560d73476a9bb35f29cd0f85" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="333" refid="namespacehops_1a48bcd6c399d6744af06929fd39ecc9c1" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="334" refid="namespacehops_1af7c92693e9d51d79947093a7c1ff8661" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="335" refid="namespacehops_1ad0408eb0fda2f46c50f931087b203069" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="336" refid="namespacehops_1a74a19283629b57fc7ba9bb91abc169ae" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338" refid="namespacehops_1a9e6830c8aa8646716959b7a221768d52" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="339" refid="namespacehops_1a18f25a29509a32075accb5004c143702" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="340" refid="namespacehops_1af6dd2e0b7a7366860102b9bb7667ebd7" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="341" refid="namespacehops_1ac777451a6df11928be91f7b7f2b6f44e" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="342" refid="namespacehops_1aba414cee0aad80baf2ea26b1bacf9a83" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="343" refid="namespacehops_1a64770c279fca37026196c7f98b51c6bd" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="344" refid="namespacehops_1af05c574f6c7793575943fa36612a537c" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="345" refid="namespacehops_1a84495f90ffe9e9a3d127c71deaa2ee19" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="346" refid="namespacehops_1a17cb2c210e0041930a92b22cd9b1c77f" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350" refid="namespacehops_1ac2813a4cf08d1193ab4bfd64b7662a4c" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="351" refid="namespacehops_1add124d2a4cfdc55466f2062b22cfb86a" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="352" refid="namespacehops_1a6b917a80f3e9be386610c4c3aa56aa01" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="353" refid="namespacehops_1a2299823df5074fd7430ebb485b8ab421" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="354" refid="namespacehops_1a01136372b7667743ee0c273e52aa1aee" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="355" refid="namespacehops_1a96ab6f2110ff5fc6c81a70840fa7d229" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="356" refid="namespacehops_1a64e640f40fd8969f6fd5100cc75a0b79" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="357" refid="namespacehops_1a90c4d815d6df28412de46ee891a7fa67" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="358" refid="namespacehops_1aba4ea403239e750e2dce743ebe274ff8" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"></highlight></codeline>
+<codeline lineno="360" refid="namespacehops_1afa21637ac9a4a42bc350c459c962ba90" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="361" refid="namespacehops_1ab75e66e6125c1df44ac22603c96aa9c1" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="362" refid="namespacehops_1a4216f6c826facdc4a45ef2bf1885589a" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="363" refid="namespacehops_1aa0513cd15f14d0a4a496cc8255247961" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="364" refid="namespacehops_1a5c99190b7cb7714eb81ba5fd31f53ba9" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="365" refid="namespacehops_1a5e54dbbe94451e0b7da8ed80820ce6d4" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="366" refid="namespacehops_1a2c29a6ef3312b9d4007898bf2215db60" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="367" refid="namespacehops_1ae0d8c1cfb8593291280689dcbaf6fd9e" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="368" refid="namespacehops_1a75d8a8b769e89a522fb01ba0de94e71f" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight></codeline>
+<codeline lineno="370" refid="namespacehops_1a8c0fd7eddfbc8bd6708a146078b66f9a" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="371" refid="namespacehops_1aed0f4121e6850532bf7cbb70b860df6d" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="372" refid="namespacehops_1aba8552a0854a2dfbcda2deccafbbfe63" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="373" refid="namespacehops_1a8a5e43f3f4075770c7ce6b2ceb0c3641" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="374" refid="namespacehops_1a8fec75ff92cfe86bcd8c5c911eaaa3d3" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="375" refid="namespacehops_1afaa0566fdb51d05c3f63c93ec7bc8cb7" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="376" refid="namespacehops_1ac4e7a1ece8950e1bbf7ca8bc390803b0" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a5e46198ab188f5da37f5f03ebebcdc17" kindref="member">Int</ref>);</highlight></codeline>
+<codeline lineno="377" refid="namespacehops_1a1fc8520a8d74deca2fdc32e6ad24aa80" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1ac5d5af22f2673e1a054bdd3eb64f5825" kindref="member">Double</ref>);</highlight></codeline>
+<codeline lineno="378" refid="namespacehops_1ae3d3ee9d28e003fbd77f9b8d845dee99" refkind="member"><highlight class="normal"><ref refid="namespacehops_1ab315b360ca4a6b4825c0d442f9e18824" kindref="member">DefAxisPack4</ref>(<ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>,<sp/><ref refid="namespacehops_1a9163387793470606909d77fa3a33513d" kindref="member">String</ref>);</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"></highlight></codeline>
+<codeline lineno="380"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"></highlight></codeline>
+<codeline lineno="382"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh"/>
+  </compounddef>
+</doxygen>

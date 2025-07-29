@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsc__life" kind="struct" language="C++" prot="public">
+    <compoundname>sc_life</compoundname>
+    <includes refid="htime_8h" local="no">htime.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsc__life_1aedf275100661cccc026a9337b477d1f2" prot="public" static="no" mutable="no">
+        <type><ref refid="htime_8h_1a0b2457f5821a4fe275e953e24fe686c2" kindref="member">HTime</ref></type>
+        <definition>HTime sc_life::birth</definition>
+        <argsstring></argsstring>
+        <name>birth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="230" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1abf5499f5c5dafaf0a7c1acb80fb87444" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char sc_life::comment[40]</definition>
+        <argsstring>[40]</argsstring>
+        <name>comment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="236" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1aabfae4f48247ab772a8473c50cfe8067" prot="public" static="no" mutable="no">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl sc_life::dsc_dt</definition>
+        <argsstring></argsstring>
+        <name>dsc_dt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="232" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1a174a7153489bfe31e73fd7678c0c8d47" prot="public" static="no" mutable="no">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl sc_life::error</definition>
+        <argsstring></argsstring>
+        <name>error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="231" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1a85eda370b2207bbf0d6126696373e606" prot="public" static="no" mutable="no">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl sc_life::esc_dt</definition>
+        <argsstring></argsstring>
+        <name>esc_dt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="233" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1a92ce2c743c3ef1e1f3ff85b0ebc46822" prot="public" static="no" mutable="no">
+        <type><ref refid="htime_8h_1ae985f809c2bec65c7cee733310c06bfe" kindref="member">HLife</ref> *</type>
+        <definition>HLife* sc_life::last</definition>
+        <argsstring></argsstring>
+        <name>last</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="234" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1a8532c6d4338172b9d2eece448d34936d" prot="public" static="no" mutable="no">
+        <type><ref refid="htime_8h_1ae985f809c2bec65c7cee733310c06bfe" kindref="member">HLife</ref> *</type>
+        <definition>HLife* sc_life::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="235" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1a82cd06ca4b7637d4d5e5b501e5ea20dc" prot="public" static="no" mutable="no">
+        <type><ref refid="htime_8h_1ae985f809c2bec65c7cee733310c06bfe" kindref="member">HLife</ref> *</type>
+        <definition>HLife* sc_life::old</definition>
+        <argsstring></argsstring>
+        <name>old</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="237" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1a633dcdbdb2c76078fe3d85f64c6a514e" prot="public" static="no" mutable="no">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl sc_life::span</definition>
+        <argsstring></argsstring>
+        <name>span</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="229" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsc__life_1a40d26b07a79850ae418b4646b7b5ca38" prot="public" static="no" mutable="no">
+        <type><ref refid="htime_8h_1a94a762aeadbfad6e4dbc86e344c1d7ae" kindref="member">GTime</ref></type>
+        <definition>GTime sc_life::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="228" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>time_code</label>
+        <link refid="structtime__code"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>sc_life</label>
+        <link refid="structsc__life"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>dsc_dt</edgelabel>
+          <edgelabel>error</edgelabel>
+          <edgelabel>esc_dt</edgelabel>
+          <edgelabel>span</edgelabel>
+          <edgelabel>start</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>comment</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>birth</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>last</edgelabel>
+          <edgelabel>next</edgelabel>
+          <edgelabel>old</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" line="227" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/htime.h" bodystart="227" bodyend="238"/>
+    <listofallmembers>
+      <member refid="structsc__life_1aedf275100661cccc026a9337b477d1f2" prot="public" virt="non-virtual"><scope>sc_life</scope><name>birth</name></member>
+      <member refid="structsc__life_1abf5499f5c5dafaf0a7c1acb80fb87444" prot="public" virt="non-virtual"><scope>sc_life</scope><name>comment</name></member>
+      <member refid="structsc__life_1aabfae4f48247ab772a8473c50cfe8067" prot="public" virt="non-virtual"><scope>sc_life</scope><name>dsc_dt</name></member>
+      <member refid="structsc__life_1a174a7153489bfe31e73fd7678c0c8d47" prot="public" virt="non-virtual"><scope>sc_life</scope><name>error</name></member>
+      <member refid="structsc__life_1a85eda370b2207bbf0d6126696373e606" prot="public" virt="non-virtual"><scope>sc_life</scope><name>esc_dt</name></member>
+      <member refid="structsc__life_1a92ce2c743c3ef1e1f3ff85b0ebc46822" prot="public" virt="non-virtual"><scope>sc_life</scope><name>last</name></member>
+      <member refid="structsc__life_1a8532c6d4338172b9d2eece448d34936d" prot="public" virt="non-virtual"><scope>sc_life</scope><name>next</name></member>
+      <member refid="structsc__life_1a82cd06ca4b7637d4d5e5b501e5ea20dc" prot="public" virt="non-virtual"><scope>sc_life</scope><name>old</name></member>
+      <member refid="structsc__life_1a633dcdbdb2c76078fe3d85f64c6a514e" prot="public" virt="non-virtual"><scope>sc_life</scope><name>span</name></member>
+      <member refid="structsc__life_1a40d26b07a79850ae418b4646b7b5ca38" prot="public" virt="non-virtual"><scope>sc_life</scope><name>start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,532 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="scan__name__edit_8c" kind="file" language="C++">
+    <compoundname>scan_name_edit.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="fourmer_8h" local="yes">fourmer.h</includes>
+    <incdepgraph>
+      <node id="34">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>stdarg.h</label>
+      </node>
+      <node id="11">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="38">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>sys/times.h</label>
+      </node>
+      <node id="17">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="21">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="43">
+        <label>stdint.h</label>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="26">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="44">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="20">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>fourmer.h</label>
+        <link refid="fourmer_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="13">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>sys/types.h</label>
+      </node>
+      <node id="32">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="9">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="36">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>complex.h</label>
+      </node>
+      <node id="28">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="49">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="18">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="42">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>scan_name_edit.c</label>
+        <link refid="scan__name__edit_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="50">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="27">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="6">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="scan__name__edit_8c_1a4726813192175670b21918e9ea83e65d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int reconcile_names</definition>
+        <argsstring>(char *scanA, char *scanB, char *scanC)</argsstring>
+        <name>reconcile_names</name>
+        <param>
+          <type>char *</type>
+          <declname>scanA</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>scanB</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>scanC</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c" line="18" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c" bodystart="18" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="scan__name__edit_8c_1a18300735609bece8367427092bf49022" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void revise</definition>
+        <argsstring>(char *line, char *old, int olen, char *new_val)</argsstring>
+        <name>revise</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>old</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>olen</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>new_val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c" line="31" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c" bodystart="31" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="scan__name__edit_8c_1a4693af66b1a62332b200da9671c8895d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void scan_name_edit</definition>
+        <argsstring>(char lA[][MAX_CHARS], int nA, char lB[][MAX_CHARS], int nB)</argsstring>
+        <name>scan_name_edit</name>
+        <param>
+          <type>char</type>
+          <declname>lA</declname>
+          <array>[][MAX_CHARS]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nA</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>lB</declname>
+          <array>[][MAX_CHARS]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c" line="51" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c" bodystart="51" bodyend="76"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>scan_name_edit.c<sp/>495<sp/>2011-11-01<sp/>19:29:32Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Reconcile<sp/>the<sp/>scan<sp/>names<sp/>and<sp/>update<sp/>the<sp/>lines<sp/>where<sp/>found.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fourmer_8h" kindref="compound">fourmer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>How<sp/>to<sp/>reconcile<sp/>depends<sp/>on<sp/>what<sp/>we<sp/>have.</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>If<sp/>the<sp/>new<sp/>name<sp/>is<sp/>the<sp/>same<sp/>as<sp/>A&apos;s,<sp/>return<sp/>nonzero</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>and<sp/>we<sp/>can<sp/>skip<sp/>the<sp/>rest<sp/>of<sp/>the<sp/>work.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>reconcile_names(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*scanA,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*scanB,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*scanC)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>left<sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*join<sp/>=<sp/>getenv(</highlight><highlight class="stringliteral">&quot;HOPS_FOURMER_JOIN&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(*scanA<sp/>&amp;&amp;<sp/>*scanB<sp/>&amp;&amp;<sp/>(*scanA<sp/>==<sp/>*scanB)<sp/>&amp;&amp;<sp/>(*scanA<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;;&apos;</highlight><highlight class="normal">)<sp/>&amp;&amp;<sp/>left--)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>*scanC++<sp/>=<sp/>*scanA++;<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>scanB++;<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>snprintf(scanC,<sp/>left,<sp/>join<sp/>?<sp/>join<sp/>:<sp/></highlight><highlight class="stringliteral">&quot;JOIN&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(!strcmp(scanA,<sp/>scanC));</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>revise(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*old,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>olen,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*new_val)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>mine[<ref refid="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" kindref="member">MAX_CHARS</ref>];</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*at,<sp/>*rest;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((at<sp/>=<sp/>strstr(line,<sp/>old))<sp/>==<sp/>NULL)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>not<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strlen(line)<sp/>-<sp/>olen<sp/>+<sp/>strlen(new_val)<sp/>&gt;<sp/><ref refid="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" kindref="member">MAX_CHARS</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;<sp/><sp/></highlight><highlight class="comment">//<sp/>danger!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>*at<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>rest<sp/>=<sp/>at<sp/>+<sp/>olen<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(mine,<sp/></highlight><highlight class="stringliteral">&quot;%s%s&quot;</highlight><highlight class="normal">,<sp/>new_val,<sp/>rest);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>strcat(line,<sp/>mine);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>Looking<sp/>for<sp/>something<sp/>like<sp/>this.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>^$SCHED;$</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>^scan<sp/>&lt;AorBname&gt;;$</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>*IF*<sp/>we<sp/>find<sp/>it,<sp/>generate<sp/>a<sp/>new<sp/>scan<sp/>name<sp/>from<sp/>the<sp/>common<sp/>characters.</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>Scan<sp/>names<sp/>are<sp/>at<sp/>most<sp/>32<sp/>characters.</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="scan__name__edit_8c_1a4693af66b1a62332b200da9671c8895d" kindref="member">scan_name_edit</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>lA[][<ref refid="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" kindref="member">MAX_CHARS</ref>],<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nA,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>lB[][<ref refid="fourmer_8h_1a8adbf2b1e0569dded992fee665e86e70" kindref="member">MAX_CHARS</ref>],<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nB)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iA,<sp/>iB,<sp/>len;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>scanA[33],<sp/>scanB[33],<sp/>scanC[33];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(iA<sp/>=<sp/>0;<sp/>iA<sp/>&lt;<sp/>nA;<sp/>iA++)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!strcmp(lA[iA],<sp/></highlight><highlight class="stringliteral">&quot;$SCHED;&quot;</highlight><highlight class="normal">))<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iA<sp/>==<sp/>nA<sp/>||<sp/>!strcmp(lA[++iA],<sp/></highlight><highlight class="stringliteral">&quot;scan<sp/>&quot;</highlight><highlight class="normal">))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(1<sp/>!=<sp/>sscanf(lA[iA],<sp/></highlight><highlight class="stringliteral">&quot;scan<sp/>%32s;&quot;</highlight><highlight class="normal">,<sp/>scanA))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Scan<sp/>from<sp/>A<sp/>is<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>scanA);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(iB<sp/>=<sp/>0;<sp/>iB<sp/>&lt;<sp/>nB;<sp/>iB++)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!strcmp(lB[iB],<sp/></highlight><highlight class="stringliteral">&quot;$SCHED;&quot;</highlight><highlight class="normal">))<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(iB<sp/>==<sp/>nB<sp/>||<sp/>!strcmp(lB[++iB],<sp/></highlight><highlight class="stringliteral">&quot;scan<sp/>&quot;</highlight><highlight class="normal">))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(1<sp/>!=<sp/>sscanf(lB[iB],<sp/></highlight><highlight class="stringliteral">&quot;scan<sp/>%32s;&quot;</highlight><highlight class="normal">,<sp/>scanB))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Scan<sp/>from<sp/>B<sp/>is<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>scanB);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(reconcile_names(scanA,<sp/>scanB,<sp/>scanC))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;New<sp/>Scan<sp/>name<sp/>is<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>scanC);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>len<sp/>=<sp/>strlen(scanA);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/>;<sp/>iA<sp/>&lt;<sp/>nA;<sp/>iA++)<sp/>revise(lA[iA],<sp/>scanA,<sp/>len,<sp/>scanC);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>len<sp/>=<sp/>strlen(scanB);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<sp/>;<sp/>iB<sp/>&lt;<sp/>nB;<sp/>iB++)<sp/>revise(lB[iB],<sp/>scanB,<sp/>len,<sp/>scanC);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/scan_name_edit.c"/>
+  </compounddef>
+</doxygen>

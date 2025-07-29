@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1type__206" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::type_206</compoundname>
+    <basecompoundref refid="classmk4io_1_1mk4io_1_1Mk4StructureBase" prot="public" virt="non-virtual">mk4io.mk4io.Mk4StructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1type__206_1a51a6d25c9bb0b55bd6bfd36e7e064b6e" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.type_206::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;record_id&apos;, ctypes.c_char * 3),
+        (&apos;<ref refid="fourfit3_8c_1a82699a6dd4ee034f1a73b9eed053e7bd" kindref="member">version_no</ref>&apos;, ctypes.c_char * 2),
+        (&apos;unused1&apos;, ctypes.c_char * 3),
+        (&apos;start&apos;, <ref refid="classmk4io_1_1mk4io_1_1date" kindref="compound">date</ref>),
+        (&apos;first_ap&apos;, ctypes.c_short),
+        (&apos;last_ap&apos;, ctypes.c_short),
+        (&apos;accepted&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;weights&apos;, <ref refid="classmk4io_1_1mk4io_1_1sbweights" kindref="compound">sbweights</ref> * 64),
+        (&apos;intg_time&apos;, ctypes.c_float),
+        (&apos;accept_ratio&apos;, ctypes.c_float),
+        (&apos;discard&apos;, ctypes.c_float),
+        (&apos;reason1&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;reason2&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;reason3&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;reason4&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;reason5&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;reason6&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;reason7&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;reason8&apos;, <ref refid="classmk4io_1_1mk4io_1_1sidebands" kindref="compound">sidebands</ref> * 64),
+        (&apos;ratesize&apos;, ctypes.c_short),
+        (&apos;mbdsize&apos;, ctypes.c_short),
+        (&apos;sbdsize&apos;, ctypes.c_short),
+        (&apos;unused2&apos;, ctypes.c_char * 6),
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="471" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="471" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_206</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__206"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_206</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__206"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="470" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="470" bodyend="497"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a0772ef701b441c652a3bbde35de2261a" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_206</scope><name>__eq__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a7347e4cacf99a75b7d7788d94e502398" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_206</scope><name>__ne__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__206_1a51a6d25c9bb0b55bd6bfd36e7e064b6e" prot="private" virt="non-virtual"><scope>mk4io::mk4io::type_206</scope><name>_fields_</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1af9c631103b72450dc357ed98d0f7b6d5" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_206</scope><name>approximately_equal</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a27bca4a0801b033de3fdbebe84eae485" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_206</scope><name>contains_floats</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1ae00dca3ceb7ad4ebb8144fbcd6ef51b6" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_206</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

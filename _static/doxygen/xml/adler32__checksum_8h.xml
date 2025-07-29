@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="adler32__checksum_8h" kind="file" language="C++">
+    <compoundname>adler32_checksum.h</compoundname>
+    <includedby refid="fill__222_8c" local="yes">fill_222.c</includedby>
+    <includedby refid="adler32__checksum_8c" local="yes">adler32_checksum.c</includedby>
+    <includedby refid="compute__control__file__hash_8c" local="yes">compute_control_file_hash.c</includedby>
+    <invincdepgraph>
+      <node id="4">
+        <label>compute_control_file_hash.c</label>
+        <link refid="compute__control__file__hash_8c"/>
+      </node>
+      <node id="1">
+        <label>adler32_checksum.h</label>
+        <link refid="adler32__checksum_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>adler32_checksum.c</label>
+        <link refid="adler32__checksum_8c"/>
+      </node>
+      <node id="2">
+        <label>fill_222.c</label>
+        <link refid="fill__222_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="adler32__checksum_8h_1a0dff171c2773de00b3f678d3cee156f6" prot="public" static="no">
+        <name>MOD_ADLER</name>
+        <initializer>65521</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/adler32_checksum.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/adler32_checksum.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="adler32__checksum_8h_1acba56e2e5c59a0904e4cf7a933989e28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int adler32_checksum</definition>
+        <argsstring>(unsigned char *buf, int len)</argsstring>
+        <name>adler32_checksum</name>
+        <param>
+          <type>unsigned char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/adler32_checksum.h" line="6" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/adler32_checksum.c" bodystart="3" bodyend="15" declfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/adler32_checksum.h" declline="6" declcolumn="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ADLER32_CHECKSUM_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ADLER32_CHECKSUM_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="adler32__checksum_8h_1a0dff171c2773de00b3f678d3cee156f6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOD_ADLER<sp/>65521</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="adler32__checksum_8h_1acba56e2e5c59a0904e4cf7a933989e28" kindref="member">adler32_checksum</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>include<sp/>guard:<sp/>ADLER32_CHECKSUM_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/adler32_checksum.h"/>
+  </compounddef>
+</doxygen>

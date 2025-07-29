@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_d4c47169bf54d66b23c38e09f7a054c0" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="addr__100_8c">addr_100.c</innerfile>
+    <innerfile refid="addr__101_8c">addr_101.c</innerfile>
+    <innerfile refid="addr__110_8c">addr_110.c</innerfile>
+    <innerfile refid="addr__120_8c">addr_120.c</innerfile>
+    <innerfile refid="addr__200_8c">addr_200.c</innerfile>
+    <innerfile refid="addr__201_8c">addr_201.c</innerfile>
+    <innerfile refid="addr__202_8c">addr_202.c</innerfile>
+    <innerfile refid="addr__203_8c">addr_203.c</innerfile>
+    <innerfile refid="addr__204_8c">addr_204.c</innerfile>
+    <innerfile refid="addr__205_8c">addr_205.c</innerfile>
+    <innerfile refid="addr__206_8c">addr_206.c</innerfile>
+    <innerfile refid="addr__207_8c">addr_207.c</innerfile>
+    <innerfile refid="addr__208_8c">addr_208.c</innerfile>
+    <innerfile refid="addr__210_8c">addr_210.c</innerfile>
+    <innerfile refid="addr__212_8c">addr_212.c</innerfile>
+    <innerfile refid="addr__220_8c">addr_220.c</innerfile>
+    <innerfile refid="addr__221_8c">addr_221.c</innerfile>
+    <innerfile refid="addr__222_8c">addr_222.c</innerfile>
+    <innerfile refid="addr__230_8c">addr_230.c</innerfile>
+    <innerfile refid="addr__300_8c">addr_300.c</innerfile>
+    <innerfile refid="addr__301_8c">addr_301.c</innerfile>
+    <innerfile refid="addr__302_8c">addr_302.c</innerfile>
+    <innerfile refid="addr__303_8c">addr_303.c</innerfile>
+    <innerfile refid="addr__304_8c">addr_304.c</innerfile>
+    <innerfile refid="addr__305_8c">addr_305.c</innerfile>
+    <innerfile refid="addr__306_8c">addr_306.c</innerfile>
+    <innerfile refid="addr__307_8c">addr_307.c</innerfile>
+    <innerfile refid="addr__308_8c">addr_308.c</innerfile>
+    <innerfile refid="addr__309_8c">addr_309.c</innerfile>
+    <innerfile refid="clear__100_8c">clear_100.c</innerfile>
+    <innerfile refid="clear__101_8c">clear_101.c</innerfile>
+    <innerfile refid="clear__110_8c">clear_110.c</innerfile>
+    <innerfile refid="clear__120_8c">clear_120.c</innerfile>
+    <innerfile refid="clear__200_8c">clear_200.c</innerfile>
+    <innerfile refid="clear__201_8c">clear_201.c</innerfile>
+    <innerfile refid="clear__202_8c">clear_202.c</innerfile>
+    <innerfile refid="clear__203_8c">clear_203.c</innerfile>
+    <innerfile refid="clear__204_8c">clear_204.c</innerfile>
+    <innerfile refid="clear__205_8c">clear_205.c</innerfile>
+    <innerfile refid="clear__206_8c">clear_206.c</innerfile>
+    <innerfile refid="clear__207_8c">clear_207.c</innerfile>
+    <innerfile refid="clear__208_8c">clear_208.c</innerfile>
+    <innerfile refid="clear__210_8c">clear_210.c</innerfile>
+    <innerfile refid="clear__212_8c">clear_212.c</innerfile>
+    <innerfile refid="clear__220_8c">clear_220.c</innerfile>
+    <innerfile refid="clear__221_8c">clear_221.c</innerfile>
+    <innerfile refid="clear__222_8c">clear_222.c</innerfile>
+    <innerfile refid="clear__230_8c">clear_230.c</innerfile>
+    <innerfile refid="clear__300_8c">clear_300.c</innerfile>
+    <innerfile refid="clear__301_8c">clear_301.c</innerfile>
+    <innerfile refid="clear__302_8c">clear_302.c</innerfile>
+    <innerfile refid="clear__303_8c">clear_303.c</innerfile>
+    <innerfile refid="clear__304_8c">clear_304.c</innerfile>
+    <innerfile refid="clear__305_8c">clear_305.c</innerfile>
+    <innerfile refid="clear__306_8c">clear_306.c</innerfile>
+    <innerfile refid="clear__307_8c">clear_307.c</innerfile>
+    <innerfile refid="clear__308_8c">clear_308.c</innerfile>
+    <innerfile refid="clear__309_8c">clear_309.c</innerfile>
+    <innerfile refid="clear__coord_8c">clear_coord.c</innerfile>
+    <innerfile refid="clear__mk4corel_8c">clear_mk4corel.c</innerfile>
+    <innerfile refid="clear__mk4fringe_8c">clear_mk4fringe.c</innerfile>
+    <innerfile refid="clear__mk4sdata_8c">clear_mk4sdata.c</innerfile>
+    <innerfile refid="compress_8c">compress.c</innerfile>
+    <innerfile refid="copy__100_8c">copy_100.c</innerfile>
+    <innerfile refid="copy__101_8c">copy_101.c</innerfile>
+    <innerfile refid="copy__110_8c">copy_110.c</innerfile>
+    <innerfile refid="copy__120_8c">copy_120.c</innerfile>
+    <innerfile refid="copy__200_8c">copy_200.c</innerfile>
+    <innerfile refid="copy__201_8c">copy_201.c</innerfile>
+    <innerfile refid="copy__202_8c">copy_202.c</innerfile>
+    <innerfile refid="copy__203_8c">copy_203.c</innerfile>
+    <innerfile refid="copy__204_8c">copy_204.c</innerfile>
+    <innerfile refid="copy__205_8c">copy_205.c</innerfile>
+    <innerfile refid="copy__206_8c">copy_206.c</innerfile>
+    <innerfile refid="copy__207_8c">copy_207.c</innerfile>
+    <innerfile refid="copy__208_8c">copy_208.c</innerfile>
+    <innerfile refid="copy__210_8c">copy_210.c</innerfile>
+    <innerfile refid="copy__212_8c">copy_212.c</innerfile>
+    <innerfile refid="copy__220_8c">copy_220.c</innerfile>
+    <innerfile refid="copy__221_8c">copy_221.c</innerfile>
+    <innerfile refid="copy__222_8c">copy_222.c</innerfile>
+    <innerfile refid="copy__230_8c">copy_230.c</innerfile>
+    <innerfile refid="copy__300_8c">copy_300.c</innerfile>
+    <innerfile refid="copy__301_8c">copy_301.c</innerfile>
+    <innerfile refid="copy__302_8c">copy_302.c</innerfile>
+    <innerfile refid="copy__303_8c">copy_303.c</innerfile>
+    <innerfile refid="copy__304_8c">copy_304.c</innerfile>
+    <innerfile refid="copy__305_8c">copy_305.c</innerfile>
+    <innerfile refid="copy__306_8c">copy_306.c</innerfile>
+    <innerfile refid="copy__307_8c">copy_307.c</innerfile>
+    <innerfile refid="copy__308_8c">copy_308.c</innerfile>
+    <innerfile refid="copy__309_8c">copy_309.c</innerfile>
+    <innerfile refid="corel__alloc_8c">corel_alloc.c</innerfile>
+    <innerfile refid="display__221_8c">display_221.c</innerfile>
+    <innerfile refid="init__000_8c">init_000.c</innerfile>
+    <innerfile refid="open__datafile_8c">open_datafile.c</innerfile>
+    <innerfile refid="read__mk4corel_8c">read_mk4corel.c</innerfile>
+    <innerfile refid="read__mk4file_8c">read_mk4file.c</innerfile>
+    <innerfile refid="read__mk4fringe_8c">read_mk4fringe.c</innerfile>
+    <innerfile refid="read__mk4sdata_8c">read_mk4sdata.c</innerfile>
+    <innerfile refid="write__err_8c">write_err.c</innerfile>
+    <innerfile refid="write__mk4corel_8c">write_mk4corel.c</innerfile>
+    <innerfile refid="write__mk4fringe_8c">write_mk4fringe.c</innerfile>
+    <innerfile refid="write__mk4sdata_8c">write_mk4sdata.c</innerfile>
+    <innerfile refid="write__record_8c">write_record.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/"/>
+  </compounddef>
+</doxygen>

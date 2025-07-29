@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsvex__struct" kind="struct" language="C++" prot="public">
+    <compoundname>svex_struct</compoundname>
+    <includes refid="svex_8h" local="no">svex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsvex__struct_1ab8b476641b1084a7fa23a99c3a37e496" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpcm__cfg__struct" kindref="compound">pcm_cfg_struct</ref></type>
+        <definition>struct pcm_cfg_struct svex_struct::pcm_cfg[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>pcm_cfg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="31" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsvex__struct_1aaa742f99e3a1d5e8a290d5dd5f6d6d9e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structSU__chan__out__struct" kindref="compound">SU_chan_out_struct</ref></type>
+        <definition>struct SU_chan_out_struct svex_struct::SU_chan_out[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>SU_chan_out</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="31" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsvex__struct_1a9b4a439280f26b722362c25b02afd715" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpcm__tab__struct" kindref="compound">pcm_tab_struct</ref></type>
+        <definition>struct pcm_tab_struct svex_struct::tables</definition>
+        <argsstring></argsstring>
+        <name>tables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="31" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="6">
+        <label>pcm_cfg_struct</label>
+        <link refid="structpcm__cfg__struct"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>counter_coeff</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>SU_chan_out_struct</label>
+        <link refid="structSU__chan__out__struct"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>freq_a</edgelabel>
+          <edgelabel>freq_b</edgelabel>
+          <edgelabel>freq_c</edgelabel>
+          <edgelabel>freq_d</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>chan_ID</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>float</label>
+      </node>
+      <node id="2">
+        <label>pcm_tab_struct</label>
+        <link refid="structpcm__tab__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>delta_phase</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cos_value</edgelabel>
+          <edgelabel>sin_value</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>nval</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>svex_struct</label>
+        <link refid="structsvex__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>tables</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>pcm_cfg</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>SU_chan_out</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="8">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="35" bodyend="39"/>
+    <listofallmembers>
+      <member refid="structsvex__struct_1ab8b476641b1084a7fa23a99c3a37e496" prot="public" virt="non-virtual"><scope>svex_struct</scope><name>pcm_cfg</name></member>
+      <member refid="structsvex__struct_1aaa742f99e3a1d5e8a290d5dd5f6d6d9e" prot="public" virt="non-virtual"><scope>svex_struct</scope><name>SU_chan_out</name></member>
+      <member refid="structsvex__struct_1a9b4a439280f26b722362c25b02afd715" prot="public" virt="non-virtual"><scope>svex_struct</scope><name>tables</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

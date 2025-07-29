@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structauto__global" kind="struct" language="C++" prot="public">
+    <compoundname>auto_global</compoundname>
+    <includes refid="type__120_8h" local="no">type_120.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structauto__global_1aa496ed1f9849c47ff8d2c24e58db0758" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int auto_global::cosbits</definition>
+        <argsstring></argsstring>
+        <name>cosbits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="53" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structauto__global_1a0960f7509b6a14d905d54cf69c35c1f3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int auto_global::coscor[1]</definition>
+        <argsstring>[1]</argsstring>
+        <name>coscor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="55" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structauto__global_1af0cb1cb153873250c6f3a273cf6bde90" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char auto_global::unused[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>unused</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="54" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="52" bodyend="56"/>
+    <listofallmembers>
+      <member refid="structauto__global_1aa496ed1f9849c47ff8d2c24e58db0758" prot="public" virt="non-virtual"><scope>auto_global</scope><name>cosbits</name></member>
+      <member refid="structauto__global_1a0960f7509b6a14d905d54cf69c35c1f3" prot="public" virt="non-virtual"><scope>auto_global</scope><name>coscor</name></member>
+      <member refid="structauto__global_1af0cb1cb153873250c6f3a273cf6bde90" prot="public" virt="non-virtual"><scope>auto_global</scope><name>unused</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis" kind="class" language="C++" prot="protected">
+    <compoundname>hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</compoundname>
+    <includes refid="MHO__MultidimensionalFastFourierTransformInterface_8hh" local="no">MHO_MultidimensionalFastFourierTransformInterface.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a009f83d26ad4e3eb5c179e541548237c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::TransformAxis::TransformAxis</definition>
+        <argsstring>()</argsstring>
+        <name>TransformAxis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="159" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="159" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a29fc9d545f79b92ed61c4404dabe6f1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::TransformAxis::~TransformAxis</definition>
+        <argsstring>()</argsstring>
+        <name>~TransformAxis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="160" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="160" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a3715c33ad87551c0eed9a97b114672ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::TransformAxis::operator()</definition>
+        <argsstring>(MHO_Axis&lt; double &gt; &amp;axis1)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref>&lt; double &gt; &amp;</type>
+          <declname>axis1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="166" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="166" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1aa70aae0af0c8c53c28eea27908824b45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::TransformAxis::operator()</definition>
+        <argsstring>(MHO_Axis&lt; float &gt; &amp;axis1)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref>&lt; float &gt; &amp;</type>
+          <declname>axis1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="198" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="198" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a6b57fc5497b44298aa80290c62a5bc99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XAxisType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::TransformAxis::operator()</definition>
+        <argsstring>(XAxisType &amp;)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>XAxisType &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="163" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="163" bodyend="163"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis" kindref="compound">TransformAxis</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="156" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="157" bodyend="228"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a6b57fc5497b44298aa80290c62a5bc99" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a3715c33ad87551c0eed9a97b114672ff" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1aa70aae0af0c8c53c28eea27908824b45" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a009f83d26ad4e3eb5c179e541548237c" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</scope><name>TransformAxis</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis_1a29fc9d545f79b92ed61c4404dabe6f1a" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</scope><name>~TransformAxis</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdatec" kind="struct" language="C++" prot="public">
+    <compoundname>datec</compoundname>
+    <includes refid="general_8h" local="no">general.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdatec_1a2ac9b56b75283431003a8fa3da81c9fd" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datec::day_of_month</definition>
+        <argsstring></argsstring>
+        <name>day_of_month</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="48" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatec_1a5bc092d6333a585b32e06c2d22c54db2" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datec::day_of_year</definition>
+        <argsstring></argsstring>
+        <name>day_of_year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="46" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatec_1a57653ce03889c7d739f683041edcbf7c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datec::hour</definition>
+        <argsstring></argsstring>
+        <name>hour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="49" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatec_1a721999380aa1216d53f095fb6c597b92" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datec::minute</definition>
+        <argsstring></argsstring>
+        <name>minute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="50" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatec_1a89ef9a5cd3cef768306f48e3adfec19e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datec::month</definition>
+        <argsstring></argsstring>
+        <name>month</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="47" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatec_1a6374567a4f8a49f0d4790ecb9b9631bf" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datec::second</definition>
+        <argsstring></argsstring>
+        <name>second</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="51" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatec_1ad9125ede3e840921470399b04f318cba" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datec::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="45" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>datec</label>
+        <link refid="structdatec"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>day_of_month</edgelabel>
+          <edgelabel>day_of_year</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>month</edgelabel>
+          <edgelabel>second</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="44" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="44" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structdatec_1a2ac9b56b75283431003a8fa3da81c9fd" prot="public" virt="non-virtual"><scope>datec</scope><name>day_of_month</name></member>
+      <member refid="structdatec_1a5bc092d6333a585b32e06c2d22c54db2" prot="public" virt="non-virtual"><scope>datec</scope><name>day_of_year</name></member>
+      <member refid="structdatec_1a57653ce03889c7d739f683041edcbf7c" prot="public" virt="non-virtual"><scope>datec</scope><name>hour</name></member>
+      <member refid="structdatec_1a721999380aa1216d53f095fb6c597b92" prot="public" virt="non-virtual"><scope>datec</scope><name>minute</name></member>
+      <member refid="structdatec_1a89ef9a5cd3cef768306f48e3adfec19e" prot="public" virt="non-virtual"><scope>datec</scope><name>month</name></member>
+      <member refid="structdatec_1a6374567a4f8a49f0d4790ecb9b9631bf" prot="public" virt="non-virtual"><scope>datec</scope><name>second</name></member>
+      <member refid="structdatec_1ad9125ede3e840921470399b04f318cba" prot="public" virt="non-virtual"><scope>datec</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

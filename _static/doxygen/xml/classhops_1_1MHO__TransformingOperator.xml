@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__TransformingOperator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_TransformingOperator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__Operator" prot="public" virt="non-virtual">hops::MHO_Operator</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ElementTypeCaster" prot="public" virt="non-virtual">hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;</derivedcompoundref>
+    <includes refid="MHO__TransformingOperator_8hh" local="no">MHO_TransformingOperator.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class XArgType1</type>
+      </param>
+      <param>
+        <type>class XArgType2</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__TransformingOperator_1a0c2b19fa9a44df7f78aca771e47d08a8" prot="protected" static="no" mutable="no">
+        <type>std::tuple&lt; const XArgType1 *, XArgType2 * &gt;</type>
+        <definition>std::tuple&lt; const XArgType1*, XArgType2* &gt; hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::fArgs</definition>
+        <argsstring></argsstring>
+        <name>fArgs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="80" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__TransformingOperator_1a59412bbdfd7eae1cab76bb040404f92a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::MHO_TransformingOperator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_TransformingOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" bodystart="25" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TransformingOperator_1ad10b0deb1d8c99518443e8714305a91f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::~MHO_TransformingOperator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_TransformingOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TransformingOperator_1a062e29f5b17d9614fe409a9324f70b32" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7">Execute</reimplements>
+        <briefdescription>
+<para>Executes transformation using provided arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success/failure of execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="56" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TransformingOperator_1a58d4892b457d33038976d1bb11a81528" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171">Initialize</reimplements>
+        <briefdescription>
+<para>Initializes the system by calling InitializeImpl with arguments from fArgs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success/failure of initialization. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="48" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TransformingOperator_1a6764f94688d04b3a52f83e13d4b301f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::SetArgs</definition>
+        <argsstring>(const XArgType1 *in, XArgType2 *out)</argsstring>
+        <name>SetArgs</name>
+        <param>
+          <type>const XArgType1 *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType2 *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Setter for args (operation transforms the original type into another) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to constant XArgType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to XArgType2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="40" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__TransformingOperator_1a06bb86fafc9bae8e037a5717b989dcf5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::ExecuteImpl</definition>
+        <argsstring>(const XArgType1 *in, XArgType2 *out)=0</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplementedby refid="classhops_1_1MHO__VisibilityChannelizer_1aea7a0dfc60a0aae62ff4cc2dc682306f">ExecuteImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__WeightChannelizer_1a9b422eda17bb5ec73b358baa976a093b">ExecuteImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SBDTableGenerator_1a048f02d8555b2178030c5b6e7962b816">ExecuteImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ElementTypeCaster_1ab44959572a362da87c1aa9e7aa6bb164">ExecuteImpl</reimplementedby>
+        <param>
+          <type>const XArgType1 *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType2 *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Executes an operation transforming input type to output type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data of type XArgType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output data of type XArgType2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if execution is successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="77" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TransformingOperator_1a759d200b0d1284cdac19787900fb3bbf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;::InitializeImpl</definition>
+        <argsstring>(const XArgType1 *in, XArgType2 *out)=0</argsstring>
+        <name>InitializeImpl</name>
+        <reimplementedby refid="classhops_1_1MHO__VisibilityChannelizer_1a39676ecad0863834c37525e5f8037c49">InitializeImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__WeightChannelizer_1ae66178d08f5f1070c438c9981b9e2781">InitializeImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ElementTypeCaster_1aabde5d0952f3f75c3ebc6b81e9fa6599">InitializeImpl</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SBDTableGenerator_1a3036563ddbe32a0b121b9edb691a351c">InitializeImpl</reimplementedby>
+        <param>
+          <type>const XArgType1 *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType2 *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes implementation using input and output arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument of type const XArgType1* </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output argument of type XArgType2* </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success/failure of initialization. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="67" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__TransformingOperator" kindref="compound">MHO_TransformingOperator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Operator which changes one N-D array type into a different N-D array type.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Oct 15 12:58:01 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;</label>
+        <link refid="classhops_1_1MHO__TransformingOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;</label>
+        <link refid="classhops_1_1MHO__ElementTypeCaster"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;</label>
+        <link refid="classhops_1_1MHO__TransformingOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fArgs</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tuple&lt; const XArgType1 *, XArgType2 * &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" line="22" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_TransformingOperator.hh" bodystart="23" bodyend="81"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a062e29f5b17d9614fe409a9324f70b32" prot="public" virt="virtual"><scope>hops::MHO_TransformingOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a06bb86fafc9bae8e037a5717b989dcf5" prot="protected" virt="pure-virtual"><scope>hops::MHO_TransformingOperator</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a0c2b19fa9a44df7f78aca771e47d08a8" prot="protected" virt="non-virtual"><scope>hops::MHO_TransformingOperator</scope><name>fArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_TransformingOperator</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a58d4892b457d33038976d1bb11a81528" prot="public" virt="virtual"><scope>hops::MHO_TransformingOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a759d200b0d1284cdac19787900fb3bbf" prot="protected" virt="pure-virtual"><scope>hops::MHO_TransformingOperator</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_TransformingOperator</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a59412bbdfd7eae1cab76bb040404f92a" prot="public" virt="non-virtual"><scope>hops::MHO_TransformingOperator</scope><name>MHO_TransformingOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_TransformingOperator</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a6764f94688d04b3a52f83e13d4b301f6" prot="public" virt="virtual"><scope>hops::MHO_TransformingOperator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_TransformingOperator</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_TransformingOperator</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_TransformingOperator</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1ad10b0deb1d8c99518443e8714305a91f" prot="public" virt="virtual"><scope>hops::MHO_TransformingOperator</scope><name>~MHO_TransformingOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

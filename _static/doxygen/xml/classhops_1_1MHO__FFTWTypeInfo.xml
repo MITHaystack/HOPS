@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FFTWTypeInfo" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FFTWTypeInfo</compoundname>
+    <includes refid="MHO__FFTWTypes_8hh" local="no">MHO_FFTWTypes.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1af33f50d403e2576a9dadd81c3352a79a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FFTWTypeInfo::MHO_FFTWTypeInfo</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FFTWTypeInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="158" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/src/MHO_FFTWTypes.cc" bodystart="6" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1a6c0fcec88f39eaf03d6760fd0e626e3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_FFTWTypeInfo::~MHO_FFTWTypeInfo</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FFTWTypeInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="159" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/src/MHO_FFTWTypes.cc" bodystart="7" bodyend="7"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1a408f06756aa9a26a7dbc30c1d0da2758" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int hops::MHO_FFTWTypeInfo::get_fftw_version_major</definition>
+        <argsstring>()</argsstring>
+        <name>get_fftw_version_major</name>
+        <briefdescription>
+<para>Retrieves the major version number of FFTW3. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Major version number as an integer. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="228" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="228" bodyend="238"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1a68989f1e0b6a2081cb5fd9e6ea4693dc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int hops::MHO_FFTWTypeInfo::get_fftw_version_minor</definition>
+        <argsstring>()</argsstring>
+        <name>get_fftw_version_minor</name>
+        <briefdescription>
+<para>Retrieves the minor version number of FFTW3. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Minor version number as an integer. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="246" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="246" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1a7349103e310a4376ae339f405c21102a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_FFTWTypeInfo::get_fftw_version_numeric</definition>
+        <argsstring>()</argsstring>
+        <name>get_fftw_version_numeric</name>
+        <briefdescription>
+<para>Retrieves the numeric version string from FFTW3. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Numeric version string of FFTW3, returns 0.0.0 if retrieval fails </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="205" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="205" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1a9a8c839faa187ad88dfde9b40a32a728" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int hops::MHO_FFTWTypeInfo::get_fftw_version_patch</definition>
+        <argsstring>()</argsstring>
+        <name>get_fftw_version_patch</name>
+        <briefdescription>
+<para>Retrieves the patch version number from FFTW library. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Patch version number as an integer. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="264" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="264" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1a178aceabd4ac78c3d9545da1f7555fee" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_FFTWTypeInfo::get_fftw_version_raw</definition>
+        <argsstring>()</argsstring>
+        <name>get_fftw_version_raw</name>
+        <briefdescription>
+<para>Retrieves the raw FFTW version string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing the raw FFTW version. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="168" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="168" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FFTWTypeInfo_1a0aa4a40256cf1209e3e1cf9501905522" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>static std::vector&lt; std::string &gt; hops::MHO_FFTWTypeInfo::split_version_string</definition>
+        <argsstring>(std::string vstr, char delim)</argsstring>
+        <name>split_version_string</name>
+        <param>
+          <type>std::string</type>
+          <declname>vstr</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>delim</declname>
+        </param>
+        <briefdescription>
+<para>Splits a FFTW3 version string into components using a delimiter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vstr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input version string to split </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Delimiter character used for splitting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of strings representing the split version components </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="185" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="185" bodyend="197"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FFTWTypeInfo" kindref="compound">MHO_FFTWTypeInfo</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="155" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="156" bodyend="276"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1a408f06756aa9a26a7dbc30c1d0da2758" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>get_fftw_version_major</name></member>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1a68989f1e0b6a2081cb5fd9e6ea4693dc" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>get_fftw_version_minor</name></member>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1a7349103e310a4376ae339f405c21102a" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>get_fftw_version_numeric</name></member>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1a9a8c839faa187ad88dfde9b40a32a728" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>get_fftw_version_patch</name></member>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1a178aceabd4ac78c3d9545da1f7555fee" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>get_fftw_version_raw</name></member>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1af33f50d403e2576a9dadd81c3352a79a" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>MHO_FFTWTypeInfo</name></member>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1a0aa4a40256cf1209e3e1cf9501905522" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>split_version_string</name></member>
+      <member refid="classhops_1_1MHO__FFTWTypeInfo_1a6c0fcec88f39eaf03d6760fd0e626e3a" prot="public" virt="virtual"><scope>hops::MHO_FFTWTypeInfo</scope><name>~MHO_FFTWTypeInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

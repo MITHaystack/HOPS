@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Numerical Utilities &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Utilities" href="../utilities/Utilities.html" />
+    <link rel="prev" title="Fast Fourier Transform Operations" href="fft_operations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Math.html">Math</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fft_operations.html">Fast Fourier Transform Operations</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Numerical Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-mathutilities">MHO_MathUtilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-uniformgridpointscalculator">MHO_UniformGridPointsCalculator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-fringerotation">MHO_FringeRotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-checkfornan">MHO_CheckForNaN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Math.html">Math</a></li>
+      <li class="breadcrumb-item active">Numerical Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/math/numerical_utilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="numerical-utilities">
+<h1>Numerical Utilities<a class="headerlink" href="#numerical-utilities" title="Link to this heading"></a></h1>
+<p>The Math library provides various numerical utilities for basic math functions,
+interpolation, simple matrix operations, fringe rotation and grid calculations.
+Many of these utilities have been ported from the original HOPS3 C code with minimal
+modification.</p>
+<section id="mho-mathutilities">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MathUtilities.html">MHO_MathUtilities</a><a class="headerlink" href="#mho-mathutilities" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>MHO_MathUtilities.hh</p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Numerical Utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Collection of mathematical utility functions</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Value clamping and boundary checking</div>
+<div class="line">Parabola fitting and interpolation</div>
+<div class="line">3x3 matrix inversion</div>
+<div class="line">Linear interpolation</div>
+<div class="line">Angular averaging and phase calculations</div>
+<div class="line">Frequency limit calculations</div>
+<div class="line">Interval intersection finding</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The MHO_MathUtilities.hh header provides a comprehensive collection of
+mathematical utility functions ported from the original HOPS3 C code. Key functions include:</p>
+<ul class="simple">
+<li><p><cite>dwin()</cite> - Value clamping between bounds</p></li>
+<li><p><cite>parabola()</cite> - Parabola parameter calculation and peak finding</p></li>
+<li><p><cite>minvert3()</cite> - 3x3 matrix inversion</p></li>
+<li><p><cite>linterp()</cite> - Linear interpolation</p></li>
+<li><p><cite>ap_mean()</cite> - Average phase calculation</p></li>
+<li><p><cite>angular_average()</cite> - Angular averaging in radians</p></li>
+<li><p><cite>DetermineChannelFrequencyLimits()</cite> - Frequency range calculations</p></li>
+<li><p><cite>FindIntersection()</cite> - Interval overlap detection</p></li>
+</ul>
+</section>
+<section id="mho-uniformgridpointscalculator">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UniformGridPointsCalculator.html">MHO_UniformGridPointsCalculator</a><a class="headerlink" href="#mho-uniformgridpointscalculator" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UniformGridPointsCalculator.html">MHO_UniformGridPointsCalculator</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Numerical Utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Configuration Parameters</p></td>
+<td><p>Epsilon tolerance for point alignment</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Uniform grid calculation for frequency spacing alignment</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Re-implements HOPS3 freq_spacing functionality</div>
+<div class="line">Creates uniform grids aligned with original points</div>
+<div class="line">Handles point uniqueness with epsilon tolerance</div>
+<div class="line">Maps original indices to uniform grid indices</div>
+<div class="line">Calculates grid statistics and error detection</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__UniformGridPointsCalculator.html">MHO_UniformGridPointsCalculator</a> class re-implements the
+<cite>freq_spacing</cite> function from HOPS3. It creates uniformly spaced grids that align
+with original floating-point frequency locations within specified tolerance. This
+grid calculation is required by the mult-band delay search algorithm in order to
+properly fill the visibility data into the appropriate slots for the FFT.</p>
+</section>
+<section id="mho-fringerotation">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeRotation.html">MHO_FringeRotation</a><a class="headerlink" href="#mho-fringerotation" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeRotation.html">MHO_FringeRotation</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Numerical Utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">SBD separation, SBD max, SBD max bin</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Fringe rotation functionality for VLBI data processing</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Originally ported from HOPS3 vrot.c</div>
+<div class="line">Calculates fringe rotation for delay, delay-rate, time, and frequency</div>
+<div class="line">Sideband correction calculations</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeRotation.html">MHO_FringeRotation</a> class implements fringe rotation functionality
+needed in order to apply the VLBI fringe solution to the visibility data.
+It provides the same functionality as the original HOPS3 <cite>vrot()</cite> function for
+calculating the fringe rotation based on delay, delay-rate, time, and frequency
+parameters.</p>
+</section>
+<section id="mho-checkfornan">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classMHO__CheckForNaN.html">MHO_CheckForNaN</a><a class="headerlink" href="#mho-checkfornan" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classMHO__CheckForNaN.html">MHO_CheckForNaN</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Numerical Utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XNumericalType (numerical type to check)</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>NaN detection for various numerical types</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Generic NaN detection using value != value comparison</div>
+<div class="line">Specialized implementations for floating-point types</div>
+<div class="line">Complex number NaN detection (real and imaginary parts)</div>
+<div class="line">Support for float, double, and long double types</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classMHO__CheckForNaN.html">MHO_CheckForNaN</a> class provides a functor for NaN (Not-a-Number)
+detection for various numerical types. It includes:</p>
+<p><strong>Supported Types:</strong>
+- <cite>float</cite>, <cite>double</cite>, <cite>long double</cite> - Using <cite>std::isnan()</cite> for consistency
+- <cite>std::complex&lt;float&gt;</cite>, <cite>std::complex&lt;double&gt;</cite>, <cite>std::complex&lt;long double&gt;</cite> - Checking both real and imaginary components
+- Other generic numerical types - Using <cite>value != value</cite> comparison</p>
+<p><strong>Usage:</strong>
+The class provides a static <cite>isnan()</cite> method that can be used with any supported
+numerical type to detect NaN values. This method can be applied as a functor and
+broadcast across a table container/array in order to excise erroneous data.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fft_operations.html" class="btn btn-neutral float-left" title="Fast Fourier Transform Operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../utilities/Utilities.html" class="btn btn-neutral float-right" title="Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

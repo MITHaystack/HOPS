@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structvis__record_1_1components" kind="struct" language="C++" prot="public">
+    <compoundname>vis_record::components</compoundname>
+    <includes refid="difx2mark4_8h" local="no">difx2mark4.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structvis__record_1_1components_1aa6571447b7a9caac1634d03ca2112aad" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float vis_record::components::imag</definition>
+        <argsstring></argsstring>
+        <name>imag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="97" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1_1components_1a4246119ff16957291d74d5ad98bbd0b7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float vis_record::components::real</definition>
+        <argsstring></argsstring>
+        <name>real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="96" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>vis_record::components</label>
+        <link refid="structvis__record_1_1components"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="94" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="95" bodyend="98"/>
+    <listofallmembers>
+      <member refid="structvis__record_1_1components_1aa6571447b7a9caac1634d03ca2112aad" prot="public" virt="non-virtual"><scope>vis_record::components</scope><name>imag</name></member>
+      <member refid="structvis__record_1_1components_1a4246119ff16957291d74d5ad98bbd0b7" prot="public" virt="non-virtual"><scope>vis_record::components</scope><name>real</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

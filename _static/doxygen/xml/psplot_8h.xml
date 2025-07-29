@@ -1,0 +1,1615 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="psplot_8h" kind="file" language="C++">
+    <compoundname>psplot.h</compoundname>
+    <includes refid="sizelimits_8h" local="yes">sizelimits.h</includes>
+    <includedby refid="aedit__proto_8h" local="yes">aedit_proto.h</includedby>
+    <includedby refid="cleanup__psplot_8c" local="yes">cleanup_psplot.c</includedby>
+    <includedby refid="display__psdata_8c" local="yes">display_psdata.c</includedby>
+    <includedby refid="get__ps__indices4_8c" local="yes">get_ps_indices4.c</includedby>
+    <includedby refid="locate__pscurs_8c" local="yes">locate_pscurs.c</includedby>
+    <includedby refid="make__psarray4_8c" local="yes">make_psarray4.c</includedby>
+    <includedby refid="ps__baselabel_8c" local="yes">ps_baselabel.c</includedby>
+    <includedby refid="ps__fplot_8c" local="yes">ps_fplot.c</includedby>
+    <includedby refid="ps__free_8c" local="yes">ps_free.c</includedby>
+    <includedby refid="ps__proc__datum_8c" local="yes">ps_proc_datum.c</includedby>
+    <includedby refid="ps__scanlabel_8c" local="yes">ps_scanlabel.c</includedby>
+    <includedby refid="ps__selbase_8c" local="yes">ps_selbase.c</includedby>
+    <includedby refid="ps__selqual_8c" local="yes">ps_selqual.c</includedby>
+    <includedby refid="ps__selscan_8c" local="yes">ps_selscan.c</includedby>
+    <includedby refid="psfile4_8c" local="yes">psfile4.c</includedby>
+    <includedby refid="psplot_8c" local="yes">psplot.c</includedby>
+    <includedby refid="psplot4_8c" local="yes">psplot4.c</includedby>
+    <includedby refid="psplot__defaults4_8c" local="yes">psplot_defaults4.c</includedby>
+    <includedby refid="pstag__process_8c" local="yes">pstag_process.c</includedby>
+    <includedby refid="run__pscursor_8c" local="yes">run_pscursor.c</includedby>
+    <includedby refid="set__pscodes_8c" local="yes">set_pscodes.c</includedby>
+    <includedby refid="set__psparam_8c" local="yes">set_psparam.c</includedby>
+    <includedby refid="setup__psplot_8c" local="yes">setup_psplot.c</includedby>
+    <includedby refid="write__psfile_8c" local="yes">write_psfile.c</includedby>
+    <includedby refid="write__pshdr_8c" local="yes">write_pshdr.c</includedby>
+    <includedby refid="write__reproc_8c" local="yes">write_reproc.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>psplot.h</label>
+        <link refid="psplot_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sizelimits.h</label>
+        <link refid="sizelimits_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="46">
+        <label>locate_pscurs.c</label>
+        <link refid="locate__pscurs_8c"/>
+      </node>
+      <node id="69">
+        <label>ps_baselabel.c</label>
+        <link refid="ps__baselabel_8c"/>
+      </node>
+      <node id="45">
+        <label>init_summ.c</label>
+        <link refid="init__summ_8c"/>
+      </node>
+      <node id="31">
+        <label>execute.c</label>
+        <link refid="execute_8c"/>
+      </node>
+      <node id="96">
+        <label>set_pols.c</label>
+        <link refid="set__pols_8c"/>
+      </node>
+      <node id="32">
+        <label>extract_parms.c</label>
+        <link refid="extract__parms_8c"/>
+      </node>
+      <node id="62">
+        <label>pr_inputs.c</label>
+        <link refid="pr__inputs_8c"/>
+      </node>
+      <node id="30">
+        <label>esdesp_check.c</label>
+        <link refid="esdesp__check_8c"/>
+      </node>
+      <node id="109">
+        <label>setup_plot.c</label>
+        <link refid="setup__plot_8c"/>
+      </node>
+      <node id="107">
+        <label>set_type.c</label>
+        <link refid="set__type_8c"/>
+      </node>
+      <node id="132">
+        <label>write_param.c</label>
+        <link refid="write__param_8c"/>
+      </node>
+      <node id="83">
+        <label>qfilter.c</label>
+        <link refid="qfilter_8c"/>
+      </node>
+      <node id="137">
+        <label>write_tdata.c</label>
+        <link refid="write__tdata_8c"/>
+      </node>
+      <node id="74">
+        <label>ps_selbase.c</label>
+        <link refid="ps__selbase_8c"/>
+      </node>
+      <node id="3">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>ps_scanlabel.c</label>
+        <link refid="ps__scanlabel_8c"/>
+      </node>
+      <node id="50">
+        <label>mk3_qf.c</label>
+        <link refid="mk3__qf_8c"/>
+      </node>
+      <node id="130">
+        <label>write_data.c</label>
+        <link refid="write__data_8c"/>
+      </node>
+      <node id="5">
+        <label>active_filter.c</label>
+        <link refid="active__filter_8c"/>
+      </node>
+      <node id="80">
+        <label>psplot_defaults4.c</label>
+        <link refid="psplot__defaults4_8c"/>
+      </node>
+      <node id="51">
+        <label>param_list.c</label>
+        <link refid="param__list_8c"/>
+      </node>
+      <node id="33">
+        <label>ffilter.c</label>
+        <link refid="ffilter_8c"/>
+      </node>
+      <node id="2">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>set_sources.c</label>
+        <link refid="set__sources_8c"/>
+      </node>
+      <node id="93">
+        <label>set_frequencies.c</label>
+        <link refid="set__frequencies_8c"/>
+      </node>
+      <node id="12">
+        <label>cleanup.c</label>
+        <link refid="cleanup_8c"/>
+      </node>
+      <node id="129">
+        <label>update_sinfo.c</label>
+        <link refid="update__sinfo_8c"/>
+      </node>
+      <node id="43">
+        <label>help.c</label>
+        <link refid="help_8c"/>
+      </node>
+      <node id="21">
+        <label>cursor_select.c</label>
+        <link refid="cursor__select_8c"/>
+      </node>
+      <node id="128">
+        <label>update_fqex.c</label>
+        <link refid="update__fqex_8c"/>
+      </node>
+      <node id="65">
+        <label>pr_ssumm.c</label>
+        <link refid="pr__ssumm_8c"/>
+      </node>
+      <node id="118">
+        <label>summ_root.c</label>
+        <link refid="summ__root_8c"/>
+      </node>
+      <node id="52">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2aedit_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="111">
+        <label>smatch.c</label>
+        <link refid="smatch_8c"/>
+      </node>
+      <node id="60">
+        <label>pr_csumm.c</label>
+        <link refid="pr__csumm_8c"/>
+      </node>
+      <node id="71">
+        <label>ps_inside.c</label>
+        <link refid="ps__inside_8c"/>
+      </node>
+      <node id="100">
+        <label>set_psparam.c</label>
+        <link refid="set__psparam_8c"/>
+      </node>
+      <node id="6">
+        <label>alloc_btq.c</label>
+        <link refid="alloc__btq_8c"/>
+      </node>
+      <node id="126">
+        <label>trngl_present.c</label>
+        <link refid="trngl__present_8c"/>
+      </node>
+      <node id="133">
+        <label>write_prmline.c</label>
+        <link refid="write__prmline_8c"/>
+      </node>
+      <node id="86">
+        <label>rfilter.c</label>
+        <link refid="rfilter_8c"/>
+      </node>
+      <node id="36">
+        <label>fplot.c</label>
+        <link refid="aedit_2src_2fplot_8c"/>
+      </node>
+      <node id="72">
+        <label>ps_proc_datum.c</label>
+        <link refid="ps__proc__datum_8c"/>
+      </node>
+      <node id="13">
+        <label>cleanup_psplot.c</label>
+        <link refid="cleanup__psplot_8c"/>
+      </node>
+      <node id="41">
+        <label>get_plot_datum.c</label>
+        <link refid="get__plot__datum_8c"/>
+      </node>
+      <node id="70">
+        <label>ps_fplot.c</label>
+        <link refid="ps__fplot_8c"/>
+      </node>
+      <node id="81">
+        <label>pstag_process.c</label>
+        <link refid="pstag__process_8c"/>
+      </node>
+      <node id="78">
+        <label>psplot.c</label>
+        <link refid="psplot_8c"/>
+      </node>
+      <node id="77">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="18">
+        <label>clear_summ.c</label>
+        <link refid="clear__summ_8c"/>
+      </node>
+      <node id="99">
+        <label>set_pscodes.c</label>
+        <link refid="set__pscodes_8c"/>
+      </node>
+      <node id="108">
+        <label>set_year.c</label>
+        <link refid="set__year_8c"/>
+      </node>
+      <node id="92">
+        <label>set_fraction.c</label>
+        <link refid="set__fraction_8c"/>
+      </node>
+      <node id="11">
+        <label>cfilter.c</label>
+        <link refid="cfilter_8c"/>
+      </node>
+      <node id="1">
+        <label>psplot.h</label>
+        <link refid="psplot_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>set_qcodes.c</label>
+        <link refid="set__qcodes_8c"/>
+      </node>
+      <node id="61">
+        <label>pr_fsumm.c</label>
+        <link refid="pr__fsumm_8c"/>
+      </node>
+      <node id="120">
+        <label>symbol_key.c</label>
+        <link refid="symbol__key_8c"/>
+      </node>
+      <node id="24">
+        <label>dup_check.c</label>
+        <link refid="dup__check_8c"/>
+      </node>
+      <node id="113">
+        <label>station_reduce.c</label>
+        <link refid="station__reduce_8c"/>
+      </node>
+      <node id="76">
+        <label>ps_selscan.c</label>
+        <link refid="ps__selscan_8c"/>
+      </node>
+      <node id="10">
+        <label>calc_close.c</label>
+        <link refid="calc__close_8c"/>
+      </node>
+      <node id="87">
+        <label>run_com_file.c</label>
+        <link refid="run__com__file_8c"/>
+      </node>
+      <node id="58">
+        <label>plot_quality.c</label>
+        <link refid="plot__quality_8c"/>
+      </node>
+      <node id="38">
+        <label>get_param.c</label>
+        <link refid="get__param_8c"/>
+      </node>
+      <node id="22">
+        <label>datum_value.c</label>
+        <link refid="datum__value_8c"/>
+      </node>
+      <node id="102">
+        <label>set_quads.c</label>
+        <link refid="set__quads_8c"/>
+      </node>
+      <node id="49">
+        <label>makekey.c</label>
+        <link refid="makekey_8c"/>
+      </node>
+      <node id="19">
+        <label>command_id.c</label>
+        <link refid="command__id_8c"/>
+      </node>
+      <node id="79">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="40">
+        <label>get_plot_data.c</label>
+        <link refid="get__plot__data_8c"/>
+      </node>
+      <node id="115">
+        <label>summ_data.c</label>
+        <link refid="summ__data_8c"/>
+      </node>
+      <node id="29">
+        <label>erase_point.c</label>
+        <link refid="erase__point_8c"/>
+      </node>
+      <node id="55">
+        <label>plot_fqex.c</label>
+        <link refid="plot__fqex_8c"/>
+      </node>
+      <node id="23">
+        <label>display_psdata.c</label>
+        <link refid="display__psdata_8c"/>
+      </node>
+      <node id="127">
+        <label>unflag.c</label>
+        <link refid="unflag_8c"/>
+      </node>
+      <node id="57">
+        <label>plot_points.c</label>
+        <link refid="plot__points_8c"/>
+      </node>
+      <node id="110">
+        <label>setup_psplot.c</label>
+        <link refid="setup__psplot_8c"/>
+      </node>
+      <node id="47">
+        <label>make_psarray4.c</label>
+        <link refid="make__psarray4_8c"/>
+      </node>
+      <node id="91">
+        <label>set_device.c</label>
+        <link refid="set__device_8c"/>
+      </node>
+      <node id="15">
+        <label>clear_fqex.c</label>
+        <link refid="clear__fqex_8c"/>
+      </node>
+      <node id="138">
+        <label>zoom.c</label>
+        <link refid="zoom_8c"/>
+      </node>
+      <node id="53">
+        <label>parse_commands.c</label>
+        <link refid="parse__commands_8c"/>
+      </node>
+      <node id="104">
+        <label>set_stations.c</label>
+        <link refid="set__stations_8c"/>
+      </node>
+      <node id="105">
+        <label>set_timerange.c</label>
+        <link refid="set__timerange_8c"/>
+      </node>
+      <node id="106">
+        <label>set_triangles.c</label>
+        <link refid="set__triangles_8c"/>
+      </node>
+      <node id="125">
+        <label>tricheck.c</label>
+        <link refid="tricheck_8c"/>
+      </node>
+      <node id="27">
+        <label>edit_close.c</label>
+        <link refid="edit__close_8c"/>
+      </node>
+      <node id="48">
+        <label>make_tri.c</label>
+        <link refid="make__tri_8c"/>
+      </node>
+      <node id="97">
+        <label>set_prange.c</label>
+        <link refid="set__prange_8c"/>
+      </node>
+      <node id="134">
+        <label>write_psfile.c</label>
+        <link refid="write__psfile_8c"/>
+      </node>
+      <node id="59">
+        <label>pr_allsumm.c</label>
+        <link refid="pr__allsumm_8c"/>
+      </node>
+      <node id="34">
+        <label>fill_closure.c</label>
+        <link refid="fill__closure_8c"/>
+      </node>
+      <node id="20">
+        <label>cross_link.c</label>
+        <link refid="cross__link_8c"/>
+      </node>
+      <node id="26">
+        <label>edit.c</label>
+        <link refid="edit_8c"/>
+      </node>
+      <node id="121">
+        <label>tarray_index.c</label>
+        <link refid="tarray__index_8c"/>
+      </node>
+      <node id="112">
+        <label>sorter.c</label>
+        <link refid="aedit_2src_2sorter_8c"/>
+      </node>
+      <node id="63">
+        <label>pr_rsumm.c</label>
+        <link refid="pr__rsumm_8c"/>
+      </node>
+      <node id="119">
+        <label>summ_triangle.c</label>
+        <link refid="summ__triangle_8c"/>
+      </node>
+      <node id="84">
+        <label>read_cursor.c</label>
+        <link refid="read__cursor_8c"/>
+      </node>
+      <node id="35">
+        <label>fill_tdata.c</label>
+        <link refid="fill__tdata_8c"/>
+      </node>
+      <node id="131">
+        <label>write_families.c</label>
+        <link refid="write__families_8c"/>
+      </node>
+      <node id="116">
+        <label>summ_fringe.c</label>
+        <link refid="summ__fringe_8c"/>
+      </node>
+      <node id="136">
+        <label>write_reproc.c</label>
+        <link refid="write__reproc_8c"/>
+      </node>
+      <node id="54">
+        <label>plot.c</label>
+        <link refid="plot_8c"/>
+      </node>
+      <node id="39">
+        <label>get_param_list.c</label>
+        <link refid="get__param__list_8c"/>
+      </node>
+      <node id="25">
+        <label>dup_flag.c</label>
+        <link refid="dup__flag_8c"/>
+      </node>
+      <node id="90">
+        <label>set_baselines.c</label>
+        <link refid="set__baselines_8c"/>
+      </node>
+      <node id="94">
+        <label>set_mode.c</label>
+        <link refid="set__mode_8c"/>
+      </node>
+      <node id="67">
+        <label>pr_tsumm.c</label>
+        <link refid="pr__tsumm_8c"/>
+      </node>
+      <node id="44">
+        <label>init_inputs.c</label>
+        <link refid="init__inputs_8c"/>
+      </node>
+      <node id="122">
+        <label>tfilter.c</label>
+        <link refid="tfilter_8c"/>
+      </node>
+      <node id="82">
+        <label>qarray_index.c</label>
+        <link refid="qarray__index_8c"/>
+      </node>
+      <node id="135">
+        <label>write_pshdr.c</label>
+        <link refid="write__pshdr_8c"/>
+      </node>
+      <node id="64">
+        <label>pr_source.c</label>
+        <link refid="pr__source_8c"/>
+      </node>
+      <node id="7">
+        <label>allocate_parms.c</label>
+        <link refid="allocate__parms_8c"/>
+      </node>
+      <node id="123">
+        <label>time_axis.c</label>
+        <link refid="time__axis_8c"/>
+      </node>
+      <node id="28">
+        <label>edit_families.c</label>
+        <link refid="edit__families_8c"/>
+      </node>
+      <node id="89">
+        <label>save.c</label>
+        <link refid="save_8c"/>
+      </node>
+      <node id="17">
+        <label>clear_source.c</label>
+        <link refid="clear__source_8c"/>
+      </node>
+      <node id="88">
+        <label>run_pscursor.c</label>
+        <link refid="run__pscursor_8c"/>
+      </node>
+      <node id="124">
+        <label>triangle_value.c</label>
+        <link refid="triangle__value_8c"/>
+      </node>
+      <node id="14">
+        <label>clear.c</label>
+        <link refid="clear_8c"/>
+      </node>
+      <node id="68">
+        <label>print_data.c</label>
+        <link refid="print__data_8c"/>
+      </node>
+      <node id="8">
+        <label>auto_hardcopy.c</label>
+        <link refid="auto__hardcopy_8c"/>
+      </node>
+      <node id="98">
+        <label>set_procrange.c</label>
+        <link refid="set__procrange_8c"/>
+      </node>
+      <node id="85">
+        <label>read_data.c</label>
+        <link refid="aedit_2src_2read__data_8c"/>
+      </node>
+      <node id="66">
+        <label>pr_summary.c</label>
+        <link refid="pr__summary_8c"/>
+      </node>
+      <node id="56">
+        <label>plot_header.c</label>
+        <link refid="plot__header_8c"/>
+      </node>
+      <node id="117">
+        <label>summ_quad.c</label>
+        <link refid="summ__quad_8c"/>
+      </node>
+      <node id="9">
+        <label>axis.c</label>
+        <link refid="axis_8c"/>
+      </node>
+      <node id="16">
+        <label>clear_pstruct.c</label>
+        <link refid="clear__pstruct_8c"/>
+      </node>
+      <node id="139">
+        <label>ps_free.c</label>
+        <link refid="ps__free_8c"/>
+      </node>
+      <node id="4">
+        <label>aedit.c</label>
+        <link refid="aedit_8c"/>
+      </node>
+      <node id="37">
+        <label>get_axis.c</label>
+        <link refid="get__axis_8c"/>
+      </node>
+      <node id="95">
+        <label>set_nfreq.c</label>
+        <link refid="set__nfreq_8c"/>
+      </node>
+      <node id="42">
+        <label>get_ps_indices4.c</label>
+        <link refid="get__ps__indices4_8c"/>
+      </node>
+      <node id="75">
+        <label>ps_selqual.c</label>
+        <link refid="ps__selqual_8c"/>
+      </node>
+      <node id="114">
+        <label>summ_corel.c</label>
+        <link refid="summ__corel_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structps__array" prot="public">ps_array</innerclass>
+    <innerclass refid="structps__count" prot="public">ps_count</innerclass>
+    <innerclass refid="structpsplot__baseline" prot="public">psplot_baseline</innerclass>
+    <innerclass refid="structpsplot__cell" prot="public">psplot_cell</innerclass>
+    <innerclass refid="structpsplot__fgroup" prot="public">psplot_fgroup</innerclass>
+    <innerclass refid="structpsplot__plotparam" prot="public">psplot_plotparam</innerclass>
+    <innerclass refid="structpsplot__scantime" prot="public">psplot_scantime</innerclass>
+    <innerclass refid="structpsplot__station" prot="public">psplot_station</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="psplot_8h_1a3a6d3cd70078e6046471ec528a09cd19" prot="public" static="no">
+        <name>ACTIVE</name>
+        <initializer>22</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="17" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1ab57e5c97e5d788f048284f1175c757b7" prot="public" static="no">
+        <name>BAND</name>
+        <initializer>-100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="43" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a8ff6e7e0ebce5b85b64dbad8831de33e" prot="public" static="no">
+        <name>BAND_SIZE</name>
+        <initializer>40.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="29" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a9a39f2404ed0bf7dda0ae7942e75b447" prot="public" static="no">
+        <name>BAND_XORIGIN</name>
+        <initializer>0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="27" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a1a0970be429f9a8f98e4b9519c26a269" prot="public" static="no">
+        <name>BAND_YORIGIN</name>
+        <initializer>850.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="28" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a2d027b1e81209f3f5c6a16da924697a8" prot="public" static="no">
+        <name>BASELABEL</name>
+        <initializer>110., 138., 100., 820.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="51" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a1119d9c4aa12dadd9998c8d0a2e6ffb2" prot="public" static="no">
+        <name>BLAB</name>
+        <initializer>-7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="37" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1ab6855aa141ce3b39860691f8c8237b0b" prot="public" static="no">
+        <name>DATA_PT</name>
+        <initializer>-10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="40" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
+        <name>FALSE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a2e4e1c984f1836fc52542d108542d414" prot="public" static="no">
+        <name>FPLOT</name>
+        <initializer>-4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="34" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a278c1f14ffe456bcf28bcab2c1383331" prot="public" static="no">
+        <name>FPLOT_BUTTON</name>
+        <initializer>680., 820., 960., 998.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="24" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a824d31ba37dadfdaf6fe2fd41d2c576c" prot="public" static="no">
+        <name>GUARD_BAND</name>
+        <initializer>2.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="57" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a0326727285db27a444321f9d3b0895fb" prot="public" static="no">
+        <name>INACTIVE</name>
+        <initializer>23</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="18" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1ae1103fea1e1b3c41ca3322d5389f7162" prot="public" static="no">
+        <name>INFO</name>
+        <initializer>65., 200., 10., 70.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="53" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a741dafa1bd1ea79378f402bb15fbeeca" prot="public" static="no">
+        <name>INFO_X</name>
+        <initializer>65.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="54" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a89904cb639d01dbee42b37befc20650c" prot="public" static="no">
+        <name>INFO_Y</name>
+        <initializer>10.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="55" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a8ae9d53f33f46cfcfcb9736e6351452a" prot="public" static="no">
+        <name>KEY</name>
+        <initializer>-9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="39" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a10025f6b58388b7401159d4d343db2ad" prot="public" static="no">
+        <name>KEY_XMIN</name>
+        <initializer>400.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="60" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1addcc3b8b7fdb3cbe13892a128774b775" prot="public" static="no">
+        <name>KEY_YMIN</name>
+        <initializer>50.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="61" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1ad7f31bd614ca3e19c8ecf137223b62e5" prot="public" static="no">
+        <name>KEYINC</name>
+        <initializer>20.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="62" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1ad48179411c0f820e3788e4e719009ae4" prot="public" static="no">
+        <name>MAX_BASE_PLOT</name>
+        <initializer>60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a63110255fcd7aa5f86f50fcc7dea7e7b" prot="public" static="no">
+        <name>MAX_SCAN_PLOT</name>
+        <initializer>70</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a744aadae7089710f8b61facba705edee" prot="public" static="no">
+        <name>MIN_BASE_PLOT</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a77e812a78fbdc25fd828dec5b93692bf" prot="public" static="no">
+        <name>MIN_SCAN_PLOT</name>
+        <initializer>35</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a5381a445a1e4bdc36460151d82eed95a" prot="public" static="no">
+        <name>MINUS</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="15" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a2be29dbf95b4a2c822f307a5b8141184" prot="public" static="no">
+        <name>NEXT</name>
+        <initializer>-2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="32" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a308561aa19bd6948329c38117ca0ec48" prot="public" static="no">
+        <name>NEXT_BUTTON</name>
+        <initializer>320., 460., 960., 998.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="22" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a6a2e6b3670a920656095b739efe77613" prot="public" static="no">
+        <name>NODATA</name>
+        <initializer>-11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="41" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1aad4a7ebff687dc5228cc3fd4d25067f2" prot="public" static="no">
+        <name>NOTHING</name>
+        <initializer>-12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="42" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a0d76a29df9e6722c4f2f735a7187e492" prot="public" static="no">
+        <name>PLOT_XMAX</name>
+        <initializer>1000.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="46" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a71b9c64aec15b4b3f123c81cbdb5b6ec" prot="public" static="no">
+        <name>PLOT_XMIN</name>
+        <initializer>140.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="45" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a9325766972926ed36cf47e920046b18b" prot="public" static="no">
+        <name>PLOT_YMAX</name>
+        <initializer>820.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="48" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a5582b2d86c96e0939c4833d4860a3ba6" prot="public" static="no">
+        <name>PLOT_YMIN</name>
+        <initializer>100.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="47" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a55659d6bca0e8c599a48d27e570317dc" prot="public" static="no">
+        <name>PREV</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="31" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a335cc28eec516b9ddc01a524ae202d17" prot="public" static="no">
+        <name>PREV_BUTTON</name>
+        <initializer>140., 280., 960., 998.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="21" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a9fb2047e59518ac128be297d02389308" prot="public" static="no">
+        <name>QUALITIES</name>
+        <initializer>&quot; 0123456789ABCDEFGH.-&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="59" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1ad24e2b54375e12474e65ebf7175988fb" prot="public" static="no">
+        <name>QUIT</name>
+        <initializer>-5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="35" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a6553cabe98eefb448d144504b361dffd" prot="public" static="no">
+        <name>QUIT_BUTTON</name>
+        <initializer>860., 998., 960., 998.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="25" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1afec4e5146fc774fff2bc0690a7e4b5e5" prot="public" static="no">
+        <name>RETAIN</name>
+        <initializer>-6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="36" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a19519ebc018ccd8b49737b671ee393c4" prot="public" static="no">
+        <name>RETAIN_BUTTON</name>
+        <initializer>0., 75., 900., 940.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="26" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1af5acf6745da187919b58e809d4d23848" prot="public" static="no">
+        <name>SCANLABEL</name>
+        <initializer>140., 1000., 822., 958.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="50" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a53dc4af00adc7b3b4d12eafb71596dfc" prot="public" static="no">
+        <name>SELECT</name>
+        <initializer>-3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="33" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1addb92861d7c344086af68ef1f56c04a1" prot="public" static="no">
+        <name>SELECT_BUTTON</name>
+        <initializer>500., 640., 960., 998.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="23" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a8ee6a0c31ad6842df9a24677e5b523e5" prot="public" static="no">
+        <name>SLAB</name>
+        <initializer>-8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="38" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a66da09828542cd6787aa9641e21dcb1b" prot="public" static="no">
+        <name>TAG_COLOUR</name>
+        <initializer>24</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="19" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a52e3db5a1724beab41ebbabe72460f12" prot="public" static="no">
+        <name>TEXT</name>
+        <initializer>21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="16" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" prot="public" static="no">
+        <name>TRUE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="psplot_8h_1a51a6513ba09926c650aa2b536694af07" prot="public" static="no">
+        <name>UNPROC</name>
+        <initializer>19</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="14" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PSPLOT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PSPLOT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="psplot_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="psplot_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="sizelimits_8h" kindref="compound">sizelimits.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Page<sp/>layout<sp/>definitions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="psplot_8h_1a744aadae7089710f8b61facba705edee" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MIN_BASE_PLOT<sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="psplot_8h_1ad48179411c0f820e3788e4e719009ae4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BASE_PLOT<sp/><sp/>60</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="psplot_8h_1a77e812a78fbdc25fd828dec5b93692bf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MIN_SCAN_PLOT<sp/><sp/>35</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="psplot_8h_1a63110255fcd7aa5f86f50fcc7dea7e7b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_SCAN_PLOT<sp/><sp/>70</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Colour<sp/>definitions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="psplot_8h_1a51a6513ba09926c650aa2b536694af07" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>UNPROC<sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="psplot_8h_1a5381a445a1e4bdc36460151d82eed95a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>MINUS<sp/><sp/><sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="psplot_8h_1a52e3db5a1724beab41ebbabe72460f12" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>TEXT<sp/><sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="psplot_8h_1a3a6d3cd70078e6046471ec528a09cd19" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>ACTIVE<sp/><sp/><sp/><sp/><sp/>22</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="psplot_8h_1a0326727285db27a444321f9d3b0895fb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>INACTIVE<sp/><sp/><sp/>23</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="psplot_8h_1a66da09828542cd6787aa9641e21dcb1b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>TAG_COLOUR<sp/>24</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Button<sp/>coordinates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="psplot_8h_1a335cc28eec516b9ddc01a524ae202d17" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>PREV_BUTTON<sp/><sp/><sp/><sp/><sp/><sp/><sp/>140.,<sp/>280.,<sp/>960.,<sp/>998.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="psplot_8h_1a308561aa19bd6948329c38117ca0ec48" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>NEXT_BUTTON<sp/><sp/><sp/><sp/><sp/><sp/><sp/>320.,<sp/>460.,<sp/>960.,<sp/>998.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="psplot_8h_1addb92861d7c344086af68ef1f56c04a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>SELECT_BUTTON<sp/><sp/><sp/><sp/><sp/>500.,<sp/>640.,<sp/>960.,<sp/>998.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="psplot_8h_1a278c1f14ffe456bcf28bcab2c1383331" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>FPLOT_BUTTON<sp/><sp/><sp/><sp/><sp/><sp/>680.,<sp/>820.,<sp/>960.,<sp/>998.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="psplot_8h_1a6553cabe98eefb448d144504b361dffd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>QUIT_BUTTON<sp/><sp/><sp/><sp/><sp/><sp/><sp/>860.,<sp/>998.,<sp/>960.,<sp/>998.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="psplot_8h_1a19519ebc018ccd8b49737b671ee393c4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>RETAIN_BUTTON<sp/><sp/><sp/><sp/><sp/>0.,<sp/>75.,<sp/>900.,<sp/>940.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="psplot_8h_1a9a39f2404ed0bf7dda0ae7942e75b447" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>BAND_XORIGIN<sp/><sp/><sp/><sp/><sp/><sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="psplot_8h_1a1a0970be429f9a8f98e4b9519c26a269" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>BAND_YORIGIN<sp/><sp/><sp/><sp/><sp/><sp/>850.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="psplot_8h_1a8ff6e7e0ebce5b85b64dbad8831de33e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>BAND_SIZE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>40.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Button<sp/>return<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="psplot_8h_1a55659d6bca0e8c599a48d27e570317dc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>PREV<sp/><sp/><sp/><sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="psplot_8h_1a2be29dbf95b4a2c822f307a5b8141184" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>NEXT<sp/><sp/><sp/><sp/>-2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="psplot_8h_1a53dc4af00adc7b3b4d12eafb71596dfc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>SELECT<sp/><sp/>-3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="psplot_8h_1a2e4e1c984f1836fc52542d108542d414" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>FPLOT<sp/><sp/><sp/>-4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="psplot_8h_1ad24e2b54375e12474e65ebf7175988fb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>QUIT<sp/><sp/><sp/><sp/>-5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="psplot_8h_1afec4e5146fc774fff2bc0690a7e4b5e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>RETAIN<sp/><sp/>-6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="psplot_8h_1a1119d9c4aa12dadd9998c8d0a2e6ffb2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>BLAB<sp/><sp/><sp/><sp/>-7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="psplot_8h_1a8ee6a0c31ad6842df9a24677e5b523e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>SLAB<sp/><sp/><sp/><sp/>-8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="psplot_8h_1a8ae9d53f33f46cfcfcb9736e6351452a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>KEY<sp/><sp/><sp/><sp/><sp/>-9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="psplot_8h_1ab6855aa141ce3b39860691f8c8237b0b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>DATA_PT<sp/>-10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="psplot_8h_1a6a2e6b3670a920656095b739efe77613" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>NODATA<sp/><sp/>-11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="psplot_8h_1aad4a7ebff687dc5228cc3fd4d25067f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>NOTHING<sp/>-12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="psplot_8h_1ab57e5c97e5d788f048284f1175c757b7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/>BAND<sp/><sp/><sp/><sp/>-100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Plotting<sp/>area<sp/>coordinates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="psplot_8h_1a71b9c64aec15b4b3f123c81cbdb5b6ec" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>PLOT_XMIN<sp/><sp/>140.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="psplot_8h_1a0d76a29df9e6722c4f2f735a7187e492" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>PLOT_XMAX<sp/><sp/>1000.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="psplot_8h_1a5582b2d86c96e0939c4833d4860a3ba6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>PLOT_YMIN<sp/><sp/>100.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="psplot_8h_1a9325766972926ed36cf47e920046b18b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>PLOT_YMAX<sp/><sp/>820.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Label<sp/>areas<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="psplot_8h_1af5acf6745da187919b58e809d4d23848" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>SCANLABEL<sp/><sp/><sp/>140.,<sp/>1000.,<sp/>822.,<sp/>958.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="psplot_8h_1a2d027b1e81209f3f5c6a16da924697a8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>BASELABEL<sp/><sp/><sp/>110.,<sp/>138.,<sp/>100.,<sp/>820.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Info<sp/>display<sp/>area<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="psplot_8h_1ae1103fea1e1b3c41ca3322d5389f7162" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>INFO<sp/><sp/><sp/><sp/><sp/>65.,<sp/>200.,<sp/>10.,<sp/>70.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="psplot_8h_1a741dafa1bd1ea79378f402bb15fbeeca" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>INFO_X<sp/><sp/><sp/>65.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="psplot_8h_1a89904cb639d01dbee42b37befc20650c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>INFO_Y<sp/><sp/><sp/>10.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="psplot_8h_1a824d31ba37dadfdaf6fe2fd41d2c576c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>GUARD_BAND<sp/>2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standardized<sp/>quality<sp/>codes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="psplot_8h_1a9fb2047e59518ac128be297d02389308" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>QUALITIES<sp/>&quot;<sp/>0123456789ABCDEFGH.-&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="psplot_8h_1a10025f6b58388b7401159d4d343db2ad" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>KEY_XMIN<sp/><sp/>400.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="psplot_8h_1addcc3b8b7fdb3cbe13892a128774b775" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>KEY_YMIN<sp/><sp/>50.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="psplot_8h_1ad7f31bd614ca3e19c8ecf137223b62e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>KEYINC<sp/><sp/><sp/><sp/>20.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="structpsplot__cell" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__cell" kindref="compound">psplot_cell</ref></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67" refid="structpsplot__cell_1a8064266cdb636b65a8d1846579e48708" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__cell_1a8064266cdb636b65a8d1846579e48708" kindref="member">data_index</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="68" refid="structpsplot__cell_1a17880f5c841d0edf6f572b4ce742e190" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__cell_1a17880f5c841d0edf6f572b4ce742e190" kindref="member">colour_index</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="69" refid="structpsplot__cell_1a842622ac121bf1e7780dc4ca15f33915" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__cell_1a842622ac121bf1e7780dc4ca15f33915" kindref="member">flag</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="structpsplot__baseline" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__baseline" kindref="compound">psplot_baseline</ref></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74" refid="structpsplot__baseline_1a0229cbc7caf55881015c2e5f97919e1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">[3];</highlight></codeline>
+<codeline lineno="75" refid="structpsplot__baseline_1a2cf44971a1b18862abba07fea144853f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__baseline_1a2cf44971a1b18862abba07fea144853f" kindref="member">alloced</ref>;</highlight></codeline>
+<codeline lineno="76" refid="structpsplot__baseline_1a47486dcec6ce5e70e46100251f1d888c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__baseline_1a47486dcec6ce5e70e46100251f1d888c" kindref="member">tagged</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="77" refid="structpsplot__baseline_1a1f588b09ec87dde57ec316efc01a7490" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__cell" kindref="compound">psplot_cell</ref><sp/><sp/>*<ref refid="structpsplot__baseline_1a1f588b09ec87dde57ec316efc01a7490" kindref="member">scan</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structpsplot__station" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__station" kindref="compound">psplot_station</ref></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82" refid="structpsplot__station_1a4aee718fcd16f0f885302556390a31dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structpsplot__station_1a4aee718fcd16f0f885302556390a31dd" kindref="member">stn</ref>;</highlight></codeline>
+<codeline lineno="83" refid="structpsplot__station_1a0fe745fa1b2c36e0a13405cc0250db37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structpsplot__station_1a0fe745fa1b2c36e0a13405cc0250db37" kindref="member">fglist</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="84" refid="structpsplot__station_1a2a8e517a2368970b40821967ccd16e90" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__station_1a2a8e517a2368970b40821967ccd16e90" kindref="member">minus</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Boolean,<sp/>but<sp/>could<sp/>contain<sp/>reason<sp/>code<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="structpsplot__scantime" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__scantime" kindref="compound">psplot_scantime</ref></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89" refid="structpsplot__scantime_1a613cc57559c1d8744398fb38e299759c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__scantime_1a613cc57559c1d8744398fb38e299759c" kindref="member">scantime</ref>;</highlight></codeline>
+<codeline lineno="90" refid="structpsplot__scantime_1a90861e5d6663c109c7a63752b78742ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__scantime_1a90861e5d6663c109c7a63752b78742ba" kindref="member">seconds</ref>;</highlight></codeline>
+<codeline lineno="91" refid="structpsplot__scantime_1addf36c99bba523a582f2b7d513b9120d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__scantime_1addf36c99bba523a582f2b7d513b9120d" kindref="member">tagged</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="92" refid="structpsplot__scantime_1a7b23902244737d43497311422b1d665b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structpsplot__scantime_1a7b23902244737d43497311422b1d665b" kindref="member">scan_name</ref>[32];</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__station" kindref="compound">psplot_station</ref><sp/><ref refid="structstations" kindref="compound">stations</ref>[<ref refid="sizelimits_8h_1ab53a3a69362594134bd21ab397ed6916" kindref="member">MAXSTEXP</ref>];</highlight></codeline>
+<codeline lineno="94" refid="structpsplot__scantime_1adbf78d835141217c888b24fe815a1f7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__scantime_1adbf78d835141217c888b24fe815a1f7d" kindref="member">nst</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structpsplot__plotparam" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__plotparam" kindref="compound">psplot_plotparam</ref></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99" refid="structpsplot__plotparam_1a869efc259475b893b524f517f8e90d9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1a869efc259475b893b524f517f8e90d9b" kindref="member">npages</ref>;</highlight></codeline>
+<codeline lineno="100" refid="structpsplot__plotparam_1ab66e961d95bb57f86f8c81072487e555" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1ab66e961d95bb57f86f8c81072487e555" kindref="member">nbasepage</ref>;</highlight></codeline>
+<codeline lineno="101" refid="structpsplot__plotparam_1aa0e1d36a724b2f3141235e9a21f7fe16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1aa0e1d36a724b2f3141235e9a21f7fe16" kindref="member">scanpage</ref>;</highlight></codeline>
+<codeline lineno="102" refid="structpsplot__plotparam_1aa0e4e9fcb8d69719c26e6952ff689747" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1aa0e4e9fcb8d69719c26e6952ff689747" kindref="member">basepage</ref>;</highlight></codeline>
+<codeline lineno="103" refid="structpsplot__plotparam_1a17a6653a2090941d3a7b6229207d398f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1a17a6653a2090941d3a7b6229207d398f" kindref="member">scans_per_page</ref>;</highlight></codeline>
+<codeline lineno="104" refid="structpsplot__plotparam_1ad3626cb893e5a19e9bfa86cf58dac110" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1ad3626cb893e5a19e9bfa86cf58dac110" kindref="member">base_per_page</ref>;</highlight></codeline>
+<codeline lineno="105" refid="structpsplot__plotparam_1a403608343704a36aebc881ccc7e19357" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1a403608343704a36aebc881ccc7e19357" kindref="member">band</ref>;</highlight></codeline>
+<codeline lineno="106" refid="structpsplot__plotparam_1a2511454a2ee3ff5cc1b7b0d597523498" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1a2511454a2ee3ff5cc1b7b0d597523498" kindref="member">base_sep</ref>;</highlight></codeline>
+<codeline lineno="107" refid="structpsplot__plotparam_1a81fb238767f5c147807c94c0c67af2d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1a81fb238767f5c147807c94c0c67af2d4" kindref="member">scan_sep</ref>;</highlight></codeline>
+<codeline lineno="108" refid="structpsplot__plotparam_1a2b67358e7796b3a617fc3eb563994fd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1a2b67358e7796b3a617fc3eb563994fd8" kindref="member">tagsize</ref>;</highlight></codeline>
+<codeline lineno="109" refid="structpsplot__plotparam_1a3c8947ed2b51e3523bf290a5dcb65002" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1a3c8947ed2b51e3523bf290a5dcb65002" kindref="member">xgb_fract</ref>;</highlight></codeline>
+<codeline lineno="110" refid="structpsplot__plotparam_1ac3fa8258945b7966adaf01afda787725" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structpsplot__plotparam_1ac3fa8258945b7966adaf01afda787725" kindref="member">ygb_fract</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="structpsplot__fgroup" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__fgroup" kindref="compound">psplot_fgroup</ref></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115" refid="structpsplot__fgroup_1a126a8b9ace36ea1b7acbe8bba6fdfd5c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structpsplot__fgroup_1a126a8b9ace36ea1b7acbe8bba6fdfd5c" kindref="member">fgroup</ref>[3];</highlight></codeline>
+<codeline lineno="116" refid="structpsplot__fgroup_1ac4039284495ffe5b42ba53a65867421f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structpsplot__fgroup_1ac4039284495ffe5b42ba53a65867421f" kindref="member">subgroups</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="structps__array" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structps__array" kindref="compound">ps_array</ref></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121" refid="structps__array_1a1779873869da74469f5710008e2e959d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__array_1a1779873869da74469f5710008e2e959d" kindref="member">nbaselines</ref>;</highlight></codeline>
+<codeline lineno="122" refid="structps__array_1ac756a6bfab108e1d4b756bdc344b332f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__array_1ac756a6bfab108e1d4b756bdc344b332f" kindref="member">nscans</ref>;</highlight></codeline>
+<codeline lineno="123" refid="structps__array_1aa6e0a7d56351076a42b7cabdaf39d22a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__array_1aa6e0a7d56351076a42b7cabdaf39d22a" kindref="member">displayed</ref>;</highlight></codeline>
+<codeline lineno="124" refid="structps__array_1a0a6815fcb3db1c27e3ec903acee9ea8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__array_1a0a6815fcb3db1c27e3ec903acee9ea8a" kindref="member">fplot_open</ref>;</highlight></codeline>
+<codeline lineno="125" refid="structps__array_1ab6ecbba3ac0e8633e20e180cbde7c770" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__array_1ab6ecbba3ac0e8633e20e180cbde7c770" kindref="member">ntagged</ref>;</highlight></codeline>
+<codeline lineno="126" refid="structps__array_1a23f0bd521372afd2cbecd0d8ae79d334" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__array_1a23f0bd521372afd2cbecd0d8ae79d334" kindref="member">qtagged</ref>[17];</highlight></codeline>
+<codeline lineno="127" refid="structps__array_1a858db1abc1bdaf4f5b5a178dd79320a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__array_1a90b9c4939eb804627b193a0408f62d95" kindref="member">retain</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__fgroup" kindref="compound">psplot_fgroup</ref><sp/><ref refid="structps__array_1a858db1abc1bdaf4f5b5a178dd79320a4" kindref="member">fglist</ref>[<ref refid="sizelimits_8h_1a54e764f51810649efbac536750413513" kindref="member">MAXGROUPS</ref>];</highlight></codeline>
+<codeline lineno="129" refid="structps__array_1a8c20aaa16151ba03b165b06935a2fc31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structps__array_1a8c20aaa16151ba03b165b06935a2fc31" kindref="member">subgroups</ref>[<ref refid="sizelimits_8h_1af9a5faf5719d8575f4be804b9bb654c9" kindref="member">MAXBANDS</ref>];</highlight></codeline>
+<codeline lineno="130" refid="structps__array_1acdd90dd025334829bbcda824dde62f3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structps__array_1acdd90dd025334829bbcda824dde62f3f" kindref="member">stnlist</ref>[<ref refid="sizelimits_8h_1ab53a3a69362594134bd21ab397ed6916" kindref="member">MAXSTEXP</ref>];</highlight></codeline>
+<codeline lineno="131" refid="structps__array_1a6f00e9f2933377c883b659a8e0d011a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__scantime" kindref="compound">psplot_scantime</ref><sp/>*<ref refid="structps__array_1ac530e9aaa6dcd57b85e432151c08a9d0" kindref="member">time</ref>;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__plotparam" kindref="compound">psplot_plotparam</ref><sp/><ref refid="structps__array_1abe4ed1ad45129225d7dd0c77474e63d2" kindref="member">param</ref>;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpsplot__baseline" kindref="compound">psplot_baseline</ref><sp/><ref refid="structps__array_1a6f00e9f2933377c883b659a8e0d011a1" kindref="member">baseline</ref>[<ref refid="sizelimits_8h_1a54157299faf715fbe733adb852d9e541" kindref="member">MAXBASE</ref>];</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="structps__count" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structps__count" kindref="compound">ps_count</ref></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="138" refid="structps__count_1ae2bdd926db6a64afe3dbc929b1a908e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structps__count_1ae2bdd926db6a64afe3dbc929b1a908e5" kindref="member">baseline</ref>[3];</highlight></codeline>
+<codeline lineno="139" refid="structps__count_1a227214deea5fb0ae1044c646a6a10690" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structps__count_1a227214deea5fb0ae1044c646a6a10690" kindref="member">band</ref>;</highlight></codeline>
+<codeline lineno="140" refid="structps__count_1a5d654d1a0634cc95186ab63edae79b4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structps__count_1a5d654d1a0634cc95186ab63edae79b4d" kindref="member">nqual</ref>[22];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>PSPLOT_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h"/>
+  </compounddef>
+</doxygen>

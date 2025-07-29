@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__212" kind="struct" language="C++" prot="public">
+    <compoundname>type_212</compoundname>
+    <includes refid="type__212_8h" local="no">type_212.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__212_1affc119367ce3e60d26e6d92b245f9bb7" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_212::channel</definition>
+        <argsstring></argsstring>
+        <name>channel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="42" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1a16023f2d6a4695c9cd27263de3b46be9" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structnewphasor" kindref="compound">newphasor</ref></type>
+        <definition>struct newphasor type_212::data[1]</definition>
+        <argsstring>[1]</argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="44" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1a3de2f39dc63085a05c7ea380abe106eb" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_212::first_ap</definition>
+        <argsstring></argsstring>
+        <name>first_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="41" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1aa5936bba5ae32cbe81eb4c5e7e8c8151" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_212::nap</definition>
+        <argsstring></argsstring>
+        <name>nap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="40" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1a420503a7f93cecdc0b47b1c5d1c98dfd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_212::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="37" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1a14cb432f5c095a41ae140e1862aff95b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_212::sbd_chan</definition>
+        <argsstring></argsstring>
+        <name>sbd_chan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="43" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1a512d926911fb643ed37142e61939b5b0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_212::unused</definition>
+        <argsstring></argsstring>
+        <name>unused</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="39" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1a556ac6dd1e12e9d671a297abb949f4c6" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_212::unused2[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>unused2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="44" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__212_1aec6dc1975b041ad525a15f167e80cf50" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_212::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="38" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>newphasor</label>
+        <link refid="structnewphasor"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>amp</edgelabel>
+          <edgelabel>phase</edgelabel>
+          <edgelabel>weight</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>type_212</label>
+        <link refid="structtype__212"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>channel</edgelabel>
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>nap</edgelabel>
+          <edgelabel>sbd_chan</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" line="35" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_212.h" bodystart="36" bodyend="46"/>
+    <listofallmembers>
+      <member refid="structtype__212_1affc119367ce3e60d26e6d92b245f9bb7" prot="public" virt="non-virtual"><scope>type_212</scope><name>channel</name></member>
+      <member refid="structtype__212_1a16023f2d6a4695c9cd27263de3b46be9" prot="public" virt="non-virtual"><scope>type_212</scope><name>data</name></member>
+      <member refid="structtype__212_1a3de2f39dc63085a05c7ea380abe106eb" prot="public" virt="non-virtual"><scope>type_212</scope><name>first_ap</name></member>
+      <member refid="structtype__212_1aa5936bba5ae32cbe81eb4c5e7e8c8151" prot="public" virt="non-virtual"><scope>type_212</scope><name>nap</name></member>
+      <member refid="structtype__212_1a420503a7f93cecdc0b47b1c5d1c98dfd" prot="public" virt="non-virtual"><scope>type_212</scope><name>record_id</name></member>
+      <member refid="structtype__212_1a14cb432f5c095a41ae140e1862aff95b" prot="public" virt="non-virtual"><scope>type_212</scope><name>sbd_chan</name></member>
+      <member refid="structtype__212_1a512d926911fb643ed37142e61939b5b0" prot="public" virt="non-virtual"><scope>type_212</scope><name>unused</name></member>
+      <member refid="structtype__212_1a556ac6dd1e12e9d671a297abb949f4c6" prot="public" virt="non-virtual"><scope>type_212</scope><name>unused2</name></member>
+      <member refid="structtype__212_1aec6dc1975b041ad525a15f167e80cf50" prot="public" virt="non-virtual"><scope>type_212</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

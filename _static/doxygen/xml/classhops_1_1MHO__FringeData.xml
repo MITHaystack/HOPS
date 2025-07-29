@@ -1,0 +1,772 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FringeData" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FringeData</compoundname>
+    <includes refid="MHO__FringeData_8hh" local="no">MHO_FringeData.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeData_1a6b069d2377593006599b652a99f7fe4b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref></type>
+        <definition>MHO_ContainerStore hops::MHO_FringeData::fContainerStore</definition>
+        <argsstring></argsstring>
+        <name>fContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="140" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeData_1a57f4afde7f8a3fac641a3bd93e580f9b" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_FringeData::fControlFormat</definition>
+        <argsstring></argsstring>
+        <name>fControlFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="143" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeData_1a54b1651bbb33a0c9d691e464d5d26ba0" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_FringeData::fControlStatements</definition>
+        <argsstring></argsstring>
+        <name>fControlStatements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="144" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeData_1aaad027ed74cc2ef3cfd3f6e91e97c426" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref></type>
+        <definition>MHO_ParameterStore hops::MHO_FringeData::fParameterStore</definition>
+        <argsstring></argsstring>
+        <name>fParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="138" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeData_1a10e2af4f23fd2faf7a34e012695a168c" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_FringeData::fPlotData</definition>
+        <argsstring></argsstring>
+        <name>fPlotData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="147" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeData_1a03dd55b18640ad1d74ff0ea6ed7cb5e9" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref></type>
+        <definition>MHO_ScanDataStore hops::MHO_FringeData::fScanStore</definition>
+        <argsstring></argsstring>
+        <name>fScanStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="139" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1ab58f7f3f839d954846816a2281b10014" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FringeData::MHO_FringeData</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FringeData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1aa873d79f43ab0e8f03766565b3284b20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FringeData::~MHO_FringeData</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FringeData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1a95992d52ce70263a2482212289a8f986" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+        <definition>MHO_ContainerStore* hops::MHO_FringeData::GetContainerStore</definition>
+        <argsstring>()</argsstring>
+        <name>GetContainerStore</name>
+        <briefdescription>
+<para>Getter for container store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref>&amp; - Reference to the container store. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="47" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1a1095bcc962e0732d9a68b19ca76fe389" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+        <definition>mho_json&amp; hops::MHO_FringeData::GetControlFormat</definition>
+        <argsstring>()</argsstring>
+        <name>GetControlFormat</name>
+        <briefdescription>
+<para>access to the control format and parsed control statements (as json object) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to mho_json object representing control format </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="68" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1a89f6e70e50baa3b4fa2e19a3c7a69294" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+        <definition>mho_json&amp; hops::MHO_FringeData::GetControlStatements</definition>
+        <argsstring>()</argsstring>
+        <name>GetControlStatements</name>
+        <briefdescription>
+<para>Getter for parsed control statements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to mho_json object containing control statements. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="75" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1a024c54d7c23676fb79603e47f33a05dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+        <definition>MHO_ParameterStore* hops::MHO_FringeData::GetParameterStore</definition>
+        <argsstring>()</argsstring>
+        <name>GetParameterStore</name>
+        <briefdescription>
+<para>Getter for parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="40" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1a95512323ff98fd7c6a1080bd7e37293d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+        <definition>mho_json&amp; hops::MHO_FringeData::GetPlotData</definition>
+        <argsstring>()</argsstring>
+        <name>GetPlotData</name>
+        <briefdescription>
+<para>Getter for plot data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to mho_json object containing plot data </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="83" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1a7bcb6273909badd6356e9e5dd2fbd706" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> *</type>
+        <definition>MHO_ScanDataStore* hops::MHO_FringeData::GetScanDataStore</definition>
+        <argsstring>()</argsstring>
+        <name>GetScanDataStore</name>
+        <briefdescription>
+<para>Getter for scan data store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to <ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="54" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1acf16f17c2d4c37171ff535ffb7547354" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_FringeData::GetVex</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVex</name>
+        <briefdescription>
+<para>Getter for vex data (as json object) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The root file data as an mho_json object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="61" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1acf441556dfa56718fd33caaf3f171d7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_FringeData::WriteOutput</definition>
+        <argsstring>()</argsstring>
+        <name>WriteOutput</name>
+        <briefdescription>
+<para>Writes output data to disk with a temporary unique name and renames it afterwards. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns an integer value indicating success or failure. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="90" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_FringeData.cc" bodystart="13" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1ac2a148fc6c9e8c1cb53ec63675494a1d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_FringeData::ConstructFrngFileName</definition>
+        <argsstring>(const std::string directory, const std::string &amp;baseline, const std::string &amp;ref_station, const std::string &amp;rem_station, const std::string &amp;frequency_group, const std::string &amp;polprod, const std::string &amp;root_code, int seq_no)</argsstring>
+        <name>ConstructFrngFileName</name>
+        <param>
+          <type>const std::string</type>
+          <declname>directory</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>ref_station</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>rem_station</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>frequency_group</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>polprod</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>root_code</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>seq_no</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a fringe file name string from given parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>directory</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The directory path where the fringe file will be located. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Baseline identifier for the fringe file. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference station identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rem_station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Remote station identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frequency_group</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency group identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polprod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Polarization product identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>root_code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Root code identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seq_no</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sequence number for the fringe file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A string representing the constructed fringe file name. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="114" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_FringeData.cc" bodystart="206" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1ae36cb7201237c4fe77b5486492311428" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_FringeData::ConstructTempFileName</definition>
+        <argsstring>(const std::string directory, const std::string &amp;baseline, const std::string &amp;ref_station, const std::string &amp;rem_station, const std::string &amp;frequency_group, const std::string &amp;polprod, const std::string &amp;root_code, const std::string &amp;temp_id)</argsstring>
+        <name>ConstructTempFileName</name>
+        <param>
+          <type>const std::string</type>
+          <declname>directory</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>ref_station</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>rem_station</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>frequency_group</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>polprod</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>root_code</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>temp_id</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a temporary file name using provided parameters and concatenation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>directory</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The directory where the file will be located. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>baseline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Baseline identifier for the file. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference station identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rem_station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Remote station identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>frequency_group</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency group identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polprod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Polarization-production identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>root_code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Root code identifier. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>temp_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Temporary ID for the file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The constructed temporary file name as a string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="132" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_FringeData.cc" bodystart="219" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeData_1aa9878b4d71ca6f0832839a251e60c233" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_FringeData::WriteDataObjects</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>WriteDataObjects</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Writes data objects to a file with given filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Filename to write data objects. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 on success, error code otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="99" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_FringeData.cc" bodystart="106" bodyend="204"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>simple class to contain fringe data objects</para>
+<para><simplesect kind="author"><para></para>
+</simplesect>
+<simplesect kind="date"><para>Sun Feb 4 20:25:51 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="22">
+        <label>size_t</label>
+      </node>
+      <node id="26">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="29">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="13" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="16">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="20" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="13" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ParameterStore</label>
+        <link refid="classhops_1_1MHO__ParameterStore"/>
+      </node>
+      <node id="17">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="13" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>json</label>
+      </node>
+      <node id="11">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="23">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>key_pair</label>
+      </node>
+      <node id="21">
+        <label>int</label>
+      </node>
+      <node id="13">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>std::set&lt; std::string &gt;</label>
+        <childnode refid="10" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>uint8_t</label>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ScanDataStore</label>
+        <link refid="classhops_1_1MHO__ScanDataStore"/>
+      </node>
+      <node id="27">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="13" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>std::map&lt; hops::MHO_Serializable *, key_pair &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_ContainerStore</label>
+        <link refid="classhops_1_1MHO__ContainerStore"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fObjectsToIds</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fShortNameSet</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fShortNameToIds</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fIdsToObjects</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fDictionary</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="20" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>std::map&lt; key_pair, hops::MHO_Serializable * &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="20">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FringeData</label>
+        <link refid="classhops_1_1MHO__FringeData"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fControlFormat</edgelabel>
+          <edgelabel>fControlStatements</edgelabel>
+          <edgelabel>fPlotData</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fScanStore</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>std::string</label>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_FringeData.hh" bodystart="30" bodyend="148"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FringeData_1ac2a148fc6c9e8c1cb53ec63675494a1d" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>ConstructFrngFileName</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1ae36cb7201237c4fe77b5486492311428" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>ConstructTempFileName</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a6b069d2377593006599b652a99f7fe4b" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>fContainerStore</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a57f4afde7f8a3fac641a3bd93e580f9b" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>fControlFormat</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a54b1651bbb33a0c9d691e464d5d26ba0" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>fControlStatements</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1aaad027ed74cc2ef3cfd3f6e91e97c426" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a10e2af4f23fd2faf7a34e012695a168c" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>fPlotData</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a03dd55b18640ad1d74ff0ea6ed7cb5e9" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>fScanStore</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a95992d52ce70263a2482212289a8f986" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>GetContainerStore</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a1095bcc962e0732d9a68b19ca76fe389" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>GetControlFormat</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a89f6e70e50baa3b4fa2e19a3c7a69294" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>GetControlStatements</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a024c54d7c23676fb79603e47f33a05dc" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>GetParameterStore</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a95512323ff98fd7c6a1080bd7e37293d" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>GetPlotData</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1a7bcb6273909badd6356e9e5dd2fbd706" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>GetScanDataStore</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1acf16f17c2d4c37171ff535ffb7547354" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>GetVex</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1ab58f7f3f839d954846816a2281b10014" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>MHO_FringeData</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1aa9878b4d71ca6f0832839a251e60c233" prot="protected" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>WriteDataObjects</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1acf441556dfa56718fd33caaf3f171d7f" prot="public" virt="non-virtual"><scope>hops::MHO_FringeData</scope><name>WriteOutput</name></member>
+      <member refid="classhops_1_1MHO__FringeData_1aa873d79f43ab0e8f03766565b3284b20" prot="public" virt="virtual"><scope>hops::MHO_FringeData</scope><name>~MHO_FringeData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

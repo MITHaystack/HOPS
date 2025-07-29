@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BinaryFileStreamer" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BinaryFileStreamer</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__FileStreamer" prot="public" virt="non-virtual">hops::MHO_FileStreamer</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__BinaryFileStreamerMultiType" prot="public" virt="non-virtual">hops::MHO_BinaryFileStreamerMultiType&lt; XValueTypeS &gt;</basecompoundref>
+    <includes refid="MHO__BinaryFileStreamer_8hh" local="no">MHO_BinaryFileStreamer.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__BinaryFileStreamer_1a03ffaf7abd0c934febf74b9f32e6e4db" prot="protected" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_BinaryFileStreamer::fNBytesWritten</definition>
+        <argsstring></argsstring>
+        <name>fNBytesWritten</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="367" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="364" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1aa64328d1585b6bf8a9a917cd31a6305f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BinaryFileStreamer::MHO_BinaryFileStreamer</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BinaryFileStreamer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="300" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="300" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1a22b84caf6dc08a39d60801d374e7d6d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BinaryFileStreamer::~MHO_BinaryFileStreamer</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BinaryFileStreamer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="302" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="302" bodyend="302"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1a9ff9760f258a2ab07501b9926d56e8ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_BinaryFileStreamer::AddBytesWritten</definition>
+        <argsstring>(uint64_t b) override</argsstring>
+        <name>AddBytesWritten</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Increments the total bytes written by the given amount. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of bytes to add to the total. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="356" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="356" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1ad1f566e607b9f8100337355b8f2f2119" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BinaryFileStreamer::Close</definition>
+        <argsstring>() override</argsstring>
+        <name>Close</name>
+        <reimplements refid="classhops_1_1MHO__FileStreamer_1a85b6a38e254b15d15dbbbcf446f9a112">Close</reimplements>
+        <briefdescription>
+<para>Closes the open file if it exists and sets the file state to closed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="326" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_BinaryFileStreamer.cc" bodystart="55" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1ab2c8c3f703572258f72adbf5fae623ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_BinaryFileStreamer::GetNBytesWritten</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetNBytesWritten</name>
+        <briefdescription>
+<para>Getter for N bytes written. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The total number of bytes written as a uint64_t. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="364" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="364" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1a422fcec78659f992b91dd3ef5214c700" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const std::fstream &amp;</type>
+        <definition>virtual const std::fstream&amp; hops::MHO_BinaryFileStreamer::GetStream</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetStream</name>
+        <reimplements refid="classhops_1_1MHO__FileStreamer_1a2f66e66c4d059ab4a55e9607e8b7e4d7">GetStream</reimplements>
+        <briefdescription>
+<para>Getter for fstream object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to std::fstream object. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="342" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="342" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1ad19e3f23bfc791fb7c5ca790baeedeb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>std::fstream &amp;</type>
+        <definition>virtual std::fstream&amp; hops::MHO_BinaryFileStreamer::GetStream</definition>
+        <argsstring>() override</argsstring>
+        <name>GetStream</name>
+        <reimplements refid="classhops_1_1MHO__FileStreamer_1a5cba2271d81e36ef6f88fc6083eac527">GetStream</reimplements>
+        <briefdescription>
+<para>Getter for fstream object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to std::fstream&amp; representing the current file stream. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="334" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="334" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1a23a18d890eb5ea1ab3492c95e362e512" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BinaryFileStreamer::OpenToAppend</definition>
+        <argsstring>() override</argsstring>
+        <name>OpenToAppend</name>
+        <reimplements refid="classhops_1_1MHO__FileStreamer_1aae29030822ba8758abaf6caa377bd0e3">OpenToAppend</reimplements>
+        <briefdescription>
+<para>Opens a binary file for appending and sets appropriate file state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="320" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_BinaryFileStreamer.cc" bodystart="23" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1a9502522171adc3769fe0cc00fc8eff2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BinaryFileStreamer::OpenToRead</definition>
+        <argsstring>() override</argsstring>
+        <name>OpenToRead</name>
+        <reimplements refid="classhops_1_1MHO__FileStreamer_1a1bd58b864a9d5c87ef498ec6cb409925">OpenToRead</reimplements>
+        <briefdescription>
+<para>Opens a file for binary reading and sets appropriate state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="308" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_BinaryFileStreamer.cc" bodystart="7" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1a16ecc5e591be1f7fbb6beb270794acf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hops::MHO_BinaryFileStreamer::OpenToWrite</definition>
+        <argsstring>() override</argsstring>
+        <name>OpenToWrite</name>
+        <reimplements refid="classhops_1_1MHO__FileStreamer_1af99a04592f010b7f0718cdd85006e42b">OpenToWrite</reimplements>
+        <briefdescription>
+<para>Opens a file for binary writing and sets appropriate state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="314" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_BinaryFileStreamer.cc" bodystart="39" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1aa9f90cf014ad6e2fa4e9e4a4eb307bc4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_BinaryFileStreamer::ResetByteCount</definition>
+        <argsstring>() override</argsstring>
+        <name>ResetByteCount</name>
+        <briefdescription>
+<para>Resets byte count to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="348" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="348" bodyend="348"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryFileStreamer_1a12a6d13dc54323b35b02254b7ba892ba" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref> &amp;</type>
+        <definition>MHO_BinaryFileStreamer&amp; hops::MHO_BinaryFileStreamer::Self</definition>
+        <argsstring>() override</argsstring>
+        <name>Self</name>
+        <briefdescription>
+<para>Returns a reference to the current instance of <ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref>&amp;: Reference to the current instance </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="374" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="374" bodyend="374"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BinaryFileStreamer" kindref="compound">MHO_BinaryFileStreamer</ref> declare the concrete class which does the work for file streams. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>variadic template parameter implemenation of a gen scatter hierarchy streamer for POD (plain-old-data) and JSON types to a file stream</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>MHO_BinaryFileStreamerBasicTypes</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryFileStreamer</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_FileStreamer</label>
+        <link refid="classhops_1_1MHO__FileStreamer"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="16">
+        <label>MHO_BinaryFileStreamerBasicTypes</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType"/>
+      </node>
+      <node id="5">
+        <label>FileState</label>
+      </node>
+      <node id="10">
+        <label>std::basic_istream&lt; Char &gt;</label>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>uint64_t</label>
+      </node>
+      <node id="9">
+        <label>std::basic_iostream&lt; Char &gt;</label>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>streamsize</label>
+      </node>
+      <node id="15">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryFileStreamer</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fNBytesWritten</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_FileStreamer</label>
+        <link refid="classhops_1_1MHO__FileStreamer"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fBuffer</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fObjectState</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fFileState</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fBufferSize</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fFile</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fFilename</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>std::basic_ostream&lt; Char &gt;</label>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>std::basic_ios&lt; Char &gt;</label>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>std::ios_base</label>
+      </node>
+      <node id="4">
+        <label>ObjectState</label>
+      </node>
+      <node id="7">
+        <label>std::fstream</label>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="14">
+        <label>std::string</label>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::basic_fstream&lt; Char &gt;</label>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="297" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="298" bodyend="375"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a9ff9760f258a2ab07501b9926d56e8ce" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>AddBytesWritten</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1ad1f566e607b9f8100337355b8f2f2119" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>Close</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374ac5dcc897deb7a97b921c5ceb9997558f" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>closed</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a0a89c0d3319748f1edd16f202e0bb35c" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>fBuffer</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1aac27f25b2fdce7a6ad9a60bbf9a1727c" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>fBufferSize</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a703f192f0eac30d624e759d66b320749" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>fFile</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1afce2e67965351c92a12152c14c22fd07" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>fFilename</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1affc400b9a8accfda828247030e496202" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>fFileState</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>FileState</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a03ffaf7abd0c934febf74b9f32e6e4db" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>fNBytesWritten</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a263c4bab387191a0acd04506a01ec6c0" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>fObjectState</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a1480a67947d76a8d0d1ebcd6d99b6fe3" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>GetFilename</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1ab2c8c3f703572258f72adbf5fae623ed" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>GetNBytesWritten</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1ad19e3f23bfc791fb7c5ca790baeedeb9" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>GetStream</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a422fcec78659f992b91dd3ef5214c700" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>GetStream</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a979e189babc9062796bf514409bf8232" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>IsClosed</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1acb94b99d1646e49f0255b126b063db13" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>IsObjectUnknown</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a6274b45eb5365a52f416d24a02b8f08e" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>IsOpenForRead</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1aec07f9beef488892a40249982ae807bc" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>IsOpenForWrite</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1aa64328d1585b6bf8a9a917cd31a6305f" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>MHO_BinaryFileStreamer</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a3acc164f02852fa22a176541e3f7ee16" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>MHO_FileStreamer</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfce" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>ObjectState</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a23a18d890eb5ea1ab3492c95e362e512" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>OpenToAppend</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a9502522171adc3769fe0cc00fc8eff2c" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>OpenToRead</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a16ecc5e591be1f7fbb6beb270794acf7" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>OpenToWrite</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374ab0dbda4abb0ec331bfeb48626718f746" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>readable</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1aa9f90cf014ad6e2fa4e9e4a4eb307bc4" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>ResetByteCount</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a66cdadac9985660113c0604867197ea6" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>ResetObjectState</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a12a6d13dc54323b35b02254b7ba892ba" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>Self</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1aa8478390e7afa8836b476d07c7c672fc" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>SetFilename</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a484abaccd61386330c01c2c74d7ad00c" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>SetObjectUnknown</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ae912801ceb873d8b41eef837173aa750" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>SkipAhead</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374a7b11d7de8b30ab31170f3e805787e417" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>undefined</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfcea2300494909fbb66f30d5ea0f52e7065f" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>unknown</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1ad966fd7338595d7f8956b1b290bedfceaeca837d9a8341b912c849606e63f0fd4" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>unset</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a7308056846e1aa8889a916f9869ec374aad84c6b2894a19e94823881c7a285fd1" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>writeable</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamer_1a22b84caf6dc08a39d60801d374e7d6d4" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>~MHO_BinaryFileStreamer</name></member>
+      <member refid="classhops_1_1MHO__FileStreamer_1a8e84353e2ce9185e865c7037271d0c31" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamer</scope><name>~MHO_FileStreamer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

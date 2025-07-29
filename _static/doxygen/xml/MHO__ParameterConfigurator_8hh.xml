@@ -1,0 +1,457 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__ParameterConfigurator_8hh" kind="file" language="C++">
+    <compoundname>MHO_ParameterConfigurator.hh</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">vector</includes>
+    <includes refid="MHO__JSONHeaderWrapper_8hh" local="yes">MHO_JSONHeaderWrapper.hh</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includes refid="MHO__ParameterStore_8hh" local="yes">MHO_ParameterStore.hh</includes>
+    <includedby refid="TestPCalExtraction_8cc" local="yes">TestPCalExtraction.cc</includedby>
+    <includedby refid="MHO__FringeFitter_8hh" local="yes">MHO_FringeFitter.hh</includedby>
+    <includedby refid="MHO__BasicFringeFitter_8cc" local="yes">MHO_BasicFringeFitter.cc</includedby>
+    <includedby refid="MHO__IonosphericFringeFitter_8cc" local="yes">MHO_IonosphericFringeFitter.cc</includedby>
+    <includedby refid="MHO__ParameterManager_8hh" local="yes">MHO_ParameterManager.hh</includedby>
+    <includedby refid="MHO__ParameterConfigurator_8cc" local="yes">MHO_ParameterConfigurator.cc</includedby>
+    <incdepgraph>
+      <node id="17">
+        <label>atomic</label>
+      </node>
+      <node id="10">
+        <label>cstdint</label>
+      </node>
+      <node id="5">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>stdexcept</label>
+      </node>
+      <node id="21">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_ParameterConfigurator.hh</label>
+        <link refid="MHO__ParameterConfigurator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>ostream</label>
+      </node>
+      <node id="19">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>ctime</label>
+      </node>
+      <node id="23">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="3">
+        <label>utility</label>
+      </node>
+      <node id="7">
+        <label>sstream</label>
+      </node>
+      <node id="16">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>MHO_ParameterStore.hh</label>
+        <link refid="MHO__ParameterStore_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>cstdlib</label>
+      </node>
+      <node id="25">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="12">
+        <label>mutex</label>
+      </node>
+      <node id="18">
+        <label>thread</label>
+      </node>
+      <node id="14">
+        <label>set</label>
+      </node>
+      <node id="6">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="15">
+        <label>stdio.h</label>
+      </node>
+      <node id="22">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="8">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="13">
+        <label>MHO_DefaultPythonPlotVisitor.cc</label>
+        <link refid="MHO__DefaultPythonPlotVisitor_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_FringeFitterFactory.hh</label>
+        <link refid="MHO__FringeFitterFactory_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MHO_IonosphericFringeFitter.hh</label>
+        <link refid="MHO__IonosphericFringeFitter_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MHO_ParameterManager.cc</label>
+        <link refid="MHO__ParameterManager_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_ParameterConfigurator.hh</label>
+        <link refid="MHO__ParameterConfigurator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_FringeFitterFactory.cc</label>
+        <link refid="MHO__FringeFitterFactory_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_BasicFringeFitter.hh</label>
+        <link refid="MHO__BasicFringeFitter_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TestPCalExtraction.cc</label>
+        <link refid="TestPCalExtraction_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_FringeFitter.hh</label>
+        <link refid="MHO__FringeFitter_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_FringePlotVisitor.hh</label>
+        <link refid="MHO__FringePlotVisitor_8hh"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>MHO_ParameterConfigurator.cc</label>
+        <link refid="MHO__ParameterConfigurator_8cc"/>
+      </node>
+      <node id="15">
+        <label>MHO_FringeControlInitialization.cc</label>
+        <link refid="MHO__FringeControlInitialization_8cc"/>
+      </node>
+      <node id="12">
+        <label>MHO_DefaultPythonPlotVisitor.hh</label>
+        <link refid="MHO__DefaultPythonPlotVisitor_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>fourfit4.cc</label>
+        <link refid="fourfit4_8cc"/>
+      </node>
+      <node id="14">
+        <label>MHO_ParameterManager.hh</label>
+        <link refid="MHO__ParameterManager_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__ParameterConfigurator" prot="public">hops::MHO_ParameterConfigurator</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_ParameterConfigurator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_ParameterConfigurator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__JSONHeaderWrapper_8hh" kindref="compound">MHO_JSONHeaderWrapper.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__ParameterStore_8hh" kindref="compound">MHO_ParameterStore.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classhops_1_1MHO__ParameterConfigurator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__ParameterConfigurator" kindref="compound">MHO_ParameterConfigurator</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="27" refid="classhops_1_1MHO__ParameterConfigurator_1a25c542dd595919cc87b643a519f54cd7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a25c542dd595919cc87b643a519f54cd7" kindref="member">MHO_ParameterConfigurator</ref>(<ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref>*<sp/>pstore,<sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref><sp/>control_format):<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" kindref="member">fParameterStore</ref>(pstore)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a3757edd28fb8f878fb0e0ab90d422eca" kindref="member">fFormat</ref><sp/>=<sp/>control_format;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classhops_1_1MHO__ParameterConfigurator_1a8f6d17f1c68cff631b2a6b3b4e0f71e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a8f6d17f1c68cff631b2a6b3b4e0f71e0" kindref="member">~MHO_ParameterConfigurator</ref>(){};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classhops_1_1MHO__ParameterConfigurator_1aea77c88180f35c58833e1dcdd91c90af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1aea77c88180f35c58833e1dcdd91c90af" kindref="member">SetConditions</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref>&amp;<sp/>cond)<sp/>{<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a9549b242b9337b44e3d68232e194aae5" kindref="member">fConditions</ref><sp/>=<sp/>cond;<sp/>}<sp/></highlight><highlight class="comment">//conditional<sp/>statements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="classhops_1_1MHO__ParameterConfigurator_1acc88337c615f7ee1c49b905c3ca57ba3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1acc88337c615f7ee1c49b905c3ca57ba3" kindref="member">SetAttributes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref>&amp;<sp/>attr)<sp/>{<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1ac3eae6989555a612ee0e8b4d3275a3a7" kindref="member">fAttributes</ref><sp/>=<sp/>attr;<sp/>};<sp/></highlight><highlight class="comment">//configuration<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1ab96ac4f2557be306d5334ce7fd0a0a2f" kindref="member">Configure</ref>();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60" refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" kindref="member">ParamType</ref></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a2245023265ae4cf87d02c8b6ba991139" kindref="member">config</ref>,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a9c70933aff6b2a6d08c687a6cbb6b765" kindref="member">global</ref>,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4ae8ed3f2846110837f3adb8015ccad5ec" kindref="member">station</ref>,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4ae7e14cdcfbc59bba291688ae9cf039d6" kindref="member">baseline</ref>,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a1977c9daa1d67de51a4651abdb160c09" kindref="member">fit</ref>,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a32fa6e1b78a9d4028953e60564a2aa4c" kindref="member">plot</ref>,</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4aad921d60486366258809553a3db49a4a" kindref="member">unknown</ref></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" kindref="member">ParamValueType</ref></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a06d324fffd90570dc177e7d1aabcb4dd" kindref="member">int_type</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//single<sp/>integer<sp/>parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a43ccba4dc7f24ce42ac3003b02ca5485" kindref="member">real_type</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//single<sp/>float<sp/>parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a5c3e61d27b2bdaf4ddb98aadc356e863" kindref="member">bool_type</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//single<sp/>boolean<sp/>parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a4771e2c3115bb1af6ce17d9d35a0eb48" kindref="member">string_type</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//single<sp/>string<sp/>parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a4c1bc9677d08c74ff6427dfea5d87ce8" kindref="member">list_int_type</ref>,<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//list<sp/>of<sp/>ints<sp/>with<sp/>arbitrary<sp/>length</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a9bdb1fb1cc5307867534190841467ac7" kindref="member">list_real_type</ref>,<sp/><sp/><sp/></highlight><highlight class="comment">//list<sp/>of<sp/>floats<sp/>with<sp/>arbitrary<sp/>length</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a74ebbf8cc9ef988596a14ab1866a897b" kindref="member">list_string_type</ref>,<sp/></highlight><highlight class="comment">//list<sp/>of<sp/>strings<sp/>with<sp/>arbitrary<sp/>length</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a4631ddd508cacf3abbfe3b0ede391d9a" kindref="member">compound_type</ref>,<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//multiple<sp/>elements<sp/>of<sp/>different<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a60e028751e7b68456e1173f872816932" kindref="member">logical_intersection_list_string_type</ref>,<sp/></highlight><highlight class="comment">//list<sp/>of<sp/>strings,<sp/>if<sp/>multiple<sp/>lists<sp/>are<sp/>encountered<sp/>take<sp/>the<sp/>logical<sp/>intersection<sp/>(e.g.<sp/>freqs)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624aad921d60486366258809553a3db49a4a" kindref="member">unknown</ref></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="classhops_1_1MHO__ParameterConfigurator_1a2416cbe10a0fe279853338e2534f5646" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" kindref="member">ParamType</ref><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a2416cbe10a0fe279853338e2534f5646" kindref="member">param_t</ref>;</highlight></codeline>
+<codeline lineno="86" refid="classhops_1_1MHO__ParameterConfigurator_1ad1c343681643e992e86026e9e830571b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" kindref="member">ParamValueType</ref><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1ad1c343681643e992e86026e9e830571b" kindref="member">paramv_t</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" kindref="member">ParamType</ref><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1aeafd399aa5f9a1132706bb60302fc2c1" kindref="member">DetermineParamType</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="namespacehops_1adaffca1375039985f7a1706aec619bb6" kindref="member">par_type</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" kindref="member">ParamValueType</ref><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1aa6e02cbb4ce959bce969f9fa75cb0094" kindref="member">DetermineParamValueType</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>par_value_type)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a2b207d4dc48575d877e03b716deb23dc" kindref="member">SetScalarParameter</ref>(std::string<sp/>path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XValueType&amp;<sp/><ref refid="structvalue" kindref="compound">value</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a7edcb4b2b1ed9d2251b8a7fa4ac0d962" kindref="member">GetScalarParameter</ref>(std::string<sp/>path,<sp/>XValueType&amp;<sp/><ref refid="structvalue" kindref="compound">value</ref>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a1658589ade1ebc7feb80f4dccdf1cbf8" kindref="member">SetVectorParameter</ref>(std::string<sp/>path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;<sp/>XValueType<sp/>&gt;&amp;<sp/>values);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a590f30765daa485f05a1fa001a5756af" kindref="member">GetVectorParameter</ref>(std::string<sp/>path,<sp/>std::vector&lt;<sp/>XValueType<sp/>&gt;&amp;<sp/>values);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1abcb6f8478c8afe7906aa7b3d9557a971" kindref="member">SetCompoundParameter</ref>(std::string<sp/>path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref>&amp;<sp/>values);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a9b8eab0ed7b440a1de335114d822fbbb" kindref="member">LogicalIntersection</ref>(std::vector&lt;<sp/>std::string<sp/>&gt;&amp;<sp/>values1,<sp/>std::vector&lt;<sp/>std::string&gt;&amp;<sp/>values2)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref>*<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" kindref="member">fParameterStore</ref>;</highlight></codeline>
+<codeline lineno="163" refid="classhops_1_1MHO__ParameterConfigurator_1a3757edd28fb8f878fb0e0ab90d422eca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a3757edd28fb8f878fb0e0ab90d422eca" kindref="member">fFormat</ref>;<sp/></highlight><highlight class="comment">//format<sp/>description<sp/>for<sp/>each<sp/>parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//provided<sp/>for<sp/>the<sp/>configuration<sp/>of<sp/>the<sp/>parameter<sp/>that<sp/>is<sp/>to<sp/>be<sp/>set</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="classhops_1_1MHO__ParameterConfigurator_1a9549b242b9337b44e3d68232e194aae5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a9549b242b9337b44e3d68232e194aae5" kindref="member">fConditions</ref>;</highlight></codeline>
+<codeline lineno="167" refid="classhops_1_1MHO__ParameterConfigurator_1ac3eae6989555a612ee0e8b4d3275a3a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1ac3eae6989555a612ee0e8b4d3275a3a7" kindref="member">fAttributes</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="classhops_1_1MHO__ParameterConfigurator_1a2b207d4dc48575d877e03b716deb23dc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a2b207d4dc48575d877e03b716deb23dc" kindref="member">MHO_ParameterConfigurator::SetScalarParameter</ref>(std::string<sp/>path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XValueType&amp;<sp/><ref refid="structvalue" kindref="compound">value</ref>)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" kindref="member">fParameterStore</ref>-&gt;<ref refid="classhops_1_1MHO__ParameterStore_1a262ea17291fe890c7c593f188dc13c1f" kindref="member">Set</ref>(path,<sp/><ref refid="structvalue" kindref="compound">value</ref>);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!ok)</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1f24dc78f2cec992c3a9752db555b06d" kindref="member">msg_warn</ref>(</highlight><highlight class="stringliteral">&quot;initialization&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;could<sp/>not<sp/>set<sp/>parameter:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>path<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193" refid="classhops_1_1MHO__ParameterConfigurator_1a7edcb4b2b1ed9d2251b8a7fa4ac0d962" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a7edcb4b2b1ed9d2251b8a7fa4ac0d962" kindref="member">MHO_ParameterConfigurator::GetScalarParameter</ref>(std::string<sp/>path,<sp/>XValueType&amp;<sp/><ref refid="structvalue" kindref="compound">value</ref>)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" kindref="member">fParameterStore</ref>-&gt;<ref refid="classhops_1_1MHO__ParameterStore_1a9ffebac9548aa8a8a8ee500d32bb7041" kindref="member">Get</ref>(path,<sp/><ref refid="structvalue" kindref="compound">value</ref>);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!ok)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a70d2a69334c19db04365eb32a1d26447" kindref="member">msg_info</ref>(</highlight><highlight class="stringliteral">&quot;initialization&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;could<sp/>not<sp/>get<sp/>parameter,<sp/>using<sp/>default<sp/>value<sp/>for:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>path<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;</highlight></codeline>
+<codeline lineno="210" refid="classhops_1_1MHO__ParameterConfigurator_1a1658589ade1ebc7feb80f4dccdf1cbf8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a1658589ade1ebc7feb80f4dccdf1cbf8" kindref="member">MHO_ParameterConfigurator::SetVectorParameter</ref>(std::string<sp/>path,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;<sp/>XValueType<sp/>&gt;&amp;<sp/>values)</highlight></codeline>
+<codeline lineno="211"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" kindref="member">fParameterStore</ref>-&gt;<ref refid="classhops_1_1MHO__ParameterStore_1a262ea17291fe890c7c593f188dc13c1f" kindref="member">Set</ref>(path,<sp/>values);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!ok)</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1f24dc78f2cec992c3a9752db555b06d" kindref="member">msg_warn</ref>(</highlight><highlight class="stringliteral">&quot;initialization&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;could<sp/>not<sp/>set<sp/>parameter<sp/>vector:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>path<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;</highlight></codeline>
+<codeline lineno="227" refid="classhops_1_1MHO__ParameterConfigurator_1a590f30765daa485f05a1fa001a5756af" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1a590f30765daa485f05a1fa001a5756af" kindref="member">MHO_ParameterConfigurator::GetVectorParameter</ref>(std::string<sp/>path,<sp/>std::vector&lt;<sp/>XValueType<sp/>&gt;&amp;<sp/>values)</highlight></codeline>
+<codeline lineno="228"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ok<sp/>=<sp/><ref refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" kindref="member">fParameterStore</ref>-&gt;<ref refid="classhops_1_1MHO__ParameterStore_1a9ffebac9548aa8a8a8ee500d32bb7041" kindref="member">Get</ref>(path,<sp/>values);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!ok)</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a70d2a69334c19db04365eb32a1d26447" kindref="member">msg_info</ref>(</highlight><highlight class="stringliteral">&quot;initialization&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;could<sp/>not<sp/>get<sp/>parameter<sp/>vector,<sp/>using<sp/>default<sp/>value<sp/>for:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>path<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="234"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh"/>
+  </compounddef>
+</doxygen>

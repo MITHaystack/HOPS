@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classafio_1_1afio_1_1corelsum" kind="class" language="Python" prot="public">
+    <compoundname>afio::afio::corelsum</compoundname>
+    <basecompoundref refid="classafio_1_1afio_1_1AFIOStructureBase" prot="public" virt="non-virtual">afio.afio.AFIOStructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classafio_1_1afio_1_1corelsum_1ab1ed4c2033ed7ecda096b467d9346e03" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list afio.afio.corelsum::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;<ref refid="syntax_8c_1a307424ac70f8c1d32a2e307c5040e445" kindref="member">version</ref>&apos;, ctypes.c_short),
+        (&apos;fname&apos;, ctypes.c_char * 6),
+        (&apos;expt_no&apos;, ctypes.c_short),
+        (&apos;extent_no&apos;, ctypes.c_short),
+        (&apos;size&apos;, ctypes.c_short),
+        (&apos;corel_vers&apos;, ctypes.c_char),
+        (&apos;procdate&apos;, ctypes.c_int),
+        (&apos;time_tag&apos;, ctypes.c_int),
+        (&apos;ssec&apos;, ctypes.c_short),
+        (&apos;source&apos;, ctypes.c_char * 32),
+        (&apos;<ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>&apos;, ctypes.c_char * 3),
+        (&apos;quality&apos;, ctypes.c_char),
+        (&apos;startsec&apos;, ctypes.c_short),
+        (&apos;sduration&apos;, ctypes.c_short),
+        (&apos;corstart&apos;, ctypes.c_short),
+        (&apos;corstop&apos;, ctypes.c_short),
+        (&apos;refdrive&apos;, ctypes.c_short),
+        (&apos;remdrive&apos;, ctypes.c_short),
+        (&apos;eqts&apos;, ctypes.c_short),
+        (&apos;freqs&apos;, ctypes.c_char * 3),
+        (&apos;refclock_err&apos;, ctypes.c_float),
+        (&apos;clock_diff&apos;, ctypes.c_float),
+        (&apos;<ref refid="mk4util_2src_2root__id_8c_1a2650eeb9c31ded3b85b02b679f0d70bb" kindref="member">root_id</ref>&apos;, ctypes.c_char * 7),
+        (&apos;<ref refid="est__pc__manual_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>&apos;, ctypes.c_int),
+        (&apos;archiv&apos;, ctypes.c_short),
+        (&apos;lags&apos;, ctypes.c_int),
+        (&apos;scan_id&apos;, ctypes.c_char * 32)
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="165" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>afio.afio.corelsum</label>
+        <link refid="classafio_1_1afio_1_1corelsum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes::Structure</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>afio.afio.corelsum</label>
+        <link refid="classafio_1_1afio_1_1corelsum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes::Structure</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="164" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="164" bodyend="196"/>
+    <listofallmembers>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1aa479315f4e51d0c54b117e940431f009" prot="public" virt="non-virtual"><scope>afio::afio::corelsum</scope><name>__eq__</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1ac1ba246b542db0792a0544259954adc8" prot="public" virt="non-virtual"><scope>afio::afio::corelsum</scope><name>__ne__</name></member>
+      <member refid="classafio_1_1afio_1_1corelsum_1ab1ed4c2033ed7ecda096b467d9346e03" prot="private" virt="non-virtual"><scope>afio::afio::corelsum</scope><name>_fields_</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a2a2bb32f44156b3dcd6b7ad2dfa85503" prot="public" virt="non-virtual"><scope>afio::afio::corelsum</scope><name>approximately_equal</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a21ec9262c919b90a67a039ca50a5a17c" prot="public" virt="non-virtual"><scope>afio::afio::corelsum</scope><name>approximately_equal_field</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a86d37a5619ae22284788a803815f2d04" prot="public" virt="non-virtual"><scope>afio::afio::corelsum</scope><name>contains_floats</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a4c0a78ec964fc11651add113384134aa" prot="public" virt="non-virtual"><scope>afio::afio::corelsum</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

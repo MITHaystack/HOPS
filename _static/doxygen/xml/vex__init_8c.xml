@@ -1,0 +1,714 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="vex__init_8c" kind="file" language="C++">
+    <compoundname>vex_init.c</compoundname>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="vex_8h" local="yes">vex.h</includes>
+    <includes refid="mk4__vex_8h" local="yes">mk4_vex.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <incdepgraph>
+      <node id="12">
+        <label>lvex.h</label>
+        <link refid="lvex_8h"/>
+      </node>
+      <node id="15">
+        <label>stdarg.h</label>
+      </node>
+      <node id="5">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="16">
+        <label>sys/times.h</label>
+      </node>
+      <node id="22">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="2">
+        <label>stdlib.h</label>
+      </node>
+      <node id="14">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ivex.h</label>
+        <link refid="ivex_8h"/>
+      </node>
+      <node id="17">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cvex.h</label>
+        <link refid="cvex_8h"/>
+      </node>
+      <node id="18">
+        <label>string.h</label>
+      </node>
+      <node id="13">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="20">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>evex.h</label>
+        <link refid="evex_8h"/>
+      </node>
+      <node id="19">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="11">
+        <label>svex.h</label>
+        <link refid="svex_8h"/>
+      </node>
+      <node id="1">
+        <label>vex_init.c</label>
+        <link refid="vex__init_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="21">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="vex__init_8c_1a0aae416d17212c7987ebc23ec82d4287" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structblock" kindref="compound">block</ref></type>
+        <definition>struct block blist[MAXBLOCKS]</definition>
+        <argsstring>[MAXBLOCKS]</argsstring>
+        <name>blist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="20" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1aaae7221a7bbc1d5dd0d034070d852a6d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structblk__stmt" kindref="compound">blk_stmt</ref></type>
+        <definition>struct blk_stmt blk_stmts[MAXBLKSTMT]</definition>
+        <argsstring>[MAXBLKSTMT]</argsstring>
+        <name>blk_stmts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="20" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a8594490a91b72c26d8d908e12535a8d8" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structcomment" kindref="compound">comment</ref></type>
+        <definition>struct comment clist[MAXCOMMENTS]</definition>
+        <argsstring>[MAXCOMMENTS]</argsstring>
+        <name>clist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="1" column="0" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a7379568ddddc5b42a316b59dae0ea1b2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char cvex_src[32768]</definition>
+        <argsstring>[32768]</argsstring>
+        <name>cvex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="31" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a617c300f9f0043938cfaa20af364b2e3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int cvex_ver</definition>
+        <argsstring></argsstring>
+        <name>cvex_ver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="37" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1af9f29b3fc68418d7a12547aa8b708bba" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int defspace</definition>
+        <argsstring></argsstring>
+        <name>defspace</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="28" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a4c907d8e2e08a38a2e5bbc7ce0f9458c" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>struct def dlist[10][MAXDEFS]</definition>
+        <argsstring>[10][MAXDEFS]</argsstring>
+        <name>dlist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="20" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a31bc412b76eff2ac8233dd64d98d426b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int do_output</definition>
+        <argsstring></argsstring>
+        <name>do_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="36" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a9fcfc96aabdc65f1ea02e128b19b80b0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char evex_src[4096]</definition>
+        <argsstring>[4096]</argsstring>
+        <name>evex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="32" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a3ef96cc4e211c4f62b13f6cb09df8eb5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int evex_ver</definition>
+        <argsstring></argsstring>
+        <name>evex_ver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="37" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a4ef73fb9b749735d014ae1d089408969" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ivex_src[32768]</definition>
+        <argsstring>[32768]</argsstring>
+        <name>ivex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="33" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1ab9a98e071229351b1a7c42695f7eb3e0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ivex_ver</definition>
+        <argsstring></argsstring>
+        <name>ivex_ver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="37" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a25f312a01d8a8cb3dab2dff038c7d7db" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char lvex_src[32768]</definition>
+        <argsstring>[32768]</argsstring>
+        <name>lvex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="35" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a41a56a6561c027069b40188684f5a07c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int lvex_ver</definition>
+        <argsstring></argsstring>
+        <name>lvex_ver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="37" column="50" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1ab600b08de34f0ec8a612f2bbc9e0339d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nblk_stmt</definition>
+        <argsstring></argsstring>
+        <name>nblk_stmt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1ab38cbe8ea35cdf17d5e468606462623e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nblock</definition>
+        <argsstring></argsstring>
+        <name>nblock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a30236c67e1f0e59ef05fe357a8bbf6f0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ncom</definition>
+        <argsstring></argsstring>
+        <name>ncom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a6c968947235bd23214403bd5836f9ca2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ndef[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>ndef</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="49" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a3d93c6aec3d347a78e5235d85cbbcc21" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ndefs</definition>
+        <argsstring></argsstring>
+        <name>ndefs</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="28" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a744823d6ac0944dadae51f65e56db230" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nqot</definition>
+        <argsstring></argsstring>
+        <name>nqot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1afcd40d59236440801a7c0ca6a607da40" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nref</definition>
+        <argsstring></argsstring>
+        <name>nref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1ab78faf2b875525adeecad7dcd9698b96" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nscan</definition>
+        <argsstring></argsstring>
+        <name>nscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a956b53f277f8fec31a35d5e41d00558a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int nstmt</definition>
+        <argsstring></argsstring>
+        <name>nstmt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="27" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a94d469164c87125edf639bdead163923" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ovex_src[262144]</definition>
+        <argsstring>[262144]</argsstring>
+        <name>ovex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="30" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a1bf3117dad22fb84f5751cf4c130c95d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ovex_ver</definition>
+        <argsstring></argsstring>
+        <name>ovex_ver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="37" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1af9fa95c2b1c563cd3566aa873667420e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structquote" kindref="compound">quote</ref></type>
+        <definition>struct quote qlist[MAXQUOTES]</definition>
+        <argsstring>[MAXQUOTES]</argsstring>
+        <name>qlist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="1" column="0" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a61dd78d4a52e483fb924389ea1456cea" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structref" kindref="compound">ref</ref></type>
+        <definition>struct ref rlist[MAXREFS]</definition>
+        <argsstring>[MAXREFS]</argsstring>
+        <name>rlist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="20" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a7fdacfa7802685f4f97b17a5b1bc0b6c" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structscan" kindref="compound">scan</ref></type>
+        <definition>struct scan slist[MAXSCANS]</definition>
+        <argsstring>[MAXSCANS]</argsstring>
+        <name>slist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="20" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a676675e7bedf39418220ef667a5fb728" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structstatement" kindref="compound">statement</ref> *</type>
+        <definition>struct statement* stlist</definition>
+        <argsstring></argsstring>
+        <name>stlist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="20" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1ae5ed864aac0679bf25df6cff54c73317" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char svex_src[32768]</definition>
+        <argsstring>[32768]</argsstring>
+        <name>svex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="34" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a1b055f1466311b40e13551b3e8b82e80" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int svex_ver</definition>
+        <argsstring></argsstring>
+        <name>svex_ver</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="37" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1ae05c735e58d7a521b1a96a6d3aed0cd4" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char * vexend</definition>
+        <argsstring></argsstring>
+        <name>vexend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="29" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="vex__init_8c_1a66b36fc17c7b70979f1c225059beded9" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* vexstart</definition>
+        <argsstring></argsstring>
+        <name>vexstart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="29" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="vex__init_8c_1ae4b640e4c8b2e89397530e17250ce09a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int vex_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>vex_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="40" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Initializes<sp/>the<sp/>rudimentary<sp/>vex<sp/>parsing<sp/>code,<sp/>defines<sp/>externs.<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>None<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>None<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>21<sp/>August<sp/>1998<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vex_8h" kindref="compound">vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__vex_8h" kindref="compound">mk4_vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structcomment" kindref="compound">comment</ref><sp/><sp/><sp/><ref refid="vex__init_8c_1a8594490a91b72c26d8d908e12535a8d8" kindref="member">clist</ref>[<ref refid="vex_8h_1a57b3298118adeb05aa50645eca061e74" kindref="member">MAXCOMMENTS</ref>];</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structquote" kindref="compound">quote</ref><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1af9fa95c2b1c563cd3566aa873667420e" kindref="member">qlist</ref>[<ref refid="vex_8h_1a991a878975e973b60ba17e0aaaa666de" kindref="member">MAXQUOTES</ref>];</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstatement" kindref="compound">statement</ref><sp/>*<ref refid="vex__init_8c_1a676675e7bedf39418220ef667a5fb728" kindref="member">stlist</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structblock" kindref="compound">block</ref><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a0aae416d17212c7987ebc23ec82d4287" kindref="member">blist</ref>[<ref refid="vex_8h_1a02723c1cf9784c591e45af7bf584f97c" kindref="member">MAXBLOCKS</ref>];</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structscan" kindref="compound">scan</ref><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a7fdacfa7802685f4f97b17a5b1bc0b6c" kindref="member">slist</ref>[<ref refid="vex_8h_1a1887087ae66c3b0782b1465d4725c4aa" kindref="member">MAXSCANS</ref>];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structref" kindref="compound">ref</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a61dd78d4a52e483fb924389ea1456cea" kindref="member">rlist</ref>[<ref refid="vex_8h_1a3d2e617ac05339a49577d357264e6a5b" kindref="member">MAXREFS</ref>];</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdef" kindref="compound">def</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a4c907d8e2e08a38a2e5bbc7ce0f9458c" kindref="member">dlist</ref>[10][<ref refid="vex_8h_1ade1495fae328049a2bdc3964fb68194b" kindref="member">MAXDEFS</ref>];</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structblk__stmt" kindref="compound">blk_stmt</ref><sp/><sp/><ref refid="vex__init_8c_1aaae7221a7bbc1d5dd0d034070d852a6d" kindref="member">blk_stmts</ref>[<ref refid="vex_8h_1af124cf4ecfb7864023c56af0352ad06f" kindref="member">MAXBLKSTMT</ref>];</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a30236c67e1f0e59ef05fe357a8bbf6f0" kindref="member">ncom</ref>,<sp/><ref refid="vex__init_8c_1a744823d6ac0944dadae51f65e56db230" kindref="member">nqot</ref>,<sp/><ref refid="vex__init_8c_1a956b53f277f8fec31a35d5e41d00558a" kindref="member">nstmt</ref>,<sp/><ref refid="vex__init_8c_1ab38cbe8ea35cdf17d5e468606462623e" kindref="member">nblock</ref>,<sp/><ref refid="vex__init_8c_1ab78faf2b875525adeecad7dcd9698b96" kindref="member">nscan</ref>,<sp/><ref refid="vex__init_8c_1afcd40d59236440801a7c0ca6a607da40" kindref="member">nref</ref>,<sp/><ref refid="vex__init_8c_1ab600b08de34f0ec8a612f2bbc9e0339d" kindref="member">nblk_stmt</ref>,<sp/><ref refid="vex__init_8c_1a6c968947235bd23214403bd5836f9ca2" kindref="member">ndef</ref>[10];</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1af9f29b3fc68418d7a12547aa8b708bba" kindref="member">defspace</ref><sp/>=<sp/>0,<sp/><ref refid="vex__init_8c_1a3d93c6aec3d347a78e5235d85cbbcc21" kindref="member">ndefs</ref><sp/>=<sp/>0;<sp/></highlight><highlight class="comment">/*<sp/>ndefs<sp/>set<sp/>to<sp/>zero<sp/>in<sp/>scan<sp/>init<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="vex__init_8c_1a66b36fc17c7b70979f1c225059beded9" kindref="member">vexstart</ref>,<sp/>*<ref refid="vex__init_8c_1ae05c735e58d7a521b1a96a6d3aed0cd4" kindref="member">vexend</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a94d469164c87125edf639bdead163923" kindref="member">ovex_src</ref>[262144];</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a7379568ddddc5b42a316b59dae0ea1b2" kindref="member">cvex_src</ref>[32768];</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a9fcfc96aabdc65f1ea02e128b19b80b0" kindref="member">evex_src</ref>[4096];</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a4ef73fb9b749735d014ae1d089408969" kindref="member">ivex_src</ref>[32768];</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1ae5ed864aac0679bf25df6cff54c73317" kindref="member">svex_src</ref>[32768];</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a25f312a01d8a8cb3dab2dff038c7d7db" kindref="member">lvex_src</ref>[32768];</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a31bc412b76eff2ac8233dd64d98d426b" kindref="member">do_output</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="vex__init_8c_1a1bf3117dad22fb84f5751cf4c130c95d" kindref="member">ovex_ver</ref>,<sp/><ref refid="vex__init_8c_1a617c300f9f0043938cfaa20af364b2e3" kindref="member">cvex_ver</ref>,<sp/><ref refid="vex__init_8c_1ab9a98e071229351b1a7c42695f7eb3e0" kindref="member">ivex_ver</ref>,<sp/><ref refid="vex__init_8c_1a1b055f1466311b40e13551b3e8b82e80" kindref="member">svex_ver</ref>,<sp/><ref refid="vex__init_8c_1a3ef96cc4e211c4f62b13f6cb09df8eb5" kindref="member">evex_ver</ref>,<sp/><ref refid="vex__init_8c_1a41a56a6561c027069b40188684f5a07c" kindref="member">lvex_ver</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><ref refid="vex__init_8c_1ae4b640e4c8b2e89397530e17250ce09a" kindref="member">vex_init</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>first<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a30236c67e1f0e59ef05fe357a8bbf6f0" kindref="member">ncom</ref><sp/>=<sp/><ref refid="vex__init_8c_1a744823d6ac0944dadae51f65e56db230" kindref="member">nqot</ref><sp/>=<sp/><sp/><ref refid="vex__init_8c_1ab38cbe8ea35cdf17d5e468606462623e" kindref="member">nblock</ref><sp/>=<sp/><ref refid="vex__init_8c_1ab78faf2b875525adeecad7dcd9698b96" kindref="member">nscan</ref><sp/>=<sp/><ref refid="vex__init_8c_1afcd40d59236440801a7c0ca6a607da40" kindref="member">nref</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;10;<sp/>i++)<sp/><ref refid="vex__init_8c_1a6c968947235bd23214403bd5836f9ca2" kindref="member">ndef</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a31bc412b76eff2ac8233dd64d98d426b" kindref="member">do_output</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a1bf3117dad22fb84f5751cf4c130c95d" kindref="member">ovex_ver</ref><sp/>=<sp/><ref refid="vex__init_8c_1a617c300f9f0043938cfaa20af364b2e3" kindref="member">cvex_ver</ref><sp/>=<sp/><ref refid="vex__init_8c_1ab9a98e071229351b1a7c42695f7eb3e0" kindref="member">ivex_ver</ref><sp/>=<sp/><ref refid="vex__init_8c_1a1b055f1466311b40e13551b3e8b82e80" kindref="member">svex_ver</ref><sp/>=<sp/><ref refid="vex__init_8c_1a3ef96cc4e211c4f62b13f6cb09df8eb5" kindref="member">evex_ver</ref><sp/>=<sp/><ref refid="vex__init_8c_1a41a56a6561c027069b40188684f5a07c" kindref="member">lvex_ver</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>We<sp/>want<sp/>output<sp/>vex<sp/>code<sp/>to<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>persist<sp/>between<sp/>calls<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(first)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1a4c1a529fb8f5b33debbadef37777358a" kindref="member">environment</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a94d469164c87125edf639bdead163923" kindref="member">ovex_src</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a7379568ddddc5b42a316b59dae0ea1b2" kindref="member">cvex_src</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a9fcfc96aabdc65f1ea02e128b19b80b0" kindref="member">evex_src</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a4ef73fb9b749735d014ae1d089408969" kindref="member">ivex_src</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1ae5ed864aac0679bf25df6cff54c73317" kindref="member">svex_src</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a25f312a01d8a8cb3dab2dff038c7d7db" kindref="member">lvex_src</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>This<sp/>is<sp/>used<sp/>for<sp/>freeing<sp/>memory<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>on<sp/>all<sp/>except<sp/>first<sp/>call<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a956b53f277f8fec31a35d5e41d00558a" kindref="member">nstmt</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Flags<sp/>for<sp/>freeing<sp/>memory<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a676675e7bedf39418220ef667a5fb728" kindref="member">stlist</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a66b36fc17c7b70979f1c225059beded9" kindref="member">vexstart</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reading<sp/>text<sp/>files<sp/>only<sp/>needed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>on<sp/>first<sp/>execution<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mk4__vex_8h_1a3f3bbd9edb45b52b0be91cd5f7baec43" kindref="member">param_formats</ref>()<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Error<sp/>reading<sp/>vex<sp/>parameter<sp/>format<sp/>definitions&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1ab600b08de34f0ec8a612f2bbc9e0339d" kindref="member">nblk_stmt</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mk4__vex_8h_1acce4385fb50594dffb41ec6043dea8eb" kindref="member">block_params</ref>()<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Error<sp/>reading<sp/>block<sp/>parameter<sp/>lists&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>first<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Free<sp/>memory<sp/>for<sp/>stripped<sp/>statements<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vex__init_8c_1a956b53f277f8fec31a35d5e41d00558a" kindref="member">nstmt</ref><sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vex__init_8c_1a676675e7bedf39418220ef667a5fb728" kindref="member">stlist</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Memory<sp/>allocation<sp/>inconsistency<sp/>in<sp/>vex_init()&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="vex__init_8c_1a956b53f277f8fec31a35d5e41d00558a" kindref="member">nstmt</ref>;<sp/>i++)<sp/>free<sp/>(<ref refid="vex__init_8c_1a676675e7bedf39418220ef667a5fb728" kindref="member">stlist</ref>[i].str);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a956b53f277f8fec31a35d5e41d00558a" kindref="member">nstmt</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free<sp/>(<ref refid="vex__init_8c_1a676675e7bedf39418220ef667a5fb728" kindref="member">stlist</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vex__init_8c_1a676675e7bedf39418220ef667a5fb728" kindref="member">stlist</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>vexstart<sp/>is<sp/>not<sp/>null,<sp/>it<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>must<sp/>have<sp/>been<sp/>allocated<sp/>from<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>a<sp/>previous<sp/>execution<sp/>and<sp/>should<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>be<sp/>freed.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vex__init_8c_1a66b36fc17c7b70979f1c225059beded9" kindref="member">vexstart</ref><sp/>!=<sp/>NULL)<sp/>free<sp/>(<ref refid="vex__init_8c_1a66b36fc17c7b70979f1c225059beded9" kindref="member">vexstart</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(0);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c"/>
+  </compounddef>
+</doxygen>

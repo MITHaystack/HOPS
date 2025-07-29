@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionhops_1_1MHO__VisibilityChunk" kind="union" language="C++" prot="public">
+    <compoundname>hops::MHO_VisibilityChunk</compoundname>
+    <includes refid="MHO__DiFXVisibilityRecord_8hh" local="no">MHO_DiFXVisibilityRecord.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionhops_1_1MHO__VisibilityChunk_1aaf44998a72e638aa8ca290e580988425" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t hops::MHO_VisibilityChunk::sync_test[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>sync_test</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="119" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionhops_1_1MHO__VisibilityChunk_1a28433c99fd26d5b240f18a3e4c9d9737" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hops::MHO_VisibilityChunk::values[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="118" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class (anonymous union) - helper union used for reading in visibility records to catch over-runs with sync word. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int32_t</label>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_VisibilityChunk</label>
+        <link refid="unionhops_1_1MHO__VisibilityChunk"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>values</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>sync_test</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="116" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="117" bodyend="120"/>
+    <listofallmembers>
+      <member refid="unionhops_1_1MHO__VisibilityChunk_1aaf44998a72e638aa8ca290e580988425" prot="public" virt="non-virtual"><scope>hops::MHO_VisibilityChunk</scope><name>sync_test</name></member>
+      <member refid="unionhops_1_1MHO__VisibilityChunk_1a28433c99fd26d5b240f18a3e4c9d9737" prot="public" virt="non-virtual"><scope>hops::MHO_VisibilityChunk</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

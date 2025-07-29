@@ -1,0 +1,1085 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle" kind="class" language="Python" prot="public">
+    <compoundname>vpal::fringe_file_manipulation::FringeFileHandle</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a75564255f3ee1ade38e0dd43ee5da553" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::aaccel</definition>
+        <argsstring></argsstring>
+        <name>aaccel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="85" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a1f88ea1114643da8fff9c227517c3780" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::adelay</definition>
+        <argsstring></argsstring>
+        <name>adelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="83" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a728dcf893f62df1bdb633abefaf1e2b0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::ambiguity</definition>
+        <argsstring></argsstring>
+        <name>ambiguity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="78" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a9ce2152652635497ce1514781cde73ab" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::amp</definition>
+        <argsstring></argsstring>
+        <name>amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="66" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1adb130c1ce6c9efbbfc010a2afecc1d08" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::arate</definition>
+        <argsstring></argsstring>
+        <name>arate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="84" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa22e839463ed341e6664f5ae6a9d5093" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::archiv</definition>
+        <argsstring></argsstring>
+        <name>archiv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="63" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aec74b06880ab332fcb2df635207a23fd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::associated_root_file</definition>
+        <argsstring></argsstring>
+        <name>associated_root_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a40e028a76af429fb7615f2f7bf9d6e66" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="58" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a5736598b4c1d8e01e74da1826130fb94" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::control_file_hash</definition>
+        <argsstring></argsstring>
+        <name>control_file_hash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="109" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a52ab9622c0478e9d57bdce83e2e699ed" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::control_filename</definition>
+        <argsstring></argsstring>
+        <name>control_filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="44" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a59aac7f6790df80c4db4f7dc9da1c23d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::corel_vers</definition>
+        <argsstring></argsstring>
+        <name>corel_vers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="53" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a53135fa83063a59799beb324b3c78a54" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::delay_rate</definition>
+        <argsstring></argsstring>
+        <name>delay_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="71" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a8dd9acdab0c4ed4ed2469748518c6ce3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::dtec</definition>
+        <argsstring></argsstring>
+        <name>dtec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1abf60d8b2ec5f3ce52b66e87208420835" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="95" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab2072beb5678c5ecb0d8cf04ccd55e7b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::errcode</definition>
+        <argsstring></argsstring>
+        <name>errcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="104" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7bbe4f3bd96d9fe2d832d21b44ec9f60" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::exp_name</definition>
+        <argsstring></argsstring>
+        <name>exp_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="39" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a684591e5eeda8f45446a6067ad5bf805" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::expt_no</definition>
+        <argsstring></argsstring>
+        <name>expt_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="50" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af1b5a5574e5d0f317c277dc74842eebc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::extent_no</definition>
+        <argsstring></argsstring>
+        <name>extent_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a1f5f4a5b48d7c5c8f4af36cecdd326d5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::filename</definition>
+        <argsstring></argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="36" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a22373ffc0df0324e970922ca9695c89a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::fname</definition>
+        <argsstring></argsstring>
+        <name>fname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="49" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1afd08fa650a7a96f8b6d49e7f5989dbf1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::fringe_data</definition>
+        <argsstring></argsstring>
+        <name>fringe_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a57de1ade7c1ddf8260d629792e14f6ef" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::is_valid</definition>
+        <argsstring></argsstring>
+        <name>is_valid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab3f9d4015c80234a1de022952b0b9d91" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::lags</definition>
+        <argsstring></argsstring>
+        <name>lags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="98" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a3c41316e885feeb3a9bb80197e646cfd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="52" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a73306da3bb875b89da7210c8c9d40bfb" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::mbd_error</definition>
+        <argsstring></argsstring>
+        <name>mbd_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="222" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab2f3af92c0b8ae83a62e9de840d00bfa" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::mbdelay</definition>
+        <argsstring></argsstring>
+        <name>mbdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="70" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a3c6f0ceb9190345aa0f62d9c97ef69d7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="61" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a924f94ab7b9a4cf2783481ec9202f83e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::nchans</definition>
+        <argsstring></argsstring>
+        <name>nchans</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1afa5a29f0e305629829d53e7ed20bc707" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::no_freq</definition>
+        <argsstring></argsstring>
+        <name>no_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="62" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a35cbc148e8fadf824e99c7c411bd4207" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::noloss_cotime</definition>
+        <argsstring></argsstring>
+        <name>noloss_cotime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="101" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1adf25e97a81d40cfd29d6a7e006b346f2" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::parents</definition>
+        <argsstring></argsstring>
+        <name>parents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="94" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad41f4805e00c86087052892040513aad" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::pcals</definition>
+        <argsstring></argsstring>
+        <name>pcals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="79" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a177375745a4e5eab9313fffd4b6f543e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::phase</definition>
+        <argsstring></argsstring>
+        <name>phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="113" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7e156666ef50cc0530e130d869d8c25f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::phase_snr</definition>
+        <argsstring></argsstring>
+        <name>phase_snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="99" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa7a8f8b14b6136f0c53249775a5200f3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::pol_product</definition>
+        <argsstring></argsstring>
+        <name>pol_product</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7b620c33ec83645546e312fefdc8a64c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::polarization</definition>
+        <argsstring></argsstring>
+        <name>polarization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="103" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a9e33a1dba9500b3e04a815209fb455a6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::procdate</definition>
+        <argsstring></argsstring>
+        <name>procdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="54" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a43e1fed2f035634e7345c4e2c4ed8d76" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::quality</definition>
+        <argsstring></argsstring>
+        <name>quality</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="59" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a44b367f33f902841f46f6a9d428a281a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::ref_az</definition>
+        <argsstring></argsstring>
+        <name>ref_az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="90" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a067bc572c62b557331c00b64970dae64" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::ref_elev</definition>
+        <argsstring></argsstring>
+        <name>ref_elev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="88" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7e0d50b4eb9969b7eb4fc079e7035a78" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::ref_freq</definition>
+        <argsstring></argsstring>
+        <name>ref_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="81" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a2389d851ceddaf8d7d4c55bf04a19257" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::reftape</definition>
+        <argsstring></argsstring>
+        <name>reftape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="64" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa35290ea9d24b5f2a61c553689262c50" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::rem_az</definition>
+        <argsstring></argsstring>
+        <name>rem_az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="91" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a44e2382a3765c38190966b7c665ef05c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::rem_elev</definition>
+        <argsstring></argsstring>
+        <name>rem_elev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="89" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a679bd0018949257f017858e0ecac4073" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::remtape</definition>
+        <argsstring></argsstring>
+        <name>remtape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="65" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7956cdfc1ae65700ee2af7719cdb3f97" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::resid_delay</definition>
+        <argsstring></argsstring>
+        <name>resid_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="107" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad2c765a5b00e303a029f51d6a6624e45" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::resid_phas</definition>
+        <argsstring></argsstring>
+        <name>resid_phas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="68" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a0a1e0a22c7012305dd9b2a290d85a601" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::root_id</definition>
+        <argsstring></argsstring>
+        <name>root_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="37" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad6c8f6e1c681b5d468ba44c4ad0d6cc5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::sbdelay</definition>
+        <argsstring></argsstring>
+        <name>sbdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="69" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a1a7962989de4c5428d56f3e570eaa083" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::scan_id</definition>
+        <argsstring></argsstring>
+        <name>scan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="102" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad3a17b4edd6d68ac395565628f06851c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::scan_name</definition>
+        <argsstring></argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="38" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a48771b2b43a36bf7cba5bad7165ed746" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::scan_offset</definition>
+        <argsstring></argsstring>
+        <name>scan_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="97" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aed4e19892e53eea414a7184bb4a627dd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::set_string_hash</definition>
+        <argsstring></argsstring>
+        <name>set_string_hash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="110" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a6aaf624bf742581b313a74eb39e32073" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::snr</definition>
+        <argsstring></argsstring>
+        <name>snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="67" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1adb4703def0cbe357c9137bf0fe7fa121" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::source</definition>
+        <argsstring></argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="57" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad934e8758f2046e19b596d72ccc13d5b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::srch_cotime</definition>
+        <argsstring></argsstring>
+        <name>srch_cotime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="100" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af5ab709650905a053871ab478cdc7e81" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::ssec</definition>
+        <argsstring></argsstring>
+        <name>ssec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="56" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a5deafa4cd9f947e1e28a1d91de5e6bb9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::time_tag</definition>
+        <argsstring></argsstring>
+        <name>time_tag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="55" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a3517f2d15d6ffb7a0e9a9095c2129a9b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::total_mbdelay</definition>
+        <argsstring></argsstring>
+        <name>total_mbdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="76" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a50f0e6c4193ff584da0cf0ae98a2dda2" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::total_phas</definition>
+        <argsstring></argsstring>
+        <name>total_phas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="74" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7449036bb1b936e58dc4486625af700f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::total_rate</definition>
+        <argsstring></argsstring>
+        <name>total_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="75" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af8d3b252ecf955256d0f71a812228c1c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::total_sbresid</definition>
+        <argsstring></argsstring>
+        <name>total_sbresid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="77" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a0f833196c63258070cb832f5beb619c3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::u</definition>
+        <argsstring></argsstring>
+        <name>u</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="92" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a285d89b0bd41b2073154df6a1f9cf759" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="93" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab8bc0a47321afc8cd9edce6673abe521" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.FringeFileHandle::version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a66e277b657a7a7c2cf70bdf21413748b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.FringeFileHandle.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="30" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a15b38ca079ec5b0c270122772c730580" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.FringeFileHandle.get_channel_frequency_tuples</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_channel_frequency_tuples</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get the frequency associated with each channel id</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="257" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="257" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa68e232a262f1604004d4ee8ba719db4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.FringeFileHandle.get_summary</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_summary</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="280" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="280" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af50ece98e8bcc4f7133ec07addf531a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.FringeFileHandle.init_data_members</definition>
+        <argsstring>(self)</argsstring>
+        <name>init_data_members</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> initialize the data members from the fringe file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="135" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="135" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1abd888fadd13704e70d6225926f11448b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.FringeFileHandle.load</definition>
+        <argsstring>(self, filename)</argsstring>
+        <name>load</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a1f5f4a5b48d7c5c8f4af36cecdd326d5" kindref="member">filename</ref></type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="118" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="118" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a305668a2b02d857074b16039795e3ccf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.FringeFileHandle.load_file_data</definition>
+        <argsstring>(self)</argsstring>
+        <name>load_file_data</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> read the data of mk4 type-2 file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="247" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="247" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a98a05da5e47c49baed09f120beae938d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.FringeFileHandle.relase_file_data</definition>
+        <argsstring>(self)</argsstring>
+        <name>relase_file_data</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> release the fringe file data object </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="252" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="252" bodyend="256"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>container class for data associated with a fringe file </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.fringe_file_manipulation.FringeFileHandle</label>
+        <link refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.fringe_file_manipulation.FringeFileHandle</label>
+        <link refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="27" bodyend="373"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a66e277b657a7a7c2cf70bdf21413748b" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a75564255f3ee1ade38e0dd43ee5da553" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>aaccel</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a1f88ea1114643da8fff9c227517c3780" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>adelay</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a728dcf893f62df1bdb633abefaf1e2b0" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>ambiguity</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a9ce2152652635497ce1514781cde73ab" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>amp</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1adb130c1ce6c9efbbfc010a2afecc1d08" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>arate</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa22e839463ed341e6664f5ae6a9d5093" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>archiv</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aec74b06880ab332fcb2df635207a23fd" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>associated_root_file</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a40e028a76af429fb7615f2f7bf9d6e66" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>baseline</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a5736598b4c1d8e01e74da1826130fb94" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>control_file_hash</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a52ab9622c0478e9d57bdce83e2e699ed" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>control_filename</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a59aac7f6790df80c4db4f7dc9da1c23d" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>corel_vers</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a53135fa83063a59799beb324b3c78a54" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>delay_rate</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a8dd9acdab0c4ed4ed2469748518c6ce3" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>dtec</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1abf60d8b2ec5f3ce52b66e87208420835" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>duration</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab2072beb5678c5ecb0d8cf04ccd55e7b" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>errcode</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7bbe4f3bd96d9fe2d832d21b44ec9f60" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>exp_name</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a684591e5eeda8f45446a6067ad5bf805" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>expt_no</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af1b5a5574e5d0f317c277dc74842eebc" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>extent_no</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a1f5f4a5b48d7c5c8f4af36cecdd326d5" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>filename</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a22373ffc0df0324e970922ca9695c89a" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>fname</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1afd08fa650a7a96f8b6d49e7f5989dbf1" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>fringe_data</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a15b38ca079ec5b0c270122772c730580" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>get_channel_frequency_tuples</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa68e232a262f1604004d4ee8ba719db4" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>get_summary</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af50ece98e8bcc4f7133ec07addf531a4" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>init_data_members</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a57de1ade7c1ddf8260d629792e14f6ef" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>is_valid</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab3f9d4015c80234a1de022952b0b9d91" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>lags</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a3c41316e885feeb3a9bb80197e646cfd" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>length</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1abd888fadd13704e70d6225926f11448b" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>load</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a305668a2b02d857074b16039795e3ccf" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>load_file_data</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a73306da3bb875b89da7210c8c9d40bfb" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>mbd_error</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab2f3af92c0b8ae83a62e9de840d00bfa" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>mbdelay</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a3c6f0ceb9190345aa0f62d9c97ef69d7" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>mode</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a924f94ab7b9a4cf2783481ec9202f83e" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>nchans</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1afa5a29f0e305629829d53e7ed20bc707" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>no_freq</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a35cbc148e8fadf824e99c7c411bd4207" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>noloss_cotime</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1adf25e97a81d40cfd29d6a7e006b346f2" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>parents</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad41f4805e00c86087052892040513aad" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>pcals</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a177375745a4e5eab9313fffd4b6f543e" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>phase</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7e156666ef50cc0530e130d869d8c25f" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>phase_snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa7a8f8b14b6136f0c53249775a5200f3" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>pol_product</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7b620c33ec83645546e312fefdc8a64c" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>polarization</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a9e33a1dba9500b3e04a815209fb455a6" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>procdate</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a43e1fed2f035634e7345c4e2c4ed8d76" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>quality</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a44b367f33f902841f46f6a9d428a281a" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>ref_az</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a067bc572c62b557331c00b64970dae64" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>ref_elev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7e0d50b4eb9969b7eb4fc079e7035a78" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>ref_freq</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a2389d851ceddaf8d7d4c55bf04a19257" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>reftape</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a98a05da5e47c49baed09f120beae938d" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>relase_file_data</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aa35290ea9d24b5f2a61c553689262c50" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>rem_az</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a44e2382a3765c38190966b7c665ef05c" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>rem_elev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a679bd0018949257f017858e0ecac4073" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>remtape</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7956cdfc1ae65700ee2af7719cdb3f97" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>resid_delay</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad2c765a5b00e303a029f51d6a6624e45" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>resid_phas</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a0a1e0a22c7012305dd9b2a290d85a601" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>root_id</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad6c8f6e1c681b5d468ba44c4ad0d6cc5" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>sbdelay</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a1a7962989de4c5428d56f3e570eaa083" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>scan_id</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad3a17b4edd6d68ac395565628f06851c" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>scan_name</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a48771b2b43a36bf7cba5bad7165ed746" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>scan_offset</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1aed4e19892e53eea414a7184bb4a627dd" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>set_string_hash</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a6aaf624bf742581b313a74eb39e32073" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1adb4703def0cbe357c9137bf0fe7fa121" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>source</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ad934e8758f2046e19b596d72ccc13d5b" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>srch_cotime</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af5ab709650905a053871ab478cdc7e81" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>ssec</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a5deafa4cd9f947e1e28a1d91de5e6bb9" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>time_tag</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a3517f2d15d6ffb7a0e9a9095c2129a9b" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>total_mbdelay</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a50f0e6c4193ff584da0cf0ae98a2dda2" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>total_phas</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a7449036bb1b936e58dc4486625af700f" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>total_rate</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1af8d3b252ecf955256d0f71a812228c1c" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>total_sbresid</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a0f833196c63258070cb832f5beb619c3" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>u</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1a285d89b0bd41b2073154df6a1f9cf759" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>v</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle_1ab8bc0a47321afc8cd9edce6673abe521" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::FringeFileHandle</scope><name>version</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

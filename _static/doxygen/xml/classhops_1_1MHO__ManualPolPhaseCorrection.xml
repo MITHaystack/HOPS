@@ -1,0 +1,657 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ManualPolPhaseCorrection" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ManualPolPhaseCorrection</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; visibility_type &gt;</basecompoundref>
+    <includes refid="MHO__ManualPolPhaseCorrection_8hh" local="no">MHO_ManualPolPhaseCorrection.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a6128f5d4327bec46187c5fd54a44084d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fChannelLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fChannelLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="137" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1ad390a5cb89b9918f73c32daea864a25b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ManualPolPhaseCorrection::fDegToRad</definition>
+        <argsstring></argsstring>
+        <name>fDegToRad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="122" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a46a286b49689a8907a43a105b503c638" prot="private" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_ManualPolPhaseCorrection::fImagUnit</definition>
+        <argsstring></argsstring>
+        <name>fImagUnit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="121" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1aeb60f5ddcdf39dd10b7167dc80f026bb" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fLowerSideband</definition>
+        <argsstring></argsstring>
+        <name>fLowerSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="140" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a17cccf1954756af628bed872431b2f78" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ManualPolPhaseCorrection::fPhaseOffset</definition>
+        <argsstring></argsstring>
+        <name>fPhaseOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="129" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a41277ae9bb87176a646a766c59a4f7c5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fPol</definition>
+        <argsstring></argsstring>
+        <name>fPol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="126" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a2c2668e1de88c7c6cc93d3455f10c3dc" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fRefStationKey</definition>
+        <argsstring></argsstring>
+        <name>fRefStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="134" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a022ab2d16dbcd12d3425b78425adb552" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fRefStationMk4IDKey</definition>
+        <argsstring></argsstring>
+        <name>fRefStationMk4IDKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="136" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1abf5ad9bd4bb94eb4eb8df8589c987e69" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fRemStationKey</definition>
+        <argsstring></argsstring>
+        <name>fRemStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="133" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1ac978ef73efc5bc9678320979f1cd9040" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fRemStationMk4IDKey</definition>
+        <argsstring></argsstring>
+        <name>fRemStationMk4IDKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a66b415b48377450fe05d5aeead3310ac" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fSidebandLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fSidebandLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="139" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a7edbd1a6139ed3405152c4e3b28062d5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fStationIdentity</definition>
+        <argsstring></argsstring>
+        <name>fStationIdentity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="125" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a01280cb93160f1d8fb6ade5e72060fea" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fStationKey</definition>
+        <argsstring></argsstring>
+        <name>fStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="132" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a1b297c8d001496e8632cd178640cbab3" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolPhaseCorrection::fUpperSideband</definition>
+        <argsstring></argsstring>
+        <name>fUpperSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="141" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a55da2d6d4e6eda273ce058df7b9b1ee8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ManualPolPhaseCorrection::MHO_ManualPolPhaseCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ManualPolPhaseCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="6" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a7e04561680e26f78459ce294d02b0c9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ManualPolPhaseCorrection::~MHO_ManualPolPhaseCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ManualPolPhaseCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a3a919568fb271c863caa10a0b700aec4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolPhaseCorrection::SetPCPhaseOffset</definition>
+        <argsstring>(const double &amp;pc_phase_offset)</argsstring>
+        <name>SetPCPhaseOffset</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>pc_phase_offset</declname>
+        </param>
+        <briefdescription>
+<para>Setter for pc_phase offset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pc_phase_offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>phase offset value applied to this polarization </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="63" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a508617b429ef53f7c23f3667e681f6a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolPhaseCorrection::SetPolarization</definition>
+        <argsstring>(const std::string &amp;pol)</argsstring>
+        <name>SetPolarization</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+<para>Setter for associated polarization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input polarization string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="52" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a0346944c6ab73220878a78121a3d5d30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolPhaseCorrection::SetStationIdentifier</definition>
+        <argsstring>(std::string station_id)</argsstring>
+        <name>SetStationIdentifier</name>
+        <param>
+          <type>std::string</type>
+          <declname>station_id</declname>
+        </param>
+        <briefdescription>
+<para>Setter for station identifier. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Two-character MK4 station code as std::string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a258bd4401e956e5e127dcfb4c4f5733e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolPhaseCorrection::ExecuteInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Applies manual phase correction offsets to visibility data in-place for reference or remote stations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type* containing pol-products and channel labeled visibilities. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool indicating successful execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="91" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="28" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a0479f09c1fb131ef89938d6fcc02a313" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolPhaseCorrection::ExecuteOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input visibility data and executes in-place correction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input visibility_type data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(visibility_type*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of ExecuteInPlace operation on copied output data. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="100" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="94" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1ab34ea5f7720868fc07d2329beefd64fe" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolPhaseCorrection::InitializeInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place visibility_type pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer to initialize </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization is successful </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="73" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="151" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1ad3ea8cad4bc2be8a9bd7add478b94556" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolPhaseCorrection::InitializeOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes out-of-place visibility data from input pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const pointer to input visibility_type data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(visibility_type*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success (always true) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="82" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="156" bodyend="159"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1ad163a76b8c3aa88bfeaee6c7c2d93880" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolPhaseCorrection::IsApplicable</definition>
+        <argsstring>(std::size_t st_idx, const visibility_type *in)</argsstring>
+        <name>IsApplicable</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>st_idx</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Checks if manual polarization-specific phase correction is applicable for a given station index and visibility data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>st_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the station (ref/rem). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Visibility data to retrieve station information. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether manual correction should be applied. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="110" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="100" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1a1600674eedb7984eed905018a18e117a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolPhaseCorrection::make_upper</definition>
+        <argsstring>(std::string &amp;s)</argsstring>
+        <name>make_upper</name>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="144" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="144" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolPhaseCorrection_1aa3926d34b765f011780ea014688028df" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolPhaseCorrection::PolMatch</definition>
+        <argsstring>(std::size_t station_idx, std::string &amp;polprod)</argsstring>
+        <name>PolMatch</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>station_idx</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>polprod</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the station for which to check the polarization product. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polprod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if polarization product matches fPol at given station index, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="118" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolPhaseCorrection.cc" bodystart="145" bodyend="149"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ManualPolPhaseCorrection" kindref="compound">MHO_ManualPolPhaseCorrection</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jan 27 10:36:00 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ManualPolPhaseCorrection</label>
+        <link refid="classhops_1_1MHO__ManualPolPhaseCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ManualPolPhaseCorrection</label>
+        <link refid="classhops_1_1MHO__ManualPolPhaseCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolPhaseCorrection.hh" bodystart="32" bodyend="151"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a258bd4401e956e5e127dcfb4c4f5733e" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a0479f09c1fb131ef89938d6fcc02a313" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a6128f5d4327bec46187c5fd54a44084d" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fChannelLabelKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1ad390a5cb89b9918f73c32daea864a25b" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fDegToRad</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a46a286b49689a8907a43a105b503c638" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fImagUnit</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1aeb60f5ddcdf39dd10b7167dc80f026bb" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fLowerSideband</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a17cccf1954756af628bed872431b2f78" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fPhaseOffset</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a41277ae9bb87176a646a766c59a4f7c5" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fPol</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a2c2668e1de88c7c6cc93d3455f10c3dc" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fRefStationKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a022ab2d16dbcd12d3425b78425adb552" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fRefStationMk4IDKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1abf5ad9bd4bb94eb4eb8df8589c987e69" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fRemStationKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1ac978ef73efc5bc9678320979f1cd9040" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fRemStationMk4IDKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a66b415b48377450fe05d5aeead3310ac" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fSidebandLabelKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a7edbd1a6139ed3405152c4e3b28062d5" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fStationIdentity</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a01280cb93160f1d8fb6ade5e72060fea" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fStationKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a1b297c8d001496e8632cd178640cbab3" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>fUpperSideband</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1ab34ea5f7720868fc07d2329beefd64fe" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1ad3ea8cad4bc2be8a9bd7add478b94556" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1ad163a76b8c3aa88bfeaee6c7c2d93880" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>IsApplicable</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a1600674eedb7984eed905018a18e117a" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>make_upper</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a55da2d6d4e6eda273ce058df7b9b1ee8" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>MHO_ManualPolPhaseCorrection</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1aa3926d34b765f011780ea014688028df" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>PolMatch</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a3a919568fb271c863caa10a0b700aec4" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>SetPCPhaseOffset</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a508617b429ef53f7c23f3667e681f6a8" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>SetPolarization</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a0346944c6ab73220878a78121a3d5d30" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>SetStationIdentifier</name></member>
+      <member refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a7e04561680e26f78459ce294d02b0c9f" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>~MHO_ManualPolPhaseCorrection</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_ManualPolPhaseCorrection</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

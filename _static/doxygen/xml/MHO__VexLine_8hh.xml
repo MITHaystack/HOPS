@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__VexLine_8hh" kind="file" language="C++">
+    <compoundname>MHO_VexLine.hh</compoundname>
+    <includes local="no">string</includes>
+    <includedby refid="MHO__VexBlockParser_8hh" local="yes">MHO_VexBlockParser.hh</includedby>
+    <includedby refid="MHO__VexParser_8hh" local="yes">MHO_VexParser.hh</includedby>
+    <includedby refid="MHO__VexTokenProcessor_8hh" local="yes">MHO_VexTokenProcessor.hh</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>MHO_VexLine.hh</label>
+        <link refid="MHO__VexLine_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="16">
+        <label>MHO_VexTokenProcessor.hh</label>
+        <link refid="MHO__VexTokenProcessor_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_VexLine.hh</label>
+        <link refid="MHO__VexLine_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_MK4VexInterface.hh</label>
+        <link refid="MHO__MK4VexInterface_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_MK4StationInterface.hh</label>
+        <link refid="MHO__MK4StationInterface_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_VexParser.hh</label>
+        <link refid="MHO__VexParser_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_DiFXScanProcessor.cc</label>
+        <link refid="MHO__DiFXScanProcessor_8cc"/>
+      </node>
+      <node id="13">
+        <label>MHO_MK4VexInterface.cc</label>
+        <link refid="MHO__MK4VexInterface_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_MK4CorelInterface.hh</label>
+        <link refid="MHO__MK4CorelInterface_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>MHO_VexParser.cc</label>
+        <link refid="MHO__VexParser_8cc"/>
+      </node>
+      <node id="8">
+        <label>mark42hops.cc</label>
+        <link refid="mark42hops_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_MK4ScanConverter.cc</label>
+        <link refid="MHO__MK4ScanConverter_8cc"/>
+      </node>
+      <node id="17">
+        <label>MHO_VexTokenProcessor.cc</label>
+        <link refid="MHO__VexTokenProcessor_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_MK4CorelInterface.cc</label>
+        <link refid="MHO__MK4CorelInterface_8cc"/>
+      </node>
+      <node id="15">
+        <label>MHO_VexBlockParser.cc</label>
+        <link refid="MHO__VexBlockParser_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_VexBlockParser.hh</label>
+        <link refid="MHO__VexBlockParser_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_MK4ScanConverter.hh</label>
+        <link refid="MHO__MK4ScanConverter_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structhops_1_1MHO__VexLine" prot="public">hops::MHO_VexLine</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_VexLine_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_VexLine_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="structhops_1_1MHO__VexLine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__VexLine" kindref="compound">MHO_VexLine</ref></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22" refid="structhops_1_1MHO__VexLine_1a844a830f19a3fc61252f4491e70263d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structhops_1_1MHO__VexLine_1a844a830f19a3fc61252f4491e70263d7" kindref="member">fLineNumber</ref>;</highlight></codeline>
+<codeline lineno="23" refid="structhops_1_1MHO__VexLine_1a2a5f77922cbd7762f7249624d1f39f66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structhops_1_1MHO__VexLine_1a2a5f77922cbd7762f7249624d1f39f66" kindref="member">fStatementNumber</ref>;</highlight></codeline>
+<codeline lineno="24" refid="structhops_1_1MHO__VexLine_1a31eb864341e673096a13c3e64bc87167" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structhops_1_1MHO__VexLine_1a31eb864341e673096a13c3e64bc87167" kindref="member">fContents</ref>;</highlight></codeline>
+<codeline lineno="25" refid="structhops_1_1MHO__VexLine_1af96b6fc748ed2163809facf5f152b2ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__VexLine_1af96b6fc748ed2163809facf5f152b2ce" kindref="member">fIsLiteral</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexLine.hh"/>
+  </compounddef>
+</doxygen>

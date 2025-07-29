@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PolProductSummationBuilder" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PolProductSummationBuilder</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__OperatorBuilder" prot="public" virt="non-virtual">hops::MHO_OperatorBuilder</basecompoundref>
+    <includes refid="MHO__PolProductSummationBuilder_8hh" local="no">MHO_PolProductSummationBuilder.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummationBuilder_1a45ed5f271d2288e7ef809e55ca4b7396" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PolProductSummationBuilder::MHO_PolProductSummationBuilder</definition>
+        <argsstring>(MHO_OperatorToolbox *toolbox, MHO_ContainerStore *cstore=nullptr, MHO_ParameterStore *pstore=nullptr)</argsstring>
+        <name>MHO_PolProductSummationBuilder</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>cstore</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>pstore</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" bodystart="27" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummationBuilder_1addbad6e1df492957f299fc253761152b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PolProductSummationBuilder::MHO_PolProductSummationBuilder</definition>
+        <argsstring>(MHO_OperatorToolbox *toolbox, MHO_FringeData *fdata)</argsstring>
+        <name>MHO_PolProductSummationBuilder</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" bodystart="24" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummationBuilder_1a857648f66fd345ef3bc9a073034456a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PolProductSummationBuilder::~MHO_PolProductSummationBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PolProductSummationBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummationBuilder_1a3c25a953754891d6dee16336f08ef700" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PolProductSummationBuilder::Build</definition>
+        <argsstring>() override</argsstring>
+        <name>Build</name>
+        <reimplements refid="classhops_1_1MHO__OperatorBuilder_1a9ca5f236585f7523d7206188109591e1">Build</reimplements>
+        <briefdescription>
+<para>Constructs and initializes the PolProductSummation operator, and adds to toolbox. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" line="38" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_PolProductSummationBuilder.cc" bodystart="10" bodyend="97"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__PolProductSummationBuilder" kindref="compound">MHO_PolProductSummationBuilder</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Builds an operator to perform a summation over specified pol-products (or pseudo-Stokes-I)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Jan 15 11:23:36 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_OperatorBuilder</label>
+        <link refid="classhops_1_1MHO__OperatorBuilder"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PolProductSummationBuilder</label>
+        <link refid="classhops_1_1MHO__PolProductSummationBuilder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="24">
+        <label>size_t</label>
+      </node>
+      <node id="28">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="31">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="15" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="18">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="22" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="15" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ParameterStore</label>
+        <link refid="classhops_1_1MHO__ParameterStore"/>
+      </node>
+      <node id="19">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="20" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="15" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>json</label>
+      </node>
+      <node id="13">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="25">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>key_pair</label>
+      </node>
+      <node id="23">
+        <label>int</label>
+      </node>
+      <node id="15">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>std::set&lt; std::string &gt;</label>
+        <childnode refid="12" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>uint8_t</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_OperatorBuilder</label>
+        <link refid="classhops_1_1MHO__OperatorBuilder"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fAttributes</edgelabel>
+          <edgelabel>fConditions</edgelabel>
+          <edgelabel>fFormat</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fFringeData</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>fOperatorToolbox</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_ScanDataStore</label>
+        <link refid="classhops_1_1MHO__ScanDataStore"/>
+      </node>
+      <node id="29">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="15" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PolProductSummationBuilder</label>
+        <link refid="classhops_1_1MHO__PolProductSummationBuilder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::map&lt; hops::MHO_Serializable *, key_pair &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="7">
+        <label>hops::MHO_ContainerStore</label>
+        <link refid="classhops_1_1MHO__ContainerStore"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fObjectsToIds</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fShortNameSet</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fShortNameToIds</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fIdsToObjects</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fDictionary</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="22" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>hops::MHO_OperatorToolbox</label>
+        <link refid="classhops_1_1MHO__OperatorToolbox"/>
+      </node>
+      <node id="17">
+        <label>std::map&lt; key_pair, hops::MHO_Serializable * &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="22">
+        <label>char</label>
+      </node>
+      <node id="5">
+        <label>hops::MHO_FringeData</label>
+        <link refid="classhops_1_1MHO__FringeData"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fControlFormat</edgelabel>
+          <edgelabel>fControlStatements</edgelabel>
+          <edgelabel>fPlotData</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fScanStore</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>std::string</label>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_PolProductSummationBuilder.hh" bodystart="21" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PolProductSummationBuilder_1a3c25a953754891d6dee16336f08ef700" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>Build</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1ae50472a8a3daeec0655cf85fdaaf35cf" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>fAttributes</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a076a0ebceaa46443a8fe9e6feab5598c" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>fConditions</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a446f8996af6c790981fb52b79e17e61f" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>fContainerStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a710c592e8aa8d33264aa78f5910efd8c" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>fFormat</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a96641993c4ee83b5dcf7bebb8eab7fbf" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>fFringeData</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a43237b05f41b152f504c987df53bd72b" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>fOperatorToolbox</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a2d103267ff6a55e48c73368f88a62af8" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a69adf0a5a08b4ac142aa650c8ba032aa" prot="protected" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>IsConfigurationOk</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a57f2ad9c7838dc8e730cdf97a059a16f" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>MHO_OperatorBuilder</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a7892c773fd245b2948f8c8673d5e4acd" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>MHO_OperatorBuilder</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummationBuilder_1addbad6e1df492957f299fc253761152b" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>MHO_PolProductSummationBuilder</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummationBuilder_1a45ed5f271d2288e7ef809e55ca4b7396" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>MHO_PolProductSummationBuilder</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a21591a64fc853e3f2c54b3186b18a38c" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>SetAttributes</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a1f08918250a2d4b01b7aa0527cbae698" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>SetConditions</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a5bd82217af9600a31013b06e604483a9" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>SetContainerStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a2033969b55c8ba07c6470ac8864e6d7f" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>SetFormat</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a33f14a9be573486bb9aeb00578106d54" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>SetFringeData</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a0b6feeb5da8afe7d1cc5eeb7317d76e8" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>SetParameterStore</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a61a2c3becb21cd1ee2bc59fc42458b86" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>SetToolbox</name></member>
+      <member refid="classhops_1_1MHO__OperatorBuilder_1a1337a10e489d53f77d77e95dac5a78f8" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>~MHO_OperatorBuilder</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummationBuilder_1a857648f66fd345ef3bc9a073034456a9" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummationBuilder</scope><name>~MHO_PolProductSummationBuilder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

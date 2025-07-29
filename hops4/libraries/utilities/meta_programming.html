@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta-Programming Utilities &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Legacy Compatibility Tools" href="legacy_compatibility.html" />
+    <link rel="prev" title="File Operation Utilities" href="file_operations.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Utilities.html">Utilities</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="time_date.html">Time and Date Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file_operations.html">File Operation Utilities</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Meta-Programming Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-meta">MHO_Meta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-classidentity">MHO_ClassIdentity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-templatetypenamededuction">MHO_TemplateTypenameDeduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-types">MHO_Types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="legacy_compatibility.html">Legacy Compatibility Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="miscellaneous.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="miscellaneous.html#additional-utility-classes">Additional Utility Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Utilities.html">Utilities</a></li>
+      <li class="breadcrumb-item active">Meta-Programming Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/utilities/meta_programming.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="meta-programming-utilities">
+<h1>Meta-Programming Utilities<a class="headerlink" href="#meta-programming-utilities" title="Link to this heading"></a></h1>
+<p>The utilities library provides several template meta-programming tools for
+type manipulation and compile-time computations.</p>
+<section id="mho-meta">
+<h2>MHO_Meta<a class="headerlink" href="#mho-meta" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>MHO_Meta.hh</p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Meta-Programming</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>Variadic template parameters for type manipulation</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Template meta-programming utilities and type manipulation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Tuple access and modification utilities</div>
+<div class="line">Type counting and identification</div>
+<div class="line">Runtime-indexed tuple access</div>
+<div class="line">Complex type detection and switching</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The MHO_Meta.hh header provides template meta-programming tools, such as tuple manipulation,
+type counting, runtime-indexed tuple access, and type detection capabilities.</p>
+</section>
+<section id="mho-classidentity">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/structhops_1_1MHO__ClassIdentity.html">MHO_ClassIdentity</a><a class="headerlink" href="#mho-classidentity" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/structhops_1_1MHO__ClassIdentity.html">MHO_ClassIdentity</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Meta-Programming</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>Template methods for class type identification</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Runtime class name extraction and UUID generation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Template-based class name deduction</div>
+<div class="line">MD5-based UUID generation from class names</div>
+<div class="line">Type identification for serialization</div>
+<div class="line">Class version error reporting</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/structhops_1_1MHO__ClassIdentity.html">MHO_ClassIdentity</a> class provides runtime class name extraction and UUID generation for
+type identification in serialization and file operations.</p>
+</section>
+<section id="mho-templatetypenamededuction">
+<h2>MHO_TemplateTypenameDeduction<a class="headerlink" href="#mho-templatetypenamededuction" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>MHO_TemplateTypenameDeduction.hh</p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Meta-Programming</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>Template functions for type name extraction</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>Compiler-specific (Clang/GCC support)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Compile-time type name extraction with runtime processing</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Cross-compiler type name deduction</div>
+<div class="line">String cleanup for readable class names</div>
+<div class="line">Special handling for std::string types</div>
+<div class="line">Namespace prefix removal</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The MHO_TemplateTypenameDeduction.hh header provides compile-time type
+name extraction with runtime string processing to generate consistent class names across
+different compilers. These class names are used for object type identification via
+MD5 hashing, which is used for file key (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileKey.html">MHO_FileKey</a>)
+generation during the object serialization.</p>
+</section>
+<section id="mho-types">
+<h2>MHO_Types<a class="headerlink" href="#mho-types" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>MHO_Types.hh</p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Meta-Programming</p></td>
+</tr>
+<tr class="row-odd"><td><p>Compile time parameters</p></td>
+<td><p>ENSURE_PORTABILITY flag (enabled by default)</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Type size validation for data portability</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Static assertions for type size validation</div>
+<div class="line">Ensures consistent data layout across platforms</div>
+<div class="line">Prevents compilation on non-portable systems</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The MHO_Types.hh header provides type size validation through static assertions
+to ensure data portability. Triggers a compile time error on non-compatible platforms/compilers.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file_operations.html" class="btn btn-neutral float-left" title="File Operation Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="legacy_compatibility.html" class="btn btn-neutral float-right" title="Legacy Compatibility Tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

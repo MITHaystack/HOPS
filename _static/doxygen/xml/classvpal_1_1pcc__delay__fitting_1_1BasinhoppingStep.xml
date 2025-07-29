@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep" kind="class" language="Python" prot="public">
+    <compoundname>vpal::pcc_delay_fitting::BasinhoppingStep</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1a887d69c6677a261605d7af8f11b64b07" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.pcc_delay_fitting.BasinhoppingStep::delay_step</definition>
+        <argsstring></argsstring>
+        <name>delay_step</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="75" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1ad5e43e3ee7b883cab71242e52fe6ec78" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.pcc_delay_fitting.BasinhoppingStep::phase_step</definition>
+        <argsstring></argsstring>
+        <name>phase_step</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="76" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1a3d4b3042206a7a82ff544ad0130ff363" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BasinhoppingStep.__init__</definition>
+        <argsstring>(self, stepsize_delay=PICOSECOND, stepsize_phase=3.0 *(math.pi/180.0))</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>stepsize_delay</type>
+          <defname>stepsize_delay</defname>
+          <defval><ref refid="namespacevpal_1_1pcc__delay__fitting_1af1e1a3fc7e7fb5c3e138cbe3e49649c2" kindref="member">PICOSECOND</ref></defval>
+        </param>
+        <param>
+          <type>stepsize_phase</type>
+          <defname>stepsize_phase</defname>
+          <defval>3.0 *(<ref refid="generate__text_8c_1a1daf785e3f68d293c7caa1c756d5cb74" kindref="member">math.pi</ref>/180.0)</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="74" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="74" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1a23367ac5f30a09bd746cd6f557d1776b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BasinhoppingStep.__call__</definition>
+        <argsstring>(self, x)</argsstring>
+        <name>__call__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>x</type>
+          <defname>x</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="77" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="77" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> defines the stepsizes to be taken when using the basin hopping algorithm to find the delay/phase</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.pcc_delay_fitting.BasinhoppingStep</label>
+        <link refid="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.pcc_delay_fitting.BasinhoppingStep</label>
+        <link refid="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="72" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="72" bodyend="86"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1a23367ac5f30a09bd746cd6f557d1776b" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BasinhoppingStep</scope><name>__call__</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1a3d4b3042206a7a82ff544ad0130ff363" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BasinhoppingStep</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1a887d69c6677a261605d7af8f11b64b07" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BasinhoppingStep</scope><name>delay_step</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep_1ad5e43e3ee7b883cab71242e52fe6ec78" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BasinhoppingStep</scope><name>phase_step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__ProfileEvent" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_ProfileEvent</compoundname>
+    <includes refid="MHO__Profiler_8hh" local="no">MHO_Profiler.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__ProfileEvent_1aa547c43498946ad0ab2511bc5c5fd63d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char hops::MHO_ProfileEvent::fFilename[PROFILE_INFO_LEN]</definition>
+        <argsstring>[PROFILE_INFO_LEN]</argsstring>
+        <name>fFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="60" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__ProfileEvent_1a9ac9d15026d624bfe9b998433df8d23e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_ProfileEvent::fFlag</definition>
+        <argsstring></argsstring>
+        <name>fFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="56" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__ProfileEvent_1a45e68948baeb46f6423529b0820055fe" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char hops::MHO_ProfileEvent::fFuncname[PROFILE_INFO_LEN]</definition>
+        <argsstring>[PROFILE_INFO_LEN]</argsstring>
+        <name>fFuncname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="61" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__ProfileEvent_1a0ba9a3f529d287d5ae924d1f8c33e088" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_ProfileEvent::fLineNumber</definition>
+        <argsstring></argsstring>
+        <name>fLineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="57" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__ProfileEvent_1ab802c4c2267901624f55cf944d304118" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_ProfileEvent::fThreadID</definition>
+        <argsstring></argsstring>
+        <name>fThreadID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="58" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__ProfileEvent_1a0da51f95f4fa2a4ec12a23ec5cfa5621" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ProfileEvent::fTime</definition>
+        <argsstring></argsstring>
+        <name>fTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="59" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__ProfileEvent" kindref="compound">MHO_ProfileEvent</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>uint64_t</label>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ProfileEvent</label>
+        <link refid="structhops_1_1MHO__ProfileEvent"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fTime</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fThreadID</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fFilename</edgelabel>
+          <edgelabel>fFuncname</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fFlag</edgelabel>
+          <edgelabel>fLineNumber</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="54" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="55" bodyend="62"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__ProfileEvent_1aa547c43498946ad0ab2511bc5c5fd63d" prot="public" virt="non-virtual"><scope>hops::MHO_ProfileEvent</scope><name>fFilename</name></member>
+      <member refid="structhops_1_1MHO__ProfileEvent_1a9ac9d15026d624bfe9b998433df8d23e" prot="public" virt="non-virtual"><scope>hops::MHO_ProfileEvent</scope><name>fFlag</name></member>
+      <member refid="structhops_1_1MHO__ProfileEvent_1a45e68948baeb46f6423529b0820055fe" prot="public" virt="non-virtual"><scope>hops::MHO_ProfileEvent</scope><name>fFuncname</name></member>
+      <member refid="structhops_1_1MHO__ProfileEvent_1a0ba9a3f529d287d5ae924d1f8c33e088" prot="public" virt="non-virtual"><scope>hops::MHO_ProfileEvent</scope><name>fLineNumber</name></member>
+      <member refid="structhops_1_1MHO__ProfileEvent_1ab802c4c2267901624f55cf944d304118" prot="public" virt="non-virtual"><scope>hops::MHO_ProfileEvent</scope><name>fThreadID</name></member>
+      <member refid="structhops_1_1MHO__ProfileEvent_1a0da51f95f4fa2a4ec12a23ec5cfa5621" prot="public" virt="non-virtual"><scope>hops::MHO_ProfileEvent</scope><name>fTime</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

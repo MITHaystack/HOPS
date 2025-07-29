@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_a8bbc854e9ceabd6883885b83f19bec2" kind="dir">
+    <compoundname>hops_io</compoundname>
+    <innerfile refid="hops__io_2____init_____8py">hops_io/__init__.py</innerfile>
+    <innerfile refid="parse__pdd__file_8py">parse_pdd_file.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_io/"/>
+  </compounddef>
+</doxygen>

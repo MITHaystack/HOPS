@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines" kind="class" language="Python" prot="public">
+    <compoundname>vpal::ffres2pcp_lib::DefaultChannelDefines</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1a1924620b2eab2b97c408eed70134dbcf" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.DefaultChannelDefines::all</definition>
+        <argsstring></argsstring>
+        <name>all</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1ab6c67ce0d0c1ef0a770a010aa46a7c71" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.DefaultChannelDefines::legacy_s</definition>
+        <argsstring></argsstring>
+        <name>legacy_s</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="36" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1a0e0cedfde8feb7e82c7969ae2ca429b8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.DefaultChannelDefines::legacy_x</definition>
+        <argsstring></argsstring>
+        <name>legacy_x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="37" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1a703eb99581d0b5ba6143eb2d23c0a766" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.DefaultChannelDefines::vgos</definition>
+        <argsstring></argsstring>
+        <name>vgos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="35" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1ae1d29e35915bf5d85b1e165257af88bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.DefaultChannelDefines.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="33" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>declare fourfit channel codes associated with different observing configurations</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.DefaultChannelDefines</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.DefaultChannelDefines</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="31" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1ae1d29e35915bf5d85b1e165257af88bc" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::DefaultChannelDefines</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1a1924620b2eab2b97c408eed70134dbcf" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::DefaultChannelDefines</scope><name>all</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1ab6c67ce0d0c1ef0a770a010aa46a7c71" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::DefaultChannelDefines</scope><name>legacy_s</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1a0e0cedfde8feb7e82c7969ae2ca429b8" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::DefaultChannelDefines</scope><name>legacy_x</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines_1a703eb99581d0b5ba6143eb2d23c0a766" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::DefaultChannelDefines</scope><name>vgos</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,857 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfringesum" kind="struct" language="C++" prot="public">
+    <compoundname>fringesum</compoundname>
+    <includes refid="adata_8h" local="no">adata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfringesum_1a210f8ecbfd5c93ee1df8d3403f4e737a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::ambiguity</definition>
+        <argsstring></argsstring>
+        <name>ambiguity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="101" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aa75afe8febdc6c1a980db01b813da436" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::amp</definition>
+        <argsstring></argsstring>
+        <name>amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="89" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1abf4e8224ff6e0b4774bc0542bce4dc97" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::archiv</definition>
+        <argsstring></argsstring>
+        <name>archiv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="86" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a6c663909d1c1c840a7ae58812f77863e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::baseline[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="81" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1ab320a3053c04345deaf5e2639da2b343" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::corel_vers</definition>
+        <argsstring></argsstring>
+        <name>corel_vers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="76" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1ac80fc1a5d46d517c510c4b8adc64ccb3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::datatype[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>datatype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="108" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a2467ca759b7a5eca952a0c8312ad4ff1" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::dec_deg</definition>
+        <argsstring></argsstring>
+        <name>dec_deg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="139" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aa503a9350fb4e10ed59a4b2c210fd8eb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::delay_rate</definition>
+        <argsstring></argsstring>
+        <name>delay_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="94" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a21f8cc248d1df34db8adee230d38398c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="119" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a4ca3fd8f3993c631366816a3b11e804d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::epoch[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>epoch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="96" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a7c4f93bfb8b905d96cd25e0042433da3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::errcode</definition>
+        <argsstring></argsstring>
+        <name>errcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="134" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1ade9ec00f8c7102506e736a646a4753d6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringesum::esdesp</definition>
+        <argsstring></argsstring>
+        <name>esdesp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="95" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aa2625e32469e1f53df7df0559110208b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::expt_no</definition>
+        <argsstring></argsstring>
+        <name>expt_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="73" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a243d2affaed78a0b03511a7bdf1a53b5" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::extent_no</definition>
+        <argsstring></argsstring>
+        <name>extent_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="74" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1ae879051096e3336e2bfb954de2585e57" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::fname[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>fname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="72" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1acdc1fe42315e722d8f16a491ac0b7419" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::freq_code</definition>
+        <argsstring></argsstring>
+        <name>freq_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="83" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1abf493a6f1e9a18d66d9d5bce7ad024a9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringesum::lags</definition>
+        <argsstring></argsstring>
+        <name>lags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="125" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a384b231bc0174991e3a2fa1cfb1cde07" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="75" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a905741ddb2d293073177724326442ea4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::mbdelay</definition>
+        <argsstring></argsstring>
+        <name>mbdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="93" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a754b10276f0efbbc1a579a007420a538" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="84" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aa1b18a3482b6449f55a031c5b05efc25" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::no_freq</definition>
+        <argsstring></argsstring>
+        <name>no_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="85" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a9ea0173f92a374bf4b315519b3ee538e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::noloss_cotime</definition>
+        <argsstring></argsstring>
+        <name>noloss_cotime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="128" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a0aa1e1e0bcdb2896197bdae3f26836bb" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="120" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a34af03df4097ce11c779fc2fce9859db" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::parents[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>parents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="115" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a9af25fffe483cc0e38b29b5a3015c51e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::pcals[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>pcals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="102" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a8c14becfee5beda9d8806bb7e45bbd3f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::phase_snr</definition>
+        <argsstring></argsstring>
+        <name>phase_snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="126" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a8214b543be3788b7b6229b9c8dbfd557" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::polarization[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>polarization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="133" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a9dc35c64db7047320393b43deb6f652b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringesum::procdate</definition>
+        <argsstring></argsstring>
+        <name>procdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="77" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a5eac8acc3977c0e2e9716b43d323c660" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::quality</definition>
+        <argsstring></argsstring>
+        <name>quality</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="82" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aac6c38bf4f4b8b5ae4ca7f311c19fff7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::ra_hrs</definition>
+        <argsstring></argsstring>
+        <name>ra_hrs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="138" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a2ddd80a43c511d4c31a0ba4400cd427e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::ref_az</definition>
+        <argsstring></argsstring>
+        <name>ref_az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="111" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1afe565ce73da2ce08f9785151c666c08a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::ref_elev</definition>
+        <argsstring></argsstring>
+        <name>ref_elev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="109" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aaacb646f0988747174e24988f554e9cf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fringesum::ref_freq</definition>
+        <argsstring></argsstring>
+        <name>ref_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="107" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a787035bef1e2904f41bf9290187aacde" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::reftape[9]</definition>
+        <argsstring>[9]</argsstring>
+        <name>reftape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="87" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a373f3bd4cc40fed66b7fab3055025d33" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::rem_az</definition>
+        <argsstring></argsstring>
+        <name>rem_az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="112" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a4a326cd2841d9431ef43b00bfd67b71f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::rem_elev</definition>
+        <argsstring></argsstring>
+        <name>rem_elev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="110" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a0f488b4acc6a86dd88561f042ce1e822" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::remtape[9]</definition>
+        <argsstring>[9]</argsstring>
+        <name>remtape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="88" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aeee3f89157c7d058941c0470b4812e61" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::resid_delay</definition>
+        <argsstring></argsstring>
+        <name>resid_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="141" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a335edacd85dbb104c4f9d12f9de548dd" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::resid_phas</definition>
+        <argsstring></argsstring>
+        <name>resid_phas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="91" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a0cc1eef89a195b5bcb25d9a9a15f2c1b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::root_id[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>root_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="103" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a48da2adb11462aa7301e1984707d88b2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::sbdelay</definition>
+        <argsstring></argsstring>
+        <name>sbdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="92" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a975ac069261d7ef37616357778528df7" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::scan_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>scan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="132" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1aa3196e21b89833e4974d6c1098f21cad" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::scan_offset</definition>
+        <argsstring></argsstring>
+        <name>scan_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="124" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a770a4bc89d6fce07c812e9e3eac5813a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::snr</definition>
+        <argsstring></argsstring>
+        <name>snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="90" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a2befa10cc96391eb577eaab0e748d6d1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fringesum::source[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="80" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a2a3f8feecadc0a4e091a7d01a41f3693" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::srch_cotime</definition>
+        <argsstring></argsstring>
+        <name>srch_cotime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="127" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a66ad664ff5f6253ad089e8b5c660f1ef" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::ssec</definition>
+        <argsstring></argsstring>
+        <name>ssec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="79" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1ae06c83980a42602ea0a7fb1bd9476f0c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringesum::time_tag</definition>
+        <argsstring></argsstring>
+        <name>time_tag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="78" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1afafe958af73c7ce939045683b5c5e2cf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fringesum::total_mbdelay</definition>
+        <argsstring></argsstring>
+        <name>total_mbdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="99" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a20bebb0db3978d9d52f6cf4f2998820b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::total_phas</definition>
+        <argsstring></argsstring>
+        <name>total_phas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="97" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a0ed509c02acd6b7db88e21c0c11e8acd" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fringesum::total_rate</definition>
+        <argsstring></argsstring>
+        <name>total_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="98" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a23211b7b606e4e01f8b7823224eb1805" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::total_sbresid</definition>
+        <argsstring></argsstring>
+        <name>total_sbresid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="100" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1a0cb78d085d2955c82aac38188e5b2349" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::u</definition>
+        <argsstring></argsstring>
+        <name>u</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="113" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1ad20569ab7832995195909018e3daa8da" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fringesum::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="114" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringesum_1acded43a27ddc1956515aa381cb1a06bc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fringesum::version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="71" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>fringesum</label>
+        <link refid="structfringesum"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>total_mbdelay</edgelabel>
+          <edgelabel>total_rate</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amp</edgelabel>
+          <edgelabel>dec_deg</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>mbdelay</edgelabel>
+          <edgelabel>phase_snr</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>reftape</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>no_freq</edgelabel>
+          <edgelabel>noloss_cotime</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>parents</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="70" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="70" bodyend="143"/>
+    <listofallmembers>
+      <member refid="structfringesum_1a210f8ecbfd5c93ee1df8d3403f4e737a" prot="public" virt="non-virtual"><scope>fringesum</scope><name>ambiguity</name></member>
+      <member refid="structfringesum_1aa75afe8febdc6c1a980db01b813da436" prot="public" virt="non-virtual"><scope>fringesum</scope><name>amp</name></member>
+      <member refid="structfringesum_1abf4e8224ff6e0b4774bc0542bce4dc97" prot="public" virt="non-virtual"><scope>fringesum</scope><name>archiv</name></member>
+      <member refid="structfringesum_1a6c663909d1c1c840a7ae58812f77863e" prot="public" virt="non-virtual"><scope>fringesum</scope><name>baseline</name></member>
+      <member refid="structfringesum_1ab320a3053c04345deaf5e2639da2b343" prot="public" virt="non-virtual"><scope>fringesum</scope><name>corel_vers</name></member>
+      <member refid="structfringesum_1ac80fc1a5d46d517c510c4b8adc64ccb3" prot="public" virt="non-virtual"><scope>fringesum</scope><name>datatype</name></member>
+      <member refid="structfringesum_1a2467ca759b7a5eca952a0c8312ad4ff1" prot="public" virt="non-virtual"><scope>fringesum</scope><name>dec_deg</name></member>
+      <member refid="structfringesum_1aa503a9350fb4e10ed59a4b2c210fd8eb" prot="public" virt="non-virtual"><scope>fringesum</scope><name>delay_rate</name></member>
+      <member refid="structfringesum_1a21f8cc248d1df34db8adee230d38398c" prot="public" virt="non-virtual"><scope>fringesum</scope><name>duration</name></member>
+      <member refid="structfringesum_1a4ca3fd8f3993c631366816a3b11e804d" prot="public" virt="non-virtual"><scope>fringesum</scope><name>epoch</name></member>
+      <member refid="structfringesum_1a7c4f93bfb8b905d96cd25e0042433da3" prot="public" virt="non-virtual"><scope>fringesum</scope><name>errcode</name></member>
+      <member refid="structfringesum_1ade9ec00f8c7102506e736a646a4753d6" prot="public" virt="non-virtual"><scope>fringesum</scope><name>esdesp</name></member>
+      <member refid="structfringesum_1aa2625e32469e1f53df7df0559110208b" prot="public" virt="non-virtual"><scope>fringesum</scope><name>expt_no</name></member>
+      <member refid="structfringesum_1a243d2affaed78a0b03511a7bdf1a53b5" prot="public" virt="non-virtual"><scope>fringesum</scope><name>extent_no</name></member>
+      <member refid="structfringesum_1ae879051096e3336e2bfb954de2585e57" prot="public" virt="non-virtual"><scope>fringesum</scope><name>fname</name></member>
+      <member refid="structfringesum_1acdc1fe42315e722d8f16a491ac0b7419" prot="public" virt="non-virtual"><scope>fringesum</scope><name>freq_code</name></member>
+      <member refid="structfringesum_1abf493a6f1e9a18d66d9d5bce7ad024a9" prot="public" virt="non-virtual"><scope>fringesum</scope><name>lags</name></member>
+      <member refid="structfringesum_1a384b231bc0174991e3a2fa1cfb1cde07" prot="public" virt="non-virtual"><scope>fringesum</scope><name>length</name></member>
+      <member refid="structfringesum_1a905741ddb2d293073177724326442ea4" prot="public" virt="non-virtual"><scope>fringesum</scope><name>mbdelay</name></member>
+      <member refid="structfringesum_1a754b10276f0efbbc1a579a007420a538" prot="public" virt="non-virtual"><scope>fringesum</scope><name>mode</name></member>
+      <member refid="structfringesum_1aa1b18a3482b6449f55a031c5b05efc25" prot="public" virt="non-virtual"><scope>fringesum</scope><name>no_freq</name></member>
+      <member refid="structfringesum_1a9ea0173f92a374bf4b315519b3ee538e" prot="public" virt="non-virtual"><scope>fringesum</scope><name>noloss_cotime</name></member>
+      <member refid="structfringesum_1a0aa1e1e0bcdb2896197bdae3f26836bb" prot="public" virt="non-virtual"><scope>fringesum</scope><name>offset</name></member>
+      <member refid="structfringesum_1a34af03df4097ce11c779fc2fce9859db" prot="public" virt="non-virtual"><scope>fringesum</scope><name>parents</name></member>
+      <member refid="structfringesum_1a9af25fffe483cc0e38b29b5a3015c51e" prot="public" virt="non-virtual"><scope>fringesum</scope><name>pcals</name></member>
+      <member refid="structfringesum_1a8c14becfee5beda9d8806bb7e45bbd3f" prot="public" virt="non-virtual"><scope>fringesum</scope><name>phase_snr</name></member>
+      <member refid="structfringesum_1a8214b543be3788b7b6229b9c8dbfd557" prot="public" virt="non-virtual"><scope>fringesum</scope><name>polarization</name></member>
+      <member refid="structfringesum_1a9dc35c64db7047320393b43deb6f652b" prot="public" virt="non-virtual"><scope>fringesum</scope><name>procdate</name></member>
+      <member refid="structfringesum_1a5eac8acc3977c0e2e9716b43d323c660" prot="public" virt="non-virtual"><scope>fringesum</scope><name>quality</name></member>
+      <member refid="structfringesum_1aac6c38bf4f4b8b5ae4ca7f311c19fff7" prot="public" virt="non-virtual"><scope>fringesum</scope><name>ra_hrs</name></member>
+      <member refid="structfringesum_1a2ddd80a43c511d4c31a0ba4400cd427e" prot="public" virt="non-virtual"><scope>fringesum</scope><name>ref_az</name></member>
+      <member refid="structfringesum_1afe565ce73da2ce08f9785151c666c08a" prot="public" virt="non-virtual"><scope>fringesum</scope><name>ref_elev</name></member>
+      <member refid="structfringesum_1aaacb646f0988747174e24988f554e9cf" prot="public" virt="non-virtual"><scope>fringesum</scope><name>ref_freq</name></member>
+      <member refid="structfringesum_1a787035bef1e2904f41bf9290187aacde" prot="public" virt="non-virtual"><scope>fringesum</scope><name>reftape</name></member>
+      <member refid="structfringesum_1a373f3bd4cc40fed66b7fab3055025d33" prot="public" virt="non-virtual"><scope>fringesum</scope><name>rem_az</name></member>
+      <member refid="structfringesum_1a4a326cd2841d9431ef43b00bfd67b71f" prot="public" virt="non-virtual"><scope>fringesum</scope><name>rem_elev</name></member>
+      <member refid="structfringesum_1a0f488b4acc6a86dd88561f042ce1e822" prot="public" virt="non-virtual"><scope>fringesum</scope><name>remtape</name></member>
+      <member refid="structfringesum_1aeee3f89157c7d058941c0470b4812e61" prot="public" virt="non-virtual"><scope>fringesum</scope><name>resid_delay</name></member>
+      <member refid="structfringesum_1a335edacd85dbb104c4f9d12f9de548dd" prot="public" virt="non-virtual"><scope>fringesum</scope><name>resid_phas</name></member>
+      <member refid="structfringesum_1a0cc1eef89a195b5bcb25d9a9a15f2c1b" prot="public" virt="non-virtual"><scope>fringesum</scope><name>root_id</name></member>
+      <member refid="structfringesum_1a48da2adb11462aa7301e1984707d88b2" prot="public" virt="non-virtual"><scope>fringesum</scope><name>sbdelay</name></member>
+      <member refid="structfringesum_1a975ac069261d7ef37616357778528df7" prot="public" virt="non-virtual"><scope>fringesum</scope><name>scan_id</name></member>
+      <member refid="structfringesum_1aa3196e21b89833e4974d6c1098f21cad" prot="public" virt="non-virtual"><scope>fringesum</scope><name>scan_offset</name></member>
+      <member refid="structfringesum_1a770a4bc89d6fce07c812e9e3eac5813a" prot="public" virt="non-virtual"><scope>fringesum</scope><name>snr</name></member>
+      <member refid="structfringesum_1a2befa10cc96391eb577eaab0e748d6d1" prot="public" virt="non-virtual"><scope>fringesum</scope><name>source</name></member>
+      <member refid="structfringesum_1a2a3f8feecadc0a4e091a7d01a41f3693" prot="public" virt="non-virtual"><scope>fringesum</scope><name>srch_cotime</name></member>
+      <member refid="structfringesum_1a66ad664ff5f6253ad089e8b5c660f1ef" prot="public" virt="non-virtual"><scope>fringesum</scope><name>ssec</name></member>
+      <member refid="structfringesum_1ae06c83980a42602ea0a7fb1bd9476f0c" prot="public" virt="non-virtual"><scope>fringesum</scope><name>time_tag</name></member>
+      <member refid="structfringesum_1afafe958af73c7ce939045683b5c5e2cf" prot="public" virt="non-virtual"><scope>fringesum</scope><name>total_mbdelay</name></member>
+      <member refid="structfringesum_1a20bebb0db3978d9d52f6cf4f2998820b" prot="public" virt="non-virtual"><scope>fringesum</scope><name>total_phas</name></member>
+      <member refid="structfringesum_1a0ed509c02acd6b7db88e21c0c11e8acd" prot="public" virt="non-virtual"><scope>fringesum</scope><name>total_rate</name></member>
+      <member refid="structfringesum_1a23211b7b606e4e01f8b7823224eb1805" prot="public" virt="non-virtual"><scope>fringesum</scope><name>total_sbresid</name></member>
+      <member refid="structfringesum_1a0cb78d085d2955c82aac38188e5b2349" prot="public" virt="non-virtual"><scope>fringesum</scope><name>u</name></member>
+      <member refid="structfringesum_1ad20569ab7832995195909018e3daa8da" prot="public" virt="non-virtual"><scope>fringesum</scope><name>v</name></member>
+      <member refid="structfringesum_1acded43a27ddc1956515aa381cb1a06bc" prot="public" virt="non-virtual"><scope>fringesum</scope><name>version</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

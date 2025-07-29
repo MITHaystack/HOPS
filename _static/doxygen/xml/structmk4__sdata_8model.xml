@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmk4__sdata_8model" kind="struct" language="C++" prot="public">
+    <compoundname>mk4_sdata.model</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmk4__sdata_8model_1a27786fed43e5fe8cd6d1845b8811436f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring>[32]</argsstring>
+        <name>chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="116" column="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_8model_1a92930c78aeb14d1496b87d93e23fce40" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__301" kindref="compound">type_301</ref> *</type>
+        <definition></definition>
+        <argsstring>[MAXSPLINES]</argsstring>
+        <name>t301</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="117" column="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_8model_1a99c789277be5058b7e76aba6c317fc5d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__302" kindref="compound">type_302</ref> *</type>
+        <definition></definition>
+        <argsstring>[MAXSPLINES]</argsstring>
+        <name>t302</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="118" column="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_8model_1a3b6c1458714ae182ab5e658f62ffc3c9" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__303" kindref="compound">type_303</ref> *</type>
+        <definition></definition>
+        <argsstring>[MAXSPLINES]</argsstring>
+        <name>t303</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="119" column="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="114" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="115" bodyend="120"/>
+    <listofallmembers>
+      <member refid="structmk4__sdata_8model_1a27786fed43e5fe8cd6d1845b8811436f" prot="public" virt="non-virtual"><scope>mk4_sdata.model</scope><name>chan_id</name></member>
+      <member refid="structmk4__sdata_8model_1a92930c78aeb14d1496b87d93e23fce40" prot="public" virt="non-virtual"><scope>mk4_sdata.model</scope><name>t301</name></member>
+      <member refid="structmk4__sdata_8model_1a99c789277be5058b7e76aba6c317fc5d" prot="public" virt="non-virtual"><scope>mk4_sdata.model</scope><name>t302</name></member>
+      <member refid="structmk4__sdata_8model_1a3b6c1458714ae182ab5e658f62ffc3c9" prot="public" virt="non-virtual"><scope>mk4_sdata.model</scope><name>t303</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

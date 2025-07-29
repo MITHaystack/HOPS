@@ -1,0 +1,1357 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfxparam" kind="struct" language="C++" prot="public">
+    <compoundname>fxparam</compoundname>
+    <includes refid="fringex_8h" local="no">fringex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfxparam_1a651d690741ec2a38f1e34c1058e122c3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::acc_period</definition>
+        <argsstring></argsstring>
+        <name>acc_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="58" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a2467e0d71a74dc466901900056479e03" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fxparam::account</definition>
+        <argsstring></argsstring>
+        <name>account</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="50" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a1825cec20ed17e6738ba93593cc867ee" prot="public" static="no" mutable="no">
+        <type><ref refid="structfringesum" kindref="compound">fringesum</ref></type>
+        <definition>fringesum fxparam::adata</definition>
+        <argsstring></argsstring>
+        <name>adata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="81" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a899dfde836287a50827a39915c9758c0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::amp_corr_fact</definition>
+        <argsstring></argsstring>
+        <name>amp_corr_fact</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="64" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1aa898eb277fce87bdbeeeca56ee3b4008" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::bandwidth</definition>
+        <argsstring></argsstring>
+        <name>bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="63" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a03e717d2984ba5eadd224b147887617e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::decoff</definition>
+        <argsstring></argsstring>
+        <name>decoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1acfc1fa14fec28b2bf948cfb18e479fe6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::delay</definition>
+        <argsstring></argsstring>
+        <name>delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="61" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a2c4e27437948d9ce74deeef926b7f9ce" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::delayoff</definition>
+        <argsstring></argsstring>
+        <name>delayoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="47" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1aa54d20a385e70c20b731350d1bde92f3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::dprate</definition>
+        <argsstring></argsstring>
+        <name>dprate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="57" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a7679bbdda2613b359f6c0583a394aca3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::fchan[NFX_FCHAN]</definition>
+        <argsstring>[NFX_FCHAN]</argsstring>
+        <name>fchan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="53" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a1b6cb2bb297a8c047fd44894b4d48a8e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::ffit_reffreq</definition>
+        <argsstring></argsstring>
+        <name>ffit_reffreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="54" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a542758539725c262c41e3e8619ad510e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__fringe" kindref="compound">mk4_fringe</ref> *</type>
+        <definition>struct mk4_fringe* fxparam::fringe</definition>
+        <argsstring></argsstring>
+        <name>fringe</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="66" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1ace030dafc566c6ab0d70e3339cc7fb88" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* fxparam::isum</definition>
+        <argsstring></argsstring>
+        <name>isum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="76" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1ab2fa3bb34c770d50f55399d396f72069" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fxparam::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="42" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a07c20e4784806b19dffa495ed86ff44b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fxparam::no_amp_corr</definition>
+        <argsstring></argsstring>
+        <name>no_amp_corr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1abc3717a931ce9567ed2d6d82e71a1620" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::noloss_cotime</definition>
+        <argsstring></argsstring>
+        <name>noloss_cotime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="60" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a7fb509048d5234fd9baac61fa1b1948d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::nsecs</definition>
+        <argsstring></argsstring>
+        <name>nsecs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="49" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a8ac9fad488d48c8841725e0b3314b5df" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fxparam::nsegs</definition>
+        <argsstring></argsstring>
+        <name>nsegs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="70" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a4d96ec293d2ac131a1c55f0d446e25cc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fxparam::nsegs_allocd</definition>
+        <argsstring></argsstring>
+        <name>nsegs_allocd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="71" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1aa183aa5a6e5dbf0cb7e8e8b4527b0700" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::numaccp</definition>
+        <argsstring></argsstring>
+        <name>numaccp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="73" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1af0e612fc82361133245b59813dd3421a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::raoff</definition>
+        <argsstring></argsstring>
+        <name>raoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1add66fe8b5ce205b7b2cf2578290385b0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::rate</definition>
+        <argsstring></argsstring>
+        <name>rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="62" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a788c4470f42a0eb5b1028d50b00d61cb" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::rateoff</definition>
+        <argsstring></argsstring>
+        <name>rateoff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1ab1f6954e85a6d883749b000947015408" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::reffreq</definition>
+        <argsstring></argsstring>
+        <name>reffreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="55" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a4546cf1ada97c2192c29f57b7cabb47b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::reftime</definition>
+        <argsstring></argsstring>
+        <name>reftime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="56" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1abae20489372c46f5ff311d784ea50f61" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* fxparam::rsum</definition>
+        <argsstring></argsstring>
+        <name>rsum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="75" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a51fb32c40df9ad4e0838298bb3c69b4d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+        <definition>struct mk4_sdata* fxparam::sdata[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>sdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="67" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a136142a5934d6ff7d6430f24ae856633" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* fxparam::segcount</definition>
+        <argsstring></argsstring>
+        <name>segcount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="78" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a3995c6579cd81a1f56c96b1a65cc0a4c" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* fxparam::seglen</definition>
+        <argsstring></argsstring>
+        <name>seglen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="79" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a85861550a2858d626ff7e9f02e582f31" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* fxparam::segsec</definition>
+        <argsstring></argsstring>
+        <name>segsec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="77" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a6d170774d2d5dcaa82cab465464e4d63" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::segstart</definition>
+        <argsstring></argsstring>
+        <name>segstart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="74" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1ad1e161a69ef50096ccecd1422fe4308d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::srch_cotime</definition>
+        <argsstring></argsstring>
+        <name>srch_cotime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="59" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a637eeeb3e0bff6a47d972a28764df4bd" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::tstart</definition>
+        <argsstring></argsstring>
+        <name>tstart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="72" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1aa9fb28638f3d6095220a666babb2fa63" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double fxparam::userfreq</definition>
+        <argsstring></argsstring>
+        <name>userfreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfxparam_1a73c0a773c6ae451b401a02b5a665950c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fxparam::version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="51" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="33">
+        <label>void *</label>
+      </node>
+      <node id="24">
+        <label>sidebands</label>
+        <link refid="structsidebands"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="37">
+        <label>anonymous:model</label>
+      </node>
+      <node id="14">
+        <label>type_000</label>
+        <link refid="structtype__000"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>mk4_sdata</label>
+        <link refid="structmk4__sdata"/>
+        <childnode refid="37" relation="usage">
+          <edgelabel>model</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>file_image</edgelabel>
+        </childnode>
+        <childnode refid="38" relation="usage">
+          <edgelabel>t300</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>n304</edgelabel>
+          <edgelabel>n305</edgelabel>
+          <edgelabel>n306</edgelabel>
+          <edgelabel>n307</edgelabel>
+          <edgelabel>n308</edgelabel>
+          <edgelabel>n309</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+        </childnode>
+        <childnode refid="39" relation="usage">
+          <edgelabel>t304</edgelabel>
+        </childnode>
+        <childnode refid="41" relation="usage">
+          <edgelabel>t305</edgelabel>
+        </childnode>
+        <childnode refid="42" relation="usage">
+          <edgelabel>t306</edgelabel>
+        </childnode>
+        <childnode refid="44" relation="usage">
+          <edgelabel>t307</edgelabel>
+        </childnode>
+        <childnode refid="46" relation="usage">
+          <edgelabel>t308</edgelabel>
+        </childnode>
+        <childnode refid="48" relation="usage">
+          <edgelabel>t309</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>allocated</edgelabel>
+        </childnode>
+      </node>
+      <node id="35">
+        <label>newphasor</label>
+        <link refid="structnewphasor"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>amp</edgelabel>
+          <edgelabel>phase</edgelabel>
+          <edgelabel>weight</edgelabel>
+        </childnode>
+      </node>
+      <node id="40">
+        <label>anonymous:trackstats</label>
+      </node>
+      <node id="30">
+        <label>sbandf</label>
+        <link refid="structsbandf"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>sbweights</label>
+        <link refid="structsbweights"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="49">
+        <label>type_309::ch1_tag</label>
+        <link refid="structtype__309_1_1ch1__tag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>chan_name</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>acc</edgelabel>
+        </childnode>
+      </node>
+      <node id="47">
+        <label>anonymous:pcal</label>
+      </node>
+      <node id="38">
+        <label>type_300</label>
+        <link refid="structtype__300"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nsplines</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>model_interval</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>SU_number</edgelabel>
+          <edgelabel>id</edgelabel>
+          <edgelabel>intl_id</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>model_start</edgelabel>
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_304</label>
+        <link refid="structtype__304"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="40" relation="usage">
+          <edgelabel>trackstats</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_305</label>
+        <link refid="structtype__305"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="42">
+        <label>type_306</label>
+        <link refid="structtype__306"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="43" relation="usage">
+          <edgelabel>stcount</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="44">
+        <label>type_307</label>
+        <link refid="structtype__307"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>accum_period</edgelabel>
+          <edgelabel>rot</edgelabel>
+          <edgelabel>tot</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>unused3</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>frame_count</edgelabel>
+          <edgelabel>su</edgelabel>
+        </childnode>
+        <childnode refid="45" relation="usage">
+          <edgelabel>counts</edgelabel>
+        </childnode>
+      </node>
+      <node id="46">
+        <label>type_308</label>
+        <link refid="structtype__308"/>
+        <childnode refid="47" relation="usage">
+          <edgelabel>pcal</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="48">
+        <label>type_309</label>
+        <link refid="structtype__309"/>
+        <childnode refid="49" relation="usage">
+          <edgelabel>chan</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>acc_period</edgelabel>
+          <edgelabel>rot</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ntones</edgelabel>
+          <edgelabel>su</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>mk4_fringe</label>
+        <link refid="structmk4__fringe"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>file_image</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>t200</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>t201</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>t202</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>n212</edgelabel>
+          <edgelabel>n230</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>t203</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>t204</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>t230</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>t205</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>t220</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>t206</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>t221</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>t210</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>t207</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>t222</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>t208</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>allocated</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>t212</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="12">
+        <label>sky_coord</label>
+        <link refid="structsky__coord"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>dec_secs</edgelabel>
+          <edgelabel>ra_secs</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>dec_degs</edgelabel>
+          <edgelabel>dec_mins</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ra_mins</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>polars</label>
+        <link refid="structpolars"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ampl</edgelabel>
+          <edgelabel>phase</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="27">
+        <label>type_210</label>
+        <link refid="structtype__210"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>amp_phas</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_212</label>
+        <link refid="structtype__212"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>channel</edgelabel>
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>nap</edgelabel>
+          <edgelabel>sbd_chan</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="45">
+        <label>ChanCount</label>
+        <link refid="structChanCount"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>count</edgelabel>
+          <edgelabel>val_count</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>ch_struct</label>
+        <link refid="structch__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>rem_freq</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>refpol</edgelabel>
+          <edgelabel>refsb</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>rempol</edgelabel>
+          <edgelabel>remsb</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>index</edgelabel>
+          <edgelabel>sample_rate</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_220</label>
+        <link refid="structtype__220"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>height</edgelabel>
+          <edgelabel>width</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fplot</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_221</label>
+        <link refid="structtype__221"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>padded</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>pplot</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ps_length</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_222</label>
+        <link refid="structtype__222"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>padded</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>control_contents</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>cf_length</edgelabel>
+          <edgelabel>control_hash</edgelabel>
+          <edgelabel>setstring_hash</edgelabel>
+          <edgelabel>setstring_length</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>anonymous:ffit_chan</label>
+      </node>
+      <node id="18">
+        <label>type_230</label>
+        <link refid="structtype__230"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lsbweight</edgelabel>
+          <edgelabel>usbweight</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nspec_pts</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>frq</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>xpower</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>type_200</label>
+        <link refid="structtype__200"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>software_rev</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>correlator</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>scan_name</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>start_offset</edgelabel>
+          <edgelabel>stop_offset</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>corr_date</edgelabel>
+          <edgelabel>fourfit_date</edgelabel>
+          <edgelabel>frt</edgelabel>
+          <edgelabel>scantime</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>type_201</label>
+        <link refid="structtype__201"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dec_rate</edgelabel>
+          <edgelabel>dispersion</edgelabel>
+          <edgelabel>pulsar_epoch</edgelabel>
+          <edgelabel>pulsar_phase</edgelabel>
+          <edgelabel>ra_rate</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>epoch</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>coord</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>coord_date</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_202</label>
+        <link refid="structtype__202"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_xpos</edgelabel>
+          <edgelabel>ref_ypos</edgelabel>
+          <edgelabel>ref_zpos</edgelabel>
+          <edgelabel>rem_xpos</edgelabel>
+          <edgelabel>rem_ypos</edgelabel>
+          <edgelabel>rem_zpos</edgelabel>
+          <edgelabel>u</edgelabel>
+          <edgelabel>uf</edgelabel>
+          <edgelabel>v</edgelabel>
+          <edgelabel>vf</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_clock</edgelabel>
+          <edgelabel>ref_clockrate</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>ref_idelay</edgelabel>
+          <edgelabel>ref_zdelay</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>rem_clock</edgelabel>
+          <edgelabel>rem_clockrate</edgelabel>
+          <edgelabel>rem_elev</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>ref_intl_id</edgelabel>
+          <edgelabel>ref_name</edgelabel>
+          <edgelabel>ref_tape</edgelabel>
+          <edgelabel>rem_intl_id</edgelabel>
+          <edgelabel>rem_name</edgelabel>
+          <edgelabel>rem_tape</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_203</label>
+        <link refid="structtype__203"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_204</label>
+        <link refid="structtype__204"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>ff_version</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>control_file</edgelabel>
+          <edgelabel>override</edgelabel>
+          <edgelabel>platform</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>ffcf_date</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_205</label>
+        <link refid="structtype__205"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>filter</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>search</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ffmode</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>ffit_chan</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+          <edgelabel>utc_central</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_206</label>
+        <link refid="structtype__206"/>
+        <childnode refid="24" relation="usage">
+          <edgelabel>accepted</edgelabel>
+          <edgelabel>reason1</edgelabel>
+          <edgelabel>reason2</edgelabel>
+          <edgelabel>reason3</edgelabel>
+          <edgelabel>reason4</edgelabel>
+          <edgelabel>reason5</edgelabel>
+          <edgelabel>reason6</edgelabel>
+          <edgelabel>reason7</edgelabel>
+          <edgelabel>reason8</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>accept_ratio</edgelabel>
+          <edgelabel>discard</edgelabel>
+          <edgelabel>intg_time</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>last_ap</edgelabel>
+          <edgelabel>mbdsize</edgelabel>
+          <edgelabel>ratesize</edgelabel>
+          <edgelabel>sbdsize</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>weights</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>start</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_207</label>
+        <link refid="structtype__207"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ref_errate</edgelabel>
+          <edgelabel>ref_pcrate</edgelabel>
+          <edgelabel>rem_errate</edgelabel>
+          <edgelabel>rem_pcrate</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>pcal_mode</edgelabel>
+          <edgelabel>unused2</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>ref_pcamp</edgelabel>
+          <edgelabel>ref_pcfreq</edgelabel>
+          <edgelabel>ref_pcoffset</edgelabel>
+          <edgelabel>ref_pcphase</edgelabel>
+          <edgelabel>rem_pcamp</edgelabel>
+          <edgelabel>rem_pcfreq</edgelabel>
+          <edgelabel>rem_pcoffset</edgelabel>
+          <edgelabel>rem_pcphase</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>type_208</label>
+        <link refid="structtype__208"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>aaccel</edgelabel>
+          <edgelabel>adelay</edgelabel>
+          <edgelabel>arate</edgelabel>
+          <edgelabel>tot_mbd</edgelabel>
+          <edgelabel>tot_mbd_ref</edgelabel>
+          <edgelabel>tot_rate</edgelabel>
+          <edgelabel>tot_rate_ref</edgelabel>
+          <edgelabel>tot_sbd</edgelabel>
+          <edgelabel>tot_sbd_ref</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amplitude</edgelabel>
+          <edgelabel>inc_chan_ampl</edgelabel>
+          <edgelabel>inc_seg_ampl</edgelabel>
+          <edgelabel>mbd_error</edgelabel>
+          <edgelabel>prob_false</edgelabel>
+          <edgelabel>rate_error</edgelabel>
+          <edgelabel>resid_mbd</edgelabel>
+          <edgelabel>resid_rate</edgelabel>
+          <edgelabel>resid_sbd</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>tape_qcode</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fringesum</label>
+        <link refid="structfringesum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>total_mbdelay</edgelabel>
+          <edgelabel>total_rate</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amp</edgelabel>
+          <edgelabel>dec_deg</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>mbdelay</edgelabel>
+          <edgelabel>phase_snr</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>reftape</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>no_freq</edgelabel>
+          <edgelabel>noloss_cotime</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>parents</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="43">
+        <label>anonymous:stcount</label>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="19">
+        <label>hops_complex_tag</label>
+        <link refid="structhops__complex__tag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>fxparam</label>
+        <link refid="structfxparam"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>adata</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fringe</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>acc_period</edgelabel>
+          <edgelabel>amp_corr_fact</edgelabel>
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>decoff</edgelabel>
+          <edgelabel>delay</edgelabel>
+          <edgelabel>delayoff</edgelabel>
+          <edgelabel>dprate</edgelabel>
+          <edgelabel>fchan</edgelabel>
+          <edgelabel>ffit_reffreq</edgelabel>
+          <edgelabel>isum</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>sdata</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>account</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>no_amp_corr</edgelabel>
+          <edgelabel>nsegs</edgelabel>
+          <edgelabel>nsegs_allocd</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" line="39" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/include/fringex.h" bodystart="40" bodyend="82"/>
+    <listofallmembers>
+      <member refid="structfxparam_1a651d690741ec2a38f1e34c1058e122c3" prot="public" virt="non-virtual"><scope>fxparam</scope><name>acc_period</name></member>
+      <member refid="structfxparam_1a2467e0d71a74dc466901900056479e03" prot="public" virt="non-virtual"><scope>fxparam</scope><name>account</name></member>
+      <member refid="structfxparam_1a1825cec20ed17e6738ba93593cc867ee" prot="public" virt="non-virtual"><scope>fxparam</scope><name>adata</name></member>
+      <member refid="structfxparam_1a899dfde836287a50827a39915c9758c0" prot="public" virt="non-virtual"><scope>fxparam</scope><name>amp_corr_fact</name></member>
+      <member refid="structfxparam_1aa898eb277fce87bdbeeeca56ee3b4008" prot="public" virt="non-virtual"><scope>fxparam</scope><name>bandwidth</name></member>
+      <member refid="structfxparam_1a03e717d2984ba5eadd224b147887617e" prot="public" virt="non-virtual"><scope>fxparam</scope><name>decoff</name></member>
+      <member refid="structfxparam_1acfc1fa14fec28b2bf948cfb18e479fe6" prot="public" virt="non-virtual"><scope>fxparam</scope><name>delay</name></member>
+      <member refid="structfxparam_1a2c4e27437948d9ce74deeef926b7f9ce" prot="public" virt="non-virtual"><scope>fxparam</scope><name>delayoff</name></member>
+      <member refid="structfxparam_1aa54d20a385e70c20b731350d1bde92f3" prot="public" virt="non-virtual"><scope>fxparam</scope><name>dprate</name></member>
+      <member refid="structfxparam_1a7679bbdda2613b359f6c0583a394aca3" prot="public" virt="non-virtual"><scope>fxparam</scope><name>fchan</name></member>
+      <member refid="structfxparam_1a1b6cb2bb297a8c047fd44894b4d48a8e" prot="public" virt="non-virtual"><scope>fxparam</scope><name>ffit_reffreq</name></member>
+      <member refid="structfxparam_1a542758539725c262c41e3e8619ad510e" prot="public" virt="non-virtual"><scope>fxparam</scope><name>fringe</name></member>
+      <member refid="structfxparam_1ace030dafc566c6ab0d70e3339cc7fb88" prot="public" virt="non-virtual"><scope>fxparam</scope><name>isum</name></member>
+      <member refid="structfxparam_1ab2fa3bb34c770d50f55399d396f72069" prot="public" virt="non-virtual"><scope>fxparam</scope><name>mode</name></member>
+      <member refid="structfxparam_1a07c20e4784806b19dffa495ed86ff44b" prot="public" virt="non-virtual"><scope>fxparam</scope><name>no_amp_corr</name></member>
+      <member refid="structfxparam_1abc3717a931ce9567ed2d6d82e71a1620" prot="public" virt="non-virtual"><scope>fxparam</scope><name>noloss_cotime</name></member>
+      <member refid="structfxparam_1a7fb509048d5234fd9baac61fa1b1948d" prot="public" virt="non-virtual"><scope>fxparam</scope><name>nsecs</name></member>
+      <member refid="structfxparam_1a8ac9fad488d48c8841725e0b3314b5df" prot="public" virt="non-virtual"><scope>fxparam</scope><name>nsegs</name></member>
+      <member refid="structfxparam_1a4d96ec293d2ac131a1c55f0d446e25cc" prot="public" virt="non-virtual"><scope>fxparam</scope><name>nsegs_allocd</name></member>
+      <member refid="structfxparam_1aa183aa5a6e5dbf0cb7e8e8b4527b0700" prot="public" virt="non-virtual"><scope>fxparam</scope><name>numaccp</name></member>
+      <member refid="structfxparam_1af0e612fc82361133245b59813dd3421a" prot="public" virt="non-virtual"><scope>fxparam</scope><name>raoff</name></member>
+      <member refid="structfxparam_1add66fe8b5ce205b7b2cf2578290385b0" prot="public" virt="non-virtual"><scope>fxparam</scope><name>rate</name></member>
+      <member refid="structfxparam_1a788c4470f42a0eb5b1028d50b00d61cb" prot="public" virt="non-virtual"><scope>fxparam</scope><name>rateoff</name></member>
+      <member refid="structfxparam_1ab1f6954e85a6d883749b000947015408" prot="public" virt="non-virtual"><scope>fxparam</scope><name>reffreq</name></member>
+      <member refid="structfxparam_1a4546cf1ada97c2192c29f57b7cabb47b" prot="public" virt="non-virtual"><scope>fxparam</scope><name>reftime</name></member>
+      <member refid="structfxparam_1abae20489372c46f5ff311d784ea50f61" prot="public" virt="non-virtual"><scope>fxparam</scope><name>rsum</name></member>
+      <member refid="structfxparam_1a51fb32c40df9ad4e0838298bb3c69b4d" prot="public" virt="non-virtual"><scope>fxparam</scope><name>sdata</name></member>
+      <member refid="structfxparam_1a136142a5934d6ff7d6430f24ae856633" prot="public" virt="non-virtual"><scope>fxparam</scope><name>segcount</name></member>
+      <member refid="structfxparam_1a3995c6579cd81a1f56c96b1a65cc0a4c" prot="public" virt="non-virtual"><scope>fxparam</scope><name>seglen</name></member>
+      <member refid="structfxparam_1a85861550a2858d626ff7e9f02e582f31" prot="public" virt="non-virtual"><scope>fxparam</scope><name>segsec</name></member>
+      <member refid="structfxparam_1a6d170774d2d5dcaa82cab465464e4d63" prot="public" virt="non-virtual"><scope>fxparam</scope><name>segstart</name></member>
+      <member refid="structfxparam_1ad1e161a69ef50096ccecd1422fe4308d" prot="public" virt="non-virtual"><scope>fxparam</scope><name>srch_cotime</name></member>
+      <member refid="structfxparam_1a637eeeb3e0bff6a47d972a28764df4bd" prot="public" virt="non-virtual"><scope>fxparam</scope><name>tstart</name></member>
+      <member refid="structfxparam_1aa9fb28638f3d6095220a666babb2fa63" prot="public" virt="non-virtual"><scope>fxparam</scope><name>userfreq</name></member>
+      <member refid="structfxparam_1a73c0a773c6ae451b401a02b5a665950c" prot="public" virt="non-virtual"><scope>fxparam</scope><name>version</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

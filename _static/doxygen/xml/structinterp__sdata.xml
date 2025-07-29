@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structinterp__sdata" kind="struct" language="C++" prot="public">
+    <compoundname>interp_sdata</compoundname>
+    <includes refid="pass__struct_8h" local="no">pass_struct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float interp_sdata::bigneg[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>bigneg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="35" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float interp_sdata::bigpos[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>bigpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="32" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1a238bc89bf134e65bf374f594066f4f0d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double interp_sdata::mt_delay[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>mt_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="37" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+        <definition>hops_complex interp_sdata::mt_pcal[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>mt_pcal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="36" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float interp_sdata::neg[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>neg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="34" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1adece659c46d52b977373307d190a0031" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float interp_sdata::pcweight_lcp</definition>
+        <argsstring></argsstring>
+        <name>pcweight_lcp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="29" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float interp_sdata::pcweight_rcp</definition>
+        <argsstring></argsstring>
+        <name>pcweight_rcp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="31" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+        <definition>hops_complex interp_sdata::phasecal_lcp[MAX_PCF]</definition>
+        <argsstring>[MAX_PCF]</argsstring>
+        <name>phasecal_lcp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="28" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1a621f2d7737fcfe3ba5a672e7c3b4c5e1" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+        <definition>hops_complex interp_sdata::phasecal_rcp[MAX_PCF]</definition>
+        <argsstring>[MAX_PCF]</argsstring>
+        <name>phasecal_rcp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="30" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float interp_sdata::pos[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="33" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="4">
+        <label>hops_complex</label>
+      </node>
+      <node id="1">
+        <label>interp_sdata</label>
+        <link refid="structinterp__sdata"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mt_delay</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>bigneg</edgelabel>
+          <edgelabel>bigpos</edgelabel>
+          <edgelabel>neg</edgelabel>
+          <edgelabel>pcweight_lcp</edgelabel>
+          <edgelabel>pcweight_rcp</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mt_pcal</edgelabel>
+          <edgelabel>phasecal_lcp</edgelabel>
+          <edgelabel>phasecal_rcp</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="27" bodyend="38"/>
+    <listofallmembers>
+      <member refid="structinterp__sdata_1a2bbc6600ebe431f1086f5179e21199bf" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>bigneg</name></member>
+      <member refid="structinterp__sdata_1ae7cfa88662b82959fe22d75507289863" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>bigpos</name></member>
+      <member refid="structinterp__sdata_1a238bc89bf134e65bf374f594066f4f0d" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>mt_delay</name></member>
+      <member refid="structinterp__sdata_1acbb9f906a82a00e487e019344e4687f2" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>mt_pcal</name></member>
+      <member refid="structinterp__sdata_1a02476fb559935001ac14d7632739e23c" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>neg</name></member>
+      <member refid="structinterp__sdata_1adece659c46d52b977373307d190a0031" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>pcweight_lcp</name></member>
+      <member refid="structinterp__sdata_1aa6ff14d007f4690ca355c09911d60c60" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>pcweight_rcp</name></member>
+      <member refid="structinterp__sdata_1a1bf91cef22961c04fd31694b6a737d94" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>phasecal_lcp</name></member>
+      <member refid="structinterp__sdata_1a621f2d7737fcfe3ba5a672e7c3b4c5e1" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>phasecal_rcp</name></member>
+      <member refid="structinterp__sdata_1a4ccf099ca731d2fc75950668b0c9bda0" prot="public" virt="non-virtual"><scope>interp_sdata</scope><name>pos</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

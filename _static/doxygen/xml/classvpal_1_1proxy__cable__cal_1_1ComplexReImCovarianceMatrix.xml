@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1adf9cd0489fa53c03e2bc0979d388ef6e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::complex_mean</definition>
+        <argsstring></argsstring>
+        <name>complex_mean</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="175" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a304784eabf0fe478161ac4340232a21c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="172" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a335ea82c8cba3c061470fa84eed60b79" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::imag_mean</definition>
+        <argsstring></argsstring>
+        <name>imag_mean</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="174" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1af322b5f9effda73cf2e462e66113e122" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::iq_mx</definition>
+        <argsstring></argsstring>
+        <name>iq_mx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="171" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a2b4f7e77b8a8b3c8e0f072e0335eccb4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::is_valid</definition>
+        <argsstring></argsstring>
+        <name>is_valid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="169" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1aeb1e47bc1540c946972a9d9fef3503bc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::mean_magnitude</definition>
+        <argsstring></argsstring>
+        <name>mean_magnitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="177" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ac8c39c6b26afde60087dbe568b8f8a3d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::mean_phase</definition>
+        <argsstring></argsstring>
+        <name>mean_phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="176" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a34cc018ae0a4e2cdc12ab7a8ee11e3e7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::mx</definition>
+        <argsstring></argsstring>
+        <name>mx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="170" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a52b479caf27f926396cd1e84d8885388" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix::real_mean</definition>
+        <argsstring></argsstring>
+        <name>real_mean</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="173" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ac3ae06fa67e502a7684e81418429fc64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.__init__</definition>
+        <argsstring>(self, complex_data_vector=None)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>complex_data_vector</type>
+          <defname>complex_data_vector</defname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="168" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="168" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a0713e7898fd29c39820b9c6291e39b47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.compute_mx</definition>
+        <argsstring>(self)</argsstring>
+        <name>compute_mx</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="190" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="190" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a19e6bda1186352e476bab4d8d989da7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.get_IQ_representation</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_IQ_representation</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="209" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="209" bodyend="211"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ab68024270a342d1789b7ff979550dd58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.get_magnitude_variance</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_magnitude_variance</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="212" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="212" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1aebc2c197d123d3d6a8878b01529e2338" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.get_phase_variance</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_phase_variance</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="215" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="215" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a46dd784dbc1fd9e08f444732cc8e6537" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.get_RI_representation</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_RI_representation</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="206" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="206" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a3f4d19130629b498c4db19afb0886915" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.multiply_data_by_complex_scalar</definition>
+        <argsstring>(self, complex_scalar)</argsstring>
+        <name>multiply_data_by_complex_scalar</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>complex_scalar</type>
+          <defname>complex_scalar</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="185" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="185" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ae673eb0a1d5e361cb7d4c524f8b01184" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ComplexReImCovarianceMatrix.set_data_vector</definition>
+        <argsstring>(self, complex_data_vector)</argsstring>
+        <name>set_data_vector</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>complex_data_vector</type>
+          <defname>complex_data_vector</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="182" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="182" bodyend="184"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>See the paper:
+    @inproceedings{williams2006phase,
+      title={In-phase/quadrature covariance-matrix representation of the uncertainty of vectors and complex numbers},
+      author={Williams, Dylan F and Wang, CM and Arz, Uwe},
+      booktitle={2006 68th ARFTG Conference: Microwave Measurement},
+      pages={1--4},
+      year={2006},
+      organization={IEEE}
+    }</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ComplexReImCovarianceMatrix</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="157" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="157" bodyend="240"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ac3ae06fa67e502a7684e81418429fc64" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1adf9cd0489fa53c03e2bc0979d388ef6e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>complex_mean</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a0713e7898fd29c39820b9c6291e39b47" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>compute_mx</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a304784eabf0fe478161ac4340232a21c" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>data</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a19e6bda1186352e476bab4d8d989da7e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>get_IQ_representation</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ab68024270a342d1789b7ff979550dd58" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>get_magnitude_variance</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1aebc2c197d123d3d6a8878b01529e2338" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>get_phase_variance</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a46dd784dbc1fd9e08f444732cc8e6537" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>get_RI_representation</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a335ea82c8cba3c061470fa84eed60b79" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>imag_mean</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1af322b5f9effda73cf2e462e66113e122" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>iq_mx</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a2b4f7e77b8a8b3c8e0f072e0335eccb4" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>is_valid</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1aeb1e47bc1540c946972a9d9fef3503bc" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>mean_magnitude</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ac8c39c6b26afde60087dbe568b8f8a3d" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>mean_phase</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a3f4d19130629b498c4db19afb0886915" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>multiply_data_by_complex_scalar</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a34cc018ae0a4e2cdc12ab7a8ee11e3e7" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>mx</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1a52b479caf27f926396cd1e84d8885388" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>real_mean</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix_1ae673eb0a1d5e361cb7d4c524f8b01184" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</scope><name>set_data_vector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

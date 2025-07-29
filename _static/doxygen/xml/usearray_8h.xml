@@ -1,0 +1,1786 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="usearray_8h" kind="file" language="C++">
+    <compoundname>usearray.h</compoundname>
+    <includedby refid="aedit_8c" local="yes">aedit.c</includedby>
+    <includedby refid="aedit__proto_8h" local="yes">aedit_proto.h</includedby>
+    <includedby refid="param__list_8h" local="yes">param_list.h</includedby>
+    <includedby refid="allocate__parms_8c" local="yes">allocate_parms.c</includedby>
+    <includedby refid="datum__value_8c" local="yes">datum_value.c</includedby>
+    <includedby refid="extract__parms_8c" local="yes">extract_parms.c</includedby>
+    <includedby refid="ffilter_8c" local="yes">ffilter.c</includedby>
+    <includedby refid="fill4__parms_8c" local="yes">fill4_parms.c</includedby>
+    <includedby refid="get__axis_8c" local="yes">get_axis.c</includedby>
+    <includedby refid="get__param__list_8c" local="yes">get_param_list.c</includedby>
+    <includedby refid="param__list_8c" local="yes">param_list.c</includedby>
+    <includedby refid="pr__inputs_8c" local="yes">pr_inputs.c</includedby>
+    <includedby refid="set__prange_8c" local="yes">set_prange.c</includedby>
+    <includedby refid="write__param_8c" local="yes">write_param.c</includedby>
+    <includedby refid="write__prmline_8c" local="yes">write_prmline.c</includedby>
+    <invincdepgraph>
+      <node id="46">
+        <label>locate_pscurs.c</label>
+        <link refid="locate__pscurs_8c"/>
+      </node>
+      <node id="69">
+        <label>ps_baselabel.c</label>
+        <link refid="ps__baselabel_8c"/>
+      </node>
+      <node id="1">
+        <label>usearray.h</label>
+        <link refid="usearray_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="140" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>init_summ.c</label>
+        <link refid="init__summ_8c"/>
+      </node>
+      <node id="31">
+        <label>execute.c</label>
+        <link refid="execute_8c"/>
+      </node>
+      <node id="96">
+        <label>set_pols.c</label>
+        <link refid="set__pols_8c"/>
+      </node>
+      <node id="32">
+        <label>extract_parms.c</label>
+        <link refid="extract__parms_8c"/>
+      </node>
+      <node id="62">
+        <label>pr_inputs.c</label>
+        <link refid="pr__inputs_8c"/>
+      </node>
+      <node id="30">
+        <label>esdesp_check.c</label>
+        <link refid="esdesp__check_8c"/>
+      </node>
+      <node id="109">
+        <label>setup_plot.c</label>
+        <link refid="setup__plot_8c"/>
+      </node>
+      <node id="107">
+        <label>set_type.c</label>
+        <link refid="set__type_8c"/>
+      </node>
+      <node id="132">
+        <label>write_param.c</label>
+        <link refid="write__param_8c"/>
+      </node>
+      <node id="83">
+        <label>qfilter.c</label>
+        <link refid="qfilter_8c"/>
+      </node>
+      <node id="137">
+        <label>write_tdata.c</label>
+        <link refid="write__tdata_8c"/>
+      </node>
+      <node id="74">
+        <label>ps_selbase.c</label>
+        <link refid="ps__selbase_8c"/>
+      </node>
+      <node id="4">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>ps_scanlabel.c</label>
+        <link refid="ps__scanlabel_8c"/>
+      </node>
+      <node id="50">
+        <label>mk3_qf.c</label>
+        <link refid="mk3__qf_8c"/>
+      </node>
+      <node id="130">
+        <label>write_data.c</label>
+        <link refid="write__data_8c"/>
+      </node>
+      <node id="5">
+        <label>active_filter.c</label>
+        <link refid="active__filter_8c"/>
+      </node>
+      <node id="80">
+        <label>psplot_defaults4.c</label>
+        <link refid="psplot__defaults4_8c"/>
+      </node>
+      <node id="51">
+        <label>param_list.c</label>
+        <link refid="param__list_8c"/>
+      </node>
+      <node id="33">
+        <label>ffilter.c</label>
+        <link refid="ffilter_8c"/>
+      </node>
+      <node id="3">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>set_sources.c</label>
+        <link refid="set__sources_8c"/>
+      </node>
+      <node id="93">
+        <label>set_frequencies.c</label>
+        <link refid="set__frequencies_8c"/>
+      </node>
+      <node id="12">
+        <label>cleanup.c</label>
+        <link refid="cleanup_8c"/>
+      </node>
+      <node id="129">
+        <label>update_sinfo.c</label>
+        <link refid="update__sinfo_8c"/>
+      </node>
+      <node id="43">
+        <label>help.c</label>
+        <link refid="help_8c"/>
+      </node>
+      <node id="21">
+        <label>cursor_select.c</label>
+        <link refid="cursor__select_8c"/>
+      </node>
+      <node id="128">
+        <label>update_fqex.c</label>
+        <link refid="update__fqex_8c"/>
+      </node>
+      <node id="65">
+        <label>pr_ssumm.c</label>
+        <link refid="pr__ssumm_8c"/>
+      </node>
+      <node id="118">
+        <label>summ_root.c</label>
+        <link refid="summ__root_8c"/>
+      </node>
+      <node id="52">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2aedit_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="111">
+        <label>smatch.c</label>
+        <link refid="smatch_8c"/>
+      </node>
+      <node id="60">
+        <label>pr_csumm.c</label>
+        <link refid="pr__csumm_8c"/>
+      </node>
+      <node id="71">
+        <label>ps_inside.c</label>
+        <link refid="ps__inside_8c"/>
+      </node>
+      <node id="100">
+        <label>set_psparam.c</label>
+        <link refid="set__psparam_8c"/>
+      </node>
+      <node id="6">
+        <label>alloc_btq.c</label>
+        <link refid="alloc__btq_8c"/>
+      </node>
+      <node id="126">
+        <label>trngl_present.c</label>
+        <link refid="trngl__present_8c"/>
+      </node>
+      <node id="133">
+        <label>write_prmline.c</label>
+        <link refid="write__prmline_8c"/>
+      </node>
+      <node id="86">
+        <label>rfilter.c</label>
+        <link refid="rfilter_8c"/>
+      </node>
+      <node id="36">
+        <label>fplot.c</label>
+        <link refid="aedit_2src_2fplot_8c"/>
+      </node>
+      <node id="72">
+        <label>ps_proc_datum.c</label>
+        <link refid="ps__proc__datum_8c"/>
+      </node>
+      <node id="13">
+        <label>cleanup_psplot.c</label>
+        <link refid="cleanup__psplot_8c"/>
+      </node>
+      <node id="41">
+        <label>get_plot_datum.c</label>
+        <link refid="get__plot__datum_8c"/>
+      </node>
+      <node id="70">
+        <label>ps_fplot.c</label>
+        <link refid="ps__fplot_8c"/>
+      </node>
+      <node id="81">
+        <label>pstag_process.c</label>
+        <link refid="pstag__process_8c"/>
+      </node>
+      <node id="78">
+        <label>psplot.c</label>
+        <link refid="psplot_8c"/>
+      </node>
+      <node id="77">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="18">
+        <label>clear_summ.c</label>
+        <link refid="clear__summ_8c"/>
+      </node>
+      <node id="99">
+        <label>set_pscodes.c</label>
+        <link refid="set__pscodes_8c"/>
+      </node>
+      <node id="108">
+        <label>set_year.c</label>
+        <link refid="set__year_8c"/>
+      </node>
+      <node id="92">
+        <label>set_fraction.c</label>
+        <link refid="set__fraction_8c"/>
+      </node>
+      <node id="11">
+        <label>cfilter.c</label>
+        <link refid="cfilter_8c"/>
+      </node>
+      <node id="101">
+        <label>set_qcodes.c</label>
+        <link refid="set__qcodes_8c"/>
+      </node>
+      <node id="61">
+        <label>pr_fsumm.c</label>
+        <link refid="pr__fsumm_8c"/>
+      </node>
+      <node id="120">
+        <label>symbol_key.c</label>
+        <link refid="symbol__key_8c"/>
+      </node>
+      <node id="24">
+        <label>dup_check.c</label>
+        <link refid="dup__check_8c"/>
+      </node>
+      <node id="113">
+        <label>station_reduce.c</label>
+        <link refid="station__reduce_8c"/>
+      </node>
+      <node id="76">
+        <label>ps_selscan.c</label>
+        <link refid="ps__selscan_8c"/>
+      </node>
+      <node id="10">
+        <label>calc_close.c</label>
+        <link refid="calc__close_8c"/>
+      </node>
+      <node id="87">
+        <label>run_com_file.c</label>
+        <link refid="run__com__file_8c"/>
+      </node>
+      <node id="58">
+        <label>plot_quality.c</label>
+        <link refid="plot__quality_8c"/>
+      </node>
+      <node id="38">
+        <label>get_param.c</label>
+        <link refid="get__param_8c"/>
+      </node>
+      <node id="22">
+        <label>datum_value.c</label>
+        <link refid="datum__value_8c"/>
+      </node>
+      <node id="102">
+        <label>set_quads.c</label>
+        <link refid="set__quads_8c"/>
+      </node>
+      <node id="49">
+        <label>makekey.c</label>
+        <link refid="makekey_8c"/>
+      </node>
+      <node id="19">
+        <label>command_id.c</label>
+        <link refid="command__id_8c"/>
+      </node>
+      <node id="79">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="40">
+        <label>get_plot_data.c</label>
+        <link refid="get__plot__data_8c"/>
+      </node>
+      <node id="115">
+        <label>summ_data.c</label>
+        <link refid="summ__data_8c"/>
+      </node>
+      <node id="29">
+        <label>erase_point.c</label>
+        <link refid="erase__point_8c"/>
+      </node>
+      <node id="55">
+        <label>plot_fqex.c</label>
+        <link refid="plot__fqex_8c"/>
+      </node>
+      <node id="23">
+        <label>display_psdata.c</label>
+        <link refid="display__psdata_8c"/>
+      </node>
+      <node id="127">
+        <label>unflag.c</label>
+        <link refid="unflag_8c"/>
+      </node>
+      <node id="57">
+        <label>plot_points.c</label>
+        <link refid="plot__points_8c"/>
+      </node>
+      <node id="110">
+        <label>setup_psplot.c</label>
+        <link refid="setup__psplot_8c"/>
+      </node>
+      <node id="47">
+        <label>make_psarray4.c</label>
+        <link refid="make__psarray4_8c"/>
+      </node>
+      <node id="91">
+        <label>set_device.c</label>
+        <link refid="set__device_8c"/>
+      </node>
+      <node id="15">
+        <label>clear_fqex.c</label>
+        <link refid="clear__fqex_8c"/>
+      </node>
+      <node id="138">
+        <label>zoom.c</label>
+        <link refid="zoom_8c"/>
+      </node>
+      <node id="53">
+        <label>parse_commands.c</label>
+        <link refid="parse__commands_8c"/>
+      </node>
+      <node id="104">
+        <label>set_stations.c</label>
+        <link refid="set__stations_8c"/>
+      </node>
+      <node id="105">
+        <label>set_timerange.c</label>
+        <link refid="set__timerange_8c"/>
+      </node>
+      <node id="106">
+        <label>set_triangles.c</label>
+        <link refid="set__triangles_8c"/>
+      </node>
+      <node id="125">
+        <label>tricheck.c</label>
+        <link refid="tricheck_8c"/>
+      </node>
+      <node id="27">
+        <label>edit_close.c</label>
+        <link refid="edit__close_8c"/>
+      </node>
+      <node id="48">
+        <label>make_tri.c</label>
+        <link refid="make__tri_8c"/>
+      </node>
+      <node id="97">
+        <label>set_prange.c</label>
+        <link refid="set__prange_8c"/>
+      </node>
+      <node id="134">
+        <label>write_psfile.c</label>
+        <link refid="write__psfile_8c"/>
+      </node>
+      <node id="59">
+        <label>pr_allsumm.c</label>
+        <link refid="pr__allsumm_8c"/>
+      </node>
+      <node id="34">
+        <label>fill_closure.c</label>
+        <link refid="fill__closure_8c"/>
+      </node>
+      <node id="20">
+        <label>cross_link.c</label>
+        <link refid="cross__link_8c"/>
+      </node>
+      <node id="26">
+        <label>edit.c</label>
+        <link refid="edit_8c"/>
+      </node>
+      <node id="121">
+        <label>tarray_index.c</label>
+        <link refid="tarray__index_8c"/>
+      </node>
+      <node id="112">
+        <label>sorter.c</label>
+        <link refid="aedit_2src_2sorter_8c"/>
+      </node>
+      <node id="63">
+        <label>pr_rsumm.c</label>
+        <link refid="pr__rsumm_8c"/>
+      </node>
+      <node id="119">
+        <label>summ_triangle.c</label>
+        <link refid="summ__triangle_8c"/>
+      </node>
+      <node id="84">
+        <label>read_cursor.c</label>
+        <link refid="read__cursor_8c"/>
+      </node>
+      <node id="35">
+        <label>fill_tdata.c</label>
+        <link refid="fill__tdata_8c"/>
+      </node>
+      <node id="131">
+        <label>write_families.c</label>
+        <link refid="write__families_8c"/>
+      </node>
+      <node id="116">
+        <label>summ_fringe.c</label>
+        <link refid="summ__fringe_8c"/>
+      </node>
+      <node id="136">
+        <label>write_reproc.c</label>
+        <link refid="write__reproc_8c"/>
+      </node>
+      <node id="139">
+        <label>param_list.h</label>
+        <link refid="param__list_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>plot.c</label>
+        <link refid="plot_8c"/>
+      </node>
+      <node id="39">
+        <label>get_param_list.c</label>
+        <link refid="get__param__list_8c"/>
+      </node>
+      <node id="25">
+        <label>dup_flag.c</label>
+        <link refid="dup__flag_8c"/>
+      </node>
+      <node id="90">
+        <label>set_baselines.c</label>
+        <link refid="set__baselines_8c"/>
+      </node>
+      <node id="94">
+        <label>set_mode.c</label>
+        <link refid="set__mode_8c"/>
+      </node>
+      <node id="67">
+        <label>pr_tsumm.c</label>
+        <link refid="pr__tsumm_8c"/>
+      </node>
+      <node id="44">
+        <label>init_inputs.c</label>
+        <link refid="init__inputs_8c"/>
+      </node>
+      <node id="122">
+        <label>tfilter.c</label>
+        <link refid="tfilter_8c"/>
+      </node>
+      <node id="82">
+        <label>qarray_index.c</label>
+        <link refid="qarray__index_8c"/>
+      </node>
+      <node id="135">
+        <label>write_pshdr.c</label>
+        <link refid="write__pshdr_8c"/>
+      </node>
+      <node id="64">
+        <label>pr_source.c</label>
+        <link refid="pr__source_8c"/>
+      </node>
+      <node id="7">
+        <label>allocate_parms.c</label>
+        <link refid="allocate__parms_8c"/>
+      </node>
+      <node id="123">
+        <label>time_axis.c</label>
+        <link refid="time__axis_8c"/>
+      </node>
+      <node id="28">
+        <label>edit_families.c</label>
+        <link refid="edit__families_8c"/>
+      </node>
+      <node id="89">
+        <label>save.c</label>
+        <link refid="save_8c"/>
+      </node>
+      <node id="17">
+        <label>clear_source.c</label>
+        <link refid="clear__source_8c"/>
+      </node>
+      <node id="88">
+        <label>run_pscursor.c</label>
+        <link refid="run__pscursor_8c"/>
+      </node>
+      <node id="124">
+        <label>triangle_value.c</label>
+        <link refid="triangle__value_8c"/>
+      </node>
+      <node id="14">
+        <label>clear.c</label>
+        <link refid="clear_8c"/>
+      </node>
+      <node id="68">
+        <label>print_data.c</label>
+        <link refid="print__data_8c"/>
+      </node>
+      <node id="8">
+        <label>auto_hardcopy.c</label>
+        <link refid="auto__hardcopy_8c"/>
+      </node>
+      <node id="98">
+        <label>set_procrange.c</label>
+        <link refid="set__procrange_8c"/>
+      </node>
+      <node id="85">
+        <label>read_data.c</label>
+        <link refid="aedit_2src_2read__data_8c"/>
+      </node>
+      <node id="66">
+        <label>pr_summary.c</label>
+        <link refid="pr__summary_8c"/>
+      </node>
+      <node id="56">
+        <label>plot_header.c</label>
+        <link refid="plot__header_8c"/>
+      </node>
+      <node id="117">
+        <label>summ_quad.c</label>
+        <link refid="summ__quad_8c"/>
+      </node>
+      <node id="9">
+        <label>axis.c</label>
+        <link refid="axis_8c"/>
+      </node>
+      <node id="16">
+        <label>clear_pstruct.c</label>
+        <link refid="clear__pstruct_8c"/>
+      </node>
+      <node id="140">
+        <label>fill4_parms.c</label>
+        <link refid="fill4__parms_8c"/>
+      </node>
+      <node id="2">
+        <label>aedit.c</label>
+        <link refid="aedit_8c"/>
+      </node>
+      <node id="37">
+        <label>get_axis.c</label>
+        <link refid="get__axis_8c"/>
+      </node>
+      <node id="95">
+        <label>set_nfreq.c</label>
+        <link refid="set__nfreq_8c"/>
+      </node>
+      <node id="42">
+        <label>get_ps_indices4.c</label>
+        <link refid="get__ps__indices4_8c"/>
+      </node>
+      <node id="75">
+        <label>ps_selqual.c</label>
+        <link refid="ps__selqual_8c"/>
+      </node>
+      <node id="114">
+        <label>summ_corel.c</label>
+        <link refid="summ__corel_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structudat" prot="public">udat</innerclass>
+    <innerclass refid="structusearray" prot="public">usearray</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="usearray_8h_1a275bf953bafebbee9d51f1e994c891d4" prot="public" static="no">
+        <name>AMBIGUITY</name>
+        <initializer>58</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="74" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ae2d3a48fb01bbc0fe795724379434d05" prot="public" static="no">
+        <name>AMPLITUDE</name>
+        <initializer>53</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="69" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a5faf12014e4124f9b15d8276ae0db8fd" prot="public" static="no">
+        <name>BADSYNC</name>
+        <initializer>41</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="57" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ac6c3071c9b7028c66dbdae2bcc45d5b3" prot="public" static="no">
+        <name>CLOCK_DELAY</name>
+        <initializer>46</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="62" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a8d783b5430237483e09b17b6d4247950" prot="public" static="no">
+        <name>COREL_AMP</name>
+        <initializer>21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a371dcf89108869ab3aa98b2878ada210" prot="public" static="no">
+        <name>COREL_PHASE</name>
+        <initializer>22</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1adb92653eec656d776f854cad13d23877" prot="public" static="no">
+        <name>ERRATE_REF_LSB</name>
+        <initializer>16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="22" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a8f2c8faa1c74aa275e9e2eb4db73e4e2" prot="public" static="no">
+        <name>ERRATE_REF_USB</name>
+        <initializer>15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="21" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a5f30b878957d4fe72faa7672577b6fc2" prot="public" static="no">
+        <name>ERRATE_REM_LSB</name>
+        <initializer>18</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="24" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1adcc127827899a05d46fe2027644ac6a8" prot="public" static="no">
+        <name>ERRATE_REM_USB</name>
+        <initializer>17</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="23" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a720adcb1ca91672af5ceca9d0b3204fd" prot="public" static="no">
+        <name>IN_ALINE</name>
+        <initializer>50	/* Threshold <ref refid="structvalue" kindref="compound">value</ref> */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="65" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1abe3d7322af23c9c695e4d6027f0af87d" prot="public" static="no">
+        <name>INCOH_AMP_FREQ</name>
+        <initializer>29</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a1064c4beba84a1bcf23f4b5b5d38dda5" prot="public" static="no">
+        <name>INCOH_AMP_SEG</name>
+        <initializer>28</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a30362161c93e3f1a4ee4c673f535b5a8" prot="public" static="no">
+        <name>LENGTH</name>
+        <initializer>51</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="67" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a253b303262412a9c0a5a9b9151e40e6b" prot="public" static="no">
+        <name>LO_FREQUENCY</name>
+        <initializer>34</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="50" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" prot="public" static="no">
+        <name>MAX_PARMS</name>
+        <initializer>256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a39403409a6c55380d0b365f1297b1b0d" prot="public" static="no">
+        <name>MBDELAY_ERROR</name>
+        <initializer>24</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a1225acaf3311bf9c99bf34013f9c0521" prot="public" static="no">
+        <name>MHZ_ARCSEC_EW</name>
+        <initializer>31</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a7c822c9a4802136f338c1cadcf5cd50b" prot="public" static="no">
+        <name>MHZ_ARCSEC_NS</name>
+        <initializer>30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="43" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a03c8f6cab2486c159df207ce7b355f60" prot="public" static="no">
+        <name>MIN_MAX_RATIO</name>
+        <initializer>33</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1abbaba238eeab12d3de693be044017c22" prot="public" static="no">
+        <name>NAP_LSB</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1acf866a7dc9bb286edf2bcc35ac388f80" prot="public" static="no">
+        <name>NAP_USB</name>
+        <initializer>19</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="25" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a9830be11d3a1f1763d8e4693fca368f7" prot="public" static="no">
+        <name>PCNT_DISCARD</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a8d6360b29483bf26b8fad7441892fb78" prot="public" static="no">
+        <name>PHASE</name>
+        <initializer>55</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="71" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a50110d9b9e3ce7ca2fd606742193a8b5" prot="public" static="no">
+        <name>PPUPDATE</name>
+        <initializer>38</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="54" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a77568134abc263ac2218ae2459469d07" prot="public" static="no">
+        <name>PROB_FALSE</name>
+        <initializer>47</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="63" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1af496bd8f81924a1be8c967aea07382cc" prot="public" static="no">
+        <name>PROCDATE</name>
+        <initializer>71</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="87" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a10b0a2b7baf0c792b8b6b9828dcf3073" prot="public" static="no">
+        <name>QCODE</name>
+        <initializer>72</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="88" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a31491cfbb4c2b77e8556ce7d3be98bf4" prot="public" static="no">
+        <name>RATE_ERROR</name>
+        <initializer>23</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a76258475ea1ee19c26a8ec49680c634f" prot="public" static="no">
+        <name>REF_AZIMUTH</name>
+        <initializer>62</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="78" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ab9d23e5cdfcf6bc72e9c2ce6ad7b59b3" prot="public" static="no">
+        <name>REF_DRIVE</name>
+        <initializer>42</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="58" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a6d6303343626ad4387bf93c0806495a1" prot="public" static="no">
+        <name>REF_ELEVATION</name>
+        <initializer>60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="76" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ace085f9cf5b86141f41b434f7ffe5567" prot="public" static="no">
+        <name>REF_FREQUENCY</name>
+        <initializer>66</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="82" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a0dea9dc58a982e71e52a627c3b2a0088" prot="public" static="no">
+        <name>REF_PCAL_AMP</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="7" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1aae3b43a2a6bdbfca8b18d97cf10518ee" prot="public" static="no">
+        <name>REF_PCAL_DIFF</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="9" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a7c2b7e69c193c6a3bf6d503fd5ce8814" prot="public" static="no">
+        <name>REF_PCAL_FREQ</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="10" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ac5946dd5b23b917fa8d94e1003dd58de" prot="public" static="no">
+        <name>REF_PCAL_PHASE</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="8" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a8aba3a8d66273c411fe5f7032868edd9" prot="public" static="no">
+        <name>REF_PCAL_RATE</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="11" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a12ac751d7171b197246f3a58a6476468" prot="public" static="no">
+        <name>REM_AZIMUTH</name>
+        <initializer>63</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="79" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a3216168458e6a10a9bcb67abba5b3e18" prot="public" static="no">
+        <name>REM_DRIVE</name>
+        <initializer>43</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="59" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a4ee8a7894bd9bcca0a764acc8d15b228" prot="public" static="no">
+        <name>REM_ELEVATION</name>
+        <initializer>61</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="77" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a77c2f1998fc550bb3dba521257a1f0a1" prot="public" static="no">
+        <name>REM_PCAL_AMP</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="12" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a4e38178c940771de87f44b15b9f4604c" prot="public" static="no">
+        <name>REM_PCAL_DIFF</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1afc820990f3c5b1dafc14b6728982b2d2" prot="public" static="no">
+        <name>REM_PCAL_FREQ</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="15" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a460aae6509c8179a3c6491cdefec44af" prot="public" static="no">
+        <name>REM_PCAL_PHASE</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="13" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ad162bf6d63b494596e050c6a89d71b30" prot="public" static="no">
+        <name>REM_PCAL_RATE</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ae6e3543fe20f670086297eeac8e5b92f" prot="public" static="no">
+        <name>RESID_MBD</name>
+        <initializer>57</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="73" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a7b9bb6d3865e0a59212eadca2865834d" prot="public" static="no">
+        <name>RESID_RATE</name>
+        <initializer>59</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="75" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1af07f478ea83f5ed73138fbd215588b39" prot="public" static="no">
+        <name>RESID_SBD</name>
+        <initializer>56</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="72" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a58596037eb9011816261cf1eaee17622" prot="public" static="no">
+        <name>SBDELAY_ERROR</name>
+        <initializer>25</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1aef2f5c7bce117abced23a19c721843b0" prot="public" static="no">
+        <name>SNR</name>
+        <initializer>54</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="70" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1afe7aa227b351b74112d638ac09ced71a" prot="public" static="no">
+        <name>SUPPRESS</name>
+        <initializer>37</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="53" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a556876278437f4f010004077baf96695" prot="public" static="no">
+        <name>TIMETAG</name>
+        <initializer>52</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="68" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a3a6ef89c8dd4b9f29d3ba5d41f003a71" prot="public" static="no">
+        <name>TOT_PHASE_MID</name>
+        <initializer>27</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1aa150696e7740fa0f58e3da8dd8dfe0c6" prot="public" static="no">
+        <name>TOTAL_EC_PHASE</name>
+        <initializer>67</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="83" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a6c0a2f0b8146a11f8d0e8fd6f6a5c689" prot="public" static="no">
+        <name>TOTAL_MBD</name>
+        <initializer>69</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="85" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a5f011be61afcf665f83e46db8eb64fa0" prot="public" static="no">
+        <name>TOTAL_PHASE</name>
+        <initializer>26</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a8109e9a71205b4149e5a2a50a39570ba" prot="public" static="no">
+        <name>TOTAL_RATE</name>
+        <initializer>68</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="84" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a30b6e3599595cad79bd7ab8d034b8df9" prot="public" static="no">
+        <name>TOTAL_SBD_MBD</name>
+        <initializer>70</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="86" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a0bda96f000e0cd286030afee89cab3a1" prot="public" static="no">
+        <name>TRKNO_REF_LSB</name>
+        <initializer>12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="18" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a35b046203a0ee9f652b7e54d295531be" prot="public" static="no">
+        <name>TRKNO_REF_USB</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="17" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a2b3ded0fec31044a361739b47d7e32b3" prot="public" static="no">
+        <name>TRKNO_REM_LSB</name>
+        <initializer>14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="20" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a1e1587aa9612ea22bf69d9de7e28da2b" prot="public" static="no">
+        <name>TRKNO_REM_USB</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="19" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1affc9cbf86b78292bdb405361761c47f5" prot="public" static="no">
+        <name>U</name>
+        <initializer>64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="80" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ac91783f94ff27609bf759bb4eeea4709" prot="public" static="no">
+        <name>UTC_CENTRAL</name>
+        <initializer>44</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="60" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1ad11b525ea85f08975aec3b86da870bb2" prot="public" static="no">
+        <name>UTC_EPOCH</name>
+        <initializer>45</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="61" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1af40a326b23c68a27cebe60f16634a2cb" prot="public" static="no">
+        <name>V</name>
+        <initializer>65</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="81" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1abc4126e3e78510e629a09623a85e1745" prot="public" static="no">
+        <name>XPERROR</name>
+        <initializer>35</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="51" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a71b51370e7b58b33ee39d2d979fc5402" prot="public" static="no">
+        <name>XSLIP</name>
+        <initializer>39</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="55" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1a4c3d75c78a526666b31fb53b3aa5d4dd" prot="public" static="no">
+        <name>YPERROR</name>
+        <initializer>36</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="52" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="usearray_8h_1aa6bad7b88650e0f8f4d8ff0e9079bf56" prot="public" static="no">
+        <name>YSLIP</name>
+        <initializer>40</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="56" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>usearray_done<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Allow<sp/>multiple<sp/>includes<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>usearray_done</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>64<sp/>wasn&apos;t<sp/>enough,<sp/>Nov<sp/>18,<sp/>2016<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_PARMS<sp/>256</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Extractable<sp/>parameters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="usearray_8h_1a0dea9dc58a982e71e52a627c3b2a0088" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REF_PCAL_AMP<sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="usearray_8h_1ac5946dd5b23b917fa8d94e1003dd58de" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REF_PCAL_PHASE<sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="usearray_8h_1aae3b43a2a6bdbfca8b18d97cf10518ee" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REF_PCAL_DIFF<sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="usearray_8h_1a7c2b7e69c193c6a3bf6d503fd5ce8814" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REF_PCAL_FREQ<sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="usearray_8h_1a8aba3a8d66273c411fe5f7032868edd9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REF_PCAL_RATE<sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="usearray_8h_1a77c2f1998fc550bb3dba521257a1f0a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REM_PCAL_AMP<sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="usearray_8h_1a460aae6509c8179a3c6491cdefec44af" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REM_PCAL_PHASE<sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="usearray_8h_1a4e38178c940771de87f44b15b9f4604c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REM_PCAL_DIFF<sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="usearray_8h_1afc820990f3c5b1dafc14b6728982b2d2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REM_PCAL_FREQ<sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="usearray_8h_1ad162bf6d63b494596e050c6a89d71b30" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REM_PCAL_RATE<sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="usearray_8h_1a35b046203a0ee9f652b7e54d295531be" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TRKNO_REF_USB<sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="usearray_8h_1a0bda96f000e0cd286030afee89cab3a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TRKNO_REF_LSB<sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="usearray_8h_1a1e1587aa9612ea22bf69d9de7e28da2b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TRKNO_REM_USB<sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="usearray_8h_1a2b3ded0fec31044a361739b47d7e32b3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TRKNO_REM_LSB<sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="usearray_8h_1a8f2c8faa1c74aa275e9e2eb4db73e4e2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ERRATE_REF_USB<sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="usearray_8h_1adb92653eec656d776f854cad13d23877" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ERRATE_REF_LSB<sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="usearray_8h_1adcc127827899a05d46fe2027644ac6a8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ERRATE_REM_USB<sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="usearray_8h_1a5f30b878957d4fe72faa7672577b6fc2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ERRATE_REM_LSB<sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="usearray_8h_1acf866a7dc9bb286edf2bcc35ac388f80" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAP_USB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="usearray_8h_1abbaba238eeab12d3de693be044017c22" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAP_LSB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="usearray_8h_1a8d783b5430237483e09b17b6d4247950" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>COREL_AMP<sp/><sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="usearray_8h_1a371dcf89108869ab3aa98b2878ada210" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>COREL_PHASE<sp/><sp/><sp/><sp/><sp/>22</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OBS_DELAY_RATE<sp/><sp/>0<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="usearray_8h_1a31491cfbb4c2b77e8556ce7d3be98bf4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RATE_ERROR<sp/><sp/><sp/><sp/><sp/><sp/>23</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="usearray_8h_1a39403409a6c55380d0b365f1297b1b0d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MBDELAY_ERROR<sp/><sp/><sp/>24</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="usearray_8h_1a58596037eb9011816261cf1eaee17622" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SBDELAY_ERROR<sp/><sp/><sp/>25</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="usearray_8h_1a5f011be61afcf665f83e46db8eb64fa0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TOTAL_PHASE<sp/><sp/><sp/><sp/><sp/>26</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="usearray_8h_1a3a6ef89c8dd4b9f29d3ba5d41f003a71" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TOT_PHASE_MID<sp/><sp/><sp/>27</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="usearray_8h_1a1064c4beba84a1bcf23f4b5b5d38dda5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>INCOH_AMP_SEG<sp/><sp/><sp/>28</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="usearray_8h_1abe3d7322af23c9c695e4d6027f0af87d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>INCOH_AMP_FREQ<sp/><sp/>29</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/***********<sp/><sp/>Redundant<sp/>with<sp/>A-file<sp/>format<sp/>version<sp/>&gt;=<sp/>2</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/><sp/>#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REF_ELEVATION<sp/><sp/><sp/>0</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/><sp/>#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REM_ELEVATION<sp/><sp/><sp/>0</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/><sp/>#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FR_ARCSEC_NS<sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/><sp/>#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FR_ARCSEC_EW<sp/><sp/><sp/><sp/>0</highlight></codeline>
+<codeline lineno="42"><highlight class="comment">***********/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="usearray_8h_1a7c822c9a4802136f338c1cadcf5cd50b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHZ_ARCSEC_NS<sp/><sp/><sp/>30</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="usearray_8h_1a1225acaf3311bf9c99bf34013f9c0521" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHZ_ARCSEC_EW<sp/><sp/><sp/>31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="usearray_8h_1a9830be11d3a1f1763d8e4693fca368f7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PCNT_DISCARD<sp/><sp/><sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="usearray_8h_1a03c8f6cab2486c159df207ce7b355f60" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MIN_MAX_RATIO<sp/><sp/><sp/>33</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">/***********<sp/><sp/>Redundant<sp/>with<sp/>A-file<sp/>format<sp/>version<sp/>&gt;=<sp/>2</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/><sp/>#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>REF_FREQUENCY<sp/><sp/><sp/>0</highlight></codeline>
+<codeline lineno="49"><highlight class="comment">***********/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="usearray_8h_1a253b303262412a9c0a5a9b9151e40e6b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LO_FREQUENCY<sp/><sp/><sp/><sp/>34</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="usearray_8h_1abc4126e3e78510e629a09623a85e1745" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XPERROR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>35</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="usearray_8h_1a4c3d75c78a526666b31fb53b3aa5d4dd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>YPERROR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>36</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="usearray_8h_1afe7aa227b351b74112d638ac09ced71a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SUPPRESS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>37</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="usearray_8h_1a50110d9b9e3ce7ca2fd606742193a8b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PPUPDATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>38</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="usearray_8h_1a71b51370e7b58b33ee39d2d979fc5402" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>XSLIP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>39</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="usearray_8h_1aa6bad7b88650e0f8f4d8ff0e9079bf56" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>YSLIP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>40</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="usearray_8h_1a5faf12014e4124f9b15d8276ae0db8fd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BADSYNC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>41</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="usearray_8h_1ab9d23e5cdfcf6bc72e9c2ce6ad7b59b3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REF_DRIVE<sp/><sp/><sp/>42</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="usearray_8h_1a3216168458e6a10a9bcb67abba5b3e18" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REM_DRIVE<sp/><sp/><sp/>43</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="usearray_8h_1ac91783f94ff27609bf759bb4eeea4709" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>UTC_CENTRAL<sp/>44</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="usearray_8h_1ad11b525ea85f08975aec3b86da870bb2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>UTC_EPOCH<sp/><sp/><sp/>45</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="usearray_8h_1ac6c3071c9b7028c66dbdae2bcc45d5b3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>CLOCK_DELAY<sp/>46</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="usearray_8h_1a77568134abc263ac2218ae2459469d07" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>PROB_FALSE<sp/><sp/>47</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="usearray_8h_1a720adcb1ca91672af5ceca9d0b3204fd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>IN_ALINE<sp/><sp/><sp/><sp/>50<sp/><sp/></highlight><highlight class="comment">/*<sp/>Threshold<sp/>value<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Numeric<sp/>parameters<sp/>already<sp/>in<sp/>A-line<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="usearray_8h_1a30362161c93e3f1a4ee4c673f535b5a8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>LENGTH<sp/><sp/><sp/><sp/><sp/><sp/>51</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="usearray_8h_1a556876278437f4f010004077baf96695" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TIMETAG<sp/><sp/><sp/><sp/><sp/>52</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="usearray_8h_1ae2d3a48fb01bbc0fe795724379434d05" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>AMPLITUDE<sp/><sp/><sp/>53</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="usearray_8h_1aef2f5c7bce117abced23a19c721843b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>SNR<sp/><sp/><sp/><sp/><sp/>54</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="usearray_8h_1a8d6360b29483bf26b8fad7441892fb78" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>PHASE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>55</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="usearray_8h_1af07f478ea83f5ed73138fbd215588b39" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>RESID_SBD<sp/><sp/><sp/>56</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="usearray_8h_1ae6e3543fe20f670086297eeac8e5b92f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>RESID_MBD<sp/><sp/><sp/>57</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="usearray_8h_1a275bf953bafebbee9d51f1e994c891d4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>AMBIGUITY<sp/><sp/><sp/>58</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="usearray_8h_1a7b9bb6d3865e0a59212eadca2865834d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>RESID_RATE<sp/><sp/>59</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="usearray_8h_1a6d6303343626ad4387bf93c0806495a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REF_ELEVATION<sp/><sp/><sp/>60</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="usearray_8h_1a4ee8a7894bd9bcca0a764acc8d15b228" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REM_ELEVATION<sp/><sp/><sp/>61</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="usearray_8h_1a76258475ea1ee19c26a8ec49680c634f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REF_AZIMUTH<sp/>62</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="usearray_8h_1a12ac751d7171b197246f3a58a6476468" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REM_AZIMUTH<sp/>63</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="usearray_8h_1affc9cbf86b78292bdb405361761c47f5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>U<sp/><sp/><sp/><sp/><sp/><sp/><sp/>64</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="usearray_8h_1af40a326b23c68a27cebe60f16634a2cb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>V<sp/><sp/><sp/><sp/><sp/><sp/><sp/>65</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="usearray_8h_1ace085f9cf5b86141f41b434f7ffe5567" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REF_FREQUENCY<sp/><sp/><sp/>66</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="usearray_8h_1aa150696e7740fa0f58e3da8dd8dfe0c6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOTAL_EC_PHASE<sp/><sp/>67</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="usearray_8h_1a8109e9a71205b4149e5a2a50a39570ba" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOTAL_RATE<sp/><sp/>68</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="usearray_8h_1a6c0a2f0b8146a11f8d0e8fd6f6a5c689" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOTAL_MBD<sp/><sp/><sp/>69</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="usearray_8h_1a30b6e3599595cad79bd7ab8d034b8df9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOTAL_SBD_MBD<sp/><sp/><sp/>70</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="usearray_8h_1af496bd8f81924a1be8c967aea07382cc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>PROCDATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>71</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="usearray_8h_1a10b0a2b7baf0c792b8b6b9828dcf3073" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>QCODE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>72</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="structudat" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structudat" kindref="compound">udat</ref></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92" refid="structudat_1aae010554c9a05db80c1e2d9425094de6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structudat_1aae010554c9a05db80c1e2d9425094de6" kindref="member">parameter_name</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>String<sp/>id<sp/>of<sp/>parameter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structudat_1a65559310e04660f3df7042f63e8f9373" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structudat_1a65559310e04660f3df7042f63e8f9373" kindref="member">parameter_index</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>array<sp/>element<sp/>for<sp/>parameters<sp/>with<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>multiple<sp/>entries<sp/>(e.g.<sp/>per<sp/>freq)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" kindref="member">parameter_id</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Numerical<sp/>identifying<sp/>tag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="structusearray" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structusearray" kindref="compound">usearray</ref></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="100" refid="structusearray_1afa17a6d29b5c5c7ac85c8c956495d571" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structusearray_1afa17a6d29b5c5c7ac85c8c956495d571" kindref="member">nparms</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Number<sp/>of<sp/>parameters<sp/>currently<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="structusearray_1a89fd712f3fd078c160fb89d29638a676" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structusearray_1a89fd712f3fd078c160fb89d29638a676" kindref="member">npoints</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Number<sp/>of<sp/>points<sp/>with<sp/>extracted<sp/>parms<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structudat" kindref="compound">udat</ref><sp/><ref refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" kindref="member">type</ref>[<ref refid="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" kindref="member">MAX_PARMS</ref>];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Info<sp/>on<sp/>what<sp/>parameter<sp/>fields<sp/>are<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="structusearray_1a8375d444a40e7052bfb086cca5c9ca91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structusearray_1a8375d444a40e7052bfb086cca5c9ca91" kindref="member">allocated</ref>[<ref refid="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" kindref="member">MAX_PARMS</ref>];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Flag<sp/>to<sp/>avoid<sp/>malloc/free<sp/>screwups<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structusearray_1aef33c79f66cede23d1033d6b0bd88a11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>*<ref refid="structusearray_1aef33c79f66cede23d1033d6b0bd88a11" kindref="member">parameter</ref>[<ref refid="usearray_8h_1abc112140dccf35b37370da1791c3d8c3" kindref="member">MAX_PARMS</ref>];<sp/><sp/></highlight><highlight class="comment">/*<sp/>Actual<sp/>data,<sp/>dynamically<sp/>allocated<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h"/>
+  </compounddef>
+</doxygen>

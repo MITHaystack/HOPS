@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structT1__RecHdr" kind="struct" language="C++" prot="public">
+    <compoundname>T1_RecHdr</compoundname>
+    <includes refid="T1_8h" local="no">T1.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structT1__RecHdr_1a0c15b63598fb14860b16b737c5fc1299" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_RecHdr::ap</definition>
+        <argsstring></argsstring>
+        <name>ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="36" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__RecHdr_1a88e6fecdab2f2856f3040d1f848d398d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char T1_RecHdr::baseline[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="33" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__RecHdr_1a09622f4eef5a0a144cc63d2cd7d762ae" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t T1_RecHdr::cFOffset</definition>
+        <argsstring></argsstring>
+        <name>cFOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="32" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__RecHdr_1a72c6495066b005f594281b70ea46c665" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_RecHdr::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="35" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__RecHdr_1a20212caf6285b81e0944cdff4e86d697" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t T1_RecHdr::recFmt</definition>
+        <argsstring></argsstring>
+        <name>recFmt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="31" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__RecHdr_1a2c8118459e918c540f3dd43b571bb69f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char T1_RecHdr::recId[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>recId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="29" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__RecHdr_1aed6288c98a30060eb422a3eae937b3b3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char T1_RecHdr::recVer[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>recVer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="30" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__RecHdr_1a718b1b4efa79b755b08f105cdedda698" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char T1_RecHdr::rootcode[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>rootcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="34" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>T1_RecHdr</label>
+        <link refid="structT1__RecHdr"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cFOffset</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>recId</edgelabel>
+          <edgelabel>recVer</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>index</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>recFmt</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>uint16_t</label>
+      </node>
+      <node id="4">
+        <label>uint32_t</label>
+      </node>
+      <node id="5">
+        <label>uint8_t</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="28" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="28" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structT1__RecHdr_1a0c15b63598fb14860b16b737c5fc1299" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>ap</name></member>
+      <member refid="structT1__RecHdr_1a88e6fecdab2f2856f3040d1f848d398d" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>baseline</name></member>
+      <member refid="structT1__RecHdr_1a09622f4eef5a0a144cc63d2cd7d762ae" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>cFOffset</name></member>
+      <member refid="structT1__RecHdr_1a72c6495066b005f594281b70ea46c665" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>index</name></member>
+      <member refid="structT1__RecHdr_1a20212caf6285b81e0944cdff4e86d697" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>recFmt</name></member>
+      <member refid="structT1__RecHdr_1a2c8118459e918c540f3dd43b571bb69f" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>recId</name></member>
+      <member refid="structT1__RecHdr_1aed6288c98a30060eb422a3eae937b3b3" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>recVer</name></member>
+      <member refid="structT1__RecHdr_1a718b1b4efa79b755b08f105cdedda698" prot="public" virt="non-virtual"><scope>T1_RecHdr</scope><name>rootcode</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

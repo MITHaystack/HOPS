@@ -1,0 +1,1424 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ovex_8h" kind="file" language="C++">
+    <compoundname>ovex.h</compoundname>
+    <includes refid="mk4__typedefs_8h" local="yes">mk4_typedefs.h</includes>
+    <includes refid="mk4__sizes_8h" local="yes">mk4_sizes.h</includes>
+    <includedby refid="generate__cblock_8c" local="yes">generate_cblock.c</includedby>
+    <includedby refid="generate__graphs_8c" local="yes">generate_graphs.c</includedby>
+    <includedby refid="generate__text_8c" local="yes">generate_text.c</includedby>
+    <includedby refid="make__postplot_8c" local="yes">make_postplot.c</includedby>
+    <includedby refid="precorrect_8c" local="yes">precorrect.c</includedby>
+    <includedby refid="vex_8h" local="yes">vex.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="3">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="1">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="74">
+        <label>do_source.c</label>
+        <link refid="do__source_8c"/>
+      </node>
+      <node id="48">
+        <label>realloc_segs.c</label>
+        <link refid="realloc__segs_8c"/>
+      </node>
+      <node id="41">
+        <label>fill_aline.c</label>
+        <link refid="fill__aline_8c"/>
+      </node>
+      <node id="89">
+        <label>get_mode_deflist.c</label>
+        <link refid="get__mode__deflist_8c"/>
+      </node>
+      <node id="29">
+        <label>search.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
+      </node>
+      <node id="36">
+        <label>calc_seg.c</label>
+        <link refid="calc__seg_8c"/>
+      </node>
+      <node id="110">
+        <label>param_formats.c</label>
+        <link refid="param__formats_8c"/>
+      </node>
+      <node id="120">
+        <label>read_file.c</label>
+        <link refid="read__file_8c"/>
+      </node>
+      <node id="21">
+        <label>fill_205.c</label>
+        <link refid="fill__205_8c"/>
+      </node>
+      <node id="6">
+        <label>precorrect.c</label>
+        <link refid="precorrect_8c"/>
+      </node>
+      <node id="18">
+        <label>fill_201.c</label>
+        <link refid="fill__201_8c"/>
+      </node>
+      <node id="82">
+        <label>get_chip_mode.c</label>
+        <link refid="get__chip__mode_8c"/>
+      </node>
+      <node id="52">
+        <label>plot_data_dir.c</label>
+        <link refid="plot__data__dir_8c"/>
+      </node>
+      <node id="3">
+        <label>generate_graphs.c</label>
+        <link refid="generate__graphs_8c"/>
+      </node>
+      <node id="13">
+        <label>make_flist.c</label>
+        <link refid="make__flist_8c"/>
+      </node>
+      <node id="76">
+        <label>evex_info.c</label>
+        <link refid="evex__info_8c"/>
+      </node>
+      <node id="101">
+        <label>get_vex.c</label>
+        <link refid="get__vex_8c"/>
+      </node>
+      <node id="126">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="4">
+        <label>generate_text.c</label>
+        <link refid="generate__text_8c"/>
+      </node>
+      <node id="33">
+        <label>fringex.h</label>
+        <link refid="fringex_8h"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="107">
+        <label>locate_cq.c</label>
+        <link refid="locate__cq_8c"/>
+      </node>
+      <node id="115">
+        <label>parse_ref.c</label>
+        <link refid="parse__ref_8c"/>
+      </node>
+      <node id="50">
+        <label>set_reffreq.c</label>
+        <link refid="set__reffreq_8c"/>
+      </node>
+      <node id="103">
+        <label>in_quote.c</label>
+        <link refid="in__quote_8c"/>
+      </node>
+      <node id="116">
+        <label>parse_units.c</label>
+        <link refid="parse__units_8c"/>
+      </node>
+      <node id="34">
+        <label>fringex.c</label>
+        <link refid="fringex_8c"/>
+      </node>
+      <node id="28">
+        <label>fringe_search.c</label>
+        <link refid="fringe__search_8c"/>
+      </node>
+      <node id="90">
+        <label>get_pbs_init.c</label>
+        <link refid="get__pbs__init_8c"/>
+      </node>
+      <node id="59">
+        <label>cvex_info.c</label>
+        <link refid="cvex__info_8c"/>
+      </node>
+      <node id="2">
+        <label>generate_cblock.c</label>
+        <link refid="generate__cblock_8c"/>
+      </node>
+      <node id="12">
+        <label>get_corel_data.c</label>
+        <link refid="get__corel__data_8c"/>
+      </node>
+      <node id="73">
+        <label>do_site.c</label>
+        <link refid="do__site_8c"/>
+      </node>
+      <node id="75">
+        <label>do_track.c</label>
+        <link refid="do__track_8c"/>
+      </node>
+      <node id="111">
+        <label>parse_date.c</label>
+        <link refid="parse__date_8c"/>
+      </node>
+      <node id="44">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="97">
+        <label>get_su_connect.c</label>
+        <link refid="get__su__connect_8c"/>
+      </node>
+      <node id="39">
+        <label>determine_nsegs.c</label>
+        <link refid="determine__nsegs_8c"/>
+      </node>
+      <node id="19">
+        <label>fill_202.c</label>
+        <link refid="fill__202_8c"/>
+      </node>
+      <node id="102">
+        <label>in_comment.c</label>
+        <link refid="in__comment_8c"/>
+      </node>
+      <node id="26">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="119">
+        <label>process_qstring.c</label>
+        <link refid="process__qstring_8c"/>
+      </node>
+      <node id="65">
+        <label>do_eop.c</label>
+        <link refid="do__eop_8c"/>
+      </node>
+      <node id="122">
+        <label>strip_text.c</label>
+        <link refid="strip__text_8c"/>
+      </node>
+      <node id="62">
+        <label>do_bbc.c</label>
+        <link refid="do__bbc_8c"/>
+      </node>
+      <node id="27">
+        <label>ffsearch.h</label>
+        <link refid="ffsearch_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>filelist.c</label>
+        <link refid="filelist_8c"/>
+      </node>
+      <node id="99">
+        <label>get_val_list.c</label>
+        <link refid="get__val__list_8c"/>
+      </node>
+      <node id="95">
+        <label>get_station_deflist.c</label>
+        <link refid="get__station__deflist_8c"/>
+      </node>
+      <node id="51">
+        <label>plot_data_dir.h</label>
+        <link refid="plot__data__dir_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>fill_206.c</label>
+        <link refid="fill__206_8c"/>
+      </node>
+      <node id="58">
+        <label>check_strrange.c</label>
+        <link refid="check__strrange_8c"/>
+      </node>
+      <node id="104">
+        <label>init_scan.c</label>
+        <link refid="init__scan_8c"/>
+      </node>
+      <node id="67">
+        <label>do_freq.c</label>
+        <link refid="do__freq_8c"/>
+      </node>
+      <node id="57">
+        <label>check_stloc.c</label>
+        <link refid="check__stloc_8c"/>
+      </node>
+      <node id="8">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="64">
+        <label>do_das.c</label>
+        <link refid="do__das_8c"/>
+      </node>
+      <node id="87">
+        <label>get_global_deflist.c</label>
+        <link refid="get__global__deflist_8c"/>
+      </node>
+      <node id="108">
+        <label>lvex_info.c</label>
+        <link refid="lvex__info_8c"/>
+      </node>
+      <node id="68">
+        <label>do_head_pos.c</label>
+        <link refid="do__head__pos_8c"/>
+      </node>
+      <node id="5">
+        <label>make_postplot.c</label>
+        <link refid="make__postplot_8c"/>
+      </node>
+      <node id="123">
+        <label>svex_info.c</label>
+        <link refid="svex__info_8c"/>
+      </node>
+      <node id="85">
+        <label>get_def.c</label>
+        <link refid="get__def_8c"/>
+      </node>
+      <node id="37">
+        <label>clear_fxp.c</label>
+        <link refid="clear__fxp_8c"/>
+      </node>
+      <node id="118">
+        <label>print_location.c</label>
+        <link refid="print__location_8c"/>
+      </node>
+      <node id="78">
+        <label>fill_scanlist.c</label>
+        <link refid="fill__scanlist_8c"/>
+      </node>
+      <node id="71">
+        <label>do_phase_cal_detect.c</label>
+        <link refid="do__phase__cal__detect_8c"/>
+      </node>
+      <node id="109">
+        <label>nextchar.c</label>
+        <link refid="nextchar_8c"/>
+      </node>
+      <node id="105">
+        <label>ivex_info.c</label>
+        <link refid="ivex__info_8c"/>
+      </node>
+      <node id="69">
+        <label>do_if.c</label>
+        <link refid="do__if_8c"/>
+      </node>
+      <node id="9">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="106">
+        <label>locate_blocks.c</label>
+        <link refid="locate__blocks_8c"/>
+      </node>
+      <node id="24">
+        <label>fill_210.c</label>
+        <link refid="fill__210_8c"/>
+      </node>
+      <node id="42">
+        <label>init_fxp.c</label>
+        <link refid="init__fxp_8c"/>
+      </node>
+      <node id="88">
+        <label>get_logscan.c</label>
+        <link refid="get__logscan_8c"/>
+      </node>
+      <node id="20">
+        <label>fill_203.c</label>
+        <link refid="fill__203_8c"/>
+      </node>
+      <node id="113">
+        <label>parse_pval.c</label>
+        <link refid="parse__pval_8c"/>
+      </node>
+      <node id="54">
+        <label>check_intrange.c</label>
+        <link refid="check__intrange_8c"/>
+      </node>
+      <node id="84">
+        <label>get_corr_mode.c</label>
+        <link refid="get__corr__mode_8c"/>
+      </node>
+      <node id="43">
+        <label>model.c</label>
+        <link refid="model_8c"/>
+      </node>
+      <node id="45">
+        <label>parse_dflag.c</label>
+        <link refid="parse__dflag_8c"/>
+      </node>
+      <node id="23">
+        <label>fill_207.c</label>
+        <link refid="fill__207_8c"/>
+      </node>
+      <node id="80">
+        <label>find_statements.c</label>
+        <link refid="find__statements_8c"/>
+      </node>
+      <node id="15">
+        <label>set_pointers.c</label>
+        <link refid="set__pointers_8c"/>
+      </node>
+      <node id="25">
+        <label>fill_fringe_info.c</label>
+        <link refid="fill__fringe__info_8c"/>
+      </node>
+      <node id="32">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>do_roll.c</label>
+        <link refid="do__roll_8c"/>
+      </node>
+      <node id="1">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>block_params.c</label>
+        <link refid="block__params_8c"/>
+      </node>
+      <node id="125">
+        <label>write_vexfile.c</label>
+        <link refid="write__vexfile_8c"/>
+      </node>
+      <node id="121">
+        <label>scan_info.c</label>
+        <link refid="scan__info_8c"/>
+      </node>
+      <node id="86">
+        <label>get_drive_init.c</label>
+        <link refid="get__drive__init_8c"/>
+      </node>
+      <node id="98">
+        <label>get_trm_config.c</label>
+        <link refid="get__trm__config_8c"/>
+      </node>
+      <node id="83">
+        <label>get_corr_bd_parms.c</label>
+        <link refid="get__corr__bd__parms_8c"/>
+      </node>
+      <node id="10">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="61">
+        <label>do_antenna.c</label>
+        <link refid="do__antenna_8c"/>
+      </node>
+      <node id="100">
+        <label>get_version.c</label>
+        <link refid="get__version_8c"/>
+      </node>
+      <node id="16">
+        <label>time_range.c</label>
+        <link refid="time__range_8c"/>
+      </node>
+      <node id="81">
+        <label>get_block_mode.c</label>
+        <link refid="get__block__mode_8c"/>
+      </node>
+      <node id="49">
+        <label>set_loops.c</label>
+        <link refid="set__loops_8c"/>
+      </node>
+      <node id="7">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+      </node>
+      <node id="114">
+        <label>parse_ra.c</label>
+        <link refid="parse__ra_8c"/>
+      </node>
+      <node id="93">
+        <label>get_section_mode.c</label>
+        <link refid="get__section__mode_8c"/>
+      </node>
+      <node id="56">
+        <label>check_scan.c</label>
+        <link refid="check__scan_8c"/>
+      </node>
+      <node id="38">
+        <label>clear_loops.c</label>
+        <link refid="clear__loops_8c"/>
+      </node>
+      <node id="63">
+        <label>do_clock.c</label>
+        <link refid="do__clock_8c"/>
+      </node>
+      <node id="112">
+        <label>parse_dec.c</label>
+        <link refid="parse__dec_8c"/>
+      </node>
+      <node id="70">
+        <label>do_pass_order.c</label>
+        <link refid="do__pass__order_8c"/>
+      </node>
+      <node id="17">
+        <label>fill_200.c</label>
+        <link refid="fill__200_8c"/>
+      </node>
+      <node id="11">
+        <label>fill_param.c</label>
+        <link refid="fill__param_8c"/>
+      </node>
+      <node id="55">
+        <label>check_realrange.c</label>
+        <link refid="check__realrange_8c"/>
+      </node>
+      <node id="66">
+        <label>do_exper.c</label>
+        <link refid="do__exper_8c"/>
+      </node>
+      <node id="77">
+        <label>fill_deflists.c</label>
+        <link refid="fill__deflists_8c"/>
+      </node>
+      <node id="46">
+        <label>parse_iflag.c</label>
+        <link refid="parse__iflag_8c"/>
+      </node>
+      <node id="31">
+        <label>organize_data.c</label>
+        <link refid="organize__data_8c"/>
+      </node>
+      <node id="35">
+        <label>accum_segs.c</label>
+        <link refid="accum__segs_8c"/>
+      </node>
+      <node id="94">
+        <label>get_statement.c</label>
+        <link refid="get__statement_8c"/>
+      </node>
+      <node id="124">
+        <label>vex_init.c</label>
+        <link refid="vex__init_8c"/>
+      </node>
+      <node id="92">
+        <label>get_pcm_tables.c</label>
+        <link refid="get__pcm__tables_8c"/>
+      </node>
+      <node id="14">
+        <label>make_passes.c</label>
+        <link refid="make__passes_8c"/>
+      </node>
+      <node id="117">
+        <label>parse_vexfile.c</label>
+        <link refid="parse__vexfile_8c"/>
+      </node>
+      <node id="30">
+        <label>create_fname.c</label>
+        <link refid="create__fname_8c"/>
+      </node>
+      <node id="91">
+        <label>get_pcm_config.c</label>
+        <link refid="get__pcm__config_8c"/>
+      </node>
+      <node id="47">
+        <label>read_binaries.c</label>
+        <link refid="read__binaries_8c"/>
+      </node>
+      <node id="79">
+        <label>fill_station_parms.c</label>
+        <link refid="fill__station__parms_8c"/>
+      </node>
+      <node id="60">
+        <label>decode_pval.c</label>
+        <link refid="decode__pval_8c"/>
+      </node>
+      <node id="96">
+        <label>get_su_chan_out.c</label>
+        <link refid="get__su__chan__out_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structchan__struct" prot="public">chan_struct</innerclass>
+    <innerclass refid="structscan__struct" prot="public">scan_struct</innerclass>
+    <innerclass refid="structsource__struct" prot="public">source_struct</innerclass>
+    <innerclass refid="structstation__struct" prot="public">station_struct</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="ovex_8h_1a464391e568178aa10799bce40d9a7792" prot="public" static="no">
+        <name>ADAPTIVE</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="42" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a998fc48cd09e619eddc0b32d2e47a6bb" prot="public" static="no">
+        <name>AZEL</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="49" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a5a59093d57b7ca8faf8fab89ea52002d" prot="public" static="no">
+        <name>B1950</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="37" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" prot="public" static="no">
+        <name>C_UNDEFINED</name>
+        <initializer>&apos;\0&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="65" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1acf80826c205230fbc6a84ab9c46ff9af" prot="public" static="no">
+        <name>CONTINUOUS</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="40" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a35beee7b0f2f3e294c4a4a69a5f02df4" prot="public" static="no">
+        <name>DUMMY</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1ad7d25af724e34c00cbe439c4768c325d" prot="public" static="no">
+        <name>EARTH_ORBIT</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a96026bdef6d259e2e165092da5fd18d1" prot="public" static="no">
+        <name>EQUATORIAL</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="47" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" prot="public" static="no">
+        <name>F_UNDEFINED</name>
+        <initializer>-1.0e30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="67" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a20207ffc8e6f0bdcefb5c42a5b5c3fb8" prot="public" static="no">
+        <name>FIXED</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" prot="public" static="no">
+        <name>I_UNDEFINED</name>
+        <initializer>16383</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="66" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1afd09200b4253bfff7b9a890591e09292" prot="public" static="no">
+        <name>J2000</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1ab45eb721b96f7dc4898425c6bdc0ae49" prot="public" static="no">
+        <name>K4</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="58" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a2f56f9a54361bce030e7e3253c5fbd69" prot="public" static="no">
+        <name>MARK3A</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="53" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1aa5a964fa76068f8e6cd654e6893669c3" prot="public" static="no">
+        <name>MARK4</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="54" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a779b7b2250fb6312da40d70d88eb774c" prot="public" static="no">
+        <name>MARK5A</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="59" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a5762d284c50671fde16eeadc4c1ae529" prot="public" static="no">
+        <name>MARK5B</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="60" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a29e413f6725b2ba32d165ffaa35b01e5" prot="public" static="no">
+        <name>OFF</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="63" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1ad76d1750a6cdeebd506bfcd6752554d2" prot="public" static="no">
+        <name>ON</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="62" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1ace15f804f31b1e92f5b701cd4730247b" prot="public" static="no">
+        <name>QUASAR</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1ad5e70dee3c36d645b0eb1743b8a7d2bf" prot="public" static="no">
+        <name>S2</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="57" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1aa865fa7c43b4ce8813fc237314424585" prot="public" static="no">
+        <name>SATELLITE</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a94c3dc9846edbbb70f678768633a4796" prot="public" static="no">
+        <name>STAR</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a34157d6ad83c919d0a2d581400d88e1b" prot="public" static="no">
+        <name>START_STOP</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="41" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1afe0e851cc1360af295f694e8ae8ed022" prot="public" static="no">
+        <name>VLBA</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="55" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1af1e40cdd67c4d8097e59944c2daae6f6" prot="public" static="no">
+        <name>VLBAG</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="56" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a299bc7e661760cb777284d19adc66a53" prot="public" static="no">
+        <name>X_YEW</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="50" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ovex_8h_1a1cd36bff689d9580cad09ec471342c66" prot="public" static="no">
+        <name>X_YNS</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>OVEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OVEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>header<sp/>file<sp/>defines<sp/>the<sp/>memory<sp/>structure<sp/>for<sp/>a<sp/>scan<sp/>described<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>in<sp/>a<sp/>vex<sp/>file,<sp/>along<sp/>with<sp/>a<sp/>couple<sp/>of<sp/>miscellaneous<sp/>structs<sp/>for<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>internal<sp/>vex<sp/>library<sp/>use.<sp/><sp/>When<sp/>filled<sp/>in,<sp/>this<sp/>structure<sp/>should<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>contain<sp/>all<sp/>the<sp/>information<sp/>relevant<sp/>to<sp/>the<sp/>correlator<sp/>that<sp/>is<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>present<sp/>in<sp/>the<sp/>vex<sp/>file<sp/>for<sp/>the<sp/>requested<sp/>scan.<sp/><sp/>The<sp/>structure<sp/>is<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>filled<sp/>(and<sp/>parts<sp/>are<sp/>dynamically<sp/>allocated)<sp/>via<sp/>the<sp/>library<sp/>call<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>scan_info(),<sp/>which<sp/>returns<sp/>a<sp/>pointer<sp/>to<sp/>the<sp/>filled<sp/>in<sp/>structure.<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>January<sp/>1998,<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Special<sp/>notes:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>1.<sp/>Not<sp/>all<sp/>arrays<sp/>are<sp/>dynamically<sp/>allocated.<sp/><sp/>Overflows<sp/>should<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>be<sp/>handled<sp/>gracefully<sp/>(I<sp/>hope).<sp/><sp/>End<sp/>of<sp/>information<sp/>in<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>partially<sp/>filled<sp/>arrays<sp/>is<sp/>generally<sp/>denoted<sp/>by<sp/>undefined<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>values.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>2.<sp/>End<sp/>of<sp/>information<sp/>in<sp/>the<sp/>channel<sp/>arrays<sp/>is<sp/>probably<sp/>best<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>checked<sp/>by<sp/>looking<sp/>for<sp/>the<sp/>first<sp/>undefined<sp/>sky<sp/>frequency<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>3.<sp/>The<sp/>roll_seq<sp/>array<sp/>is<sp/>3-dimensional.<sp/><sp/>The<sp/>three<sp/>dimensions<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>are<sp/>headstack<sp/>number<sp/>(1-relative),<sp/>home<sp/>track<sp/>number<sp/>(only<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>elements<sp/>2-33<sp/>are<sp/>meaningful,<sp/>and<sp/>rolled<sp/>track<sp/>number.<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__typedefs_8h" kindref="compound">mk4_typedefs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__sizes_8h" kindref="compound">mk4_sizes.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>source_type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="ovex_8h_1ace15f804f31b1e92f5b701cd4730247b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>QUASAR<sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="ovex_8h_1a94c3dc9846edbbb70f678768633a4796" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>STAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="ovex_8h_1aa865fa7c43b4ce8813fc237314424585" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SATELLITE<sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="ovex_8h_1a35beee7b0f2f3e294c4a4a69a5f02df4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DUMMY<sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>position_ref_frame<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="ovex_8h_1a5a59093d57b7ca8faf8fab89ea52002d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>B1950<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="ovex_8h_1afd09200b4253bfff7b9a890591e09292" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>J2000<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>tape_motion<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="ovex_8h_1acf80826c205230fbc6a84ab9c46ff9af" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CONTINUOUS<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="ovex_8h_1a34157d6ad83c919d0a2d581400d88e1b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>START_STOP<sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="ovex_8h_1a464391e568178aa10799bce40d9a7792" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ADAPTIVE<sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>site_type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="ovex_8h_1a20207ffc8e6f0bdcefb5c42a5b5c3fb8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FIXED<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="ovex_8h_1ad7d25af724e34c00cbe439c4768c325d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EARTH_ORBIT<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>axis_type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="ovex_8h_1a96026bdef6d259e2e165092da5fd18d1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EQUATORIAL<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="ovex_8h_1a1cd36bff689d9580cad09ec471342c66" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X_YNS<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="ovex_8h_1a998fc48cd09e619eddc0b32d2e47a6bb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AZEL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="ovex_8h_1a299bc7e661760cb777284d19adc66a53" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X_YEW<sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>rack_type<sp/>or<sp/>recorder<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Also<sp/>track<sp/>format<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="ovex_8h_1a2f56f9a54361bce030e7e3253c5fbd69" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MARK3A<sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="ovex_8h_1aa5a964fa76068f8e6cd654e6893669c3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MARK4<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="ovex_8h_1afe0e851cc1360af295f694e8ae8ed022" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VLBA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="ovex_8h_1af1e40cdd67c4d8097e59944c2daae6f6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VLBAG<sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="ovex_8h_1ad5e70dee3c36d645b0eb1743b8a7d2bf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="ovex_8h_1ab45eb721b96f7dc4898425c6bdc0ae49" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>K4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="ovex_8h_1a779b7b2250fb6312da40d70d88eb774c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MARK5A<sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="ovex_8h_1a5762d284c50671fde16eeadc4c1ae529" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MARK5B<sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Modulation<sp/>and<sp/>roll<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="ovex_8h_1ad76d1750a6cdeebd506bfcd6752554d2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="ovex_8h_1a29e413f6725b2ba32d165ffaa35b01e5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>&quot;Magic&quot;<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="ovex_8h_1ad77c7731449195f550fdb8d05870a54e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>C_UNDEFINED<sp/>&apos;\0&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I_UNDEFINED<sp/>16383</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>F_UNDEFINED<sp/>-1.0e30</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>internal<sp/>library<sp/>use<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="structsource__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsource__struct" kindref="compound">source_struct</ref></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72" refid="structsource__struct_1a588f8ad3e5aac72c29518b7487d84c8c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1a588f8ad3e5aac72c29518b7487d84c8c" kindref="member">source_name</ref>[32];</highlight></codeline>
+<codeline lineno="73" refid="structsource__struct_1aabc2b183083ea7cd749502602d1064c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1aabc2b183083ea7cd749502602d1064c6" kindref="member">iau_name</ref>[32];</highlight></codeline>
+<codeline lineno="74" refid="structsource__struct_1ad1cff50b5d7797e4f59a170a7ea93142" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1ad1cff50b5d7797e4f59a170a7ea93142" kindref="member">source_type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="structsource__struct_1a809176def8e26c2e02620cd9a2d252fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1a809176def8e26c2e02620cd9a2d252fd" kindref="member">calibrator</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>True<sp/>or<sp/>false<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsky__coord" kindref="compound">sky_coord</ref><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1ae8a46da6e2c007307c62dd7e39a35d4c" kindref="member">position</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>Mk4<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1ab9ce74098c04122a61bda196ed26ad56" kindref="member">position_epoch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>Mk4<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="structsource__struct_1a8eb3ae954e2d7ea0fc182d946f3db7b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1a8eb3ae954e2d7ea0fc182d946f3db7b9" kindref="member">position_ref_frame</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="structsource__struct_1ad206d63eb4540adf64e23c8cc135b24d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1ad206d63eb4540adf64e23c8cc135b24d" kindref="member">ra_rate</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Radians/sec<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structsource__struct_1a3c2b37a71b6dbb51d12487e99a21af33" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsource__struct_1a3c2b37a71b6dbb51d12487e99a21af33" kindref="member">dec_rate</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Radians/sec<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structchan__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structchan__struct" kindref="compound">chan_struct</ref></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85" refid="structchan__struct_1a6c77f60ba569f1efb65777352ffb9cd0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a6c77f60ba569f1efb65777352ffb9cd0" kindref="member">chan_name</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>External<sp/>channel<sp/>name<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="structchan__struct_1a151d5d452c24ec490a59799f3da6f404" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a151d5d452c24ec490a59799f3da6f404" kindref="member">polarization</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>R<sp/>or<sp/>L<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="structchan__struct_1a198a87ce0e2dd69100642afff49398dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a198a87ce0e2dd69100642afff49398dd" kindref="member">sky_frequency</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Hz<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="structchan__struct_1a05ed789db01fe497c1e3e33d8334145d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a05ed789db01fe497c1e3e33d8334145d" kindref="member">net_sideband</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>U<sp/>or<sp/>L<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="structchan__struct_1aaf6877105412bc1d0e04fa9d54711461" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1aaf6877105412bc1d0e04fa9d54711461" kindref="member">bandwidth</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Hz<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="structchan__struct_1abd44e27247d40002c8d4b69c463bb4dc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1abd44e27247d40002c8d4b69c463bb4dc" kindref="member">band_id</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Linkword<sp/>(internal<sp/>use)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="structchan__struct_1aa9a3203cb2c33b5a24257d1d8d719cbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1aa9a3203cb2c33b5a24257d1d8d719cbc" kindref="member">chan_id</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Linkword<sp/>(internal<sp/>use)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="structchan__struct_1af22a41a9e8d403579d72331583637c3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1af22a41a9e8d403579d72331583637c3a" kindref="member">bbc_id</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Linkword<sp/>(internal<sp/>use)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structchan__struct_1a78d9d5ab0369089d9059504ca9516898" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a78d9d5ab0369089d9059504ca9516898" kindref="member">pcal_id</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Linkword<sp/>(internal<sp/>use)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="structchan__struct_1adf646ac59fdda3e03a645eb133506483" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1adf646ac59fdda3e03a645eb133506483" kindref="member">if_id</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Linkword<sp/>(internal<sp/>use)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="structchan__struct_1a832af496c4591d9514d4ef5d50efefe0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a832af496c4591d9514d4ef5d50efefe0" kindref="member">bbc_no</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Physical<sp/>BBC#<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="structchan__struct_1a85f23795a149f13b2251c0b74558edfe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a85f23795a149f13b2251c0b74558edfe" kindref="member">if_name</ref>[8];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Physical<sp/>IF<sp/>name<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structchan__struct_1abc73fc8503f2e5ad2154d9910e14488e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1abc73fc8503f2e5ad2154d9910e14488e" kindref="member">if_total_lo</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Hz<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="structchan__struct_1a32053a195b68fb6fc80281be98cfd5b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a32053a195b68fb6fc80281be98cfd5b2" kindref="member">if_sideband</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>U<sp/>or<sp/>L<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="structchan__struct_1a656c8c37280a1ede7371e38aef8f5255" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a656c8c37280a1ede7371e38aef8f5255" kindref="member">pcal_spacing</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Hz<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="structchan__struct_1a75f2d414e08dfa103427e56131ff985f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a75f2d414e08dfa103427e56131ff985f" kindref="member">pcal_base_freq</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Hz<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="structchan__struct_1a634bcbc81f56119dc9eaa58cbea509ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a634bcbc81f56119dc9eaa58cbea509ea" kindref="member">pcal_detect</ref>[16];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Integer<sp/>tone<sp/>#s<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="structchan__struct_1a130f805b58a561102efba8a976e8d46c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a130f805b58a561102efba8a976e8d46c" kindref="member">sign_tracks</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Track<sp/>#s<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="structchan__struct_1a94a399109bd65a0236b6213391b5f861" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a94a399109bd65a0236b6213391b5f861" kindref="member">sign_headstack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>1-4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structchan__struct_1a31f25ee3d18ffcabb858a6feeaaf057f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a31f25ee3d18ffcabb858a6feeaaf057f" kindref="member">mag_tracks</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Track<sp/>#s<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="structchan__struct_1a63df25c8178747ec4fb5134e5b419e89" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structchan__struct_1a63df25c8178747ec4fb5134e5b419e89" kindref="member">mag_headstack</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>1-4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="structstation__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstation__struct" kindref="compound">station_struct</ref></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111" refid="structstation__struct_1a266619d6727a91faae426e99222ef2d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a266619d6727a91faae426e99222ef2d7" kindref="member">start_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="structstation__struct_1a97502f8e6191b06c672e739b625dff6d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a97502f8e6191b06c672e739b625dff6d" kindref="member">stop_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="structstation__struct_1a70b57ab5377795975a939021c966570b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a70b57ab5377795975a939021c966570b" kindref="member">start_tapepos</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Meters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="structstation__struct_1a6bb6ede13741a0a552c13b55c429d578" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a6bb6ede13741a0a552c13b55c429d578" kindref="member">tape_motion</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="structstation__struct_1a358fdb7e5293acca826e8b043705100d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a358fdb7e5293acca826e8b043705100d" kindref="member">early_start</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="structstation__struct_1a7f1b074d30d55f152a0d29bc426f2abc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a7f1b074d30d55f152a0d29bc426f2abc" kindref="member">late_finish</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="structstation__struct_1a3ff2a7cd4a46f70d990652713ae1dc65" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a3ff2a7cd4a46f70d990652713ae1dc65" kindref="member">tape_gap</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="structstation__struct_1ac3d94f885692e1147c4c0cb0080dac4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1ac3d94f885692e1147c4c0cb0080dac4c" kindref="member">subpass</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>vex<sp/>meaning<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="structstation__struct_1a9cdd80b8f6728cbb251c471092ab0030" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a9cdd80b8f6728cbb251c471092ab0030" kindref="member">passno</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>vex<sp/>meaning<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="structstation__struct_1a5477b302032f4ba27bdb24b8ac56de1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a5477b302032f4ba27bdb24b8ac56de1d" kindref="member">drive_no</ref>;</highlight></codeline>
+<codeline lineno="121" refid="structstation__struct_1a746841fbde6c194aafdedc606d7be925" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a746841fbde6c194aafdedc606d7be925" kindref="member">site_type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="structstation__struct_1af6366fbb80d495702bc869cb96659805" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1af6366fbb80d495702bc869cb96659805" kindref="member">site_name</ref>[9];</highlight></codeline>
+<codeline lineno="123" refid="structstation__struct_1a8e0f89fac47f41bf1b326301a7413ab2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a8e0f89fac47f41bf1b326301a7413ab2" kindref="member">site_id</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>International<sp/>2<sp/>char<sp/>code<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="structstation__struct_1a97e8aee8feb60df946cd4fec72233f2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a97e8aee8feb60df946cd4fec72233f2a" kindref="member">mk4_site_id</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>1-char<sp/>correlator<sp/>alias<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="structstation__struct_1aa249421265c1c6c68ebaf9dadc399977" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" kindref="member">coordinates</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Meters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1aa249421265c1c6c68ebaf9dadc399977" kindref="member">coordinate_epoch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>Mk4<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="structstation__struct_1a3649f3686a3efaa76179a911b8ba7151" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a3649f3686a3efaa76179a911b8ba7151" kindref="member">site_velocity</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Meters/sec<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="structstation__struct_1a223f03fbf664f60d8da1bc168b2cf8c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a223f03fbf664f60d8da1bc168b2cf8c0" kindref="member">zenith_atm</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="structstation__struct_1ad69d90888d1388164d48a638830df4b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1ad69d90888d1388164d48a638830df4b4" kindref="member">occucode</ref>[5];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>4-char<sp/>code<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="structstation__struct_1ae825df983ffe16c309b5623f96515126" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1ae825df983ffe16c309b5623f96515126" kindref="member">axis_type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="structstation__struct_1a661261bc2fdff7677d1fad76a887bdbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a661261bc2fdff7677d1fad76a887bdbf" kindref="member">axis_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Meters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="structstation__struct_1a990d94bc9da457a7e890ec73fa24cd46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a990d94bc9da457a7e890ec73fa24cd46" kindref="member">recorder_type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="structstation__struct_1ab7d03e5d71ec6916079633c5ee878ad0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1ab7d03e5d71ec6916079633c5ee878ad0" kindref="member">rack_type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="structstation__struct_1a814b999829f4f51ca0e33f4397c379c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a814b999829f4f51ca0e33f4397c379c8" kindref="member">record_density</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Bits/inch<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="structstation__struct_1a7007efd465ab11efa751fd289b56c6b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a7007efd465ab11efa751fd289b56c6b2" kindref="member">tape_length</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Meters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="structstation__struct_1a429c2caf6f903457959081c4848f834c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a429c2caf6f903457959081c4848f834c" kindref="member">recorder_id</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Unique<sp/>integer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="structstation__struct_1a2282cd9ce912fcb46bd9f7e688be37ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a2282cd9ce912fcb46bd9f7e688be37ee" kindref="member">clock_early</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a6e05d9b0f20f075f56c2098b53c36c82" kindref="member">clockrate_epoch</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>Mk4<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" kindref="member">clockrate</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>sec/sec<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="structstation__struct_1a817b6af709c26e5968392c4b296cca77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a817b6af709c26e5968392c4b296cca77" kindref="member">tape_id</ref>[9];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>tape<sp/>label<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="structstation__struct_1a8e81d776ed155d1d593760ffc9d60864" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a8e81d776ed155d1d593760ffc9d60864" kindref="member">samplerate</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Samples/sec<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="structstation__struct_1a5536c7bda0f333b9fc6f39d87e56ec0e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a5536c7bda0f333b9fc6f39d87e56ec0e" kindref="member">track_format</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="structstation__struct_1ad170d68bad1277ab160c9f49472657a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1ad170d68bad1277ab160c9f49472657a7" kindref="member">modulation</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="structstation__struct_1ad88a5e9c0b8bf2fb5f9b5b0116faf089" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1ad88a5e9c0b8bf2fb5f9b5b0116faf089" kindref="member">bits_sample</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>1<sp/>or<sp/>2<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="structstation__struct_1ae6e2ee7bf08e04d2f20c0031b29a2ffd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1ae6e2ee7bf08e04d2f20c0031b29a2ffd" kindref="member">multiplex_ratio</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>1,<sp/>2<sp/>or<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="structstation__struct_1a93f1cce1da7283a86459de290542c5e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a93f1cce1da7283a86459de290542c5e1" kindref="member">pass_direction</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>F<sp/>or<sp/>R<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="structstation__struct_1a81a158180e3dafc11e9a10cc73bb159b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a81a158180e3dafc11e9a10cc73bb159b" kindref="member">head_position</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Meters<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="structstation__struct_1a618d5c05372a49481ae21b848c27b4f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a618d5c05372a49481ae21b848c27b4f4" kindref="member">roll</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defines<sp/>above<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="structstation__struct_1a7139575e75b8f78ff4dfa3c06ec49be5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a7139575e75b8f78ff4dfa3c06ec49be5" kindref="member">roll_increment</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Frames<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="structstation__struct_1a53e57b3059a9883d51becf12ebe42660" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a53e57b3059a9883d51becf12ebe42660" kindref="member">roll_period</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="structstation__struct_1a2ec6764e0f4e6673001e80c0aeb15476" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structstation__struct_1a4dff8c60edb8bc99ece30a323ad9a3c4" kindref="member">roll_seq</ref>[5][34][32];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Track<sp/>numbers<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structchan__struct" kindref="compound">chan_struct</ref><sp/><sp/><ref refid="structstation__struct_1a2ec6764e0f4e6673001e80c0aeb15476" kindref="member">channels</ref>[<ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>];</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="structscan__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structscan__struct" kindref="compound">scan_struct</ref></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="157" refid="structscan__struct_1a0b6d3970e4740a91df4fff9d896d8746" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a0b6d3970e4740a91df4fff9d896d8746" kindref="member">filename</ref>[256];<sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>input<sp/>vex<sp/>file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158" refid="structscan__struct_1a7206b8100b7cef6d69797184f94bf73f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a7206b8100b7cef6d69797184f94bf73f" kindref="member">exper_num</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>4-digit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="structscan__struct_1ad721ec3b1e4b11aedcb33391545ac386" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1ad721ec3b1e4b11aedcb33391545ac386" kindref="member">exper_name</ref>[32];</highlight></codeline>
+<codeline lineno="160" refid="structscan__struct_1a1edc0128f4de6058519842392dbd46f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a1edc0128f4de6058519842392dbd46f2" kindref="member">correlator</ref>[32];</highlight></codeline>
+<codeline lineno="161" refid="structscan__struct_1af3de1491a0833075519630d29ca04a9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1ad30889988f06af5b61c467831c22d430" kindref="member">scan_name</ref>[32];</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a0c97c293e48442f34ba184f2c6df3950" kindref="member">start_time</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>Mk4<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1af3de1491a0833075519630d29ca04a9b" kindref="member">ffit_reftime</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Standard<sp/>Mk4<sp/>struct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="structscan__struct_1ab2ff000af544a805537d6fde186f26f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1ab2ff000af544a805537d6fde186f26f0" kindref="member">tai_utc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>EOP<sp/>parameters<sp/>(global)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="structscan__struct_1a59d44051e6f210e47708d165eea8178b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a59d44051e6f210e47708d165eea8178b" kindref="member">a1_tai</ref>;</highlight></codeline>
+<codeline lineno="166" refid="structscan__struct_1ab344f15e4343f1e96f79c546c6d6bae7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1aea82ed4af0bd4094a99ba37d36a20391" kindref="member">neop</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Number<sp/>of<sp/>eop<sp/>entries<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1ab344f15e4343f1e96f79c546c6d6bae7" kindref="member">eop_reftime</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Time<sp/>of<sp/>1st<sp/>entry<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168" refid="structscan__struct_1ac176173746b9d9ed6225ecdf0c25c469" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1ac176173746b9d9ed6225ecdf0c25c469" kindref="member">eop_interval</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="structscan__struct_1a5cd961ed808bbb91bdf3194fc8375085" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a5cd961ed808bbb91bdf3194fc8375085" kindref="member">ut1_utc</ref>[10];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seconds<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170" refid="structscan__struct_1a6253f4986dc707793c899662aa3ed07b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a6253f4986dc707793c899662aa3ed07b" kindref="member">x_wobble</ref>[10];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Radians<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="structscan__struct_1a8f32b5788a2a9453812f4d34b37e86e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a859a470ed148abcc484bd597c3918714" kindref="member">y_wobble</ref>[10];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Radians<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsource__struct" kindref="compound">source_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a8f32b5788a2a9453812f4d34b37e86e9" kindref="member">src</ref>;</highlight></codeline>
+<codeline lineno="173" refid="structscan__struct_1a66276d0b97f433138d77f34b49ee1bb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structscan__struct_1a66276d0b97f433138d77f34b49ee1bb3" kindref="member">nst</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Number<sp/>of<sp/>st<sp/>elements<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<ref refid="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" kindref="member">st</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Allocated<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h"/>
+  </compounddef>
+</doxygen>

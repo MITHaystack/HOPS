@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__308_8pcal" kind="struct" language="C++" prot="public">
+    <compoundname>type_308.pcal</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__308_8pcal_1a85844fef98218528192cc597d7617c83" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition></definition>
+        <argsstring>[8]</argsstring>
+        <name>chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="19" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_8pcal_1afad6c43b628858e0b472d0c164557fcf" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="20" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_8pcal_1afe2afe473e754b6553a88cc9656170e1" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>imaginary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="22" column="17"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__308_8pcal_1a4bca24304861acde5770fdbe3cc2503b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition></definition>
+        <argsstring></argsstring>
+        <name>real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="21" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" line="17" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_308.h" bodystart="18" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structtype__308_8pcal_1a85844fef98218528192cc597d7617c83" prot="public" virt="non-virtual"><scope>type_308.pcal</scope><name>chan_id</name></member>
+      <member refid="structtype__308_8pcal_1afad6c43b628858e0b472d0c164557fcf" prot="public" virt="non-virtual"><scope>type_308.pcal</scope><name>frequency</name></member>
+      <member refid="structtype__308_8pcal_1afe2afe473e754b6553a88cc9656170e1" prot="public" virt="non-virtual"><scope>type_308.pcal</scope><name>imaginary</name></member>
+      <member refid="structtype__308_8pcal_1a4bca24304861acde5770fdbe3cc2503b" prot="public" virt="non-virtual"><scope>type_308.pcal</scope><name>real</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

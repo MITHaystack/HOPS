@@ -1,0 +1,404 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="search_8h" kind="file" language="C++">
+    <compoundname>search.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes refid="adata_8h" local="yes">adata.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <includes refid="mk4__afio_8h" local="yes">mk4_afio.h</includes>
+    <includedby refid="applications_2search_2search_8c" local="yes">search.c</includedby>
+    <includedby refid="clear__srchdata_8c" local="yes">clear_srchdata.c</includedby>
+    <includedby refid="fill__grids_8c" local="yes">fill_grids.c</includedby>
+    <includedby refid="fit__peaks_8c" local="yes">fit_peaks.c</includedby>
+    <includedby refid="grid__filler_8c" local="yes">grid_filler.c</includedby>
+    <includedby refid="applications_2search_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <includedby refid="plot__srchdata_8c" local="yes">plot_srchdata.c</includedby>
+    <includedby refid="search_2src_2read__data_8c" local="yes">read_data.c</includedby>
+    <includedby refid="search_2src_2sort__data_8c" local="yes">sort_data.c</includedby>
+    <includedby refid="search_2src_2sorter_8c" local="yes">sorter.c</includedby>
+    <includedby refid="write__srchdata_8c" local="yes">write_srchdata.c</includedby>
+    <incdepgraph>
+      <node id="13">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="5">
+        <label>stdarg.h</label>
+      </node>
+      <node id="6">
+        <label>sys/times.h</label>
+      </node>
+      <node id="12">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="1">
+        <label>search.h</label>
+        <link refid="search_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>string.h</label>
+      </node>
+      <node id="3">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="14">
+        <label>mk4_afio.h</label>
+        <link refid="mk4__afio_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="11">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="8">
+        <label>plot_srchdata.c</label>
+        <link refid="plot__srchdata_8c"/>
+      </node>
+      <node id="6">
+        <label>grid_filler.c</label>
+        <link refid="grid__filler_8c"/>
+      </node>
+      <node id="9">
+        <label>read_data.c</label>
+        <link refid="search_2src_2read__data_8c"/>
+      </node>
+      <node id="1">
+        <label>search.h</label>
+        <link refid="search_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>write_srchdata.c</label>
+        <link refid="write__srchdata_8c"/>
+      </node>
+      <node id="11">
+        <label>sorter.c</label>
+        <link refid="search_2src_2sorter_8c"/>
+      </node>
+      <node id="4">
+        <label>fill_grids.c</label>
+        <link refid="fill__grids_8c"/>
+      </node>
+      <node id="10">
+        <label>sort_data.c</label>
+        <link refid="search_2src_2sort__data_8c"/>
+      </node>
+      <node id="3">
+        <label>clear_srchdata.c</label>
+        <link refid="clear__srchdata_8c"/>
+      </node>
+      <node id="5">
+        <label>fit_peaks.c</label>
+        <link refid="fit__peaks_8c"/>
+      </node>
+      <node id="2">
+        <label>search.c</label>
+        <link refid="applications_2search_2search_8c"/>
+      </node>
+      <node id="7">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2search_2src_2parse__cmdline_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structavg__data" prot="public">avg_data</innerclass>
+    <innerclass refid="structsrchsummary" prot="public">srchsummary</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="search_8h_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
+        <name>FALSE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="1" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="1" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="search_8h_1a7a13b3753030b4cb66afe362fb37d847" prot="public" static="no">
+        <name>MAX_BNO</name>
+        <initializer>66 			/* 12 telescopes */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="search_8h_1ab298232e165ac57138d4266f1ddee759" prot="public" static="no">
+        <name>MAX_NDELAY</name>
+        <initializer>50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="search_8h_1a18279ec0c5f0616352bcfaab2269d526" prot="public" static="no">
+        <name>MAX_NRATE</name>
+        <initializer>300			/* Reasonable maximums */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="search_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" prot="public" static="no">
+        <name>TRUE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="2" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="search_8h_1ac4693c7c31653d6304e6b816726f4482" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int msglev</definition>
+        <argsstring></argsstring>
+        <name>msglev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="46" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/src/CorAsc2.c" bodystart="73" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" declline="46" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="search_8h_1abfa1c94eed1fd16c440ced6fee4c69f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_grids</definition>
+        <argsstring>(struct srchsummary *srchdata)</argsstring>
+        <name>fill_grids</name>
+        <param>
+          <type>struct <ref refid="structsrchsummary" kindref="compound">srchsummary</ref> *</type>
+          <declname>srchdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="51" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="175" bodyend="179" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" declline="51" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="search_8h_1a09e0643b77b12ac11ad80219225902b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_grids_orig</definition>
+        <argsstring>(struct srchsummary *srchdata)</argsstring>
+        <name>fill_grids_orig</name>
+        <param>
+          <type>struct <ref refid="structsrchsummary" kindref="compound">srchsummary</ref> *</type>
+          <declname>srchdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="50" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/fill_grids.c" bodystart="27" bodyend="174" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" declline="50" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="search_8h_1a3ba0a80e29bff4f0ac4ef22a44998509" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_cmdline</definition>
+        <argsstring>(int, char **, FILE **, int *, int *)</argsstring>
+        <name>parse_cmdline</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>FILE **</type>
+          <declname>fpout</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>plot</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>sqp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="48" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/parse_cmdline.c" bodystart="25" bodyend="109" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" declline="48" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="search_8h_1ab3aad1430b7aebe8d9210a67d5aa3f78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void plot_srchdata</definition>
+        <argsstring>(struct srchsummary srchdata[], int square)</argsstring>
+        <name>plot_srchdata</name>
+        <param>
+          <type>struct <ref refid="structsrchsummary" kindref="compound">srchsummary</ref></type>
+          <declname>srchdata</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>square</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" line="49" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/plot_srchdata.c" bodystart="22" bodyend="134" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h" declline="49" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="search_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="search_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adata_8h" kindref="compound">adata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__afio_8h" kindref="compound">mk4_afio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>BIGGER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BNO<sp/>45<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>10<sp/>telescopes<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NRATE<sp/>1500<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>generous<sp/>maximums<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NDELAY<sp/>1500</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#else<sp/></highlight><highlight class="comment">/*<sp/>BIGGER<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="search_8h_1a7a13b3753030b4cb66afe362fb37d847" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BNO<sp/>66<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>12<sp/>telescopes<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NRATE<sp/>300<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reasonable<sp/>maximums<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="search_8h_1ab298232e165ac57138d4266f1ddee759" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NDELAY<sp/>50</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>BIGGER<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(MAX_BNO<sp/>*<sp/>MAX_NRATE<sp/>*<sp/>MAX_NDELAY<sp/>*<sp/>4<sp/>*<sp/>2)<sp/>&gt;<sp/>4294967296/2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>error<sp/>&quot;MAX_BNO<sp/>*<sp/>MAX_NRATE<sp/>*<sp/>MAX_NDELAY<sp/>is<sp/>too<sp/>big&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="structavg__data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26" refid="structavg__data_1a37ef408e9328d197e31bcb0937da410d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structavg__data_1a37ef408e9328d197e31bcb0937da410d" kindref="member">order</ref>;</highlight></codeline>
+<codeline lineno="27" refid="structavg__data_1a32d03e2f05016c4183173e4f1813d1b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structavg__data_1a32d03e2f05016c4183173e4f1813d1b6" kindref="member">lastorder</ref>;</highlight></codeline>
+<codeline lineno="28" refid="structavg__data_1aefb5ad9d55d5f93ba93c67d91e947cd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structavg__data_1aefb5ad9d55d5f93ba93c67d91e947cd9" kindref="member">keyval</ref>;</highlight></codeline>
+<codeline lineno="29" refid="structavg__data_1acc6e7bf5bde7cb953b841d83569cc71e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structfringesum" kindref="compound">fringesum</ref><sp/><sp/><sp/><ref refid="structavg__data_1acc6e7bf5bde7cb953b841d83569cc71e" kindref="member">fdata</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structavg__data" kindref="compound">avg_data</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structsrchsummary" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsrchsummary" kindref="compound">srchsummary</ref></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34" refid="structsrchsummary_1ae09f4a35e6cdb9e41172e9c611cf71b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structfringesum" kindref="compound">fringesum</ref><sp/><sp/><sp/>*<ref refid="structsrchsummary_1ae09f4a35e6cdb9e41172e9c611cf71b9" kindref="member">datum</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Data<sp/>structure<sp/>ptr<sp/>for<sp/>this<sp/>scan<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" kindref="member">nd</ref>;</highlight></codeline>
+<codeline lineno="36" refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structfringesum" kindref="compound">fringesum</ref><sp/><sp/><sp/>*<ref refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" kindref="member">darray</ref>[<ref refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" kindref="member">MAX_NRATE</ref><sp/>*<sp/><ref refid="search_8h_1ab298232e165ac57138d4266f1ddee759" kindref="member">MAX_NDELAY</ref>];</highlight></codeline>
+<codeline lineno="37" refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" kindref="member">nrate</ref>;</highlight></codeline>
+<codeline lineno="38" refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" kindref="member">ndelay</ref>;</highlight></codeline>
+<codeline lineno="39" refid="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" kindref="member">min_rate</ref>;</highlight></codeline>
+<codeline lineno="40" refid="structsrchsummary_1a2ff434e5adbfb77d3760d97082224a2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structsrchsummary_1a2ff434e5adbfb77d3760d97082224a2a" kindref="member">max_rate</ref>;</highlight></codeline>
+<codeline lineno="41" refid="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" kindref="member">min_delay</ref>;</highlight></codeline>
+<codeline lineno="42" refid="structsrchsummary_1a0992946168b275c99305711179d0207a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structsrchsummary_1a0992946168b275c99305711179d0207a" kindref="member">max_delay</ref>;</highlight></codeline>
+<codeline lineno="43" refid="structsrchsummary_1a6685d1f4dc6239603177fa6d05a12ea7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structsrchsummary_1a6685d1f4dc6239603177fa6d05a12ea7" kindref="member">snr</ref>[<ref refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" kindref="member">MAX_NRATE</ref>][<ref refid="search_8h_1ab298232e165ac57138d4266f1ddee759" kindref="member">MAX_NDELAY</ref>];</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="search_8h_1ac4693c7c31653d6304e6b816726f4482" kindref="member">msglev</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="search_8h_1a3ba0a80e29bff4f0ac4ef22a44998509" kindref="member">parse_cmdline</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/>FILE<sp/>**,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="search_8h_1ab3aad1430b7aebe8d9210a67d5aa3f78" kindref="member">plot_srchdata</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsrchsummary" kindref="compound">srchsummary</ref><sp/>srchdata[],<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>square);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="search_8h_1a09e0643b77b12ac11ad80219225902b1" kindref="member">fill_grids_orig</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsrchsummary" kindref="compound">srchsummary</ref><sp/>*srchdata);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="search_8h_1abfa1c94eed1fd16c440ced6fee4c69f1" kindref="member">fill_grids</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsrchsummary" kindref="compound">srchsummary</ref><sp/>*srchdata);</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/include/search.h"/>
+  </compounddef>
+</doxygen>

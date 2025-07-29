@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_eafb08cc50b44fd3d5a5354e0f178598" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__MBDelaySearchCUDA_8hh">MHO_MBDelaySearchCUDA.hh</innerfile>
+    <innerfile refid="vector__mbp__reduce_8h">vector_mbp_reduce.h</innerfile>
+    <innerfile refid="vector__sbp__reduce_8h">vector_sbp_reduce.h</innerfile>
+    <innerfile refid="vector__sum_8h">vector_sum.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b9a3a34d44c76b66b342881f56b565b3" kind="dir">
+    <compoundname>vpal</compoundname>
+    <innerfile refid="vpal__module_2vpal_2____init_____8py">vpal_module/vpal/__init__.py</innerfile>
+    <innerfile refid="ffres2pcp__lib_8py">ffres2pcp_lib.py</innerfile>
+    <innerfile refid="fourphase__lib_8py">fourphase_lib.py</innerfile>
+    <innerfile refid="fringe__file__manipulation_8py">fringe_file_manipulation.py</innerfile>
+    <innerfile refid="pcc__delay__fitting_8py">pcc_delay_fitting.py</innerfile>
+    <innerfile refid="pcc__plotting__utils_8py">pcc_plotting_utils.py</innerfile>
+    <innerfile refid="phasecal_8py">phasecal.py</innerfile>
+    <innerfile refid="processing_8py">processing.py</innerfile>
+    <innerfile refid="proxy__cable__cal_8py">proxy_cable_cal.py</innerfile>
+    <innerfile refid="report__lib_8py">report_lib.py</innerfile>
+    <innerfile refid="utility_8py">utility.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/"/>
+  </compounddef>
+</doxygen>

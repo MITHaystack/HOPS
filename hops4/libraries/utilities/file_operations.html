@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Operation Utilities &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Meta-Programming Utilities" href="meta_programming.html" />
+    <link rel="prev" title="Time and Date Utilities" href="time_date.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Utilities.html">Utilities</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="time_date.html">Time and Date Utilities</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">File Operation Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-binaryfileinterface">MHO_BinaryFileInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-binaryfilestreamer">MHO_BinaryFileStreamer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-directoryinterface">MHO_DirectoryInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-filestreamer">MHO_FileStreamer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-lockfilehandler">MHO_LockFileHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-filekey">MHO_FileKey</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-serializable">MHO_Serializable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="meta_programming.html">Meta-Programming Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="legacy_compatibility.html">Legacy Compatibility Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="miscellaneous.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="miscellaneous.html#additional-utility-classes">Additional Utility Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Utilities.html">Utilities</a></li>
+      <li class="breadcrumb-item active">File Operation Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/utilities/file_operations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-operation-utilities">
+<h1>File Operation Utilities<a class="headerlink" href="#file-operation-utilities" title="Link to this heading"></a></h1>
+<p>The utilities library provides a collection of file and directory manipulation
+tools for data I/O operations with HOPS4 objects.</p>
+<section id="mho-binaryfileinterface">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BinaryFileInterface.html">MHO_BinaryFileInterface</a><a class="headerlink" href="#mho-binaryfileinterface" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BinaryFileInterface.html">MHO_BinaryFileInterface</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>File Operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>Templated by serializable object types</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>Optional .index file collection (stores object file keys/offfsets)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>High-level binary file I/O with object serialization</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Automatic object key generation and validation</div>
+<div class="line">Optional .index file creation for faster access</div>
+<div class="line">UUID-based type/object identification</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BinaryFileInterface.html">MHO_BinaryFileInterface</a> class provides read/write functionality on
+binary files. These operations handle object serialization, key generation, and
+optional .index file creation for (later) efficient data access.</p>
+</section>
+<section id="mho-binaryfilestreamer">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BinaryFileStreamer.html">MHO_BinaryFileStreamer</a><a class="headerlink" href="#mho-binaryfilestreamer" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BinaryFileStreamer.html">MHO_BinaryFileStreamer</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>File Operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>Variadic template for supported data types</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Low-level binary streaming for POD and JSON types</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Support for POD types, strings, and JSON objects</div>
+<div class="line">Byte count tracking for written data</div>
+<div class="line">CBOR encoding for JSON data</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BinaryFileStreamer.html">MHO_BinaryFileStreamer</a> class provides low-level binary streaming
+capabilities with support for plain-old-data types, strings,
+and JSON objects (using CBOR encoding). It is used by MHO_BinaryFileInterface.</p>
+</section>
+<section id="mho-directoryinterface">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DirectoryInterface.html">MHO_DirectoryInterface</a><a class="headerlink" href="#mho-directoryinterface" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DirectoryInterface.html">MHO_DirectoryInterface</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>File Operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Directory and file system operations</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Directory traversal and file listing</div>
+<div class="line">File filtering by extension and prefix</div>
+<div class="line">Legacy MK4 file format identification</div>
+<div class="line">Path manipulation utilities</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DirectoryInterface.html">MHO_DirectoryInterface</a> class provides several directory and file
+system operations. Primarily it is responsible for directory traversal,
+file listing, filtering, and identification. Identification of legacy MK4
+file formats is alos supported.</p>
+</section>
+<section id="mho-filestreamer">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileStreamer.html">MHO_FileStreamer</a><a class="headerlink" href="#mho-filestreamer" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileStreamer.html">MHO_FileStreamer</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>File Operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Base class for file streaming operations</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Abstract interface for file I/O operations</div>
+<div class="line">File state management (readable/writable/closed)</div>
+<div class="line">Buffered I/O (2MB buffer size)</div>
+<div class="line">Object state tracking for error handling</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileStreamer.html">MHO_FileStreamer</a> class provides a base interface for file streaming operations
+with state management and buffered I/O capabilities.</p>
+</section>
+<section id="mho-lockfilehandler">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LockFileHandler.html">MHO_LockFileHandler</a><a class="headerlink" href="#mho-lockfilehandler" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LockFileHandler.html">MHO_LockFileHandler</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>File Operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Configuration Parameters</p></td>
+<td><p>Legacy mode support (enabled by default)</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>File locking mechanism for concurrent access control</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Singleton pattern implementation</div>
+<div class="line">Legacy type_2xx file naming convention support</div>
+<div class="line">Signal handling for cleanup on termination</div>
+<div class="line">Process priority-based lock resolution</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LockFileHandler.html">MHO_LockFileHandler</a> class implements a file locking mechanism to
+prevent concurrent nameing conflicts during write operations. This mechanism
+supports both legacy (Mk4) and HOPS4 (fringe) file naming conventions.</p>
+</section>
+<section id="mho-filekey">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileKey.html">MHO_FileKey</a><a class="headerlink" href="#mho-filekey" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileKey.html">MHO_FileKey</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>File Operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Object description and file location</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><p>64 byte file object key</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileKey.html">MHO_FileKey</a> class stores object type and UUID information, as well
+as object size and <em>shortname</em> meta-data. For every HOPS4 object serialized to file
+it precedes the object binary data. This provides a quick indexing method into
+binary file data, and allows the file I/O mechanism to skip over unrecognized objects.</p>
+</section>
+<section id="mho-serializable">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Serializable.html">MHO_Serializable</a><a class="headerlink" href="#mho-serializable" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Serializable.html">MHO_Serializable</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>File Operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Base class for all serializable objects</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><p>Mechanisms for object version control and identification</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Serializable.html">MHO_Serializable</a> class provides an interface required by the file
+serialization library to read/write objects to disk. It provides a mechanism to
+identify objects and switch behavior based on object version. Classes which
+inherit from <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Serializable.html">MHO_Serializable</a> must provide a method to calculate the size
+(in bytes) of their serialized data.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="time_date.html" class="btn btn-neutral float-left" title="Time and Date Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="meta_programming.html" class="btn btn-neutral float-right" title="Meta-Programming Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

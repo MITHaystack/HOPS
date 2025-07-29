@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceexample3" kind="namespace" language="Python">
+    <compoundname>example3</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceexample3_1a2ad9372584a44b1b77099623d1476365" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def example3.generate_pcphases</definition>
+        <argsstring>(fringe_data_interface)</argsstring>
+        <name>generate_pcphases</name>
+        <param>
+          <type>fringe_data_interface</type>
+          <defname>fringe_data_interface</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example3.py" line="7" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example3.py" bodystart="7" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example3.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

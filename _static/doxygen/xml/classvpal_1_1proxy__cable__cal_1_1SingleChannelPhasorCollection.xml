@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::SingleChannelPhasorCollection</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a48b410211d030805d2c765f36109a750" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::bandwidth</definition>
+        <argsstring></argsstring>
+        <name>bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="386" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1adba221f77ca5b6f9935ab7f4ccf0d9e6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::channel_name</definition>
+        <argsstring></argsstring>
+        <name>channel_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="384" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a5a9a1e4f2ce7b22527cdb5644c16a78d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::freq_phasor_pairs</definition>
+        <argsstring></argsstring>
+        <name>freq_phasor_pairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="412" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="412" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a2f810bb69f9421137a82e08cb20631e1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::frequency_interval</definition>
+        <argsstring></argsstring>
+        <name>frequency_interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="407" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="407" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a3db80a8b92439ec1b912c80f74473c5d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::net_sideband</definition>
+        <argsstring></argsstring>
+        <name>net_sideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="387" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="387" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a896126f15f452dca71bf01e226596f23" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::ntones</definition>
+        <argsstring></argsstring>
+        <name>ntones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="395" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="395" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a3dac7358cbf87dc9225e2e4957834977" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::pcal_base_freq</definition>
+        <argsstring></argsstring>
+        <name>pcal_base_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="391" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="391" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1ae512995911eeb4cded49739db168c91e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::pcal_spacing</definition>
+        <argsstring></argsstring>
+        <name>pcal_spacing</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="390" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="390" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a0a01f01a19fa8de087f00c20b6943e3e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::phasor</definition>
+        <argsstring></argsstring>
+        <name>phasor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="403" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="403" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a4c5e60b62e6ce44ae1d7859d32167a41" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::phasor_integer</definition>
+        <argsstring></argsstring>
+        <name>phasor_integer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="404" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="404" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a2193c0553f16aaf82754e968026294c8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::polarization</definition>
+        <argsstring></argsstring>
+        <name>polarization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="389" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="389" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a1745732c5f8aacd0d122b54c19c77eb6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::rotated_by_reference</definition>
+        <argsstring></argsstring>
+        <name>rotated_by_reference</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="411" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="411" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a5eefca13fc8dd0477fbacaed5da09105" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::rotated_freq_phasor_pairs</definition>
+        <argsstring></argsstring>
+        <name>rotated_freq_phasor_pairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="440" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="440" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1adf9a19d62188fd8885d806a94fbffcfc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::sample_rate</definition>
+        <argsstring></argsstring>
+        <name>sample_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="392" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="392" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1ac8a9761f705410de025291b022055271" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::sideband_sign</definition>
+        <argsstring></argsstring>
+        <name>sideband_sign</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="388" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="388" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1ab935111869af536a07d138d426da619a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::sky_frequency</definition>
+        <argsstring></argsstring>
+        <name>sky_frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="385" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a58ae2dbf714265dfab766fd5a5e76dcb" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::time_interval</definition>
+        <argsstring></argsstring>
+        <name>time_interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="408" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="408" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a024828bff07ebe07fbf8058a6f624a83" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::tone_high</definition>
+        <argsstring></argsstring>
+        <name>tone_high</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="397" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="397" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a075fef75132ac46e17bcd962c4c626c5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::tone_low</definition>
+        <argsstring></argsstring>
+        <name>tone_low</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="396" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="396" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a6dca20076e4978298859e463545df4d0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::tone_offset_freq_array</definition>
+        <argsstring></argsstring>
+        <name>tone_offset_freq_array</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="398" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="398" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a78138e7d7923d97f700939e204debbc0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.SingleChannelPhasorCollection::tone_physical_freq_array</definition>
+        <argsstring></argsstring>
+        <name>tone_physical_freq_array</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="399" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="399" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1adc948c383cbef72107cfec104eedc0ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.SingleChannelPhasorCollection.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="382" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="382" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1acf92ba5994b9adfeeaa3d72708a7a403" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.SingleChannelPhasorCollection.apply_phase_reference_collection</definition>
+        <argsstring>(self, reference_scpc)</argsstring>
+        <name>apply_phase_reference_collection</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>reference_scpc</type>
+          <defname>reference_scpc</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Correct this single channel phasor collection by a set of reference phasors for the same channel.
+This rotates the phasor so that the reference phasor collection has a phase of zero for each tone</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="466" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="466" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1af4e02843d4fb4a0828ac558d26e2db44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.SingleChannelPhasorCollection.compute_time_averaged_phasors</definition>
+        <argsstring>(self, trim_length=DISCARD_OFFSET)</argsstring>
+        <name>compute_time_averaged_phasors</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>trim_length</type>
+          <defname>trim_length</defname>
+          <defval><ref refid="namespacevpal_1_1proxy__cable__cal_1aad959a2e063ee7be4e5afa796695f13e" kindref="member">DISCARD_OFFSET</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> compute time averaged complex phasor </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="436" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="436" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1affa1c4c2a30ac7f180e396713f998c85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.SingleChannelPhasorCollection.initialize</definition>
+        <argsstring>(self)</argsstring>
+        <name>initialize</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>construct the expected number of physical tones and their locations</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="414" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="414" bodyend="435"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> object to store the phase-cal phasors for a single channel over a complete scan </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.SingleChannelPhasorCollection</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.SingleChannelPhasorCollection</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="379" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="379" bodyend="487"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1adc948c383cbef72107cfec104eedc0ea" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1acf92ba5994b9adfeeaa3d72708a7a403" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>apply_phase_reference_collection</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a48b410211d030805d2c765f36109a750" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>bandwidth</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1adba221f77ca5b6f9935ab7f4ccf0d9e6" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>channel_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1af4e02843d4fb4a0828ac558d26e2db44" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>compute_time_averaged_phasors</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a5a9a1e4f2ce7b22527cdb5644c16a78d" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>freq_phasor_pairs</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a2f810bb69f9421137a82e08cb20631e1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>frequency_interval</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1affa1c4c2a30ac7f180e396713f998c85" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>initialize</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a3db80a8b92439ec1b912c80f74473c5d" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>net_sideband</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a896126f15f452dca71bf01e226596f23" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>ntones</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a3dac7358cbf87dc9225e2e4957834977" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>pcal_base_freq</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1ae512995911eeb4cded49739db168c91e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>pcal_spacing</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a0a01f01a19fa8de087f00c20b6943e3e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>phasor</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a4c5e60b62e6ce44ae1d7859d32167a41" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>phasor_integer</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a2193c0553f16aaf82754e968026294c8" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>polarization</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a1745732c5f8aacd0d122b54c19c77eb6" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>rotated_by_reference</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a5eefca13fc8dd0477fbacaed5da09105" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>rotated_freq_phasor_pairs</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1adf9a19d62188fd8885d806a94fbffcfc" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>sample_rate</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1ac8a9761f705410de025291b022055271" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>sideband_sign</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1ab935111869af536a07d138d426da619a" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>sky_frequency</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a58ae2dbf714265dfab766fd5a5e76dcb" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>time_interval</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a024828bff07ebe07fbf8058a6f624a83" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>tone_high</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a075fef75132ac46e17bcd962c4c626c5" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>tone_low</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a6dca20076e4978298859e463545df4d0" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>tone_offset_freq_array</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection_1a78138e7d7923d97f700939e204debbc0" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::SingleChannelPhasorCollection</scope><name>tone_physical_freq_array</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

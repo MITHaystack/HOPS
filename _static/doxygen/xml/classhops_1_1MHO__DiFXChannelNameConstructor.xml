@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DiFXChannelNameConstructor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DiFXChannelNameConstructor</compoundname>
+    <includes refid="MHO__DiFXChannelNameConstructor_8hh" local="no">MHO_DiFXChannelNameConstructor.hh</includes>
+    <innerclass refid="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range" prot="private">hops::MHO_DiFXChannelNameConstructor::band_range</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a50d055eb7709807b004de2822cb4f3d5" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; band_range &gt;</type>
+        <definition>std::vector&lt; band_range &gt; hops::MHO_DiFXChannelNameConstructor::fBandRangeLabels</definition>
+        <argsstring></argsstring>
+        <name>fBandRangeLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="85" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a1dbf53308755a4ae013c2f0234d3a4f5" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXChannelNameConstructor::fChanTol</definition>
+        <argsstring></argsstring>
+        <name>fChanTol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="88" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a1314aaec26e9f72d38a567579b68aa7f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; hops::MHO_DiFXChannelNameConstructor::fOrderedSkyFrequencies</definition>
+        <argsstring></argsstring>
+        <name>fOrderedSkyFrequencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="89" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXChannelNameConstructor_1ab89d7743df73ff2f2fd0b2158f0e0a33" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXChannelNameConstructor::fScanID</definition>
+        <argsstring></argsstring>
+        <name>fScanID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="86" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXChannelNameConstructor_1aea3b4f5f107f5ef33c61dbe6a5a080fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXChannelNameConstructor::MHO_DiFXChannelNameConstructor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DiFXChannelNameConstructor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXChannelNameConstructor.cc" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXChannelNameConstructor_1ad6316c52a1554c289a3811cc3d52b6d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXChannelNameConstructor::~MHO_DiFXChannelNameConstructor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DiFXChannelNameConstructor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXChannelNameConstructor.cc" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a493ac339d2558bcbbe238b8632f457d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXChannelNameConstructor::AddBandLabel</definition>
+        <argsstring>(std::string band_label, double freq_low, double freq_high)</argsstring>
+        <name>AddBandLabel</name>
+        <param>
+          <type>std::string</type>
+          <declname>band_label</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>freq_low</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>freq_high</declname>
+        </param>
+        <briefdescription>
+<para>Adds a frequency range for a specific band label. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>band_label</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Band label as string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq_low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower frequency limit in Hz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq_high</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper frequency limit in Hz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="40" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXChannelNameConstructor.cc" bodystart="17" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a3e3ae652bcba4835f4a90fa4e9d3711d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXChannelNameConstructor::AddChannelNames</definition>
+        <argsstring>(mho_json &amp;vex_root)</argsstring>
+        <name>AddChannelNames</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>vex_root</declname>
+        </param>
+        <briefdescription>
+<para>Adds channel names to VEX experiment data based on scan and mode information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vex_root</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the root JSON object containing VEX experiment data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="47" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXChannelNameConstructor.cc" bodystart="27" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a55176d1b86dff6f1c2a1ae7f0dc0834a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXChannelNameConstructor::SetScanName</definition>
+        <argsstring>(std::string scan_id)</argsstring>
+        <name>SetScanName</name>
+        <param>
+          <type>std::string</type>
+          <declname>scan_id</declname>
+        </param>
+        <briefdescription>
+<para>Setter for scan name if the (o)vex file has more than one scan, we may want to specify a specific one in order to construct the channel names, otherwise, we will just use the first in the schedule (assumes there is not later change to channel setup) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scan_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New scan ID to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="57" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a4d4b0891d690527038810824b871bb90" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXChannelNameConstructor::BandLabelFromSkyFreq</definition>
+        <argsstring>(double sky_freq)</argsstring>
+        <name>BandLabelFromSkyFreq</name>
+        <param>
+          <type>double</type>
+          <declname>sky_freq</declname>
+        </param>
+        <briefdescription>
+<para>Assigns a band label to a given sky frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sky_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input sky frequency in Hz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Band label as string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="66" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXChannelNameConstructor.cc" bodystart="179" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXChannelNameConstructor_1a6da42cce6e22f50ac52955041ac18a74" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DiFXChannelNameConstructor::FindChannelIndex</definition>
+        <argsstring>(double sky_freq)</argsstring>
+        <name>FindChannelIndex</name>
+        <param>
+          <type>double</type>
+          <declname>sky_freq</declname>
+        </param>
+        <briefdescription>
+<para>Finds channel index by brute force search within fChanTol (0.001MHz) tolerance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sky_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input sky frequency in Hz. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Channel index if found within tolerance, else 0. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="73" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXChannelNameConstructor.cc" bodystart="194" bodyend="206"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DiFXChannelNameConstructor" kindref="compound">MHO_DiFXChannelNameConstructor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Name channels in a vex object, according to the d2m4 convention. Needed in order to convert vex to ovex.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue Jul 12 16:54:42 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="28" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a493ac339d2558bcbbe238b8632f457d0" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>AddBandLabel</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a3e3ae652bcba4835f4a90fa4e9d3711d" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>AddChannelNames</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a4d4b0891d690527038810824b871bb90" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>BandLabelFromSkyFreq</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a50d055eb7709807b004de2822cb4f3d5" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>fBandRangeLabels</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a1dbf53308755a4ae013c2f0234d3a4f5" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>fChanTol</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a6da42cce6e22f50ac52955041ac18a74" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>FindChannelIndex</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a1314aaec26e9f72d38a567579b68aa7f" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>fOrderedSkyFrequencies</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1ab89d7743df73ff2f2fd0b2158f0e0a33" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>fScanID</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1aea3b4f5f107f5ef33c61dbe6a5a080fb" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>MHO_DiFXChannelNameConstructor</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1a55176d1b86dff6f1c2a1ae7f0dc0834a" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>SetScanName</name></member>
+      <member refid="classhops_1_1MHO__DiFXChannelNameConstructor_1ad6316c52a1554c289a3811cc3d52b6d4" prot="public" virt="virtual"><scope>hops::MHO_DiFXChannelNameConstructor</scope><name>~MHO_DiFXChannelNameConstructor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

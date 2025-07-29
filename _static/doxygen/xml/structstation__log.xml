@@ -1,0 +1,373 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstation__log" kind="struct" language="C++" prot="public">
+    <compoundname>station_log</compoundname>
+    <includes refid="lvex_8h" local="no">lvex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstation__log_1a0aaf119c5fbbacc2fefd0fddbfb6c876" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int station_log::autopeak_interval</definition>
+        <argsstring></argsstring>
+        <name>autopeak_interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="42" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1ae223ebcf1cb10d78843972170a6a7c5b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdiscinfo" kindref="compound">discinfo</ref></type>
+        <definition>struct discinfo station_log::disc[MAXDISCS]</definition>
+        <argsstring>[MAXDISCS]</argsstring>
+        <name>disc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="28" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a7209cd26b6f447b9139181e87a2ef00e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_log::disc_set_ID[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>disc_set_ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="27" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a2030e42f0b767a8b1e314099b1f44834" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date station_log::discstart</definition>
+        <argsstring></argsstring>
+        <name>discstart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="35" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1afe6f7b167124db5e0283006d1c8f67df" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date station_log::discstop</definition>
+        <argsstring></argsstring>
+        <name>discstop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="35" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a3d045ab722cad9e6f40bb7733963589c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_log::end_footage</definition>
+        <argsstring></argsstring>
+        <name>end_footage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="35" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a698ef7cbf8afa019a1f6f4dd97c2ab07" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_log::headpos</definition>
+        <argsstring></argsstring>
+        <name>headpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="30" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1ac64bf27c5cfd18b4197ff9c4f1b67fbe" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_log::linked_stations[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>linked_stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="25" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a3afb5974c19eb5e0b0431858d4700095" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int station_log::ndiscs</definition>
+        <argsstring></argsstring>
+        <name>ndiscs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="28" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a640f4e1ee829d1620a24580dac622a30" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_log::pass[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>pass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="43" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a841aeee5e28d5923d747f2ad2a6c75c7" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_log::source[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="40" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a1b79e54ece11f25a9239f75f76a30704" prot="public" static="no" mutable="no">
+        <type>long long</type>
+        <definition>long long station_log::start_byte</definition>
+        <argsstring></argsstring>
+        <name>start_byte</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="38" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a1a09a4538b36aee89f997a9930a40c67" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_log::start_footage</definition>
+        <argsstring></argsstring>
+        <name>start_footage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="33" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a51eb7d2bb45141aa596372cc7041ad42" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float station_log::start_speed</definition>
+        <argsstring></argsstring>
+        <name>start_speed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="34" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a4737dfa4e36bf1da771ac04c6f06904b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_log::station</definition>
+        <argsstring></argsstring>
+        <name>station</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="24" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1aab93e59ccdc122e4a691713c4bec2a4c" prot="public" static="no" mutable="no">
+        <type>long long</type>
+        <definition>long long station_log::stop_byte</definition>
+        <argsstring></argsstring>
+        <name>stop_byte</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="39" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1ad7960813dacfed28f780cbc9901b862f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date station_log::tapestart</definition>
+        <argsstring></argsstring>
+        <name>tapestart</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="30" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a153aed856898665112762402227d82f5" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date station_log::tapestop</definition>
+        <argsstring></argsstring>
+        <name>tapestop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="30" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1ad96c3ebe2333e2e9956605e868af671a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date station_log::time_on_source</definition>
+        <argsstring></argsstring>
+        <name>time_on_source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="40" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstation__log_1a9e13e037e922778a6d7ede5cc1a0f543" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char station_log::vsn[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>vsn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="26" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>long long</label>
+      </node>
+      <node id="6">
+        <label>discinfo</label>
+        <link refid="structdiscinfo"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>disc_model_num</edgelabel>
+          <edgelabel>disc_serial_num</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>disc_size</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>station_log</label>
+        <link refid="structstation__log"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>end_footage</edgelabel>
+          <edgelabel>headpos</edgelabel>
+          <edgelabel>start_footage</edgelabel>
+          <edgelabel>start_speed</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>disc_set_ID</edgelabel>
+          <edgelabel>linked_stations</edgelabel>
+          <edgelabel>pass</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>station</edgelabel>
+          <edgelabel>vsn</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>start_byte</edgelabel>
+          <edgelabel>stop_byte</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>autopeak_interval</edgelabel>
+          <edgelabel>ndiscs</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>disc</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>discstart</edgelabel>
+          <edgelabel>discstop</edgelabel>
+          <edgelabel>tapestart</edgelabel>
+          <edgelabel>tapestop</edgelabel>
+          <edgelabel>time_on_source</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="8">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="23" bodyend="44"/>
+    <listofallmembers>
+      <member refid="structstation__log_1a0aaf119c5fbbacc2fefd0fddbfb6c876" prot="public" virt="non-virtual"><scope>station_log</scope><name>autopeak_interval</name></member>
+      <member refid="structstation__log_1ae223ebcf1cb10d78843972170a6a7c5b" prot="public" virt="non-virtual"><scope>station_log</scope><name>disc</name></member>
+      <member refid="structstation__log_1a7209cd26b6f447b9139181e87a2ef00e" prot="public" virt="non-virtual"><scope>station_log</scope><name>disc_set_ID</name></member>
+      <member refid="structstation__log_1a2030e42f0b767a8b1e314099b1f44834" prot="public" virt="non-virtual"><scope>station_log</scope><name>discstart</name></member>
+      <member refid="structstation__log_1afe6f7b167124db5e0283006d1c8f67df" prot="public" virt="non-virtual"><scope>station_log</scope><name>discstop</name></member>
+      <member refid="structstation__log_1a3d045ab722cad9e6f40bb7733963589c" prot="public" virt="non-virtual"><scope>station_log</scope><name>end_footage</name></member>
+      <member refid="structstation__log_1a698ef7cbf8afa019a1f6f4dd97c2ab07" prot="public" virt="non-virtual"><scope>station_log</scope><name>headpos</name></member>
+      <member refid="structstation__log_1ac64bf27c5cfd18b4197ff9c4f1b67fbe" prot="public" virt="non-virtual"><scope>station_log</scope><name>linked_stations</name></member>
+      <member refid="structstation__log_1a3afb5974c19eb5e0b0431858d4700095" prot="public" virt="non-virtual"><scope>station_log</scope><name>ndiscs</name></member>
+      <member refid="structstation__log_1a640f4e1ee829d1620a24580dac622a30" prot="public" virt="non-virtual"><scope>station_log</scope><name>pass</name></member>
+      <member refid="structstation__log_1a841aeee5e28d5923d747f2ad2a6c75c7" prot="public" virt="non-virtual"><scope>station_log</scope><name>source</name></member>
+      <member refid="structstation__log_1a1b79e54ece11f25a9239f75f76a30704" prot="public" virt="non-virtual"><scope>station_log</scope><name>start_byte</name></member>
+      <member refid="structstation__log_1a1a09a4538b36aee89f997a9930a40c67" prot="public" virt="non-virtual"><scope>station_log</scope><name>start_footage</name></member>
+      <member refid="structstation__log_1a51eb7d2bb45141aa596372cc7041ad42" prot="public" virt="non-virtual"><scope>station_log</scope><name>start_speed</name></member>
+      <member refid="structstation__log_1a4737dfa4e36bf1da771ac04c6f06904b" prot="public" virt="non-virtual"><scope>station_log</scope><name>station</name></member>
+      <member refid="structstation__log_1aab93e59ccdc122e4a691713c4bec2a4c" prot="public" virt="non-virtual"><scope>station_log</scope><name>stop_byte</name></member>
+      <member refid="structstation__log_1ad7960813dacfed28f780cbc9901b862f" prot="public" virt="non-virtual"><scope>station_log</scope><name>tapestart</name></member>
+      <member refid="structstation__log_1a153aed856898665112762402227d82f5" prot="public" virt="non-virtual"><scope>station_log</scope><name>tapestop</name></member>
+      <member refid="structstation__log_1ad96c3ebe2333e2e9956605e868af671a" prot="public" virt="non-virtual"><scope>station_log</scope><name>time_on_source</name></member>
+      <member refid="structstation__log_1a9e13e037e922778a6d7ede5cc1a0f543" prot="public" virt="non-virtual"><scope>station_log</scope><name>vsn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

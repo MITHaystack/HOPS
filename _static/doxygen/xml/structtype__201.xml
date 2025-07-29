@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__201" kind="struct" language="C++" prot="public">
+    <compoundname>type_201</compoundname>
+    <includes refid="type__201_8h" local="no">type_201.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__201_1a5e89d11ca5eb680b872e37c6bb75d48b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsky__coord" kindref="compound">sky_coord</ref></type>
+        <definition>struct sky_coord type_201::coord</definition>
+        <argsstring></argsstring>
+        <name>coord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="15" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1ae7cd27746012914213e8c375ebdfd1e3" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_201::coord_date</definition>
+        <argsstring></argsstring>
+        <name>coord_date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="18" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1a2b64a3ebb387849f0ce19ef690acf24d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_201::dec_rate</definition>
+        <argsstring></argsstring>
+        <name>dec_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="21" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1abd70dae5689f4a02fdf5df3f6558c651" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_201::dispersion</definition>
+        <argsstring></argsstring>
+        <name>dispersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="24" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1a47512727e63d1e11689c0f263ca064d4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_201::epoch</definition>
+        <argsstring></argsstring>
+        <name>epoch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="17" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1ac1a5176de61e2a0a36e365af81c86522" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_201::pulsar_epoch</definition>
+        <argsstring></argsstring>
+        <name>pulsar_epoch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="23" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1aa5fc038ee89943e0d93fc9513b37ce3a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_201::pulsar_phase[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>pulsar_phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="22" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1a9081fb622575479b524467fcc95c4228" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_201::ra_rate</definition>
+        <argsstring></argsstring>
+        <name>ra_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="20" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1a017f8502c8a5f1bda2ad26d47d037eac" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_201::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="12" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1a549f51f78426a3bd4493eb17cc1e29c4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_201::source[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="15" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1a50742b7c2d94d1522a2a069f11c5db77" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_201::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="14" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1af8ef69317bf580c803ebefc13368857c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_201::unused2[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>unused2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="18" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__201_1aebc6d4d2c4b8cfc1ea0124ffc062cf49" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_201::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="13" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="6">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sky_coord</label>
+        <link refid="structsky__coord"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>dec_secs</edgelabel>
+          <edgelabel>ra_secs</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dec_degs</edgelabel>
+          <edgelabel>dec_mins</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ra_mins</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_201</label>
+        <link refid="structtype__201"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>dec_rate</edgelabel>
+          <edgelabel>dispersion</edgelabel>
+          <edgelabel>pulsar_epoch</edgelabel>
+          <edgelabel>pulsar_phase</edgelabel>
+          <edgelabel>ra_rate</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>epoch</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>coord</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>coord_date</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_201.h" bodystart="11" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structtype__201_1a5e89d11ca5eb680b872e37c6bb75d48b" prot="public" virt="non-virtual"><scope>type_201</scope><name>coord</name></member>
+      <member refid="structtype__201_1ae7cd27746012914213e8c375ebdfd1e3" prot="public" virt="non-virtual"><scope>type_201</scope><name>coord_date</name></member>
+      <member refid="structtype__201_1a2b64a3ebb387849f0ce19ef690acf24d" prot="public" virt="non-virtual"><scope>type_201</scope><name>dec_rate</name></member>
+      <member refid="structtype__201_1abd70dae5689f4a02fdf5df3f6558c651" prot="public" virt="non-virtual"><scope>type_201</scope><name>dispersion</name></member>
+      <member refid="structtype__201_1a47512727e63d1e11689c0f263ca064d4" prot="public" virt="non-virtual"><scope>type_201</scope><name>epoch</name></member>
+      <member refid="structtype__201_1ac1a5176de61e2a0a36e365af81c86522" prot="public" virt="non-virtual"><scope>type_201</scope><name>pulsar_epoch</name></member>
+      <member refid="structtype__201_1aa5fc038ee89943e0d93fc9513b37ce3a" prot="public" virt="non-virtual"><scope>type_201</scope><name>pulsar_phase</name></member>
+      <member refid="structtype__201_1a9081fb622575479b524467fcc95c4228" prot="public" virt="non-virtual"><scope>type_201</scope><name>ra_rate</name></member>
+      <member refid="structtype__201_1a017f8502c8a5f1bda2ad26d47d037eac" prot="public" virt="non-virtual"><scope>type_201</scope><name>record_id</name></member>
+      <member refid="structtype__201_1a549f51f78426a3bd4493eb17cc1e29c4" prot="public" virt="non-virtual"><scope>type_201</scope><name>source</name></member>
+      <member refid="structtype__201_1a50742b7c2d94d1522a2a069f11c5db77" prot="public" virt="non-virtual"><scope>type_201</scope><name>unused1</name></member>
+      <member refid="structtype__201_1af8ef69317bf580c803ebefc13368857c" prot="public" virt="non-virtual"><scope>type_201</scope><name>unused2</name></member>
+      <member refid="structtype__201_1aebc6d4d2c4b8cfc1ea0124ffc062cf49" prot="public" virt="non-virtual"><scope>type_201</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

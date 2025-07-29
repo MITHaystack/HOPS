@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__120" kind="struct" language="C++" prot="public">
+    <compoundname>type_120</compoundname>
+    <includes refid="type__120_8h" local="no">type_120.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__120_1acd3e1d8d003b6670a0634e5423c559f9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_120::ap</definition>
+        <argsstring></argsstring>
+        <name>ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="88" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a483795e4c4981d08cbf7c74892d0632d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_120::baseline[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="85" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a85dad9782c3a7c3f0be142b8fe472aea" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_120::delay_rate</definition>
+        <argsstring></argsstring>
+        <name>delay_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="92" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1aae2a66bc8473313c25be18f2a63ce9db" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_120::fr_delay</definition>
+        <argsstring></argsstring>
+        <name>fr_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="91" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a69b5ddf9c84c9f31f9db349fa6a975eb" prot="public" static="no" mutable="no">
+        <type>union <ref refid="unionflag__wgt" kindref="compound">flag_wgt</ref></type>
+        <definition>union flag_wgt type_120::fw</definition>
+        <argsstring></argsstring>
+        <name>fw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="88" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a1f15045b0f870162882ec5dd5237547f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_120::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="87" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1aadd31a844f1d520c511b54b663020f82" prot="public" static="no" mutable="no">
+        <type>union <ref refid="unionlag__data" kindref="compound">lag_data</ref></type>
+        <definition>union lag_data type_120::ld</definition>
+        <argsstring></argsstring>
+        <name>ld</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="92" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a2ca18fad13d3e479378c7acad8337cb2" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_120::nlags</definition>
+        <argsstring></argsstring>
+        <name>nlags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="84" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1aa1c50e67ba019791b9381179029c41e6" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_120::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="81" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a75cf01f5064edb0af552de6ed98c5652" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_120::rootcode[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>rootcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="86" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1afb795a711ce882899008915519ff22e0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_120::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="90" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a36fbb5c677645381e751745cff6a3d77" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_120::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="83" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__120_1a6696827ce76ead072c65400d31a7dc01" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_120::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="82" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="6">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>spectral</label>
+        <link refid="structspectral"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>im</edgelabel>
+          <edgelabel>re</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>lag_data</label>
+        <link refid="unionlag__data"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>apl</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>spec</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ag</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>cg</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>cpl</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>flag_wgt</label>
+        <link refid="unionflag__wgt"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>float</label>
+      </node>
+      <node id="9">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>counts_global</label>
+        <link refid="structcounts__global"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>lags</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>type_120</label>
+        <link refid="structtype__120"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>fr_delay</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>status</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ld</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>fw</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="11">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="79" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="80" bodyend="94"/>
+    <listofallmembers>
+      <member refid="structtype__120_1acd3e1d8d003b6670a0634e5423c559f9" prot="public" virt="non-virtual"><scope>type_120</scope><name>ap</name></member>
+      <member refid="structtype__120_1a483795e4c4981d08cbf7c74892d0632d" prot="public" virt="non-virtual"><scope>type_120</scope><name>baseline</name></member>
+      <member refid="structtype__120_1a85dad9782c3a7c3f0be142b8fe472aea" prot="public" virt="non-virtual"><scope>type_120</scope><name>delay_rate</name></member>
+      <member refid="structtype__120_1aae2a66bc8473313c25be18f2a63ce9db" prot="public" virt="non-virtual"><scope>type_120</scope><name>fr_delay</name></member>
+      <member refid="structtype__120_1a69b5ddf9c84c9f31f9db349fa6a975eb" prot="public" virt="non-virtual"><scope>type_120</scope><name>fw</name></member>
+      <member refid="structtype__120_1a1f15045b0f870162882ec5dd5237547f" prot="public" virt="non-virtual"><scope>type_120</scope><name>index</name></member>
+      <member refid="structtype__120_1aadd31a844f1d520c511b54b663020f82" prot="public" virt="non-virtual"><scope>type_120</scope><name>ld</name></member>
+      <member refid="structtype__120_1a2ca18fad13d3e479378c7acad8337cb2" prot="public" virt="non-virtual"><scope>type_120</scope><name>nlags</name></member>
+      <member refid="structtype__120_1aa1c50e67ba019791b9381179029c41e6" prot="public" virt="non-virtual"><scope>type_120</scope><name>record_id</name></member>
+      <member refid="structtype__120_1a75cf01f5064edb0af552de6ed98c5652" prot="public" virt="non-virtual"><scope>type_120</scope><name>rootcode</name></member>
+      <member refid="structtype__120_1afb795a711ce882899008915519ff22e0" prot="public" virt="non-virtual"><scope>type_120</scope><name>status</name></member>
+      <member refid="structtype__120_1a36fbb5c677645381e751745cff6a3d77" prot="public" virt="non-virtual"><scope>type_120</scope><name>type</name></member>
+      <member refid="structtype__120_1a6696827ce76ead072c65400d31a7dc01" prot="public" virt="non-virtual"><scope>type_120</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

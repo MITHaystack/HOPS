@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OpenCLInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_OpenCLInterface</compoundname>
+    <includes refid="MHO__OpenCLInterface_8hh" local="no">MHO_OpenCLInterface.hh</includes>
+      <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" prot="protected" static="yes" mutable="no">
+        <type><ref refid="classhops_1_1MHO__OpenCLInterface" kindref="compound">MHO_OpenCLInterface</ref> *</type>
+        <definition>MHO_OpenCLInterface * hops::MHO_OpenCLInterface::fOpenCLInterface</definition>
+        <argsstring></argsstring>
+        <name>fOpenCLInterface</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="144" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" prot="protected" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_OpenCLInterface::fCLDeviceID</definition>
+        <argsstring></argsstring>
+        <name>fCLDeviceID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="150" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" prot="protected" static="no" mutable="no">
+        <type>cl::Context *</type>
+        <definition>cl::Context* hops::MHO_OpenCLInterface::fContext</definition>
+        <argsstring></argsstring>
+        <name>fContext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="151" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__OpenCLInterface_8hh_1a7b6800b76997b2a8704db160c0d4799c" kindref="member">CL_VECTOR_TYPE</ref>&lt; cl::Device &gt;</type>
+        <definition>CL_VECTOR_TYPE&lt; cl::Device &gt; hops::MHO_OpenCLInterface::fDevices</definition>
+        <argsstring></argsstring>
+        <name>fDevices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="149" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1a301ce39850f60c94d0fc0fe5cd61ff2a" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_OpenCLInterface::fKernelPath</definition>
+        <argsstring></argsstring>
+        <name>fKernelPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="146" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1a0b17bd9c198832c80e10c6e14e135d01" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; int, std::string &gt;</type>
+        <definition>std::map&lt; int, std::string &gt; hops::MHO_OpenCLInterface::fOpenCLCode2ErrorMap</definition>
+        <argsstring></argsstring>
+        <name>fOpenCLCode2ErrorMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="155" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>std::map&lt; std::string, int &gt; hops::MHO_OpenCLInterface::fOpenCLError2CodeMap</definition>
+        <argsstring></argsstring>
+        <name>fOpenCLError2CodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="154" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1a5926a29191ab38dc06a41ce46b4af4f7" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__OpenCLInterface_8hh_1a7b6800b76997b2a8704db160c0d4799c" kindref="member">CL_VECTOR_TYPE</ref>&lt; cl::Platform &gt;</type>
+        <definition>CL_VECTOR_TYPE&lt; cl::Platform &gt; hops::MHO_OpenCLInterface::fPlatforms</definition>
+        <argsstring></argsstring>
+        <name>fPlatforms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="148" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" prot="protected" static="no" mutable="yes">
+        <type>std::vector&lt; cl::CommandQueue * &gt;</type>
+        <definition>std::vector&lt; cl::CommandQueue* &gt; hops::MHO_OpenCLInterface::fQueues</definition>
+        <argsstring></argsstring>
+        <name>fQueues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="152" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__OpenCLInterface" kindref="compound">MHO_OpenCLInterface</ref> *</type>
+        <definition>MHO_OpenCLInterface * hops::MHO_OpenCLInterface::GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Interface to accessing <ref refid="classhops_1_1MHO__OpenCLInterface" kindref="compound">MHO_OpenCLInterface</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="113" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="32" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1adf641e6d0d3172159a6f042ba6a92f23" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>cl::Context</type>
+        <definition>cl::Context hops::MHO_OpenCLInterface::GetContext</definition>
+        <argsstring>() const</argsstring>
+        <name>GetContext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="115" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>cl::Device</type>
+        <definition>cl::Device hops::MHO_OpenCLInterface::GetDevice</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDevice</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="119" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="119" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1a302e84553592c060fa38336a0bd6a296" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="MHO__OpenCLInterface_8hh_1a7b6800b76997b2a8704db160c0d4799c" kindref="member">CL_VECTOR_TYPE</ref>&lt; cl::Device &gt;</type>
+        <definition>CL_VECTOR_TYPE&lt; cl::Device &gt; hops::MHO_OpenCLInterface::GetDevices</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDevices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="117" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="117" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1aec19c8ecee43376c6998e9cd8c85ddb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_OpenCLInterface::GetErrorMessage</definition>
+        <argsstring>(int code)</argsstring>
+        <name>GetErrorMessage</name>
+        <param>
+          <type>int</type>
+          <declname>code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1a9b785d90222ea57f8dcd4c631f7f3ebc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_OpenCLInterface::GetKernelPath</definition>
+        <argsstring>() const</argsstring>
+        <name>GetKernelPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="133" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1a0b45f242c0b5d078ad010d867e554f54" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_OpenCLInterface::GetNumberOfDevices</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNumberOfDevices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="123" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="123" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1abed33fffd4344aba2fb76077ef4b7d5b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>cl::CommandQueue &amp;</type>
+        <definition>cl::CommandQueue &amp; hops::MHO_OpenCLInterface::GetQueue</definition>
+        <argsstring>(int i=-1) const</argsstring>
+        <name>GetQueue</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="121" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="125" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1afe586f89d7b0a76237cdb11a6fb9140b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLInterface::SetGPU</definition>
+        <argsstring>(unsigned int i)</argsstring>
+        <name>SetGPU</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Selects a device for use in OpenCL calculations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="129" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="89" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1a25236f6ec6c16099afc40b7bdc2142ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLInterface::SetKernelPath</definition>
+        <argsstring>(std::string s)</argsstring>
+        <name>SetKernelPath</name>
+        <param>
+          <type>std::string</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="131" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="131" bodyend="131"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1a9784736fb34d8345c2f803413075a90e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLInterface::MHO_OpenCLInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_OpenCLInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="138" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="17" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1ac05bd85d85fd5e0c7a2142dd1b5170a2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLInterface::~MHO_OpenCLInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OpenCLInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="139" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="22" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1ad207290e81615d9f9196b76b8a453490" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLInterface::FillErrorCodeMaps</definition>
+        <argsstring>()</argsstring>
+        <name>FillErrorCodeMaps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="142" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="133" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLInterface_1ab5035c4ae5c0abe52f5a5017a0723894" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLInterface::InitializeOpenCL</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeOpenCL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Queries the host for available OpenCL platforms, and constructs a Context. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="141" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLInterface.cc" bodystart="44" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>CL_VECTOR_TYPE&lt; cl::Device &gt;</label>
+      </node>
+      <node id="8">
+        <label>Context *</label>
+      </node>
+      <node id="9">
+        <label>std::map&lt; int, std::string &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>CL_VECTOR_TYPE&lt; cl::Platform &gt;</label>
+      </node>
+      <node id="6">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="10">
+        <label>std::vector&lt; cl::CommandQueue * &gt;</label>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OpenCLInterface</label>
+        <link refid="classhops_1_1MHO__OpenCLInterface"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fDevices</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fOpenCLError2CodeMap</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fPlatforms</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fContext</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fCLDeviceID</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fKernelPath</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fOpenCLCode2ErrorMap</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>fOpenCLInterface</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fQueues</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>CommandQueue *</label>
+      </node>
+      <node id="3">
+        <label>std::map&lt; std::string, int &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::string</label>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="110" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="111" bodyend="156"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fCLDeviceID</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fContext</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fDevices</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1ad207290e81615d9f9196b76b8a453490" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>FillErrorCodeMaps</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a301ce39850f60c94d0fc0fe5cd61ff2a" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fKernelPath</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a0b17bd9c198832c80e10c6e14e135d01" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fOpenCLCode2ErrorMap</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fOpenCLError2CodeMap</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fOpenCLInterface</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a5926a29191ab38dc06a41ce46b4af4f7" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fPlatforms</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>fQueues</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1adf641e6d0d3172159a6f042ba6a92f23" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetContext</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetDevice</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a302e84553592c060fa38336a0bd6a296" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetDevices</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1aec19c8ecee43376c6998e9cd8c85ddb1" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetErrorMessage</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetInstance</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a9b785d90222ea57f8dcd4c631f7f3ebc" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetKernelPath</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a0b45f242c0b5d078ad010d867e554f54" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetNumberOfDevices</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1abed33fffd4344aba2fb76077ef4b7d5b" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>GetQueue</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1ab5035c4ae5c0abe52f5a5017a0723894" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>InitializeOpenCL</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a9784736fb34d8345c2f803413075a90e" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>MHO_OpenCLInterface</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1afe586f89d7b0a76237cdb11a6fb9140b" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>SetGPU</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1a25236f6ec6c16099afc40b7bdc2142ad" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLInterface</scope><name>SetKernelPath</name></member>
+      <member refid="classhops_1_1MHO__OpenCLInterface_1ac05bd85d85fd5e0c7a2142dd1b5170a2" prot="protected" virt="virtual"><scope>hops::MHO_OpenCLInterface</scope><name>~MHO_OpenCLInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

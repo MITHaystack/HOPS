@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_4e5eb980a71e397b231e9099679fb09d" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="ffcore_8h">ffcore.h</innerfile>
+    <innerfile refid="filter_8h">filter.h</innerfile>
+    <innerfile refid="fourfit__signal__handler_8h">fourfit_signal_handler.h</innerfile>
+    <innerfile refid="freqlist_8h">freqlist.h</innerfile>
+    <innerfile refid="param__struct_8h">param_struct.h</innerfile>
+    <innerfile refid="pass__struct_8h">pass_struct.h</innerfile>
+    <innerfile refid="plot__struct_8h">plot_struct.h</innerfile>
+    <innerfile refid="refringe_8h">refringe.h</innerfile>
+    <innerfile refid="statistics_8h">statistics.h</innerfile>
+    <innerfile refid="write__lock__mechanism_8h">write_lock_mechanism.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/"/>
+  </compounddef>
+</doxygen>

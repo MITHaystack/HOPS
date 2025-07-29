@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__ControlDefinitions_8hh" kind="file" language="C++">
+    <compoundname>MHO_ControlDefinitions.hh</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes refid="MHO__DirectoryInterface_8hh" local="yes">MHO_DirectoryInterface.hh</includes>
+    <includes refid="MHO__JSONHeaderWrapper_8hh" local="yes">MHO_JSONHeaderWrapper.hh</includes>
+    <includedby refid="MHO__ControlConditionEvaluator_8hh" local="yes">MHO_ControlConditionEvaluator.hh</includedby>
+    <includedby refid="MHO__ControlElementParser_8hh" local="yes">MHO_ControlElementParser.hh</includedby>
+    <includedby refid="MHO__ControlFileParser_8hh" local="yes">MHO_ControlFileParser.hh</includedby>
+    <includedby refid="MHO__ControlTokenProcessor_8hh" local="yes">MHO_ControlTokenProcessor.hh</includedby>
+    <includedby refid="MHO__ControlDefinitions_8cc" local="yes">MHO_ControlDefinitions.cc</includedby>
+    <includedby refid="MHO__FringeControlInitialization_8cc" local="yes">MHO_FringeControlInitialization.cc</includedby>
+    <incdepgraph>
+      <node id="16">
+        <label>atomic</label>
+      </node>
+      <node id="8">
+        <label>cstdint</label>
+      </node>
+      <node id="24">
+        <label>MHO_JSONHeaderWrapper.hh</label>
+        <link refid="MHO__JSONHeaderWrapper_8hh"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>stdexcept</label>
+      </node>
+      <node id="20">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>ostream</label>
+      </node>
+      <node id="4">
+        <label>MHO_DirectoryInterface.hh</label>
+        <link refid="MHO__DirectoryInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>ctime</label>
+      </node>
+      <node id="22">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="13">
+        <label>sstream</label>
+      </node>
+      <node id="15">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>cstdlib</label>
+      </node>
+      <node id="5">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>iostream</label>
+      </node>
+      <node id="10">
+        <label>mutex</label>
+      </node>
+      <node id="17">
+        <label>thread</label>
+      </node>
+      <node id="12">
+        <label>set</label>
+      </node>
+      <node id="1">
+        <label>MHO_ControlDefinitions.hh</label>
+        <link refid="MHO__ControlDefinitions_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="14">
+        <label>stdio.h</label>
+      </node>
+      <node id="21">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="4">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="12">
+        <label>MHO_ControlTokenProcessor.cc</label>
+        <link refid="MHO__ControlTokenProcessor_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_ControlFileParser.cc</label>
+        <link refid="MHO__ControlFileParser_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_ControlConditionEvaluator.cc</label>
+        <link refid="MHO__ControlConditionEvaluator_8cc"/>
+      </node>
+      <node id="7">
+        <label>MHO_ControlElementParser.hh</label>
+        <link refid="MHO__ControlElementParser_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_ControlTokenProcessor.hh</label>
+        <link refid="MHO__ControlTokenProcessor_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>MHO_ControlDefinitions.cc</label>
+        <link refid="MHO__ControlDefinitions_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_ControlConditionEvaluator.hh</label>
+        <link refid="MHO__ControlConditionEvaluator_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_FringeControlInitialization.cc</label>
+        <link refid="MHO__FringeControlInitialization_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_ControlFileParser.hh</label>
+        <link refid="MHO__ControlFileParser_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_ControlDefinitions.hh</label>
+        <link refid="MHO__ControlDefinitions_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MHO_ControlElementParser.cc</label>
+        <link refid="MHO__ControlElementParser_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__ControlDefinitions" prot="public">hops::MHO_ControlDefinitions</innerclass>
+    <innerclass refid="structhops_1_1MHO__ControlLine" prot="public">hops::MHO_ControlLine</innerclass>
+    <innerclass refid="structhops_1_1MHO__ControlStatement" prot="public">hops::MHO_ControlStatement</innerclass>
+    <innerclass refid="structhops_1_1MHO__Token" prot="public">hops::MHO_Token</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_ControlElements_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_ControlElements_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__DirectoryInterface_8hh" kindref="compound">MHO_DirectoryInterface.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__JSONHeaderWrapper_8hh" kindref="compound">MHO_JSONHeaderWrapper.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="structhops_1_1MHO__Token" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26" refid="structhops_1_1MHO__Token_1a49c95f08b580498f59f27f8836231ae6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structhops_1_1MHO__Token_1a49c95f08b580498f59f27f8836231ae6" kindref="member">fValue</ref>;</highlight></codeline>
+<codeline lineno="27" refid="structhops_1_1MHO__Token_1acf8776b19e6fdb899fe91fc0ea55bd71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structhops_1_1MHO__Token_1acf8776b19e6fdb899fe91fc0ea55bd71" kindref="member">fLineNumber</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="structhops_1_1MHO__ControlLine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__ControlLine" kindref="compound">MHO_ControlLine</ref></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35" refid="structhops_1_1MHO__ControlLine_1aa01eff9d37411ec232f101ba0548eb44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structhops_1_1MHO__ControlLine_1aa01eff9d37411ec232f101ba0548eb44" kindref="member">fLineNumber</ref>;</highlight></codeline>
+<codeline lineno="36" refid="structhops_1_1MHO__ControlLine_1ae15520913658428914ed3a4439c111ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structhops_1_1MHO__ControlLine_1ae15520913658428914ed3a4439c111ad" kindref="member">fContents</ref>;</highlight></codeline>
+<codeline lineno="37" refid="structhops_1_1MHO__ControlLine_1acea066ba9611dd06f7d6e8b033961521" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>MHO_Token<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__ControlLine_1acea066ba9611dd06f7d6e8b033961521" kindref="member">fTokens</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structhops_1_1MHO__ControlStatement" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__ControlStatement" kindref="compound">MHO_ControlStatement</ref></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45" refid="structhops_1_1MHO__ControlStatement_1a8f0377c88b082d3a34d5321511cbe24e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="structhops_1_1MHO__ControlStatement_1a8f0377c88b082d3a34d5321511cbe24e" kindref="member">fStartLineNumber</ref>;</highlight></codeline>
+<codeline lineno="46" refid="structhops_1_1MHO__ControlStatement_1ab5665de6a60245a04210820ebab2b52e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structhops_1_1MHO__ControlStatement_1ab5665de6a60245a04210820ebab2b52e" kindref="member">fKeyword</ref>;</highlight></codeline>
+<codeline lineno="47" refid="structhops_1_1MHO__ControlStatement_1a48acec0344c9952167fbcc220060f2bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>MHO_Token<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__ControlStatement_1a48acec0344c9952167fbcc220060f2bc" kindref="member">fTokens</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fc" kindref="member">control_element_type</ref></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca58d901115c1b20ac8e533363c3b70423" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca58d901115c1b20ac8e533363c3b70423" kindref="member">control_int_type</ref>,</highlight></codeline>
+<codeline lineno="53" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcabc1b0033575e5b75903a3f6c55480b89" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcabc1b0033575e5b75903a3f6c55480b89" kindref="member">control_list_int_type</ref>,</highlight></codeline>
+<codeline lineno="54" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcaeeedb14f290602c7c779aca6e8b069e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcaeeedb14f290602c7c779aca6e8b069e4" kindref="member">control_real_type</ref>,</highlight></codeline>
+<codeline lineno="55" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcaa28e13aa79ac578ec8d03defa1b6037e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcaa28e13aa79ac578ec8d03defa1b6037e" kindref="member">control_string_type</ref>,</highlight></codeline>
+<codeline lineno="56" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca013d0b09045b27e75945b4049ea256ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca013d0b09045b27e75945b4049ea256ed" kindref="member">control_list_string_type</ref>,</highlight></codeline>
+<codeline lineno="57" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcacbd5083e82de9a3c2bc78d515fa6edc3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcacbd5083e82de9a3c2bc78d515fa6edc3" kindref="member">control_fixed_length_list_string_type</ref>,</highlight></codeline>
+<codeline lineno="58" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca5f8472dc665bad0c007ed38f16e2b040" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca5f8472dc665bad0c007ed38f16e2b040" kindref="member">control_list_real_type</ref>,</highlight></codeline>
+<codeline lineno="59" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca2442b2a3f7cf42f8a57477b38331e8ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca2442b2a3f7cf42f8a57477b38331e8ab" kindref="member">control_conditional_type</ref>,</highlight></codeline>
+<codeline lineno="60" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca75c581e734adac305ac3cd953deac987" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fca75c581e734adac305ac3cd953deac987" kindref="member">control_compound_type</ref>,</highlight></codeline>
+<codeline lineno="61" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcadc7cc77e6fc62cb864226c6ff14f251b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcadc7cc77e6fc62cb864226c6ff14f251b" kindref="member">control_bool_type</ref>,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcaf2e37cd991df63994682d8f05bd137bd" kindref="member">control_unknown_type</ref></highlight></codeline>
+<codeline lineno="63" refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fcaf2e37cd991df63994682d8f05bd137bd" refkind="member"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classhops_1_1MHO__ControlDefinitions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__ControlDefinitions" kindref="compound">MHO_ControlDefinitions</ref></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="71" refid="classhops_1_1MHO__ControlDefinitions_1a6ab2eb57bce36cffd696f6cddae475e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1a6ab2eb57bce36cffd696f6cddae475e0" kindref="member">MHO_ControlDefinitions</ref>(){};</highlight></codeline>
+<codeline lineno="72" refid="classhops_1_1MHO__ControlDefinitions_1a0d304ecaf8a953a5e52373fbe469e9ea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1a0d304ecaf8a953a5e52373fbe469e9ea" kindref="member">~MHO_ControlDefinitions</ref>(){};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1af41a75cc212446c191f699d8c84e5a44" kindref="member">GetFormatDirectory</ref>();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1aee417a595cd2ce37e6dca1ce47f85deb" kindref="member">GetKeywordNames</ref>();</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="classhops_1_1MHO__ControlDefinitions_1aefddad40d1abe980c0c3d770ababe4e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1aefddad40d1abe980c0c3d770ababe4e2" kindref="member">WhitespaceDelim</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;<sp/>\t\r\n&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="classhops_1_1MHO__ControlDefinitions_1a18dcd455a25d165c722a8d66e3fea3b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1a18dcd455a25d165c722a8d66e3fea3b9" kindref="member">CommentFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;*&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1acffe53f5b1dadbe500c7b969db0cc6fc" kindref="member">control_element_type</ref><sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1a3ce270b4e4c88cdce0015c71554e413e" kindref="member">DetermineControlType</ref>(std::string<sp/>etype);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref><sp/><ref refid="classhops_1_1MHO__ControlDefinitions_1a5a561ffa6087260a8bc837467680e7fc" kindref="member">GetControlFormat</ref>();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//mho_json<sp/>fControlFormat;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlDefinitions.hh"/>
+  </compounddef>
+</doxygen>

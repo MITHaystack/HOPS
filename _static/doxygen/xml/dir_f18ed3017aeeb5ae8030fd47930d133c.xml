@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_f18ed3017aeeb5ae8030fd47930d133c" kind="dir">
+    <compoundname>ffcontrol</compoundname>
+    <innerfile refid="ffcontrol__module_2ffcontrol_2____init_____8py">ffcontrol_module/ffcontrol/__init__.py</innerfile>
+    <innerfile refid="ffcontrol_8py">ffcontrol.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="control_8h" kind="file" language="C++">
+    <compoundname>control.h</compoundname>
+    <includes refid="mk4__sizes_8h" local="yes">mk4_sizes.h</includes>
+    <includes refid="general_8h" local="yes">general.h</includes>
+    <includedby refid="fourfit3_8c" local="yes">fourfit3.c</includedby>
+    <includedby refid="ffcontrol_8h" local="yes">ffcontrol.h</includedby>
+    <includedby refid="copy__cblock__parts_8c" local="yes">copy_cblock_parts.c</includedby>
+    <includedby refid="criteria__match_8c" local="yes">criteria_match.c</includedby>
+    <includedby refid="default__cblock_8c" local="yes">default_cblock.c</includedby>
+    <includedby refid="init__tokens_8c" local="yes">init_tokens.c</includedby>
+    <includedby refid="nullify__cblock_8c" local="yes">nullify_cblock.c</includedby>
+    <includedby refid="parse__control__file_8c" local="yes">parse_control_file.c</includedby>
+    <includedby refid="parser_8c" local="yes">parser.c</includedby>
+    <includedby refid="read__control__file_8c" local="yes">read_control_file.c</includedby>
+    <includedby refid="skip__data_8c" local="yes">skip_data.c</includedby>
+    <includedby refid="skip__index_8c" local="yes">skip_index.c</includedby>
+    <includedby refid="pass__struct_8h" local="yes">pass_struct.h</includedby>
+    <includedby refid="clear__pass_8c" local="yes">clear_pass.c</includedby>
+    <includedby refid="compute__qf_8c" local="yes">compute_qf.c</includedby>
+    <includedby refid="fill__param_8c" local="yes">fill_param.c</includedby>
+    <includedby refid="generate__cblock_8c" local="yes">generate_cblock.c</includedby>
+    <includedby refid="get__corel__data_8c" local="yes">get_corel_data.c</includedby>
+    <includedby refid="make__passes_8c" local="yes">make_passes.c</includedby>
+    <includedby refid="set__defaults_8c" local="yes">set_defaults.c</includedby>
+    <includedby refid="plot__complex_8c" local="yes">plot_complex.c</includedby>
+    <includedby refid="apply__filter_8c" local="yes">apply_filter.c</includedby>
+    <includedby refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <includedby refid="pcalibrate_8c" local="yes">pcalibrate.c</includedby>
+    <includedby refid="precorrect_8c" local="yes">precorrect.c</includedby>
+    <includedby refid="sampler__delays_8c" local="yes">sampler_delays.c</includedby>
+    <includedby refid="fourfit__libs_2ffsearch_2src_2search_8c" local="yes">search.c</includedby>
+    <includedby refid="compute__control__file__hash_8c" local="yes">compute_control_file_hash.c</includedby>
+    <includedby refid="for__python__construct__cblock_8c" local="yes">for_python_construct_cblock.c</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="1">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="22">
+        <label>set_defaults.c</label>
+        <link refid="set__defaults_8c"/>
+      </node>
+      <node id="17">
+        <label>skip_index.c</label>
+        <link refid="skip__index_8c"/>
+      </node>
+      <node id="43">
+        <label>fill_212.c</label>
+        <link refid="fill__212_8c"/>
+      </node>
+      <node id="37">
+        <label>vrot.c</label>
+        <link refid="vrot_8c"/>
+      </node>
+      <node id="76">
+        <label>search.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
+      </node>
+      <node id="28">
+        <label>compute_control_file_hash.c</label>
+        <link refid="compute__control__file__hash_8c"/>
+      </node>
+      <node id="30">
+        <label>clear_freq_corel.c</label>
+        <link refid="clear__freq__corel_8c"/>
+      </node>
+      <node id="67">
+        <label>freq_spacing.c</label>
+        <link refid="freq__spacing_8c"/>
+      </node>
+      <node id="59">
+        <label>apply_passband.c</label>
+        <link refid="apply__passband_8c"/>
+      </node>
+      <node id="38">
+        <label>fill_205.c</label>
+        <link refid="fill__205_8c"/>
+      </node>
+      <node id="27">
+        <label>precorrect.c</label>
+        <link refid="precorrect_8c"/>
+      </node>
+      <node id="14">
+        <label>parser.c</label>
+        <link refid="parser_8c"/>
+      </node>
+      <node id="48">
+        <label>plot_data_dir.c</label>
+        <link refid="plot__data__dir_8c"/>
+      </node>
+      <node id="51">
+        <label>generate_graphs.c</label>
+        <link refid="generate__graphs_8c"/>
+      </node>
+      <node id="77">
+        <label>search_windows.c</label>
+        <link refid="search__windows_8c"/>
+      </node>
+      <node id="52">
+        <label>generate_text.c</label>
+        <link refid="generate__text_8c"/>
+      </node>
+      <node id="61">
+        <label>calc_normalization.c</label>
+        <link refid="calc__normalization_8c"/>
+      </node>
+      <node id="57">
+        <label>apply_filter.c</label>
+        <link refid="apply__filter_8c"/>
+      </node>
+      <node id="18">
+        <label>clear_pass.c</label>
+        <link refid="clear__pass_8c"/>
+      </node>
+      <node id="80">
+        <label>plot_complex.c</label>
+        <link refid="plot__complex_8c"/>
+      </node>
+      <node id="58">
+        <label>apply_notches.c</label>
+        <link refid="apply__notches_8c"/>
+      </node>
+      <node id="75">
+        <label>sampler_delays.c</label>
+        <link refid="sampler__delays_8c"/>
+      </node>
+      <node id="68">
+        <label>fringe_search.c</label>
+        <link refid="fringe__search_8c"/>
+      </node>
+      <node id="71">
+        <label>ion_search.c</label>
+        <link refid="ion__search_8c"/>
+      </node>
+      <node id="19">
+        <label>generate_cblock.c</label>
+        <link refid="generate__cblock_8c"/>
+      </node>
+      <node id="49">
+        <label>display_fplot.c</label>
+        <link refid="display__fplot_8c"/>
+      </node>
+      <node id="20">
+        <label>get_corel_data.c</label>
+        <link refid="get__corel__data_8c"/>
+      </node>
+      <node id="15">
+        <label>read_control_file.c</label>
+        <link refid="read__control__file_8c"/>
+      </node>
+      <node id="7">
+        <label>criteria_match.c</label>
+        <link refid="criteria__match_8c"/>
+      </node>
+      <node id="47">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="25">
+        <label>norm_xf.c</label>
+        <link refid="norm__xf_8c"/>
+      </node>
+      <node id="66">
+        <label>est_pc_manual.c</label>
+        <link refid="est__pc__manual_8c"/>
+      </node>
+      <node id="16">
+        <label>skip_data.c</label>
+        <link refid="skip__data_8c"/>
+      </node>
+      <node id="46">
+        <label>plot_data_dir.h</label>
+        <link refid="plot__data__dir_8h"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>fill_206.c</label>
+        <link refid="fill__206_8c"/>
+      </node>
+      <node id="9">
+        <label>get_bfstring.c</label>
+        <link refid="get__bfstring_8c"/>
+      </node>
+      <node id="73">
+        <label>pcalibrate.c</label>
+        <link refid="pcalibrate_8c"/>
+      </node>
+      <node id="10">
+        <label>init_tokens.c</label>
+        <link refid="init__tokens_8c"/>
+      </node>
+      <node id="54">
+        <label>make_postplot.c</label>
+        <link refid="make__postplot_8c"/>
+      </node>
+      <node id="35">
+        <label>stcount_interp.c</label>
+        <link refid="stcount__interp_8c"/>
+      </node>
+      <node id="1">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>fit_vbp.c</label>
+        <link refid="fit__vbp_8c"/>
+      </node>
+      <node id="33">
+        <label>pcal_interp.c</label>
+        <link refid="pcal__interp_8c"/>
+      </node>
+      <node id="26">
+        <label>parse_cmdline.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="8">
+        <label>default_cblock.c</label>
+        <link refid="default__cblock_8c"/>
+      </node>
+      <node id="42">
+        <label>fill_210.c</label>
+        <link refid="fill__210_8c"/>
+      </node>
+      <node id="31">
+        <label>compute_qf.c</label>
+        <link refid="compute__qf_8c"/>
+      </node>
+      <node id="53">
+        <label>make_plotdata.c</label>
+        <link refid="make__plotdata_8c"/>
+      </node>
+      <node id="55">
+        <label>adjust_snr.c</label>
+        <link refid="adjust__snr_8c"/>
+      </node>
+      <node id="56">
+        <label>apply_cmplxbp.c</label>
+        <link refid="apply__cmplxbp_8c"/>
+      </node>
+      <node id="81">
+        <label>for_python_construct_cblock.c</label>
+        <link refid="for__python__construct__cblock_8c"/>
+      </node>
+      <node id="32">
+        <label>diff_file_phase.c</label>
+        <link refid="diff__file__phase_8c"/>
+      </node>
+      <node id="6">
+        <label>create_fsm.c</label>
+        <link refid="create__fsm_8c"/>
+      </node>
+      <node id="74">
+        <label>rotate_pcal.c</label>
+        <link refid="rotate__pcal_8c"/>
+      </node>
+      <node id="40">
+        <label>fill_207.c</label>
+        <link refid="fill__207_8c"/>
+      </node>
+      <node id="4">
+        <label>construct_cblock.c</label>
+        <link refid="construct__cblock_8c"/>
+      </node>
+      <node id="34">
+        <label>set_pointers.c</label>
+        <link refid="set__pointers_8c"/>
+      </node>
+      <node id="45">
+        <label>fill_fringe_info.c</label>
+        <link refid="fill__fringe__info_8c"/>
+      </node>
+      <node id="13">
+        <label>parse_control_file.c</label>
+        <link refid="parse__control__file_8c"/>
+      </node>
+      <node id="29">
+        <label>pass_struct.h</label>
+        <link refid="pass__struct_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>fill_230.c</label>
+        <link refid="fill__230_8c"/>
+      </node>
+      <node id="5">
+        <label>copy_cblock_parts.c</label>
+        <link refid="copy__cblock__parts_8c"/>
+      </node>
+      <node id="70">
+        <label>ion_covariance.c</label>
+        <link refid="ion__covariance_8c"/>
+      </node>
+      <node id="2">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="60">
+        <label>apply_video_bp.c</label>
+        <link refid="apply__video__bp_8c"/>
+      </node>
+      <node id="62">
+        <label>calc_rms.c</label>
+        <link refid="calc__rms_8c"/>
+      </node>
+      <node id="79">
+        <label>fill_param.c</label>
+        <link refid="fill__param_8c"/>
+      </node>
+      <node id="24">
+        <label>norm_fx.c</label>
+        <link refid="norm__fx_8c"/>
+      </node>
+      <node id="69">
+        <label>interp.c</label>
+        <link refid="interp_8c"/>
+      </node>
+      <node id="41">
+        <label>fill_208.c</label>
+        <link refid="fill__208_8c"/>
+      </node>
+      <node id="63">
+        <label>compute_field_rotations.c</label>
+        <link refid="compute__field__rotations_8c"/>
+      </node>
+      <node id="36">
+        <label>update.c</label>
+        <link refid="ffcore_2src_2update_8c"/>
+      </node>
+      <node id="65">
+        <label>delay_rate.c</label>
+        <link refid="delay__rate_8c"/>
+      </node>
+      <node id="12">
+        <label>nullify_cblock.c</label>
+        <link refid="nullify__cblock_8c"/>
+      </node>
+      <node id="78">
+        <label>update.c</label>
+        <link refid="ffsearch_2src_2update_8c"/>
+      </node>
+      <node id="72">
+        <label>organize_data.c</label>
+        <link refid="organize__data_8c"/>
+      </node>
+      <node id="21">
+        <label>make_passes.c</label>
+        <link refid="make__passes_8c"/>
+      </node>
+      <node id="64">
+        <label>create_fname.c</label>
+        <link refid="create__fname_8c"/>
+      </node>
+      <node id="23">
+        <label>gate_off.c</label>
+        <link refid="gate__off_8c"/>
+      </node>
+      <node id="11">
+        <label>lex.c</label>
+        <link refid="lex_8c"/>
+      </node>
+      <node id="3">
+        <label>ffcontrol.h</label>
+        <link refid="ffcontrol_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structc__block" prot="public">c_block</innerclass>
+    <innerclass refid="structgat__struct" prot="public">gat_struct</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="control_8h_1ab5c8d14ff474c2a30753dc2d88137e5d" prot="public" static="no">
+        <name>AP_BY_AP</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="135" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a4bf9874fc82372c82f94dd1c87a43773" prot="public" static="no">
+        <name>CASSEGRAIN</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="162" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a41c4cd7939e0b7bfed939d28b46c615c" prot="public" static="no">
+        <name>COMCHAR</name>
+        <initializer>&apos;*&apos;              /* <ref refid="structcomment" kindref="compound">comment</ref> character */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="129" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1adbaca35440ef5d1abf8a0084bf382b8b" prot="public" static="no">
+        <name>DISCARD</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="132" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1ac222db61ccc923f24415d8085bef26df" prot="public" static="no">
+        <name>DSB</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="141" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1af82ff2a2651fb174c743d074e316f06d" prot="public" static="no">
+        <name>EACH_MINUTE</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="144" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a88d4b0d51a88c8074d394a47bdfa408e" prot="public" static="no">
+        <name>FCHARS</name>
+        <initializer>&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="166" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a565fde10770e8a57ef907f3f4f991ea2" prot="public" static="no">
+        <name>ITERATE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="155" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1ac435df27bedf08b52a822c32d9dad510" prot="public" static="no">
+        <name>KEEP</name>
+        <initializer>32767            /* x_crc, y_crc, x_slip_sync, y_slip_sync */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="131" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a525d3ca9955b22e489a749a548831a1d" prot="public" static="no">
+        <name>LSB</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="140" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a8187a9af791c0a44ba67edd9cf266961" prot="public" static="no">
+        <name>MANUAL</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="136" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a678faea446144870675381df53c5f69d" prot="public" static="no">
+        <name>MAX_SAMP</name>
+        <initializer>16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1ad7ece38e6d90386017888bdf649d9403" prot="public" static="no">
+        <name>MAXNOTCH</name>
+        <initializer>(8*<ref refid="mk4__sizes_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a7c60e913478d07a44ac15c6fb2c5937f" prot="public" static="no">
+        <name>MODEL</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="158" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a831ca2e1f7811bb033ccad20be9ad307" prot="public" static="no">
+        <name>MULTITONE</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="137" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a44156cfa79cc31970f09c34ee9a44a6d" prot="public" static="no">
+        <name>NASMYTHLEFT</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="163" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a32c0572972ed594f605c343235cb8e65" prot="public" static="no">
+        <name>NASMYTHRIGHT</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="164" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1ae813e60d1f7363764de79f97c39eda6f" prot="public" static="no">
+        <name>NO_MOUNT_TYPE</name>
+        <initializer>0          /* mount_type */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="161" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a1291f416b069313021b519eea62d5bf1" prot="public" static="no">
+        <name>NORMAL</name>
+        <initializer>1                /* pc_mode */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="134" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1adc20945d8291702496d3e7f9b85981aa" prot="public" static="no">
+        <name>NULLCHAR</name>
+        <initializer>0                /*   &quot;     &quot;     &quot;   &quot;    &quot;     char       &quot;  */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="152" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a1d6af874e28074ef72e2ff813b3af601" prot="public" static="no">
+        <name>NULLFLOAT</name>
+        <initializer>508.4482826      /*   &quot;     &quot;     &quot;   &quot;    &quot;     floating   &quot;  */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="151" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1ac0eacf1bdbd7451b6ba4ca463e5b9fd2" prot="public" static="no">
+        <name>NULLINT</name>
+        <initializer>-12345           /* place-holder for no assigned integer <ref refid="structvalue" kindref="compound">value</ref> */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="150" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1aeb581e38a06bd3d5c1656cfe3be5e79b" prot="public" static="no">
+        <name>PHYLE</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="148" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1ae13d91fe6e514f0aa1caba701ef1ff92" prot="public" static="no">
+        <name>POLYNOMIAL</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="147" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a186ec395366f2d3c79195f93b8184e3f" prot="public" static="no">
+        <name>SBD</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="159" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a353fdc62c72dffbc4ce280cefe9fd4ba" prot="public" static="no">
+        <name>SCAN_START</name>
+        <initializer>1              /* strobe_mode */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="143" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1aa11c9c27878218cc7f02b64edc9f9622" prot="public" static="no">
+        <name>SIMUL</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="156" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1af608f6b6480e5d01acbba259458a0d54" prot="public" static="no">
+        <name>SINEWAVE</name>
+        <initializer>1              /* ad hoc phase adjustment mode */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="146" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a779bf099075a999d1074357fccbd466b" prot="public" static="no">
+        <name>USB</name>
+        <initializer>1                      /* frequency array values */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="139" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="control_8h_1a9a81f4649f430c0018713540b8b8678b" prot="public" static="no">
+        <name>WILDCARD</name>
+        <initializer>&apos;?&apos;              /* station, <ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>, source, f_group */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" line="128" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>control_done</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>control_done</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__sizes_8h" kindref="compound">mk4_sizes.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="general_8h" kindref="compound">general.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="control_8h_1a678faea446144870675381df53c5f69d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_SAMP<sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="control_8h_1ad7ece38e6d90386017888bdf649d9403" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXNOTCH<sp/>(8*MAXFREQ)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="structgat__struct" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structgat__struct" kindref="compound">gat_struct</ref></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="13" refid="structgat__struct_1af1e19e51acda04b421049e11e4e26678" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structgat__struct_1af1e19e51acda04b421049e11e4e26678" kindref="member">on_delay</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>secs<sp/>since<sp/>gate<sp/>reference<sp/>epoch<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="structgat__struct_1aa1624583b24edc87950544cb4fd52090" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structgat__struct_1aa1624583b24edc87950544cb4fd52090" kindref="member">duration</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>secs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">struct<sp/>istats<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref;</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/><sp/><sp/><sp/>int<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem;</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"></highlight></codeline>
+<codeline lineno="24"><highlight class="comment">struct<sp/>dstats<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref;</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/><sp/><sp/><sp/>double<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rem;</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structc__block" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Elemental<sp/>control<sp/>block<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33" refid="structc__block_1afa7aec728aad53f339dc6ccd57a75317" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref><sp/>*<ref refid="structc__block_1afa7aec728aad53f339dc6ccd57a75317" kindref="member">cb_chain</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Chained<sp/>pointer<sp/>to<sp/>next<sp/>c_block<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Conditions<sp/>that<sp/>scan<sp/>must<sp/>meet<sp/>to<sp/>have<sp/>this<sp/>block<sp/>be<sp/>applied<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="structc__block_1acf2bffda72c897b2955a3ec3d5fa9288" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1acf2bffda72c897b2955a3ec3d5fa9288" kindref="member">baseline</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>station<sp/>codes<sp/>at<sp/>both<sp/>ends<sp/>of<sp/>baseline;</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>either<sp/>or<sp/>both<sp/>can<sp/>be<sp/>wildcards<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="structc__block_1a7b9ac952c48e90fb0026a0f3f1891740" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a7b9ac952c48e90fb0026a0f3f1891740" kindref="member">source</ref>[32];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>source<sp/>name,<sp/>or<sp/>single<sp/>wildcard<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="structc__block_1a3edd51c2270cdd8033eceeb1a832b69e" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a3edd51c2270cdd8033eceeb1a832b69e" kindref="member">f_group</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>frequency<sp/>group<sp/>code,<sp/>or<sp/>wildcard<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structc__block_1abd22adaf8407d0129c6d9abd9f57b728" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structscan" kindref="compound">scan</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>acceptance<sp/>interval<sp/>(inclusive)<sp/>for<sp/>start<sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>of<sp/>scan;<sp/>in<sp/>seconds<sp/>since<sp/>1980.0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structc__block_1a96ac09561a63e47ab116603edced26d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a96ac09561a63e47ab116603edced26d9" kindref="member">knot</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>knot[i]<sp/>true<sp/>when<sp/>cond[i]<sp/>&quot;not-ed&quot;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Filter,<sp/>corrections,<sp/>etc.<sp/>to<sp/>apply<sp/>to<sp/>data<sp/>within<sp/>qualifying<sp/>scan<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="structc__block_1ad7572e7b87010ec11e499c961c4f5d35" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1ad7572e7b87010ec11e499c961c4f5d35" kindref="member">skip</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>iff<sp/>true,<sp/>don&apos;t<sp/>fourfit<sp/>matching<sp/>scans<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structc__block_1a50de18918ce4a0c09b37ef07689abf1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a50de18918ce4a0c09b37ef07689abf1a" kindref="member">min_weight</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>min<sp/>t120-&gt;fw.weight<sp/>for<sp/>AP<sp/>acceptance<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="structc__block_1ab1531f4dbd9642bc858cbff2f73e2351" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1ab1531f4dbd9642bc858cbff2f73e2351" kindref="member">ref_freq</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>force<sp/>fourfit<sp/>to<sp/>use<sp/>this<sp/>ref.<sp/>freq.<sp/>(MHz)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="structc__block_1aee6b5d4ebabd12f0933dd6813f3808a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aee6b5d4ebabd12f0933dd6813f3808a4" kindref="member">accept_sbs</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>accept<sp/>USB,<sp/>LSB,<sp/>DSB<sp/>iff<sp/>=<sp/>1,<sp/>2,<sp/>3<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="structc__block_1af29b1a4eefb0a9426bcb98845a3937f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1af29b1a4eefb0a9426bcb98845a3937f8" kindref="member">index</ref>[2*<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>numbers<sp/>of<sp/>acceptable<sp/>sidebands<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structistats" kindref="compound">istats</ref><sp/><ref refid="structc__block_1a7921106a8bdcc58991e483296d981bfd" kindref="member">pc_mode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>phase<sp/>cal<sp/>modes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structistats" kindref="compound">istats</ref><sp/><ref refid="structc__block_1a8c7917c34b1a809c1412fce84e039e34" kindref="member">pc_period</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>phase<sp/>cal<sp/>integration<sp/>period<sp/>(in<sp/>ap&apos;s)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a0b01950c509fd30f6fb87cbaa756e888" kindref="member">pc_freq</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];<sp/></highlight><highlight class="comment">/*<sp/>phase<sp/>cal<sp/>freqs<sp/>(KHz)<sp/>by<sp/>channel<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a4d41351adc06f5d2f31fde98aaacc461" kindref="member">pc_phase_offset</ref>[2];</highlight><highlight class="comment">//<sp/>manual<sp/>phase<sp/>offset<sp/>applied<sp/>to<sp/>all<sp/>channels,<sp/>by<sp/>pol<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a3360e10a8a5ff1e1c29ba30a3f2cfccc" kindref="member">pc_phase</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>][2];</highlight><highlight class="comment">/*<sp/>phase<sp/>cal<sp/>phases<sp/>by<sp/>channel<sp/>and<sp/>pol<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>manual<sp/>or<sp/>additive<sp/>pcal<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structistats" kindref="compound">istats</ref><sp/><ref refid="structc__block_1a5d7c990ae136886d5ce1412820d25c49" kindref="member">pc_tonemask</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];</highlight><highlight class="comment">//<sp/>tone<sp/>exclusion<sp/>mask<sp/>by<sp/>channel<sp/>in<sp/>multitone</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a1f12c0546cea88e32f19dd3855927fce" kindref="member">lsb_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>LSB<sp/>phase<sp/>offset<sp/>in<sp/>degrees<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="structc__block_1a4261b6058cca532809519c5fcffce1d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a4261b6058cca532809519c5fcffce1d5" kindref="member">x_crc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>flag<sp/>to<sp/>keep/discard<sp/>AP<sp/>having<sp/>a<sp/>crc<sp/>error<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="structc__block_1aa8fa310b754316d588dc7fefda27bcdb" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aa8fa310b754316d588dc7fefda27bcdb" kindref="member">y_crc</ref>;</highlight></codeline>
+<codeline lineno="63" refid="structc__block_1a653fbac03f0a3d6fdb9c397aedf2f5f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a653fbac03f0a3d6fdb9c397aedf2f5f2" kindref="member">x_slip_sync</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>max.<sp/>#<sp/>of<sp/>frame<sp/>resyncs<sp/>to<sp/>still<sp/>use<sp/>AP&apos;s<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="structc__block_1ad43e027d8dbbdfb562057bc6ce0e3671" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1ad43e027d8dbbdfb562057bc6ce0e3671" kindref="member">y_slip_sync</ref>;</highlight></codeline>
+<codeline lineno="65" refid="structc__block_1a9768dfaed4bae878370d872b2f0d01c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a9768dfaed4bae878370d872b2f0d01c5" kindref="member">sb_window</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>bounds<sp/>of<sp/>single<sp/>band<sp/>delay<sp/>search<sp/>window<sp/>(us)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="structc__block_1ac5ca554cab981630c4a702178d9a789a" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1ac5ca554cab981630c4a702178d9a789a" kindref="member">mb_window</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>bounds<sp/>of<sp/>multi-band<sp/>delay<sp/>search<sp/>window<sp/>(us)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="structc__block_1a0ba396197f1e475ea2299984b0766a83" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a0ba396197f1e475ea2299984b0766a83" kindref="member">dr_window</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>bounds<sp/>of<sp/>delay-rate<sp/>search<sp/>window<sp/>(us/s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="structc__block_1a7b1b010891f3e7fac8de77ca3d9629a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a7b1b010891f3e7fac8de77ca3d9629a2" kindref="member">ion_window</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bounds<sp/>of<sp/>ionospheric<sp/>search<sp/>window<sp/>(TEC<sp/>units)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="structc__block_1af606985e9ef67d9d372132de6640129c" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1af606985e9ef67d9d372132de6640129c" kindref="member">ra_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>offset<sp/>RA<sp/>(arcsec)<sp/>to<sp/>shift<sp/>windows<sp/>by<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="structc__block_1a41462db6cc8b61600345d612bde9af4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a41462db6cc8b61600345d612bde9af4b" kindref="member">dec_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/>DEC<sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>&quot;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structc__block_1ac160d04a6e887807169c9392bbafb8f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1ac160d04a6e887807169c9392bbafb8f1" kindref="member">ion_npts</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>#<sp/>of<sp/>pts<sp/>in<sp/>ionosphere<sp/>coarse<sp/>search</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="structc__block_1a9f4e841c60a3ba375292269a6d0442ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="structc__block_1a9f4e841c60a3ba375292269a6d0442ad" kindref="member">time_span</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>acceptance<sp/>window<sp/>start<sp/>and<sp/>stop<sp/>(s<sp/>BOY)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="structc__block_1ac675ca5bab6a82e45421968530df41ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1ac675ca5bab6a82e45421968530df41ee" kindref="member">ion_smooth</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iff<sp/>true,<sp/>use<sp/>smoothed,<sp/>interpolated<sp/>TEC<sp/>grid<sp/>pts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="structc__block_1a37976e62191a9cade3e4b0a690a89796" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a37976e62191a9cade3e4b0a690a89796" kindref="member">switched_mode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>defines<sp/>switching<sp/>cycle<sp/>start<sp/>epoch<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="structc__block_1a204130c9a7cff6f7961a3b0ae1e46060" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a204130c9a7cff6f7961a3b0ae1e46060" kindref="member">switched_period</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>switching<sp/>cycle<sp/>period<sp/>(s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="structc__block_1a24a9d7c918eb439cd19f2fb9bbe44c51" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a24a9d7c918eb439cd19f2fb9bbe44c51" kindref="member">use_samples</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>iff<sp/>true,<sp/>use<sp/>sample<sp/>counts<sp/>to<sp/>normalize<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="structc__block_1aac01ec0b94b64d2c34ed04cd4a1f00a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aac01ec0b94b64d2c34ed04cd4a1f00a2" kindref="member">dc_block</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iff<sp/>true,<sp/>zero<sp/>out<sp/>DC<sp/>subchannel<sp/>of<sp/>spectrum</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="structc__block_1aefd3f62d073ea97a0080ef12701e8572" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a73addde4cbcbd377d1f22ca2f733680e" kindref="member">optimize_closure</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iff<sp/>true,<sp/>keep<sp/>closure<sp/>triangle<sp/>noise<sp/>small<sp/>as<sp/>possible</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structgat__struct" kindref="compound">gat_struct</ref><sp/><ref refid="structc__block_1aefd3f62d073ea97a0080ef12701e8572" kindref="member">gates</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];<sp/></highlight><highlight class="comment">/*<sp/>relative<sp/>on/off<sp/>epochs<sp/>(s),<sp/>code,<sp/>for<sp/>each<sp/>channel<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structc__block_1a34acf33412797087d554e0a6b58af8b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a34acf33412797087d554e0a6b58af8b1" kindref="member">adhoc_phase</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>defines<sp/>type<sp/>of<sp/>ad<sp/>hoc<sp/>phase<sp/>adjustments<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="structc__block_1a3a11f780ca7ae83a57da841bafef3614" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a3a11f780ca7ae83a57da841bafef3614" kindref="member">adhoc_tref</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>reference<sp/>time<sp/>for<sp/>either<sp/>ad<sp/>hoc<sp/>model<sp/>(s<sp/>past<sp/>hour<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structc__block_1aefcb8c582c5cd62e7d6fe76bf15abd26" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aefcb8c582c5cd62e7d6fe76bf15abd26" kindref="member">adhoc_period</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>period<sp/>of<sp/>sinewave<sp/>(s)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structc__block_1af2c4ab8df819cbf751c796c0031fde7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1af2c4ab8df819cbf751c796c0031fde7d" kindref="member">adhoc_amp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>amplitude<sp/>in<sp/>radians<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="structc__block_1aea8b4884b443a10d4549de084ee49dd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aea8b4884b443a10d4549de084ee49dd9" kindref="member">adhoc_poly</ref>[6];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ad<sp/>hoc<sp/>phase<sp/>polynomial<sp/>coefficients<sp/>(rad/sec^n)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structc__block_1a9f22f4d2161369cde07d309781a06276" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a9f22f4d2161369cde07d309781a06276" kindref="member">adhoc_file</ref>[2][256];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>file<sp/>names<sp/>if<sp/>station(s)<sp/>is<sp/>in<sp/>pc_mode<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="structc__block_1afcb49d714671f1129722cbf4d78408bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1afcb49d714671f1129722cbf4d78408bf" kindref="member">adhoc_file_chans</ref>[2][128];<sp/><sp/></highlight><highlight class="comment">//<sp/>channel<sp/>codes<sp/>[a..zA..Z$%]<sp/>for<sp/>pc<sp/>file<sp/>phase<sp/>fields</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="structc__block_1a60888ec3971c6e49bd96bda5ca7d9fa0" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a60888ec3971c6e49bd96bda5ca7d9fa0" kindref="member">adhoc_flag_files</ref>[2][256];<sp/><sp/></highlight><highlight class="comment">/*<sp/>file<sp/>names<sp/>for<sp/>ad<sp/>hoc<sp/>data<sp/>flagging<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="structc__block_1a2d5d02667c61abde863e80dffeda13a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a2d5d02667c61abde863e80dffeda13a0" kindref="member">plot_data_dir</ref>[2][256];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>dir<sp/>name(s)<sp/>for<sp/>dumping<sp/>plot<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="structc__block_1aa35555ce63668639e5a62a2942969b93" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aa35555ce63668639e5a62a2942969b93" kindref="member">passband</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>passband<sp/>for<sp/>spectral<sp/>filtering<sp/>(MHz)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="structc__block_1acb13bf40f45f3b31507604692d3e6086" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1acb13bf40f45f3b31507604692d3e6086" kindref="member">avxpzoom</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ave<sp/>XP<sp/>zoom<sp/>options<sp/>for<sp/>passband<sp/>case<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="structc__block_1a7032747ad2b374a1811d18e820182bfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a7032747ad2b374a1811d18e820182bfb" kindref="member">avxplopt</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>some<sp/>plot<sp/>options<sp/>on<sp/>ave<sp/>XP<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="structc__block_1a383a082add7fc5badcdbe83042dcfb67" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a383a082add7fc5badcdbe83042dcfb67" kindref="member">gen_cf_record</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>whether<sp/>to<sp/>general<sp/>control<sp/>file<sp/>record<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structc__block_1aa13b64c175225c55e349e973836f5ef9" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aa13b64c175225c55e349e973836f5ef9" kindref="member">nnotches</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>alternative<sp/>to<sp/>passband<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="structc__block_1aa062c6d0fdd281e803a76d5cdb563935" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aa062c6d0fdd281e803a76d5cdb563935" kindref="member">notches</ref>[<ref refid="control_8h_1ad7ece38e6d90386017888bdf649d9403" kindref="member">MAXNOTCH</ref>][2];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>alternative<sp/>to<sp/>passband<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95" refid="structc__block_1af9f56633bde3053c35ad64b546b94d71" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a6313374a22f707f51db3ac16511f4109" kindref="member">t_cohere</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>coherence<sp/>time<sp/>(s)<sp/>for<sp/>co-adding<sp/>fringe<sp/>rates<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a0db8b039cd82c161227254f44de0a7ad" kindref="member">ionosphere</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>a<sp/>priori<sp/>ionospheres<sp/>(TEC<sp/>units<sp/>=<sp/>1e16<sp/>el/m^2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1af9f56633bde3053c35ad64b546b94d71" kindref="member">delay_offs</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];</highlight><highlight class="comment">//<sp/>additive<sp/>delay<sp/>offset(ns)<sp/>by<sp/>channel<sp/><sp/>##DELAY_OFFS##</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a22575c2489b5de8da2432a09f0f9a8a8" kindref="member">delay_offs_pol</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>][2];</highlight><highlight class="comment">//<sp/>additive<sp/>delay<sp/>offset(ns)<sp/>by<sp/>channel<sp/>and<sp/>pol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="structc__block_1a08cca6177dd98a079309f3ffa13cd986" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a08cca6177dd98a079309f3ffa13cd986" kindref="member">nsamplers</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>number<sp/>of<sp/>sampler<sp/>strings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="structc__block_1af3d3a2a36b00854cf26d7b02f366e8c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structc__block_1af3d3a2a36b00854cf26d7b02f366e8c4" kindref="member">psamplers</ref>[<ref refid="control_8h_1a678faea446144870675381df53c5f69d" kindref="member">MAX_SAMP</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pointer<sp/>to<sp/>each<sp/>sampler<sp/>string<sp/>(or<sp/>NULL)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="structc__block_1a770ca4840da62327710454694b3b888d" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a770ca4840da62327710454694b3b888d" kindref="member">sampler_codes</ref>[256];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>contains<sp/>all<sp/>sampler<sp/>strings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a6011a7af5ec3da8fcb66c027d20f269d" kindref="member">sampler_delay</ref>[<ref refid="control_8h_1a678faea446144870675381df53c5f69d" kindref="member">MAX_SAMP</ref>][2];<sp/></highlight><highlight class="comment">//<sp/>additive<sp/>delay<sp/>per<sp/>sampler<sp/>(s),<sp/>in<sp/>sampler</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>order,<sp/>for<sp/>each<sp/>of<sp/>2<sp/>polarizations<sp/>(L/R<sp/>=<sp/>X/Y)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structc__block_1aa3b849f48f0d30939623684568fe85c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1aa3b849f48f0d30939623684568fe85c4" kindref="member">est_pc_manual</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>provide<sp/>estimates<sp/>of<sp/>manual<sp/>pc<sp/>phases</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="structc__block_1a1373fc2cf778d3ac1a5516a52ed1f83f" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a1373fc2cf778d3ac1a5516a52ed1f83f" kindref="member">interpolator</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>interpolation<sp/>method</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="structc__block_1a03ed01ffabf4f7a1d35a1f0e920e8002" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a03ed01ffabf4f7a1d35a1f0e920e8002" kindref="member">mbd_anchor</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>mbd<sp/>ambiguity<sp/>choice:<sp/>model<sp/>or<sp/>sbd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a7b7050b9c6534170ae26678249333543" kindref="member">station_delay</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>station<sp/>delay<sp/>pc<sp/>inject-&gt;digitizer<sp/>(s)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a56f805b864bed2ba864e21cd001b1dc5" kindref="member">pc_delay_l</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>delay<sp/>diff<sp/>(feed-&gt;inject)-(pulsegen-&gt;inject)<sp/>(s)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1a0ce6860363af42f10ee4392c23519a2d" kindref="member">pc_delay_r</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>same,<sp/>but<sp/>for<sp/>RCP<sp/>(or<sp/>Y<sp/>or<sp/>V)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="structc__block_1ad7d8a611b1fd9ddd4cf4c4729b0a4cfd" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1ad7d8a611b1fd9ddd4cf4c4729b0a4cfd" kindref="member">weak_channel</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>G<sp/>code<sp/>if<sp/>single_chan_amp/coherent_amp<sp/>&lt;<sp/>weak_channel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="structc__block_1acebe7155fc5d3c243fb70f91c7a9da6e" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1acebe7155fc5d3c243fb70f91c7a9da6e" kindref="member">pc_amp_hcode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>H<sp/>code<sp/>iff<sp/>any<sp/>pc<sp/>amplitude<sp/>less<sp/>than<sp/>this</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="structc__block_1a9166b78a6e0ead14dfb5206f74e06c0e" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a9166b78a6e0ead14dfb5206f74e06c0e" kindref="member">fmatch_bw_pct</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fractional<sp/>bw<sp/>%<sp/>used<sp/>for<sp/>frequency<sp/>matching</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="structc__block_1a0110ef1e2eae572bd64fb774ba385168" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a0110ef1e2eae572bd64fb774ba385168" kindref="member">chid</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>single<sp/>letter<sp/>ch<sp/>id<sp/>codes<sp/>for<sp/>freq<sp/>override</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="structc__block_1adf17d126984b5c9401587b135511aa89" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structc__block_1adf17d126984b5c9401587b135511aa89" kindref="member">chid_rf</ref>[<ref refid="sizelimits_8h_1af8269d8159f700256b8bd0fb67b5a882" kindref="member">MAXFREQ</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>freqs<sp/>corresponding<sp/>to<sp/>above<sp/>codes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="structc__block_1a972025f18a0e611fd859d25cfa2464e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a972025f18a0e611fd859d25cfa2464e8" kindref="member">vbp_correct</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iff<sp/>true,<sp/>modify<sp/>xpower<sp/>phase<sp/>with<sp/>video<sp/>bandpass<sp/>model</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="structc__block_1acec71fe3c19fc4297561ee47cd73d963" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a682498537b5396f1b2ed3890be64b29f" kindref="member">vbp_fit</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iff<sp/>true,<sp/>do<sp/>algebraic<sp/>model<sp/>fit<sp/>for<sp/>video<sp/>bandpass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdstats" kindref="compound">dstats</ref><sp/><ref refid="structc__block_1acec71fe3c19fc4297561ee47cd73d963" kindref="member">vbp_coeffs</ref>[5];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>video<sp/>bandpass<sp/>model<sp/>coeffs<sp/>(deg)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="structc__block_1a04c1c22ef63905d30f73dd44a13a40e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a04c1c22ef63905d30f73dd44a13a40e0" kindref="member">vbp_file</ref>[2][256];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>not<sp/>null,<sp/>specifies<sp/>filename<sp/>for<sp/>video<sp/>bandpass<sp/>corr.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="structc__block_1a6cbf9ecf2f44528342d2e3080263a237" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a6cbf9ecf2f44528342d2e3080263a237" kindref="member">mount_type</ref>[2];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>non-zero<sp/>implies<sp/>field-rotation-corrections<sp/>should<sp/>be<sp/>made.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="structc__block_1a13c2c00c255b973a5cc279c34c3f2182" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a13c2c00c255b973a5cc279c34c3f2182" kindref="member">mixed_mode_rot</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iff<sp/>true,<sp/>rotate<sp/>all<sp/>RY<sp/>and<sp/>YR<sp/>data<sp/>by<sp/>90<sp/>degrees<sp/>(geodesy<sp/>mixed-mode<sp/>feature)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="structc__block_1a20a6410dfc3e35c90b9818769349fa98" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a20a6410dfc3e35c90b9818769349fa98" kindref="member">noautofringes</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>when<sp/>true,<sp/>skip<sp/>fringing<sp/>of<sp/>autocorrs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="structc__block_1a90e930a9ecebe098965ea32fd8819615" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a90e930a9ecebe098965ea32fd8819615" kindref="member">mod4numbering</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>when<sp/>true,<sp/>fr.num<sp/>%<sp/>4<sp/>is<sp/>0<sp/>(LL)<sp/>1<sp/>(RR)<sp/>2<sp/>(LR)<sp/>3<sp/>(RL)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="structc__block_1a662e3ec1304ff6098cc211c6c1e9003d" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structc__block_1a662e3ec1304ff6098cc211c6c1e9003d" kindref="member">mbdrplopt</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>option(s)<sp/>on<sp/>MBD<sp/>DRate<sp/>SBD<sp/>plots</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Defined<sp/>values<sp/>for<sp/>various<sp/>structure<sp/>variables<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="control_8h_1a9a81f4649f430c0018713540b8b8678b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>WILDCARD<sp/><sp/>&apos;?&apos;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>station,<sp/>baseline,<sp/>source,<sp/>f_group<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="control_8h_1a41c4cd7939e0b7bfed939d28b46c615c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>COMCHAR<sp/><sp/><sp/>&apos;*&apos;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>comment<sp/>character<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="control_8h_1ac435df27bedf08b52a822c32d9dad510" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KEEP<sp/><sp/><sp/><sp/><sp/><sp/>32767<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>x_crc,<sp/>y_crc,<sp/>x_slip_sync,<sp/>y_slip_sync<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="control_8h_1adbaca35440ef5d1abf8a0084bf382b8b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISCARD<sp/><sp/><sp/>1<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="control_8h_1a1291f416b069313021b519eea62d5bf1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NORMAL<sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pc_mode<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="control_8h_1ab5c8d14ff474c2a30753dc2d88137e5d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AP_BY_AP<sp/><sp/>2<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="control_8h_1a8187a9af791c0a44ba67edd9cf266961" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MANUAL<sp/><sp/><sp/><sp/>3<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="control_8h_1a831ca2e1f7811bb033ccad20be9ad307" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MULTITONE<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="control_8h_1a779bf099075a999d1074357fccbd466b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>USB<sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>frequency<sp/>array<sp/>values<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="control_8h_1a525d3ca9955b22e489a749a548831a1d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LSB<sp/>2<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="control_8h_1ac222db61ccc923f24415d8085bef26df" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DSB<sp/>3<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="control_8h_1a353fdc62c72dffbc4ce280cefe9fd4ba" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SCAN_START<sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>strobe_mode<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="control_8h_1af82ff2a2651fb174c743d074e316f06d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EACH_MINUTE<sp/>2<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="control_8h_1af608f6b6480e5d01acbba259458a0d54" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SINEWAVE<sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ad<sp/>hoc<sp/>phase<sp/>adjustment<sp/>mode<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="control_8h_1ae13d91fe6e514f0aa1caba701ef1ff92" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POLYNOMIAL<sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="control_8h_1aeb581e38a06bd3d5c1656cfe3be5e79b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PHYLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="control_8h_1ac0eacf1bdbd7451b6ba4ca463e5b9fd2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NULLINT<sp/><sp/><sp/>-12345<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>place-holder<sp/>for<sp/>no<sp/>assigned<sp/>integer<sp/>value<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="control_8h_1a1d6af874e28074ef72e2ff813b3af601" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NULLFLOAT<sp/>508.4482826<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>floating<sp/><sp/><sp/>&quot;<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="control_8h_1adc20945d8291702496d3e7f9b85981aa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NULLCHAR<sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/><sp/><sp/>char<sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>interpolation<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="control_8h_1a565fde10770e8a57ef907f3f4f991ea2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ITERATE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="control_8h_1aa11c9c27878218cc7f02b64edc9f9622" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SIMUL<sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>mbd<sp/>anchor<sp/>choice</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158" refid="control_8h_1a7c60e913478d07a44ac15c6fb2c5937f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MODEL<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="control_8h_1a186ec395366f2d3c79195f93b8184e3f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SBD<sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="control_8h_1ae813e60d1f7363764de79f97c39eda6f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_MOUNT_TYPE<sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>mount_type<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="control_8h_1a4bf9874fc82372c82f94dd1c87a43773" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CASSEGRAIN<sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="control_8h_1a44156cfa79cc31970f09c34ee9a44a6d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NASMYTHLEFT<sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="control_8h_1a32c0572972ed594f605c343235cb8e65" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NASMYTHRIGHT<sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="control_8h_1a88d4b0d51a88c8074d394a47bdfa408e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FCHARS<sp/>&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$%&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/control.h"/>
+  </compounddef>
+</doxygen>

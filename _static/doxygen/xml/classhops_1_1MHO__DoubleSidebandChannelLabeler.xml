@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DoubleSidebandChannelLabeler" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DoubleSidebandChannelLabeler</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; XArrayType &gt;</basecompoundref>
+    <includes refid="MHO__DoubleSidebandChannelLabeler_8hh" local="no">MHO_DoubleSidebandChannelLabeler.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XArrayType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ae911d6e2138217c480a60cd9cd8bd0d1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::fEps</definition>
+        <argsstring></argsstring>
+        <name>fEps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="143" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ac5182fb6cf51fb2b098a382ef78d9895" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::MHO_DoubleSidebandChannelLabeler</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DoubleSidebandChannelLabeler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a568cf483000fd6ff8b4c3db15e599ce3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::~MHO_DoubleSidebandChannelLabeler</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DoubleSidebandChannelLabeler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="40" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a5d69c1ea34f6a052d56a0170e2623c15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::SetTolerance</definition>
+        <argsstring>(double tol)</argsstring>
+        <name>SetTolerance</name>
+        <param>
+          <type>double</type>
+          <declname>tol</declname>
+        </param>
+        <briefdescription>
+<para>Setter for tolerance - in (MHz) when checking if channels share a sky freq. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New tolerance value to use when checking if channels share a sky frequency. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="48" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="48" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ab8dafcd1af86ea0140d05caf40ea3918" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteInPlace labels LSB/USB channel pairs as &quot;double sideband&quot; channels if they share and edge. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="77" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="77" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ab6d9b1e6be998c1beeca726e6c459ef1" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input array to output and executes in-place operation on output. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input XArrayType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to output XArrayType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of ExecuteInPlace operation on out </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="136" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="136" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a6d700e44c683e3250f8668285cbd3213" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes XArrayType in-place and returns success. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to XArrayType object to initialize. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization was successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="58" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a4a948aa91864d6db7922cbe42b102011" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArrayType *, XArrayType *) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+        </param>
+        <briefdescription>
+<para>Initializes output array in-place from input array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input XArrayType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to output XArrayType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success of initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="68" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="68" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DoubleSidebandChannelLabeler" kindref="compound">MHO_DoubleSidebandChannelLabeler</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Detects adjacent LSB/USB channels pairs which share the same sky-frequency and bandwidth. These are then marked as &apos;double-sideband&apos; channels so they can recieve the legacy treatment.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jun 1 13:20:19 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__DoubleSidebandChannelLabeler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DoubleSidebandChannelLabeler&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__DoubleSidebandChannelLabeler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" line="32" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DoubleSidebandChannelLabeler.hh" bodystart="33" bodyend="144"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ab8dafcd1af86ea0140d05caf40ea3918" prot="protected" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ab6d9b1e6be998c1beeca726e6c459ef1" prot="protected" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ae911d6e2138217c480a60cd9cd8bd0d1" prot="private" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>fEps</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a6d700e44c683e3250f8668285cbd3213" prot="protected" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a4a948aa91864d6db7922cbe42b102011" prot="protected" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ac5182fb6cf51fb2b098a382ef78d9895" prot="public" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>MHO_DoubleSidebandChannelLabeler</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a5d69c1ea34f6a052d56a0170e2623c15" prot="public" virt="non-virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>SetTolerance</name></member>
+      <member refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a568cf483000fd6ff8b4c3db15e599ce3" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>~MHO_DoubleSidebandChannelLabeler</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_DoubleSidebandChannelLabeler</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

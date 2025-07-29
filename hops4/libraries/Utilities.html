@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utilities &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hops4.html">HOPS4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/hops4/libraries/Utilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utilities">
+<span id="id1"></span><h1>Utilities<a class="headerlink" href="#utilities" title="Link to this heading"></a></h1>
+<section id="date-and-time-handling">
+<h2>Date and time handling<a class="headerlink" href="#date-and-time-handling" title="Link to this heading"></a></h2>
+<p>The date and time labeling of visibility and other data is an important
+component of the hops object specification. Within a scan, the time axis
+of any data container will be labeled with a <code class="docutils literal notranslate"><span class="pre">double</span></code> precision float
+specifying the number of seconds since the scan epoch. Nominally the
+scan epoch is the start of the scan as described in the VEX schedule and
+thus the first element on the time axis will typically have
+<span class="math notranslate nohighlight">\(t=0.0\)</span>. However, this is not a requirement, and any positive or
+negative time offset representable in <code class="docutils literal notranslate"><span class="pre">double</span></code> precision is allowed.</p>
+<p>The time point representing the date/time of the scan epoch will have an
+internal representation within HOPS as a 64-bit integer (<code class="docutils literal notranslate"><span class="pre">int64_t</span></code>
+count of the number of UTC nanoseconds since the J2000 epoch. This
+provides nanosecond accurate precision for scan-epoch time stamps until
+2292. For in-memory manipulation of time and dates, time points will be
+represented by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">chrono</span><span class="p">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">hops_clock</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>where the <code class="docutils literal notranslate"><span class="pre">hops_clock</span></code> is a UTC based clock with a start epoch of
+(January 1, 2000, 11:58:55.816 UTC). When a time point is stored as a
+object tag (either in memory, or on disk) for a data container, the time
+point class will be converted to a string representation. There will be
+a limited number of supported representations. These are described in
+the following table (subject to change).</p>
+<p>For ease of use, <code class="docutils literal notranslate"><span class="pre">hops_clock</span></code> will also support the conversion of time
+points into TAI and GPS time. To do this, HOPS will make use of the STL
+chrono library and the <code class="docutils literal notranslate"><span class="pre">date</span></code> library. As the date library has been
+adopted into the C++20 standard, eventually this library will be
+eliminated in favor of the compiler implementation. In addition
+conversion to and from the legacy HOPS date struct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">struct</span> <span class="n">date</span>
+<span class="p">{</span>
+    <span class="n">short</span>   <span class="n">year</span><span class="p">;</span>
+    <span class="n">short</span>   <span class="n">day</span><span class="p">;</span>
+    <span class="n">short</span>   <span class="n">hour</span><span class="p">;</span>
+    <span class="n">short</span>   <span class="n">minute</span><span class="p">;</span>
+    <span class="nb">float</span>   <span class="n">second</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">date_struct</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>will also be supported to the degree of precision that the legacy
+format allows.</p>
+<p>Lets’s use chapter to add some C++ code here:
+With <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">code-block::</span> <span class="pre">cpp</span></code> we can add C++ snippets:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;hello sphinx!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="source-code-documentation">
+<h2>Source Code documentation<a class="headerlink" href="#source-code-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterfaceE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterfaceE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterfaceE"></span><span id="hops::MHO_DirectoryInterface"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MHO_DirectoryInterface</span></span></span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterfaceE" title="Link to this definition"></a><br /></dt>
+<dd><p>Class <a class="reference internal" href="#classhops_1_1MHO__DirectoryInterface"><span class="std std-ref">MHO_DirectoryInterface</span></a>. </p>
+<p>implements utility functions to access a directory and locate files</p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>J. Barrett - <a class="reference external" href="mailto:barrettj&#37;&#52;&#48;mit&#46;edu">barrettj<span>&#64;</span>mit<span>&#46;</span>edu</a></p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>Tue Jun 1 16:14:04 2021 -0400 </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface15CreateDirectoryERKNSt6stringE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface15CreateDirectoryERKNSt6stringE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface15CreateDirectoryERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::CreateDirectory__ssCRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a3d83b85b4acb982093d180cf36afc9f3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CreateDirectory</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dirname</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface15CreateDirectoryERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Creates a directory with given name and owner permissions. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dirname</strong> – The name of the directory to create. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if directory creation was successful, false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface13GetCorelFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface13GetCorelFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface13GetCorelFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE"></span><span id="hops::MHO_DirectoryInterface::GetCorelFiles__std::vector:ss:CR.std::vector:ss:RC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a6e78f1dfbf85701ff458acd283a71ace"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCorelFiles</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">files</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">corel_files</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface13GetCorelFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>extracts legacy mk4 corel files from list of files </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface19GetCurrentDirectoryEv">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface19GetCurrentDirectoryEv"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface19GetCurrentDirectoryEv"></span><span id="hops::MHO_DirectoryInterface::GetCurrentDirectoryC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a6b737613af0e011ac15170279afe6773"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCurrentDirectory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface19GetCurrentDirectoryEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for current directory. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The full path of the current directory as a std::string. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface25GetCurrentParentDirectoryEv">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface25GetCurrentParentDirectoryEv"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface25GetCurrentParentDirectoryEv"></span><span id="hops::MHO_DirectoryInterface::GetCurrentParentDirectoryC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1ab73ad71779918e1f9e8b161a1c82a3df"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetCurrentParentDirectory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface25GetCurrentParentDirectoryEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for current parent directory. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current parent directory as a std::string. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface11GetFileListERNSt6vectorINSt6stringEEE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface11GetFileListERNSt6vectorINSt6stringEEE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface11GetFileListERNSt6vectorINSt6stringEEE"></span><span id="hops::MHO_DirectoryInterface::GetFileList__std::vector:ss:RC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a820399b3f9f8f0a4fc06e60827bc8612"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetFileList</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aFileList</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface11GetFileListERNSt6vectorINSt6stringEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for file list. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>aFileList</strong> – Output parameter: vector of strings to store file list </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEEPKc">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEEPKc"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEEPKc"></span><span id="hops::MHO_DirectoryInterface::GetFilesMatchingExtention__std::vector:ss:R.cCPC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a354a43b098a57cc6e64d2f8b132d3147"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetFilesMatchingExtention</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aFileList</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">anExt</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEEPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for files matching extention. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aFileList</strong> – Output vector to store matching file names </p></li>
+<li><p><strong>anExt</strong> – Extension to match against </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetFilesMatchingExtention__std::vector:ss:R.ssCRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a6abcd719c24808dc368b68ffe4513195"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetFilesMatchingExtention</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aFileList</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">anExt</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface25GetFilesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for files matching extention. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aFileList</strong> – Output vector to store matching file names. </p></li>
+<li><p><strong>anExt</strong> – Extension pattern to match. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEEPKc">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEEPKc"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEEPKc"></span><span id="hops::MHO_DirectoryInterface::GetFilesMatchingPrefix__std::vector:ss:R.cCPC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1abf4c8f52ee0dd0fea7a608cfb73d5721"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetFilesMatchingPrefix</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aFileList</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">aPrefix</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEEPKc" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for files matching prefix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aFileList</strong> – Output vector of matching file names </p></li>
+<li><p><strong>aPrefix</strong> – Input string prefix to match against file names </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEERKNSt6stringE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEERKNSt6stringE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetFilesMatchingPrefix__std::vector:ss:R.ssCRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1af768f08a35629a5a2a8efc498ee9b2ad"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetFilesMatchingPrefix</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aFileList</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aPrefix</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface22GetFilesMatchingPrefixERNSt6vectorINSt6stringEEERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for files matching prefix. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aFileList</strong> – Output vector of matching file names </p></li>
+<li><p><strong>aPrefix</strong> – Input string prefix to match against file names </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface14GetFringeFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEERi">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface14GetFringeFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEERi"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface14GetFringeFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEERi"></span><span id="hops::MHO_DirectoryInterface::GetFringeFiles__std::vector:ss:CR.std::vector:ss:R.iRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1aa1390bb5c58466a0fca3ffc07a717d78"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetFringeFiles</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">files</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">fringe_files</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max_sequence_num</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface14GetFringeFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEERi" title="Link to this definition"></a><br /></dt>
+<dd><p>extracts legacy mk4 fringe files from list of files </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface11GetRootFileERKNSt6vectorINSt6stringEEERNSt6stringE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface11GetRootFileERKNSt6vectorINSt6stringEEERNSt6stringE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface11GetRootFileERKNSt6vectorINSt6stringEEERNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetRootFile__std::vector:ss:CR.ssRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1ad9bc29e620e0df94dfbcd9661146b0e4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetRootFile</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">files</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root_file</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface11GetRootFileERKNSt6vectorINSt6stringEEERNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>extracts legacy mk4 root file from list of files </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface15GetStationFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface15GetStationFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface15GetStationFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE"></span><span id="hops::MHO_DirectoryInterface::GetStationFiles__std::vector:ss:CR.std::vector:ss:RC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1ad2b5b40052930008b4d92f4cc662a535"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetStationFiles</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">files</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">station_files</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface15GetStationFilesERKNSt6vectorINSt6stringEEERNSt6vectorINSt6stringEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>extracts legacy mk4 station files from list of files </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface34GetSubDirectoriesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface34GetSubDirectoriesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface34GetSubDirectoriesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetSubDirectoriesMatchingExtention__std::vector:ss:R.ssCRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1aa3367bd0e3a22935912a4e71c891a2cb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetSubDirectoriesMatchingExtention</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aDirList</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">anExt</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface34GetSubDirectoriesMatchingExtentionERNSt6vectorINSt6stringEEERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for sub directories matching extention. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aDirList</strong> – Output vector to store matching directories </p></li>
+<li><p><strong>anExt</strong> – Extension to match for filtering directories </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface19GetSubDirectoryListERNSt6vectorINSt6stringEEE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface19GetSubDirectoryListERNSt6vectorINSt6stringEEE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface19GetSubDirectoryListERNSt6vectorINSt6stringEEE"></span><span id="hops::MHO_DirectoryInterface::GetSubDirectoryList__std::vector:ss:RC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1ad3f9c2bc6efbc93b1d160153dfdb2d1d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetSubDirectoryList</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">aSubDirList</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface19GetSubDirectoryListERNSt6vectorINSt6stringEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for sub directory list. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>aSubDirList</strong> – Output parameter: vector to store subdirectory list </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface20ReadCurrentDirectoryEv">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface20ReadCurrentDirectoryEv"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface20ReadCurrentDirectoryEv"></span><span id="hops::MHO_DirectoryInterface::ReadCurrentDirectory"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a9e50bef0928027b1163c029f042905e1"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReadCurrentDirectory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface20ReadCurrentDirectoryEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Checks if current directory exists and reads its files and directories. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool indicating success/failure. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface19SetCurrentDirectoryERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface19SetCurrentDirectoryERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface19SetCurrentDirectoryERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::SetCurrentDirectory__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a2223b8b3ac1045084e927ea561b7f5ff"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SetCurrentDirectory</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dirname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface19SetCurrentDirectoryERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Setter for current directory. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dirname</strong> – The new directory path to set. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface22SplitCorelFileBasenameERKNSt6stringERNSt6stringERNSt6stringE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface22SplitCorelFileBasenameERKNSt6stringERNSt6stringERNSt6stringE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface22SplitCorelFileBasenameERKNSt6stringERNSt6stringERNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::SplitCorelFileBasename__ssCR.ssR.ssRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a326e7329132696f46e184a82e7baae74"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SplitCorelFileBasename</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">corel_basename</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">st_pair</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root_code</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface22SplitCorelFileBasenameERKNSt6stringERNSt6stringERNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>splits out baseline and root code from basename of a legacy mk4 corel file </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4hops22MHO_DirectoryInterface24SplitStationFileBasenameERKNSt6stringERNSt6stringERNSt6stringE">
+<span id="_CPPv3NK4hops22MHO_DirectoryInterface24SplitStationFileBasenameERKNSt6stringERNSt6stringERNSt6stringE"></span><span id="_CPPv2NK4hops22MHO_DirectoryInterface24SplitStationFileBasenameERKNSt6stringERNSt6stringERNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::SplitStationFileBasename__ssCR.ssR.ssRC"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a58722d61a4f11f8e84252ea9be204435"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SplitStationFileBasename</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">station_basename</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">st</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root_code</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4hops22MHO_DirectoryInterface24SplitStationFileBasenameERKNSt6stringERNSt6stringERNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>splits out station char and root code from basename of a legacy mk4 station file </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface18DoesDirectoryExistERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface18DoesDirectoryExistERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface18DoesDirectoryExistERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::DoesDirectoryExist__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a0d4014887a8d80ba1cad3eeafa9bf711"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DoesDirectoryExist</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dirname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface18DoesDirectoryExistERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Checks if a directory exists by attempting to open it. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a static function. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dirname</strong> – The name of the directory to check. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the directory exists and can be opened, false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface11GetBasenameERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface11GetBasenameERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface11GetBasenameERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetBasename__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1ae8f0219d1a4777df278df0eb1eea10f4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetBasename</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">filename</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface11GetBasenameERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>gets the file name from a path to a file </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface20GetDirectoryFullPathERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface20GetDirectoryFullPathERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface20GetDirectoryFullPathERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetDirectoryFullPath__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a4e8abe866f1901ccfee6271ad93dae83"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetDirectoryFullPath</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dirname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface20GetDirectoryFullPathERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for directory full path. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a static function. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dirname</strong> – The directory name to resolve. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The full absolute path as a string. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface36GetDirectoryFullPathPreserveSymlinksERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface36GetDirectoryFullPathPreserveSymlinksERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface36GetDirectoryFullPathPreserveSymlinksERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetDirectoryFullPathPreserveSymlinks__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a37bb8f6f15eb6c74a09519f7c5c280c5"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetDirectoryFullPathPreserveSymlinks</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dirname</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface36GetDirectoryFullPathPreserveSymlinksERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for directory full path preserve symlinks. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a static function. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dirname</strong> – Input directory name </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Full path of the directory as a string </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface22GetFileModifcationTimeERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface22GetFileModifcationTimeERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface22GetFileModifcationTimeERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetFileModifcationTime__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1abd23a147a9ea5f21a80a777bec836571"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetFileModifcationTime</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface22GetFileModifcationTimeERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Getter for file modifcation time. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a static function. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – The name of the file to retrieve modification time for. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A string representing the modification time of the file in timestamp format. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface9GetPrefixERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface9GetPrefixERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface9GetPrefixERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::GetPrefix__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a62ee16c945afdc00a4b38e4acd635358"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetPrefix</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">filename</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface9GetPrefixERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>gets the directory prefix from a full path to a file </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface11IsDirectoryERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface11IsDirectoryERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface11IsDirectoryERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::IsDirectory__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a8ecfabe548ad07c7d6c4b1b350e74106"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsDirectory</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface11IsDirectoryERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Checks if a given path is a directory. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a static function. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Path to check. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if it’s a directory, false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface6IsFileERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface6IsFileERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface6IsFileERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::IsFile__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a9207de634650857db5d2c169eaa59ded"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsFile</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface6IsFileERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Checks if a given path is a regular file. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a static function. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Path to check as std::string&amp;. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if it’s a regular file, false otherwise. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_DirectoryInterface26StripExtensionFromBasenameERKNSt6stringE">
+<span id="_CPPv3N4hops22MHO_DirectoryInterface26StripExtensionFromBasenameERKNSt6stringE"></span><span id="_CPPv2N4hops22MHO_DirectoryInterface26StripExtensionFromBasenameERKNSt6stringE"></span><span id="hops::MHO_DirectoryInterface::StripExtensionFromBasename__ssCR"></span><span class="target" id="classhops_1_1MHO__DirectoryInterface_1a716e41bea8d463cfef9fcd60dbe31fb1"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StripExtensionFromBasename</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">file_basename</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_DirectoryInterface26StripExtensionFromBasenameERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>removes the extention (anything after last ‘.’) from a file (base) name </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops11MHO_FileKeyE">
+<span id="_CPPv3N4hops11MHO_FileKeyE"></span><span id="_CPPv2N4hops11MHO_FileKeyE"></span><span id="hops::MHO_FileKey"></span><span class="target" id="classhops_1_1MHO__FileKey"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MHO_FileKey</span></span></span><a class="headerlink" href="#_CPPv4N4hops11MHO_FileKeyE" title="Link to this definition"></a><br /></dt>
+<dd><p>Class <a class="reference internal" href="#classhops_1_1MHO__FileKey"><span class="std std-ref">MHO_FileKey</span></a> the version-0 size of the file key is (512 bits / 64 bytes), and all of the version-0 data fields must be present and structure unchanged in any future versions. A future version X of <a class="reference internal" href="#classhops_1_1MHO__FileKey"><span class="std std-ref">MHO_FileKey</span></a> may extend the file key by N bytes of arbitrarily structured data to be inserted (after the end of the V0 key and before the file object it describes, so long as N+64 &lt; UINT16_MAX, and the appropriate StreamInData_VX/StreamOutData_VX and ByteSize functions are defined. </p>
+<p>class for file object keys to locate and describe objects in a hops file</p>
+<p><dl class="simple">
+<dt><strong>Author</strong></dt><dd><p>J. Barrett - <a class="reference external" href="mailto:barrettj&#37;&#52;&#48;mit&#46;edu">barrettj<span>&#64;</span>mit<span>&#46;</span>edu</a></p>
+</dd>
+<dt><strong>Date</strong></dt><dd><p>Wed Apr 21 13:40:18 2021 -0400 </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops11MHO_FileKey8ByteSizeEv">
+<span id="_CPPv3N4hops11MHO_FileKey8ByteSizeEv"></span><span id="_CPPv2N4hops11MHO_FileKey8ByteSizeEv"></span><span id="hops::MHO_FileKey::ByteSize"></span><span class="target" id="classhops_1_1MHO__FileKey_1ade8100d3d7d1dc87f545fd85d154ff52"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ByteSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops11MHO_FileKey8ByteSizeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the size of <a class="reference internal" href="#classhops_1_1MHO__FileKey"><span class="std std-ref">MHO_FileKey</span></a> in bytes. this is the size of a <a class="reference internal" href="#classhops_1_1MHO__FileKey"><span class="std std-ref">MHO_FileKey</span></a> on disk DO NOT USE sizeof(MHO_FileKey), as that is the size of the object in memory which may include compiler dependent padding!! </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a static function. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Size of <a class="reference internal" href="#classhops_1_1MHO__FileKey"><span class="std std-ref">MHO_FileKey</span></a> as uint64_t. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-functions">Private Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN4hops11MHO_FileKey15StreamInData_V0EvR7XStream">
+<span id="_CPPv3I0EN4hops11MHO_FileKey15StreamInData_V0ER7XStream"></span><span id="_CPPv2I0EN4hops11MHO_FileKey15StreamInData_V0ER7XStream"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XStream</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classhops_1_1MHO__FileKey_1a54b576eb8df69cc00a05fa728f31c416"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StreamInData_V0</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN4hops11MHO_FileKey15StreamInData_V0EvR7XStream" title="hops::MHO_FileKey::StreamInData_V0::XStream"><span class="n"><span class="pre">XStream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN4hops11MHO_FileKey15StreamInData_V0EvR7XStream" title="Link to this definition"></a><br /></dt>
+<dd><p>Reads and assigns object ID, type ID, name, size from input stream. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> – Input stream of type XStream&amp; </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>void </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK4hops11MHO_FileKey16StreamOutData_V0EvR7XStream">
+<span id="_CPPv3I0ENK4hops11MHO_FileKey16StreamOutData_V0ER7XStream"></span><span id="_CPPv2I0ENK4hops11MHO_FileKey16StreamOutData_V0ER7XStream"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XStream</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classhops_1_1MHO__FileKey_1a2bf41f634dd4e937bf060a00c15393fe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StreamOutData_V0</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK4hops11MHO_FileKey16StreamOutData_V0EvR7XStream" title="hops::MHO_FileKey::StreamOutData_V0::XStream"><span class="n"><span class="pre">XStream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK4hops11MHO_FileKey16StreamOutData_V0EvR7XStream" title="Link to this definition"></a><br /></dt>
+<dd><p>Serializes object data into an output stream. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> – Output stream of type XStream&amp;. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>void </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_TimeStampConverterE">
+<span id="_CPPv3N4hops22MHO_TimeStampConverterE"></span><span id="_CPPv2N4hops22MHO_TimeStampConverterE"></span><span id="hops::MHO_TimeStampConverter"></span><span class="target" id="classhops_1_1MHO__TimeStampConverter"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MHO_TimeStampConverter</span></span></span><a class="headerlink" href="#_CPPv4N4hops22MHO_TimeStampConverterE" title="Link to this definition"></a><br /></dt>
+<dd><p>Class <a class="reference internal" href="#classhops_1_1MHO__TimeStampConverter"><span class="std std-ref">MHO_TimeStampConverter</span></a>. </p>
+<p><dl class="simple">
+<dt><strong>Date</strong></dt><dd><p>Mon May 11 15:51:26 2020 -0400 </p>
+</dd>
+<dt><strong>Author</strong></dt><dd><p>J. Barrett - <a class="reference external" href="mailto:barrettj&#37;&#52;&#48;mit&#46;edu">barrettj<span>&#64;</span>mit<span>&#46;</span>edu</a> A class responsible for converting times/dates stored in a human readable string into Unix epoch seconds and fractions of a second. The conversion can be done in both directions </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_TimeStampConverter29ConvertEpochSecondToTimeStampERK8uint64_tRKdRNSt6stringE">
+<span id="_CPPv3N4hops22MHO_TimeStampConverter29ConvertEpochSecondToTimeStampERK8uint64_tRKdRNSt6stringE"></span><span id="_CPPv2N4hops22MHO_TimeStampConverter29ConvertEpochSecondToTimeStampERK8uint64_tRKdRNSt6stringE"></span><span id="hops::MHO_TimeStampConverter::ConvertEpochSecondToTimeStamp__uint64_tCR.doubleCR.ssR"></span><span class="target" id="classhops_1_1MHO__TimeStampConverter_1aa0e29137bd0dc6a579151fd2145454e4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ConvertEpochSecondToTimeStamp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">epoch_sec</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">fractional_part</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">date_string</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_TimeStampConverter29ConvertEpochSecondToTimeStampERK8uint64_tRKdRNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p><ul class="simple">
+<li><p>convert a long int epoch second count to a human readable date string in YYYY-MM-DDTHH:MM:SS.(F)Z format. The fractional_part is rounded to the nearest nano second </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>epoch_sec</strong> – const reference to a uint64_t to the epoch second </p></li>
+<li><p><strong>fractional_part</strong> – const reference to a double containing the factional second </p></li>
+<li><p><strong>date</strong> – reference to a std::string object where the date string is to be stored </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a boolean indicating if the conversion was successful </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4hops22MHO_TimeStampConverter29ConvertTimeStampToEpochSecondERKNSt6stringER8uint64_tRd">
+<span id="_CPPv3N4hops22MHO_TimeStampConverter29ConvertTimeStampToEpochSecondERKNSt6stringER8uint64_tRd"></span><span id="_CPPv2N4hops22MHO_TimeStampConverter29ConvertTimeStampToEpochSecondERKNSt6stringER8uint64_tRd"></span><span id="hops::MHO_TimeStampConverter::ConvertTimeStampToEpochSecond__ssCR.uint64_tR.doubleR"></span><span class="target" id="classhops_1_1MHO__TimeStampConverter_1a3f361912cf70676cdf8a6111c744f988"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ConvertTimeStampToEpochSecond</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">date_string</span></span>, <span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">epoch_sec</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">fractional_part</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4hops22MHO_TimeStampConverter29ConvertTimeStampToEpochSecondERKNSt6stringER8uint64_tRd" title="Link to this definition"></a><br /></dt>
+<dd><p><ul class="simple">
+<li><p>Convert a date string into an epoch second and fractional second. The time stamp must be in UTC/Zulu with format: YYYY-MM-DDTHH:MM:SS.(F)Z, the number of digits in the fractional part (F) may vary. </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>date</strong> – const reference to the date string to be converted </p></li>
+<li><p><strong>epoch_sec</strong> – reference to a uint64_t where the epoch second value is to be stored </p></li>
+<li><p><strong>fractional_part</strong> – reference to a double where the factional second value is to be stored </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a boolean indicating if the conversion was successful </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

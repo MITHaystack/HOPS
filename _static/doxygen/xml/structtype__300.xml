@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__300" kind="struct" language="C++" prot="public">
+    <compoundname>type_300</compoundname>
+    <includes refid="type__300_8h" local="no">type_300.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__300_1a4acc7d084be2b541aa145ac6c10ad790" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_300::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1adbac934318a26d66e136f40899ee3a2f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_300::intl_id[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>intl_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="17" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1adf27c1aee71fb5c469e0d64f2fda4678" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_300::model_interval</definition>
+        <argsstring></argsstring>
+        <name>model_interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="21" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1a9960d108cbd1152d69bc8d55fe06c54a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_300::model_start</definition>
+        <argsstring></argsstring>
+        <name>model_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="19" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1a5d53a5f30bb39954b2621c4cc2055262" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_300::name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="18" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1ad9d544bac6ded0dc8f642b119017fa88" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_300::nsplines</definition>
+        <argsstring></argsstring>
+        <name>nsplines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="22" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1a95ce73115c0218c0a472e3f073941e36" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_300::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="12" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1a126318fdb2d9018ccd1320b0eb66d811" prot="public" static="no" mutable="no">
+        <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref></type>
+        <definition>U8 type_300::SU_number</definition>
+        <argsstring></argsstring>
+        <name>SU_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="15" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1aec165e9c3465fb5813aebfe746d0651a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_300::unused1[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1abf316fd0898ec0c511c9e0121d299d9a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_300::unused2</definition>
+        <argsstring></argsstring>
+        <name>unused2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="19" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__300_1a8bea2a83511035359e6701a6c4d58913" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_300::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="13" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>type_300</label>
+        <link refid="structtype__300"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>nsplines</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>model_interval</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>SU_number</edgelabel>
+          <edgelabel>id</edgelabel>
+          <edgelabel>intl_id</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>model_start</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_300.h" bodystart="11" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structtype__300_1a4acc7d084be2b541aa145ac6c10ad790" prot="public" virt="non-virtual"><scope>type_300</scope><name>id</name></member>
+      <member refid="structtype__300_1adbac934318a26d66e136f40899ee3a2f" prot="public" virt="non-virtual"><scope>type_300</scope><name>intl_id</name></member>
+      <member refid="structtype__300_1adf27c1aee71fb5c469e0d64f2fda4678" prot="public" virt="non-virtual"><scope>type_300</scope><name>model_interval</name></member>
+      <member refid="structtype__300_1a9960d108cbd1152d69bc8d55fe06c54a" prot="public" virt="non-virtual"><scope>type_300</scope><name>model_start</name></member>
+      <member refid="structtype__300_1a5d53a5f30bb39954b2621c4cc2055262" prot="public" virt="non-virtual"><scope>type_300</scope><name>name</name></member>
+      <member refid="structtype__300_1ad9d544bac6ded0dc8f642b119017fa88" prot="public" virt="non-virtual"><scope>type_300</scope><name>nsplines</name></member>
+      <member refid="structtype__300_1a95ce73115c0218c0a472e3f073941e36" prot="public" virt="non-virtual"><scope>type_300</scope><name>record_id</name></member>
+      <member refid="structtype__300_1a126318fdb2d9018ccd1320b0eb66d811" prot="public" virt="non-virtual"><scope>type_300</scope><name>SU_number</name></member>
+      <member refid="structtype__300_1aec165e9c3465fb5813aebfe746d0651a" prot="public" virt="non-virtual"><scope>type_300</scope><name>unused1</name></member>
+      <member refid="structtype__300_1abf316fd0898ec0c511c9e0121d299d9a" prot="public" virt="non-virtual"><scope>type_300</scope><name>unused2</name></member>
+      <member refid="structtype__300_1a8bea2a83511035359e6701a6c4d58913" prot="public" virt="non-virtual"><scope>type_300</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

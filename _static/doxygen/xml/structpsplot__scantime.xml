@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpsplot__scantime" kind="struct" language="C++" prot="public">
+    <compoundname>psplot_scantime</compoundname>
+    <includes refid="psplot_8h" local="no">psplot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpsplot__scantime_1adbf78d835141217c888b24fe815a1f7d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_scantime::nst</definition>
+        <argsstring></argsstring>
+        <name>nst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="94" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__scantime_1a7b23902244737d43497311422b1d665b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char psplot_scantime::scan_name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="92" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__scantime_1a613cc57559c1d8744398fb38e299759c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_scantime::scantime</definition>
+        <argsstring></argsstring>
+        <name>scantime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="89" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__scantime_1a90861e5d6663c109c7a63752b78742ba" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_scantime::seconds</definition>
+        <argsstring></argsstring>
+        <name>seconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="90" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__scantime_1a49ca68bbb74efb731b9a9aa674265a81" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpsplot__station" kindref="compound">psplot_station</ref></type>
+        <definition>struct psplot_station psplot_scantime::stations[MAXSTEXP]</definition>
+        <argsstring>[MAXSTEXP]</argsstring>
+        <name>stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="92" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__scantime_1addf36c99bba523a582f2b7d513b9120d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_scantime::tagged[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>tagged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="91" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>psplot_scantime</label>
+        <link refid="structpsplot__scantime"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>scan_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>nst</edgelabel>
+          <edgelabel>scantime</edgelabel>
+          <edgelabel>seconds</edgelabel>
+          <edgelabel>tagged</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>stations</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>psplot_station</label>
+        <link refid="structpsplot__station"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fglist</edgelabel>
+          <edgelabel>stn</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>minus</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="87" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="88" bodyend="95"/>
+    <listofallmembers>
+      <member refid="structpsplot__scantime_1adbf78d835141217c888b24fe815a1f7d" prot="public" virt="non-virtual"><scope>psplot_scantime</scope><name>nst</name></member>
+      <member refid="structpsplot__scantime_1a7b23902244737d43497311422b1d665b" prot="public" virt="non-virtual"><scope>psplot_scantime</scope><name>scan_name</name></member>
+      <member refid="structpsplot__scantime_1a613cc57559c1d8744398fb38e299759c" prot="public" virt="non-virtual"><scope>psplot_scantime</scope><name>scantime</name></member>
+      <member refid="structpsplot__scantime_1a90861e5d6663c109c7a63752b78742ba" prot="public" virt="non-virtual"><scope>psplot_scantime</scope><name>seconds</name></member>
+      <member refid="structpsplot__scantime_1a49ca68bbb74efb731b9a9aa674265a81" prot="public" virt="non-virtual"><scope>psplot_scantime</scope><name>stations</name></member>
+      <member refid="structpsplot__scantime_1addf36c99bba523a582f2b7d513b9120d" prot="public" virt="non-virtual"><scope>psplot_scantime</scope><name>tagged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

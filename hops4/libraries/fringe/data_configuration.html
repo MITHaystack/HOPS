@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Configuration and Initialization &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Information Extraction and Processing" href="information_extraction.html" />
+    <link rel="prev" title="Core Fringe Fitting Engine" href="core_fitting_engine.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Fringe.html">Fringe</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_fitting_engine.html">Core Fringe Fitting Engine</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Configuration and Initialization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-basicfringedataconfiguration">MHO_BasicFringeDataConfiguration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-fringecontrolinitialization">MHO_FringeControlInitialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-initialfringeinfo">MHO_InitialFringeInfo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="information_extraction.html">Information Extraction and Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation_utilities.html">Computation and Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualization_output.html">Visualization and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Fringe.html">Fringe</a></li>
+      <li class="breadcrumb-item active">Data Configuration and Initialization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/fringe/data_configuration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-configuration-and-initialization">
+<h1>Data Configuration and Initialization<a class="headerlink" href="#data-configuration-and-initialization" title="Link to this heading"></a></h1>
+<p>The data configuration and initialization components provide the necessary setup
+and pre-processing functions for fringe fitting operations. These classes handle
+command line parsing, control file processing, and initial parameter setup.</p>
+<section id="mho-basicfringedataconfiguration">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BasicFringeDataConfiguration.html">MHO_BasicFringeDataConfiguration</a><a class="headerlink" href="#mho-basicfringedataconfiguration" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BasicFringeDataConfiguration.html">MHO_BasicFringeDataConfiguration</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Collection of helper functions for fringe fitter start-up</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Command line argument parsing</div>
+<div class="line">Baseline and frequency group processing</div>
+<div class="line">Scan and data pass determination</div>
+<div class="line">Operator initialization and execution</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BasicFringeDataConfiguration.html">MHO_BasicFringeDataConfiguration</a> class provides essential helper functions
+for initializing fringe fitter operations. It handles command line argument parsing,
+determines processing passes and initializes scan data structures. A single <em>pass</em>
+is made up of a single source, baseline, frequency-group, and polarization-product.
+Key functions include <cite>parse_fourfit_command_line()</cite> for argument processing and
+<cite>initialize_scan_data()</cite> for scan data store setup.</p>
+</section>
+<section id="mho-fringecontrolinitialization">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeControlInitialization.html">MHO_FringeControlInitialization</a><a class="headerlink" href="#mho-fringecontrolinitialization" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeControlInitialization.html">MHO_FringeControlInitialization</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Control file processing and initialization</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Control file processing and statement management</div>
+<div class="line">Default operator definitions</div>
+<div class="line">Polarization product handling</div>
+<div class="line">Ionospheric search detection</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeControlInitialization.html">MHO_FringeControlInitialization</a> class handles the processing of control
+files and initialization of fringe fitting parameters. It manages control file
+statements, adds default operators, and determines processing requirements such
+as whether or not an ionospheric dTEC search is needed.</p>
+<p>The class provides functions like <cite>process_control_file()</cite> for control file handling
+and <cite>need_ion_search()</cite> for determining ionospheric processing requirements.</p>
+</section>
+<section id="mho-initialfringeinfo">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__InitialFringeInfo.html">MHO_InitialFringeInfo</a><a class="headerlink" href="#mho-initialfringeinfo" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__InitialFringeInfo.html">MHO_InitialFringeInfo</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>A priori parameter population for fringe fitting</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Default parameter initialization</div>
+<div class="line">Reference frequency configuration</div>
+<div class="line">Clock model calculations</div>
+<div class="line">Pre-calculation of derived quantities</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__InitialFringeInfo.html">MHO_InitialFringeInfo</a> class provides helper functions for populating
+the parameter store with <em>a priori</em> information known before fringe fitting begins.
+This includes setting default parameters, configuring the reference frequency, and
+calculating <em>a priori</em> clock models.</p>
+<p>Key functions include <cite>set_default_parameters_minimal()</cite> for basic parameter setup
+and <cite>calculate_clock_model()</cite> for clock model initialization.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_fitting_engine.html" class="btn btn-neutral float-left" title="Core Fringe Fitting Engine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="information_extraction.html" class="btn btn-neutral float-right" title="Information Extraction and Processing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

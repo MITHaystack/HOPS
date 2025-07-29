@@ -1,0 +1,1219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="adump_8h" kind="file" language="C++">
+    <compoundname>adump.h</compoundname>
+    <includedby refid="adump_8c" local="yes">adump.c</includedby>
+    <includedby refid="parse__bfields_8c" local="yes">parse_bfields.c</includedby>
+    <includedby refid="applications_2adump_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <includedby refid="parse__tfields_8c" local="yes">parse_tfields.c</includedby>
+    <includedby refid="strip__bline_8c" local="yes">strip_bline.c</includedby>
+    <includedby refid="strip__tline_8c" local="yes">strip_tline.c</includedby>
+    <includedby refid="write__header_8c" local="yes">write_header.c</includedby>
+    <invincdepgraph>
+      <node id="3">
+        <label>parse_bfields.c</label>
+        <link refid="parse__bfields_8c"/>
+      </node>
+      <node id="8">
+        <label>write_header.c</label>
+        <link refid="write__header_8c"/>
+      </node>
+      <node id="1">
+        <label>adump.h</label>
+        <link refid="adump_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>parse_tfields.c</label>
+        <link refid="parse__tfields_8c"/>
+      </node>
+      <node id="2">
+        <label>adump.c</label>
+        <link refid="adump_8c"/>
+      </node>
+      <node id="4">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2adump_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="7">
+        <label>strip_tline.c</label>
+        <link refid="strip__tline_8c"/>
+      </node>
+      <node id="6">
+        <label>strip_bline.c</label>
+        <link refid="strip__bline_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structflist" prot="public">flist</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="adump_8h_1a275bf953bafebbee9d51f1e994c891d4" prot="public" static="no">
+        <name>AMBIGUITY</name>
+        <initializer>24</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="29" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a3069ce145143ea1c7c3744b9ddda34bc" prot="public" static="no">
+        <name>AMP</name>
+        <initializer>18</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="23" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a7f75e0f0b14506d1bb91cdcb6516daed" prot="public" static="no">
+        <name>BASELINE</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="18" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a1da295ac7ed7c331d34e830b24191e39" prot="public" static="no">
+        <name>DATATYPE</name>
+        <initializer>21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="26" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a9a76409fddab719e3a4143bd6780f603" prot="public" static="no">
+        <name>DRATE</name>
+        <initializer>25</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="30" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aa312b7c3e9d9981fb0d98cc4428f17bf" prot="public" static="no">
+        <name>DURATION</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="10" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a0ac447c7f69530e0caadc891c59d7244" prot="public" static="no">
+        <name>EPOCH</name>
+        <initializer>33</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="38" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1ac89b68eac297aa706fecf0901263ada7" prot="public" static="no">
+        <name>EPOCHDAY</name>
+        <initializer>52</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="52" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a92cbc11248c8a024c7bb008228ee2493" prot="public" static="no">
+        <name>ESDESP</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="37" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aeb246b80009eb6bb14c6e3023e08cdba" prot="public" static="no">
+        <name>EXPT_NO</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="13" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a9eeb29e6b4afa0ecc0f241b4215c239e" prot="public" static="no">
+        <name>EXTENT</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="9" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
+        <name>FALSE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="92" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a34f6f8960fc68b6868bdaba19ee888e3" prot="public" static="no">
+        <name>FREQ_CODE</name>
+        <initializer>15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="20" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a30362161c93e3f1a4ee4c673f535b5a8" prot="public" static="no">
+        <name>LENGTH</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="11" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1abb47f770b8b4507578f390e8983f9ed2" prot="public" static="no">
+        <name>MAXFIELDS</name>
+        <initializer>50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="90" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1afb1584863df95d4ae5ad66592f9e94b6" prot="public" static="no">
+        <name>MBDELAY</name>
+        <initializer>23</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="28" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1ab8c52c1b4c021ed3e6b6b677bd2ac019" prot="public" static="no">
+        <name>MODE</name>
+        <initializer>16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="21" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a15b6c21ed69b3ae39e9ff0f93c8396c0" prot="public" static="no">
+        <name>NCOTIME</name>
+        <initializer>40</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="45" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a81a10fb168899efe1d3f89bed47d44b9" prot="public" static="no">
+        <name>NFREQ</name>
+        <initializer>17</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="22" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a21005f9f4e2ce7597c5eb4351816d7e2" prot="public" static="no">
+        <name>OFFSET</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="12" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a843b1715418eea6c7f388df2517f9237" prot="public" static="no">
+        <name>PARENTS</name>
+        <initializer>41</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="46" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a8d6360b29483bf26b8fad7441892fb78" prot="public" static="no">
+        <name>PHASE</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="25" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a524e7de641086886b1cfe0391ffc9f57" prot="public" static="no">
+        <name>POL</name>
+        <initializer>42</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="47" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1af496bd8f81924a1be8c967aea07382cc" prot="public" static="no">
+        <name>PROCDATE</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="14" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a97f80e45de339807f300840b44ceb46c" prot="public" static="no">
+        <name>PROCDAY</name>
+        <initializer>50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="50" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1adc1876afa8c1921a3b743523e4369c75" prot="public" static="no">
+        <name>QUALITY</name>
+        <initializer>14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="19" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a76258475ea1ee19c26a8ec49680c634f" prot="public" static="no">
+        <name>REF_AZIMUTH</name>
+        <initializer>28</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="33" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a6d6303343626ad4387bf93c0806495a1" prot="public" static="no">
+        <name>REF_ELEVATION</name>
+        <initializer>26</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="31" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a186ca385724bf04ccf18c041f18ce330" prot="public" static="no">
+        <name>REF_FREQ</name>
+        <initializer>34</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="39" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a12ac751d7171b197246f3a58a6476468" prot="public" static="no">
+        <name>REM_AZIMUTH</name>
+        <initializer>29</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="34" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a4ee8a7894bd9bcca0a764acc8d15b228" prot="public" static="no">
+        <name>REM_ELEVATION</name>
+        <initializer>27</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="32" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1ad60d1929837955fbd1b6e35e03ba6df6" prot="public" static="no">
+        <name>ROOTCODE</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="7" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1af25eb7fee391d1c9bd0b6b9b22371635" prot="public" static="no">
+        <name>SBDELAY</name>
+        <initializer>22</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="27" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a45e8e5961e7420d431358235f5538a62" prot="public" static="no">
+        <name>SCANDAY</name>
+        <initializer>51</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="51" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a0278c4720af14cba6853eb2297547b25" prot="public" static="no">
+        <name>SCANYEAR</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="15" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a5df035d1b9347f08cf993917fe4f9bd5" prot="public" static="no">
+        <name>SCOTIME</name>
+        <initializer>39</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="44" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aef2f5c7bce117abced23a19c721843b0" prot="public" static="no">
+        <name>SNR</name>
+        <initializer>19</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="24" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a88cabaa30cba6807a1c75eaa7e4c188e" prot="public" static="no">
+        <name>SOURCE</name>
+        <initializer>12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="17" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a4dd937b24492216ba7abe785f5f78b76" prot="public" static="no">
+        <name>T_AMBIGUITY</name>
+        <initializer>124</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="79" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a37e8b3945fadc85a92051de75d1342c1" prot="public" static="no">
+        <name>T_AZIMUTH</name>
+        <initializer>127</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="82" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aaf785afc274328847224d769919dbae6" prot="public" static="no">
+        <name>T_BISAMP</name>
+        <initializer>118</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="73" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a0f1d74cbba871c0b13996cc84764969b" prot="public" static="no">
+        <name>T_BISPHASE</name>
+        <initializer>120</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="75" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1abb46bf7e99c6fc989fac5580ad078d3a" prot="public" static="no">
+        <name>T_BISSNR</name>
+        <initializer>119</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="74" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a23296cc292597eb408649fe33c2362b0" prot="public" static="no">
+        <name>T_CDRATE</name>
+        <initializer>125</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="80" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1ac063b9fd53245f398cf9f7382db24552" prot="public" static="no">
+        <name>T_CMBDELAY</name>
+        <initializer>123</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="78" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1afafbcff439232cb71e5b2b599caae996" prot="public" static="no">
+        <name>T_CSBDELAY</name>
+        <initializer>122</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="77" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1af98f9f27f346f82ea0af1fd2659ee595" prot="public" static="no">
+        <name>T_DATATYPE</name>
+        <initializer>121</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="76" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a0e3a49b024381f507e067b3a3161ec82" prot="public" static="no">
+        <name>T_DQUALITY</name>
+        <initializer>116</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="71" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a95b2ea437dacb594a37e23576923b2f1" prot="public" static="no">
+        <name>T_DURATION</name>
+        <initializer>113</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="68" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a2b14148cce58f7fea3d8644351939cae" prot="public" static="no">
+        <name>T_ELEVATION</name>
+        <initializer>126</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="81" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1af2625c92a72abe396562fd0eb12c065a" prot="public" static="no">
+        <name>T_EPOCH</name>
+        <initializer>128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="83" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a726452a9573ccb7225cd8822b129fd6d" prot="public" static="no">
+        <name>T_EPOCHDAY</name>
+        <initializer>151</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="88" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a551d94ea959118a4e93c37a7e7e470c1" prot="public" static="no">
+        <name>T_ESDESP</name>
+        <initializer>117</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="72" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1ac6b2c940784e8bf472107eb21f91fa73" prot="public" static="no">
+        <name>T_EXPT_NO</name>
+        <initializer>102</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="57" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a19b5340e154d2fd854e08e7d94998c9d" prot="public" static="no">
+        <name>T_EXTENT</name>
+        <initializer>111</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="66" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a50311b944e050bf1596fe878cccb90e0" prot="public" static="no">
+        <name>T_FREQ_CODE</name>
+        <initializer>107</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="62" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a2fa940e19d194fe5cd774d71455c8c03" prot="public" static="no">
+        <name>T_LENGTH</name>
+        <initializer>112</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="67" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1adab4345bffcd30d1bdb20bce7d989d9a" prot="public" static="no">
+        <name>T_MODE</name>
+        <initializer>108</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="63" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a7a840624379e8ee294644d31c42de6be" prot="public" static="no">
+        <name>T_OFFSET</name>
+        <initializer>114</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="69" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a7bb3709171d6daba4e924390843e0542" prot="public" static="no">
+        <name>T_REF_FREQ</name>
+        <initializer>129</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="84" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a88743a41a12fc50bba0e2b0bedb87a0b" prot="public" static="no">
+        <name>T_ROOT</name>
+        <initializer>110</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="65" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a266f4b381f705beb5d2ee71991aa1359" prot="public" static="no">
+        <name>T_SCANDAY</name>
+        <initializer>150</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="87" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a1a780076ef48700cdefd6e3f82036dd7" prot="public" static="no">
+        <name>T_SCANYEAR</name>
+        <initializer>104</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="59" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aada413f7a46831b851968d21acd8dcf6" prot="public" static="no">
+        <name>T_SOURCE</name>
+        <initializer>106</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="61" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a6d53caf16bd7c3b269e073b2f5b93ae9" prot="public" static="no">
+        <name>T_SQUALITY</name>
+        <initializer>115</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="70" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a0fa0d0723723e6cfeb9b631c79659fbf" prot="public" static="no">
+        <name>T_TIMETAG</name>
+        <initializer>105</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="60" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a2b31c586b5763248de1bdc648d90d04a" prot="public" static="no">
+        <name>T_TRIANGLE</name>
+        <initializer>109</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="64" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aaec2c3b3a9d313249405662fbec344ac" prot="public" static="no">
+        <name>T_TYPE</name>
+        <initializer>103</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="58" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a57a3c7624ebd16405254f1cb178295df" prot="public" static="no">
+        <name>T_VERSION</name>
+        <initializer>101</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="56" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a556876278437f4f010004077baf96695" prot="public" static="no">
+        <name>TIMETAG</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="16" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a9f98ffec2f1d43ee933cfbcaaba68e90" prot="public" static="no">
+        <name>TOT_DRATE</name>
+        <initializer>36</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="41" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1af1635395f606a2f43f04dc708c54656f" prot="public" static="no">
+        <name>TOT_MBDELAY</name>
+        <initializer>37</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="42" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1ad0ba7ced07e74c25140b808903089058" prot="public" static="no">
+        <name>TOT_MBDSBD</name>
+        <initializer>38</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="43" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1ab9e792fdcda53191d2140fdab83ad83c" prot="public" static="no">
+        <name>TOT_PHASE</name>
+        <initializer>35</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="40" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" prot="public" static="no">
+        <name>TRUE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="91" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a5a392548f2df67370cb15d2a5d75cd7b" prot="public" static="no">
+        <name>TYPE</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="8" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1affc9cbf86b78292bdb405361761c47f5" prot="public" static="no">
+        <name>U</name>
+        <initializer>30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="35" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1af40a326b23c68a27cebe60f16634a2cb" prot="public" static="no">
+        <name>V</name>
+        <initializer>31</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="36" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="adump_8h_1a1c6d5de492ac61ad29aec7aa9a436bbf" prot="public" static="no">
+        <name>VERSION</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="6" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="adump_8h_1a9c90a9aa250700d6b42c0224d53809b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_bfields</definition>
+        <argsstring>(int, char **, struct flist[])</argsstring>
+        <name>parse_bfields</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structflist" kindref="compound">flist</ref></type>
+          <declname>fields</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="101" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/src/parse_bfields.c" bodystart="68" bodyend="120" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" declline="101" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="adump_8h_1a1f55298ff79347a11e3ab86c84b86fa1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_cmdline</definition>
+        <argsstring>(int, char **, FILE **, FILE **, int *, int *, struct flist[])</argsstring>
+        <name>parse_cmdline</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>FILE **</type>
+          <declname>fpin</declname>
+        </param>
+        <param>
+          <type>FILE **</type>
+          <declname>fpout</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>header</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>filetype</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structflist" kindref="compound">flist</ref></type>
+          <declname>fields</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="102" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/src/parse_cmdline.c" bodystart="29" bodyend="168" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" declline="102" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="adump_8h_1ac450176ab7c102f5b0bf3ee28c489382" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_tfields</definition>
+        <argsstring>(int, char **, struct flist[])</argsstring>
+        <name>parse_tfields</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structflist" kindref="compound">flist</ref></type>
+          <declname>fields</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="104" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/src/parse_tfields.c" bodystart="54" bodyend="106" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" declline="104" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="adump_8h_1a638a3bc434bf4eeabfa68ebfcc8102e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int strip_bline</definition>
+        <argsstring>(char *, struct flist[], char *)</argsstring>
+        <name>strip_bline</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structflist" kindref="compound">flist</ref></type>
+          <declname>fields</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>outline</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="105" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/src/strip_bline.c" bodystart="23" bodyend="221" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" declline="105" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="adump_8h_1a4e9a4915801d245e21cb2f50b75367aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int strip_tline</definition>
+        <argsstring>(char *, struct flist[], char *)</argsstring>
+        <name>strip_tline</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structflist" kindref="compound">flist</ref></type>
+          <declname>fields</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>outline</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="106" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/src/strip_tline.c" bodystart="23" bodyend="181" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" declline="106" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="adump_8h_1a52c44ae8b41f0d145590439ed00522fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int write_header</definition>
+        <argsstring>(FILE *, struct flist[])</argsstring>
+        <name>write_header</name>
+        <param>
+          <type>FILE *</type>
+          <declname>fpout</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structflist" kindref="compound">flist</ref></type>
+          <declname>fields</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" line="107" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/src/write_header.c" bodystart="23" bodyend="59" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h" declline="107" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>ADUMP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ADUMP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>BASELINE<sp/>DATA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Quantities<sp/>directly<sp/>in<sp/>A-file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="adump_8h_1a1c6d5de492ac61ad29aec7aa9a436bbf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>VERSION<sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="adump_8h_1ad60d1929837955fbd1b6e35e03ba6df6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>ROOTCODE<sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="adump_8h_1a5a392548f2df67370cb15d2a5d75cd7b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="adump_8h_1a9eeb29e6b4afa0ecc0f241b4215c239e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>EXTENT<sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="adump_8h_1aa312b7c3e9d9981fb0d98cc4428f17bf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>DURATION<sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="adump_8h_1a30362161c93e3f1a4ee4c673f535b5a8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>LENGTH<sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="adump_8h_1a21005f9f4e2ce7597c5eb4351816d7e2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>OFFSET<sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="adump_8h_1aeb246b80009eb6bb14c6e3023e08cdba" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>EXPT_NO<sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="adump_8h_1af496bd8f81924a1be8c967aea07382cc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>PROCDATE<sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="adump_8h_1a0278c4720af14cba6853eb2297547b25" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>SCANYEAR<sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="adump_8h_1a556876278437f4f010004077baf96695" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TIMETAG<sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="adump_8h_1a88cabaa30cba6807a1c75eaa7e4c188e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>SOURCE<sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="adump_8h_1a7f75e0f0b14506d1bb91cdcb6516daed" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>BASELINE<sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="adump_8h_1adc1876afa8c1921a3b743523e4369c75" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>QUALITY<sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="adump_8h_1a34f6f8960fc68b6868bdaba19ee888e3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>FREQ_CODE<sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="adump_8h_1ab8c52c1b4c021ed3e6b6b677bd2ac019" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>MODE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="adump_8h_1a81a10fb168899efe1d3f89bed47d44b9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>NFREQ<sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="adump_8h_1a3069ce145143ea1c7c3744b9ddda34bc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>AMP<sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="adump_8h_1aef2f5c7bce117abced23a19c721843b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>SNR<sp/><sp/><sp/><sp/><sp/>19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="adump_8h_1a8d6360b29483bf26b8fad7441892fb78" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>PHASE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="adump_8h_1a1da295ac7ed7c331d34e830b24191e39" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>DATATYPE<sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="adump_8h_1af25eb7fee391d1c9bd0b6b9b22371635" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>SBDELAY<sp/><sp/><sp/><sp/><sp/>22</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="adump_8h_1afb1584863df95d4ae5ad66592f9e94b6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>MBDELAY<sp/><sp/><sp/><sp/><sp/>23</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="adump_8h_1a275bf953bafebbee9d51f1e994c891d4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>AMBIGUITY<sp/><sp/><sp/>24</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="adump_8h_1a9a76409fddab719e3a4143bd6780f603" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>DRATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>25</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="adump_8h_1a6d6303343626ad4387bf93c0806495a1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REF_ELEVATION<sp/><sp/><sp/>26</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="adump_8h_1a4ee8a7894bd9bcca0a764acc8d15b228" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REM_ELEVATION<sp/><sp/><sp/>27</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="adump_8h_1a76258475ea1ee19c26a8ec49680c634f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REF_AZIMUTH<sp/>28</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="adump_8h_1a12ac751d7171b197246f3a58a6476468" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REM_AZIMUTH<sp/>29</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="adump_8h_1affc9cbf86b78292bdb405361761c47f5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>U<sp/><sp/><sp/><sp/><sp/><sp/><sp/>30</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="adump_8h_1af40a326b23c68a27cebe60f16634a2cb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>V<sp/><sp/><sp/><sp/><sp/><sp/><sp/>31</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="adump_8h_1a92cbc11248c8a024c7bb008228ee2493" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>ESDESP<sp/><sp/><sp/><sp/><sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="adump_8h_1a0ac447c7f69530e0caadc891c59d7244" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>EPOCH<sp/><sp/><sp/><sp/><sp/><sp/><sp/>33</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="adump_8h_1a186ca385724bf04ccf18c041f18ce330" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>REF_FREQ<sp/><sp/><sp/><sp/>34</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="adump_8h_1ab9e792fdcda53191d2140fdab83ad83c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOT_PHASE<sp/><sp/><sp/>35</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="adump_8h_1a9f98ffec2f1d43ee933cfbcaaba68e90" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOT_DRATE<sp/><sp/><sp/>36</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="adump_8h_1af1635395f606a2f43f04dc708c54656f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOT_MBDELAY<sp/>37</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="adump_8h_1ad0ba7ced07e74c25140b808903089058" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>TOT_MBDSBD<sp/><sp/>38</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="adump_8h_1a5df035d1b9347f08cf993917fe4f9bd5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>SCOTIME<sp/><sp/><sp/><sp/><sp/>39</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="adump_8h_1a15b6c21ed69b3ae39e9ff0f93c8396c0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>NCOTIME<sp/><sp/><sp/><sp/><sp/>40</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="adump_8h_1a843b1715418eea6c7f388df2517f9237" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>PARENTS<sp/><sp/><sp/><sp/><sp/>41</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="adump_8h_1a524e7de641086886b1cfe0391ffc9f57" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>POL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>42</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Quantities<sp/>needing<sp/>a<sp/>bit<sp/>of<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>derivation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="adump_8h_1a97f80e45de339807f300840b44ceb46c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>PROCDAY<sp/><sp/><sp/><sp/><sp/>50</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="adump_8h_1a45e8e5961e7420d431358235f5538a62" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>SCANDAY<sp/><sp/><sp/><sp/><sp/>51</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="adump_8h_1ac89b68eac297aa706fecf0901263ada7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>EPOCHDAY<sp/><sp/><sp/><sp/>52</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>TRIANGLE<sp/>DATA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Quantities<sp/>directly<sp/>in<sp/>A-file<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="adump_8h_1a57a3c7624ebd16405254f1cb178295df" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_VERSION<sp/><sp/><sp/>101</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="adump_8h_1ac6b2c940784e8bf472107eb21f91fa73" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_EXPT_NO<sp/><sp/><sp/>102</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="adump_8h_1aaec2c3b3a9d313249405662fbec344ac" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_TYPE<sp/><sp/><sp/><sp/><sp/><sp/>103</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="adump_8h_1a1a780076ef48700cdefd6e3f82036dd7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_SCANYEAR<sp/><sp/>104</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="adump_8h_1a0fa0d0723723e6cfeb9b631c79659fbf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_TIMETAG<sp/><sp/><sp/>105</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="adump_8h_1aada413f7a46831b851968d21acd8dcf6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_SOURCE<sp/><sp/><sp/><sp/>106</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="adump_8h_1a50311b944e050bf1596fe878cccb90e0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_FREQ_CODE<sp/>107</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="adump_8h_1adab4345bffcd30d1bdb20bce7d989d9a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_MODE<sp/><sp/><sp/><sp/><sp/><sp/>108</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="adump_8h_1a2b31c586b5763248de1bdc648d90d04a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_TRIANGLE<sp/><sp/>109</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="adump_8h_1a88743a41a12fc50bba0e2b0bedb87a0b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_ROOT<sp/><sp/><sp/><sp/><sp/><sp/>110</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="adump_8h_1a19b5340e154d2fd854e08e7d94998c9d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_EXTENT<sp/><sp/><sp/><sp/>111</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="adump_8h_1a2fa940e19d194fe5cd774d71455c8c03" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_LENGTH<sp/><sp/><sp/><sp/>112</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="adump_8h_1a95b2ea437dacb594a37e23576923b2f1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_DURATION<sp/><sp/>113</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="adump_8h_1a7a840624379e8ee294644d31c42de6be" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_OFFSET<sp/><sp/><sp/><sp/>114</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="adump_8h_1a6d53caf16bd7c3b269e073b2f5b93ae9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_SQUALITY<sp/><sp/>115</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="adump_8h_1a0e3a49b024381f507e067b3a3161ec82" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_DQUALITY<sp/><sp/>116</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="adump_8h_1a551d94ea959118a4e93c37a7e7e470c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_ESDESP<sp/><sp/><sp/><sp/>117</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="adump_8h_1aaf785afc274328847224d769919dbae6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_BISAMP<sp/><sp/><sp/><sp/>118</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="adump_8h_1abb46bf7e99c6fc989fac5580ad078d3a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_BISSNR<sp/><sp/><sp/><sp/>119</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="adump_8h_1a0f1d74cbba871c0b13996cc84764969b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_BISPHASE<sp/><sp/>120</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="adump_8h_1af98f9f27f346f82ea0af1fd2659ee595" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_DATATYPE<sp/><sp/>121</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="adump_8h_1afafbcff439232cb71e5b2b599caae996" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_CSBDELAY<sp/><sp/>122</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="adump_8h_1ac063b9fd53245f398cf9f7382db24552" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_CMBDELAY<sp/><sp/>123</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="adump_8h_1a4dd937b24492216ba7abe785f5f78b76" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_AMBIGUITY<sp/>124</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="adump_8h_1a23296cc292597eb408649fe33c2362b0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_CDRATE<sp/><sp/><sp/><sp/>125</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="adump_8h_1a2b14148cce58f7fea3d8644351939cae" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_ELEVATION<sp/>126</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="adump_8h_1a37e8b3945fadc85a92051de75d1342c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_AZIMUTH<sp/><sp/><sp/>127</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="adump_8h_1af2625c92a72abe396562fd0eb12c065a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_EPOCH<sp/><sp/><sp/><sp/><sp/>128</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="adump_8h_1a7bb3709171d6daba4e924390843e0542" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_REF_FREQ<sp/><sp/>129</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Quantities<sp/>needing<sp/>a<sp/>bit<sp/>of<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>derivation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="adump_8h_1a266f4b381f705beb5d2ee71991aa1359" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_SCANDAY<sp/><sp/><sp/>150</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="adump_8h_1a726452a9573ccb7225cd8822b129fd6d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/><sp/><sp/><sp/>T_EPOCHDAY<sp/><sp/>151</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="adump_8h_1abb47f770b8b4507578f390e8983f9ed2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXFIELDS<sp/>50</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="adump_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="adump_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="structflist" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structflist" kindref="compound">flist</ref></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96" refid="structflist_1a4ff9ce8ecf1ed83a70c86cb85a34e084" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structflist_1a4ff9ce8ecf1ed83a70c86cb85a34e084" kindref="member">name</ref>[20];</highlight></codeline>
+<codeline lineno="97" refid="structflist_1a1f57d5a256158d4fe5d69d2022dfb864" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structflist_1a1f57d5a256158d4fe5d69d2022dfb864" kindref="member">id</ref>;</highlight></codeline>
+<codeline lineno="98" refid="structflist_1a380a5f29cfcf156df7366e0c5de75d85" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structflist_1a380a5f29cfcf156df7366e0c5de75d85" kindref="member">format</ref>[10];</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="adump_8h_1a9c90a9aa250700d6b42c0224d53809b3" kindref="member">parse_bfields</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structflist" kindref="compound">flist</ref><sp/>[]);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="adump_8h_1a1f55298ff79347a11e3ab86c84b86fa1" kindref="member">parse_cmdline</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/>FILE<sp/>**,<sp/>FILE<sp/>**,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structflist" kindref="compound">flist</ref><sp/>[]);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="adump_8h_1ac450176ab7c102f5b0bf3ee28c489382" kindref="member">parse_tfields</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structflist" kindref="compound">flist</ref><sp/>[]);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="adump_8h_1a638a3bc434bf4eeabfa68ebfcc8102e5" kindref="member">strip_bline</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structflist" kindref="compound">flist</ref><sp/>[],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="adump_8h_1a4e9a4915801d245e21cb2f50b75367aa" kindref="member">strip_tline</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structflist" kindref="compound">flist</ref><sp/>[],<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="adump_8h_1a52c44ae8b41f0d145590439ed00522fa" kindref="member">write_header</ref><sp/>(FILE<sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structflist" kindref="compound">flist</ref><sp/>[]);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/include/adump.h"/>
+  </compounddef>
+</doxygen>

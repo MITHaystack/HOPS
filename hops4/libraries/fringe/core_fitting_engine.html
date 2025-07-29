@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Core Fringe Fitting Engine &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Data Configuration and Initialization" href="data_configuration.html" />
+    <link rel="prev" title="Fringe" href="Fringe.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Fringe.html">Fringe</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Core Fringe Fitting Engine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-fringefitter">MHO_FringeFitter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-basicfringefitter">MHO_BasicFringeFitter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-ionosphericfringefitter">MHO_IonosphericFringeFitter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-fringefitterfactory">MHO_FringeFitterFactory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_configuration.html">Data Configuration and Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="information_extraction.html">Information Extraction and Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="computation_utilities.html">Computation and Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualization_output.html">Visualization and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Fringe.html">Fringe</a></li>
+      <li class="breadcrumb-item active">Core Fringe Fitting Engine</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/fringe/core_fitting_engine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="core-fringe-fitting-engine">
+<h1>Core Fringe Fitting Engine<a class="headerlink" href="#core-fringe-fitting-engine" title="Link to this heading"></a></h1>
+<p>The core fringe fitting engine provides the main interface through which VLBI
+fringe fitting is executed. This library provides the abstract base
+class MHO_FringeFitter which provides the main interface, as well
+as concrete implementations for single-baseline fringe fitting with or with
+ionospheric dTEC correction.</p>
+<section id="mho-fringefitter">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeFitter.html">MHO_FringeFitter</a><a class="headerlink" href="#mho-fringefitter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeFitter.html">MHO_FringeFitter</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Abstract base class for fringe fitter implementation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Pure virtual interface for fringe fitting workflow</div>
+<div class="line">Data store management (parameters, scan data, containers)</div>
+<div class="line">Visitor pattern support for extensibility</div>
+<div class="line">Operator toolbox integration</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeFitter.html">MHO_FringeFitter</a> class provides the abstract base class interface for all
+fringe fitters in the HOPS4 framework. It defines the core workflow methods that must
+be implemented by concrete fitter classes: Configure(), Initialize(), Run(), and Finalize().
+The class manages access to various data stores including parameter stores, scan data,
+and container objects needed for fringe fitting operations.</p>
+</section>
+<section id="mho-basicfringefitter">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BasicFringeFitter.html">MHO_BasicFringeFitter</a><a class="headerlink" href="#mho-basicfringefitter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BasicFringeFitter.html">MHO_BasicFringeFitter</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Basic single-baseline single-polarization-product fringe fitter</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Implements basic workflow: configure, init, run, finalize</div>
+<div class="line">Mixed/single sideband detection and processing</div>
+<div class="line">Coarse fringe search in delay/delay-rate space</div>
+<div class="line">Peak interpolation over 5x5x5 grid</div>
+<div class="line">Visitor pattern support</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__BasicFringeFitter.html">MHO_BasicFringeFitter</a> class implements the basic fringe fitting algorithm
+for single-baseline, single-polarization product data. It provides the core functionality
+for delay and delay-rate space search. Implemented as a coarse fringe search (max bin),
+followed by a fine peak interpolation step. This fitter includes support for
+both mixed and single sideband channel processing modes.</p>
+</section>
+<section id="mho-ionosphericfringefitter">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IonosphericFringeFitter.html">MHO_IonosphericFringeFitter</a><a class="headerlink" href="#mho-ionosphericfringefitter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IonosphericFringeFitter.html">MHO_IonosphericFringeFitter</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Single-baseline fringe fitter with ionosphere search</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Extends MHO_BasicFringeFitter functionality</div>
+<div class="line">dTEC (differential Total Electron Content) search</div>
+<div class="line">Optional smoothing function support during search</div>
+<div class="line">Ionospheric covariance calculations</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IonosphericFringeFitter.html">MHO_IonosphericFringeFitter</a> class extends the basic fringe fitter to include
+ionospheric dispersion correction capabilities. It performs searches in dTEC/delay/delay-rate
+space and includes an optional smoothing function step for more robust ionospheric parameter estimation.
+This fitter is essential for high-precision VLBI observations where ionospheric effects
+must be properly modeled and corrected. This implementation is a close port of R. Cappalo’s original implementation
+but has been extended to allow for an arbitrary number of points in the dTEC search space.</p>
+</section>
+<section id="mho-fringefitterfactory">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeFitterFactory.html">MHO_FringeFitterFactory</a><a class="headerlink" href="#mho-fringefitterfactory" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeFitterFactory.html">MHO_FringeFitterFactory</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Factory for constructing appropriate fringe fitter types</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Factory pattern implementation</div>
+<div class="line">Support for different fitter types (Basic, Ionospheric)</div>
+<div class="line">Extensible for future fitter implementations</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FringeFitterFactory.html">MHO_FringeFitterFactory</a> class implements the factory pattern for constructing
+the appropriate fringe fitter based on the user’s configuration parameters.
+It provides a simple mechanism for creating Basic or Ionospheric fitters as
+needed by the processing pipeline. This design pattern allows for easy
+extension to support additional fitter types in the future without modification of
+any of the pre-existing fringe fitter implementations.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Fringe.html" class="btn btn-neutral float-left" title="Fringe" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_configuration.html" class="btn btn-neutral float-right" title="Data Configuration and Initialization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

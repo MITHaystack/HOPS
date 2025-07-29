@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structSU__chan__out__struct" kind="struct" language="C++" prot="public">
+    <compoundname>SU_chan_out_struct</compoundname>
+    <includes refid="svex_8h" local="no">svex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structSU__chan__out__struct_1a270234f43bb5142432feb085e67e22fc" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char SU_chan_out_struct::chan_ID[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>chan_ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="12" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSU__chan__out__struct_1aadebf5ca71408982ed6e52e55f2cf78e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SU_chan_out_struct::freq_a</definition>
+        <argsstring></argsstring>
+        <name>freq_a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="13" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSU__chan__out__struct_1ad8fc7d9c8694e6b5e9d16611816a0448" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SU_chan_out_struct::freq_b</definition>
+        <argsstring></argsstring>
+        <name>freq_b</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="14" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSU__chan__out__struct_1a70b0654069a3d0f659482da7fed08546" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SU_chan_out_struct::freq_c</definition>
+        <argsstring></argsstring>
+        <name>freq_c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="15" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structSU__chan__out__struct_1ae3eb0638235b996e39f82d7c4499cde5" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SU_chan_out_struct::freq_d</definition>
+        <argsstring></argsstring>
+        <name>freq_d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="16" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>SU_chan_out_struct</label>
+        <link refid="structSU__chan__out__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>freq_a</edgelabel>
+          <edgelabel>freq_b</edgelabel>
+          <edgelabel>freq_c</edgelabel>
+          <edgelabel>freq_d</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>chan_ID</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/svex.h" bodystart="11" bodyend="17"/>
+    <listofallmembers>
+      <member refid="structSU__chan__out__struct_1a270234f43bb5142432feb085e67e22fc" prot="public" virt="non-virtual"><scope>SU_chan_out_struct</scope><name>chan_ID</name></member>
+      <member refid="structSU__chan__out__struct_1aadebf5ca71408982ed6e52e55f2cf78e" prot="public" virt="non-virtual"><scope>SU_chan_out_struct</scope><name>freq_a</name></member>
+      <member refid="structSU__chan__out__struct_1ad8fc7d9c8694e6b5e9d16611816a0448" prot="public" virt="non-virtual"><scope>SU_chan_out_struct</scope><name>freq_b</name></member>
+      <member refid="structSU__chan__out__struct_1a70b0654069a3d0f659482da7fed08546" prot="public" virt="non-virtual"><scope>SU_chan_out_struct</scope><name>freq_c</name></member>
+      <member refid="structSU__chan__out__struct_1ae3eb0638235b996e39f82d7c4499cde5" prot="public" virt="non-virtual"><scope>SU_chan_out_struct</scope><name>freq_d</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

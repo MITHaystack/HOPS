@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structcounts__per__lag" kind="struct" language="C++" prot="public">
+    <compoundname>counts_per_lag</compoundname>
+    <includes refid="type__120_8h" local="no">type_120.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structcounts__per__lag_1a47baa7edd7a47f24285488c04daa6d26" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int counts_per_lag::cosbits</definition>
+        <argsstring></argsstring>
+        <name>cosbits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcounts__per__lag_1a9514b6533474622ba60d998186379555" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int counts_per_lag::coscor</definition>
+        <argsstring></argsstring>
+        <name>coscor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcounts__per__lag_1a50c0ce850000df3e8d68e3dd73b6e01f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int counts_per_lag::sinbits</definition>
+        <argsstring></argsstring>
+        <name>sinbits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcounts__per__lag_1a43989047afce461dae7b4dedd8eb79bd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int counts_per_lag::sincor</definition>
+        <argsstring></argsstring>
+        <name>sincor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="25" bodyend="30"/>
+    <listofallmembers>
+      <member refid="structcounts__per__lag_1a47baa7edd7a47f24285488c04daa6d26" prot="public" virt="non-virtual"><scope>counts_per_lag</scope><name>cosbits</name></member>
+      <member refid="structcounts__per__lag_1a9514b6533474622ba60d998186379555" prot="public" virt="non-virtual"><scope>counts_per_lag</scope><name>coscor</name></member>
+      <member refid="structcounts__per__lag_1a50c0ce850000df3e8d68e3dd73b6e01f" prot="public" virt="non-virtual"><scope>counts_per_lag</scope><name>sinbits</name></member>
+      <member refid="structcounts__per__lag_1a43989047afce461dae7b4dedd8eb79bd" prot="public" virt="non-virtual"><scope>counts_per_lag</scope><name>sincor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

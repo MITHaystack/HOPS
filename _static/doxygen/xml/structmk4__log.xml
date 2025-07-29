@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmk4__log" kind="struct" language="C++" prot="public">
+    <compoundname>mk4_log</compoundname>
+    <includes refid="mk4__data_8h" local="no">mk4_data.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmk4__log_1ac046df6190d869479b793ebb84c216c2" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* mk4_log::file_image</definition>
+        <argsstring></argsstring>
+        <name>file_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="137" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__log_1a6818867127318fe06ef875f7ac895126" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__000" kindref="compound">type_000</ref> *</type>
+        <definition>struct type_000* mk4_log::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="138" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>type_000</label>
+        <link refid="structtype__000"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4_log</label>
+        <link refid="structmk4__log"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>file_image</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="135" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="136" bodyend="139"/>
+    <listofallmembers>
+      <member refid="structmk4__log_1ac046df6190d869479b793ebb84c216c2" prot="public" virt="non-virtual"><scope>mk4_log</scope><name>file_image</name></member>
+      <member refid="structmk4__log_1a6818867127318fe06ef875f7ac895126" prot="public" virt="non-virtual"><scope>mk4_log</scope><name>id</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

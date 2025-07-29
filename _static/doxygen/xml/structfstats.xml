@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfstats" kind="struct" language="C++" prot="public">
+    <compoundname>fstats</compoundname>
+    <includes refid="general_8h" local="no">general.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfstats_1a6ca057c19a3486717dcd923eff81b193" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fstats::ref</definition>
+        <argsstring></argsstring>
+        <name>ref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="20" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstats_1af695103fc44a6bb73e4ba542da88a4a8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fstats::rem</definition>
+        <argsstring></argsstring>
+        <name>rem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="21" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>fstats</label>
+        <link refid="structfstats"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="19" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structfstats_1a6ca057c19a3486717dcd923eff81b193" prot="public" virt="non-virtual"><scope>fstats</scope><name>ref</name></member>
+      <member refid="structfstats_1af695103fc44a6bb73e4ba542da88a4a8" prot="public" virt="non-virtual"><scope>fstats</scope><name>rem</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

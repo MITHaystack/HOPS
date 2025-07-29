@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacehops__visualization_1_1alist__plot" kind="namespace" language="Python">
+    <compoundname>hops_visualization::alist_plot</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacehops__visualization_1_1alist__plot_1ab17067798933bdb5072a84e73c3eae55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.alist_plot.pick_action</definition>
+        <argsstring>(event)</argsstring>
+        <name>pick_action</name>
+        <param>
+          <type>event</type>
+          <defname>event</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/alist_plot.py" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/alist_plot.py" bodystart="26" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops__visualization_1_1alist__plot_1abefdc3e867958cc3fa69a10d5acbb427" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.alist_plot.plot_alist_data</definition>
+        <argsstring>(fignum, x_data, y_data, x_label, y_label)</argsstring>
+        <name>plot_alist_data</name>
+        <param>
+          <type>fignum</type>
+          <defname>fignum</defname>
+        </param>
+        <param>
+          <type>x_data</type>
+          <defname>x_data</defname>
+        </param>
+        <param>
+          <type>y_data</type>
+          <defname>y_data</defname>
+        </param>
+        <param>
+          <type>x_label</type>
+          <defname>x_label</defname>
+        </param>
+        <param>
+          <type>y_label</type>
+          <defname>y_label</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/alist_plot.py" line="9" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/alist_plot.py" bodystart="9" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/alist_plot.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

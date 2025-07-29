@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter" kind="class" language="Python" prot="public">
+    <compoundname>vpal::pcc_delay_fitting::BandDelayFitter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a0dedb8a0b4dd21f3b94bd20bb65af65f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.pcc_delay_fitting.BandDelayFitter::basinhopping_niter</definition>
+        <argsstring></argsstring>
+        <name>basinhopping_niter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="97" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1ac37060d31ac54e6091ff6a50b1a33404" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.pcc_delay_fitting.BandDelayFitter::channel_bandwidth</definition>
+        <argsstring></argsstring>
+        <name>channel_bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="98" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1af44d5ef820f0b371ea47bd661977e220" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BandDelayFitter.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="96" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="96" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a24205adaa2e5fef1a4d0582e7c2ed2fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BandDelayFitter.fit_band_delay</definition>
+        <argsstring>(self, tone_phasors, ref_frequency, cut_threshold=0.0, verbosity=0)</argsstring>
+        <name>fit_band_delay</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>tone_phasors</type>
+          <defname>tone_phasors</defname>
+        </param>
+        <param>
+          <type>ref_frequency</type>
+          <defname>ref_frequency</defname>
+        </param>
+        <param>
+          <type>cut_threshold</type>
+          <defname>cut_threshold</defname>
+          <defval>0.0</defval>
+        </param>
+        <param>
+          <type>verbosity</type>
+          <defname>verbosity</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="101" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="101" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a8dac4ad213fe13e8c5dd9bf0858ae764" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BandDelayFitter.fit_function1</definition>
+        <argsstring>(self, par, fit_data)</argsstring>
+        <name>fit_function1</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>par</type>
+          <defname>par</defname>
+        </param>
+        <param>
+          <type>fit_data</type>
+          <defname>fit_data</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>a fit function to be optimized when fitting for the band delay </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="180" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="180" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1aa2b4880144fac8d8b8068cf6e979103e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BandDelayFitter.fit_function2</definition>
+        <argsstring>(self, par, fit_data)</argsstring>
+        <name>fit_function2</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>par</type>
+          <defname>par</defname>
+        </param>
+        <param>
+          <type>fit_data</type>
+          <defname>fit_data</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>a fit function to be optimized when fitting for the band delay </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="199" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="199" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a0889f80f81ed2b95eb6d62ae33b8d765" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BandDelayFitter.fit_function3</definition>
+        <argsstring>(self, par, fit_data)</argsstring>
+        <name>fit_function3</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>par</type>
+          <defname>par</defname>
+        </param>
+        <param>
+          <type>fit_data</type>
+          <defname>fit_data</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>a fit function to be optimized when fitting for the band delay </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="220" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="220" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a7617960ce6f4c668be7bb399fa5cff78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BandDelayFitter.get_initial_band_delay</definition>
+        <argsstring>(self, phasor_freq_pairs, reference_frequency)</argsstring>
+        <name>get_initial_band_delay</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>phasor_freq_pairs</type>
+          <defname>phasor_freq_pairs</defname>
+        </param>
+        <param>
+          <type>reference_frequency</type>
+          <defname>reference_frequency</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>estimate intial values for the band delay and phase</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="241" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="241" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a97d6bd9169adb5fc6f1b5dde0870c39b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.BandDelayFitter.get_phase_residuals</definition>
+        <argsstring>(self, fit_data, delay, phase_offset)</argsstring>
+        <name>get_phase_residuals</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>fit_data</type>
+          <defname>fit_data</defname>
+        </param>
+        <param>
+          <type>delay</type>
+          <defname>delay</defname>
+        </param>
+        <param>
+          <type>phase_offset</type>
+          <defname>phase_offset</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="168" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="168" bodyend="179"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.pcc_delay_fitting.BandDelayFitter</label>
+        <link refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.pcc_delay_fitting.BandDelayFitter</label>
+        <link refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="94" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="94" bodyend="262"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1af44d5ef820f0b371ea47bd661977e220" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a0dedb8a0b4dd21f3b94bd20bb65af65f" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>basinhopping_niter</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1ac37060d31ac54e6091ff6a50b1a33404" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>channel_bandwidth</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a24205adaa2e5fef1a4d0582e7c2ed2fe" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>fit_band_delay</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a8dac4ad213fe13e8c5dd9bf0858ae764" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>fit_function1</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1aa2b4880144fac8d8b8068cf6e979103e" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>fit_function2</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a0889f80f81ed2b95eb6d62ae33b8d765" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>fit_function3</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a7617960ce6f4c668be7bb399fa5cff78" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>get_initial_band_delay</name></member>
+      <member refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter_1a97d6bd9169adb5fc6f1b5dde0870c39b" prot="public" virt="non-virtual"><scope>vpal::pcc_delay_fitting::BandDelayFitter</scope><name>get_phase_residuals</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,593 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceffcontrol_1_1ffcontrol" kind="namespace" language="Python">
+    <compoundname>ffcontrol::ffcontrol</compoundname>
+    <innerclass refid="classffcontrol_1_1ffcontrol_1_1c__block" prot="public">ffcontrol::ffcontrol::c_block</innerclass>
+    <innerclass refid="classffcontrol_1_1ffcontrol_1_1dstats" prot="public">ffcontrol::ffcontrol::dstats</innerclass>
+    <innerclass refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase" prot="public">ffcontrol::ffcontrol::FFControlStructureBase</innerclass>
+    <innerclass refid="classffcontrol_1_1ffcontrol_1_1gat__struct" prot="public">ffcontrol::ffcontrol::gat_struct</innerclass>
+    <innerclass refid="classffcontrol_1_1ffcontrol_1_1istats" prot="public">ffcontrol::ffcontrol::istats</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1adaf3cf41023f57b1d437ed8bc3b52b66" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.AP_BY_AP</definition>
+        <argsstring></argsstring>
+        <name>AP_BY_AP</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="21" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1aea1f729abe7ef147f5178a9c1921d873" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ffcontrol::ffcontrol.COMCHAR</definition>
+        <argsstring></argsstring>
+        <name>COMCHAR</name>
+        <initializer>=  &apos;*&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a26630fa769538f04d19b2780515c4f08" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.DISCARD</definition>
+        <argsstring></argsstring>
+        <name>DISCARD</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a1c9b37523f5fe00de16133e9e1e613bb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.DSB</definition>
+        <argsstring></argsstring>
+        <name>DSB</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1af4332ff2580e6631e5cded11db82f3b1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.EACH_MINUTE</definition>
+        <argsstring></argsstring>
+        <name>EACH_MINUTE</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="28" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a5973070828a8bb9ac01a293691d833b0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.ITERATE</definition>
+        <argsstring></argsstring>
+        <name>ITERATE</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="35" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1abc2178a7734028c9bca71cf2bd0ebbaa" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.KEEP</definition>
+        <argsstring></argsstring>
+        <name>KEEP</name>
+        <initializer>=  32767</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a126785eec348f877447c165d6d589216" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.LSB</definition>
+        <argsstring></argsstring>
+        <name>LSB</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="25" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1ab56c47cbf191fd569936784ea6f19b27" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.MANUAL</definition>
+        <argsstring></argsstring>
+        <name>MANUAL</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1af16bb9d26fe00a52c25704f285148178" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.MAX_SAMP</definition>
+        <argsstring></argsstring>
+        <name>MAX_SAMP</name>
+        <initializer>=  16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="15" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a20b2b67e73f90629dd80610a8e92978c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.MAXFREQ</definition>
+        <argsstring></argsstring>
+        <name>MAXFREQ</name>
+        <initializer>=  64</initializer>
+        <briefdescription>
+<para>compiler defines from <ref refid="control_8h" kindref="compound">control.h</ref> TODO: clean these globals up </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a9ea13eeb76b0c222c9cf738676420cd4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.MAXNOTCH</definition>
+        <argsstring></argsstring>
+        <name>MAXNOTCH</name>
+        <initializer>=  8*<ref refid="namespaceffcontrol_1_1ffcontrol_1a20b2b67e73f90629dd80610a8e92978c" kindref="member">MAXFREQ</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="39" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1ab3681847c042fcb978083a10619bbcc6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.MODEL</definition>
+        <argsstring></argsstring>
+        <name>MODEL</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="37" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1acf1ecf718c90fc7055529e5744bab76c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.MULTITONE</definition>
+        <argsstring></argsstring>
+        <name>MULTITONE</name>
+        <initializer>=  4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a1fbf96a2602e046fd85e3ae90e6171e4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.NORMAL</definition>
+        <argsstring></argsstring>
+        <name>NORMAL</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a1cb258f77b8f6116dac09c37894a3b76" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.NULLCHAR</definition>
+        <argsstring></argsstring>
+        <name>NULLCHAR</name>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a44de222e0827892d1cfebe8079f3c6d0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ffcontrol::ffcontrol.NULLFLOAT</definition>
+        <argsstring></argsstring>
+        <name>NULLFLOAT</name>
+        <initializer>=  508.4482826</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1adf4a4a1e4f6aef3eda07043435e2ab32" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.NULLINT</definition>
+        <argsstring></argsstring>
+        <name>NULLINT</name>
+        <initializer>=  -12345</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a004c662109fcdda8c8a0b49568d943a1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.PHYLE</definition>
+        <argsstring></argsstring>
+        <name>PHYLE</name>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a0d2cab75b3f93db11f4b66618716fa46" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.POLYNOMIAL</definition>
+        <argsstring></argsstring>
+        <name>POLYNOMIAL</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a76991e845a887b4a10a83ce31e1457f6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.SBD</definition>
+        <argsstring></argsstring>
+        <name>SBD</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="38" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a55a2f9f9074570f0b4fa184f252f9ebd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.SCAN_START</definition>
+        <argsstring></argsstring>
+        <name>SCAN_START</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a1b49f8524d677fb1e2eb0211ed1514ed" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.SIMUL</definition>
+        <argsstring></argsstring>
+        <name>SIMUL</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="36" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a877b1a5e19859b629c71b059fc838ff2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.SINEWAVE</definition>
+        <argsstring></argsstring>
+        <name>SINEWAVE</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1ae663bc0ca0fe1541a0d3b02f2e988b2a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ffcontrol::ffcontrol.USB</definition>
+        <argsstring></argsstring>
+        <name>USB</name>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceffcontrol_1_1ffcontrol_1a4cc7e910322267cb8dfce2b7080191f0" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string ffcontrol::ffcontrol.WILDCARD</definition>
+        <argsstring></argsstring>
+        <name>WILDCARD</name>
+        <initializer>=  &apos;?&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1aa324864423b0ab76814a8fd1a3f8fb0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.append_control_file</definition>
+        <argsstring>(control_filename, output_filename, cf_lines)</argsstring>
+        <name>append_control_file</name>
+        <param>
+          <type><ref refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c_1a9ba7e1abe9f2cfbebcf7c28532dcc762" kindref="member">control_filename</ref></type>
+          <defname>control_filename</defname>
+        </param>
+        <param>
+          <type>output_filename</type>
+          <defname>output_filename</defname>
+        </param>
+        <param>
+          <type>cf_lines</type>
+          <defname>cf_lines</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> append a list of strings to a control file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="284" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="284" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a99f21242802b2a3b466fd44ed402457d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.append_control_file_with_find_and_replace</definition>
+        <argsstring>(control_filename, output_filename, cf_lines, original_string_list, replacement_string_list)</argsstring>
+        <name>append_control_file_with_find_and_replace</name>
+        <param>
+          <type><ref refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c_1a9ba7e1abe9f2cfbebcf7c28532dcc762" kindref="member">control_filename</ref></type>
+          <defname>control_filename</defname>
+        </param>
+        <param>
+          <type>output_filename</type>
+          <defname>output_filename</defname>
+        </param>
+        <param>
+          <type>cf_lines</type>
+          <defname>cf_lines</defname>
+        </param>
+        <param>
+          <type>original_string_list</type>
+          <defname>original_string_list</defname>
+        </param>
+        <param>
+          <type>replacement_string_list</type>
+          <defname>replacement_string_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>find and replace matching strings in a control file, and then append a list of strings to a control file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="293" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="293" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a70931e8c8dc064a920e6ed9ae8d15f9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.get_control_block</definition>
+        <argsstring>(filename, baseline, source, fgroup, time)</argsstring>
+        <name>get_control_block</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <param>
+          <type><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref></type>
+          <defname>baseline</defname>
+        </param>
+        <param>
+          <type>source</type>
+          <defname>source</defname>
+        </param>
+        <param>
+          <type>fgroup</type>
+          <defname>fgroup</defname>
+        </param>
+        <param>
+          <type>time</type>
+          <defname>time</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> construct a control block from the specified control file, baseline, source, frequency group, and time </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="254" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="254" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a3c43d9861557e022c2fff862e973ec68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.get_control_file_hash</definition>
+        <argsstring>(filename)</argsstring>
+        <name>get_control_file_hash</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> compute a simple hash value for a specified control file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="274" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="274" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1abf84620bcb2b0ebf4e9ba29d3d18bfae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.get_fcode_index</definition>
+        <argsstring>(freq_char)</argsstring>
+        <name>get_fcode_index</name>
+        <param>
+          <type>freq_char</type>
+          <defname>freq_char</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="266" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="266" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a6852ee618b36895c2c8c5e6770d27bff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.load_ffcontrol_library</definition>
+        <argsstring>()</argsstring>
+        <name>load_ffcontrol_library</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> load the c-library needed for parsing control files </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="212" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="212" bodyend="253"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a91e57c76f9171c15e1ace363a535c452" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.prepend_control_file_with_find_and_replace</definition>
+        <argsstring>(control_filename, output_filename, cf_lines, original_string_list, replacement_string_list)</argsstring>
+        <name>prepend_control_file_with_find_and_replace</name>
+        <param>
+          <type><ref refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c_1a9ba7e1abe9f2cfbebcf7c28532dcc762" kindref="member">control_filename</ref></type>
+          <defname>control_filename</defname>
+        </param>
+        <param>
+          <type>output_filename</type>
+          <defname>output_filename</defname>
+        </param>
+        <param>
+          <type>cf_lines</type>
+          <defname>cf_lines</defname>
+        </param>
+        <param>
+          <type>original_string_list</type>
+          <defname>original_string_list</defname>
+        </param>
+        <param>
+          <type>replacement_string_list</type>
+          <defname>replacement_string_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>prepend a control file with a list of strings, then find and replace matching strings in a control file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="311" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="311" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceffcontrol_1_1ffcontrol_1a8a32cee72b98fca1af0532d1adffab07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def ffcontrol.ffcontrol.remove_lines_and_append_control_file</definition>
+        <argsstring>(control_filename, output_filename, cf_lines, remove_string_list)</argsstring>
+        <name>remove_lines_and_append_control_file</name>
+        <param>
+          <type><ref refid="fourfit__libs_2ffsearch_2src_2parse__cmdline_8c_1a9ba7e1abe9f2cfbebcf7c28532dcc762" kindref="member">control_filename</ref></type>
+          <defname>control_filename</defname>
+        </param>
+        <param>
+          <type>output_filename</type>
+          <defname>output_filename</defname>
+        </param>
+        <param>
+          <type>cf_lines</type>
+          <defname>cf_lines</defname>
+        </param>
+        <param>
+          <type>remove_string_list</type>
+          <defname>remove_string_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>remove lines containing matching strings, and then append a list of strings to a control file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="332" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="332" bodyend="357"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>module accessing fourfit control file data via c-library </verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

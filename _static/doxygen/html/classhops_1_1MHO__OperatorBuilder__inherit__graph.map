@@ -1,0 +1,22 @@
+<map id="hops::MHO_OperatorBuilder" name="hops::MHO_OperatorBuilder">
+<area shape="rect" id="node1" title="Abtract base class for a builder object (creates an operator for later use)" alt="" coords="5,558,189,585"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__ChannelLabelerBuilder.html" title="Class MHO_ChannelLabelerBuilder." alt="" coords="259,5,443,47"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__CircularFieldRotationBuilder.html" title="Class MHO_CircularFieldRotationBuilder." alt="" coords="243,71,458,112"/>
+<area shape="rect" id="node4" href="$classhops_1_1MHO__DCBlockBuilder.html" title="Class MHO_DCBlockBuilder." alt="" coords="258,137,443,163"/>
+<area shape="rect" id="node5" href="$classhops_1_1MHO__DataSelectionBuilder.html" title="Class MHO_DataSelectionBuilder." alt="" coords="243,187,458,214"/>
+<area shape="rect" id="node6" href="$classhops_1_1MHO__LSBOffsetBuilder.html" title="Class MHO_LSBOffsetBuilder." alt="" coords="253,238,448,265"/>
+<area shape="rect" id="node7" href="$classhops_1_1MHO__LinearDParCorrectionBuilder.html" title="Class MHO_LinearDParCorrectionBuilder." alt="" coords="241,289,460,331"/>
+<area shape="rect" id="node8" href="$classhops_1_1MHO__ManualChannelDelayCorrectionBuilder.html" title="Class MHO_ManualChannelDelayCorrectionBuilder." alt="" coords="243,355,458,396"/>
+<area shape="rect" id="node9" href="$classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder.html" title="Class MHO_ManualChannelPhaseCorrectionBuilder." alt="" coords="241,420,461,461"/>
+<area shape="rect" id="node10" href="$classhops_1_1MHO__ManualPolDelayCorrectionBuilder.html" title="Class MHO_ManualPolDelayCorrectionBuilder." alt="" coords="257,485,444,527"/>
+<area shape="rect" id="node11" href="$classhops_1_1MHO__ManualPolPhaseCorrectionBuilder.html" title="Class MHO_ManualPolPhaseCorrectionBuilder." alt="" coords="255,551,447,592"/>
+<area shape="rect" id="node12" href="$classhops_1_1MHO__MinWeightBuilder.html" title="Class MHO_MinWeightBuilder." alt="" coords="253,617,448,643"/>
+<area shape="rect" id="node13" href="$classhops_1_1MHO__MixedPolYShiftBuilder.html" title="Class MHO_MixedPolYShiftBuilder." alt="" coords="259,668,442,709"/>
+<area shape="rect" id="node14" href="$classhops_1_1MHO__MultitonePhaseCorrectionBuilder.html" title="Class MHO_MultitonePhaseCorrectionBuilder." alt="" coords="259,733,443,775"/>
+<area shape="rect" id="node15" href="$classhops_1_1MHO__NotchesBuilder.html" title="Class MHO_NotchesBuilder." alt="" coords="259,799,442,826"/>
+<area shape="rect" id="node16" href="$classhops_1_1MHO__PassbandBuilder.html" title="Class MHO_PassbandBuilder." alt="" coords="255,850,447,877"/>
+<area shape="rect" id="node17" href="$classhops_1_1MHO__PolProductSummationBuilder.html" title="Class MHO_PolProductSummationBuilder." alt="" coords="239,901,463,943"/>
+<area shape="rect" id="node18" href="$classhops_1_1MHO__PythonOperatorBuilder.html" title=" " alt="" coords="259,967,443,1008"/>
+<area shape="rect" id="node19" href="$classhops_1_1MHO__SamplerLabelerBuilder.html" title="Class MHO_SamplerLabelerBuilder." alt="" coords="258,1032,443,1073"/>
+<area shape="rect" id="node20" href="$classhops_1_1MHO__StationDelayCorrectionBuilder.html" title="Class MHO_StationDelayCorrectionBuilder." alt="" coords="237,1097,464,1139"/>
+</map>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="afile__structure_8h" kind="file" language="C++">
+    <compoundname>afile_structure.h</compoundname>
+    <includes refid="adata_8h" local="yes">adata.h</includes>
+    <includedby refid="clear__afile__structure_8c" local="yes">clear_afile_structure.c</includedby>
+    <includedby refid="read__afile_8c" local="yes">read_afile.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>afile_structure.h</label>
+        <link refid="afile__structure_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>afile_structure.h</label>
+        <link refid="afile__structure_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>read_afile.c</label>
+        <link refid="read__afile_8c"/>
+      </node>
+      <node id="2">
+        <label>clear_afile_structure.c</label>
+        <link refid="clear__afile__structure_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structafile__structure" prot="public">afile_structure</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="afile__structure_8h_1a927eecf5904d26685a164117c5783e28" prot="public" static="no">
+        <name>AFILE_STRUCTURE_H__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adata_8h" kindref="compound">adata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>AFILE_STRUCTURE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="afile__structure_8h_1a927eecf5904d26685a164117c5783e28" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AFILE_STRUCTURE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="structafile__structure" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8" refid="structafile__structure_1ab5eab3f134e084bdcab4ed04d45e819c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structafile__structure_1ab5eab3f134e084bdcab4ed04d45e819c" kindref="member">nroot</ref>;</highlight></codeline>
+<codeline lineno="9" refid="structafile__structure_1ab03ff812cff43837cf3c7bf84e2ec602" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structafile__structure_1ab03ff812cff43837cf3c7bf84e2ec602" kindref="member">ncorel</ref>;</highlight></codeline>
+<codeline lineno="10" refid="structafile__structure_1ac195c230ce919ae10bbec73ef34253e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structafile__structure_1ac195c230ce919ae10bbec73ef34253e3" kindref="member">nfringe</ref>;</highlight></codeline>
+<codeline lineno="11" refid="structafile__structure_1ac3f96ab609fd42988f06e7d7433f1327" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structafile__structure_1ac3f96ab609fd42988f06e7d7433f1327" kindref="member">ntriangle</ref>;</highlight></codeline>
+<codeline lineno="12" refid="structafile__structure_1a26b7f9005953d6455e29567b925491ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structafile__structure_1a26b7f9005953d6455e29567b925491ba" kindref="member">nquad</ref>;</highlight></codeline>
+<codeline lineno="13" refid="structafile__structure_1a6564ebf83bbbfff3cca82a92c719f27a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structrootsum" kindref="compound">rootsum</ref>*<sp/><ref refid="structafile__structure_1a6564ebf83bbbfff3cca82a92c719f27a" kindref="member">rootdata</ref>;</highlight></codeline>
+<codeline lineno="14" refid="structafile__structure_1ae43eff3a26b2b1d0fe9cea245c5b39ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structcorelsum" kindref="compound">corelsum</ref>*<sp/><ref refid="structafile__structure_1ae43eff3a26b2b1d0fe9cea245c5b39ba" kindref="member">coreldata</ref>;</highlight></codeline>
+<codeline lineno="15" refid="structafile__structure_1a5e7cd7ab428982091f9d7113e58a929d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structfringesum" kindref="compound">fringesum</ref>*<sp/><ref refid="structafile__structure_1a5e7cd7ab428982091f9d7113e58a929d" kindref="member">fringedata</ref>;</highlight></codeline>
+<codeline lineno="16" refid="structafile__structure_1a8d12ba66cef927585f029cd78e03b25e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtrianglesum" kindref="compound">trianglesum</ref>*<sp/><ref refid="structafile__structure_1a8d12ba66cef927585f029cd78e03b25e" kindref="member">triangledata</ref>;</highlight></codeline>
+<codeline lineno="17" refid="structafile__structure_1af9e8a1474b927aad4dc84f088c25151b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structquadsum" kindref="compound">quadsum</ref>*<sp/><ref refid="structafile__structure_1af9e8a1474b927aad4dc84f088c25151b" kindref="member">quaddata</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}<sp/><ref refid="structafile__structure" kindref="compound">afile_structure</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>AFILE_STRUCTURE_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/afile_structure.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="hops_2____init_____8py" kind="file" language="Python">
+    <compoundname>hops/__init__.py</compoundname>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <innernamespace refid="namespacepyMHO__Containers">pyMHO_Containers</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">from</highlight><highlight class="normal"><sp/>pyMHO_Containers<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>*</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops/__init__.py"/>
+  </compounddef>
+</doxygen>

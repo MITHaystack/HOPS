@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period" kind="struct" language="C++" prot="private">
+    <compoundname>hops::MHO_DiFXPCalProcessor::pcal_period</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1a8a6457845eb732149109275a996a511c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXPCalProcessor::pcal_period::ap</definition>
+        <argsstring></argsstring>
+        <name>ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="120" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1af594f61c1fbaee34276c81f99f4f0fca" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXPCalProcessor::pcal_period::mjd</definition>
+        <argsstring></argsstring>
+        <name>mjd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="118" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1af9ee83aec7d19fb53d8f7f63edf4e145" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXPCalProcessor::pcal_period::mjd_period</definition>
+        <argsstring></argsstring>
+        <name>mjd_period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="119" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1a44a4ac387943c6f85796545a909bec97" prot="public" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; pcal_phasor &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::vector&lt; pcal_phasor &gt; &gt; hops::MHO_DiFXPCalProcessor::pcal_period::pc_phasors</definition>
+        <argsstring></argsstring>
+        <name>pc_phasors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="121" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1a3d9960469e08505d78adcb90d6c28bfc" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXPCalProcessor::pcal_period::station</definition>
+        <argsstring></argsstring>
+        <name>station</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="117" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>hops::MHO_DiFXPCalProcessor::pcal_phasor</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>tone_freq</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>phasor</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>std::complex&lt; PCFP_TYPE &gt;</label>
+      </node>
+      <node id="3">
+        <label>std::map&lt; std::string, std::vector&lt; pcal_phasor &gt; &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="9">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DiFXPCalProcessor::pcal_period</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mjd</edgelabel>
+          <edgelabel>mjd_period</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pc_phasors</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ap</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>station</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; pcal_phasor &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>std::string</label>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="115" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="116" bodyend="122"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1a8a6457845eb732149109275a996a511c" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::pcal_period</scope><name>ap</name></member>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1af594f61c1fbaee34276c81f99f4f0fca" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::pcal_period</scope><name>mjd</name></member>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1af9ee83aec7d19fb53d8f7f63edf4e145" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::pcal_period</scope><name>mjd_period</name></member>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1a44a4ac387943c6f85796545a909bec97" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::pcal_period</scope><name>pc_phasors</name></member>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__period_1a3d9960469e08505d78adcb90d6c28bfc" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::pcal_period</scope><name>station</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

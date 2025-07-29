@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_008fc8a7b3a56a37b15760ff3b717164" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__ContainerDictionary_8cc">MHO_ContainerDictionary.cc</innerfile>
+    <innerfile refid="MHO__ContainerFileInterface_8cc">MHO_ContainerFileInterface.cc</innerfile>
+    <innerfile refid="MHO__ContainerStore_8cc">MHO_ContainerStore.cc</innerfile>
+    <innerfile refid="MHO__FringeData_8cc">MHO_FringeData.cc</innerfile>
+    <innerfile refid="MHO__IntervalLabel_8cc">MHO_IntervalLabel.cc</innerfile>
+    <innerfile refid="MHO__IntervalLabelTree_8cc">MHO_IntervalLabelTree.cc</innerfile>
+    <innerfile refid="MHO__ScanDataStore_8cc">MHO_ScanDataStore.cc</innerfile>
+    <innerfile refid="MHO__Snapshot_8cc">MHO_Snapshot.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/"/>
+  </compounddef>
+</doxygen>

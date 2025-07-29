@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FringeRotation" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FringeRotation</compoundname>
+    <includes refid="MHO__FringeRotation_8hh" local="no">MHO_FringeRotation.hh</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeRotation_1ad35498bd77d2fdc0a602ab209a7fe256" prot="private" static="yes" mutable="no">
+        <type>const std::complex&lt; double &gt;</type>
+        <definition>const std::complex&lt; double &gt; hops::MHO_FringeRotation::fImagUnit</definition>
+        <argsstring></argsstring>
+        <name>fImagUnit</name>
+        <initializer>= std::complex&lt; double &gt;(0.0, 1.0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="86" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeRotation_1a34cfaa1fb852b21a5a7c63d713a45be2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_FringeRotation::fNSBDBins</definition>
+        <argsstring></argsstring>
+        <name>fNSBDBins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="109" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeRotation_1a492ff83aa44462dccbc33625e1eeb4f7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_FringeRotation::fOptimizeClosure</definition>
+        <argsstring></argsstring>
+        <name>fOptimizeClosure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="113" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeRotation_1aabb092665baf3d5737c18f7a350809a6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_FringeRotation::fSBDMax</definition>
+        <argsstring></argsstring>
+        <name>fSBDMax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="111" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeRotation_1a28543b06025ebcbe42bfe9548ded772e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_FringeRotation::fSBDMaxBin</definition>
+        <argsstring></argsstring>
+        <name>fSBDMaxBin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="110" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeRotation_1a234bec00f087e0f7fde9183ac6c8cbc4" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_FringeRotation::fSBDSep</definition>
+        <argsstring></argsstring>
+        <name>fSBDSep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="112" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__FringeRotation_1aa927b41f8576b3ffdc45440158968def" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_FringeRotation::fSideband</definition>
+        <argsstring></argsstring>
+        <name>fSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="108" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1aad274e783ec085ad8f2942993d845a4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FringeRotation::MHO_FringeRotation</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FringeRotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_FringeRotation.cc" bodystart="7" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1a64059298b99f8af3b5fcd767b2b35d86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FringeRotation::~MHO_FringeRotation</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FringeRotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="25" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1a42ea3b07abf5d9b53889856f350911ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeRotation::SetNSBDBins</definition>
+        <argsstring>(int n_sbd_bins)</argsstring>
+        <name>SetNSBDBins</name>
+        <param>
+          <type>int</type>
+          <declname>n_sbd_bins</declname>
+        </param>
+        <briefdescription>
+<para>Setter for N sbd bins. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n_sbd_bins</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>set the number of Single Band Delay bins </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="67" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1ac1afe80f9a9183493bf19f5bb597e0bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeRotation::SetOptimizeClosureFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetOptimizeClosureFalse</name>
+        <briefdescription>
+<para>Setter for optimize closure false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="83" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1a5fd6c18b52f91c78ffb5f17ae9465f15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeRotation::SetOptimizeClosureTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetOptimizeClosureTrue</name>
+        <briefdescription>
+<para>Setter for optimize closure true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="78" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1a342ee97becabd7ac9b6615341846278b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeRotation::SetSBDMax</definition>
+        <argsstring>(double sbd_max)</argsstring>
+        <name>SetSBDMax</name>
+        <param>
+          <type>double</type>
+          <declname>sbd_max</declname>
+        </param>
+        <briefdescription>
+<para>Setter for sbd max. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sbd_max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the single-band delay value at the fringe maximum </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="53" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1a43e899be0d852d7ca494962ea51e3341" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeRotation::SetSBDMaxBin</definition>
+        <argsstring>(int sbd_max_bin)</argsstring>
+        <name>SetSBDMaxBin</name>
+        <param>
+          <type>int</type>
+          <declname>sbd_max_bin</declname>
+        </param>
+        <briefdescription>
+<para>Setter for sbd max bin. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sbd_max_bin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the bin value for the fringe maximum (Single Band Delay axis) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="60" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1afe623a19529839b634537618dbea9345" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeRotation::SetSBDSeparation</definition>
+        <argsstring>(double sbd_sep)</argsstring>
+        <name>SetSBDSeparation</name>
+        <param>
+          <type>double</type>
+          <declname>sbd_sep</declname>
+        </param>
+        <briefdescription>
+<para>Setter for SBD bin separation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sbd_sep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value of the (time) delta between two adjacent points in SBD space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="46" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1ac8788a5e9d988e2aa3aaf008cbe0aa87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeRotation::SetSideband</definition>
+        <argsstring>(int sb)</argsstring>
+        <name>SetSideband</name>
+        <param>
+          <type>int</type>
+          <declname>sb</declname>
+        </param>
+        <briefdescription>
+<para>Setter for sideband - passes the sideband information if optimize_closure requires single-sideband correction *. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sideband type: 1 for USB, 0 for DSB, -1 for LSB </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1accca463720069cf78269bf43a25e6151" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_FringeRotation::vrot</definition>
+        <argsstring>(double time_delta, double freq, double ref_freq, double dr, double mbd) const</argsstring>
+        <name>vrot</name>
+        <param>
+          <type>double</type>
+          <declname>time_delta</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>mbd</declname>
+        </param>
+        <briefdescription>
+<para>Calculates fringe rotation for given delay, delay-rate, time and frequency difference. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time_delta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time difference from fourfit reference time (s) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Channel frequency (MHz) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference frequency (MHz) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Delay rate () </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mbd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Multi-Band Delay (us) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Complex value representing fringe rotation </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="39" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_FringeRotation.cc" bodystart="19" bodyend="22"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1a67ad54622b1ffdceedfd0c0fece3545a" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_FringeRotation::calc_sideband_correction</definition>
+        <argsstring>(double mbd) const</argsstring>
+        <name>calc_sideband_correction</name>
+        <param>
+          <type>double</type>
+          <declname>mbd</declname>
+        </param>
+        <briefdescription>
+<para>Calculates sideband correction for fringe rotation (if optimize_closure is true) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mbd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Multi-Band Delay, input delay parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sideband correction value as a double </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="106" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_FringeRotation.cc" bodystart="32" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeRotation_1ae2b1e325c5da2a2bfd7830857aadcc96" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_FringeRotation::vrot_v1</definition>
+        <argsstring>(double time_delta, double freq, double ref_freq, double dr, double mbd) const</argsstring>
+        <name>vrot_v1</name>
+        <param>
+          <type>double</type>
+          <declname>time_delta</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>mbd</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns a phasor for fringe rotation given time delta, frequencies, delay rate, and Multi-Band Delay. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>time_delta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time interval between current AP and fourfit reference time </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>channel frequency </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fringe reference frequency </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Delay rate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mbd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Multi-Band Delay </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Phasor representing fringe rotation as a complex exponential </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="98" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_FringeRotation.cc" bodystart="24" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FringeRotation" kindref="compound">MHO_FringeRotation</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>class to implement the fringe rotation functionality originally found in <ref refid="vrot_8c" kindref="compound">vrot.c</ref></para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Feb 17 13:35:37 2023 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" line="21" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh" bodystart="22" bodyend="114"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FringeRotation_1a67ad54622b1ffdceedfd0c0fece3545a" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>calc_sideband_correction</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1ad35498bd77d2fdc0a602ab209a7fe256" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>fImagUnit</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a34cfaa1fb852b21a5a7c63d713a45be2" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>fNSBDBins</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a492ff83aa44462dccbc33625e1eeb4f7" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>fOptimizeClosure</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1aabb092665baf3d5737c18f7a350809a6" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>fSBDMax</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a28543b06025ebcbe42bfe9548ded772e" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>fSBDMaxBin</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a234bec00f087e0f7fde9183ac6c8cbc4" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>fSBDSep</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1aa927b41f8576b3ffdc45440158968def" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>fSideband</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1aad274e783ec085ad8f2942993d845a4e" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>MHO_FringeRotation</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a42ea3b07abf5d9b53889856f350911ae" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>SetNSBDBins</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1ac1afe80f9a9183493bf19f5bb597e0bf" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>SetOptimizeClosureFalse</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a5fd6c18b52f91c78ffb5f17ae9465f15" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>SetOptimizeClosureTrue</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a342ee97becabd7ac9b6615341846278b" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>SetSBDMax</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a43e899be0d852d7ca494962ea51e3341" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>SetSBDMaxBin</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1afe623a19529839b634537618dbea9345" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>SetSBDSeparation</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1ac8788a5e9d988e2aa3aaf008cbe0aa87" prot="public" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>SetSideband</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1accca463720069cf78269bf43a25e6151" prot="public" virt="virtual"><scope>hops::MHO_FringeRotation</scope><name>vrot</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1ae2b1e325c5da2a2bfd7830857aadcc96" prot="private" virt="non-virtual"><scope>hops::MHO_FringeRotation</scope><name>vrot_v1</name></member>
+      <member refid="classhops_1_1MHO__FringeRotation_1a64059298b99f8af3b5fcd767b2b35d86" prot="public" virt="virtual"><scope>hops::MHO_FringeRotation</scope><name>~MHO_FringeRotation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

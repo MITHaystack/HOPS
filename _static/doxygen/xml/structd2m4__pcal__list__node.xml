@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structd2m4__pcal__list__node" kind="struct" language="C++" prot="public">
+    <compoundname>d2m4_pcal_list_node</compoundname>
+    <includes refid="d2m4__pcal__record_8h" local="no">d2m4_pcal_record.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+        <definition>struct d2m4_pcal_list_node* d2m4_pcal_list_node::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="41" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref> *</type>
+        <definition>struct d2m4_pcal_record* d2m4_pcal_list_node::pcal_record</definition>
+        <argsstring></argsstring>
+        <name>pcal_record</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="40" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__list__node_1acd0458ef349bc5573acd37ce21dc93e7" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+        <definition>struct d2m4_pcal_list_node* d2m4_pcal_list_node::previous</definition>
+        <argsstring></argsstring>
+        <name>previous</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="42" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>d2m4_pcal_record</label>
+        <link refid="structd2m4__pcal__record"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mjd</edgelabel>
+          <edgelabel>tint</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>antenna</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>phasors</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nchannels</edgelabel>
+          <edgelabel>ntones</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>d2m4_pcal_phasor</label>
+        <link refid="structd2m4__pcal__phasor"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>polarization</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>dstr</edgelabel>
+          <edgelabel>frequency</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>d2m4_pcal_list_node</label>
+        <link refid="structd2m4__pcal__list__node"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pcal_record</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+          <edgelabel>previous</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="38" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="39" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" prot="public" virt="non-virtual"><scope>d2m4_pcal_list_node</scope><name>next</name></member>
+      <member refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" prot="public" virt="non-virtual"><scope>d2m4_pcal_list_node</scope><name>pcal_record</name></member>
+      <member refid="structd2m4__pcal__list__node_1acd0458ef349bc5573acd37ce21dc93e7" prot="public" virt="non-virtual"><scope>d2m4_pcal_list_node</scope><name>previous</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

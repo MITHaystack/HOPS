@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_ffd3462840ed92d3b36f06c2f7a1a3a4" kind="dir">
+    <compoundname>DiFXInterface</compoundname>
+    <innerdir refid="dir_54c8feb2db02075297606147e04d4d04">applications</innerdir>
+    <innerdir refid="dir_f34f84663972769b5eb23cb9a774d90b">include</innerdir>
+    <innerdir refid="dir_e14b6f56da0f770cf537fc2113754b6e">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/"/>
+  </compounddef>
+</doxygen>

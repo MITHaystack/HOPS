@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__304" kind="struct" language="C++" prot="public">
+    <compoundname>type_304</compoundname>
+    <includes refid="type__304_8h" local="no">type_304.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__304_1a9364247488c78992f9e76f8c63dcc55b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_304::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_1a61f1a9586022408cb57941bb99c1ec1b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_304::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="12" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_1adb539ee9eb65459e91846d456eff7d5a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_304::time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_1a7fb4d6d026e05f9479418e1b2a81e41f" prot="public" static="no" mutable="no">
+        <type>struct type_304::@9</type>
+        <definition>struct type_304::@9 type_304::trackstats[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>trackstats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="25" column="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_1ac17d3f22bb1fa925ac7a84b55c1c97bb" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_304::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__304_1a3fd8052dc4057cb6bd9fac937c00e24e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_304::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="13" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>anonymous:trackstats</label>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>type_304</label>
+        <link refid="structtype__304"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>trackstats</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_304.h" bodystart="11" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structtype__304_1a9364247488c78992f9e76f8c63dcc55b" prot="public" virt="non-virtual"><scope>type_304</scope><name>duration</name></member>
+      <member refid="structtype__304_1a61f1a9586022408cb57941bb99c1ec1b" prot="public" virt="non-virtual"><scope>type_304</scope><name>record_id</name></member>
+      <member refid="structtype__304_1adb539ee9eb65459e91846d456eff7d5a" prot="public" virt="non-virtual"><scope>type_304</scope><name>time</name></member>
+      <member refid="structtype__304_1a7fb4d6d026e05f9479418e1b2a81e41f" prot="public" virt="non-virtual"><scope>type_304</scope><name>trackstats</name></member>
+      <member refid="structtype__304_1ac17d3f22bb1fa925ac7a84b55c1c97bb" prot="public" virt="non-virtual"><scope>type_304</scope><name>unused1</name></member>
+      <member refid="structtype__304_1a3fd8052dc4057cb6bd9fac937c00e24e" prot="public" virt="non-virtual"><scope>type_304</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

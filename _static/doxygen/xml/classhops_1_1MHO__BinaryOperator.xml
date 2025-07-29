@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BinaryOperator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_BinaryOperator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__Operator" prot="public" virt="non-virtual">hops::MHO_Operator</basecompoundref>
+    <includes refid="MHO__BinaryOperator_8hh" local="no">MHO_BinaryOperator.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class XArgType1</type>
+      </param>
+      <param>
+        <type>class XArgType2</type>
+        <defval>XArgType1</defval>
+      </param>
+      <param>
+        <type>class XArgType3</type>
+        <defval>XArgType2</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" prot="protected" static="no" mutable="no">
+        <type>std::tuple&lt; const XArgType1 *, const XArgType2 *, XArgType3 * &gt;</type>
+        <definition>std::tuple&lt; const XArgType1*, const XArgType2*, XArgType3* &gt; hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::fArgs</definition>
+        <argsstring></argsstring>
+        <name>fArgs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="98" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryOperator_1abd9b011b1ad9ce7ed98fac23e0153afa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::MHO_BinaryOperator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_BinaryOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" bodystart="26" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryOperator_1ace7fcbd64341e102dd5f42985a8d26f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::~MHO_BinaryOperator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_BinaryOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryOperator_1af0716d50495400b0510af28a5ec75c8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7">Execute</reimplements>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a51165b3bf5d7c6746adfc98c738898ce">Execute</reimplementedby>
+        <briefdescription>
+<para>Executes operation using provided arguments and returns result. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success/failure of execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="65" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" bodystart="65" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryOperator_1aa9d4b322af4ea6f5e98afc218681abe1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171">Initialize</reimplements>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLComplexPointwiseMultiply_1a5552fe2964320dc5c84c5950d6985922">Initialize</reimplementedby>
+        <briefdescription>
+<para>Initializes the object using arguments from fArgs tuple. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if initialization succeeds, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="54" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryOperator_1ab98c0e7cdbc7f23197964387625f9e66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::SetArgs</definition>
+        <argsstring>(const XArgType1 *in1, const XArgType2 *in2, XArgType3 *out)</argsstring>
+        <name>SetArgs</name>
+        <param>
+          <type>const XArgType1 *</type>
+          <declname>in1</declname>
+        </param>
+        <param>
+          <type>const XArgType2 *</type>
+          <declname>in2</declname>
+        </param>
+        <param>
+          <type>XArgType3 *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Setter for args, out-of-place operation, in1/in2 unmodified, result stored in out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument of type XArgType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument of type XArgType2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output argument of type XArgType3 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="43" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" bodystart="43" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryOperator_1a7448e37ee77a50fb3cbe4d93e0df92e7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::ExecuteImpl</definition>
+        <argsstring>(const XArgType1 *, const XArgType2 *, XArgType3 *)=0</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplementedby refid="classhops_1_1MHO__DelayRate_1a7b8c95a341a7279c717cb5f4e7628ca0">ExecuteImpl</reimplementedby>
+        <param>
+          <type>const XArgType1 *</type>
+        </param>
+        <param>
+          <type>const XArgType2 *</type>
+        </param>
+        <param>
+          <type>XArgType3 *</type>
+        </param>
+        <briefdescription>
+<para>Function ExecuteImpl. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input paratmer 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!in2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input parameter 2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="94" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__BinaryOperator_1a7640bfa5a29b53673e615aaf1c2ff3a1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;::InitializeImpl</definition>
+        <argsstring>(const XArgType1 *, const XArgType2 *, XArgType3 *)=0</argsstring>
+        <name>InitializeImpl</name>
+        <reimplementedby refid="classhops_1_1MHO__DelayRate_1abadb66da4b56072ea38f22bfd47437ac">InitializeImpl</reimplementedby>
+        <param>
+          <type>const XArgType1 *</type>
+        </param>
+        <param>
+          <type>const XArgType2 *</type>
+        </param>
+        <param>
+          <type>XArgType3 *</type>
+        </param>
+        <briefdescription>
+<para>Function InitializeImpl. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input paratmer 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!in2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input parameter 2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="84" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BinaryOperator" kindref="compound">MHO_BinaryOperator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>an operator which takes to array types as input (XArgType1 and XArgType2), and writes to a single type as output (XArgType3)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Oct 15 12:58:01 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryOperator&lt; XArgType1, XArgType2, XArgType3 &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fArgs</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>tuple&lt; const XArgType1 *, const XArgType1 *, XArgType1 * &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_BinaryOperator.hh" bodystart="24" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BinaryOperator_1af0716d50495400b0510af28a5ec75c8e" prot="public" virt="virtual"><scope>hops::MHO_BinaryOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1a7448e37ee77a50fb3cbe4d93e0df92e7" prot="protected" virt="pure-virtual"><scope>hops::MHO_BinaryOperator</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" prot="protected" virt="non-virtual"><scope>hops::MHO_BinaryOperator</scope><name>fArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryOperator</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1aa9d4b322af4ea6f5e98afc218681abe1" prot="public" virt="virtual"><scope>hops::MHO_BinaryOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1a7640bfa5a29b53673e615aaf1c2ff3a1" prot="protected" virt="pure-virtual"><scope>hops::MHO_BinaryOperator</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1abd9b011b1ad9ce7ed98fac23e0153afa" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryOperator</scope><name>MHO_BinaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryOperator</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_BinaryOperator</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1ab98c0e7cdbc7f23197964387625f9e66" prot="public" virt="virtual"><scope>hops::MHO_BinaryOperator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryOperator</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_BinaryOperator</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1ace7fcbd64341e102dd5f42985a8d26f4" prot="public" virt="virtual"><scope>hops::MHO_BinaryOperator</scope><name>~MHO_BinaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_BinaryOperator</scope><name>~MHO_Operator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

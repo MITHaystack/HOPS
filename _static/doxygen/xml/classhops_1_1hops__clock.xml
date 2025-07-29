@@ -1,0 +1,1791 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1hops__clock" kind="class" language="C++" prot="public">
+    <compoundname>hops::hops_clock</compoundname>
+    <includes refid="MHO__Clock_8hh" local="no">MHO_Clock.hh</includes>
+    <innerclass refid="structhops_1_1hops__clock_1_1vex__date" prot="private">hops::hops_clock::vex_date</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1hops__clock_1a6910f1e3ed23e39ad22b260945e90e57" prot="public" static="no">
+        <type>std::chrono::nanoseconds</type>
+        <definition>using hops::hops_clock::duration =  std::chrono::nanoseconds</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1hops__clock_1a130ea45ecf5b5b8d0aa13fb8760e78c4" prot="public" static="no">
+        <type>duration::period</type>
+        <definition>using hops::hops_clock::period =  duration::period</definition>
+        <argsstring></argsstring>
+        <name>period</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1hops__clock_1a7fab44e6a4ae0468fb33d7e5c2599e96" prot="public" static="no">
+        <type>duration::rep</type>
+        <definition>using hops::hops_clock::rep =  duration::rep</definition>
+        <argsstring></argsstring>
+        <name>rep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="46" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" prot="public" static="no">
+        <type>std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, std::chrono::nanoseconds &gt;</type>
+        <definition>using hops::hops_clock::time_point =  std::chrono::time_point&lt; hops_clock, std::chrono::nanoseconds &gt;</definition>
+        <argsstring></argsstring>
+        <name>time_point</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="48" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classhops_1_1hops__clock_1acf18fe6adcf80a2161ff05bcd02c2c68" prot="public" static="yes" mutable="no">
+        <type>const bool</type>
+        <definition>const bool hops::hops_clock::is_steady</definition>
+        <argsstring></argsstring>
+        <name>is_steady</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="49" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ab56fbf51ad88787fd61da0d1d69fa8e1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; hops_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_gps</definition>
+        <argsstring>(const std::chrono::time_point&lt; date::gps_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>from_gps</name>
+        <param>
+          <type>const std::chrono::time_point&lt; date::gps_clock, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts GPS time to Hops clock time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; date::gps_clock, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="117" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a6c07ae1c8f2fc5268c71ba5029db4105" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::from_hops_format</definition>
+        <argsstring>(const std::string &amp;timestamp)</argsstring>
+        <name>from_hops_format</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+<para>Converts a timestamp string in HOPS format to a time_point object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function <ref refid="classhops_1_1hops__clock_1a6c07ae1c8f2fc5268c71ba5029db4105" kindref="member">hops_clock::from_hops_format</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input timestamp string in HOPS format. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>time_point representing the parsed timestamp or epoch start if parsing fails. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (<ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">hops_clock::time_point</ref>) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="186" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="630" bodyend="656"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a713e5a0c6a1d5a2534424d01bedcf883" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::from_iso8601_format</definition>
+        <argsstring>(const std::string &amp;timestamp)</argsstring>
+        <name>from_iso8601_format</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+<para>Converts an ISO8601 formatted timestamp string to a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Converts an ISO8601 formatted timestamp string to <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">hops_clock::time_point</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input timestamp string in ISO8601 format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Time point object representing the parsed timestamp </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input timestamp string in ISO8601 format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">hops_clock::time_point</ref> representing the parsed timestamp </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="167" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="599" bodyend="609"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1adadc58ccd2e7d3e64898eac85e343a1c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::from_legacy_hops_date</definition>
+        <argsstring>(legacy_hops_date &amp;ldate)</argsstring>
+        <name>from_legacy_hops_date</name>
+        <param>
+          <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> &amp;</type>
+          <declname>ldate</declname>
+        </param>
+        <briefdescription>
+<para>Converts a legacy hops data struct to a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ldate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(<ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref>) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>time_point </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="205" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="675" bodyend="680"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1af4156d76ad2604f15601f412b483ec87" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; hops_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_local</definition>
+        <argsstring>(const std::chrono::time_point&lt; date::local_t, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>from_local</name>
+        <param>
+          <type>const std::chrono::time_point&lt; date::local_t, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Calculates time difference between input local time and Hops epoch in UTC. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; date::local_t, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="158" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1afc9abdc870bc2ce4847a03e36ef9da90" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::from_mjd</definition>
+        <argsstring>(const time_point &amp;mjd_epoch, const double &amp;epoch_offset, const double &amp;mjd)</argsstring>
+        <name>from_mjd</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>mjd_epoch</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>epoch_offset</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mjd</declname>
+        </param>
+        <briefdescription>
+<para>Converts a Modified Julian date (floating point epoch and day) timestamp to a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mjd_epoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(time_point) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>epoch_offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mjd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>time_point </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="246" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="765" bodyend="775"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a6b0b72452a92ea3b0c552f1957100200" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; hops_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_sys</definition>
+        <argsstring>(const std::chrono::time_point&lt; std::chrono::system_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>from_sys</name>
+        <param>
+          <type>const std::chrono::time_point&lt; std::chrono::system_clock, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts a system time point to UTC and returns the corresponding hops clock time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; std::chrono::system_clock, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="138" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a660089f4448b21e1270195fd4bd352ad" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; hops_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_tai</definition>
+        <argsstring>(const std::chrono::time_point&lt; date::tai_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>from_tai</name>
+        <param>
+          <type>const std::chrono::time_point&lt; date::tai_clock, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts a TAI time point to UTC and returns the corresponding Hops clock time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; date::tai_clock, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="97" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1aef12074d911d5a1cf770ded3041ec3b0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; hops_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_utc</definition>
+        <argsstring>(const std::chrono::time_point&lt; date::utc_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>from_utc</name>
+        <param>
+          <type>const std::chrono::time_point&lt; date::utc_clock, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts UTC time point to <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; date::utc_clock, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="77" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a8cb494b245492cc9eb66902058037bc2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::from_vdif_format</definition>
+        <argsstring>(int &amp;vdif_epoch, int &amp;vdif_seconds)</argsstring>
+        <name>from_vdif_format</name>
+        <param>
+          <type>int &amp;</type>
+          <declname>vdif_epoch</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>vdif_seconds</declname>
+        </param>
+        <briefdescription>
+<para>Converts a VDIF (epoch, second) timestamp to a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vdif_epoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vdif_seconds</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>time_point </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="224" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="913" bodyend="954"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ab45cd57f0e69c03f868d18626a1f56c1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::from_vex_format</definition>
+        <argsstring>(const std::string &amp;timestamp)</argsstring>
+        <name>from_vex_format</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+<para>Converts a VEX-style formatted string (e.g. 2019y106d18h30m15s) to a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timestamp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>VEX formatted string representation of time </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>time_point </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="266" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="789" bodyend="795"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a553fe032b7143b3588bb83baf7bf7297" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::from_year_fpday</definition>
+        <argsstring>(int year, double floating_point_days)</argsstring>
+        <name>from_year_fpday</name>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>floating_point_days</declname>
+        </param>
+        <briefdescription>
+<para>Converts a year + floating point day since start of the year to a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point, needed for ad_hoc flag files (time-stamps are given in floating-point days) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>year</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>floating_point_days</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double) - days since start of the year </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>time_point </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="287" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="718" bodyend="736"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a0f0b8bd39563c97fe52d1c8e9d92026c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>static time_point hops::hops_clock::get_hops_epoch</definition>
+        <argsstring>()</argsstring>
+        <name>get_hops_epoch</name>
+        <briefdescription>
+<para>returns the <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> epoch as a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="317" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="317" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a0a72be8009d445abb703aeb8caf94700" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>date::utc_time&lt; std::chrono::nanoseconds &gt;</type>
+        <definition>static date::utc_time&lt; std::chrono::nanoseconds &gt; hops::hops_clock::get_hops_epoch_utc</definition>
+        <argsstring>()</argsstring>
+        <name>get_hops_epoch_utc</name>
+        <briefdescription>
+<para>returns the <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> epoch as a utc_time time_point </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="303" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="303" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ab8aa1400707003acbe5282b5363dd88c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::chrono::seconds</type>
+        <definition>static std::chrono::seconds hops::hops_clock::get_leap_seconds_between</definition>
+        <argsstring>(const time_point &amp;t_start, const time_point &amp;t_end)</argsstring>
+        <name>get_leap_seconds_between</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>t_start</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>t_end</declname>
+        </param>
+        <briefdescription>
+<para>calculates the number of leap seconds inserted between two hops time points (UTC based clock) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="322" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="322" bodyend="330"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a1c8305ede090e065acbcf4b21dd0fd9b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref></type>
+        <definition>hops_clock::time_point hops::hops_clock::now</definition>
+        <argsstring>()</argsstring>
+        <name>now</name>
+        <briefdescription>
+<para>Returns current time as a time_point using <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>&apos;s epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the current time point in HOPS clock format.</para>
+<para><simplesect kind="return"><para>time_point representing current time in <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>&apos;s epoch. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function.</para>
+</simplesect>
+<simplesect kind="return"><para>Current time point as <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">hops_clock::time_point</ref>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="57" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="502" bodyend="505"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ac10933a1767b795b7c749aecf96b7a31" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; date::gps_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; date::gps_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_gps</definition>
+        <argsstring>(const std::chrono::time_point&lt; hops_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>to_gps</name>
+        <param>
+          <type>const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts a time point to GPS clock time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="107" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ab1e911b8376b44297585d1167b6cb6ef" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::hops_clock::to_hops_format</definition>
+        <argsstring>(const time_point &amp;tp)</argsstring>
+        <name>to_hops_format</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>tp</declname>
+        </param>
+        <briefdescription>
+<para>Converts a time_point to HOPS format string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time_point to convert </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String representation of tp in HOPS format </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time_point to convert </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String representation of tp in HOPS format </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="195" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="664" bodyend="673"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a49c203d7999ba785360e966637aa696c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::hops_clock::to_iso8601_format</definition>
+        <argsstring>(const time_point &amp;tp)</argsstring>
+        <name>to_iso8601_format</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>tp</declname>
+        </param>
+        <briefdescription>
+<para>Converts a time_point to ISO8601 formatted string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time_point to be converted </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>ISO8601 formatted string representation of tp </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time_point to be converted </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>ISO8601 formatted string representation of tp </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="176" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="617" bodyend="622"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ad60c4477d2396644e37b5242ed9314a3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref></type>
+        <definition>legacy_hops_date hops::hops_clock::to_legacy_hops_date</definition>
+        <argsstring>(const time_point &amp;tp)</argsstring>
+        <name>to_legacy_hops_date</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>tp</declname>
+        </param>
+        <briefdescription>
+<para>Converts a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point to a legacy hops data struct. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(time_point) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> struct </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="214" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="682" bodyend="714"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a45083bcb173dfe30f47800f130674abb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; date::local_t, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; date::local_t, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_local</definition>
+        <argsstring>(const std::chrono::time_point&lt; hops_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>to_local</name>
+        <param>
+          <type>const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts a global time point to local time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="148" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a46a24fc77d218a7e0a7aca3a218ff043" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::hops_clock::to_mjd</definition>
+        <argsstring>(const time_point &amp;mjd_epoch, const double &amp;epoch_offset, const time_point &amp;tp)</argsstring>
+        <name>to_mjd</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>mjd_epoch</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>epoch_offset</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>tp</declname>
+        </param>
+        <briefdescription>
+<para>Converts a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point to a Modified Julian date (floating point day) timestamp, givent the specified epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mjd_epoch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(time_point) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>epoch_offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(time_point&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>MJD (double) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="257" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="777" bodyend="787"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a40255bc15b164e9a8b42335a87d0842d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; std::chrono::system_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; std::chrono::system_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_sys</definition>
+        <argsstring>(const std::chrono::time_point&lt; hops_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>to_sys</name>
+        <param>
+          <type>const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts a time point from <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> to system clock. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="128" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a1400f337099cdc1e4cdff0dcdbe01fdc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; date::tai_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; date::tai_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_tai</definition>
+        <argsstring>(const std::chrono::time_point&lt; hops_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>to_tai</name>
+        <param>
+          <type>const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts a time point from <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> to TAI (International Atomic Time). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="87" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1afe5644e179f0992dce54a0048f18c14f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Duration</type>
+          </param>
+        </templateparamlist>
+        <type>std::chrono::time_point&lt; date::utc_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>static std::chrono::time_point&lt; date::utc_clock, typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_utc</definition>
+        <argsstring>(const std::chrono::time_point&lt; hops_clock, Duration &gt; &amp;) NOEXCEPT</argsstring>
+        <name>to_utc</name>
+        <param>
+          <type>const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration &gt; &amp;</type>
+        </param>
+        <briefdescription>
+<para>Converts a time point to UTC using <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> and Duration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter &amp; of type const std::chrono::time_point&lt; <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>, Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="67" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a13fc6e7eed8278fa613acfb713708945" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::hops_clock::to_vdif_format</definition>
+        <argsstring>(const time_point &amp;tp, int &amp;vdif_epoch, int &amp;vdif_second)</argsstring>
+        <name>to_vdif_format</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>tp</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>vdif_epoch</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>vdif_second</declname>
+        </param>
+        <briefdescription>
+<para>Converts a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point to a VDIF (epoch, second) timestamp. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(time_point) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>to vdif_epoch (int&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>to vdif_seconds (int&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>time_point </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="235" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="854" bodyend="911"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a8cc7394b4281c10218a3080e34161a40" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::hops_clock::to_vex_format</definition>
+        <argsstring>(const time_point &amp;tp, bool truncate_to_nearest_second=false)</argsstring>
+        <name>to_vex_format</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>tp</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>truncate_to_nearest_second</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Converts a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point to VEX-style formatted string (e.g. 2019y106d18h30m15s) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time_point to be converted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>truncate_to_nearest_second</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(bool) optionally truncate the time-point to the nearest second </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>VEX formatted string representation of tp </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="276" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="797" bodyend="852"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ad846689ae12098cea77e44de47132c09" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::hops_clock::to_year_fpday</definition>
+        <argsstring>(const time_point &amp;tp, int &amp;year, double &amp;floating_point_days)</argsstring>
+        <name>to_year_fpday</name>
+        <param>
+          <type>const <ref refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" kindref="member">time_point</ref> &amp;</type>
+          <declname>tp</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>floating_point_days</declname>
+        </param>
+        <briefdescription>
+<para>Converts a <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref> time_point to a floating point day since start of the year needed for ad_hoc flag files (time-stamps are given in floating-point days) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time_point to be converted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>year</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>floating_point_days</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) - days since start of the year </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="298" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="738" bodyend="762"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a009bca7d4a9e927bc8c902dde7c71999" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>date::days</type>
+        <definition>static date::days hops::hops_clock::day_of_year</definition>
+        <argsstring>(date::sys_days sd)</argsstring>
+        <name>day_of_year</name>
+        <param>
+          <type>date::sys_days</type>
+          <declname>sd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="334" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="334" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ac77ac531f65424b96d56daaaa13d9654" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vex_date</type>
+        <definition>hops_clock::vex_date hops::hops_clock::extract_vex_date</definition>
+        <argsstring>(const std::string &amp;timestamp)</argsstring>
+        <name>extract_vex_date</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>timestamp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="356" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="956" bodyend="1024"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a009e17500c0c6d2d5039918ed39cc6ff" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>date::sys_days</type>
+        <definition>static date::sys_days hops::hops_clock::get_year_month_day</definition>
+        <argsstring>(date::year y, date::days ord_day)</argsstring>
+        <name>get_year_month_day</name>
+        <param>
+          <type><ref refid="structdate_1aef68a8508dda64a80f5fe08202e0da4c" kindref="member">date::year</ref></type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>date::days</type>
+          <declname>ord_day</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="341" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="341" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a944616fdb597184f592a76ff98891734" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::hops_clock::remove_trailing_zeros</definition>
+        <argsstring>(std::string value)</argsstring>
+        <name>remove_trailing_zeros</name>
+        <param>
+          <type>std::string</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="362" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="362" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ab777d47b513a020f7b0d05e2a844894e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vex_date</type>
+        <definition>hops_clock::vex_date hops::hops_clock::vex_date_from_legacy</definition>
+        <argsstring>(const legacy_hops_date &amp;legacy_date)</argsstring>
+        <name>vex_date_from_legacy</name>
+        <param>
+          <type>const <ref refid="structhops_1_1legacy__hops__date" kindref="compound">legacy_hops_date</ref> &amp;</type>
+          <declname>legacy_date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="360" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="1075" bodyend="1084"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1af6d22e567a60a4f0133243069f2976a0" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::hops_clock::vex_date_to_iso8601_string</definition>
+        <argsstring>(vex_date vdate)</argsstring>
+        <name>vex_date_to_iso8601_string</name>
+        <param>
+          <type>vex_date</type>
+          <declname>vdate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="358" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="1026" bodyend="1073"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a4566c9a8390dd4e90de11353e5ccc714" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>hops_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_gps</definition>
+        <argsstring>(const date::gps_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>from_gps</name>
+        <param>
+          <type>const date::gps_time&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts GPS time to UTC and updates hops clock without exception. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input GPS time in floating-point days. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="466" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="466" bodyend="469"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a05f3ce0943c260a61b40fd1eef9c62e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>hops_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_local</definition>
+        <argsstring>(const date::local_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>from_local</name>
+        <param>
+          <type>const date::local_time&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Calculates time difference between two UTC time points considering leap seconds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input local time to convert to UTC. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="532" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="532" bodyend="539"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a5a41602506a33f32326f963641b38a44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>hops_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_sys</definition>
+        <argsstring>(const date::sys_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>from_sys</name>
+        <param>
+          <type>const date::sys_time&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts system time to UTC clock time and returns it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input system time in floating-point days. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="492" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="492" bodyend="495"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1aa6b72ca4a25a69d6e0956948751902cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>hops_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_tai</definition>
+        <argsstring>(const date::tai_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>from_tai</name>
+        <param>
+          <type>const date::tai_time&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts TAI time to UTC and updates hops clock. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input TAI time </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="440" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="440" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a2040f47f90bcdae7cf62e693ff070fbc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>hops_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::from_utc</definition>
+        <argsstring>(const date::utc_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>from_utc</name>
+        <param>
+          <type>const date::utc_time&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts UTC time to hops clock time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input UTC time. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="412" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="412" bodyend="417"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a410fba4e0a92fdf868f7b0b385d26e15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type>date::gps_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>date::gps_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_gps</definition>
+        <argsstring>(const hops_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>to_gps</name>
+        <param>
+          <type>const <ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts hops_time to GPS time using UTC conversion. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input hops_time with Duration template parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="453" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="453" bodyend="456"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1ad5f1bb94b821435bc44fadd65d7d63d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type>date::local_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>date::local_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_local</definition>
+        <argsstring>(const hops_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>to_local</name>
+        <param>
+          <type>const <ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts a UTC time to local time using <ref refid="classhops_1_1hops__clock" kindref="compound">hops_clock</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input UTC time in hops_time format </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="515" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="515" bodyend="522"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a1ae1bb7a156bef8cc2e0f9487a6e3e59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type>date::sys_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>date::sys_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_sys</definition>
+        <argsstring>(const hops_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>to_sys</name>
+        <param>
+          <type>const <ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts a hops_time to system time using UTC clock. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input hops_time with Duration template parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="479" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="479" bodyend="482"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1abf07beb7b22ce74b8d59e422c5f86f38" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type>date::tai_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>date::tai_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_tai</definition>
+        <argsstring>(const hops_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>to_tai</name>
+        <param>
+          <type>const <ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts a Hops time to TAI (International Atomic Time). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input Hops time in UTC </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="427" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="427" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1hops__clock_1a3b9b84231d51090aa18783cc2421e802" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Duration</type>
+          </param>
+        </templateparamlist>
+        <type>date::utc_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt;</type>
+        <definition>date::utc_time&lt; typename std::common_type&lt; Duration, std::chrono::nanoseconds &gt;::type &gt; hops::hops_clock::to_utc</definition>
+        <argsstring>(const hops_time&lt; Duration &gt; &amp;t) NOEXCEPT</argsstring>
+        <name>to_utc</name>
+        <param>
+          <type>const <ref refid="namespacehops_1ae184e4a1cc248eab7c662c73f3817df0" kindref="member">hops_time</ref>&lt; Duration &gt; &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Converts a time duration to UTC using Hops clock epoch. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Duration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter Duration </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input time duration in specified Duration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="396" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="396" bodyend="402"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>a clock for hops-time stamps, measures time in (UTC) nanoseconds since J2000 epoch. Functionality modelled on the gps_clock from the &apos;date&apos; library (requires the timezone tz library too). Relys on the H. Hinnant date library (and tzdata), this library is expected to be adopted into cxx-20 standard </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed May 18 16:46:16 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::hops_clock</label>
+        <link refid="classhops_1_1hops__clock"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>is_steady</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>bool</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Clock.hh" bodystart="43" bodyend="381"/>
+    <listofallmembers>
+      <member refid="classhops_1_1hops__clock_1a009bca7d4a9e927bc8c902dde7c71999" prot="private" virt="non-virtual"><scope>hops::hops_clock</scope><name>day_of_year</name></member>
+      <member refid="classhops_1_1hops__clock_1a6910f1e3ed23e39ad22b260945e90e57" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>duration</name></member>
+      <member refid="classhops_1_1hops__clock_1ac77ac531f65424b96d56daaaa13d9654" prot="private" virt="non-virtual"><scope>hops::hops_clock</scope><name>extract_vex_date</name></member>
+      <member refid="classhops_1_1hops__clock_1ab56fbf51ad88787fd61da0d1d69fa8e1" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_gps</name></member>
+      <member refid="classhops_1_1hops__clock_1a4566c9a8390dd4e90de11353e5ccc714" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_gps</name></member>
+      <member refid="classhops_1_1hops__clock_1a6c07ae1c8f2fc5268c71ba5029db4105" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_hops_format</name></member>
+      <member refid="classhops_1_1hops__clock_1a713e5a0c6a1d5a2534424d01bedcf883" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_iso8601_format</name></member>
+      <member refid="classhops_1_1hops__clock_1adadc58ccd2e7d3e64898eac85e343a1c" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_legacy_hops_date</name></member>
+      <member refid="classhops_1_1hops__clock_1af4156d76ad2604f15601f412b483ec87" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_local</name></member>
+      <member refid="classhops_1_1hops__clock_1a05f3ce0943c260a61b40fd1eef9c62e9" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_local</name></member>
+      <member refid="classhops_1_1hops__clock_1afc9abdc870bc2ce4847a03e36ef9da90" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_mjd</name></member>
+      <member refid="classhops_1_1hops__clock_1a6b0b72452a92ea3b0c552f1957100200" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_sys</name></member>
+      <member refid="classhops_1_1hops__clock_1a5a41602506a33f32326f963641b38a44" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_sys</name></member>
+      <member refid="classhops_1_1hops__clock_1a660089f4448b21e1270195fd4bd352ad" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_tai</name></member>
+      <member refid="classhops_1_1hops__clock_1aa6b72ca4a25a69d6e0956948751902cd" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_tai</name></member>
+      <member refid="classhops_1_1hops__clock_1aef12074d911d5a1cf770ded3041ec3b0" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_utc</name></member>
+      <member refid="classhops_1_1hops__clock_1a2040f47f90bcdae7cf62e693ff070fbc" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_utc</name></member>
+      <member refid="classhops_1_1hops__clock_1a8cb494b245492cc9eb66902058037bc2" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_vdif_format</name></member>
+      <member refid="classhops_1_1hops__clock_1ab45cd57f0e69c03f868d18626a1f56c1" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_vex_format</name></member>
+      <member refid="classhops_1_1hops__clock_1a553fe032b7143b3588bb83baf7bf7297" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>from_year_fpday</name></member>
+      <member refid="classhops_1_1hops__clock_1a0f0b8bd39563c97fe52d1c8e9d92026c" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>get_hops_epoch</name></member>
+      <member refid="classhops_1_1hops__clock_1a0a72be8009d445abb703aeb8caf94700" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>get_hops_epoch_utc</name></member>
+      <member refid="classhops_1_1hops__clock_1ab8aa1400707003acbe5282b5363dd88c" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>get_leap_seconds_between</name></member>
+      <member refid="classhops_1_1hops__clock_1a009e17500c0c6d2d5039918ed39cc6ff" prot="private" virt="non-virtual"><scope>hops::hops_clock</scope><name>get_year_month_day</name></member>
+      <member refid="classhops_1_1hops__clock_1acf18fe6adcf80a2161ff05bcd02c2c68" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>is_steady</name></member>
+      <member refid="classhops_1_1hops__clock_1a1c8305ede090e065acbcf4b21dd0fd9b" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>now</name></member>
+      <member refid="classhops_1_1hops__clock_1a130ea45ecf5b5b8d0aa13fb8760e78c4" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>period</name></member>
+      <member refid="classhops_1_1hops__clock_1a944616fdb597184f592a76ff98891734" prot="private" virt="non-virtual"><scope>hops::hops_clock</scope><name>remove_trailing_zeros</name></member>
+      <member refid="classhops_1_1hops__clock_1a7fab44e6a4ae0468fb33d7e5c2599e96" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>rep</name></member>
+      <member refid="classhops_1_1hops__clock_1a21a513378bd0cfabf00044b8546c0e35" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>time_point</name></member>
+      <member refid="classhops_1_1hops__clock_1ac10933a1767b795b7c749aecf96b7a31" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_gps</name></member>
+      <member refid="classhops_1_1hops__clock_1a410fba4e0a92fdf868f7b0b385d26e15" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_gps</name></member>
+      <member refid="classhops_1_1hops__clock_1ab1e911b8376b44297585d1167b6cb6ef" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_hops_format</name></member>
+      <member refid="classhops_1_1hops__clock_1a49c203d7999ba785360e966637aa696c" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_iso8601_format</name></member>
+      <member refid="classhops_1_1hops__clock_1ad60c4477d2396644e37b5242ed9314a3" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_legacy_hops_date</name></member>
+      <member refid="classhops_1_1hops__clock_1a45083bcb173dfe30f47800f130674abb" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_local</name></member>
+      <member refid="classhops_1_1hops__clock_1ad5f1bb94b821435bc44fadd65d7d63d4" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_local</name></member>
+      <member refid="classhops_1_1hops__clock_1a46a24fc77d218a7e0a7aca3a218ff043" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_mjd</name></member>
+      <member refid="classhops_1_1hops__clock_1a40255bc15b164e9a8b42335a87d0842d" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_sys</name></member>
+      <member refid="classhops_1_1hops__clock_1a1ae1bb7a156bef8cc2e0f9487a6e3e59" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_sys</name></member>
+      <member refid="classhops_1_1hops__clock_1a1400f337099cdc1e4cdff0dcdbe01fdc" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_tai</name></member>
+      <member refid="classhops_1_1hops__clock_1abf07beb7b22ce74b8d59e422c5f86f38" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_tai</name></member>
+      <member refid="classhops_1_1hops__clock_1afe5644e179f0992dce54a0048f18c14f" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_utc</name></member>
+      <member refid="classhops_1_1hops__clock_1a3b9b84231d51090aa18783cc2421e802" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_utc</name></member>
+      <member refid="classhops_1_1hops__clock_1a13fc6e7eed8278fa613acfb713708945" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_vdif_format</name></member>
+      <member refid="classhops_1_1hops__clock_1a8cc7394b4281c10218a3080e34161a40" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_vex_format</name></member>
+      <member refid="classhops_1_1hops__clock_1ad846689ae12098cea77e44de47132c09" prot="public" virt="non-virtual"><scope>hops::hops_clock</scope><name>to_year_fpday</name></member>
+      <member refid="classhops_1_1hops__clock_1ab777d47b513a020f7b0d05e2a844894e" prot="private" virt="non-virtual"><scope>hops::hops_clock</scope><name>vex_date_from_legacy</name></member>
+      <member refid="classhops_1_1hops__clock_1af6d22e567a60a4f0133243069f2976a0" prot="private" virt="non-virtual"><scope>hops::hops_clock</scope><name>vex_date_to_iso8601_string</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

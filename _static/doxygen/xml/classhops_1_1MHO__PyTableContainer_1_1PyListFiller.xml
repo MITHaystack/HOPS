@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyTableContainer_1_1PyListFiller" kind="class" language="C++" prot="private">
+    <compoundname>hops::MHO_PyTableContainer::PyListFiller</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1abed48f5c98bcd220739d1b005c90b8cc" prot="private" static="no" mutable="no">
+        <type>py::list *</type>
+        <definition>py::list* hops::MHO_PyTableContainer&lt; XTableType &gt;::PyListFiller::fList</definition>
+        <argsstring></argsstring>
+        <name>fList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="181" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1a2bb854ecfce146fa219ddc51fb1ca72f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyTableContainer&lt; XTableType &gt;::PyListFiller::PyListFiller</definition>
+        <argsstring>(py::list *alist)</argsstring>
+        <name>PyListFiller</name>
+        <param>
+          <type>py::list *</type>
+          <declname>alist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="169" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="169" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1a6a403b1c2d45689f5b95b217ee40676b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyTableContainer&lt; XTableType &gt;::PyListFiller::~PyListFiller</definition>
+        <argsstring>()</argsstring>
+        <name>~PyListFiller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="170" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="170" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1a89aa3d5a2153ef5657f48f150ba4571d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XAxisType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_PyTableContainer&lt; XTableType &gt;::PyListFiller::operator()</definition>
+        <argsstring>(const XAxisType &amp;axis)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const XAxisType &amp;</type>
+          <declname>axis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="172" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="172" bodyend="178"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" line="166" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyTableContainer.hh" bodystart="167" bodyend="182"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1abed48f5c98bcd220739d1b005c90b8cc" prot="private" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyListFiller</scope><name>fList</name></member>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1a89aa3d5a2153ef5657f48f150ba4571d" prot="public" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyListFiller</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1a2bb854ecfce146fa219ddc51fb1ca72f" prot="public" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyListFiller</scope><name>PyListFiller</name></member>
+      <member refid="classhops_1_1MHO__PyTableContainer_1_1PyListFiller_1a6a403b1c2d45689f5b95b217ee40676b" prot="public" virt="non-virtual"><scope>hops::MHO_PyTableContainer::PyListFiller</scope><name>~PyListFiller</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

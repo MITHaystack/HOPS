@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structT1__R150" kind="struct" language="C++" prot="public">
+    <compoundname>T1_R150</compoundname>
+    <includes refid="T1_8h" local="no">T1.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structT1__R150_1ab3d5f2d7d8e4adb53b4be503556720ea" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char T1_R150::qcode[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>qcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="154" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R150_1ace18f72a0b94ca1fa1a9aaa6c4f17d13" prot="public" static="no" mutable="no">
+        <type><ref refid="structT1__RecHdr" kindref="compound">T1_RecHdr</ref></type>
+        <definition>T1_RecHdr T1_R150::recHdr</definition>
+        <argsstring></argsstring>
+        <name>recHdr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="153" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R150_1a01dffc1f2ef8a690cf360b67fcb84cdd" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t T1_R150::unused0[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>unused0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="155" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>T1_RecHdr</label>
+        <link refid="structT1__RecHdr"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cFOffset</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>recId</edgelabel>
+          <edgelabel>recVer</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>index</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>recFmt</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>uint16_t</label>
+      </node>
+      <node id="5">
+        <label>uint32_t</label>
+      </node>
+      <node id="6">
+        <label>uint8_t</label>
+      </node>
+      <node id="1">
+        <label>T1_R150</label>
+        <link refid="structT1__R150"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>recHdr</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>qcode</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>unused0</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="152" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="152" bodyend="156"/>
+    <listofallmembers>
+      <member refid="structT1__R150_1ab3d5f2d7d8e4adb53b4be503556720ea" prot="public" virt="non-virtual"><scope>T1_R150</scope><name>qcode</name></member>
+      <member refid="structT1__R150_1ace18f72a0b94ca1fa1a9aaa6c4f17d13" prot="public" virt="non-virtual"><scope>T1_R150</scope><name>recHdr</name></member>
+      <member refid="structT1__R150_1a01dffc1f2ef8a690cf360b67fcb84cdd" prot="public" virt="non-virtual"><scope>T1_R150</scope><name>unused0</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

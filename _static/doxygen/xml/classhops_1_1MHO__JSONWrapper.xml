@@ -1,0 +1,524 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__JSONWrapper" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_JSONWrapper</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__Taggable" prot="public" virt="non-virtual">hops::MHO_Taggable</derivedcompoundref>
+    <includes refid="MHO__JSONHeaderWrapper_8hh" local="no">MHO_JSONHeaderWrapper.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__JSONWrapper_1afa7de95913b4113fc50143b2c73ddbfa" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_JSONWrapper::fObject</definition>
+        <argsstring></argsstring>
+        <name>fObject</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="43" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1a24eaabfac649dfcc5418d47cb5a1e4b2" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_JSONWrapper::MHO_JSONWrapper</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_JSONWrapper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1a95533d35215bcb6a4feb133a58615e81" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_JSONWrapper::MHO_JSONWrapper</definition>
+        <argsstring>(const MHO_JSONWrapper &amp;copy)</argsstring>
+        <name>MHO_JSONWrapper</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__JSONWrapper" kindref="compound">MHO_JSONWrapper</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1ab9fa54b72be7e5859f46e19865e8ab5b" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_JSONWrapper::SetObject</definition>
+        <argsstring>(mho_json obj)</argsstring>
+        <name>SetObject</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Setter for object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json object to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="40" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1a047860e11d91310d6b11b5acae0a9bf4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_JSONWrapper::~MHO_JSONWrapper</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_JSONWrapper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1aec4e83a60d4b3f6197a3c7b14625d5ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_JSONWrapper::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Clears the internal object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="88" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1a01162d836ddbaf45d51e6b8df2dd0fa3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_JSONWrapper::ContainsKey</definition>
+        <argsstring>(const std::string &amp;key) const</argsstring>
+        <name>ContainsKey</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a map contains a specific key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key to search for in the map. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the key is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="163" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="163" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1a0be2488f1dfd3f3781e246d97cb201eb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_JSONWrapper::DumpKeys</definition>
+        <argsstring>() const</argsstring>
+        <name>DumpKeys</name>
+        <briefdescription>
+<para>Dumps all keys from the internal object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Vector of strings containing all keys </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="135" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1ab32a351cb204524f09f839ae6ec6cea0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_JSONWrapper::DumpMap</definition>
+        <argsstring>() const</argsstring>
+        <name>DumpMap</name>
+        <briefdescription>
+<para>Dumps the contents of the map fObject to standard output. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="149" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="149" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1ad838788924b9a12b62b9df9f263ee4a1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_JSONWrapper::HasKey</definition>
+        <argsstring>(const char *char_key) const</argsstring>
+        <name>HasKey</name>
+        <param>
+          <type>const char *</type>
+          <declname>char_key</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a key exists in the internal map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>char_key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const char*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the key is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="70" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="70" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1afa48fbe7ed6faf902d661eba225931b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_JSONWrapper::HasKey</definition>
+        <argsstring>(const std::string &amp;key) const</argsstring>
+        <name>HasKey</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a key exists in the internal map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key to search for in the map. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the key is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="54" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1af94f990de2ea21d48b6b969ff257631b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_JSONWrapper::Insert</definition>
+        <argsstring>(const std::string &amp;key, const XValueType &amp;value)</argsstring>
+        <name>Insert</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Inserts or replaces an object in a map using a key and value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique identifier for the object to be inserted/replaced. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="97" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="97" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1af56aebf9c39bf7e6a527d899ebab328b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__JSONWrapper" kindref="compound">MHO_JSONWrapper</ref> &amp;</type>
+        <definition>MHO_JSONWrapper&amp; hops::MHO_JSONWrapper::operator=</definition>
+        <argsstring>(const MHO_JSONWrapper &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__JSONWrapper" kindref="compound">MHO_JSONWrapper</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="76" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="76" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1aeb880d8fcf4405994704f7334f7fcecd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_JSONWrapper::Retrieve</definition>
+        <argsstring>(const std::string &amp;key, mho_json &amp;value) const</argsstring>
+        <name>Retrieve</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a value from the JSON object by key and stores it in the provided reference. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key to search for in the JSON object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the retrieved value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if retrieval was successful, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="185" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="185" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__JSONWrapper_1a8af109cd5401bbce3e2d380c32111e35" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_JSONWrapper::Retrieve</definition>
+        <argsstring>(const std::string &amp;key, XValueType &amp;value) const</argsstring>
+        <name>Retrieve</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a value from an object by key and casts it to the specified type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key used to lookup the value in the object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if retrieval was successful, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="110" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="110" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="16">
+        <label>hops::MHO_Axis&lt; double &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_dr_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_TableContainer&lt; pcal_phasor_type, multitone_pcal_axis_type &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>hops::MHO_Axis&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_VectorContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__VectorContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_ScalarContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__ScalarContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+      </node>
+      <node id="14">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>hops::MHO_ObjectTags</label>
+        <link refid="classhops_1_1MHO__ObjectTags"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>json</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" line="28" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_JSONHeaderWrapper.hh" bodystart="29" bodyend="175"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aec4e83a60d4b3f6197a3c7b14625d5ab" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a01162d836ddbaf45d51e6b8df2dd0fa3" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>ContainsKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a0be2488f1dfd3f3781e246d97cb201eb" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>DumpKeys</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab32a351cb204524f09f839ae6ec6cea0" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>DumpMap</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa7de95913b4113fc50143b2c73ddbfa" prot="protected" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>fObject</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa48fbe7ed6faf902d661eba225931b4" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ad838788924b9a12b62b9df9f263ee4a1" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af94f990de2ea21d48b6b969ff257631b" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>Insert</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a24eaabfac649dfcc5418d47cb5a1e4b2" prot="protected" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a95533d35215bcb6a4feb133a58615e81" prot="protected" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af56aebf9c39bf7e6a527d899ebab328b" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a8af109cd5401bbce3e2d380c32111e35" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aeb880d8fcf4405994704f7334f7fcecd" prot="public" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab9fa54b72be7e5859f46e19865e8ab5b" prot="protected" virt="non-virtual"><scope>hops::MHO_JSONWrapper</scope><name>SetObject</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a047860e11d91310d6b11b5acae0a9bf4" prot="public" virt="virtual"><scope>hops::MHO_JSONWrapper</scope><name>~MHO_JSONWrapper</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

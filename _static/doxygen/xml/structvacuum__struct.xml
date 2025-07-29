@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structvacuum__struct" kind="struct" language="C++" prot="public">
+    <compoundname>vacuum_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structvacuum__struct_1acfb58b6b8b74259ebdf100a288385b95" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short vacuum_struct::inches_of_H2O</definition>
+        <argsstring></argsstring>
+        <name>inches_of_H2O</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="50" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvacuum__struct_1ade8f51c6a2e80e45581141fa6c442a85" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short vacuum_struct::setting</definition>
+        <argsstring></argsstring>
+        <name>setting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="51" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>vacuum_struct</label>
+        <link refid="structvacuum__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>inches_of_H2O</edgelabel>
+          <edgelabel>setting</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="49" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structvacuum__struct_1acfb58b6b8b74259ebdf100a288385b95" prot="public" virt="non-virtual"><scope>vacuum_struct</scope><name>inches_of_H2O</name></member>
+      <member refid="structvacuum__struct_1ade8f51c6a2e80e45581141fa6c442a85" prot="public" virt="non-virtual"><scope>vacuum_struct</scope><name>setting</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

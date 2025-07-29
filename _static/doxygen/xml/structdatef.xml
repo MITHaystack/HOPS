@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdatef" kind="struct" language="C++" prot="public">
+    <compoundname>datef</compoundname>
+    <includes refid="general_8h" local="no">general.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdatef_1ab0d32daf92ab312d1277176460af701e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datef::day</definition>
+        <argsstring></argsstring>
+        <name>day</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="57" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatef_1ae599b78e2c960ade86704f2737b90da3" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datef::hour</definition>
+        <argsstring></argsstring>
+        <name>hour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="58" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatef_1ac44340af84d321d5966a06110c32538c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datef::minute</definition>
+        <argsstring></argsstring>
+        <name>minute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="59" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatef_1a519c8b6aab0bd50b7d8cf879f63ad725" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datef::month</definition>
+        <argsstring></argsstring>
+        <name>month</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="56" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatef_1a9fa47b9ba5549d0c224ffe447a14b814" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datef::second</definition>
+        <argsstring></argsstring>
+        <name>second</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="60" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdatef_1ae73fad0c941d3769a672373f36ce2d44" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short datef::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="55" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>datef</label>
+        <link refid="structdatef"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>month</edgelabel>
+          <edgelabel>second</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" line="54" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/general.h" bodystart="54" bodyend="61"/>
+    <listofallmembers>
+      <member refid="structdatef_1ab0d32daf92ab312d1277176460af701e" prot="public" virt="non-virtual"><scope>datef</scope><name>day</name></member>
+      <member refid="structdatef_1ae599b78e2c960ade86704f2737b90da3" prot="public" virt="non-virtual"><scope>datef</scope><name>hour</name></member>
+      <member refid="structdatef_1ac44340af84d321d5966a06110c32538c" prot="public" virt="non-virtual"><scope>datef</scope><name>minute</name></member>
+      <member refid="structdatef_1a519c8b6aab0bd50b7d8cf879f63ad725" prot="public" virt="non-virtual"><scope>datef</scope><name>month</name></member>
+      <member refid="structdatef_1a9fa47b9ba5549d0c224ffe447a14b814" prot="public" virt="non-virtual"><scope>datef</scope><name>second</name></member>
+      <member refid="structdatef_1ae73fad0c941d3769a672373f36ce2d44" prot="public" virt="non-virtual"><scope>datef</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

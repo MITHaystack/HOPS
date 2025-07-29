@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__303" kind="struct" language="C++" prot="public">
+    <compoundname>type_303</compoundname>
+    <includes refid="type__303_8h" local="no">type_303.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__303_1a8bedbb36d89cb360118f9f1606541fcc" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_303::azimuth[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>azimuth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="18" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1abb3cd1b07c0810a82842517818cc9b9c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_303::chan_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>chan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="16" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1ab47f52d5270297df4ba377fe0d200c5b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_303::elevation[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>elevation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1a7fcd4787e373383fa8be3f6f21ee0a8a" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_303::interval</definition>
+        <argsstring></argsstring>
+        <name>interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="15" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1a07f62bfe2ad9ef54b8c364e6d6cfcfb2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_303::parallactic_angle[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>parallactic_angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="20" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1a6f3b25dcdd0702b792294e0bcd12cc74" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_303::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="12" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1a3ac2d2dcf7663eeadfa691654897ab03" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_303::u[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>u</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="21" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1aaf05befe92f25ffca7ff0f7cfca08d60" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_303::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1a9d2d641aa3518f275f30774f6cee4e6a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_303::unused2[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>unused2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1af29c5792c3a206bdf064eb94cec45c19" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_303::v[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>v</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="22" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1a5280ec188d3adf971f3fbaf4d7c22680" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_303::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="13" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__303_1a32ae6745495f02e1ec4687ae03bfeb00" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_303::w[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>w</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="23" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>type_303</label>
+        <link refid="structtype__303"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>azimuth</edgelabel>
+          <edgelabel>elevation</edgelabel>
+          <edgelabel>parallactic_angle</edgelabel>
+          <edgelabel>u</edgelabel>
+          <edgelabel>v</edgelabel>
+          <edgelabel>w</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>interval</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>chan_id</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_303.h" bodystart="11" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structtype__303_1a8bedbb36d89cb360118f9f1606541fcc" prot="public" virt="non-virtual"><scope>type_303</scope><name>azimuth</name></member>
+      <member refid="structtype__303_1abb3cd1b07c0810a82842517818cc9b9c" prot="public" virt="non-virtual"><scope>type_303</scope><name>chan_id</name></member>
+      <member refid="structtype__303_1ab47f52d5270297df4ba377fe0d200c5b" prot="public" virt="non-virtual"><scope>type_303</scope><name>elevation</name></member>
+      <member refid="structtype__303_1a7fcd4787e373383fa8be3f6f21ee0a8a" prot="public" virt="non-virtual"><scope>type_303</scope><name>interval</name></member>
+      <member refid="structtype__303_1a07f62bfe2ad9ef54b8c364e6d6cfcfb2" prot="public" virt="non-virtual"><scope>type_303</scope><name>parallactic_angle</name></member>
+      <member refid="structtype__303_1a6f3b25dcdd0702b792294e0bcd12cc74" prot="public" virt="non-virtual"><scope>type_303</scope><name>record_id</name></member>
+      <member refid="structtype__303_1a3ac2d2dcf7663eeadfa691654897ab03" prot="public" virt="non-virtual"><scope>type_303</scope><name>u</name></member>
+      <member refid="structtype__303_1aaf05befe92f25ffca7ff0f7cfca08d60" prot="public" virt="non-virtual"><scope>type_303</scope><name>unused1</name></member>
+      <member refid="structtype__303_1a9d2d641aa3518f275f30774f6cee4e6a" prot="public" virt="non-virtual"><scope>type_303</scope><name>unused2</name></member>
+      <member refid="structtype__303_1af29c5792c3a206bdf064eb94cec45c19" prot="public" virt="non-virtual"><scope>type_303</scope><name>v</name></member>
+      <member refid="structtype__303_1a5280ec188d3adf971f3fbaf4d7c22680" prot="public" virt="non-virtual"><scope>type_303</scope><name>version_no</name></member>
+      <member refid="structtype__303_1a32ae6745495f02e1ec4687ae03bfeb00" prot="public" virt="non-virtual"><scope>type_303</scope><name>w</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

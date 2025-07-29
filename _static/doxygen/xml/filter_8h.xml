@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="filter_8h" kind="file" language="C++">
+    <compoundname>filter.h</compoundname>
+    <includedby refid="compute__qf_8c" local="yes">compute_qf.c</includedby>
+    <includedby refid="fill__206_8c" local="yes">fill_206.c</includedby>
+    <includedby refid="apply__filter_8c" local="yes">apply_filter.c</includedby>
+    <invincdepgraph>
+      <node id="4">
+        <label>apply_filter.c</label>
+        <link refid="apply__filter_8c"/>
+      </node>
+      <node id="3">
+        <label>fill_206.c</label>
+        <link refid="fill__206_8c"/>
+      </node>
+      <node id="2">
+        <label>compute_qf.c</label>
+        <link refid="compute__qf_8c"/>
+      </node>
+      <node id="1">
+        <label>filter.h</label>
+        <link refid="filter_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structtype__filter" prot="public">type_filter</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Counters<sp/>for<sp/>the<sp/>occurrence<sp/>of<sp/>each<sp/>type<sp/>of<sp/>error<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="structtype__filter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__filter" kindref="compound">type_filter</ref></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="4" refid="structtype__filter_1a555ea53e362d69ef2acba5b9aea48c99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a555ea53e362d69ef2acba5b9aea48c99" kindref="member">absent</ref>;</highlight></codeline>
+<codeline lineno="5" refid="structtype__filter_1aee4f176298581038da4c6ea361229c2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1aee4f176298581038da4c6ea361229c2d" kindref="member">emasked</ref>;</highlight></codeline>
+<codeline lineno="6" refid="structtype__filter_1a90f834e913d772e50648250480cb5d99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a90f834e913d772e50648250480cb5d99" kindref="member">cf_service</ref>;</highlight></codeline>
+<codeline lineno="7" refid="structtype__filter_1a011add97ef88e555148e3c7e2d9f7eed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a011add97ef88e555148e3c7e2d9f7eed" kindref="member">ap_mid_miss</ref>;</highlight></codeline>
+<codeline lineno="8" refid="structtype__filter_1a66906c346b9098e6f808189f033847dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a66906c346b9098e6f808189f033847dd" kindref="member">tap_overrun</ref>;</highlight></codeline>
+<codeline lineno="9" refid="structtype__filter_1ab301fc96f86a269f5e87fa3c00a1a6fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1ab301fc96f86a269f5e87fa3c00a1a6fc" kindref="member">triple_carries</ref>;</highlight></codeline>
+<codeline lineno="10" refid="structtype__filter_1a91cec395279e2cbee4b09c7817e4ea24" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a91cec395279e2cbee4b09c7817e4ea24" kindref="member">suid</ref>[2];</highlight></codeline>
+<codeline lineno="11" refid="structtype__filter_1ad9d05080645e8264e258cbea1ac82d8d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1ad9d05080645e8264e258cbea1ac82d8d" kindref="member">chid</ref>[2];</highlight></codeline>
+<codeline lineno="12" refid="structtype__filter_1aaeb515bd603ca8ef3a77463e36b8b762" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1aaeb515bd603ca8ef3a77463e36b8b762" kindref="member">chksum</ref>[2];</highlight></codeline>
+<codeline lineno="13" refid="structtype__filter_1ad1db9df1689a6c1d3bade0f1cd544181" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1ad1db9df1689a6c1d3bade0f1cd544181" kindref="member">cfnum</ref>[2];</highlight></codeline>
+<codeline lineno="14" refid="structtype__filter_1a9369ba3885c364cf5697271c65774f72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a9369ba3885c364cf5697271c65774f72" kindref="member">badd</ref>[2];</highlight></codeline>
+<codeline lineno="15" refid="structtype__filter_1a20f839fb7f60a234b7e4d18bcadf99b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a20f839fb7f60a234b7e4d18bcadf99b4" kindref="member">zero</ref>[2];</highlight></codeline>
+<codeline lineno="16" refid="structtype__filter_1afcd7f0befea68679d647f3aa67ef12dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1afcd7f0befea68679d647f3aa67ef12dd" kindref="member">link</ref>[2];</highlight></codeline>
+<codeline lineno="17" refid="structtype__filter_1a84c36e5a4446111ef28928e2e080fc82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a84c36e5a4446111ef28928e2e080fc82" kindref="member">ib_sync</ref>[2];</highlight></codeline>
+<codeline lineno="18" refid="structtype__filter_1ae29c3aa5304899a5e9428878c4a0b097" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1ae29c3aa5304899a5e9428878c4a0b097" kindref="member">ndiscard</ref>;</highlight></codeline>
+<codeline lineno="19" refid="structtype__filter_1a23f7d62d361cc3c9a461a5d22c1ec3f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1a23f7d62d361cc3c9a461a5d22c1ec3f6" kindref="member">xperror</ref>;</highlight></codeline>
+<codeline lineno="20" refid="structtype__filter_1aff17e8d763066cae1618a74b052d608b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__filter_1aff17e8d763066cae1618a74b052d608b" kindref="member">yperror</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/filter.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1pcc__plotting__utils" kind="namespace" language="Python">
+    <compoundname>vpal::pcc_plotting_utils</compoundname>
+    <innerclass refid="classvpal_1_1pcc__plotting__utils_1_1ProxyCableDelayFitPlotter" prot="public">vpal::pcc_plotting_utils::ProxyCableDelayFitPlotter</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>library generate some plots from proxy phase-cal data </verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_plotting_utils.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

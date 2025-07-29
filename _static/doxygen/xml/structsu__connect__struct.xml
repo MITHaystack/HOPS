@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsu__connect__struct" kind="struct" language="C++" prot="public">
+    <compoundname>su_connect_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsu__connect__struct_1addc1668d721a8d668928592035437d9f" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short su_connect_struct::corr_segment[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>corr_segment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="90" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsu__connect__struct_1a2a7d7ab171a12a7f198d8a8defc82182" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short su_connect_struct::inputbd_chan_grp[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>inputbd_chan_grp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="91" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>su_connect_struct</label>
+        <link refid="structsu__connect__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>corr_segment</edgelabel>
+          <edgelabel>inputbd_chan_grp</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="88" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="89" bodyend="92"/>
+    <listofallmembers>
+      <member refid="structsu__connect__struct_1addc1668d721a8d668928592035437d9f" prot="public" virt="non-virtual"><scope>su_connect_struct</scope><name>corr_segment</name></member>
+      <member refid="structsu__connect__struct_1a2a7d7ab171a12a7f198d8a8defc82182" prot="public" virt="non-virtual"><scope>su_connect_struct</scope><name>inputbd_chan_grp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

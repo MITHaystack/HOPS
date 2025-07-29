@@ -1,0 +1,2349 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mk4__vex_8h" kind="file" language="C++">
+    <compoundname>mk4_vex.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes refid="vex_8h" local="yes">vex.h</includes>
+    <includedby refid="psfile4_8c" local="yes">psfile4.c</includedby>
+    <includedby refid="psplot4_8c" local="yes">psplot4.c</includedby>
+    <includedby refid="fringex_8h" local="yes">fringex.h</includedby>
+    <includedby refid="plot__data__dir_8h" local="yes">plot_data_dir.h</includedby>
+    <includedby refid="block__params_8c" local="yes">block_params.c</includedby>
+    <includedby refid="check__intrange_8c" local="yes">check_intrange.c</includedby>
+    <includedby refid="check__realrange_8c" local="yes">check_realrange.c</includedby>
+    <includedby refid="check__scan_8c" local="yes">check_scan.c</includedby>
+    <includedby refid="check__stloc_8c" local="yes">check_stloc.c</includedby>
+    <includedby refid="check__strrange_8c" local="yes">check_strrange.c</includedby>
+    <includedby refid="cvex__info_8c" local="yes">cvex_info.c</includedby>
+    <includedby refid="decode__pval_8c" local="yes">decode_pval.c</includedby>
+    <includedby refid="do__antenna_8c" local="yes">do_antenna.c</includedby>
+    <includedby refid="do__bbc_8c" local="yes">do_bbc.c</includedby>
+    <includedby refid="do__clock_8c" local="yes">do_clock.c</includedby>
+    <includedby refid="do__das_8c" local="yes">do_das.c</includedby>
+    <includedby refid="do__eop_8c" local="yes">do_eop.c</includedby>
+    <includedby refid="do__exper_8c" local="yes">do_exper.c</includedby>
+    <includedby refid="do__freq_8c" local="yes">do_freq.c</includedby>
+    <includedby refid="do__head__pos_8c" local="yes">do_head_pos.c</includedby>
+    <includedby refid="do__if_8c" local="yes">do_if.c</includedby>
+    <includedby refid="do__pass__order_8c" local="yes">do_pass_order.c</includedby>
+    <includedby refid="do__phase__cal__detect_8c" local="yes">do_phase_cal_detect.c</includedby>
+    <includedby refid="do__roll_8c" local="yes">do_roll.c</includedby>
+    <includedby refid="do__site_8c" local="yes">do_site.c</includedby>
+    <includedby refid="do__source_8c" local="yes">do_source.c</includedby>
+    <includedby refid="do__track_8c" local="yes">do_track.c</includedby>
+    <includedby refid="evex__info_8c" local="yes">evex_info.c</includedby>
+    <includedby refid="fill__deflists_8c" local="yes">fill_deflists.c</includedby>
+    <includedby refid="fill__scanlist_8c" local="yes">fill_scanlist.c</includedby>
+    <includedby refid="fill__station__parms_8c" local="yes">fill_station_parms.c</includedby>
+    <includedby refid="find__statements_8c" local="yes">find_statements.c</includedby>
+    <includedby refid="get__block__mode_8c" local="yes">get_block_mode.c</includedby>
+    <includedby refid="get__chip__mode_8c" local="yes">get_chip_mode.c</includedby>
+    <includedby refid="get__corr__bd__parms_8c" local="yes">get_corr_bd_parms.c</includedby>
+    <includedby refid="get__corr__mode_8c" local="yes">get_corr_mode.c</includedby>
+    <includedby refid="get__def_8c" local="yes">get_def.c</includedby>
+    <includedby refid="get__drive__init_8c" local="yes">get_drive_init.c</includedby>
+    <includedby refid="get__global__deflist_8c" local="yes">get_global_deflist.c</includedby>
+    <includedby refid="get__logscan_8c" local="yes">get_logscan.c</includedby>
+    <includedby refid="get__mode__deflist_8c" local="yes">get_mode_deflist.c</includedby>
+    <includedby refid="get__pbs__init_8c" local="yes">get_pbs_init.c</includedby>
+    <includedby refid="get__pcm__config_8c" local="yes">get_pcm_config.c</includedby>
+    <includedby refid="get__pcm__tables_8c" local="yes">get_pcm_tables.c</includedby>
+    <includedby refid="get__section__mode_8c" local="yes">get_section_mode.c</includedby>
+    <includedby refid="get__statement_8c" local="yes">get_statement.c</includedby>
+    <includedby refid="get__station__deflist_8c" local="yes">get_station_deflist.c</includedby>
+    <includedby refid="get__su__chan__out_8c" local="yes">get_su_chan_out.c</includedby>
+    <includedby refid="get__su__connect_8c" local="yes">get_su_connect.c</includedby>
+    <includedby refid="get__trm__config_8c" local="yes">get_trm_config.c</includedby>
+    <includedby refid="get__val__list_8c" local="yes">get_val_list.c</includedby>
+    <includedby refid="get__version_8c" local="yes">get_version.c</includedby>
+    <includedby refid="get__vex_8c" local="yes">get_vex.c</includedby>
+    <includedby refid="in__comment_8c" local="yes">in_comment.c</includedby>
+    <includedby refid="in__quote_8c" local="yes">in_quote.c</includedby>
+    <includedby refid="init__scan_8c" local="yes">init_scan.c</includedby>
+    <includedby refid="ivex__info_8c" local="yes">ivex_info.c</includedby>
+    <includedby refid="locate__blocks_8c" local="yes">locate_blocks.c</includedby>
+    <includedby refid="locate__cq_8c" local="yes">locate_cq.c</includedby>
+    <includedby refid="lvex__info_8c" local="yes">lvex_info.c</includedby>
+    <includedby refid="nextchar_8c" local="yes">nextchar.c</includedby>
+    <includedby refid="param__formats_8c" local="yes">param_formats.c</includedby>
+    <includedby refid="parse__date_8c" local="yes">parse_date.c</includedby>
+    <includedby refid="parse__dec_8c" local="yes">parse_dec.c</includedby>
+    <includedby refid="parse__pval_8c" local="yes">parse_pval.c</includedby>
+    <includedby refid="parse__ra_8c" local="yes">parse_ra.c</includedby>
+    <includedby refid="parse__ref_8c" local="yes">parse_ref.c</includedby>
+    <includedby refid="parse__units_8c" local="yes">parse_units.c</includedby>
+    <includedby refid="parse__vexfile_8c" local="yes">parse_vexfile.c</includedby>
+    <includedby refid="print__location_8c" local="yes">print_location.c</includedby>
+    <includedby refid="process__qstring_8c" local="yes">process_qstring.c</includedby>
+    <includedby refid="read__file_8c" local="yes">read_file.c</includedby>
+    <includedby refid="scan__info_8c" local="yes">scan_info.c</includedby>
+    <includedby refid="strip__text_8c" local="yes">strip_text.c</includedby>
+    <includedby refid="svex__info_8c" local="yes">svex_info.c</includedby>
+    <includedby refid="vex__init_8c" local="yes">vex_init.c</includedby>
+    <includedby refid="write__vexfile_8c" local="yes">write_vexfile.c</includedby>
+    <includedby refid="MHO__MK4StationInterface_8cc" local="yes">MHO_MK4StationInterface.cc</includedby>
+    <incdepgraph>
+      <node id="11">
+        <label>lvex.h</label>
+        <link refid="lvex_8h"/>
+      </node>
+      <node id="4">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="9">
+        <label>ivex.h</label>
+        <link refid="ivex_8h"/>
+      </node>
+      <node id="7">
+        <label>cvex.h</label>
+        <link refid="cvex_8h"/>
+      </node>
+      <node id="1">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="5">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>evex.h</label>
+        <link refid="evex_8h"/>
+      </node>
+      <node id="10">
+        <label>svex.h</label>
+        <link refid="svex_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="46">
+        <label>do_source.c</label>
+        <link refid="do__source_8c"/>
+      </node>
+      <node id="19">
+        <label>realloc_segs.c</label>
+        <link refid="realloc__segs_8c"/>
+      </node>
+      <node id="12">
+        <label>fill_aline.c</label>
+        <link refid="fill__aline_8c"/>
+      </node>
+      <node id="61">
+        <label>get_mode_deflist.c</label>
+        <link refid="get__mode__deflist_8c"/>
+      </node>
+      <node id="7">
+        <label>calc_seg.c</label>
+        <link refid="calc__seg_8c"/>
+      </node>
+      <node id="82">
+        <label>param_formats.c</label>
+        <link refid="param__formats_8c"/>
+      </node>
+      <node id="92">
+        <label>read_file.c</label>
+        <link refid="read__file_8c"/>
+      </node>
+      <node id="54">
+        <label>get_chip_mode.c</label>
+        <link refid="get__chip__mode_8c"/>
+      </node>
+      <node id="24">
+        <label>plot_data_dir.c</label>
+        <link refid="plot__data__dir_8c"/>
+      </node>
+      <node id="48">
+        <label>evex_info.c</label>
+        <link refid="evex__info_8c"/>
+      </node>
+      <node id="73">
+        <label>get_vex.c</label>
+        <link refid="get__vex_8c"/>
+      </node>
+      <node id="98">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="4">
+        <label>fringex.h</label>
+        <link refid="fringex_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>locate_cq.c</label>
+        <link refid="locate__cq_8c"/>
+      </node>
+      <node id="87">
+        <label>parse_ref.c</label>
+        <link refid="parse__ref_8c"/>
+      </node>
+      <node id="21">
+        <label>set_reffreq.c</label>
+        <link refid="set__reffreq_8c"/>
+      </node>
+      <node id="75">
+        <label>in_quote.c</label>
+        <link refid="in__quote_8c"/>
+      </node>
+      <node id="88">
+        <label>parse_units.c</label>
+        <link refid="parse__units_8c"/>
+      </node>
+      <node id="5">
+        <label>fringex.c</label>
+        <link refid="fringex_8c"/>
+      </node>
+      <node id="62">
+        <label>get_pbs_init.c</label>
+        <link refid="get__pbs__init_8c"/>
+      </node>
+      <node id="31">
+        <label>cvex_info.c</label>
+        <link refid="cvex__info_8c"/>
+      </node>
+      <node id="45">
+        <label>do_site.c</label>
+        <link refid="do__site_8c"/>
+      </node>
+      <node id="47">
+        <label>do_track.c</label>
+        <link refid="do__track_8c"/>
+      </node>
+      <node id="83">
+        <label>parse_date.c</label>
+        <link refid="parse__date_8c"/>
+      </node>
+      <node id="15">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="69">
+        <label>get_su_connect.c</label>
+        <link refid="get__su__connect_8c"/>
+      </node>
+      <node id="10">
+        <label>determine_nsegs.c</label>
+        <link refid="determine__nsegs_8c"/>
+      </node>
+      <node id="74">
+        <label>in_comment.c</label>
+        <link refid="in__comment_8c"/>
+      </node>
+      <node id="23">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="91">
+        <label>process_qstring.c</label>
+        <link refid="process__qstring_8c"/>
+      </node>
+      <node id="37">
+        <label>do_eop.c</label>
+        <link refid="do__eop_8c"/>
+      </node>
+      <node id="94">
+        <label>strip_text.c</label>
+        <link refid="strip__text_8c"/>
+      </node>
+      <node id="34">
+        <label>do_bbc.c</label>
+        <link refid="do__bbc_8c"/>
+      </node>
+      <node id="11">
+        <label>filelist.c</label>
+        <link refid="filelist_8c"/>
+      </node>
+      <node id="71">
+        <label>get_val_list.c</label>
+        <link refid="get__val__list_8c"/>
+      </node>
+      <node id="67">
+        <label>get_station_deflist.c</label>
+        <link refid="get__station__deflist_8c"/>
+      </node>
+      <node id="22">
+        <label>plot_data_dir.h</label>
+        <link refid="plot__data__dir_8h"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>check_strrange.c</label>
+        <link refid="check__strrange_8c"/>
+      </node>
+      <node id="76">
+        <label>init_scan.c</label>
+        <link refid="init__scan_8c"/>
+      </node>
+      <node id="39">
+        <label>do_freq.c</label>
+        <link refid="do__freq_8c"/>
+      </node>
+      <node id="29">
+        <label>check_stloc.c</label>
+        <link refid="check__stloc_8c"/>
+      </node>
+      <node id="2">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="36">
+        <label>do_das.c</label>
+        <link refid="do__das_8c"/>
+      </node>
+      <node id="59">
+        <label>get_global_deflist.c</label>
+        <link refid="get__global__deflist_8c"/>
+      </node>
+      <node id="80">
+        <label>lvex_info.c</label>
+        <link refid="lvex__info_8c"/>
+      </node>
+      <node id="40">
+        <label>do_head_pos.c</label>
+        <link refid="do__head__pos_8c"/>
+      </node>
+      <node id="95">
+        <label>svex_info.c</label>
+        <link refid="svex__info_8c"/>
+      </node>
+      <node id="57">
+        <label>get_def.c</label>
+        <link refid="get__def_8c"/>
+      </node>
+      <node id="8">
+        <label>clear_fxp.c</label>
+        <link refid="clear__fxp_8c"/>
+      </node>
+      <node id="90">
+        <label>print_location.c</label>
+        <link refid="print__location_8c"/>
+      </node>
+      <node id="50">
+        <label>fill_scanlist.c</label>
+        <link refid="fill__scanlist_8c"/>
+      </node>
+      <node id="43">
+        <label>do_phase_cal_detect.c</label>
+        <link refid="do__phase__cal__detect_8c"/>
+      </node>
+      <node id="81">
+        <label>nextchar.c</label>
+        <link refid="nextchar_8c"/>
+      </node>
+      <node id="77">
+        <label>ivex_info.c</label>
+        <link refid="ivex__info_8c"/>
+      </node>
+      <node id="41">
+        <label>do_if.c</label>
+        <link refid="do__if_8c"/>
+      </node>
+      <node id="3">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="78">
+        <label>locate_blocks.c</label>
+        <link refid="locate__blocks_8c"/>
+      </node>
+      <node id="13">
+        <label>init_fxp.c</label>
+        <link refid="init__fxp_8c"/>
+      </node>
+      <node id="60">
+        <label>get_logscan.c</label>
+        <link refid="get__logscan_8c"/>
+      </node>
+      <node id="85">
+        <label>parse_pval.c</label>
+        <link refid="parse__pval_8c"/>
+      </node>
+      <node id="26">
+        <label>check_intrange.c</label>
+        <link refid="check__intrange_8c"/>
+      </node>
+      <node id="56">
+        <label>get_corr_mode.c</label>
+        <link refid="get__corr__mode_8c"/>
+      </node>
+      <node id="14">
+        <label>model.c</label>
+        <link refid="model_8c"/>
+      </node>
+      <node id="16">
+        <label>parse_dflag.c</label>
+        <link refid="parse__dflag_8c"/>
+      </node>
+      <node id="52">
+        <label>find_statements.c</label>
+        <link refid="find__statements_8c"/>
+      </node>
+      <node id="1">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>do_roll.c</label>
+        <link refid="do__roll_8c"/>
+      </node>
+      <node id="25">
+        <label>block_params.c</label>
+        <link refid="block__params_8c"/>
+      </node>
+      <node id="97">
+        <label>write_vexfile.c</label>
+        <link refid="write__vexfile_8c"/>
+      </node>
+      <node id="93">
+        <label>scan_info.c</label>
+        <link refid="scan__info_8c"/>
+      </node>
+      <node id="58">
+        <label>get_drive_init.c</label>
+        <link refid="get__drive__init_8c"/>
+      </node>
+      <node id="70">
+        <label>get_trm_config.c</label>
+        <link refid="get__trm__config_8c"/>
+      </node>
+      <node id="55">
+        <label>get_corr_bd_parms.c</label>
+        <link refid="get__corr__bd__parms_8c"/>
+      </node>
+      <node id="33">
+        <label>do_antenna.c</label>
+        <link refid="do__antenna_8c"/>
+      </node>
+      <node id="72">
+        <label>get_version.c</label>
+        <link refid="get__version_8c"/>
+      </node>
+      <node id="53">
+        <label>get_block_mode.c</label>
+        <link refid="get__block__mode_8c"/>
+      </node>
+      <node id="20">
+        <label>set_loops.c</label>
+        <link refid="set__loops_8c"/>
+      </node>
+      <node id="86">
+        <label>parse_ra.c</label>
+        <link refid="parse__ra_8c"/>
+      </node>
+      <node id="65">
+        <label>get_section_mode.c</label>
+        <link refid="get__section__mode_8c"/>
+      </node>
+      <node id="28">
+        <label>check_scan.c</label>
+        <link refid="check__scan_8c"/>
+      </node>
+      <node id="9">
+        <label>clear_loops.c</label>
+        <link refid="clear__loops_8c"/>
+      </node>
+      <node id="35">
+        <label>do_clock.c</label>
+        <link refid="do__clock_8c"/>
+      </node>
+      <node id="84">
+        <label>parse_dec.c</label>
+        <link refid="parse__dec_8c"/>
+      </node>
+      <node id="42">
+        <label>do_pass_order.c</label>
+        <link refid="do__pass__order_8c"/>
+      </node>
+      <node id="27">
+        <label>check_realrange.c</label>
+        <link refid="check__realrange_8c"/>
+      </node>
+      <node id="38">
+        <label>do_exper.c</label>
+        <link refid="do__exper_8c"/>
+      </node>
+      <node id="49">
+        <label>fill_deflists.c</label>
+        <link refid="fill__deflists_8c"/>
+      </node>
+      <node id="17">
+        <label>parse_iflag.c</label>
+        <link refid="parse__iflag_8c"/>
+      </node>
+      <node id="6">
+        <label>accum_segs.c</label>
+        <link refid="accum__segs_8c"/>
+      </node>
+      <node id="66">
+        <label>get_statement.c</label>
+        <link refid="get__statement_8c"/>
+      </node>
+      <node id="96">
+        <label>vex_init.c</label>
+        <link refid="vex__init_8c"/>
+      </node>
+      <node id="64">
+        <label>get_pcm_tables.c</label>
+        <link refid="get__pcm__tables_8c"/>
+      </node>
+      <node id="89">
+        <label>parse_vexfile.c</label>
+        <link refid="parse__vexfile_8c"/>
+      </node>
+      <node id="63">
+        <label>get_pcm_config.c</label>
+        <link refid="get__pcm__config_8c"/>
+      </node>
+      <node id="18">
+        <label>read_binaries.c</label>
+        <link refid="read__binaries_8c"/>
+      </node>
+      <node id="51">
+        <label>fill_station_parms.c</label>
+        <link refid="fill__station__parms_8c"/>
+      </node>
+      <node id="32">
+        <label>decode_pval.c</label>
+        <link refid="decode__pval_8c"/>
+      </node>
+      <node id="68">
+        <label>get_su_chan_out.c</label>
+        <link refid="get__su__chan__out_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="mk4__vex_8h_1a9e58a3b953ae9b2d41565b8ddaa8dd53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int bitstream</definition>
+        <argsstring>(char *)</argsstring>
+        <name>bitstream</name>
+        <param>
+          <type>char *</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="83" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_trm_config.c" bodystart="151" bodyend="162" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="83" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1acce4385fb50594dffb41ec6043dea8eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int block_params</definition>
+        <argsstring>(void)</argsstring>
+        <name>block_params</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="9" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/block_params.c" bodystart="24" bodyend="95" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="9" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a78a4f0bc4d4bb7be7071b57483bef06c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int check_intrange</definition>
+        <argsstring>(int, char *)</argsstring>
+        <name>check_intrange</name>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_intrange.c" bodystart="33" bodyend="134" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="10" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1adfe6a1bc86c6bafc2e5b9f70e593ac7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int check_realrange</definition>
+        <argsstring>(double, char *)</argsstring>
+        <name>check_realrange</name>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="11" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_realrange.c" bodystart="33" bodyend="135" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="11" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ac251c5085700df4149ee9db9854bdfa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int check_stloc</definition>
+        <argsstring>(void)</argsstring>
+        <name>check_stloc</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_stloc.c" bodystart="21" bodyend="70" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="13" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ac9f041aa6c59bada5623cec179690cd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int check_strrange</definition>
+        <argsstring>(char *, char *)</argsstring>
+        <name>check_strrange</name>
+        <param>
+          <type>char *</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="14" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_strrange.c" bodystart="26" bodyend="70" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="14" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1aa76f400f8e1fb9271c2362db6eccff9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structCvex__Config" kindref="compound">Cvex_Config</ref> *</type>
+        <definition>struct Cvex_Config* cvex_info</definition>
+        <argsstring>(char *)</argsstring>
+        <name>cvex_info</name>
+        <param>
+          <type>char *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="15" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/cvex_info.c" bodystart="26" bodyend="195" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="15" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a6e41143e193f3443dbc54f450382310f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int decode_pval</definition>
+        <argsstring>(struct param_val *, struct pval_format *)</argsstring>
+        <name>decode_pval</name>
+        <param>
+          <type>struct <ref refid="structparam__val" kindref="compound">param_val</ref> *</type>
+          <declname>p_val</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structpval__format" kindref="compound">pval_format</ref> *</type>
+          <declname>p_def</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="16" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/decode_pval.c" bodystart="26" bodyend="224" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="16" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a70790d088cd4967b1ec428fb5dafbc7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_antenna</definition>
+        <argsstring>(struct def_list *, struct station_struct *)</argsstring>
+        <name>do_antenna</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_antenna.c" bodystart="24" bodyend="73" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="17" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ac4cb865cd3c24af05a69e9b2801415b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_bbc</definition>
+        <argsstring>(struct def_list *, int, struct station_struct *)</argsstring>
+        <name>do_bbc</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nchan</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="18" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_bbc.c" bodystart="25" bodyend="66" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="18" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a7b8fdfe245dad821517a23d77d3bb380" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_clock</definition>
+        <argsstring>(struct def_list *, struct date *, struct station_struct *)</argsstring>
+        <name>do_clock</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>refdate</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_clock.c" bodystart="26" bodyend="132" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="19" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a171a138b3dbe5220fd6f427b519f3e33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_das</definition>
+        <argsstring>(struct def_list *, struct station_struct *)</argsstring>
+        <name>do_das</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_das.c" bodystart="24" bodyend="90" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="20" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a711441f55c15ba8a9c97cf1dc6d70174" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_eop</definition>
+        <argsstring>(struct def *, struct scan_struct *)</argsstring>
+        <name>do_eop</name>
+        <param>
+          <type>struct <ref refid="structdef" kindref="compound">def</ref> *</type>
+          <declname>eopdef</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>scan</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="21" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_eop.c" bodystart="23" bodyend="100" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="21" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1add93a52c54f34d4f4fca7d92acb13f45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_exper</definition>
+        <argsstring>(struct def *, struct scan_struct *)</argsstring>
+        <name>do_exper</name>
+        <param>
+          <type>struct <ref refid="structdef" kindref="compound">def</ref> *</type>
+          <declname>experdef</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>scan</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="22" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_exper.c" bodystart="22" bodyend="50" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="22" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a9628e51dccb48f3c5ef1f3bb75be4ab8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_freq</definition>
+        <argsstring>(struct def_list *, struct station_struct *, int *)</argsstring>
+        <name>do_freq</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>nchan</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="23" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_freq.c" bodystart="27" bodyend="80" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="23" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a0ce76d5ee33f82c102a9a39f76dc9514" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_head_pos</definition>
+        <argsstring>(struct def_list *, struct station_struct *)</argsstring>
+        <name>do_head_pos</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="24" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_head_pos.c" bodystart="24" bodyend="63" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a135ed3eb1e07e9d7fb86f38eb54d78b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_if</definition>
+        <argsstring>(struct def_list *, int, struct station_struct *)</argsstring>
+        <name>do_if</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nchan</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="25" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_if.c" bodystart="25" bodyend="76" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="25" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a5ce1dbf3f307f9285402e3a07dc2d2a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_pass_order</definition>
+        <argsstring>(struct def_list *, struct station_struct *)</argsstring>
+        <name>do_pass_order</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="26" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_pass_order.c" bodystart="24" bodyend="68" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="26" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1abb40298bc3ae1b8736470d44e86a3168" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_phase_cal_detect</definition>
+        <argsstring>(struct def_list *, int, struct station_struct *)</argsstring>
+        <name>do_phase_cal_detect</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nchan</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="27" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_phase_cal_detect.c" bodystart="25" bodyend="78" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="27" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a93da8ac5b45149bebd062ee242d97f06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_roll</definition>
+        <argsstring>(struct def_list *, struct station_struct *)</argsstring>
+        <name>do_roll</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="28" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_roll.c" bodystart="24" bodyend="75" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="28" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a09a02b6dc84ff9faabd681f66e72f4a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_site</definition>
+        <argsstring>(struct def_list *, struct station_struct *)</argsstring>
+        <name>do_site</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="29" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_site.c" bodystart="24" bodyend="85" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="29" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ab477690def102f9b7681a8e0ac1df2ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_source</definition>
+        <argsstring>(struct def *, struct source_struct *)</argsstring>
+        <name>do_source</name>
+        <param>
+          <type>struct <ref refid="structdef" kindref="compound">def</ref> *</type>
+          <declname>sourcedef</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structsource__struct" kindref="compound">source_struct</ref> *</type>
+          <declname>src</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="30" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_source.c" bodystart="23" bodyend="98" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="30" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1af6431824d978fc86a8e446ec633fe409" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int do_track</definition>
+        <argsstring>(struct def_list *, int, struct station_struct *)</argsstring>
+        <name>do_track</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>dl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nchan</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>stn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="31" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/do_track.c" bodystart="27" bodyend="113" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="31" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a08ce13abb68c4f9a228e805c552d9cf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structevex__struct" kindref="compound">evex_struct</ref> *</type>
+        <definition>struct evex_struct* evex_info</definition>
+        <argsstring>(char *)</argsstring>
+        <name>evex_info</name>
+        <param>
+          <type>char *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="32" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/evex_info.c" bodystart="24" bodyend="280" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="32" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a011207492eeb1fe585d440ad420d6c68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_deflists</definition>
+        <argsstring>(void)</argsstring>
+        <name>fill_deflists</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="33" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/fill_deflists.c" bodystart="27" bodyend="139" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="33" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ade2590caee91c12cb72dfc1918bb273e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_scanlist</definition>
+        <argsstring>(void)</argsstring>
+        <name>fill_scanlist</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="34" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/fill_scanlist.c" bodystart="26" bodyend="130" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="34" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a0dc84fa7273f274284501148838e0fdf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_station_parms</definition>
+        <argsstring>(struct def_list *, int, struct date *, struct station_struct *)</argsstring>
+        <name>fill_station_parms</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> *</type>
+          <declname>deflist</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ndefs</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>refdate</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+          <declname>st</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="35" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/fill_station_parms.c" bodystart="27" bodyend="172" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="35" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a0cd708e185d71814641675442e1d52c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int find_statements</definition>
+        <argsstring>(void)</argsstring>
+        <name>find_statements</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="37" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/find_statements.c" bodystart="26" bodyend="78" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="37" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1af396d0a7b042a3a01a011d89fd5d450e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structCvex__BlockMode" kindref="compound">Cvex_BlockMode</ref> *</type>
+        <definition>struct Cvex_BlockMode* get_block_mode</definition>
+        <argsstring>(char *)</argsstring>
+        <name>get_block_mode</name>
+        <param>
+          <type>char *</type>
+          <declname>block_mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="38" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_block_mode.c" bodystart="26" bodyend="128" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="38" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ab1c5ac26a7057ad9a7b47cb8b6d9bc7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structCvex__ChipMode" kindref="compound">Cvex_ChipMode</ref> *</type>
+        <definition>struct Cvex_ChipMode* get_chip_mode</definition>
+        <argsstring>(char *)</argsstring>
+        <name>get_chip_mode</name>
+        <param>
+          <type>char *</type>
+          <declname>chip_mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="39" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_chip_mode.c" bodystart="26" bodyend="158" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="39" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a4b99a0b2b14331f46584d7ef9369881a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structCvex__BoardParms" kindref="compound">Cvex_BoardParms</ref> *</type>
+        <definition>struct Cvex_BoardParms* get_corr_bd_parms</definition>
+        <argsstring>(char *)</argsstring>
+        <name>get_corr_bd_parms</name>
+        <param>
+          <type>char *</type>
+          <declname>parms_mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="40" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_corr_bd_parms.c" bodystart="26" bodyend="117" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="40" declcolumn="29"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a9252eb3c4cb49c4461768358aa265d96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structCvex__Mode" kindref="compound">Cvex_Mode</ref> *</type>
+        <definition>struct Cvex_Mode* get_corr_mode</definition>
+        <argsstring>(char *)</argsstring>
+        <name>get_corr_mode</name>
+        <param>
+          <type>char *</type>
+          <declname>modename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="41" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_corr_mode.c" bodystart="21" bodyend="150" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="41" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a3759f4059ee01fe66689b41a55d611ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structdef" kindref="compound">def</ref> *</type>
+        <definition>struct def* get_def</definition>
+        <argsstring>(char *, char *, int *, int *)</argsstring>
+        <name>get_def</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>blockname</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>blockno</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>defno</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="42" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_def.c" bodystart="24" bodyend="54" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="42" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a92adea6fee9294ca214f7798651b7e45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_drive_init</definition>
+        <argsstring>(char *, struct drive_init_struct *)</argsstring>
+        <name>get_drive_init</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdrive__init__struct" kindref="compound">drive_init_struct</ref> *</type>
+          <declname>drive_init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="43" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_drive_init.c" bodystart="25" bodyend="166" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="43" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a284ceaddb5d3f739a86fea5e7ae1a216" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_global_deflist</definition>
+        <argsstring>(struct def_list **)</argsstring>
+        <name>get_global_deflist</name>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> **</type>
+          <declname>deflist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="44" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_global_deflist.c" bodystart="23" bodyend="92" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="44" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a1337426b52edfad304422f5926e0966c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_logscan</definition>
+        <argsstring>(struct def *, char *, struct station_log *)</argsstring>
+        <name>get_logscan</name>
+        <param>
+          <type>struct <ref refid="structdef" kindref="compound">def</ref> *</type>
+          <declname>ldef</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>scanname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structstation__log" kindref="compound">station_log</ref> *</type>
+          <declname>logstn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="45" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_logscan.c" bodystart="29" bodyend="235" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="45" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a7b31d9a5ef120d742574d52bc520045f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_mode_deflist</definition>
+        <argsstring>(struct def *, char *, struct def_list **)</argsstring>
+        <name>get_mode_deflist</name>
+        <param>
+          <type>struct <ref refid="structdef" kindref="compound">def</ref> *</type>
+          <declname>modedef</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>stname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> **</type>
+          <declname>deflist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="46" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_mode_deflist.c" bodystart="24" bodyend="80" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="46" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1acea218ae3f8f2afd312462f6a13d7102" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_pbs_init</definition>
+        <argsstring>(char *, struct pbs_init_struct *)</argsstring>
+        <name>get_pbs_init</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structpbs__init__struct" kindref="compound">pbs_init_struct</ref> *</type>
+          <declname>pbs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="47" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_pbs_init.c" bodystart="25" bodyend="136" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="47" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a1855b30c39eb31856a2e4d82f265fb01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_pcm_config</definition>
+        <argsstring>(char *, struct svex_struct *)</argsstring>
+        <name>get_pcm_config</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structsvex__struct" kindref="compound">svex_struct</ref> *</type>
+          <declname>svex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="48" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_pcm_config.c" bodystart="27" bodyend="138" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="48" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ad33f9d921e1d891021aadacfc9ec6c70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_pcm_tables</definition>
+        <argsstring>(char *, struct svex_struct *)</argsstring>
+        <name>get_pcm_tables</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structsvex__struct" kindref="compound">svex_struct</ref> *</type>
+          <declname>svex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="49" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_pcm_tables.c" bodystart="28" bodyend="142" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="49" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ae9492a631a05b3e7e9ff8e729ea3dc1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structCvex__SectionMode" kindref="compound">Cvex_SectionMode</ref> *</type>
+        <definition>struct Cvex_SectionMode* get_section_mode</definition>
+        <argsstring>(char *)</argsstring>
+        <name>get_section_mode</name>
+        <param>
+          <type>char *</type>
+          <declname>sect_mode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="50" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_section_mode.c" bodystart="26" bodyend="132" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="50" declcolumn="30"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1aa1012bef5e9fb2156d1f9f76607c3775" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* get_statement</definition>
+        <argsstring>(char *, char **, char **)</argsstring>
+        <name>get_statement</name>
+        <param>
+          <type>char *</type>
+          <declname>addr</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>last</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="51" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_statement.c" bodystart="30" bodyend="126" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="51" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1addcea7f245b240b42a2d8c7fbc274427" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_station_deflist</definition>
+        <argsstring>(char *, struct def_list **)</argsstring>
+        <name>get_station_deflist</name>
+        <param>
+          <type>char *</type>
+          <declname>stname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdef__list" kindref="compound">def_list</ref> **</type>
+          <declname>deflist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="52" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_station_deflist.c" bodystart="22" bodyend="65" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="52" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1af87a78a85e517ad0bf744607bcc2e7f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_su_chan_out</definition>
+        <argsstring>(char *, struct svex_struct *)</argsstring>
+        <name>get_su_chan_out</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structsvex__struct" kindref="compound">svex_struct</ref> *</type>
+          <declname>svex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="53" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_su_chan_out.c" bodystart="25" bodyend="91" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="53" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a3c592343205acd7cd167f5effa8d57f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_su_connect</definition>
+        <argsstring>(char *, struct su_connect_struct *)</argsstring>
+        <name>get_su_connect</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structsu__connect__struct" kindref="compound">su_connect_struct</ref> *</type>
+          <declname>su_connect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="54" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_su_connect.c" bodystart="25" bodyend="83" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="54" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a28acfc8b51e1b15ee3a6b17df9ddeb38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_trm_config</definition>
+        <argsstring>(char *, struct TRM_config_struct *)</argsstring>
+        <name>get_trm_config</name>
+        <param>
+          <type>char *</type>
+          <declname>defname</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structTRM__config__struct" kindref="compound">TRM_config_struct</ref> *</type>
+          <declname>trm_config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="55" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_trm_config.c" bodystart="25" bodyend="148" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="55" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a9a19256860d43b798eba9eb93ac3cf90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_val_list</definition>
+        <argsstring>(char *, char *[])</argsstring>
+        <name>get_val_list</name>
+        <param>
+          <type>char *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>vlist</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="56" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_val_list.c" bodystart="23" bodyend="97" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="56" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ae7891cb42b1b25ced8098b4e8aff52f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_version</definition>
+        <argsstring>(int)</argsstring>
+        <name>get_version</name>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="57" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_version.c" bodystart="23" bodyend="72" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="57" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a35edd5b038f9e562e5a4bc8a518b6bd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_vex</definition>
+        <argsstring>(char *, int, char *, struct vex *)</argsstring>
+        <name>get_vex</name>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vextype</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structvex" kindref="compound">vex</ref> *</type>
+          <declname>vex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="58" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_vex.c" bodystart="38" bodyend="164" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="58" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a9cd3789ed5e1dd442836c66caa2cd6b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int in_comment</definition>
+        <argsstring>(char *)</argsstring>
+        <name>in_comment</name>
+        <param>
+          <type>char *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="59" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/in_comment.c" bodystart="22" bodyend="37" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="59" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a2a40eefdaa84fbf3c63103819ea7fcfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int in_quote</definition>
+        <argsstring>(char *)</argsstring>
+        <name>in_quote</name>
+        <param>
+          <type>char *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="61" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/in_quote.c" bodystart="22" bodyend="37" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="61" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a004edc1933b34251239059d7c12762af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void init_scan</definition>
+        <argsstring>(struct scan_struct *, int)</argsstring>
+        <name>init_scan</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>scan</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nstat</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="60" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/init_scan.c" bodystart="20" bodyend="126" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="60" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a4b0ad31178ab57fe67b72becde2e8bdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structivex__struct" kindref="compound">ivex_struct</ref> *</type>
+        <definition>struct ivex_struct* ivex_info</definition>
+        <argsstring>(char *)</argsstring>
+        <name>ivex_info</name>
+        <param>
+          <type>char *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="62" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/ivex_info.c" bodystart="27" bodyend="235" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="62" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1aa9b462a393638d52ef235a5b2503148a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int locate_blocks</definition>
+        <argsstring>(void)</argsstring>
+        <name>locate_blocks</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="63" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/locate_blocks.c" bodystart="22" bodyend="61" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="63" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a269a68432aa3882e709abc57ea5baf11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int locate_cq</definition>
+        <argsstring>(void)</argsstring>
+        <name>locate_cq</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="64" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/locate_cq.c" bodystart="25" bodyend="106" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="64" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a04146b2a9d037ee72be9c3c785fa1862" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structlvex__struct" kindref="compound">lvex_struct</ref> *</type>
+        <definition>struct lvex_struct* lvex_info</definition>
+        <argsstring>(char *)</argsstring>
+        <name>lvex_info</name>
+        <param>
+          <type>char *</type>
+          <declname>scanname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="65" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/lvex_info.c" bodystart="25" bodyend="147" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="65" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a994b4932b406a639b19d37377eb9d761" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char</type>
+        <definition>char nextchar</definition>
+        <argsstring>(char *)</argsstring>
+        <name>nextchar</name>
+        <param>
+          <type>char *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="66" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/nextchar.c" bodystart="21" bodyend="53" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="66" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a3f3bbd9edb45b52b0be91cd5f7baec43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int param_formats</definition>
+        <argsstring>(void)</argsstring>
+        <name>param_formats</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="67" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/param_formats.c" bodystart="29" bodyend="225" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="67" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a06acdd458151b4332a3fee0b84cbb1a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_date</definition>
+        <argsstring>(char *, struct date *)</argsstring>
+        <name>parse_date</name>
+        <param>
+          <type>char *</type>
+          <declname>datestring</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="68" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/parse_date.c" bodystart="21" bodyend="62" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="68" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a675cfa18fde8de24f8a3210dfe78df6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_dec</definition>
+        <argsstring>(char *, struct sky_coord *)</argsstring>
+        <name>parse_dec</name>
+        <param>
+          <type>char *</type>
+          <declname>decstring</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structsky__coord" kindref="compound">sky_coord</ref> *</type>
+          <declname>coord</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="69" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/parse_dec.c" bodystart="23" bodyend="63" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="69" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a002ce9e3e62feb32bc4b4e0908ceb0d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_pval</definition>
+        <argsstring>(char *, char *, int, struct param_val *)</argsstring>
+        <name>parse_pval</name>
+        <param>
+          <type>char *</type>
+          <declname>statement</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>block</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>typever</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structparam__val" kindref="compound">param_val</ref> *</type>
+          <declname>p_val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="70" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/parse_pval.c" bodystart="31" bodyend="96" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="70" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a6c6b54a0673334184f908de4bb0bfaf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_ra</definition>
+        <argsstring>(char *, struct sky_coord *)</argsstring>
+        <name>parse_ra</name>
+        <param>
+          <type>char *</type>
+          <declname>rastring</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structsky__coord" kindref="compound">sky_coord</ref> *</type>
+          <declname>coord</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="71" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/parse_ra.c" bodystart="22" bodyend="52" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="71" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1aea78737752242b481b63103ecd19ca68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_ref</definition>
+        <argsstring>(int, struct ref *)</argsstring>
+        <name>parse_ref</name>
+        <param>
+          <type>int</type>
+          <declname>stno</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structref" kindref="compound">ref</ref> *</type>
+          <declname>ref</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="72" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/parse_ref.c" bodystart="21" bodyend="82" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="72" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a8808488567fa87b371de49fec2bb09bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_units</definition>
+        <argsstring>(char *, int, double *)</argsstring>
+        <name>parse_units</name>
+        <param>
+          <type>char *</type>
+          <declname>unitstring</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>units</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>factor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="73" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/parse_units.c" bodystart="44" bodyend="196" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="73" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a0cda4a84983c1c7303a3df1323dc132d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_vexfile</definition>
+        <argsstring>(char *)</argsstring>
+        <name>parse_vexfile</name>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="74" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/parse_vexfile.c" bodystart="21" bodyend="79" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="74" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ad480312b70a9960922cc2eb7710a0df8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void print_location</definition>
+        <argsstring>(int)</argsstring>
+        <name>print_location</name>
+        <param>
+          <type>int</type>
+          <declname>st</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="75" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/print_location.c" bodystart="22" bodyend="47" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="75" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a9657acffcd11f861c727d4f86d65fa56" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int process_qstring</definition>
+        <argsstring>(char *, char *)</argsstring>
+        <name>process_qstring</name>
+        <param>
+          <type>char *</type>
+          <declname>qstring</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>string</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="76" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/process_qstring.c" bodystart="25" bodyend="145" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="76" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a0417fb015839dae9c2d5838e5f081cbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void prt_date</definition>
+        <argsstring>(char *, struct date *)</argsstring>
+        <name>prt_date</name>
+        <param>
+          <type>char *</type>
+          <declname>string</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="12" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_scan.c" bodystart="20" bodyend="25" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="12" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1af7e0e4b3a709bfcaff67d758da784ec5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int read_file</definition>
+        <argsstring>(FILE *)</argsstring>
+        <name>read_file</name>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="77" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/read_file.c" bodystart="25" bodyend="72" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="77" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a57555980b67826e8252d399dbef40281" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+        <definition>struct scan_struct* scan_info</definition>
+        <argsstring>(char *, char *)</argsstring>
+        <name>scan_info</name>
+        <param>
+          <type>char *</type>
+          <declname>scanname</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>stations</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="78" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/scan_info.c" bodystart="29" bodyend="364" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="78" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1aa168db59454329435defcf26a464d181" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int strip_text</definition>
+        <argsstring>(char *, char *, char *)</argsstring>
+        <name>strip_text</name>
+        <param>
+          <type>char *</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>last</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="79" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/strip_text.c" bodystart="24" bodyend="109" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="79" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a2680cf9bfdd06dc4675b98115540f5da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structsvex__struct" kindref="compound">svex_struct</ref> *</type>
+        <definition>struct svex_struct* svex_info</definition>
+        <argsstring>(char *)</argsstring>
+        <name>svex_info</name>
+        <param>
+          <type>char *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="80" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/svex_info.c" bodystart="25" bodyend="168" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="80" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1ae4b640e4c8b2e89397530e17250ce09a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int vex_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>vex_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="81" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/vex_init.c" bodystart="40" bodyend="104" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="81" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__vex_8h_1a3884131c1158db20b2bcd508d9565d79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int write_vexfile</definition>
+        <argsstring>(int *, struct insert *, FILE *)</argsstring>
+        <name>write_vexfile</name>
+        <param>
+          <type>int *</type>
+          <declname>del_list</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structinsert" kindref="compound">insert</ref> *</type>
+          <declname>ins_list</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" line="82" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/write_vexfile.c" bodystart="27" bodyend="82" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h" declline="82" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MK4_VEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MK4_VEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vex_8h" kindref="compound">vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1acce4385fb50594dffb41ec6043dea8eb" kindref="member">block_params</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a78a4f0bc4d4bb7be7071b57483bef06c" kindref="member">check_intrange</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1adfe6a1bc86c6bafc2e5b9f70e593ac7c" kindref="member">check_realrange</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__vex_8h_1a0417fb015839dae9c2d5838e5f081cbf" kindref="member">prt_date</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref><sp/>*);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ac251c5085700df4149ee9db9854bdfa7" kindref="member">check_stloc</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ac9f041aa6c59bada5623cec179690cd0" kindref="member">check_strrange</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Config" kindref="compound">Cvex_Config</ref><sp/>*<ref refid="mk4__vex_8h_1aa76f400f8e1fb9271c2362db6eccff9f" kindref="member">cvex_info</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a6e41143e193f3443dbc54f450382310f" kindref="member">decode_pval</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structparam__val" kindref="compound">param_val</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structpval__format" kindref="compound">pval_format</ref><sp/>*);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a70790d088cd4967b1ec428fb5dafbc7a" kindref="member">do_antenna</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ac4cb865cd3c24af05a69e9b2801415b6" kindref="member">do_bbc</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a7b8fdfe245dad821517a23d77d3bb380" kindref="member">do_clock</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref><sp/>*,</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a171a138b3dbe5220fd6f427b519f3e33" kindref="member">do_das</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a711441f55c15ba8a9c97cf1dc6d70174" kindref="member">do_eop</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef" kindref="compound">def</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1add93a52c54f34d4f4fca7d92acb13f45" kindref="member">do_exper</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef" kindref="compound">def</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a9628e51dccb48f3c5ef1f3bb75be4ab8" kindref="member">do_freq</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a0ce76d5ee33f82c102a9a39f76dc9514" kindref="member">do_head_pos</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a135ed3eb1e07e9d7fb86f38eb54d78b7" kindref="member">do_if</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a5ce1dbf3f307f9285402e3a07dc2d2a9" kindref="member">do_pass_order</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1abb40298bc3ae1b8736470d44e86a3168" kindref="member">do_phase_cal_detect</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a93da8ac5b45149bebd062ee242d97f06" kindref="member">do_roll</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a09a02b6dc84ff9faabd681f66e72f4a1" kindref="member">do_site</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ab477690def102f9b7681a8e0ac1df2ab" kindref="member">do_source</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef" kindref="compound">def</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsource__struct" kindref="compound">source_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1af6431824d978fc86a8e446ec633fe409" kindref="member">do_track</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structevex__struct" kindref="compound">evex_struct</ref><sp/>*<ref refid="mk4__vex_8h_1a08ce13abb68c4f9a228e805c552d9cf1" kindref="member">evex_info</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a011207492eeb1fe585d440ad420d6c68" kindref="member">fill_deflists</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ade2590caee91c12cb72dfc1918bb273e" kindref="member">fill_scanlist</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a0dc84fa7273f274284501148838e0fdf" kindref="member">fill_station_parms</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref><sp/>*,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a0cd708e185d71814641675442e1d52c5" kindref="member">find_statements</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__BlockMode" kindref="compound">Cvex_BlockMode</ref><sp/>*<ref refid="mk4__vex_8h_1af396d0a7b042a3a01a011d89fd5d450e" kindref="member">get_block_mode</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__ChipMode" kindref="compound">Cvex_ChipMode</ref><sp/>*<ref refid="mk4__vex_8h_1ab1c5ac26a7057ad9a7b47cb8b6d9bc7c" kindref="member">get_chip_mode</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__BoardParms" kindref="compound">Cvex_BoardParms</ref><sp/>*<ref refid="mk4__vex_8h_1a4b99a0b2b14331f46584d7ef9369881a" kindref="member">get_corr_bd_parms</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Mode" kindref="compound">Cvex_Mode</ref><sp/>*<ref refid="mk4__vex_8h_1a9252eb3c4cb49c4461768358aa265d96" kindref="member">get_corr_mode</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdef" kindref="compound">def</ref><sp/>*<ref refid="mk4__vex_8h_1a3759f4059ee01fe66689b41a55d611ae" kindref="member">get_def</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a92adea6fee9294ca214f7798651b7e45" kindref="member">get_drive_init</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdrive__init__struct" kindref="compound">drive_init_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a284ceaddb5d3f739a86fea5e7ae1a216" kindref="member">get_global_deflist</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>**);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a1337426b52edfad304422f5926e0966c" kindref="member">get_logscan</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef" kindref="compound">def</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structstation__log" kindref="compound">station_log</ref><sp/>*);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a7b31d9a5ef120d742574d52bc520045f" kindref="member">get_mode_deflist</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef" kindref="compound">def</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>**);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1acea218ae3f8f2afd312462f6a13d7102" kindref="member">get_pbs_init</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structpbs__init__struct" kindref="compound">pbs_init_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a1855b30c39eb31856a2e4d82f265fb01" kindref="member">get_pcm_config</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsvex__struct" kindref="compound">svex_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ad33f9d921e1d891021aadacfc9ec6c70" kindref="member">get_pcm_tables</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsvex__struct" kindref="compound">svex_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__SectionMode" kindref="compound">Cvex_SectionMode</ref><sp/>*<ref refid="mk4__vex_8h_1ae9492a631a05b3e7e9ff8e729ea3dc1b" kindref="member">get_section_mode</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="mk4__vex_8h_1aa1012bef5e9fb2156d1f9f76607c3775" kindref="member">get_statement</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1addcea7f245b240b42a2d8c7fbc274427" kindref="member">get_station_deflist</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdef__list" kindref="compound">def_list</ref><sp/>**);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1af87a78a85e517ad0bf744607bcc2e7f7" kindref="member">get_su_chan_out</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsvex__struct" kindref="compound">svex_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a3c592343205acd7cd167f5effa8d57f7" kindref="member">get_su_connect</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsu__connect__struct" kindref="compound">su_connect_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a28acfc8b51e1b15ee3a6b17df9ddeb38" kindref="member">get_trm_config</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structTRM__config__struct" kindref="compound">TRM_config_struct</ref><sp/>*);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a9a19256860d43b798eba9eb93ac3cf90" kindref="member">get_val_list</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>[]);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ae7891cb42b1b25ced8098b4e8aff52f7" kindref="member">get_version</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a35edd5b038f9e562e5a4bc8a518b6bd1" kindref="member">get_vex</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structvex" kindref="compound">vex</ref><sp/>*);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a9cd3789ed5e1dd442836c66caa2cd6b5" kindref="member">in_comment</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__vex_8h_1a004edc1933b34251239059d7c12762af" kindref="member">init_scan</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a2a40eefdaa84fbf3c63103819ea7fcfa" kindref="member">in_quote</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structivex__struct" kindref="compound">ivex_struct</ref><sp/>*<ref refid="mk4__vex_8h_1a4b0ad31178ab57fe67b72becde2e8bdc" kindref="member">ivex_info</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1aa9b462a393638d52ef235a5b2503148a" kindref="member">locate_blocks</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a269a68432aa3882e709abc57ea5baf11" kindref="member">locate_cq</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structlvex__struct" kindref="compound">lvex_struct</ref><sp/>*<ref refid="mk4__vex_8h_1a04146b2a9d037ee72be9c3c785fa1862" kindref="member">lvex_info</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="mk4__vex_8h_1a994b4932b406a639b19d37377eb9d761" kindref="member">nextchar</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a3f3bbd9edb45b52b0be91cd5f7baec43" kindref="member">param_formats</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a06acdd458151b4332a3fee0b84cbb1a5" kindref="member">parse_date</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref><sp/>*);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a675cfa18fde8de24f8a3210dfe78df6b" kindref="member">parse_dec</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsky__coord" kindref="compound">sky_coord</ref><sp/>*);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a002ce9e3e62feb32bc4b4e0908ceb0d4" kindref="member">parse_pval</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structparam__val" kindref="compound">param_val</ref><sp/>*);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a6c6b54a0673334184f908de4bb0bfaf4" kindref="member">parse_ra</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsky__coord" kindref="compound">sky_coord</ref><sp/>*);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1aea78737752242b481b63103ecd19ca68" kindref="member">parse_ref</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structref" kindref="compound">ref</ref><sp/>*);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a8808488567fa87b371de49fec2bb09bf" kindref="member">parse_units</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a0cda4a84983c1c7303a3df1323dc132d" kindref="member">parse_vexfile</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__vex_8h_1ad480312b70a9960922cc2eb7710a0df8" kindref="member">print_location</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a9657acffcd11f861c727d4f86d65fa56" kindref="member">process_qstring</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1af7e0e4b3a709bfcaff67d758da784ec5" kindref="member">read_file</ref><sp/>(FILE<sp/>*);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*<ref refid="mk4__vex_8h_1a57555980b67826e8252d399dbef40281" kindref="member">scan_info</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1aa168db59454329435defcf26a464d181" kindref="member">strip_text</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsvex__struct" kindref="compound">svex_struct</ref><sp/>*<ref refid="mk4__vex_8h_1a2680cf9bfdd06dc4675b98115540f5da" kindref="member">svex_info</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1ae4b640e4c8b2e89397530e17250ce09a" kindref="member">vex_init</ref><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a3884131c1158db20b2bcd508d9565d79" kindref="member">write_vexfile</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structinsert" kindref="compound">insert</ref><sp/>*,<sp/>FILE<sp/>*);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__vex_8h_1a9e58a3b953ae9b2d41565b8ddaa8dd53" kindref="member">bitstream</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/mk4_vex.h"/>
+  </compounddef>
+</doxygen>

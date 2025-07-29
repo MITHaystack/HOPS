@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="meta__struct_8h" kind="file" language="C++">
+    <compoundname>meta_struct.h</compoundname>
+    <includedby refid="fourfit3_8c" local="yes">fourfit3.c</includedby>
+    <includedby refid="plot__data__dir_8h" local="yes">plot_data_dir.h</includedby>
+    <includedby refid="generate__graphs_8c" local="yes">generate_graphs.c</includedby>
+    <includedby refid="generate__text_8c" local="yes">generate_text.c</includedby>
+    <includedby refid="output_8c" local="yes">output.c</includedby>
+    <invincdepgraph>
+      <node id="5">
+        <label>plot_data_dir.c</label>
+        <link refid="plot__data__dir_8c"/>
+      </node>
+      <node id="6">
+        <label>generate_graphs.c</label>
+        <link refid="generate__graphs_8c"/>
+      </node>
+      <node id="7">
+        <label>generate_text.c</label>
+        <link refid="generate__text_8c"/>
+      </node>
+      <node id="4">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="1">
+        <label>meta_struct.h</label>
+        <link refid="meta__struct_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>plot_data_dir.h</label>
+        <link refid="plot__data__dir_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structtype__meta" prot="public">type_meta</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Capture<sp/>various<sp/>bits<sp/>of<sp/>meta-data<sp/>that<sp/>are<sp/>computed</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>or<sp/>generated<sp/>during<sp/>the<sp/>plotting<sp/>process/preparation</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>but<sp/>not<sp/>actually<sp/>stored<sp/>elsewhere.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="structtype__meta" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__meta" kindref="compound">type_meta</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>defined<sp/>in<sp/>generate_text.c<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="structtype__meta_1a2a1da4bd70a2dd5487280107097e5224" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a2a1da4bd70a2dd5487280107097e5224" kindref="member">corrvers</ref>[36];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>correlator<sp/>version<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="structtype__meta_1ac51706098428d5c9af887808bd2c076a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1ac51706098428d5c9af887808bd2c076a" kindref="member">rt_sn_bl</ref>[80];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>rootfile<sp/>scanname<sp/>baseline<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="structtype__meta_1aac02380271cfe416e42785f6f5287f9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1aac02380271cfe416e42785f6f5287f9f" kindref="member">polstr</ref>[13];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pol&apos;n<sp/>string<sp/>worked<sp/>out<sp/>in<sp/>...<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="structtype__meta_1ad6b4e087d03f57493e60a555b5ee2f59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1ad6b4e087d03f57493e60a555b5ee2f59" kindref="member">exper_name</ref>[10];<sp/></highlight><highlight class="comment">/*<sp/>from<sp/>(o)vex<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="structtype__meta_1a165876d290f421897bcc948be1862de4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a165876d290f421897bcc948be1862de4" kindref="member">exper_num</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>from<sp/>(o)vex<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="structtype__meta_1ad8f5e36b171a70c1f5609ccfa7c86131" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1ad8f5e36b171a70c1f5609ccfa7c86131" kindref="member">yr_doy</ref>[10];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>year<sp/>and<sp/>doy<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="structtype__meta_1a60ebf032d7bf6401b0557997ca7b4066" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a60ebf032d7bf6401b0557997ca7b4066" kindref="member">pass_start</ref>[13];<sp/></highlight><highlight class="comment">/*<sp/>pass<sp/>start<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="structtype__meta_1a496145f4f32e85636fb382e23b89b0d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a496145f4f32e85636fb382e23b89b0d2" kindref="member">pass_stop</ref>[13];<sp/><sp/></highlight><highlight class="comment">/*<sp/>pass<sp/>stop<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="structtype__meta_1ae6f40aecd445903ac3ab79653658c598" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1ae6f40aecd445903ac3ab79653658c598" kindref="member">pass_frt</ref>[13];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pass<sp/>fourfit<sp/>ref<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="structtype__meta_1a91e5c4a4681ab23ae5a9fa39430d0106" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a91e5c4a4681ab23ae5a9fa39430d0106" kindref="member">corr_time</ref>[23];<sp/><sp/></highlight><highlight class="comment">/*<sp/>correlation<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="structtype__meta_1af0c6c8caf837f08408abe9963fda1635" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1af0c6c8caf837f08408abe9963fda1635" kindref="member">ff_time</ref>[23];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>fourfit<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="structtype__meta_1aad4c4b8f7d37aaf3b187c386fbb6349b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1aad4c4b8f7d37aaf3b187c386fbb6349b" kindref="member">build_time</ref>[23];<sp/></highlight><highlight class="comment">/*<sp/>build<sp/>time<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="structtype__meta_1a7bab1721872eb2186487f65994ff9c2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a7bab1721872eb2186487f65994ff9c2a" kindref="member">fourfitcmd</ref>[256];</highlight><highlight class="comment">/*<sp/>fourfit<sp/>exec<sp/>found<sp/>by<sp/>which<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="structtype__meta_1a172dfe0bb96f69acb79eb5cf26a5d6ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structra" kindref="compound">ra</ref>[23];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>R.A.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="structtype__meta_1ae346d90d56ab691853efd68b3e9bb493" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdec" kindref="compound">dec</ref>[23];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Decl<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>defined<sp/>in<sp/>generate_graphs.c<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structtype__meta_1a4c809fd7a902c745c9e57edc460d03e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a4c809fd7a902c745c9e57edc460d03e5" kindref="member">start_plot</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>starting<sp/>freq<sp/>for<sp/>segmented<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="structtype__meta_1a7b70699220a70e49aeeaf8c92af66bd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structtype__meta_1a7b70699220a70e49aeeaf8c92af66bd9" kindref="member">nplots</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>number<sp/>of<sp/>freqs<sp/>for<sp/>segmented<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h"/>
+  </compounddef>
+</doxygen>

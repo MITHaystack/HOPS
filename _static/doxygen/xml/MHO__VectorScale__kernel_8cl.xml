@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__VectorScale__kernel_8cl" kind="file" language="C++">
+    <compoundname>MHO_VectorScale_kernel.cl</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#ifndef<sp/>MHO_VectorScale_Defined_H</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>MHO_VectorScale_Defined_H</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;hopsocl_defines.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;MHO_ComplexUtils.cl&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__kernel<sp/>void</highlight></codeline>
+<codeline><highlight class="normal">VectorScale(const<sp/>unsigned<sp/>int<sp/>array_size,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_FACTOR_TYPE<sp/>factor,<sp/>//CL_FACTOR_TYPE<sp/>is<sp/>passed<sp/>a<sp/>compiler<sp/>define</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_DATA_TYPE*<sp/>data)<sp/>//CL_DATA_TYPE<sp/>is<sp/>passed<sp/>a<sp/>compiler<sp/>define</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>int<sp/>i<sp/>=<sp/>get_global_id(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(i<sp/>&lt;<sp/>array_size)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#ifdef<sp/>COMPLEX_COMPLEX</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[i]<sp/>=<sp/>ComplexMultiply(data[i],<sp/>factor);<sp/>//do<sp/>complex*complex<sp/>multiply</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data[i]<sp/>*=<sp/>factor;<sp/>//regular<sp/>scalar<sp/>multiply</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/cl/MHO_VectorScale_kernel.cl"/>
+  </compounddef>
+</doxygen>

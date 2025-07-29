@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1fringe__file__manipulation" kind="namespace" language="Python">
+    <compoundname>vpal::fringe_file_manipulation</compoundname>
+    <innerclass refid="classvpal_1_1fringe__file__manipulation_1_1FringeFileHandle" prot="public">vpal::fringe_file_manipulation::FringeFileHandle</innerclass>
+    <innerclass refid="classvpal_1_1fringe__file__manipulation_1_1PhaseResidualData" prot="public">vpal::fringe_file_manipulation::PhaseResidualData</innerclass>
+    <innerclass refid="classvpal_1_1fringe__file__manipulation_1_1SingleBaselinePolarizationProductCollection" prot="public">vpal::fringe_file_manipulation::SingleBaselinePolarizationProductCollection</innerclass>
+    <innerclass refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection" prot="public">vpal::fringe_file_manipulation::SingleScanBaselineCollection</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> module for manipulating, accessing and grouping fringe files</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

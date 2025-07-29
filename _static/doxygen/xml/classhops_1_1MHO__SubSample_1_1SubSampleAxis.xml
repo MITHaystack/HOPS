@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__SubSample_1_1SubSampleAxis" kind="class" language="C++" prot="private">
+    <compoundname>hops::MHO_SubSample::SubSampleAxis</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1a9469f02efae9c901ee2d2a8aa48a5fbc" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_SubSample&lt; XArrayType &gt;::SubSampleAxis::fStride</definition>
+        <argsstring></argsstring>
+        <name>fStride</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" line="300" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" bodystart="300" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1ad7953afddeff9e31bfaf3b1b35b42a12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_SubSample&lt; XArrayType &gt;::SubSampleAxis::SubSampleAxis</definition>
+        <argsstring>(std::size_t stride)</argsstring>
+        <name>SubSampleAxis</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>stride</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" line="274" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" bodystart="274" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1afe21484480ba8ff4b4b2a1b39df19e45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_SubSample&lt; XArrayType &gt;::SubSampleAxis::~SubSampleAxis</definition>
+        <argsstring>()</argsstring>
+        <name>~SubSampleAxis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" line="275" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" bodystart="275" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1a84aa0a75ba131d18fc777661f267afd2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XAxisType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_SubSample&lt; XArrayType &gt;::SubSampleAxis::operator()</definition>
+        <argsstring>(const XAxisType &amp;axis1, XAxisType &amp;axis2)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const XAxisType &amp;</type>
+          <declname>axis1</declname>
+        </param>
+        <param>
+          <type>XAxisType &amp;</type>
+          <declname>axis2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" line="277" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" bodystart="277" bodyend="297"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class SubSampleAxis. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" line="271" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_SubSample.hh" bodystart="272" bodyend="301"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1a9469f02efae9c901ee2d2a8aa48a5fbc" prot="private" virt="non-virtual"><scope>hops::MHO_SubSample::SubSampleAxis</scope><name>fStride</name></member>
+      <member refid="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1a84aa0a75ba131d18fc777661f267afd2" prot="public" virt="non-virtual"><scope>hops::MHO_SubSample::SubSampleAxis</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1ad7953afddeff9e31bfaf3b1b35b42a12" prot="public" virt="non-virtual"><scope>hops::MHO_SubSample::SubSampleAxis</scope><name>SubSampleAxis</name></member>
+      <member refid="classhops_1_1MHO__SubSample_1_1SubSampleAxis_1afe21484480ba8ff4b4b2a1b39df19e45" prot="public" virt="non-virtual"><scope>hops::MHO_SubSample::SubSampleAxis</scope><name>~SubSampleAxis</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

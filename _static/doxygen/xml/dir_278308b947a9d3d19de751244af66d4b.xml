@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_278308b947a9d3d19de751244af66d4b" kind="dir">
+    <compoundname>ffio</compoundname>
+    <innerdir refid="dir_fe15466ecccb5f68181da966ff89a167">include</innerdir>
+    <innerdir refid="dir_f685b4be9a55b8d3c5643434c0c0c4d9">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffio/"/>
+  </compounddef>
+</doxygen>

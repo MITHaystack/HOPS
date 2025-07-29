@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_f5effd4e5946b2caa27c744fe2078285" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__MK4CorelInterface_8hh">MHO_MK4CorelInterface.hh</innerfile>
+    <innerfile refid="MHO__MK4FringeExport_8hh">MHO_MK4FringeExport.hh</innerfile>
+    <innerfile refid="MHO__MK4ScanConverter_8hh">MHO_MK4ScanConverter.hh</innerfile>
+    <innerfile refid="MHO__MK4StationInterface_8hh">MHO_MK4StationInterface.hh</innerfile>
+    <innerfile refid="MHO__MK4VexInterface_8hh">MHO_MK4VexInterface.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/"/>
+  </compounddef>
+</doxygen>

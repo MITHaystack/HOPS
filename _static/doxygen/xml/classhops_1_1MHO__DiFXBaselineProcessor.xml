@@ -1,0 +1,1367 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DiFXBaselineProcessor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DiFXBaselineProcessor</compoundname>
+    <includes refid="MHO__DiFXBaselineProcessor_8hh" local="no">MHO_DiFXBaselineProcessor.hh</includes>
+    <innerclass refid="structhops_1_1MHO__DiFXBaselineProcessor_1_1FreqIndexPairLess" prot="private">hops::MHO_DiFXBaselineProcessor::FreqIndexPairLess</innerclass>
+    <innerclass refid="structhops_1_1MHO__DiFXBaselineProcessor_1_1VisRecordTimeLess" prot="private">hops::MHO_DiFXBaselineProcessor::VisRecordTimeLess</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a124cc8cdcaffa686154c045cd6249661" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXBaselineProcessor::fAPLength</definition>
+        <argsstring></argsstring>
+        <name>fAPLength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="197" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a975851efb0d728f3c23c362bcc689bc1" prot="private" static="no" mutable="no">
+        <type>std::set&lt; int &gt;</type>
+        <definition>std::set&lt; int &gt; hops::MHO_DiFXBaselineProcessor::fAPSet</definition>
+        <argsstring></argsstring>
+        <name>fAPSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="215" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a0343f1204694fbaa32c5b5a409e48cc7" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXBaselineProcessor::fAttachDiFXInput</definition>
+        <argsstring></argsstring>
+        <name>fAttachDiFXInput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="231" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ad4b0b7627cd787b6d60f63ae13a4b78f" prot="private" static="no" mutable="no">
+        <type>std::set&lt; double &gt;</type>
+        <definition>std::set&lt; double &gt; hops::MHO_DiFXBaselineProcessor::fBandwidthSet</definition>
+        <argsstring></argsstring>
+        <name>fBandwidthSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="217" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a39170155bf1bad55315af1aa7a4b88c6" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fBaselineDelim</definition>
+        <argsstring></argsstring>
+        <name>fBaselineDelim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="194" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a68a5902837a095488d23e320c9d712c7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; int, <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; int, mho_json &gt; &gt; hops::MHO_DiFXBaselineProcessor::fBaselineFreqs</definition>
+        <argsstring></argsstring>
+        <name>fBaselineFreqs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="234" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a603c9af6a6ae55ff56f5f068eb6ce84f" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXBaselineProcessor::fBaselineID</definition>
+        <argsstring></argsstring>
+        <name>fBaselineID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="184" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a0a4e4cea4a01ba9ba3af70c80feff49a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fBaselineName</definition>
+        <argsstring></argsstring>
+        <name>fBaselineName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="192" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ad1194b7e1637a38a582eb0ceadc391ca" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fBaselineShortName</definition>
+        <argsstring></argsstring>
+        <name>fBaselineShortName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="193" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a5c12324a0570c35fbd86ef43b9169f6e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXBaselineProcessor::fCanChannelize</definition>
+        <argsstring></argsstring>
+        <name>fCanChannelize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="224" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ab8d7676d405d6642412ee0acf0aa6fb4" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fCorrDate</definition>
+        <argsstring></argsstring>
+        <name>fCorrDate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="183" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ac1e0d88336742d2b96b8c42fcc5e1b09" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt; std::string, std::string &gt; hops::MHO_DiFXBaselineProcessor::fDiFX2VexStationCodes</definition>
+        <argsstring></argsstring>
+        <name>fDiFX2VexStationCodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="203" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1afa15e75c9abadb4a08011b43d7efbb7e" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt; std::string, std::string &gt; hops::MHO_DiFXBaselineProcessor::fDiFX2VexStationNames</definition>
+        <argsstring></argsstring>
+        <name>fDiFX2VexStationNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="205" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ad5ec4c0d54f8917307909b0f0d9f0444" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_DiFXBaselineProcessor::fFreqBandLabelSet</definition>
+        <argsstring></argsstring>
+        <name>fFreqBandLabelSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="235" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ade5eed95052fb1c2014929dd7f68d3f0" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt;</type>
+        <definition>std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt; hops::MHO_DiFXBaselineProcessor::fFreqBands</definition>
+        <argsstring></argsstring>
+        <name>fFreqBands</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="243" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ab73ee0f307e10959beba644c2a8c3111" prot="private" static="no" mutable="no">
+        <type>std::set&lt; int &gt;</type>
+        <definition>std::set&lt; int &gt; hops::MHO_DiFXBaselineProcessor::fFreqIndexSet</definition>
+        <argsstring></argsstring>
+        <name>fFreqIndexSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="214" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a468b8e9dd291cfec5c4d6158fb2ed9e0" prot="private" static="no" mutable="no">
+        <type>FreqIndexPairLess</type>
+        <definition>FreqIndexPairLess hops::MHO_DiFXBaselineProcessor::fFreqPredicate</definition>
+        <argsstring></argsstring>
+        <name>fFreqPredicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="306" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="306" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1af09971cd33eb475a5d7fa454c52d1ad5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXBaselineProcessor::fHaveBaselineData</definition>
+        <argsstring></argsstring>
+        <name>fHaveBaselineData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="225" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a8baa232e1424d72c8dd736c988e493ff" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DiFXBaselineProcessor::fIndex</definition>
+        <argsstring></argsstring>
+        <name>fIndex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="185" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a58c2371d3a0aba6c1d9cdc10ed4ec929" prot="private" static="no" mutable="no">
+        <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+        <definition>const mho_json* hops::MHO_DiFXBaselineProcessor::fInput</definition>
+        <argsstring></argsstring>
+        <name>fInput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="207" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1aaf0a7e8e2b9fd96876003dc1de7b95d0" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DiFXBaselineProcessor::fNAPs</definition>
+        <argsstring></argsstring>
+        <name>fNAPs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="220" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a3dce4e131ab8ce0b09ce39b7fef17bb3" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, double &gt;</type>
+        <definition>std::map&lt; int, double &gt; hops::MHO_DiFXBaselineProcessor::fNBitsToFactor</definition>
+        <argsstring></argsstring>
+        <name>fNBitsToFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="228" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a6dffabc7063b5e1fdb407842e2fd4014" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DiFXBaselineProcessor::fNChannels</definition>
+        <argsstring></argsstring>
+        <name>fNChannels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="219" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a321fa35ac9b2ad3cc31bc3608da2d674" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DiFXBaselineProcessor::fNPolPairs</definition>
+        <argsstring></argsstring>
+        <name>fNPolPairs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="218" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1af37416cc2f20b390fcd178f92c3e66d7" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DiFXBaselineProcessor::fNSpectralPoints</definition>
+        <argsstring></argsstring>
+        <name>fNSpectralPoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="221" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ac12461c7d17aec09bbcadf856f22473f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXBaselineProcessor::fOnlyBandwidth</definition>
+        <argsstring></argsstring>
+        <name>fOnlyBandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="246" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="246" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1aaf7149f85842f63061a11b245a55c3b6" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_DiFXBaselineProcessor::fOnlyFreqGroups</definition>
+        <argsstring></argsstring>
+        <name>fOnlyFreqGroups</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="244" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ae0e996ab325768ee8824d9acee08d936" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_DiFXBaselineProcessor::fPolPairSet</definition>
+        <argsstring></argsstring>
+        <name>fPolPairSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="213" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a74e84818301a6820c7e8b20fc4678bd3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref> * &gt;</type>
+        <definition>std::vector&lt; MHO_DiFXVisibilityRecord* &gt; hops::MHO_DiFXBaselineProcessor::fRecords</definition>
+        <argsstring></argsstring>
+        <name>fRecords</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="208" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1aeb84b885ca37c1e7b1e3bdca7b68d82e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fRefStation</definition>
+        <argsstring></argsstring>
+        <name>fRefStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="186" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a8484baa6df4854eb4d394fbfc9a097a8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXBaselineProcessor::fRefStationBits</definition>
+        <argsstring></argsstring>
+        <name>fRefStationBits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="195" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a4859a514e76dd518e3fd5789d202a757" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fRefStationMk4Id</definition>
+        <argsstring></argsstring>
+        <name>fRefStationMk4Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="190" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="190" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a92ea4a9b0051daf40e0fd4b629dc727a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fRefStationName</definition>
+        <argsstring></argsstring>
+        <name>fRefStationName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="188" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a656044b84d7f8bffdef69c17074bd91a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fRemStation</definition>
+        <argsstring></argsstring>
+        <name>fRemStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="187" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ace031c33e15c8db671a417329ec08333" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXBaselineProcessor::fRemStationBits</definition>
+        <argsstring></argsstring>
+        <name>fRemStationBits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="196" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a0ee01deebe0588d314377461fc1b11a0" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fRemStationMk4Id</definition>
+        <argsstring></argsstring>
+        <name>fRemStationMk4Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="191" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a7dd8f9436c8e84cbdaab24fb933947a2" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fRemStationName</definition>
+        <argsstring></argsstring>
+        <name>fRemStationName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="189" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a52cc87ee6192d9f55d7acfb6ffc46fed" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXBaselineProcessor::fRescale</definition>
+        <argsstring></argsstring>
+        <name>fRescale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="227" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ae506d355a26cefb0d4bfd31863b28ba3" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fRootCode</definition>
+        <argsstring></argsstring>
+        <name>fRootCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="182" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a1b5aea920cab1efc21473266e80b2873" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXBaselineProcessor::fScaleFactor</definition>
+        <argsstring></argsstring>
+        <name>fScaleFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="229" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1af385ded07738ca6cd354ba2e421916b8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXBaselineProcessor::fSelectByBandwidth</definition>
+        <argsstring></argsstring>
+        <name>fSelectByBandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="245" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="245" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a679d6590b07ece1bd8d84b4030dbbca8" prot="private" static="no" mutable="no">
+        <type>std::set&lt; int &gt;</type>
+        <definition>std::set&lt; int &gt; hops::MHO_DiFXBaselineProcessor::fSpecPointSet</definition>
+        <argsstring></argsstring>
+        <name>fSpecPointSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="216" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a0e1c446e2a4fc67b71eac366646789f8" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXBaselineProcessor::fStartMJD</definition>
+        <argsstring></argsstring>
+        <name>fStartMJD</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="222" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a8378cb1c298d05876539c3af33a69f1b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::fStartTime</definition>
+        <argsstring></argsstring>
+        <name>fStartTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="223" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1aea3bc68387afb61d647363859b0853ec" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__StationCodeMap" kindref="compound">MHO_StationCodeMap</ref> *</type>
+        <definition>MHO_StationCodeMap* hops::MHO_DiFXBaselineProcessor::fStationCodeMap</definition>
+        <argsstring></argsstring>
+        <name>fStationCodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="200" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a05f0b50b5275742954d5becce33933e7" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref></type>
+        <definition>MHO_ObjectTags hops::MHO_DiFXBaselineProcessor::fTags</definition>
+        <argsstring></argsstring>
+        <name>fTags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="240" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a27a75a60e6688d6756ad23ad58e98e34" prot="private" static="no" mutable="no">
+        <type>VisRecordTimeLess</type>
+        <definition>VisRecordTimeLess hops::MHO_DiFXBaselineProcessor::fTimePredicate</definition>
+        <argsstring></argsstring>
+        <name>fTimePredicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="264" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="264" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ad844feb6e4db50666603905ec2b381c7" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref> *</type>
+        <definition>visibility_store_type* hops::MHO_DiFXBaselineProcessor::fV</definition>
+        <argsstring></argsstring>
+        <name>fV</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="239" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="239" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1a40108540d5723a67a90b5cd4dc044017" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::map&lt; int, std::vector&lt; <ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref> * &gt; &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::map&lt; int, std::vector&lt; MHO_DiFXVisibilityRecord* &gt; &gt; &gt; hops::MHO_DiFXBaselineProcessor::fVisibilities</definition>
+        <argsstring></argsstring>
+        <name>fVisibilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="211" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXBaselineProcessor_1ae03750261ad22988092541c73af7fc6a" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a6d71a9ffaa068345a980f1e1613d97bd" kindref="member">weight_store_type</ref> *</type>
+        <definition>weight_store_type* hops::MHO_DiFXBaselineProcessor::fW</definition>
+        <argsstring></argsstring>
+        <name>fW</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="238" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1abd3bba981d7fa75a6b81fefa44c2be93" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXBaselineProcessor::MHO_DiFXBaselineProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DiFXBaselineProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="23" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a15bf926ee14c7b8a6182d8bd0acefcdb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXBaselineProcessor::~MHO_DiFXBaselineProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DiFXBaselineProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="33" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="51" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1aef06478b6efe4b7ab4cbc8a5a730e116" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::AddRecord</definition>
+        <argsstring>(MHO_DiFXVisibilityRecord *record)</argsstring>
+        <name>AddRecord</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref> *</type>
+          <declname>record</declname>
+        </param>
+        <briefdescription>
+<para>Adds a visibility record (chunk of difx data) to the processor if it matches baseline and selection criteria. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>record</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input <ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref> to be added </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="95" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="56" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a596ee807485d448d6b01bd11960f9378" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="161" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="620" bodyend="638"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1abded8750eae96d0cf3d1343a1b0288f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::ConstructVisibilityFileObjects</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructVisibilityFileObjects</name>
+        <briefdescription>
+<para>Constructs visibility file objects by organizing data and setting tags for visibilities and weights. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="121" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="330" bodyend="578"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a9b191766bbaa05d334f10de40c6fddff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXBaselineProcessor::GetBaselineID</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaselineID</name>
+        <briefdescription>
+<para>Getter for (difx) baseline id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current baseline ID as an integer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="54" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a4e1fc2629ab3ab88156d24482e540b58" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::GetBaselineShortName</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaselineShortName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="157" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="157" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a450639b72f51aafe369a8d988bacce95" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::GetRefStationMk4Id</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRefStationMk4Id</name>
+        <briefdescription>
+<para>Getter for reference station mk4id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference station Mk4 ID as a std::string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="148" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="148" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1afd9ace54bdfebfb0d6290a3f2d17f4b8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::GetRemStationMk4Id</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRemStationMk4Id</name>
+        <briefdescription>
+<para>Getter for remote station mk4id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The Mk4 ID of the remote station as a string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="155" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="155" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a1f2e90fea239f219fcc33acbd14be489" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref> *</type>
+        <definition>visibility_store_type* hops::MHO_DiFXBaselineProcessor::GetVisibilities</definition>
+        <argsstring>()</argsstring>
+        <name>GetVisibilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="159" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="159" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a67867ba0cc9d0bce8d05412c23985b3c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXBaselineProcessor::IsAutoCorr</definition>
+        <argsstring>() const</argsstring>
+        <name>IsAutoCorr</name>
+        <briefdescription>
+<para>Checks if reference station is equal to remote station. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if stations are equal, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="134" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="134" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1aee04f817f4746758482b418923414f6e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetAttachDiFXInputFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetAttachDiFXInputFalse</name>
+        <briefdescription>
+<para>Setter for attach difx input false (do not attach difx .input info to visibilities) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="88" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1af402b014913a6261fb850eea6069c113" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetAttachDiFXInputTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetAttachDiFXInputTrue</name>
+        <briefdescription>
+<para>Setter for attach difx .input true (attaches json object containing difx .input info to visibilities) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="83" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1ad7cd037a56f3472a93e8e000d0b96e28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetCorrelationDate</definition>
+        <argsstring>(std::string corrdate)</argsstring>
+        <name>SetCorrelationDate</name>
+        <param>
+          <type>std::string</type>
+          <declname>corrdate</declname>
+        </param>
+        <briefdescription>
+<para>Setter for correlation date. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>corrdate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New correlation date as string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="68" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a20e954ff105a2e610044cef630f8f9e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetDiFXCodes2VexCodes</definition>
+        <argsstring>(const std::map&lt; std::string, std::string &gt; &amp;d2v_map)</argsstring>
+        <name>SetDiFXCodes2VexCodes</name>
+        <param>
+          <type>const std::map&lt; std::string, std::string &gt; &amp;</type>
+          <declname>d2v_map</declname>
+        </param>
+        <briefdescription>
+<para>Setter for difx station codes to vex codes (2 char -&gt; 2 char), but difx uses all caps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d2v_map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input map of DiFX to Vex station codes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="109" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="109" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1aeaf8c3caea36bfdda7af416f2fdbefad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetDiFXCodes2VexNames</definition>
+        <argsstring>(const std::map&lt; std::string, std::string &gt; &amp;d2v_map)</argsstring>
+        <name>SetDiFXCodes2VexNames</name>
+        <param>
+          <type>const std::map&lt; std::string, std::string &gt; &amp;</type>
+          <declname>d2v_map</declname>
+        </param>
+        <briefdescription>
+<para>Setter for difx codes to vex names (difx 2 char code to canonical station names (8 char)) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d2v_map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input map of DiFX codes to Vex names </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="116" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a59a4d555e247d4559f1452d092b3ab57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetDiFXInputData</definition>
+        <argsstring>(const mho_json *input)</argsstring>
+        <name>SetDiFXInputData</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Setter for difx .input data (needed for processing visibilities) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json object containing DiFX data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="40" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1acad8456535dad0f91717f797576b744b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetFreqGroups</definition>
+        <argsstring>(std::vector&lt; std::string &gt; fgroups)</argsstring>
+        <name>SetFreqGroups</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>fgroups</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="165" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="165" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a24b9d8f389280af27c91c77674ca3366" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetFrequencyBands</definition>
+        <argsstring>(std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt; fbands)</argsstring>
+        <name>SetFrequencyBands</name>
+        <param>
+          <type>std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt;</type>
+          <declname>fbands</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="163" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="163" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a350fa71223aec3b0880a8189d708e03a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetOnlyBandwidth</definition>
+        <argsstring>(double bw)</argsstring>
+        <name>SetOnlyBandwidth</name>
+        <param>
+          <type>double</type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="167" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="167" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a96313e8753a27fc729bf38fa6d82a6a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetRescaleFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetRescaleFalse</name>
+        <briefdescription>
+<para>Setter for rescale false - Do NOT apply mk4 style visibility normalization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1ab312cfd988428799cd26e9b0e7186feb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetRescaleTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetRescaleTrue</name>
+        <briefdescription>
+<para>Setter for rescale true - apply mk4 style visibility normalization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="78" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1af87ffd9a7f06adefc2d415cf9d551c90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetRootCode</definition>
+        <argsstring>(std::string rcode)</argsstring>
+        <name>SetRootCode</name>
+        <param>
+          <type>std::string</type>
+          <declname>rcode</declname>
+        </param>
+        <briefdescription>
+<para>Setter for (hops) root code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rcode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New root code as string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="61" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a6b06d48c79435a9e1fea153dd2f5a0d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetScanIndex</definition>
+        <argsstring>(std::size_t idx)</argsstring>
+        <name>SetScanIndex</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Setter for scan index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index value of type std::size_t </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="47" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a7b85e68493683bfb722876d16003e6cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::SetStationCodes</definition>
+        <argsstring>(MHO_StationCodeMap *code_map)</argsstring>
+        <name>SetStationCodes</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__StationCodeMap" kindref="compound">MHO_StationCodeMap</ref> *</type>
+          <declname>code_map</declname>
+        </param>
+        <briefdescription>
+<para>Setter for station codes (2 characater -&gt; 1 character) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>code_map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to an <ref refid="classhops_1_1MHO__StationCodeMap" kindref="compound">MHO_StationCodeMap</ref> object containing station codes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="102" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="325" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a82ae649c8105df22e673f0ece817625c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::WriteVisibilityObjects</definition>
+        <argsstring>(std::string output_dir)</argsstring>
+        <name>WriteVisibilityObjects</name>
+        <param>
+          <type>std::string</type>
+          <declname>output_dir</declname>
+        </param>
+        <briefdescription>
+<para>Writes visibility objects in HOPS4 format to an output directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output_dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output directory path for writing files. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="127" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="580" bodyend="618"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a0cbf0ba669a651a3908ada297de1da15" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::ConstructCorFileName</definition>
+        <argsstring>(const std::string &amp;output_dir, const std::string &amp;root_code, const std::string &amp;baseline, const std::string &amp;baseline_shortname)</argsstring>
+        <name>ConstructCorFileName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_dir</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>root_code</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>baseline_shortname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="177" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="695" bodyend="700"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a58e95bbf15aac146b5531059e0e584b8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::ConstructMK4ChannelID</definition>
+        <argsstring>(std::string fgroup, int index, std::string sideband, char pol)</argsstring>
+        <name>ConstructMK4ChannelID</name>
+        <param>
+          <type>std::string</type>
+          <declname>fgroup</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>sideband</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="308" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="651" bodyend="663"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1a6f208a15cb9d04eef3ce922234661a2e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::DeleteDiFXVisRecords</definition>
+        <argsstring>()</argsstring>
+        <name>DeleteDiFXVisRecords</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="175" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="640" bodyend="649"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1ae672bf1a0ea1555a0243b395870127f9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXBaselineProcessor::DetermineFreqGroup</definition>
+        <argsstring>(const double &amp;freq)</argsstring>
+        <name>DetermineFreqGroup</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="180" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="665" bodyend="693"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXBaselineProcessor_1ae66c1fdb9ccaf9da0789afea1b50d2c6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXBaselineProcessor::Organize</definition>
+        <argsstring>()</argsstring>
+        <name>Organize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="174" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXBaselineProcessor.cc" bodystart="138" bodyend="323"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DiFXBaselineProcessor" kindref="compound">MHO_DiFXBaselineProcessor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>accumulates visbility records from a single baseline, sorts and re-packs them into a visbility container</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue Mar 1 16:44:37 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXBaselineProcessor.hh" bodystart="30" bodyend="309"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aef06478b6efe4b7ab4cbc8a5a730e116" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>AddRecord</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a596ee807485d448d6b01bd11960f9378" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a0cbf0ba669a651a3908ada297de1da15" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>ConstructCorFileName</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a58e95bbf15aac146b5531059e0e584b8" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>ConstructMK4ChannelID</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1abded8750eae96d0cf3d1343a1b0288f3" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>ConstructVisibilityFileObjects</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a6f208a15cb9d04eef3ce922234661a2e" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>DeleteDiFXVisRecords</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ae672bf1a0ea1555a0243b395870127f9" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>DetermineFreqGroup</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a124cc8cdcaffa686154c045cd6249661" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fAPLength</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a975851efb0d728f3c23c362bcc689bc1" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fAPSet</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a0343f1204694fbaa32c5b5a409e48cc7" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fAttachDiFXInput</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ad4b0b7627cd787b6d60f63ae13a4b78f" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fBandwidthSet</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a39170155bf1bad55315af1aa7a4b88c6" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fBaselineDelim</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a68a5902837a095488d23e320c9d712c7" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fBaselineFreqs</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a603c9af6a6ae55ff56f5f068eb6ce84f" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fBaselineID</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a0a4e4cea4a01ba9ba3af70c80feff49a" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fBaselineName</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ad1194b7e1637a38a582eb0ceadc391ca" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fBaselineShortName</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a5c12324a0570c35fbd86ef43b9169f6e" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fCanChannelize</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ab8d7676d405d6642412ee0acf0aa6fb4" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fCorrDate</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ac1e0d88336742d2b96b8c42fcc5e1b09" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fDiFX2VexStationCodes</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1afa15e75c9abadb4a08011b43d7efbb7e" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fDiFX2VexStationNames</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ad5ec4c0d54f8917307909b0f0d9f0444" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fFreqBandLabelSet</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ade5eed95052fb1c2014929dd7f68d3f0" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fFreqBands</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ab73ee0f307e10959beba644c2a8c3111" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fFreqIndexSet</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a468b8e9dd291cfec5c4d6158fb2ed9e0" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fFreqPredicate</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1af09971cd33eb475a5d7fa454c52d1ad5" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fHaveBaselineData</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a8baa232e1424d72c8dd736c988e493ff" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fIndex</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a58c2371d3a0aba6c1d9cdc10ed4ec929" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fInput</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aaf0a7e8e2b9fd96876003dc1de7b95d0" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fNAPs</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a3dce4e131ab8ce0b09ce39b7fef17bb3" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fNBitsToFactor</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a6dffabc7063b5e1fdb407842e2fd4014" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fNChannels</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a321fa35ac9b2ad3cc31bc3608da2d674" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fNPolPairs</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1af37416cc2f20b390fcd178f92c3e66d7" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fNSpectralPoints</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ac12461c7d17aec09bbcadf856f22473f" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fOnlyBandwidth</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aaf7149f85842f63061a11b245a55c3b6" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fOnlyFreqGroups</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ae0e996ab325768ee8824d9acee08d936" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fPolPairSet</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a74e84818301a6820c7e8b20fc4678bd3" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRecords</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aeb84b885ca37c1e7b1e3bdca7b68d82e" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRefStation</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a8484baa6df4854eb4d394fbfc9a097a8" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRefStationBits</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a4859a514e76dd518e3fd5789d202a757" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRefStationMk4Id</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a92ea4a9b0051daf40e0fd4b629dc727a" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRefStationName</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a656044b84d7f8bffdef69c17074bd91a" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRemStation</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ace031c33e15c8db671a417329ec08333" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRemStationBits</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a0ee01deebe0588d314377461fc1b11a0" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRemStationMk4Id</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a7dd8f9436c8e84cbdaab24fb933947a2" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRemStationName</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a52cc87ee6192d9f55d7acfb6ffc46fed" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRescale</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ae506d355a26cefb0d4bfd31863b28ba3" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fRootCode</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a1b5aea920cab1efc21473266e80b2873" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fScaleFactor</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1af385ded07738ca6cd354ba2e421916b8" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fSelectByBandwidth</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a679d6590b07ece1bd8d84b4030dbbca8" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fSpecPointSet</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a0e1c446e2a4fc67b71eac366646789f8" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fStartMJD</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a8378cb1c298d05876539c3af33a69f1b" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fStartTime</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aea3bc68387afb61d647363859b0853ec" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fStationCodeMap</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a05f0b50b5275742954d5becce33933e7" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fTags</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a27a75a60e6688d6756ad23ad58e98e34" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fTimePredicate</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ad844feb6e4db50666603905ec2b381c7" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fV</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a40108540d5723a67a90b5cd4dc044017" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fVisibilities</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ae03750261ad22988092541c73af7fc6a" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>fW</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a9b191766bbaa05d334f10de40c6fddff" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>GetBaselineID</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a4e1fc2629ab3ab88156d24482e540b58" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>GetBaselineShortName</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a450639b72f51aafe369a8d988bacce95" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>GetRefStationMk4Id</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1afd9ace54bdfebfb0d6290a3f2d17f4b8" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>GetRemStationMk4Id</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a1f2e90fea239f219fcc33acbd14be489" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>GetVisibilities</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a67867ba0cc9d0bce8d05412c23985b3c" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>IsAutoCorr</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1abd3bba981d7fa75a6b81fefa44c2be93" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>MHO_DiFXBaselineProcessor</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ae66c1fdb9ccaf9da0789afea1b50d2c6" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>Organize</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aee04f817f4746758482b418923414f6e" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetAttachDiFXInputFalse</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1af402b014913a6261fb850eea6069c113" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetAttachDiFXInputTrue</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ad7cd037a56f3472a93e8e000d0b96e28" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetCorrelationDate</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a20e954ff105a2e610044cef630f8f9e3" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetDiFXCodes2VexCodes</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1aeaf8c3caea36bfdda7af416f2fdbefad" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetDiFXCodes2VexNames</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a59a4d555e247d4559f1452d092b3ab57" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetDiFXInputData</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1acad8456535dad0f91717f797576b744b" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetFreqGroups</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a24b9d8f389280af27c91c77674ca3366" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetFrequencyBands</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a350fa71223aec3b0880a8189d708e03a" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetOnlyBandwidth</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a96313e8753a27fc729bf38fa6d82a6a6" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetRescaleFalse</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1ab312cfd988428799cd26e9b0e7186feb" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetRescaleTrue</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1af87ffd9a7f06adefc2d415cf9d551c90" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetRootCode</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a6b06d48c79435a9e1fea153dd2f5a0d0" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetScanIndex</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a7b85e68493683bfb722876d16003e6cc" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>SetStationCodes</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a82ae649c8105df22e673f0ece817625c" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>WriteVisibilityObjects</name></member>
+      <member refid="classhops_1_1MHO__DiFXBaselineProcessor_1a15bf926ee14c7b8a6182d8bd0acefcdb" prot="public" virt="virtual"><scope>hops::MHO_DiFXBaselineProcessor</scope><name>~MHO_DiFXBaselineProcessor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_0908837483934fe24781ea7898fec311" kind="dir">
+    <compoundname>ffcore</compoundname>
+    <innerdir refid="dir_4e5eb980a71e397b231e9099679fb09d">include</innerdir>
+    <innerdir refid="dir_653940da78d5cd2d06d03ea837d595e5">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/"/>
+  </compounddef>
+</doxygen>

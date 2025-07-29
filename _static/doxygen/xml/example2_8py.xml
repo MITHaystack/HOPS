@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="example2_8py" kind="file" language="Python">
+    <compoundname>example2.py</compoundname>
+    <innernamespace refid="namespaceexample2">example2</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespaceexample2" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>pyMHO_Containers</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceexample2_1aa8aabf4e4cc861b4c8fce69b5bd73dff" kindref="member">fix_noema_jumps</ref>(fringe_data_interface):</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>cstore_interface_obj<sp/>=<sp/>fringe_data_interface.get_container_store()</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>param_interface_obj<sp/>=<sp/>fringe_data_interface.get_parameter_store()</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>print(&quot;RUNNING<sp/>NOEMA<sp/>PHASE<sp/>JUMP<sp/>CORRECTION&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#grab<sp/>the<sp/>UUID<sp/>of<sp/>the<sp/>visibility<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>vis_uuid<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/uuid/visibilities&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>visib_obj<sp/>=<sp/>cstore_interface_obj.get_object(vis_uuid);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>visib_obj<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">#bail<sp/>out</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#figure<sp/>out<sp/>if<sp/>NOEMA<sp/>is<sp/>reference<sp/>or<sp/>remote<sp/>station</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>stidx<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>ref_id<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/ref_station/site_id&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>rem_id<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/rem_station/site_id&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>ref_id<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;Nn&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stidx<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>rem_id<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;Nn&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stidx<sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#grab<sp/>the<sp/>underlying<sp/>visibility<sp/>4-d<sp/>array</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>vis_arr<sp/>=<sp/>visib_obj.get_numpy_array()</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#rank<sp/>=<sp/>visib_obj.get_rank()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#grab<sp/>the<sp/>axis<sp/>information<sp/>we<sp/>care<sp/>about</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>axis0<sp/>=<sp/>visib_obj.get_axis(0)<sp/></highlight><highlight class="comment">#get<sp/>the<sp/>polprod<sp/>axis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>axis1<sp/>=<sp/>visib_obj.get_axis(1)<sp/></highlight><highlight class="comment">#get<sp/>the<sp/>channel<sp/>axis</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>axis3<sp/>=<sp/>visib_obj.get_axis(3)<sp/></highlight><highlight class="comment">#get<sp/>the<sp/>spectral<sp/>point<sp/>axis<sp/>(sub-channel)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>chan_meta_data<sp/>=<sp/>visib_obj.get_axis_metadata(1)<sp/></highlight><highlight class="comment">#channel<sp/>axis<sp/>meta<sp/>data<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>channel_info<sp/>=<sp/>chan_meta_data[</highlight><highlight class="stringliteral">&quot;index_labels&quot;</highlight><highlight class="normal">]<sp/></highlight><highlight class="comment">#channel<sp/>bin<sp/>label<sp/>dict</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#hacky<sp/>dictionaries<sp/>of<sp/>phase<sp/>jumps<sp/>for<sp/>NOEMA<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#first<sp/>number<sp/>is<sp/>intra-channel<sp/>frequency,<sp/>second<sp/>is<sp/>phasor<sp/>correction</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#roughly<sp/>estimated<sp/>from<sp/>fringe<sp/>plots</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>jumps_l<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal">:[25.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;b&quot;</highlight><highlight class="normal">:[30.5,<sp/>1.0j],</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;d&quot;</highlight><highlight class="normal">:[42.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;e&quot;</highlight><highlight class="normal">:[46.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;f&quot;</highlight><highlight class="normal">:[52.0,<sp/>-1.0j],</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;i&quot;</highlight><highlight class="normal">:[4.2,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;j&quot;</highlight><highlight class="normal">:[9.5,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;k&quot;</highlight><highlight class="normal">:[15.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;m&quot;</highlight><highlight class="normal">:[25.8,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;n&quot;</highlight><highlight class="normal">:[31.2,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;o&quot;</highlight><highlight class="normal">:[36.5,<sp/>1.0j],</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;p&quot;</highlight><highlight class="normal">:[42.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;q&quot;</highlight><highlight class="normal">:[47.6,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">:[53.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;u&quot;</highlight><highlight class="normal">:[5.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;v&quot;</highlight><highlight class="normal">:[10.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">:[16.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">:[21.6,<sp/>1.0j],</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">:[26.5,<sp/>-1.0j],</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;z&quot;</highlight><highlight class="normal">:[32.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;A&quot;</highlight><highlight class="normal">:[37.6,<sp/>-1.0]</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>jumps_r<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal">:[25.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;b&quot;</highlight><highlight class="normal">:[30.5,<sp/>1.0],</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;c&quot;</highlight><highlight class="normal">:[36.0,<sp/>-1.0j],</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;d&quot;</highlight><highlight class="normal">:[42.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;e&quot;</highlight><highlight class="normal">:[46.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;f&quot;</highlight><highlight class="normal">:[52.0,<sp/>1.0j],</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;i&quot;</highlight><highlight class="normal">:[4.2,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;j&quot;</highlight><highlight class="normal">:[9.5,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;k&quot;</highlight><highlight class="normal">:[15.0,<sp/>1.0j],</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;l&quot;</highlight><highlight class="normal">:[20.0,<sp/>-1.0j],</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;m&quot;</highlight><highlight class="normal">:[25.8,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;n&quot;</highlight><highlight class="normal">:[31.2,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;o&quot;</highlight><highlight class="normal">:[36.5,<sp/>1.0j],</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>&quot;p&quot;:[42.0,<sp/>1.0],</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;q&quot;</highlight><highlight class="normal">:[47.6,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">:[53.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;u&quot;</highlight><highlight class="normal">:[5.0,<sp/>-1.0j],</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;v&quot;</highlight><highlight class="normal">:[10.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">:[16.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">:[21.6,<sp/>1.0j],</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">:[26.5,<sp/>1.0],</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;z&quot;</highlight><highlight class="normal">:[32.0,<sp/>-1.0],</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;A&quot;</highlight><highlight class="normal">:[37.6,<sp/>-1.0]</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#oddly<sp/>enough<sp/>when<sp/>NOEMA<sp/>is<sp/>the<sp/>remote-station<sp/>in<sp/>the<sp/>baseline,<sp/>some<sp/>sign<sp/>flips<sp/>happend</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#why<sp/>are<sp/>these<sp/>additional<sp/>jumps/flips<sp/>needed?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>stidx<sp/>==<sp/>1:</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#L<sp/>pol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_l[</highlight><highlight class="stringliteral">&quot;b&quot;</highlight><highlight class="normal">][1]<sp/>=<sp/>-1j<sp/></highlight><highlight class="comment">#the<sp/>odd<sp/>ball</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_l[</highlight><highlight class="stringliteral">&quot;o&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_l[</highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_l[</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#R<sp/>pol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_r[</highlight><highlight class="stringliteral">&quot;c&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_r[</highlight><highlight class="stringliteral">&quot;f&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_r[</highlight><highlight class="stringliteral">&quot;k&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_r[</highlight><highlight class="stringliteral">&quot;o&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_r[</highlight><highlight class="stringliteral">&quot;u&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jumps_r[</highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">][1]<sp/>*=<sp/>-1</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#stash<sp/>both<sp/>pols<sp/>in<sp/>one<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>jumps<sp/>=<sp/>dict()</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>jumps[</highlight><highlight class="stringliteral">&quot;R&quot;</highlight><highlight class="normal">]<sp/>=<sp/>jumps_r</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>jumps[</highlight><highlight class="stringliteral">&quot;L&quot;</highlight><highlight class="normal">]<sp/>=<sp/>jumps_l</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#now<sp/>apply<sp/>the<sp/>corrections<sp/>to<sp/>the<sp/>visibilities,<sp/>looping<sp/>over<sp/>pol-prod<sp/>and<sp/>channel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>nspectral<sp/>=<sp/>visib_obj.get_dimension(3)<sp/></highlight><highlight class="comment">#<sp/>number<sp/>of<sp/>spectral<sp/>points<sp/>in<sp/>channel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>pp<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(0,<sp/>len(axis0)):</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>polprod<sp/>=<sp/>axis0[pp]</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pol<sp/>=<sp/>polprod[stidx:stidx+1]</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ch<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(0,len(axis1)):</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chan_key<sp/>=<sp/>str(ch)<sp/></highlight><highlight class="comment">#meta<sp/>data<sp/>keys<sp/>must<sp/>be<sp/>strings<sp/>(e.g.<sp/>&quot;1&quot;,<sp/>&quot;2&quot;)<sp/>not<sp/>integers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fourfit_chan_label<sp/>=<sp/>channel_info[chan_key][</highlight><highlight class="stringliteral">&quot;channel_label&quot;</highlight><highlight class="normal">]<sp/></highlight><highlight class="comment">#fourfit<sp/>label</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>pol<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>jumps<sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>fourfit_chan_label<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>jumps[pol]:</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jump_freq<sp/>=<sp/>jumps[pol][fourfit_chan_label][0]</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jump_phasor<sp/>=<sp/>jumps[pol][fourfit_chan_label][1]</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#now<sp/>apply<sp/>the<sp/>phase<sp/>shift<sp/>at/after<sp/>the<sp/>jump<sp/>freq</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>sp<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(0,nspectral):</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>freq<sp/>=<sp/>axis3[sp]</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>freq<sp/>&gt;<sp/>jump_freq:</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vis_arr[pp,<sp/>ch,<sp/>:,<sp/>sp]<sp/>*=<sp/>jump_phasor</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example2.py"/>
+  </compounddef>
+</doxygen>

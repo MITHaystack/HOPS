@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="clear__tsumm_8c" kind="file" language="C++">
+    <compoundname>clear_tsumm.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="adata_8h" local="yes">adata.h</includes>
+    <includes refid="mk4__afio_8h" local="yes">mk4_afio.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="4">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="5">
+        <label>mk4_afio.h</label>
+        <link refid="mk4__afio_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>clear_tsumm.c</label>
+        <link refid="clear__tsumm_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="clear__tsumm_8c_1aa856152c4d86a6ffc35b501461da43b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_tsumm</definition>
+        <argsstring>(trianglesum *dsumm)</argsstring>
+        <name>clear_tsumm</name>
+        <param>
+          <type><ref refid="structtrianglesum" kindref="compound">trianglesum</ref> *</type>
+          <declname>dsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/clear_tsumm.c" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/clear_tsumm.c" bodystart="22" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>routine<sp/>empties<sp/>the<sp/>structure<sp/>whose<sp/>pointer<sp/>is<sp/>passed<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>to<sp/>it.<sp/><sp/>For<sp/>use<sp/>when<sp/>reading<sp/>in<sp/>data,<sp/>to<sp/>avoid<sp/>confusing<sp/>leftover<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>data.<sp/><sp/>The<sp/>reading<sp/>routines<sp/>do<sp/>not<sp/>always<sp/>overwrite<sp/>all<sp/>fields<sp/>in<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>the<sp/>structure.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dsumm<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>structure<sp/>pointer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*dsumm<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>modified<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>1<sp/>August<sp/>1994<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adata_8h" kindref="compound">adata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__afio_8h" kindref="compound">mk4_afio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="clear__tsumm_8c_1aa856152c4d86a6ffc35b501461da43b8" kindref="member">clear_tsumm</ref>(<ref refid="structtrianglesum" kindref="compound">trianglesum</ref><sp/>*dsumm)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>default<sp/>to<sp/>latest<sp/>version<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a053370e15a647fe4bfa269cdd9fb7e68" kindref="member">version</ref><sp/>=<sp/><ref refid="adata_8h_1ac4ec0a338c1546cbff3dfd95a3eac2de" kindref="member">CURRENT_VERSION</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a336e07103c70df7bd72fb69e6920d124" kindref="member">expt_no</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a2b9e8651b0ac5627b9ea0ba9ad2d20e1" kindref="member">time_tag</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a8fa8c7acb268a515a6a35f8d24ca8ebf" kindref="member">scan_offset</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a2aa1ca9776c80a24704432cb3d739b0a" kindref="member">source</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1ac494ea2b5ed5f3e3cc2994d3edfdc0c7" kindref="member">freq_code</ref><sp/>=<sp/></highlight><highlight class="charliteral">&apos;?&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1ac6405a36317c3beb112d1e9e6e5e4bc2" kindref="member">mode</ref><sp/>=<sp/></highlight><highlight class="charliteral">&apos;?&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1aebb6df56e31bdf2bf12d1f95db2fe14d" kindref="member">lags</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a1830d5f0565caac7ce8341ebb5377d09" kindref="member">triangle</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a9d4d387b6f48fa45e496195c0128d443" kindref="member">root_id</ref>[0][0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a9d4d387b6f48fa45e496195c0128d443" kindref="member">root_id</ref>[1][0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a9d4d387b6f48fa45e496195c0128d443" kindref="member">root_id</ref>[2][0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a97b0b3df602ad14cdd4151281d60b5dc" kindref="member">extent_no</ref>[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a97b0b3df602ad14cdd4151281d60b5dc" kindref="member">extent_no</ref>[1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a97b0b3df602ad14cdd4151281d60b5dc" kindref="member">extent_no</ref>[2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a5a6c4207a3c219875d1ec3098b91ed4a" kindref="member">length</ref>[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a5a6c4207a3c219875d1ec3098b91ed4a" kindref="member">length</ref>[1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a5a6c4207a3c219875d1ec3098b91ed4a" kindref="member">length</ref>[2]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1ab374e715bb3c2d046e78512d5c0d5136" kindref="member">duration</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a5f9a4fbcf25ff14848644b956d4cbb33" kindref="member">offset</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a518462d8a8b2bfc132a71b9af27f0bf5" kindref="member">scan_quality</ref><sp/>=<sp/></highlight><highlight class="charliteral">&apos;?&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a427b0d144fca5787f6aeb9c83460e3dc" kindref="member">data_quality</ref><sp/>=<sp/></highlight><highlight class="charliteral">&apos;?&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a662fa9be052f8a13298983b14273e19c" kindref="member">esdesp</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1aa3b2836e779b7660ccc2b15d7b84b6e7" kindref="member">bis_amp</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a7ceff9748d53075532e37170eaa67add" kindref="member">bis_snr</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1ae140394d00e214a2636c66a69e3d2a7f" kindref="member">bis_phas</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy<sp/>(dsumm-&gt;<ref refid="structtrianglesum_1ae4a2e97d361cf989c6dc44a6bcafbf11" kindref="member">datatype</ref>,<sp/></highlight><highlight class="stringliteral">&quot;??&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a38114b47f780c09244637eeebe2838b4" kindref="member">csbdelay</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a5a1bba7d7ded230d8d4f8d8fada7c8c9" kindref="member">cmbdelay</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a01cd464902ba6e73971c1834295c5cbf" kindref="member">cdelay_rate</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a285ba21d7b7ffda3ed6ecaf99bb473f5" kindref="member">elevation</ref>[0]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a285ba21d7b7ffda3ed6ecaf99bb473f5" kindref="member">elevation</ref>[1]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a285ba21d7b7ffda3ed6ecaf99bb473f5" kindref="member">elevation</ref>[2]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a8c24e786da891276ea10bcce20cf0d47" kindref="member">azimuth</ref>[0]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a8c24e786da891276ea10bcce20cf0d47" kindref="member">azimuth</ref>[1]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a8c24e786da891276ea10bcce20cf0d47" kindref="member">azimuth</ref>[2]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a4445cc79a5f6237b8cd2a39e3682cbd3" kindref="member">epoch</ref>[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a4445cc79a5f6237b8cd2a39e3682cbd3" kindref="member">epoch</ref>[1]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1aefb0d3da9e2588c1ee214ea1bf1402fb" kindref="member">ref_freq</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1a0c23aeace0e13ef1d0767895f67e80c8" kindref="member">cotime</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>dsumm-&gt;<ref refid="structtrianglesum_1aefe7abe75951364bac78ae27e43d4fac" kindref="member">scan_id</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/clear_tsumm.c"/>
+  </compounddef>
+</doxygen>

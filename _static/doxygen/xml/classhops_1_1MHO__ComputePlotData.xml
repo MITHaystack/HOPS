@@ -1,0 +1,1578 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ComputePlotData" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ComputePlotData</compoundname>
+    <includes refid="MHO__ComputePlotData_8hh" local="no">MHO_ComputePlotData.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1aa3342d937d26acd4f6f333d128f7301b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::fAmp</definition>
+        <argsstring></argsstring>
+        <name>fAmp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="218" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a3c2a8f188bb3fe6f82f960f1a95c89ac" prot="public" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+        <definition>MHO_ContainerStore* hops::MHO_ComputePlotData::fContainerStore</definition>
+        <argsstring></argsstring>
+        <name>fContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="235" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a36ccde6803c5764e2b7a27e7ba347b26" prot="public" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__CyclicRotator" kindref="compound">MHO_CyclicRotator</ref>&lt; <ref refid="namespacehops_1a085bda9bb87c6f1100bf200de099be8e" kindref="member">xpower_type</ref> &gt;</type>
+        <definition>MHO_CyclicRotator&lt; xpower_type &gt; hops::MHO_ComputePlotData::fCyclicRotator</definition>
+        <argsstring></argsstring>
+        <name>fCyclicRotator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="241" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="241" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a9b7b5c51dc12f91e6a507996299a5259" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::fDelayRate</definition>
+        <argsstring></argsstring>
+        <name>fDelayRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="215" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a0d9c172552506fa293231d92dd510556" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a0876bf037431c9d1550c2af6cb40a34c" kindref="member">xpower_amp_type</ref></type>
+        <definition>xpower_amp_type hops::MHO_ComputePlotData::fDRAmpWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fDRAmpWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="228" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="228" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1ab71cb3cb3ccafed244c473ffe291fef8" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a085bda9bb87c6f1100bf200de099be8e" kindref="member">xpower_type</ref></type>
+        <definition>xpower_type hops::MHO_ComputePlotData::fDRWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fDRWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="227" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1af75d15daa12b707d755602cfcd0341ea" prot="public" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" kindref="compound">MHO_MultidimensionalFastFourierTransform</ref>&lt; <ref refid="namespacehops_1a085bda9bb87c6f1100bf200de099be8e" kindref="member">xpower_type</ref> &gt;</type>
+        <definition>MHO_MultidimensionalFastFourierTransform&lt; xpower_type &gt; hops::MHO_ComputePlotData::fFFTEngine</definition>
+        <argsstring></argsstring>
+        <name>fFFTEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="240" column="50" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="240" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a3a2581bf72f44951d441796b22615401" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a085bda9bb87c6f1100bf200de099be8e" kindref="member">xpower_type</ref></type>
+        <definition>xpower_type hops::MHO_ComputePlotData::fFringe</definition>
+        <argsstring></argsstring>
+        <name>fFringe</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="233" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a6a0ac206e6e18d2759cfd173d2c35fcf" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::fFringeRate</definition>
+        <argsstring></argsstring>
+        <name>fFringeRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="216" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1aa2b959043af4e9ac5f6f41be513511b0" prot="public" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_ComputePlotData::fImagUnit</definition>
+        <argsstring></argsstring>
+        <name>fImagUnit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="255" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1ac50138a0b2aa8f20b78744ade2dd0d83" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a0876bf037431c9d1550c2af6cb40a34c" kindref="member">xpower_amp_type</ref></type>
+        <definition>xpower_amp_type hops::MHO_ComputePlotData::fMBDAmpWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fMBDAmpWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="231" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a168c487b303d3cc5dc846d030d9fe6fe" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ComputePlotData::fMBDAnchor</definition>
+        <argsstring></argsstring>
+        <name>fMBDAnchor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="247" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a4ea40a519e16f78b9256819c0c8f72ab" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::fMBDelay</definition>
+        <argsstring></argsstring>
+        <name>fMBDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="214" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a7d837f0c6094427eb008e2df73bf1635" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a085bda9bb87c6f1100bf200de099be8e" kindref="member">xpower_type</ref></type>
+        <definition>xpower_type hops::MHO_ComputePlotData::fMBDWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fMBDWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="230" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="230" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a8d590fbbb95e665ad7adbf4c5aca1b3c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; hops::MHO_ComputePlotData::fNLSBAP</definition>
+        <argsstring></argsstring>
+        <name>fNLSBAP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="252" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="252" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a5656e55b5bc6be1d5db56d2ddbc6af04" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; hops::MHO_ComputePlotData::fNUSBAP</definition>
+        <argsstring></argsstring>
+        <name>fNUSBAP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="251" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="251" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1ac1dc6861477ee3ed36c7c20bf2744b36" prot="public" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+        <definition>MHO_ParameterStore* hops::MHO_ComputePlotData::fParamStore</definition>
+        <argsstring></argsstring>
+        <name>fParamStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="236" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a15c58abd469690695a2d30dbb7691d67" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::fRefFreq</definition>
+        <argsstring></argsstring>
+        <name>fRefFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="212" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a8667850624a7b10f4ac12aa49ad5ebcf" prot="public" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FringeRotation" kindref="compound">MHO_FringeRotation</ref></type>
+        <definition>MHO_FringeRotation hops::MHO_ComputePlotData::fRot</definition>
+        <argsstring></argsstring>
+        <name>fRot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="244" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="244" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a0bc26306f1c3992c9fd2a14240cb6e4d" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+        <definition>visibility_type* hops::MHO_ComputePlotData::fSBDArray</definition>
+        <argsstring></argsstring>
+        <name>fSBDArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="224" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1aa9a09a34a3d434eeccbea5fbd42a9c59" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; hops::MHO_ComputePlotData::fSBDBox</definition>
+        <argsstring></argsstring>
+        <name>fSBDBox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="250" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="250" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a720cf67a5f227bf6cb8e50f544dc0a15" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::fSBDelay</definition>
+        <argsstring></argsstring>
+        <name>fSBDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="217" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a6993ae2e043c079b6806cf8f141cffbe" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ComputePlotData::fSBDMaxBin</definition>
+        <argsstring></argsstring>
+        <name>fSBDMaxBin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="220" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a2d7eae943f360c37227da665431dfc07" prot="public" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+        <definition>MHO_OperatorToolbox* hops::MHO_ComputePlotData::fToolbox</definition>
+        <argsstring></argsstring>
+        <name>fToolbox</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="237" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1af318e0c857d2c971ed45759fc5d1855c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::fTotalSummedWeights</definition>
+        <argsstring></argsstring>
+        <name>fTotalSummedWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="213" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1ad3fd6e82bab752f9f5d77c7eb0bf9a0b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_ComputePlotData::fValid</definition>
+        <argsstring></argsstring>
+        <name>fValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="222" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a84dd29c4c6830aef8866206045d851bb" prot="public" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ComputePlotData::fVexInfo</definition>
+        <argsstring></argsstring>
+        <name>fVexInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="238" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1af6edda99df6b30130c0d1da47ed384b5" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+        <definition>visibility_type* hops::MHO_ComputePlotData::fVisibilities</definition>
+        <argsstring></argsstring>
+        <name>fVisibilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="223" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ComputePlotData_1a92a2d09064cfaf9440bdad4e6df816ad" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref> *</type>
+        <definition>weight_type* hops::MHO_ComputePlotData::fWeights</definition>
+        <argsstring></argsstring>
+        <name>fWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="225" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1aee323fc80b6f65ab8065fe6a3ed9cf84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ComputePlotData::MHO_ComputePlotData</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ComputePlotData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="48" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="27" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a5b9c9c76d952d0eb48d2e4dee2c11d87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ComputePlotData::~MHO_ComputePlotData</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ComputePlotData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="49" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a64cd51debb76a2a74bd63c0fe0563aa3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1a0876bf037431c9d1550c2af6cb40a34c" kindref="member">xpower_amp_type</ref></type>
+        <definition>xpower_amp_type hops::MHO_ComputePlotData::calc_dr</definition>
+        <argsstring>()</argsstring>
+        <name>calc_dr</name>
+        <briefdescription>
+<para>Calculates delay-rate (dr) function (amplitude vs delay rate) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>xpower_amp_type representing calculated delay-rate </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="140" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="508" bodyend="611"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1acfb96247b28484694255ce935f120c23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ComputePlotData::calc_error_code</definition>
+        <argsstring>(const mho_json &amp;plot_dict)</argsstring>
+        <name>calc_error_code</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>plot_dict</declname>
+        </param>
+        <briefdescription>
+<para>calcuates the fringe error code </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="210" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="1499" bodyend="1684"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a6a3eef97503e4c67e2b77f0c84e81dea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::calc_freqrms</definition>
+        <argsstring>(phasor_type &amp;phasors, double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr, double &amp;freqrms_phase, double &amp;freqrms_amp, double &amp;inc_avg_amp_freq)</argsstring>
+        <name>calc_freqrms</name>
+        <param>
+          <type><ref refid="namespacehops_1ae84ae133e425a9e97ee17c8fa9f57a49" kindref="member">phasor_type</ref> &amp;</type>
+          <declname>phasors</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>coh_avg_phase</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>fringe_amp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>total_summed_weights</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>freqrms_phase</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>freqrms_amp</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>inc_avg_amp_freq</declname>
+        </param>
+        <briefdescription>
+<para>Calculates frequency root mean square (phase and amplitude) for given phasors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phasors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to phasor_type object containing channel data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coh_avg_phase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coherent average phase in radians </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fringe_amp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fringe amplitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>total_summed_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total summed weights </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal-to-noise ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freqrms_phase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Frequency RMS phase </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freqrms_amp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Frequency RMS amplitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inc_avg_amp_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: incoherent average amplitude (over frequency) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="167" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="1255" bodyend="1323"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a88c2d7b6c50f02105efd3c59a7d2dbe7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1a0876bf037431c9d1550c2af6cb40a34c" kindref="member">xpower_amp_type</ref></type>
+        <definition>xpower_amp_type hops::MHO_ComputePlotData::calc_mbd</definition>
+        <argsstring>()</argsstring>
+        <name>calc_mbd</name>
+        <briefdescription>
+<para>Calculates Multi-Band Delay (MBD) function (amplitude vs. mbd) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>xpower_amp_type representing the calculated MBD. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="116" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="76" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a15618304ccef76255bc97fe559a8ea97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_ComputePlotData::calc_phase</definition>
+        <argsstring>()</argsstring>
+        <name>calc_phase</name>
+        <briefdescription>
+<para>Calculates fringe phase using weighted sum and fitted (delay, delay-rate) rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>fringe phase as a double value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="153" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="613" bodyend="698"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a2b651788ffe3c13fbb1a9265553992a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ComputePlotData::calc_quality_code</definition>
+        <argsstring>()</argsstring>
+        <name>calc_quality_code</name>
+        <briefdescription>
+<para>calcuates the fringe quality code </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="205" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="1442" bodyend="1497"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1ad8dc0743bc06d78f0b85cdee08b10b89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1a0876bf037431c9d1550c2af6cb40a34c" kindref="member">xpower_amp_type</ref></type>
+        <definition>xpower_amp_type hops::MHO_ComputePlotData::calc_sbd</definition>
+        <argsstring>()</argsstring>
+        <name>calc_sbd</name>
+        <briefdescription>
+<para>Calculates Single Band Delay (SBD) function (amplitude vs. sbd) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>xpower_amp_type containing SBD power spectrum </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="122" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="201" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1adc17cfcfec0b49da0d8c8dcdb326dbca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1ae84ae133e425a9e97ee17c8fa9f57a49" kindref="member">phasor_type</ref></type>
+        <definition>phasor_type hops::MHO_ComputePlotData::calc_segs</definition>
+        <argsstring>()</argsstring>
+        <name>calc_segs</name>
+        <briefdescription>
+<para>Calculates and returns time-averaged phasor segments for each channel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>phasor_type containing calculated phasor segments. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="128" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="283" bodyend="372"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1ac6f48cfc9dfb458983b92d78fdbda4e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::calc_timerms</definition>
+        <argsstring>(phasor_type &amp;phasors, std::size_t nseg, std::size_t apseg, double coh_avg_phase, double fringe_amp, double total_summed_weights, double snr, double &amp;timerms_phase, double &amp;timerms_amp, double &amp;inc_avg_amp)</argsstring>
+        <name>calc_timerms</name>
+        <param>
+          <type><ref refid="namespacehops_1ae84ae133e425a9e97ee17c8fa9f57a49" kindref="member">phasor_type</ref> &amp;</type>
+          <declname>phasors</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>nseg</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>apseg</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>coh_avg_phase</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>fringe_amp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>total_summed_weights</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>snr</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>timerms_phase</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>timerms_amp</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>inc_avg_amp</declname>
+        </param>
+        <briefdescription>
+<para>Calculates time-domain measurements (phase, amplitude, average) from phasors data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phasors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input phasor data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nseg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of segments in phasors data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>apseg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Average phase segment size </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coh_avg_phase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coherent average phase (degrees) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fringe_amp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Fringe amplitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>total_summed_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total summed weights </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Signal to Noise Ratio </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timerms_phase</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Time RMS phase </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>timerms_amp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Time RMS amplitude </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>inc_avg_amp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: incoherent average amplitude (over time) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="184" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="1325" bodyend="1440"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1ad69032b475650994769111f367a47af9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1a085bda9bb87c6f1100bf200de099be8e" kindref="member">xpower_type</ref></type>
+        <definition>xpower_type hops::MHO_ComputePlotData::calc_xpower_spec</definition>
+        <argsstring>()</argsstring>
+        <name>calc_xpower_spec</name>
+        <briefdescription>
+<para>Calculates and returns the cross-power spectrum for a given SBD array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>xpower_type containing the calculated cross-power spectrum </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="134" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="700" bodyend="949"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1aaac0b3180af5c5345baa9f5c2d37ec11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::correct_vis</definition>
+        <argsstring>()</argsstring>
+        <name>correct_vis</name>
+        <briefdescription>
+<para>Corrects visibility data by applying fringe solution. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="146" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="374" bodyend="506"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a35d70decb885ebc4844715050572aae9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::DisableOptimizeClosure</definition>
+        <argsstring>()</argsstring>
+        <name>DisableOptimizeClosure</name>
+        <briefdescription>
+<para>Disables optimize closure by setting underlying <ref refid="classhops_1_1MHO__FringeRotation" kindref="compound">MHO_FringeRotation</ref> (fRot) optimizeClosure to false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1ad0a04756a84feacf346efba81be620e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::dump_manual_pcmodel</definition>
+        <argsstring>(mho_json &amp;plot_dict, int station_flag, std::string pol)</argsstring>
+        <name>dump_manual_pcmodel</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>plot_dict</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>station_flag</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="197" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="1858" bodyend="1897"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a2825555d5dbbde736ac97ebd0349acf7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::dump_multitone_pcmodel</definition>
+        <argsstring>(mho_json &amp;plot_dict, int station_flag, std::string pol)</argsstring>
+        <name>dump_multitone_pcmodel</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>plot_dict</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>station_flag</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="190" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="1686" bodyend="1856"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a912a6d8b15d8c51cea7bb1b8a808de9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::DumpInfoToJSON</definition>
+        <argsstring>(mho_json &amp;plot_dict)</argsstring>
+        <name>DumpInfoToJSON</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>plot_dict</declname>
+        </param>
+        <briefdescription>
+<para>Dumps fringe plot data into a JSON object for visualization/consumption by plotting routine. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>plot_dict</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>JSON object to store fringe plot data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="106" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="951" bodyend="1253"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1adecd91e6b4f4aee588411f49fdd59a5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::EnableOptimizeClosure</definition>
+        <argsstring>()</argsstring>
+        <name>EnableOptimizeClosure</name>
+        <briefdescription>
+<para>Sets optimize closure to true in underlying <ref refid="classhops_1_1MHO__FringeRotation" kindref="compound">MHO_FringeRotation</ref> (fRot) object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1ae2f070c806cc3d182ca7e306faba7fc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <briefdescription>
+<para>Initializes member variables by retrieving values from parameter and container stores. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="99" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_ComputePlotData.cc" bodystart="40" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a97ce2bbe42a961ff1e0ebb367bdccc57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::SetContainerStore</definition>
+        <argsstring>(MHO_ContainerStore *cStore)</argsstring>
+        <name>SetContainerStore</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>cStore</declname>
+        </param>
+        <briefdescription>
+<para>Setter for container store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="80" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1ac2d9eb6423b960dd2785d113fcec86c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::SetMBDAnchor</definition>
+        <argsstring>(std::string flag)</argsstring>
+        <name>SetMBDAnchor</name>
+        <param>
+          <type>std::string</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+<para>Setter for mbd anchor (either: &apos;sbd&apos; or &apos;model&apos;) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating the MBD anchor type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="66" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a9301d58389bdb876dc0e053fe85f3dec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::SetOperatorToolbox</definition>
+        <argsstring>(MHO_OperatorToolbox *toolbox)</argsstring>
+        <name>SetOperatorToolbox</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> *</type>
+          <declname>toolbox</declname>
+        </param>
+        <briefdescription>
+<para>Setter for operator toolbox. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>toolbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__OperatorToolbox" kindref="compound">MHO_OperatorToolbox</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1afc52355b3607a41bc55d785acb191979" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::SetParameterStore</definition>
+        <argsstring>(MHO_ParameterStore *pStore)</argsstring>
+        <name>SetParameterStore</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>pStore</declname>
+        </param>
+        <briefdescription>
+<para>Setter for parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="87" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComputePlotData_1a773841474db48fc125f7381a74766047" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ComputePlotData::SetVexInfo</definition>
+        <argsstring>(const mho_json &amp;vex_info)</argsstring>
+        <name>SetVexInfo</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>vex_info</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex info. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vex_info</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to mho_json object containing VEX information (from root file) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="94" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="94" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ComputePlotData" kindref="compound">MHO_ComputePlotData</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>class for computing fringe plot information</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Apr 24 10:01:21 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="21">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="31">
+        <label>size_t</label>
+      </node>
+      <node id="18">
+        <label>hops::MHO_FringeRotation</label>
+        <link refid="classhops_1_1MHO__FringeRotation"/>
+      </node>
+      <node id="50">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="30">
+        <label>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface"/>
+        <childnode refid="26" relation="usage">
+          <edgelabel>fAxesToXForm</edgelabel>
+          <edgelabel>fForward</edgelabel>
+          <edgelabel>fInitialized</edgelabel>
+          <edgelabel>fIsValid</edgelabel>
+          <edgelabel>fTransformAxisLabels</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>fDimensionSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="53">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="39" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="48">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="33">
+        <label>std::vector&lt; double &gt;</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="42">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="43" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="46" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="50" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_TableContainerBase</label>
+        <link refid="classhops_1_1MHO__TableContainerBase"/>
+      </node>
+      <node id="20">
+        <label>hops::MHO_UnaryOperator&lt; hops::MHO_TableContainer &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="39" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>hops::MHO_ParameterStore</label>
+        <link refid="classhops_1_1MHO__ParameterStore"/>
+      </node>
+      <node id="43">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="44" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="47" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="51" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="53" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="38" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="44">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="39" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="45" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>json</label>
+      </node>
+      <node id="25">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="54">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>hops::MHO_CyclicRotator&lt; hops::MHO_TableContainer &gt;</label>
+        <link refid="classhops_1_1MHO__CyclicRotator"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="48" relation="public-inheritance">
+        </childnode>
+        <childnode refid="49" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="40" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, RANK &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>key_pair</label>
+      </node>
+      <node id="28">
+        <label>int</label>
+      </node>
+      <node id="39">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="40" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ComputePlotData</label>
+        <link refid="classhops_1_1MHO__ComputePlotData"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fAmp</edgelabel>
+          <edgelabel>fDelayRate</edgelabel>
+          <edgelabel>fFringeRate</edgelabel>
+          <edgelabel>fMBDelay</edgelabel>
+          <edgelabel>fRefFreq</edgelabel>
+          <edgelabel>fSBDelay</edgelabel>
+          <edgelabel>fTotalSummedWeights</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fDRAmpWorkspace</edgelabel>
+          <edgelabel>fMBDAmpWorkspace</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fSBDArray</edgelabel>
+          <edgelabel>fVisibilities</edgelabel>
+          <edgelabel>fWeights</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fRot</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fVexInfo</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>fCyclicRotator</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>fImagUnit</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>fParamStore</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>fMBDAnchor</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>fValid</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>fNLSBAP</edgelabel>
+          <edgelabel>fNUSBAP</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>fFFTEngine</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>fToolbox</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>fSBDMaxBin</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>fSBDBox</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>fContainerStore</edgelabel>
+        </childnode>
+        <childnode refid="54" relation="usage">
+          <edgelabel>fDRWorkspace</edgelabel>
+          <edgelabel>fFringe</edgelabel>
+          <edgelabel>fMBDWorkspace</edgelabel>
+        </childnode>
+      </node>
+      <node id="37">
+        <label>std::set&lt; std::string &gt;</label>
+        <childnode refid="24" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>std::complex&lt; double &gt;</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="6">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="40">
+        <label>uint8_t</label>
+      </node>
+      <node id="8">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="51">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="39" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="52" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="10">
+        <label>std::tuple&lt; XAxisTypeS... &gt;</label>
+      </node>
+      <node id="35">
+        <label>std::map&lt; hops::MHO_Serializable *, key_pair &gt;</label>
+        <childnode refid="11" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="52">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="34">
+        <label>hops::MHO_ContainerStore</label>
+        <link refid="classhops_1_1MHO__ContainerStore"/>
+        <childnode refid="35" relation="usage">
+          <edgelabel>fObjectsToIds</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>fShortNameSet</edgelabel>
+        </childnode>
+        <childnode refid="38" relation="usage">
+          <edgelabel>fShortNameToIds</edgelabel>
+        </childnode>
+        <childnode refid="41" relation="usage">
+          <edgelabel>fIdsToObjects</edgelabel>
+        </childnode>
+        <childnode refid="42" relation="usage">
+          <edgelabel>fDictionary</edgelabel>
+        </childnode>
+      </node>
+      <node id="45">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="46" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>XAxisPackType</label>
+        <link refid="classXAxisPackType"/>
+      </node>
+      <node id="32">
+        <label>hops::MHO_OperatorToolbox</label>
+        <link refid="classhops_1_1MHO__OperatorToolbox"/>
+      </node>
+      <node id="26">
+        <label>bool</label>
+      </node>
+      <node id="41">
+        <label>std::map&lt; key_pair, hops::MHO_Serializable * &gt;</label>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; hops::MHO_TableContainer &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="16">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>char</label>
+      </node>
+      <node id="27">
+        <label>std::vector&lt; int &gt;</label>
+        <childnode refid="28" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_AxisPack&lt; XAxisTypeS &gt;</label>
+        <link refid="classhops_1_1MHO__AxisPack"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>std::string</label>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" line="45" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_ComputePlotData.hh" bodystart="46" bodyend="256"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a64cd51debb76a2a74bd63c0fe0563aa3" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_dr</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1acfb96247b28484694255ce935f120c23" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_error_code</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a6a3eef97503e4c67e2b77f0c84e81dea" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_freqrms</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a88c2d7b6c50f02105efd3c59a7d2dbe7" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_mbd</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a15618304ccef76255bc97fe559a8ea97" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_phase</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a2b651788ffe3c13fbb1a9265553992a0" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_quality_code</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ad8dc0743bc06d78f0b85cdee08b10b89" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_sbd</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1adc17cfcfec0b49da0d8c8dcdb326dbca" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_segs</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ac6f48cfc9dfb458983b92d78fdbda4e7" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_timerms</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ad69032b475650994769111f367a47af9" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>calc_xpower_spec</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1aaac0b3180af5c5345baa9f5c2d37ec11" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>correct_vis</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a35d70decb885ebc4844715050572aae9" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>DisableOptimizeClosure</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ad0a04756a84feacf346efba81be620e6" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>dump_manual_pcmodel</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a2825555d5dbbde736ac97ebd0349acf7" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>dump_multitone_pcmodel</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a912a6d8b15d8c51cea7bb1b8a808de9f" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>DumpInfoToJSON</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1adecd91e6b4f4aee588411f49fdd59a5d" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>EnableOptimizeClosure</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1aa3342d937d26acd4f6f333d128f7301b" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fAmp</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a3c2a8f188bb3fe6f82f960f1a95c89ac" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fContainerStore</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a36ccde6803c5764e2b7a27e7ba347b26" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fCyclicRotator</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a9b7b5c51dc12f91e6a507996299a5259" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fDelayRate</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a0d9c172552506fa293231d92dd510556" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fDRAmpWorkspace</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ab71cb3cb3ccafed244c473ffe291fef8" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fDRWorkspace</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1af75d15daa12b707d755602cfcd0341ea" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fFFTEngine</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a3a2581bf72f44951d441796b22615401" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fFringe</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a6a0ac206e6e18d2759cfd173d2c35fcf" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fFringeRate</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1aa2b959043af4e9ac5f6f41be513511b0" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fImagUnit</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ac50138a0b2aa8f20b78744ade2dd0d83" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fMBDAmpWorkspace</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a168c487b303d3cc5dc846d030d9fe6fe" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fMBDAnchor</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a4ea40a519e16f78b9256819c0c8f72ab" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fMBDelay</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a7d837f0c6094427eb008e2df73bf1635" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fMBDWorkspace</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a8d590fbbb95e665ad7adbf4c5aca1b3c" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fNLSBAP</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a5656e55b5bc6be1d5db56d2ddbc6af04" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fNUSBAP</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ac1dc6861477ee3ed36c7c20bf2744b36" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fParamStore</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a15c58abd469690695a2d30dbb7691d67" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fRefFreq</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a8667850624a7b10f4ac12aa49ad5ebcf" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fRot</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a0bc26306f1c3992c9fd2a14240cb6e4d" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fSBDArray</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1aa9a09a34a3d434eeccbea5fbd42a9c59" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fSBDBox</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a720cf67a5f227bf6cb8e50f544dc0a15" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fSBDelay</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a6993ae2e043c079b6806cf8f141cffbe" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fSBDMaxBin</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a2d7eae943f360c37227da665431dfc07" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fToolbox</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1af318e0c857d2c971ed45759fc5d1855c" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fTotalSummedWeights</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ad3fd6e82bab752f9f5d77c7eb0bf9a0b" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fValid</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a84dd29c4c6830aef8866206045d851bb" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fVexInfo</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1af6edda99df6b30130c0d1da47ed384b5" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fVisibilities</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a92a2d09064cfaf9440bdad4e6df816ad" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>fWeights</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ae2f070c806cc3d182ca7e306faba7fc1" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1aee323fc80b6f65ab8065fe6a3ed9cf84" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>MHO_ComputePlotData</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a97ce2bbe42a961ff1e0ebb367bdccc57" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>SetContainerStore</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1ac2d9eb6423b960dd2785d113fcec86c9" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>SetMBDAnchor</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a9301d58389bdb876dc0e053fe85f3dec" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>SetOperatorToolbox</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1afc52355b3607a41bc55d785acb191979" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>SetParameterStore</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a773841474db48fc125f7381a74766047" prot="public" virt="non-virtual"><scope>hops::MHO_ComputePlotData</scope><name>SetVexInfo</name></member>
+      <member refid="classhops_1_1MHO__ComputePlotData_1a5b9c9c76d952d0eb48d2e4dee2c11d87" prot="public" virt="virtual"><scope>hops::MHO_ComputePlotData</scope><name>~MHO_ComputePlotData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

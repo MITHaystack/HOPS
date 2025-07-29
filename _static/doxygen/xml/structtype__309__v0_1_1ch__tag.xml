@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__309__v0_1_1ch__tag" kind="struct" language="C++" prot="public">
+    <compoundname>type_309_v0::ch_tag</compoundname>
+    <includes refid="type__309_8h" local="no">type_309.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__309__v0_1_1ch__tag_1a5ba1bbc8328a5f8b653a295439e56037" prot="public" static="no" mutable="no">
+        <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+        <definition>U32 type_309_v0::ch_tag::acc[16][2]</definition>
+        <argsstring>[16][2]</argsstring>
+        <name>acc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="28" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1_1ch__tag_1a69a92e68450d583454094f8d4190a919" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_309_v0::ch_tag::chan_name[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>chan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="26" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__309__v0_1_1ch__tag_1addad84bf2079e9060629844da76aeb2e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_309_v0::ch_tag::freq</definition>
+        <argsstring></argsstring>
+        <name>freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="27" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>type_309_v0::ch_tag</label>
+        <link refid="structtype__309__v0_1_1ch__tag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>chan_name</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>acc</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" line="24" column="3" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_309.h" bodystart="25" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structtype__309__v0_1_1ch__tag_1a5ba1bbc8328a5f8b653a295439e56037" prot="public" virt="non-virtual"><scope>type_309_v0::ch_tag</scope><name>acc</name></member>
+      <member refid="structtype__309__v0_1_1ch__tag_1a69a92e68450d583454094f8d4190a919" prot="public" virt="non-virtual"><scope>type_309_v0::ch_tag</scope><name>chan_name</name></member>
+      <member refid="structtype__309__v0_1_1ch__tag_1addad84bf2079e9060629844da76aeb2e" prot="public" virt="non-virtual"><scope>type_309_v0::ch_tag</scope><name>freq</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

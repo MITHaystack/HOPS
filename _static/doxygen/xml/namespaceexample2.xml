@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceexample2" kind="namespace" language="Python">
+    <compoundname>example2</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceexample2_1aa8aabf4e4cc861b4c8fce69b5bd73dff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def example2.fix_noema_jumps</definition>
+        <argsstring>(fringe_data_interface)</argsstring>
+        <name>fix_noema_jumps</name>
+        <param>
+          <type>fringe_data_interface</type>
+          <defname>fringe_data_interface</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example2.py" line="4" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example2.py" bodystart="4" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example2.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

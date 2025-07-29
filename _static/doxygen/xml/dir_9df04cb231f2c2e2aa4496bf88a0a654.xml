@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_9df04cb231f2c2e2aa4496bf88a0a654" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__OpenCLHeaderWrapper_8hh">MHO_OpenCLHeaderWrapper.hh</innerfile>
+    <innerfile refid="MHO__OpenCLInterface_8hh">MHO_OpenCLInterface.hh</innerfile>
+    <innerfile refid="MHO__OpenCLKernelBuilder_8hh">MHO_OpenCLKernelBuilder.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/"/>
+  </compounddef>
+</doxygen>

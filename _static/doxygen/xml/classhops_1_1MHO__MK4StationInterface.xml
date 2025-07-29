@@ -1,0 +1,926 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MK4StationInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MK4StationInterface</compoundname>
+    <includes refid="MHO__MK4StationInterface_8hh" local="no">MHO_MK4StationInterface.hh</includes>
+    <innerclass refid="structhops_1_1MHO__MK4StationInterface_1_1ChannelLess" prot="private">hops::MHO_MK4StationInterface::ChannelLess</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a6797fed53ff9bf30fe1faabe7b134bde" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref></type>
+        <definition>multitone_pcal_type hops::MHO_MK4StationInterface::fAllPCalData</definition>
+        <argsstring></argsstring>
+        <name>fAllPCalData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="211" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a54e1cc22969f96ee6c0247f658a0ed0c" prot="private" static="no" mutable="no">
+        <type>ChannelLess</type>
+        <definition>ChannelLess hops::MHO_MK4StationInterface::fChannelPredicate</definition>
+        <argsstring></argsstring>
+        <name>fChannelPredicate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="263" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="263" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1afddfca5acf06c9264bc9afc645dbfbaa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4StationInterface::fHaveStation</definition>
+        <argsstring></argsstring>
+        <name>fHaveStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="204" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a0ebb536e214f013ca5d6a47944dcd52f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4StationInterface::fHaveVex</definition>
+        <argsstring></argsstring>
+        <name>fHaveVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="221" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="221" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1ac97e53b61bc797d10f243907e746e847" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterface::fNCoeffs</definition>
+        <argsstring></argsstring>
+        <name>fNCoeffs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="216" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a1386ea4e20ace438d3194c7918fb00c8" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterface::fNCoord</definition>
+        <argsstring></argsstring>
+        <name>fNCoord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="218" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a3740823fff8a7b96e665acec9e72e13c" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4StationInterface::fNIntervals</definition>
+        <argsstring></argsstring>
+        <name>fNIntervals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="217" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1ada7f823ca53eed883fbb7f9c98ccf116" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::fRootCode</definition>
+        <argsstring></argsstring>
+        <name>fRootCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="215" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a25b4eeae4e09e552e3cda0c8e19a51cd" prot="private" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+        <definition>struct mk4_sdata* hops::MHO_MK4StationInterface::fStation</definition>
+        <argsstring></argsstring>
+        <name>fStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="205" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a6aafe0d7b72c64d5b3bbf5e81b32d7e5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::fStationCode</definition>
+        <argsstring></argsstring>
+        <name>fStationCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="207" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a88c1386ac09af228edbc389d897e9d7a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::fStationFile</definition>
+        <argsstring></argsstring>
+        <name>fStationFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="213" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a3aa472c3ea84adc956fb7e2ec8d238e5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::fStationMK4ID</definition>
+        <argsstring></argsstring>
+        <name>fStationMK4ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="208" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1aef4e203cd4b19455863a6e91ea73a41c" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::fStationName</definition>
+        <argsstring></argsstring>
+        <name>fStationName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="206" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1a16bbf7e0557ebc92074ed18a96a774da" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_MK4StationInterface::fVex</definition>
+        <argsstring></argsstring>
+        <name>fVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="222" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4StationInterface_1ad26d06cdd833c47986a97d828eaab54e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::fVexFile</definition>
+        <argsstring></argsstring>
+        <name>fVexFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="214" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a2c3ccfef1e1d40f76663ece661a66350" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MK4StationInterface::MHO_MK4StationInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MK4StationInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="51" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="37" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a6cf1c9e063ffa4ba2367ee92402dfccd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MK4StationInterface::~MHO_MK4StationInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MK4StationInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="52" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="47" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a5e6773394d648d802f347183e3602473" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+        <definition>station_coord_type * hops::MHO_MK4StationInterface::ExtractStationFile</definition>
+        <argsstring>()</argsstring>
+        <name>ExtractStationFile</name>
+        <briefdescription>
+<para>Extracts station coordinate data from files and allocates memory for it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to allocated station_coord_type object containing extracted data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="80" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="69" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1affa79f1337af79cd0c43d1bbc7372535" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+        <definition>multitone_pcal_type* hops::MHO_MK4StationInterface::GetPCalObject</definition>
+        <argsstring>()</argsstring>
+        <name>GetPCalObject</name>
+        <briefdescription>
+<para>Getter for pcal object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to multitone_pcal_type object </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="87" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a653384051946a9744a023861b0b8edce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+        <definition>mk4_sdata* hops::MHO_MK4StationInterface::GetStationData</definition>
+        <argsstring>()</argsstring>
+        <name>GetStationData</name>
+        <briefdescription>
+<para>Getter for station data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> containing station data </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="73" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1ab2d191dc5d018094cba98ee9957630d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterface::SetStationFile</definition>
+        <argsstring>(const std::string &amp;station)</argsstring>
+        <name>SetStationFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>station</declname>
+        </param>
+        <briefdescription>
+<para>Setter for station file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to input station file string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="66" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a33d9bbc5ce6bd09eaddf58f13b98f471" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterface::SetVexFile</definition>
+        <argsstring>(const std::string &amp;vex)</argsstring>
+        <name>SetVexFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>vex</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the VEX file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="59" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a7e3777c2a3697cb98c1cc068c90c4a31" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_MK4StationInterface::ComputePhasor</definition>
+        <argsstring>(uint32_t real, uint32_t imag, double acc_period, double sample_period)</argsstring>
+        <name>ComputePhasor</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>real</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>imag</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>acc_period</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sample_period</declname>
+        </param>
+        <briefdescription>
+<para>Converts uint32_t counts to complex double for phasor computation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>real</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Real component of input count </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>imag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Imaginary component of input count </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>acc_period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Accumulation period in seconds </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sample_period</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Sample period in seconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Complex double representing the computed phasor </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="196" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="618" bodyend="639"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a4485e384f00d91adc0461286e63f8a02" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, std::vector&lt; <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::vector&lt; mho_json &gt; &gt; hops::MHO_MK4StationInterface::ConstructChannelInfo</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructChannelInfo</name>
+        <briefdescription>
+<para>Constructs channel info for MHO MK4StationInterface. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::map&lt;std::string, std::vector&lt;mho_json </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="143" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="641" bodyend="758"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a0cc4a5be744a8e54217c0cd0608ebb98" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, <ref refid="namespacehops_1a2859f63239a0103e37caa96041f657cb" kindref="member">channel_axis_type</ref> &gt;</type>
+        <definition>std::map&lt; std::string, channel_axis_type &gt; hops::MHO_MK4StationInterface::ConstructPerPolChannelAxis</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructPerPolChannelAxis</name>
+        <briefdescription>
+<para>Function ConstructPerPolChannelAxis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (std::string, channel_axis_type &gt;) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="136" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a8b476bb6945e55475ca4691613e2cda9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4StationInterface::ExtractChannelInfo</definition>
+        <argsstring>(const std::string &amp;ch_name, std::string &amp;fgroup, std::string &amp;sb, std::string &amp;pol, int &amp;index)</argsstring>
+        <name>ExtractChannelInfo</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>ch_name</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>fgroup</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>pol</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Extracts channel info from MK4 channel ID and populates frequency group, sideband, polarization, and index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ch_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input MK4 channel ID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fgroup</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output frequency group </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sb</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output sideband </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output polarization </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output channel index </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if extraction successful, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="156" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="592" bodyend="616"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a3bd5287946ccd39effc1bd33c1286815" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterface::ExtractPCal</definition>
+        <argsstring>(int n309, type_309 **t309)</argsstring>
+        <name>ExtractPCal</name>
+        <param>
+          <type>int</type>
+          <declname>n309</declname>
+        </param>
+        <param>
+          <type><ref refid="structtype__309" kindref="compound">type_309</ref> **</type>
+          <declname>t309</declname>
+        </param>
+        <briefdescription>
+<para>Extracts and constructs PCal data from type_309s. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n309</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of APs (Antennas) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t309</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of <ref refid="structtype__309" kindref="compound">type_309</ref> pointers </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="118" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="290" bodyend="356"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a7f8af7c574932227d6510f6456bcf62d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterface::FillPCalArray</definition>
+        <argsstring>(const std::string &amp;pol, int pol_idx, multitone_pcal_type *pc, int n309, type_309 **t309)</argsstring>
+        <name>FillPCalArray</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>pol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pol_idx</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>pc</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n309</declname>
+        </param>
+        <param>
+          <type><ref refid="structtype__309" kindref="compound">type_309</ref> **</type>
+          <declname>t309</declname>
+        </param>
+        <briefdescription>
+<para>Fills PCAL array with channel info and calculates delay spline coefficients. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Polarization string reference </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pol_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Polarization index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Multitone PCAL type pointer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n309</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of T309 structures </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>t309</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of T309 pointers </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="128" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="358" bodyend="505"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a3518e9765044a15c785bc2f68adda448" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::FreqGroupFromMK4ChannelID</definition>
+        <argsstring>(std::string id) const</argsstring>
+        <name>FreqGroupFromMK4ChannelID</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Extracts frequency group from MK4 channel ID string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>MK4 channel ID string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Frequency group as a string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="163" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="507" bodyend="517"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a9763eee9fdde925eaa8f389dc08a9c18" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::pair&lt; std::string, int &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; std::string, int &gt; &gt; hops::MHO_MK4StationInterface::GetFreqGroupPolInfo</definition>
+        <argsstring>(int n309, type_309 **t309, const std::string &amp;fg, bool &amp;same_size)</argsstring>
+        <name>GetFreqGroupPolInfo</name>
+        <param>
+          <type>int</type>
+          <declname>n309</declname>
+        </param>
+        <param>
+          <type><ref refid="structtype__309" kindref="compound">type_309</ref> **</type>
+          <declname>t309</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fg</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>same_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="201" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="242" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a7b0d0ebb8cf3f0e02590a5e9978ede42" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_MK4StationInterface::GetFreqGroups</definition>
+        <argsstring>(int n309, type_309 **t309)</argsstring>
+        <name>GetFreqGroups</name>
+        <param>
+          <type>int</type>
+          <declname>n309</declname>
+        </param>
+        <param>
+          <type><ref refid="structtype__309" kindref="compound">type_309</ref> **</type>
+          <declname>t309</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="199" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="217" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a6b8ed4f66050a1980c8e20a3af891ad8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::getstr</definition>
+        <argsstring>(const char *char_array, std::size_t max_size)</argsstring>
+        <name>getstr</name>
+        <param>
+          <type>const char *</type>
+          <declname>char_array</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+<para>Returns a string from a character array up to max_size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>char_array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input character array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String representation of input character array up to max_size. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="97" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="97" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a4f918f7f19ee092ae433b4f6b65c54a4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MK4StationInterface::IndexFromMK4ChannelId</definition>
+        <argsstring>(std::string id) const</argsstring>
+        <name>IndexFromMK4ChannelId</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Extracts and converts channel index from MK4 channel ID string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>MK4 channel ID string (e.g., &apos;X22LY&apos;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Channel index as integer (-1 if invalid) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="184" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="568" bodyend="590"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1adcdd0bf21d12190b6c549f1ac13f923f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::PolFromMK4ChannelID</definition>
+        <argsstring>(std::string id) const</argsstring>
+        <name>PolFromMK4ChannelID</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Extracts polarization from a given MK4 channel ID string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input MK4 channel ID string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Polarization as a string (&apos;R&apos;, &apos;L&apos;, &apos;X&apos;, &apos;Y&apos;, &apos;H&apos;, or &apos;V&apos;). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="170" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="519" bodyend="542"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a436a33f691213630f068692fa8c4af4e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterface::ReadStationFile</definition>
+        <argsstring>()</argsstring>
+        <name>ReadStationFile</name>
+        <briefdescription>
+<para>Reads and processes a station data file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="105" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="192" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1a234c6d70361fdfd8f08bab9a7196c742" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4StationInterface::ReadVexFile</definition>
+        <argsstring>()</argsstring>
+        <name>ReadVexFile</name>
+        <briefdescription>
+<para>Reads a VEX file and sets fHaveVex if successful. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="109" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="53" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4StationInterface_1ad444df89ba16a4c4934337a61c53ef33" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4StationInterface::SidebandFromMK4ChannelId</definition>
+        <argsstring>(std::string id) const</argsstring>
+        <name>SidebandFromMK4ChannelId</name>
+        <param>
+          <type>std::string</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+<para>Extracts sideband from MK4 channel ID string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input MK4 channel ID string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Extracted sideband as a string (&apos;L&apos;, &apos;U&apos;, or &apos;D&apos;) or empty string if invalid </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="177" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4StationInterface.cc" bodystart="544" bodyend="566"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classhops_1_1MHO__MK4StationInterface" kindref="compound">MHO_MK4StationInterface</ref> converts a mk4 station file (type_3xx) to HOPS4 format. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Nov 13 10:58:21 2020 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="49" bodyend="264"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a7e3777c2a3697cb98c1cc068c90c4a31" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ComputePhasor</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a4485e384f00d91adc0461286e63f8a02" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ConstructChannelInfo</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a0cc4a5be744a8e54217c0cd0608ebb98" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ConstructPerPolChannelAxis</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a8b476bb6945e55475ca4691613e2cda9" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ExtractChannelInfo</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a3bd5287946ccd39effc1bd33c1286815" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ExtractPCal</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a5e6773394d648d802f347183e3602473" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ExtractStationFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a6797fed53ff9bf30fe1faabe7b134bde" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fAllPCalData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a54e1cc22969f96ee6c0247f658a0ed0c" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fChannelPredicate</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1afddfca5acf06c9264bc9afc645dbfbaa" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fHaveStation</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a0ebb536e214f013ca5d6a47944dcd52f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fHaveVex</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a7f8af7c574932227d6510f6456bcf62d" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>FillPCalArray</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1ac97e53b61bc797d10f243907e746e847" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fNCoeffs</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a1386ea4e20ace438d3194c7918fb00c8" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fNCoord</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a3740823fff8a7b96e665acec9e72e13c" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fNIntervals</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a3518e9765044a15c785bc2f68adda448" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>FreqGroupFromMK4ChannelID</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1ada7f823ca53eed883fbb7f9c98ccf116" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fRootCode</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a25b4eeae4e09e552e3cda0c8e19a51cd" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fStation</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a6aafe0d7b72c64d5b3bbf5e81b32d7e5" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fStationCode</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a88c1386ac09af228edbc389d897e9d7a" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fStationFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a3aa472c3ea84adc956fb7e2ec8d238e5" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fStationMK4ID</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1aef4e203cd4b19455863a6e91ea73a41c" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fStationName</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a16bbf7e0557ebc92074ed18a96a774da" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fVex</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1ad26d06cdd833c47986a97d828eaab54e" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>fVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a9763eee9fdde925eaa8f389dc08a9c18" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>GetFreqGroupPolInfo</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a7b0d0ebb8cf3f0e02590a5e9978ede42" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>GetFreqGroups</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1affa79f1337af79cd0c43d1bbc7372535" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>GetPCalObject</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a653384051946a9744a023861b0b8edce" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>GetStationData</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a6b8ed4f66050a1980c8e20a3af891ad8" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>getstr</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a4f918f7f19ee092ae433b4f6b65c54a4" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>IndexFromMK4ChannelId</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a2c3ccfef1e1d40f76663ece661a66350" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>MHO_MK4StationInterface</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1adcdd0bf21d12190b6c549f1ac13f923f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>PolFromMK4ChannelID</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a436a33f691213630f068692fa8c4af4e" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ReadStationFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a234c6d70361fdfd8f08bab9a7196c742" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>ReadVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1ab2d191dc5d018094cba98ee9957630d3" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>SetStationFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a33d9bbc5ce6bd09eaddf58f13b98f471" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>SetVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1ad444df89ba16a4c4934337a61c53ef33" prot="private" virt="non-virtual"><scope>hops::MHO_MK4StationInterface</scope><name>SidebandFromMK4ChannelId</name></member>
+      <member refid="classhops_1_1MHO__MK4StationInterface_1a6cf1c9e063ffa4ba2367ee92402dfccd" prot="public" virt="virtual"><scope>hops::MHO_MK4StationInterface</scope><name>~MHO_MK4StationInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

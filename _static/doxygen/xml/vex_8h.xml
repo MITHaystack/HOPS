@@ -1,0 +1,1811 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="vex_8h" kind="file" language="C++">
+    <compoundname>vex.h</compoundname>
+    <includes refid="mk4__typedefs_8h" local="yes">mk4_typedefs.h</includes>
+    <includes refid="ovex_8h" local="yes">ovex.h</includes>
+    <includes refid="cvex_8h" local="yes">cvex.h</includes>
+    <includes refid="evex_8h" local="yes">evex.h</includes>
+    <includes refid="ivex_8h" local="yes">ivex.h</includes>
+    <includes refid="svex_8h" local="yes">svex.h</includes>
+    <includes refid="lvex_8h" local="yes">lvex.h</includes>
+    <includedby refid="psfile4_8c" local="yes">psfile4.c</includedby>
+    <includedby refid="psplot4_8c" local="yes">psplot4.c</includedby>
+    <includedby refid="fourfit3_8c" local="yes">fourfit3.c</includedby>
+    <includedby refid="fill__param_8c" local="yes">fill_param.c</includedby>
+    <includedby refid="get__corel__data_8c" local="yes">get_corel_data.c</includedby>
+    <includedby refid="make__flist_8c" local="yes">make_flist.c</includedby>
+    <includedby refid="make__passes_8c" local="yes">make_passes.c</includedby>
+    <includedby refid="set__pointers_8c" local="yes">set_pointers.c</includedby>
+    <includedby refid="time__range_8c" local="yes">time_range.c</includedby>
+    <includedby refid="fill__200_8c" local="yes">fill_200.c</includedby>
+    <includedby refid="fill__201_8c" local="yes">fill_201.c</includedby>
+    <includedby refid="fill__202_8c" local="yes">fill_202.c</includedby>
+    <includedby refid="fill__203_8c" local="yes">fill_203.c</includedby>
+    <includedby refid="fill__205_8c" local="yes">fill_205.c</includedby>
+    <includedby refid="fill__206_8c" local="yes">fill_206.c</includedby>
+    <includedby refid="fill__207_8c" local="yes">fill_207.c</includedby>
+    <includedby refid="fill__210_8c" local="yes">fill_210.c</includedby>
+    <includedby refid="fill__fringe__info_8c" local="yes">fill_fringe_info.c</includedby>
+    <includedby refid="output_8c" local="yes">output.c</includedby>
+    <includedby refid="ffsearch_8h" local="yes">ffsearch.h</includedby>
+    <includedby refid="create__fname_8c" local="yes">create_fname.c</includedby>
+    <includedby refid="fringe__search_8c" local="yes">fringe_search.c</includedby>
+    <includedby refid="organize__data_8c" local="yes">organize_data.c</includedby>
+    <includedby refid="mk4__vex_8h" local="yes">mk4_vex.h</includedby>
+    <includedby refid="block__params_8c" local="yes">block_params.c</includedby>
+    <includedby refid="check__scan_8c" local="yes">check_scan.c</includedby>
+    <includedby refid="check__stloc_8c" local="yes">check_stloc.c</includedby>
+    <includedby refid="cvex__info_8c" local="yes">cvex_info.c</includedby>
+    <includedby refid="decode__pval_8c" local="yes">decode_pval.c</includedby>
+    <includedby refid="do__antenna_8c" local="yes">do_antenna.c</includedby>
+    <includedby refid="do__bbc_8c" local="yes">do_bbc.c</includedby>
+    <includedby refid="do__clock_8c" local="yes">do_clock.c</includedby>
+    <includedby refid="do__das_8c" local="yes">do_das.c</includedby>
+    <includedby refid="do__eop_8c" local="yes">do_eop.c</includedby>
+    <includedby refid="do__exper_8c" local="yes">do_exper.c</includedby>
+    <includedby refid="do__freq_8c" local="yes">do_freq.c</includedby>
+    <includedby refid="do__head__pos_8c" local="yes">do_head_pos.c</includedby>
+    <includedby refid="do__if_8c" local="yes">do_if.c</includedby>
+    <includedby refid="do__pass__order_8c" local="yes">do_pass_order.c</includedby>
+    <includedby refid="do__phase__cal__detect_8c" local="yes">do_phase_cal_detect.c</includedby>
+    <includedby refid="do__roll_8c" local="yes">do_roll.c</includedby>
+    <includedby refid="do__site_8c" local="yes">do_site.c</includedby>
+    <includedby refid="do__source_8c" local="yes">do_source.c</includedby>
+    <includedby refid="do__track_8c" local="yes">do_track.c</includedby>
+    <includedby refid="evex__info_8c" local="yes">evex_info.c</includedby>
+    <includedby refid="fill__deflists_8c" local="yes">fill_deflists.c</includedby>
+    <includedby refid="fill__scanlist_8c" local="yes">fill_scanlist.c</includedby>
+    <includedby refid="fill__station__parms_8c" local="yes">fill_station_parms.c</includedby>
+    <includedby refid="find__statements_8c" local="yes">find_statements.c</includedby>
+    <includedby refid="get__block__mode_8c" local="yes">get_block_mode.c</includedby>
+    <includedby refid="get__chip__mode_8c" local="yes">get_chip_mode.c</includedby>
+    <includedby refid="get__corr__bd__parms_8c" local="yes">get_corr_bd_parms.c</includedby>
+    <includedby refid="get__corr__mode_8c" local="yes">get_corr_mode.c</includedby>
+    <includedby refid="get__def_8c" local="yes">get_def.c</includedby>
+    <includedby refid="get__drive__init_8c" local="yes">get_drive_init.c</includedby>
+    <includedby refid="get__global__deflist_8c" local="yes">get_global_deflist.c</includedby>
+    <includedby refid="get__logscan_8c" local="yes">get_logscan.c</includedby>
+    <includedby refid="get__mode__deflist_8c" local="yes">get_mode_deflist.c</includedby>
+    <includedby refid="get__pbs__init_8c" local="yes">get_pbs_init.c</includedby>
+    <includedby refid="get__pcm__config_8c" local="yes">get_pcm_config.c</includedby>
+    <includedby refid="get__pcm__tables_8c" local="yes">get_pcm_tables.c</includedby>
+    <includedby refid="get__section__mode_8c" local="yes">get_section_mode.c</includedby>
+    <includedby refid="get__statement_8c" local="yes">get_statement.c</includedby>
+    <includedby refid="get__station__deflist_8c" local="yes">get_station_deflist.c</includedby>
+    <includedby refid="get__su__chan__out_8c" local="yes">get_su_chan_out.c</includedby>
+    <includedby refid="get__su__connect_8c" local="yes">get_su_connect.c</includedby>
+    <includedby refid="get__trm__config_8c" local="yes">get_trm_config.c</includedby>
+    <includedby refid="get__val__list_8c" local="yes">get_val_list.c</includedby>
+    <includedby refid="get__version_8c" local="yes">get_version.c</includedby>
+    <includedby refid="get__vex_8c" local="yes">get_vex.c</includedby>
+    <includedby refid="in__comment_8c" local="yes">in_comment.c</includedby>
+    <includedby refid="in__quote_8c" local="yes">in_quote.c</includedby>
+    <includedby refid="init__scan_8c" local="yes">init_scan.c</includedby>
+    <includedby refid="ivex__info_8c" local="yes">ivex_info.c</includedby>
+    <includedby refid="locate__blocks_8c" local="yes">locate_blocks.c</includedby>
+    <includedby refid="locate__cq_8c" local="yes">locate_cq.c</includedby>
+    <includedby refid="lvex__info_8c" local="yes">lvex_info.c</includedby>
+    <includedby refid="param__formats_8c" local="yes">param_formats.c</includedby>
+    <includedby refid="parse__pval_8c" local="yes">parse_pval.c</includedby>
+    <includedby refid="parse__ref_8c" local="yes">parse_ref.c</includedby>
+    <includedby refid="parse__units_8c" local="yes">parse_units.c</includedby>
+    <includedby refid="parse__vexfile_8c" local="yes">parse_vexfile.c</includedby>
+    <includedby refid="print__location_8c" local="yes">print_location.c</includedby>
+    <includedby refid="scan__info_8c" local="yes">scan_info.c</includedby>
+    <includedby refid="strip__text_8c" local="yes">strip_text.c</includedby>
+    <includedby refid="svex__info_8c" local="yes">svex_info.c</includedby>
+    <includedby refid="vex__init_8c" local="yes">vex_init.c</includedby>
+    <includedby refid="write__vexfile_8c" local="yes">write_vexfile.c</includedby>
+    <incdepgraph>
+      <node id="9">
+        <label>lvex.h</label>
+        <link refid="lvex_8h"/>
+      </node>
+      <node id="2">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="7">
+        <label>ivex.h</label>
+        <link refid="ivex_8h"/>
+      </node>
+      <node id="5">
+        <label>cvex.h</label>
+        <link refid="cvex_8h"/>
+      </node>
+      <node id="4">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="3">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>evex.h</label>
+        <link refid="evex_8h"/>
+      </node>
+      <node id="8">
+        <label>svex.h</label>
+        <link refid="svex_8h"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="68">
+        <label>do_source.c</label>
+        <link refid="do__source_8c"/>
+      </node>
+      <node id="42">
+        <label>realloc_segs.c</label>
+        <link refid="realloc__segs_8c"/>
+      </node>
+      <node id="35">
+        <label>fill_aline.c</label>
+        <link refid="fill__aline_8c"/>
+      </node>
+      <node id="83">
+        <label>get_mode_deflist.c</label>
+        <link refid="get__mode__deflist_8c"/>
+      </node>
+      <node id="23">
+        <label>search.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
+      </node>
+      <node id="30">
+        <label>calc_seg.c</label>
+        <link refid="calc__seg_8c"/>
+      </node>
+      <node id="104">
+        <label>param_formats.c</label>
+        <link refid="param__formats_8c"/>
+      </node>
+      <node id="114">
+        <label>read_file.c</label>
+        <link refid="read__file_8c"/>
+      </node>
+      <node id="15">
+        <label>fill_205.c</label>
+        <link refid="fill__205_8c"/>
+      </node>
+      <node id="12">
+        <label>fill_201.c</label>
+        <link refid="fill__201_8c"/>
+      </node>
+      <node id="76">
+        <label>get_chip_mode.c</label>
+        <link refid="get__chip__mode_8c"/>
+      </node>
+      <node id="46">
+        <label>plot_data_dir.c</label>
+        <link refid="plot__data__dir_8c"/>
+      </node>
+      <node id="7">
+        <label>make_flist.c</label>
+        <link refid="make__flist_8c"/>
+      </node>
+      <node id="70">
+        <label>evex_info.c</label>
+        <link refid="evex__info_8c"/>
+      </node>
+      <node id="95">
+        <label>get_vex.c</label>
+        <link refid="get__vex_8c"/>
+      </node>
+      <node id="120">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="27">
+        <label>fringex.h</label>
+        <link refid="fringex_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>locate_cq.c</label>
+        <link refid="locate__cq_8c"/>
+      </node>
+      <node id="109">
+        <label>parse_ref.c</label>
+        <link refid="parse__ref_8c"/>
+      </node>
+      <node id="44">
+        <label>set_reffreq.c</label>
+        <link refid="set__reffreq_8c"/>
+      </node>
+      <node id="97">
+        <label>in_quote.c</label>
+        <link refid="in__quote_8c"/>
+      </node>
+      <node id="110">
+        <label>parse_units.c</label>
+        <link refid="parse__units_8c"/>
+      </node>
+      <node id="28">
+        <label>fringex.c</label>
+        <link refid="fringex_8c"/>
+      </node>
+      <node id="22">
+        <label>fringe_search.c</label>
+        <link refid="fringe__search_8c"/>
+      </node>
+      <node id="84">
+        <label>get_pbs_init.c</label>
+        <link refid="get__pbs__init_8c"/>
+      </node>
+      <node id="53">
+        <label>cvex_info.c</label>
+        <link refid="cvex__info_8c"/>
+      </node>
+      <node id="6">
+        <label>get_corel_data.c</label>
+        <link refid="get__corel__data_8c"/>
+      </node>
+      <node id="67">
+        <label>do_site.c</label>
+        <link refid="do__site_8c"/>
+      </node>
+      <node id="69">
+        <label>do_track.c</label>
+        <link refid="do__track_8c"/>
+      </node>
+      <node id="105">
+        <label>parse_date.c</label>
+        <link refid="parse__date_8c"/>
+      </node>
+      <node id="38">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="91">
+        <label>get_su_connect.c</label>
+        <link refid="get__su__connect_8c"/>
+      </node>
+      <node id="33">
+        <label>determine_nsegs.c</label>
+        <link refid="determine__nsegs_8c"/>
+      </node>
+      <node id="13">
+        <label>fill_202.c</label>
+        <link refid="fill__202_8c"/>
+      </node>
+      <node id="96">
+        <label>in_comment.c</label>
+        <link refid="in__comment_8c"/>
+      </node>
+      <node id="20">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="113">
+        <label>process_qstring.c</label>
+        <link refid="process__qstring_8c"/>
+      </node>
+      <node id="59">
+        <label>do_eop.c</label>
+        <link refid="do__eop_8c"/>
+      </node>
+      <node id="116">
+        <label>strip_text.c</label>
+        <link refid="strip__text_8c"/>
+      </node>
+      <node id="56">
+        <label>do_bbc.c</label>
+        <link refid="do__bbc_8c"/>
+      </node>
+      <node id="21">
+        <label>ffsearch.h</label>
+        <link refid="ffsearch_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>filelist.c</label>
+        <link refid="filelist_8c"/>
+      </node>
+      <node id="93">
+        <label>get_val_list.c</label>
+        <link refid="get__val__list_8c"/>
+      </node>
+      <node id="89">
+        <label>get_station_deflist.c</label>
+        <link refid="get__station__deflist_8c"/>
+      </node>
+      <node id="45">
+        <label>plot_data_dir.h</label>
+        <link refid="plot__data__dir_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>fill_206.c</label>
+        <link refid="fill__206_8c"/>
+      </node>
+      <node id="52">
+        <label>check_strrange.c</label>
+        <link refid="check__strrange_8c"/>
+      </node>
+      <node id="98">
+        <label>init_scan.c</label>
+        <link refid="init__scan_8c"/>
+      </node>
+      <node id="61">
+        <label>do_freq.c</label>
+        <link refid="do__freq_8c"/>
+      </node>
+      <node id="51">
+        <label>check_stloc.c</label>
+        <link refid="check__stloc_8c"/>
+      </node>
+      <node id="2">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="58">
+        <label>do_das.c</label>
+        <link refid="do__das_8c"/>
+      </node>
+      <node id="81">
+        <label>get_global_deflist.c</label>
+        <link refid="get__global__deflist_8c"/>
+      </node>
+      <node id="102">
+        <label>lvex_info.c</label>
+        <link refid="lvex__info_8c"/>
+      </node>
+      <node id="62">
+        <label>do_head_pos.c</label>
+        <link refid="do__head__pos_8c"/>
+      </node>
+      <node id="117">
+        <label>svex_info.c</label>
+        <link refid="svex__info_8c"/>
+      </node>
+      <node id="79">
+        <label>get_def.c</label>
+        <link refid="get__def_8c"/>
+      </node>
+      <node id="31">
+        <label>clear_fxp.c</label>
+        <link refid="clear__fxp_8c"/>
+      </node>
+      <node id="112">
+        <label>print_location.c</label>
+        <link refid="print__location_8c"/>
+      </node>
+      <node id="72">
+        <label>fill_scanlist.c</label>
+        <link refid="fill__scanlist_8c"/>
+      </node>
+      <node id="65">
+        <label>do_phase_cal_detect.c</label>
+        <link refid="do__phase__cal__detect_8c"/>
+      </node>
+      <node id="103">
+        <label>nextchar.c</label>
+        <link refid="nextchar_8c"/>
+      </node>
+      <node id="99">
+        <label>ivex_info.c</label>
+        <link refid="ivex__info_8c"/>
+      </node>
+      <node id="63">
+        <label>do_if.c</label>
+        <link refid="do__if_8c"/>
+      </node>
+      <node id="3">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="100">
+        <label>locate_blocks.c</label>
+        <link refid="locate__blocks_8c"/>
+      </node>
+      <node id="18">
+        <label>fill_210.c</label>
+        <link refid="fill__210_8c"/>
+      </node>
+      <node id="36">
+        <label>init_fxp.c</label>
+        <link refid="init__fxp_8c"/>
+      </node>
+      <node id="82">
+        <label>get_logscan.c</label>
+        <link refid="get__logscan_8c"/>
+      </node>
+      <node id="14">
+        <label>fill_203.c</label>
+        <link refid="fill__203_8c"/>
+      </node>
+      <node id="107">
+        <label>parse_pval.c</label>
+        <link refid="parse__pval_8c"/>
+      </node>
+      <node id="48">
+        <label>check_intrange.c</label>
+        <link refid="check__intrange_8c"/>
+      </node>
+      <node id="78">
+        <label>get_corr_mode.c</label>
+        <link refid="get__corr__mode_8c"/>
+      </node>
+      <node id="37">
+        <label>model.c</label>
+        <link refid="model_8c"/>
+      </node>
+      <node id="39">
+        <label>parse_dflag.c</label>
+        <link refid="parse__dflag_8c"/>
+      </node>
+      <node id="17">
+        <label>fill_207.c</label>
+        <link refid="fill__207_8c"/>
+      </node>
+      <node id="74">
+        <label>find_statements.c</label>
+        <link refid="find__statements_8c"/>
+      </node>
+      <node id="9">
+        <label>set_pointers.c</label>
+        <link refid="set__pointers_8c"/>
+      </node>
+      <node id="19">
+        <label>fill_fringe_info.c</label>
+        <link refid="fill__fringe__info_8c"/>
+      </node>
+      <node id="26">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>do_roll.c</label>
+        <link refid="do__roll_8c"/>
+      </node>
+      <node id="47">
+        <label>block_params.c</label>
+        <link refid="block__params_8c"/>
+      </node>
+      <node id="119">
+        <label>write_vexfile.c</label>
+        <link refid="write__vexfile_8c"/>
+      </node>
+      <node id="115">
+        <label>scan_info.c</label>
+        <link refid="scan__info_8c"/>
+      </node>
+      <node id="80">
+        <label>get_drive_init.c</label>
+        <link refid="get__drive__init_8c"/>
+      </node>
+      <node id="92">
+        <label>get_trm_config.c</label>
+        <link refid="get__trm__config_8c"/>
+      </node>
+      <node id="77">
+        <label>get_corr_bd_parms.c</label>
+        <link refid="get__corr__bd__parms_8c"/>
+      </node>
+      <node id="4">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="55">
+        <label>do_antenna.c</label>
+        <link refid="do__antenna_8c"/>
+      </node>
+      <node id="94">
+        <label>get_version.c</label>
+        <link refid="get__version_8c"/>
+      </node>
+      <node id="10">
+        <label>time_range.c</label>
+        <link refid="time__range_8c"/>
+      </node>
+      <node id="75">
+        <label>get_block_mode.c</label>
+        <link refid="get__block__mode_8c"/>
+      </node>
+      <node id="43">
+        <label>set_loops.c</label>
+        <link refid="set__loops_8c"/>
+      </node>
+      <node id="1">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+      </node>
+      <node id="108">
+        <label>parse_ra.c</label>
+        <link refid="parse__ra_8c"/>
+      </node>
+      <node id="87">
+        <label>get_section_mode.c</label>
+        <link refid="get__section__mode_8c"/>
+      </node>
+      <node id="50">
+        <label>check_scan.c</label>
+        <link refid="check__scan_8c"/>
+      </node>
+      <node id="32">
+        <label>clear_loops.c</label>
+        <link refid="clear__loops_8c"/>
+      </node>
+      <node id="57">
+        <label>do_clock.c</label>
+        <link refid="do__clock_8c"/>
+      </node>
+      <node id="106">
+        <label>parse_dec.c</label>
+        <link refid="parse__dec_8c"/>
+      </node>
+      <node id="64">
+        <label>do_pass_order.c</label>
+        <link refid="do__pass__order_8c"/>
+      </node>
+      <node id="11">
+        <label>fill_200.c</label>
+        <link refid="fill__200_8c"/>
+      </node>
+      <node id="5">
+        <label>fill_param.c</label>
+        <link refid="fill__param_8c"/>
+      </node>
+      <node id="49">
+        <label>check_realrange.c</label>
+        <link refid="check__realrange_8c"/>
+      </node>
+      <node id="60">
+        <label>do_exper.c</label>
+        <link refid="do__exper_8c"/>
+      </node>
+      <node id="71">
+        <label>fill_deflists.c</label>
+        <link refid="fill__deflists_8c"/>
+      </node>
+      <node id="40">
+        <label>parse_iflag.c</label>
+        <link refid="parse__iflag_8c"/>
+      </node>
+      <node id="25">
+        <label>organize_data.c</label>
+        <link refid="organize__data_8c"/>
+      </node>
+      <node id="29">
+        <label>accum_segs.c</label>
+        <link refid="accum__segs_8c"/>
+      </node>
+      <node id="88">
+        <label>get_statement.c</label>
+        <link refid="get__statement_8c"/>
+      </node>
+      <node id="118">
+        <label>vex_init.c</label>
+        <link refid="vex__init_8c"/>
+      </node>
+      <node id="86">
+        <label>get_pcm_tables.c</label>
+        <link refid="get__pcm__tables_8c"/>
+      </node>
+      <node id="8">
+        <label>make_passes.c</label>
+        <link refid="make__passes_8c"/>
+      </node>
+      <node id="111">
+        <label>parse_vexfile.c</label>
+        <link refid="parse__vexfile_8c"/>
+      </node>
+      <node id="24">
+        <label>create_fname.c</label>
+        <link refid="create__fname_8c"/>
+      </node>
+      <node id="85">
+        <label>get_pcm_config.c</label>
+        <link refid="get__pcm__config_8c"/>
+      </node>
+      <node id="41">
+        <label>read_binaries.c</label>
+        <link refid="read__binaries_8c"/>
+      </node>
+      <node id="73">
+        <label>fill_station_parms.c</label>
+        <link refid="fill__station__parms_8c"/>
+      </node>
+      <node id="54">
+        <label>decode_pval.c</label>
+        <link refid="decode__pval_8c"/>
+      </node>
+      <node id="90">
+        <label>get_su_chan_out.c</label>
+        <link refid="get__su__chan__out_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structblk__stmt" prot="public">blk_stmt</innerclass>
+    <innerclass refid="structblock" prot="public">block</innerclass>
+    <innerclass refid="structcomment" prot="public">comment</innerclass>
+    <innerclass refid="structdata__value" prot="public">data_value</innerclass>
+    <innerclass refid="uniondata__value_8data" prot="public">data_value.data</innerclass>
+    <innerclass refid="structdec" prot="public">dec</innerclass>
+    <innerclass refid="structdef" prot="public">def</innerclass>
+    <innerclass refid="structdef__list" prot="public">def_list</innerclass>
+    <innerclass refid="structinsert" prot="public">insert</innerclass>
+    <innerclass refid="structparam__val" prot="public">param_val</innerclass>
+    <innerclass refid="structpval__format" prot="public">pval_format</innerclass>
+    <innerclass refid="structquote" prot="public">quote</innerclass>
+    <innerclass refid="structra" prot="public">ra</innerclass>
+    <innerclass refid="structref" prot="public">ref</innerclass>
+    <innerclass refid="structscan" prot="public">scan</innerclass>
+    <innerclass refid="structstatement" prot="public">statement</innerclass>
+    <innerclass refid="structvalue" prot="public">value</innerclass>
+    <innerclass refid="structvex" prot="public">vex</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="vex_8h_1ab28eba1212cc45676aed3c5d0df9c708" prot="public" static="no">
+        <name>CVEX</name>
+        <initializer>1&lt;&lt;1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="46" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a14a6e242474a6e11e68547a71be18f27" prot="public" static="no">
+        <name>EVEX</name>
+        <initializer>1&lt;&lt;4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="49" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
+        <name>FALSE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="146" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a321c4899ba6db96b092195f50e960b3e" prot="public" static="no">
+        <name>IVEX</name>
+        <initializer>1&lt;&lt;3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="48" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a6b68ff739b6f1ba0e8f1508bd3b89751" prot="public" static="no">
+        <name>LVEX</name>
+        <initializer>1&lt;&lt;5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="50" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1accc898f427bcfab8f8554d0683a736de" prot="public" static="no">
+        <name>MAN</name>
+        <initializer><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="149" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a2381a4931877d06910d2880b163221a9" prot="public" static="no">
+        <name>MAX_NAMESIZE</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" prot="public" static="no">
+        <name>MAX_PVALSIZE</name>
+        <initializer>128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1af124cf4ecfb7864023c56af0352ad06f" prot="public" static="no">
+        <name>MAXBLKSTMT</name>
+        <initializer>100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a02723c1cf9784c591e45af7bf584f97c" prot="public" static="no">
+        <name>MAXBLOCKS</name>
+        <initializer>256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="6" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a57b3298118adeb05aa50645eca061e74" prot="public" static="no">
+        <name>MAXCOMMENTS</name>
+        <initializer>8192</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1ade1495fae328049a2bdc3964fb68194b" prot="public" static="no">
+        <name>MAXDEFS</name>
+        <initializer>512</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a85b9d7fd54434e491a5be68f80409da9" prot="public" static="no">
+        <name>MAXNVAL</name>
+        <initializer>256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a991a878975e973b60ba17e0aaaa666de" prot="public" static="no">
+        <name>MAXQUOTES</name>
+        <initializer>2048</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a3d2e617ac05339a49577d357264e6a5b" prot="public" static="no">
+        <name>MAXREFS</name>
+        <initializer>256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a1887087ae66c3b0782b1465d4725c4aa" prot="public" static="no">
+        <name>MAXSCANS</name>
+        <initializer>8192</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a0b17d8fb5405519bf87d0dd208289067" prot="public" static="no">
+        <name>MAXSTMT</name>
+        <initializer>50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a2a551e00af0b8fdb9e65cfe7ef36cde8" prot="public" static="no">
+        <name>OPT</name>
+        <initializer><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="150" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a8b9f6f52c901b4709442568b2accb0f7" prot="public" static="no">
+        <name>OVEX</name>
+        <initializer>1&lt;&lt;0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="45" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a72491dbbbdb14743d80424248672785c" prot="public" static="no">
+        <name>STATEMENT_SIZE</name>
+        <initializer>8192</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a2fad6bba8b2422a8fac9075ecf183f54" prot="public" static="no">
+        <name>SVEX</name>
+        <initializer>1&lt;&lt;2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="47" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" prot="public" static="no">
+        <name>TRUE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="147" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a388fc64ccb8803ab593e87f4944115e9" prot="public" static="no">
+        <name>UNIT_ANGLE</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="166" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a54556e6ddf8309f80785172456ccebbf" prot="public" static="no">
+        <name>UNIT_ANGLE_TIME</name>
+        <initializer>51</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="169" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a5d17637f7615cb47dae4b4b4ce04826a" prot="public" static="no">
+        <name>UNIT_BITDENSITY</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="168" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a71a57be19f24e51a14c9fa88119172f4" prot="public" static="no">
+        <name>UNIT_FLUX</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="167" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a86fa5d8b51230c6c105d58e0b5f5eea9" prot="public" static="no">
+        <name>UNIT_FREQ</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="163" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a1b2dfce30d2dd62f2c1a7b3782d50d14" prot="public" static="no">
+        <name>UNIT_LENGTH</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="165" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a3374f318a2b52c4f1a462e1491463a28" prot="public" static="no">
+        <name>UNIT_LENGTH_TIME</name>
+        <initializer>41</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="170" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a4066feaf28f2e26b93a1e77589dc77d7" prot="public" static="no">
+        <name>UNIT_NONE</name>
+        <initializer>80</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="171" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a5740ffb61dc860571cf2b22d7c7e7cb4" prot="public" static="no">
+        <name>UNIT_OPTIONAL</name>
+        <initializer>100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="172" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a1a71c23ac2762688a5cebfa99f595e4c" prot="public" static="no">
+        <name>UNIT_SAMPLERATE</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="164" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a703954deace186f4a0ec8ab725563736" prot="public" static="no">
+        <name>UNIT_TIME</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="162" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a4a91cf67d5a6a5c08ce4dba485d86fc7" prot="public" static="no">
+        <name>V_1_0</name>
+        <initializer>100 &lt;&lt; 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="54" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1addc0318cacc2d2a84fc75a6f42d0dbee" prot="public" static="no">
+        <name>V_1_5</name>
+        <initializer>150 &lt;&lt; 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="55" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a2ae666fc6c2b4e6752b80b78b93e8b09" prot="public" static="no">
+        <name>V_ALL</name>
+        <initializer>998 &lt;&lt; 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="56" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a9b0925bbee8c7a93d663fa80b636a14c" prot="public" static="no">
+        <name>V_BAD</name>
+        <initializer>999 &lt;&lt; 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="57" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a0a00ab06f8dcecc4f85f74cfbfe9804e" prot="public" static="no">
+        <name>VAL_CHAR</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="153" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a436d1ca0e3cbbc0cc509f07357571d43" prot="public" static="no">
+        <name>VAL_DEC</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="157" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1aab341ab6d3efd0e73f0ebb44303a20d4" prot="public" static="no">
+        <name>VAL_EPOCH</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="155" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1ad26a1ba3500168a26e3d9a1928955912" prot="public" static="no">
+        <name>VAL_INT</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="154" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a160ee92658504c9b76b1bb2c761594bd" prot="public" static="no">
+        <name>VAL_LINK</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="158" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a149db70eae9b93a9fd5e5c7a18237e56" prot="public" static="no">
+        <name>VAL_NONE</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="159" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1ace1ce06cc3dc46c2bdd48cc7acce877f" prot="public" static="no">
+        <name>VAL_RA</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="156" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a97b727a1b51747dfd03072a2230e48d2" prot="public" static="no">
+        <name>VAL_REAL</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="152" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vex_8h_1a4fcf1c616794a5e7f087fcb4dce04469" prot="public" static="no">
+        <name>WANT_OUTPUT</name>
+        <initializer>1&lt;&lt;8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="51" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="vex_8h_1a5c70930e7c0869e7a98ad6de05d33744" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_vex</definition>
+        <argsstring>(char *filename, int vextype, char *key, struct vex *vex)</argsstring>
+        <name>get_vex</name>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vextype</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structvex" kindref="compound">vex</ref> *</type>
+          <declname>vex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="230" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/get_vex.c" bodystart="38" bodyend="164" declfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" declline="230" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>VEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="vex_8h_1a57b3298118adeb05aa50645eca061e74" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXCOMMENTS<sp/>8192</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="vex_8h_1a991a878975e973b60ba17e0aaaa666de" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXQUOTES<sp/>2048</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="vex_8h_1a02723c1cf9784c591e45af7bf584f97c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXBLOCKS<sp/>256</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="vex_8h_1ade1495fae328049a2bdc3964fb68194b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXDEFS<sp/>512</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="vex_8h_1a3d2e617ac05339a49577d357264e6a5b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXREFS<sp/>256</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="vex_8h_1a1887087ae66c3b0782b1465d4725c4aa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXSCANS<sp/>8192</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="vex_8h_1a72491dbbbdb14743d80424248672785c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STATEMENT_SIZE<sp/>8192</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="vex_8h_1a2381a4931877d06910d2880b163221a9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_NAMESIZE<sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_PVALSIZE<sp/>128</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="vex_8h_1a85b9d7fd54434e491a5be68f80409da9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXNVAL<sp/>256</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="vex_8h_1af124cf4ecfb7864023c56af0352ad06f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXBLKSTMT<sp/>100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="vex_8h_1a0b17d8fb5405519bf87d0dd208289067" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXSTMT<sp/>50</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Binary<sp/>structs<sp/>for<sp/>various<sp/>flavors<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>of<sp/>vex<sp/>files/sections<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__typedefs_8h" kindref="compound">mk4_typedefs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ovex_8h" kindref="compound">ovex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="cvex_8h" kindref="compound">cvex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="evex_8h" kindref="compound">evex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ivex_8h" kindref="compound">ivex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="svex_8h" kindref="compound">svex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lvex_8h" kindref="compound">lvex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>#include<sp/>&quot;lvex.h&quot;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Struct<sp/>to<sp/>hold<sp/>them<sp/>all<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="structvex" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structvex" kindref="compound">vex</ref></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29" refid="structvex_1a870cf8e0d0cfdff664db8b876b415983" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvex_1a870cf8e0d0cfdff664db8b876b415983" kindref="member">vextypes</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Which<sp/>sects<sp/>are<sp/>filled<sp/>in<sp/>(bitmap)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="structvex_1a9d605ee4f80a20ead825f1c56a460ddf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structvex_1a9d605ee4f80a20ead825f1c56a460ddf" kindref="member">filename</ref>[256];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Disk-based<sp/>vex<sp/>file<sp/>of<sp/>origin<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structvex_1a7edd147b2c001dc595c5d922acc48182" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*<ref refid="structvex_1a7edd147b2c001dc595c5d922acc48182" kindref="member">ovex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Observe<sp/>vex<sp/>written<sp/>by<sp/>sched<sp/>progs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structvex_1ade2243831e51971c37eac38f330b33b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Config" kindref="compound">Cvex_Config</ref><sp/>*<ref refid="structvex_1ade2243831e51971c37eac38f330b33b3" kindref="member">cvex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Correlator<sp/>setup<sp/>vex<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="structvex_1a050f386dcaa835c4329f58d1ac43ad3f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structevex__struct" kindref="compound">evex_struct</ref><sp/>*<ref refid="structvex_1a050f386dcaa835c4329f58d1ac43ad3f" kindref="member">evex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Task-specific<sp/>experiment<sp/>vex<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="structvex_1a7e3ef49ddb2771e49e92ef0213fb562e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structivex__struct" kindref="compound">ivex_struct</ref><sp/>*<ref refid="structvex_1a7e3ef49ddb2771e49e92ef0213fb562e" kindref="member">ivex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Correlator<sp/>system<sp/>initialization<sp/>vex<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structvex_1ac94a18b1c42ac22d78395de8d9cba4b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsvex__struct" kindref="compound">svex_struct</ref><sp/>*<ref refid="structvex_1ac94a18b1c42ac22d78395de8d9cba4b7" kindref="member">svex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Station<sp/>unit<sp/>setup<sp/>vex<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structlvex__struct" kindref="compound">lvex_struct</ref><sp/>*<ref refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" kindref="member">lvex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Log<sp/>vex<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="structvex_1a9c5ab778bddf2c5d30c88ed3c9ecdaf7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>*<ref refid="structvex_1a9c5ab778bddf2c5d30c88ed3c9ecdaf7" kindref="member">ovex_src</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Filtered<sp/>ascii<sp/>vex<sp/>source,<sp/>based<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structvex_1a802ff1b274b6195e039ace28e8d6f9e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>*<ref refid="structvex_1a802ff1b274b6195e039ace28e8d6f9e8" kindref="member">cvex_src</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>on<sp/>the<sp/>subset<sp/>of<sp/>the<sp/>file<sp/>that<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="structvex_1ac40c3c40fa55a14267d8759b8fba5afa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>*<ref refid="structvex_1ac40c3c40fa55a14267d8759b8fba5afa" kindref="member">evex_src</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>was<sp/>parsed.<sp/><sp/>If<sp/>these<sp/>pointers<sp/>are<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="structvex_1a8530f73cc6cf0c1b73ae91bb10c3ee4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>*<ref refid="structvex_1a8530f73cc6cf0c1b73ae91bb10c3ee4d" kindref="member">svex_src</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>null,<sp/>such<sp/>filtered<sp/>source<sp/>was<sp/>not<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structvex_1aee102ba8ed5818c710161f5fb7a13790" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>*<ref refid="structvex_1aee102ba8ed5818c710161f5fb7a13790" kindref="member">ivex_src</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>requested<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="structvex_1a207709b90ddcfdfd8538fffd30eaca16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>*<ref refid="structvex_1a207709b90ddcfdfd8538fffd30eaca16" kindref="member">lvex_src</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="vex_8h_1a8b9f6f52c901b4709442568b2accb0f7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>OVEX<sp/>1&lt;&lt;0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="vex_8h_1ab28eba1212cc45676aed3c5d0df9c708" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>CVEX<sp/>1&lt;&lt;1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="vex_8h_1a2fad6bba8b2422a8fac9075ecf183f54" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>SVEX<sp/>1&lt;&lt;2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="vex_8h_1a321c4899ba6db96b092195f50e960b3e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>IVEX<sp/>1&lt;&lt;3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="vex_8h_1a14a6e242474a6e11e68547a71be18f27" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>EVEX<sp/>1&lt;&lt;4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="vex_8h_1a6b68ff739b6f1ba0e8f1508bd3b89751" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>LVEX<sp/>1&lt;&lt;5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="vex_8h_1a4fcf1c616794a5e7f087fcb4dce04469" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/><sp/>WANT_OUTPUT<sp/>1&lt;&lt;8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vex<sp/>versions,<sp/>to<sp/>be<sp/>OR&apos;ed<sp/>with<sp/>OVEX<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>EVEX<sp/>and<sp/>others<sp/>as<sp/>needed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="vex_8h_1a4a91cf67d5a6a5c08ce4dba485d86fc7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>V_1_0<sp/>100<sp/>&lt;&lt;<sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="vex_8h_1addc0318cacc2d2a84fc75a6f42d0dbee" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>V_1_5<sp/>150<sp/>&lt;&lt;<sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="vex_8h_1a2ae666fc6c2b4e6752b80b78b93e8b09" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>V_ALL<sp/>998<sp/>&lt;&lt;<sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="vex_8h_1a9b0925bbee8c7a93d663fa80b636a14c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>V_BAD<sp/>999<sp/>&lt;&lt;<sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/**************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>rest<sp/>of<sp/>this<sp/>file<sp/>consists<sp/>of<sp/>definitions<sp/>and<sp/>structs<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>to<sp/>support<sp/>the<sp/>low-level<sp/>operation<sp/>of<sp/>the<sp/>parser<sp/>library<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/**************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="structcomment" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structcomment" kindref="compound">comment</ref></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Addresses<sp/>define<sp/>extrema<sp/>of<sp/>comment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structcomment_1a4c7082256ad8c9f00d3766e821d01af8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*<ref refid="structcomment_1a4c7082256ad8c9f00d3766e821d01af8" kindref="member">start</ref>;</highlight></codeline>
+<codeline lineno="72" refid="structcomment_1ae6908903cf3f3a8badf764cab4461deb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*<ref refid="structcomment_1ae6908903cf3f3a8badf764cab4461deb" kindref="member">end</ref>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="structquote" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structquote" kindref="compound">quote</ref></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Addresses<sp/>define<sp/>extrema<sp/>of<sp/>quote<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="structquote_1a3eb6e2b301d0f404fc4b2ba77713bf4e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*<ref refid="structquote_1a3eb6e2b301d0f404fc4b2ba77713bf4e" kindref="member">start</ref>;</highlight></codeline>
+<codeline lineno="79" refid="structquote_1a6c69c53eb1e65db531a89902fc657412" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*<ref refid="structquote_1a6c69c53eb1e65db531a89902fc657412" kindref="member">end</ref>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structref" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structref" kindref="compound">ref</ref></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Strings<sp/>define<sp/>contents<sp/>of<sp/>ref<sp/>statement<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structref_1ace3bcd12c05013a9c5669333554ae2dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="structref_1ace3bcd12c05013a9c5669333554ae2dd" kindref="member">stno</ref>;</highlight></codeline>
+<codeline lineno="86" refid="structref_1abe6e11b8a6ad9f75264eb67e0b432ac3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structref_1abe6e11b8a6ad9f75264eb67e0b432ac3" kindref="member">filename</ref>[256];</highlight></codeline>
+<codeline lineno="87" refid="structref_1a5e7dea81812ccbc27239258a22298be5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structref_1a5e7dea81812ccbc27239258a22298be5" kindref="member">blockname</ref>[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="88" refid="structref_1a0a0792213dbd4e65b98090b07a72315a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structref_1a0a0792213dbd4e65b98090b07a72315a" kindref="member">keyword</ref>[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="89" refid="structref_1a304c7e853146c02e057c50b7917dd909" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structref_1a304c7e853146c02e057c50b7917dd909" kindref="member">nargs</ref>;</highlight></codeline>
+<codeline lineno="90" refid="structref_1aa8b78b3cb2094e95f1d352ffd8a3de34" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structref_1aa8b78b3cb2094e95f1d352ffd8a3de34" kindref="member">args</ref>[<ref refid="vex_8h_1a85b9d7fd54434e491a5be68f80409da9" kindref="member">MAXNVAL</ref>];</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structdef" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdef" kindref="compound">def</ref></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Store<sp/>name<sp/>and<sp/>location,<sp/>and<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>parse<sp/>contents<sp/>only<sp/>when<sp/>needed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structdef_1a5c0cf53be931ee8dc5b6d87785311bb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structdef_1a5c0cf53be931ee8dc5b6d87785311bb3" kindref="member">start</ref>;</highlight></codeline>
+<codeline lineno="98" refid="structdef_1a246c488fe0fd38511a035ecca9fe7d6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structdef_1a246c488fe0fd38511a035ecca9fe7d6b" kindref="member">end</ref>;</highlight></codeline>
+<codeline lineno="99" refid="structdef_1a5da2b89fd96a74c974be51e48ece59e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structdef_1a5da2b89fd96a74c974be51e48ece59e1" kindref="member">name</ref>[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="structscan" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structscan" kindref="compound">scan</ref></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>A<sp/>def<sp/>by<sp/>any<sp/>other<sp/>name<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="structscan_1ac3c11ef848d13f662767297c1eabed5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structscan_1ac3c11ef848d13f662767297c1eabed5a" kindref="member">start</ref>;</highlight></codeline>
+<codeline lineno="106" refid="structscan_1a579da48a81b3e676669e3158a926d566" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structscan_1a579da48a81b3e676669e3158a926d566" kindref="member">end</ref>;</highlight></codeline>
+<codeline lineno="107" refid="structscan_1aa8c1929d8a06360d1e0634169aecb849" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structscan_1aa8c1929d8a06360d1e0634169aecb849" kindref="member">name</ref>[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="structblock" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structblock" kindref="compound">block</ref></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112" refid="structblock_1a544960988e5c91115f591f2e62d63deb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structblock_1a544960988e5c91115f591f2e62d63deb" kindref="member">name</ref>[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="113" refid="structblock_1a5f23fcf594a6ef22d35964c9eab06b9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structblock_1a5f23fcf594a6ef22d35964c9eab06b9d" kindref="member">stno</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>statement<sp/>number<sp/>of<sp/>$BLOCK<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="structblock_1a8307331db39a378a93d31dbde7daeb93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structblock_1a8307331db39a378a93d31dbde7daeb93" kindref="member">end</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Last<sp/>statement<sp/>in<sp/>block<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="structblock_1a0fcb24cda84fe9e590dbedd2be4ecd74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structblock_1a9a176230cc9d13442a40f8a8d715bad9" kindref="member">ndef</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>primitive<sp/>$BLOCKS<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdef" kindref="compound">def</ref><sp/><sp/><ref refid="structblock_1a0fcb24cda84fe9e590dbedd2be4ecd74" kindref="member">deflist</ref>[<ref refid="vex_8h_1ade1495fae328049a2bdc3964fb68194b" kindref="member">MAXDEFS</ref>];</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="structstatement" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstatement" kindref="compound">statement</ref></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121" refid="structstatement_1a4149c9c440e567046589b4dc37a3c659" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structstatement_1a4149c9c440e567046589b4dc37a3c659" kindref="member">start</ref>;</highlight></codeline>
+<codeline lineno="122" refid="structstatement_1a4b1f9bf2973ba600a7d89505c2d45219" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structstatement_1a4b1f9bf2973ba600a7d89505c2d45219" kindref="member">end</ref>;</highlight></codeline>
+<codeline lineno="123" refid="structstatement_1ab637e4540043c6540e91638f7a9177de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structstatement_1ab637e4540043c6540e91638f7a9177de" kindref="member">str</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="structinsert" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structinsert" kindref="compound">insert</ref></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="128" refid="structinsert_1a2c4e707d5f34d7e8739d155055ffec38" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structinsert_1a2c4e707d5f34d7e8739d155055ffec38" kindref="member">after</ref>;</highlight></codeline>
+<codeline lineno="129" refid="structinsert_1a01bde264648ba3ceb660f196a3100ef9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structinsert_1a01bde264648ba3ceb660f196a3100ef9" kindref="member">str</ref>;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>List<sp/>of<sp/>valid<sp/>statement<sp/>names<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>by<sp/>block<sp/>name<sp/>(block_params.c)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="structblk__stmt" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structblk__stmt" kindref="compound">blk_stmt</ref></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135" refid="structblk__stmt_1a28e02341894bbcdd861ee4f998c7f4ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structblk__stmt_1a28e02341894bbcdd861ee4f998c7f4ab" kindref="member">name</ref>[32];</highlight></codeline>
+<codeline lineno="136" refid="structblk__stmt_1a890cdff67110fb0395ed4d82c3abe125" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="structblk__stmt_1a890cdff67110fb0395ed4d82c3abe125" kindref="member">nstmt</ref>;</highlight></codeline>
+<codeline lineno="137" refid="structblk__stmt_1a1f48681b69ac00a11b7e22f3fc1b1c60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structblk__stmt_1a1f48681b69ac00a11b7e22f3fc1b1c60" kindref="member">stmt</ref>[<ref refid="vex_8h_1a0b17d8fb5405519bf87d0dd208289067" kindref="member">MAXSTMT</ref>][32];</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Used<sp/>for<sp/>scan_info()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="structdef__list" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdef__list" kindref="compound">def_list</ref></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="142" refid="structdef__list_1a2f937c624fab6b60643eeaf4c6515b1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdef__list_1a2f937c624fab6b60643eeaf4c6515b1c" kindref="member">blockno</ref>;</highlight></codeline>
+<codeline lineno="143" refid="structdef__list_1acd880820aeeec32936702c689587bbfd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdef__list_1acd880820aeeec32936702c689587bbfd" kindref="member">defno</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="vex_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="vex_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="vex_8h_1accc898f427bcfab8f8554d0683a736de" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAN<sp/>TRUE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="vex_8h_1a2a551e00af0b8fdb9e65cfe7ef36cde8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OPT<sp/>FALSE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Value<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152" refid="vex_8h_1a97b727a1b51747dfd03072a2230e48d2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_REAL<sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="vex_8h_1a0a00ab06f8dcecc4f85f74cfbfe9804e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_CHAR<sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154" refid="vex_8h_1ad26a1ba3500168a26e3d9a1928955912" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_INT<sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="vex_8h_1aab341ab6d3efd0e73f0ebb44303a20d4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_EPOCH<sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="vex_8h_1ace1ce06cc3dc46c2bdd48cc7acce877f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_RA<sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="vex_8h_1a436d1ca0e3cbbc0cc509f07357571d43" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_DEC<sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158" refid="vex_8h_1a160ee92658504c9b76b1bb2c761594bd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_LINK<sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="vex_8h_1a149db70eae9b93a9fd5e5c7a18237e56" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VAL_NONE<sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Value<sp/>units<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="vex_8h_1a703954deace186f4a0ec8ab725563736" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_TIME<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="vex_8h_1a86fa5d8b51230c6c105d58e0b5f5eea9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_FREQ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="vex_8h_1a1a71c23ac2762688a5cebfa99f595e4c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_SAMPLERATE<sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="vex_8h_1a1b2dfce30d2dd62f2c1a7b3782d50d14" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_LENGTH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="vex_8h_1a388fc64ccb8803ab593e87f4944115e9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_ANGLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="vex_8h_1a71a57be19f24e51a14c9fa88119172f4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_FLUX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168" refid="vex_8h_1a5d17637f7615cb47dae4b4b4ce04826a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_BITDENSITY<sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="vex_8h_1a54556e6ddf8309f80785172456ccebbf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_ANGLE_TIME<sp/><sp/><sp/><sp/>51</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170" refid="vex_8h_1a3374f318a2b52c4f1a462e1491463a28" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_LENGTH_TIME<sp/><sp/><sp/>41</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="vex_8h_1a4066feaf28f2e26b93a1e77589dc77d7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_NONE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>80</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="vex_8h_1a5740ffb61dc860571cf2b22d7c7e7cb4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UNIT_OPTIONAL<sp/><sp/><sp/><sp/><sp/><sp/>100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="structvalue" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structvalue" kindref="compound">value</ref></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="176" refid="structvalue_1a6ff64bc1c46936ffb19a461182b41953" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structvalue_1a6ff64bc1c46936ffb19a461182b41953" kindref="member">mandatory</ref>;</highlight></codeline>
+<codeline lineno="177" refid="structvalue_1a543930f497135c3a9b74183127634939" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structvalue_1a543930f497135c3a9b74183127634939" kindref="member">type</ref>;</highlight></codeline>
+<codeline lineno="178" refid="structvalue_1ad772dfaa9cddc6ecb21f514e4cc0e04e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structvalue_1ad772dfaa9cddc6ecb21f514e4cc0e04e" kindref="member">units</ref>;</highlight></codeline>
+<codeline lineno="179" refid="structvalue_1a3900761c83c0c64639419b4e9a331950" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structvalue_1a3900761c83c0c64639419b4e9a331950" kindref="member">range</ref>[50];</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="structpval__format" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structpval__format" kindref="compound">pval_format</ref></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="184" refid="structpval__format_1a8f50b1d59afc50e36e7ecff7af4f922c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpval__format_1a8f50b1d59afc50e36e7ecff7af4f922c" kindref="member">param_name</ref>[128];</highlight></codeline>
+<codeline lineno="185" refid="structpval__format_1ac11a39b78e9cb6bc66c66db318857620" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpval__format_1ac11a39b78e9cb6bc66c66db318857620" kindref="member">typever</ref>;</highlight></codeline>
+<codeline lineno="186" refid="structpval__format_1a378bafd54637262c65647f5bff48a4a0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structblock" kindref="compound">block</ref>[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="187" refid="structpval__format_1aaf2a4ee7c7d34f66bf3f887d04f08cfe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpval__format_1aaf2a4ee7c7d34f66bf3f887d04f08cfe" kindref="member">nval</ref>;</highlight></codeline>
+<codeline lineno="188" refid="structpval__format_1a8059d89e7ff224f32fdd48f41a15e37a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpval__format_1a8059d89e7ff224f32fdd48f41a15e37a" kindref="member">ngroup</ref>;</highlight></codeline>
+<codeline lineno="189" refid="structpval__format_1a54bde3b7d398235424073aae45235969" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structvalue" kindref="compound">value</ref><sp/>*<ref refid="structpval__format_1a54bde3b7d398235424073aae45235969" kindref="member">values</ref>;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192" refid="structra" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structra" kindref="compound">ra</ref></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="194" refid="structra_1a20f1b7c7a6d3d188ae9cfa3e6cba6d6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structra_1a20f1b7c7a6d3d188ae9cfa3e6cba6d6b" kindref="member">ra_hrs</ref>;</highlight></codeline>
+<codeline lineno="195" refid="structra_1a509267bfae2e67a1b219ed761abe4e29" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structra_1a509267bfae2e67a1b219ed761abe4e29" kindref="member">ra_mins</ref>;</highlight></codeline>
+<codeline lineno="196" refid="structra_1ae70c74b0f907c776d09461d9a3c00694" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structra_1ae70c74b0f907c776d09461d9a3c00694" kindref="member">ra_secs</ref>;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="structdec" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdec" kindref="compound">dec</ref></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="201" refid="structdec_1a750c5b637d11af4825b264431bcdd94a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdec_1a750c5b637d11af4825b264431bcdd94a" kindref="member">dec_degs</ref>;</highlight></codeline>
+<codeline lineno="202" refid="structdec_1a25d2d9056220cbe898de87f94e5f7a2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdec_1a25d2d9056220cbe898de87f94e5f7a2a" kindref="member">dec_mins</ref>;</highlight></codeline>
+<codeline lineno="203" refid="structdec_1ae1009c11505be19ca1abc18a3d24240e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdec_1ae1009c11505be19ca1abc18a3d24240e" kindref="member">dec_secs</ref>;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206" refid="structdata__value" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__value" kindref="compound">data_value</ref></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="208" refid="structdata__value_1af89dd34e7e8a56cfc5269467d112acf3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structdata__value_1af89dd34e7e8a56cfc5269467d112acf3" kindref="member">type</ref>;</highlight></codeline>
+<codeline lineno="209" refid="structdata__value_1a474f52ad20e9ec210d41a279e08d3aa1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structdata__value_1a474f52ad20e9ec210d41a279e08d3aa1" kindref="member">units</ref>;</highlight></codeline>
+<codeline lineno="210" refid="uniondata__value_8data" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>strval[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>realval;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>intval;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdate" kindref="compound">date</ref><sp/>epochval;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsky__coord" kindref="compound">sky_coord</ref><sp/>raval;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structsky__coord" kindref="compound">sky_coord</ref><sp/>decval;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>linkval[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="219" refid="structdata__value_1a598076cec51d6a543a4948a11a34b345" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><ref refid="structdata__value_1a598076cec51d6a543a4948a11a34b345" kindref="member">data</ref>;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="structparam__val" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structparam__val" kindref="compound">param_val</ref></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="224" refid="structparam__val_1ac5a27e094d8db98c3ef937f1d665b234" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structparam__val_1ac5a27e094d8db98c3ef937f1d665b234" kindref="member">name</ref>[<ref refid="vex_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="225" refid="structparam__val_1abcecf10a69b90d28770f8b4564c115c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="structparam__val_1abcecf10a69b90d28770f8b4564c115c9" kindref="member">nval</ref>;</highlight></codeline>
+<codeline lineno="226" refid="structparam__val_1a2df34f7c3943353b87911f9aa6585b54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="structparam__val_1a567405d935552fc4ae2bf6587afcd3f1" kindref="member">val</ref>[<ref refid="vex_8h_1a85b9d7fd54434e491a5be68f80409da9" kindref="member">MAXNVAL</ref>];</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdata__value" kindref="compound">data_value</ref><sp/><ref refid="structparam__val_1a2df34f7c3943353b87911f9aa6585b54" kindref="member">dval</ref>[<ref refid="vex_8h_1a85b9d7fd54434e491a5be68f80409da9" kindref="member">MAXNVAL</ref>];</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="vex_8h_1a5c70930e7c0869e7a98ad6de05d33744" kindref="member">get_vex</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vextype,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*key,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structvex" kindref="compound">vex</ref><sp/>*<ref refid="structvex" kindref="compound">vex</ref>);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h"/>
+  </compounddef>
+</doxygen>

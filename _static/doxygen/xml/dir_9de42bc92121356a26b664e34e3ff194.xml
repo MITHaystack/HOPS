@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_9de42bc92121356a26b664e34e3ff194" kind="dir">
+    <compoundname>applications</compoundname>
+    <innerdir refid="dir_720c34c34eae56e7048c181fca8a7301">adump</innerdir>
+    <innerdir refid="dir_951752c50ea76680db3b9d1455b475f2">aedit</innerdir>
+    <innerdir refid="dir_647fd3f6593fc2e13322700d3061c464">alist</innerdir>
+    <innerdir refid="dir_4331365e84e951a00e6b513ced68405c">average</innerdir>
+    <innerdir refid="dir_3236850d8b037e8ab5bc50d67a449e07">difx2mark4</innerdir>
+    <innerdir refid="dir_cebca0613dcb0ce3fb6e28f86b332494">fourfit</innerdir>
+    <innerdir refid="dir_97db59fee4708edccba4daf2e2c41ab1">fourmer</innerdir>
+    <innerdir refid="dir_83ee83338e970cd0afba3d801181149d">fplot</innerdir>
+    <innerdir refid="dir_6673a16bbecdcc68e09241660b3c8088">fringex</innerdir>
+    <innerdir refid="dir_3a2f93aa10a622dd9810c10898bc9760">legacy</innerdir>
+    <innerdir refid="dir_ad5b12cdd0e5859b1349e1ee1ebbb92b">search</innerdir>
+    <innerdir refid="dir_cba8cb8cd350fb042f61166ca7691c03">snratio</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/"/>
+  </compounddef>
+</doxygen>

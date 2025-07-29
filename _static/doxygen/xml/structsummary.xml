@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsummary" kind="struct" language="C++" prot="public">
+    <compoundname>summary</compoundname>
+    <includes refid="average_8h" local="no">average.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsummary_1a29dc84e193a478a21c97d4b56ee10159" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int summary::end_index</definition>
+        <argsstring></argsstring>
+        <name>end_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="49" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsummary_1a79593e8db8cbf2733b8eac3f0116e4b5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int summary::nid</definition>
+        <argsstring></argsstring>
+        <name>nid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="52" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsummary_1a1deaa85130d928bbb3d8a35eff4387e9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int summary::seglen</definition>
+        <argsstring></argsstring>
+        <name>seglen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="50" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsummary_1a4b6d1bda45953cfa07ee2062333c1130" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int summary::start_index</definition>
+        <argsstring></argsstring>
+        <name>start_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsummary_1a07187265c1ee3baeb10c3f098f8732a9" prot="public" static="no" mutable="no">
+        <type><ref refid="structtbsumm" kindref="compound">tbsumm</ref></type>
+        <definition>tbsumm summary::tribase[MAXID]</definition>
+        <argsstring>[MAXID]</argsstring>
+        <name>tribase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="53" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsummary_1a2475d68ee6f66712a06f0df3b0d675ba" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int summary::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="51" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>tbsumm</label>
+        <link refid="structtbsumm"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>end_index</edgelabel>
+          <edgelabel>seglen</edgelabel>
+          <edgelabel>start_index</edgelabel>
+          <edgelabel>start_time</edgelabel>
+          <edgelabel>valid</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>summary</label>
+        <link refid="structsummary"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>tribase</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>end_index</edgelabel>
+          <edgelabel>nid</edgelabel>
+          <edgelabel>seglen</edgelabel>
+          <edgelabel>start_index</edgelabel>
+          <edgelabel>valid</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="46" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="47" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structsummary_1a29dc84e193a478a21c97d4b56ee10159" prot="public" virt="non-virtual"><scope>summary</scope><name>end_index</name></member>
+      <member refid="structsummary_1a79593e8db8cbf2733b8eac3f0116e4b5" prot="public" virt="non-virtual"><scope>summary</scope><name>nid</name></member>
+      <member refid="structsummary_1a1deaa85130d928bbb3d8a35eff4387e9" prot="public" virt="non-virtual"><scope>summary</scope><name>seglen</name></member>
+      <member refid="structsummary_1a4b6d1bda45953cfa07ee2062333c1130" prot="public" virt="non-virtual"><scope>summary</scope><name>start_index</name></member>
+      <member refid="structsummary_1a07187265c1ee3baeb10c3f098f8732a9" prot="public" virt="non-virtual"><scope>summary</scope><name>tribase</name></member>
+      <member refid="structsummary_1a2475d68ee6f66712a06f0df3b0d675ba" prot="public" virt="non-virtual"><scope>summary</scope><name>valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

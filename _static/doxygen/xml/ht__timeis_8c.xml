@@ -1,0 +1,520 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ht__timeis_8c" kind="file" language="C++">
+    <compoundname>ht_timeis.c</compoundname>
+    <includes local="no">ctype.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">sys/stat.h</includes>
+    <includes refid="hops__time_8h" local="yes">hops_time.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="8">
+        <label>hetetimecode.h</label>
+        <link refid="hetetimecode_8h"/>
+      </node>
+      <node id="13">
+        <label>time_float_type.h</label>
+        <link refid="time__float__type_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops_time.h</label>
+        <link refid="hops__time_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>stdlib.h</label>
+      </node>
+      <node id="1">
+        <label>ht_timeis.c</label>
+        <link refid="ht__timeis_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="14">
+        <label>hops_config.h</label>
+      </node>
+      <node id="9">
+        <label>time.h</label>
+      </node>
+      <node id="11">
+        <label>math.h</label>
+      </node>
+      <node id="10">
+        <label>sys/time.h</label>
+      </node>
+      <node id="2">
+        <label>ctype.h</label>
+      </node>
+      <node id="7">
+        <label>htime.h</label>
+        <link refid="htime_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="ht__timeis_8c_1a2956c2cc1f5677fcbca0297cca0da03a" prot="public" static="yes" mutable="no">
+        <type>char *</type>
+        <definition>char* do_timeis_buf</definition>
+        <argsstring></argsstring>
+        <name>do_timeis_buf</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ht__timeis_8c_1a64c4513e39320b392f7d29f4907b0274" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int all_arguments</definition>
+        <argsstring>(char *ta)</argsstring>
+        <name>all_arguments</name>
+        <param>
+          <type>char *</type>
+          <declname>ta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="196" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="196" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1a979f2961c645a4a8a41b540b1fa142fc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int do_time_is</definition>
+        <argsstring>(char *ta)</argsstring>
+        <name>do_time_is</name>
+        <param>
+          <type>char *</type>
+          <declname>ta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="109" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="109" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1ac31a613b77c44c8c7eec677bc4deb3a5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void echo_prefix</definition>
+        <argsstring>(char *when)</argsstring>
+        <name>echo_prefix</name>
+        <param>
+          <type>char *</type>
+          <declname>when</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="97" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="97" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1ab212e76745e709c7452ee8890f8248ec" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int file_input</definition>
+        <argsstring>(char *ta)</argsstring>
+        <name>file_input</name>
+        <param>
+          <type>char *</type>
+          <declname>ta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="158" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="158" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1a6e57a61f30ff850a209ac906bcb1e3fa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int gibberish</definition>
+        <argsstring>(char *when)</argsstring>
+        <name>gibberish</name>
+        <param>
+          <type>char *</type>
+          <declname>when</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="74" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="74" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1a99e006bf6602fd9e7659fa79fba6a125" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void output_replacement</definition>
+        <argsstring>(char *arg)</argsstring>
+        <name>output_replacement</name>
+        <param>
+          <type>char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="56" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="56" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1a0dc57312f6e9ac0e0c6f8e4e10ecf638" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int statfile</definition>
+        <argsstring>(char *ta)</argsstring>
+        <name>statfile</name>
+        <param>
+          <type>char *</type>
+          <declname>ta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="136" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="136" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1ad08977c014d41ebd6a4e3c9c2739e7e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int time_argument</definition>
+        <argsstring>(char *ta)</argsstring>
+        <name>time_argument</name>
+        <param>
+          <type>char *</type>
+          <declname>ta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="186" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="186" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1a26733045657c9494a94fd74aab497e4c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void via_GPS</definition>
+        <argsstring>(char *arg)</argsstring>
+        <name>via_GPS</name>
+        <param>
+          <type>char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="39" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="39" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="ht__timeis_8c_1adcb2d727eee7ceb8e1ddee871680fea5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void via_UTC</definition>
+        <argsstring>(char *arg)</argsstring>
+        <name>via_UTC</name>
+        <param>
+          <type>char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c" bodystart="20" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Handle<sp/>a<sp/>time<sp/>argument<sp/>and<sp/>do<sp/>the<sp/>dance.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctype.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/stat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hops__time_8h" kindref="compound">hops_time.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*do_timeis_buf<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>Handler<sp/>for<sp/>things<sp/>that<sp/>best<sp/>laundered<sp/>through<sp/>UTC.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Either<sp/>do_timeis_buf<sp/>is<sp/>loaded<sp/>with<sp/>the<sp/>answer,</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>or<sp/>the<sp/>answer<sp/>is<sp/>output<sp/>to<sp/>ofp.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>via_UTC(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>temp_buf[8999];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>=<sp/>strlen(arg)<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="htime_8h_1aede5f328989162a4db4367c5843c120f" kindref="member">UTime</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>utc<sp/>=<sp/><ref refid="htime_8c_1af325fdf87e98491d32c7e59b8d2ca462" kindref="member">Ht_string_to_UTC</ref>(arg,0);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(arg[n]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)<sp/>arg[n]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1a004af5ca6cfa65a7c82e1e0b44f90dfb" kindref="member">replace</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>snprintf(temp_buf,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(temp_buf),<sp/><ref refid="htime_8c_1acf097732594eee131976230bd08304b7" kindref="member">Ht_UTC_to_string</ref>(utc,<sp/><ref refid="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" kindref="member">rtype</ref>));</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>do_timeis_buf<sp/>=<sp/>temp_buf;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(<ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>,<sp/></highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="htime_8c_1acf097732594eee131976230bd08304b7" kindref="member">Ht_UTC_to_string</ref>(utc,<sp/><ref refid="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" kindref="member">rtype</ref>));</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>Handler<sp/>for<sp/>things<sp/>that<sp/>best<sp/>laundered<sp/>through<sp/>GPS.</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>Either<sp/>do_timeis_buf<sp/>is<sp/>loaded<sp/>with<sp/>the<sp/>answer,</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>or<sp/>the<sp/>answer<sp/>is<sp/>output<sp/>to<sp/>ofp.</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>via_GPS(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>temp_buf[8999];</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>n<sp/>=<sp/>strlen(arg)<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="htime_8h_1a94a762aeadbfad6e4dbc86e344c1d7ae" kindref="member">GTime</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gps<sp/>=<sp/><ref refid="htime_8c_1a937ade1a79370e19c7f0ae1d507bc3ab" kindref="member">Ht_string_to_GPS</ref>(arg,0);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(arg[n]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)<sp/>arg[n]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1a004af5ca6cfa65a7c82e1e0b44f90dfb" kindref="member">replace</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>snprintf(temp_buf,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(temp_buf),<sp/><ref refid="htime_8c_1a857047944d91589d8f70bd67d8e946e3" kindref="member">Ht_GPS_to_string</ref>(gps,<sp/><ref refid="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" kindref="member">rtype</ref>));</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>do_timeis_buf<sp/>=<sp/>temp_buf;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(<ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>,<sp/></highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="htime_8c_1a857047944d91589d8f70bd67d8e946e3" kindref="member">Ht_GPS_to_string</ref>(gps,<sp/><ref refid="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" kindref="member">rtype</ref>));</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*<sp/>If<sp/>a<sp/>replacement<sp/>was<sp/>called<sp/>for,<sp/>merge<sp/>the<sp/>argument<sp/>with<sp/>do_timeis_buf</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>output_replacement(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*x<sp/>=<sp/>do_timeis_buf;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>arg<sp/>+=<sp/><ref refid="htime_8h_1afffd75c4c5172e891471b21260cbd301" kindref="member">Ht_string_min_len</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(*arg<sp/>&amp;&amp;<sp/>!isspace(*arg))<sp/>++arg;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(x<sp/>&amp;&amp;<sp/>*x<sp/>&amp;&amp;<sp/>*x<sp/>!=<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)<sp/>x++;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*x<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">)<sp/>*x<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>output<sp/>the<sp/>replacement<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>fputs(do_timeis_buf,<sp/><ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>fputs(</highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">,<sp/><ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>output<sp/>the<sp/>rest<sp/>of<sp/>the<sp/>input<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>fputs(arg,<sp/><ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>fputs(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>Check<sp/>if<sp/>this<sp/>is<sp/>something<sp/>we<sp/>are<sp/>going<sp/>to<sp/>make<sp/>sense<sp/>of...</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>gibberish(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*when)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>last[200]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;+1y&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(when)<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref><sp/>=<sp/><ref refid="htime_8c_1a914bb8561b76d2d8a25e24e8153ead62" kindref="member">Ht_string_type</ref>(when);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1aaa528419ba077f4dc3508842a20d0dfc" kindref="member">gibber</ref><sp/>&amp;&amp;<sp/>(<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref><sp/>==<sp/><ref refid="htime_8h_1a471369ebece33dd8fee390e80dd4c862" kindref="member">Ht_STR_NTYP</ref>))</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref><sp/>=<sp/><ref refid="htime_8c_1a914bb8561b76d2d8a25e24e8153ead62" kindref="member">Ht_string_type</ref>(strcpy(when,last));</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref><sp/>==<sp/><ref refid="htime_8h_1a471369ebece33dd8fee390e80dd4c862" kindref="member">Ht_STR_NTYP</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>time<sp/>request:<sp/>%s<sp/>[%d]\n&quot;</highlight><highlight class="normal">,<sp/>when,<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Null<sp/>time<sp/>request.\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>strncpy(last,<sp/>when,<sp/>sizeof(last));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>Echo<sp/>the<sp/>argument<sp/>followed<sp/>by<sp/>the<sp/>joiner.<sp/><sp/>The<sp/>converted<sp/>value<sp/>follows.</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>echo_prefix(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*when)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>strlen(when)<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(<ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>,<sp/></highlight><highlight class="stringliteral">&quot;%s%s&quot;</highlight><highlight class="normal">,<sp/>when,<sp/><ref refid="hops__time_8h_1a1a1bf897623e9f2949e731050bae2515" kindref="member">joiner</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>Convert<sp/>the<sp/>time,<sp/>returning<sp/>nonzero<sp/>on<sp/>errors.</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>Here<sp/>we<sp/>funnel<sp/>the<sp/>input<sp/>string<sp/>to<sp/>something<sp/>that</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>works<sp/>through<sp/>either<sp/>GTime<sp/>or<sp/>UTime<sp/>which<sp/>saves<sp/>on</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*<sp/>some<sp/>silly<sp/>back<sp/>and<sp/>forth<sp/>conversions....</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>do_time_is(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ta)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;do_time_is<sp/>(%d):<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" kindref="member">rtype</ref>,<sp/>ta);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(gibberish(ta))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1abccc572653663cb1edfe91d0ae50af42" kindref="member">echo</ref>)<sp/>echo_prefix(ta);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(*<ref refid="hops__time_8h_1a99658514687e587b412657d1cab58de2" kindref="member">report_arg</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>calendar<sp/>types<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;B&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;D&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;E&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;H&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;I&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;J&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;K&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;M&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;N&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;P&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;Q&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;U&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;V&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;W&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;X&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;Y&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;F&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>via_UTC(ta);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>epoch<sp/>types<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;C&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;G&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;R&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;S&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>via_GPS(ta);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(fprintf(stderr,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Unknown<sp/>report<sp/>type<sp/>%s<sp/>style<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="hops__time_8h_1a99658514687e587b412657d1cab58de2" kindref="member">report_arg</ref>,<sp/><ref refid="hops__time_8h_1aab1bddf54962a004b258c1724b11f69f" kindref="member">rtype</ref>));</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1a004af5ca6cfa65a7c82e1e0b44f90dfb" kindref="member">replace</ref>)<sp/>output_replacement(ta);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="134"><highlight class="comment"><sp/>*<sp/>Get<sp/>the<sp/>mtime<sp/>from<sp/>a<sp/>file.</highlight></codeline>
+<codeline lineno="135"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>statfile(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ta)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">stat<sp/><sp/><sp/><sp/><sp/>stb;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="htime_8h_1aede5f328989162a4db4367c5843c120f" kindref="member">UTime</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>utc;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>mtime[50];</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;SF:<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ta);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(stat(ta,<sp/>&amp;stb))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(strcmp(ta,<sp/></highlight><highlight class="stringliteral">&quot;STDIN&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;SF:<sp/>%s<sp/>exists\n&quot;</highlight><highlight class="normal">,<sp/>ta);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1aa8b3f77336705157655ee5cfce5e177f" kindref="member">statf</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>utc.tv_sec<sp/>=<sp/>stb.st_mtime;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>utc.tv_usec<sp/>=<sp/>500000;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>the<sp/>middle<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy(mtime,<sp/><ref refid="htime_8c_1acf097732594eee131976230bd08304b7" kindref="member">Ht_UTC_to_string</ref>(utc,<sp/><ref refid="htime_8h_1a6913afa0bcb62e2757aa444429c06b1d" kindref="member">Ht_DS_SECS</ref>));</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;STAT:<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>mtime);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1abccc572653663cb1edfe91d0ae50af42" kindref="member">echo</ref>)<sp/>echo_prefix(ta);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(do_time_is(mtime)<sp/>||<sp/><ref refid="hops__time_8h_1aa8b3f77336705157655ee5cfce5e177f" kindref="member">statf</ref>);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/>*<sp/>Arrange<sp/>to<sp/>read<sp/>queries<sp/>from<sp/>a<sp/>file,<sp/>or<sp/>from<sp/>a<sp/>stat<sp/>of<sp/>the<sp/>file.</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>file_input(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ta)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>line[4096];</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*s;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*fin;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Arg:<sp/>file_input(%s)\n&quot;</highlight><highlight class="normal">,<sp/>ta);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(statfile(ta))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="hops__time_8h_1aa8b3f77336705157655ee5cfce5e177f" kindref="member">statf</ref>);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>not<sp/>a<sp/>file<sp/>or<sp/>handled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>fin<sp/>=<sp/>(strcmp(ta,<sp/></highlight><highlight class="stringliteral">&quot;STDIN&quot;</highlight><highlight class="normal">))<sp/>?<sp/>fopen(ta,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">)<sp/>:<sp/>stdin;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!fin)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Arg:<sp/>file_input(%s)[%d]\n&quot;</highlight><highlight class="normal">,<sp/>ta,<sp/>fileno(fin));</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(fgets(line,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(line),<sp/>fin))<sp/>{</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;#&apos;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fputs(line,<sp/><ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>);<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>just<sp/>echo<sp/>comments<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>line[strlen(line)-1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>nuke<sp/>newline<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;3)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;While:<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>line);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(do_time_is(line))<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(fin);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(2);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="184"><highlight class="comment"><sp/>*<sp/>Do<sp/>the<sp/>file<sp/>processing<sp/>if<sp/>it&apos;s<sp/>a<sp/>file,<sp/>otherwise<sp/>do<sp/>the<sp/>dance.</highlight></codeline>
+<codeline lineno="185"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ht__timeis_8c_1ad08977c014d41ebd6a4e3c9c2739e7e0" kindref="member">time_argument</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ta)</highlight></codeline>
+<codeline lineno="187"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Arg:<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ta);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!file_input(ta))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(do_time_is(ta));</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="194"><highlight class="comment"><sp/>*<sp/>Dump<sp/>out<sp/>the<sp/>time<sp/>in<sp/>&quot;all&quot;<sp/>formats</highlight></codeline>
+<codeline lineno="195"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ht__timeis_8c_1a64c4513e39320b392f7d29f4907b0274" kindref="member">all_arguments</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ta)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*rtys[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;B&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Burst&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>&quot;C&quot;,<sp/>&quot;SPICE&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;D&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Date&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;DateA&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;E&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Maestro__&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Maestro::&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Maestro..&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;F&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;File__&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;File___&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;G&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;GPS&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;H&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;HOPS&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;I&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ISOusz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ISOmsz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ISOsz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ISOusnz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ISOmsnz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ISOsnz&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;J&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Julian&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;K&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Clock&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;M&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MJD&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;N&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Plan&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;P&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;PIGMI&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Plog&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Q&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;YDF&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;R&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;S&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MET&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;U&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;UNIX&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;V&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;SVNnz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;SVNz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;SVNusnz&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;SVNus&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;W&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Weeks&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Vex&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Vdif&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Vrdbe&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Y&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;YDS&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nrtys<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(rtys)/</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*);</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ii;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;2)<sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;All:<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ta);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ii<sp/>=<sp/>0;<sp/>ii<sp/>&lt;<sp/>nrtys;<sp/>ii++)<sp/>{</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8h_1a97e414d868aad14bc7e7544fff0a585e" kindref="member">query_setup</ref>(rtys[ii]))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hops__time_8c_1a0cdb2f0d2f1082eda441e24d39d87133" kindref="member">verb</ref>&gt;0)<sp/>fprintf(<ref refid="hops__time_8c_1a60d8f653d68b80f5aa5dc098e90427df" kindref="member">ofp</ref>,<sp/></highlight><highlight class="stringliteral">&quot;%10.10s<sp/>&quot;</highlight><highlight class="normal">,<sp/>rtys[ii]);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(do_time_is(ta))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(2);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="233"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="234"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/ht_timeis.c"/>
+  </compounddef>
+</doxygen>

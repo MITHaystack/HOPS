@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_5f54002e10037f8fa6b21f97509f63d1" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__ComplexPointwiseMultiply_8hh">MHO_ComplexPointwiseMultiply.hh</innerfile>
+    <innerfile refid="MHO__OpenCLBatchedMultidimensionalFastFourierTransform_8hh">MHO_OpenCLBatchedMultidimensionalFastFourierTransform.hh</innerfile>
+    <innerfile refid="MHO__OpenCLFastFourierTransformPlan_8hh">MHO_OpenCLFastFourierTransformPlan.hh</innerfile>
+    <innerfile refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh">MHO_OpenCLFastFourierTransformRadix2Stage.hh</innerfile>
+    <innerfile refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh">MHO_OpenCLMultidimensionalFastFourierTransform.hh</innerfile>
+    <innerfile refid="MHO__OpenCLScalarMultiply_8hh">MHO_OpenCLScalarMultiply.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/"/>
+  </compounddef>
+</doxygen>

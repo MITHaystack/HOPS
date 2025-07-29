@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structvalue" kind="struct" language="C++" prot="public">
+    <compoundname>value</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structvalue_1a6ff64bc1c46936ffb19a461182b41953" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char value::mandatory</definition>
+        <argsstring></argsstring>
+        <name>mandatory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="176" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvalue_1a3900761c83c0c64639419b4e9a331950" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char value::range[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>range</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="179" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvalue_1a543930f497135c3a9b74183127634939" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char value::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="177" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvalue_1ad772dfaa9cddc6ecb21f514e4cc0e04e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char value::units</definition>
+        <argsstring></argsstring>
+        <name>units</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="178" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>value</label>
+        <link refid="structvalue"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mandatory</edgelabel>
+          <edgelabel>range</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>units</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="174" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="175" bodyend="180"/>
+    <listofallmembers>
+      <member refid="structvalue_1a6ff64bc1c46936ffb19a461182b41953" prot="public" virt="non-virtual"><scope>value</scope><name>mandatory</name></member>
+      <member refid="structvalue_1a3900761c83c0c64639419b4e9a331950" prot="public" virt="non-virtual"><scope>value</scope><name>range</name></member>
+      <member refid="structvalue_1a543930f497135c3a9b74183127634939" prot="public" virt="non-virtual"><scope>value</scope><name>type</name></member>
+      <member refid="structvalue_1ad772dfaa9cddc6ecb21f514e4cc0e04e" prot="public" virt="non-virtual"><scope>value</scope><name>units</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

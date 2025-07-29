@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ffcontrol__module_2ffcontrol_2____init_____8py" kind="file" language="Python">
+    <compoundname>ffcontrol_module/ffcontrol/__init__.py</compoundname>
+    <innernamespace refid="namespaceffcontrol">ffcontrol</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespaceffcontrol" refkind="compound"><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>FFControlStructureBase</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>gat_struct</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>istats</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>dstats</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>c_block</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>load_ffcontrol_library</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>get_control_block</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>get_fcode_index</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>get_control_file_hash</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>append_control_file</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>append_control_file_with_find_and_replace</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>prepend_control_file_with_find_and_replace</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.ffcontrol<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>remove_lines_and_append_control_file</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/__init__.py"/>
+  </compounddef>
+</doxygen>

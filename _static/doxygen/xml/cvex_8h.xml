@@ -1,0 +1,1317 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="cvex_8h" kind="file" language="C++">
+    <compoundname>cvex.h</compoundname>
+    <includedby refid="vex_8h" local="yes">vex.h</includedby>
+    <invincdepgraph>
+      <node id="69">
+        <label>do_source.c</label>
+        <link refid="do__source_8c"/>
+      </node>
+      <node id="43">
+        <label>realloc_segs.c</label>
+        <link refid="realloc__segs_8c"/>
+      </node>
+      <node id="36">
+        <label>fill_aline.c</label>
+        <link refid="fill__aline_8c"/>
+      </node>
+      <node id="84">
+        <label>get_mode_deflist.c</label>
+        <link refid="get__mode__deflist_8c"/>
+      </node>
+      <node id="24">
+        <label>search.c</label>
+        <link refid="fourfit__libs_2ffsearch_2src_2search_8c"/>
+      </node>
+      <node id="31">
+        <label>calc_seg.c</label>
+        <link refid="calc__seg_8c"/>
+      </node>
+      <node id="105">
+        <label>param_formats.c</label>
+        <link refid="param__formats_8c"/>
+      </node>
+      <node id="115">
+        <label>read_file.c</label>
+        <link refid="read__file_8c"/>
+      </node>
+      <node id="16">
+        <label>fill_205.c</label>
+        <link refid="fill__205_8c"/>
+      </node>
+      <node id="13">
+        <label>fill_201.c</label>
+        <link refid="fill__201_8c"/>
+      </node>
+      <node id="77">
+        <label>get_chip_mode.c</label>
+        <link refid="get__chip__mode_8c"/>
+      </node>
+      <node id="47">
+        <label>plot_data_dir.c</label>
+        <link refid="plot__data__dir_8c"/>
+      </node>
+      <node id="8">
+        <label>make_flist.c</label>
+        <link refid="make__flist_8c"/>
+      </node>
+      <node id="71">
+        <label>evex_info.c</label>
+        <link refid="evex__info_8c"/>
+      </node>
+      <node id="96">
+        <label>get_vex.c</label>
+        <link refid="get__vex_8c"/>
+      </node>
+      <node id="121">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="28">
+        <label>fringex.h</label>
+        <link refid="fringex_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="102">
+        <label>locate_cq.c</label>
+        <link refid="locate__cq_8c"/>
+      </node>
+      <node id="110">
+        <label>parse_ref.c</label>
+        <link refid="parse__ref_8c"/>
+      </node>
+      <node id="45">
+        <label>set_reffreq.c</label>
+        <link refid="set__reffreq_8c"/>
+      </node>
+      <node id="98">
+        <label>in_quote.c</label>
+        <link refid="in__quote_8c"/>
+      </node>
+      <node id="111">
+        <label>parse_units.c</label>
+        <link refid="parse__units_8c"/>
+      </node>
+      <node id="29">
+        <label>fringex.c</label>
+        <link refid="fringex_8c"/>
+      </node>
+      <node id="23">
+        <label>fringe_search.c</label>
+        <link refid="fringe__search_8c"/>
+      </node>
+      <node id="85">
+        <label>get_pbs_init.c</label>
+        <link refid="get__pbs__init_8c"/>
+      </node>
+      <node id="54">
+        <label>cvex_info.c</label>
+        <link refid="cvex__info_8c"/>
+      </node>
+      <node id="7">
+        <label>get_corel_data.c</label>
+        <link refid="get__corel__data_8c"/>
+      </node>
+      <node id="68">
+        <label>do_site.c</label>
+        <link refid="do__site_8c"/>
+      </node>
+      <node id="70">
+        <label>do_track.c</label>
+        <link refid="do__track_8c"/>
+      </node>
+      <node id="106">
+        <label>parse_date.c</label>
+        <link refid="parse__date_8c"/>
+      </node>
+      <node id="39">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="92">
+        <label>get_su_connect.c</label>
+        <link refid="get__su__connect_8c"/>
+      </node>
+      <node id="34">
+        <label>determine_nsegs.c</label>
+        <link refid="determine__nsegs_8c"/>
+      </node>
+      <node id="14">
+        <label>fill_202.c</label>
+        <link refid="fill__202_8c"/>
+      </node>
+      <node id="97">
+        <label>in_comment.c</label>
+        <link refid="in__comment_8c"/>
+      </node>
+      <node id="21">
+        <label>output.c</label>
+        <link refid="output_8c"/>
+      </node>
+      <node id="114">
+        <label>process_qstring.c</label>
+        <link refid="process__qstring_8c"/>
+      </node>
+      <node id="60">
+        <label>do_eop.c</label>
+        <link refid="do__eop_8c"/>
+      </node>
+      <node id="117">
+        <label>strip_text.c</label>
+        <link refid="strip__text_8c"/>
+      </node>
+      <node id="57">
+        <label>do_bbc.c</label>
+        <link refid="do__bbc_8c"/>
+      </node>
+      <node id="22">
+        <label>ffsearch.h</label>
+        <link refid="ffsearch_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>filelist.c</label>
+        <link refid="filelist_8c"/>
+      </node>
+      <node id="94">
+        <label>get_val_list.c</label>
+        <link refid="get__val__list_8c"/>
+      </node>
+      <node id="90">
+        <label>get_station_deflist.c</label>
+        <link refid="get__station__deflist_8c"/>
+      </node>
+      <node id="46">
+        <label>plot_data_dir.h</label>
+        <link refid="plot__data__dir_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>fill_206.c</label>
+        <link refid="fill__206_8c"/>
+      </node>
+      <node id="53">
+        <label>check_strrange.c</label>
+        <link refid="check__strrange_8c"/>
+      </node>
+      <node id="99">
+        <label>init_scan.c</label>
+        <link refid="init__scan_8c"/>
+      </node>
+      <node id="62">
+        <label>do_freq.c</label>
+        <link refid="do__freq_8c"/>
+      </node>
+      <node id="52">
+        <label>check_stloc.c</label>
+        <link refid="check__stloc_8c"/>
+      </node>
+      <node id="3">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="59">
+        <label>do_das.c</label>
+        <link refid="do__das_8c"/>
+      </node>
+      <node id="82">
+        <label>get_global_deflist.c</label>
+        <link refid="get__global__deflist_8c"/>
+      </node>
+      <node id="103">
+        <label>lvex_info.c</label>
+        <link refid="lvex__info_8c"/>
+      </node>
+      <node id="63">
+        <label>do_head_pos.c</label>
+        <link refid="do__head__pos_8c"/>
+      </node>
+      <node id="118">
+        <label>svex_info.c</label>
+        <link refid="svex__info_8c"/>
+      </node>
+      <node id="80">
+        <label>get_def.c</label>
+        <link refid="get__def_8c"/>
+      </node>
+      <node id="32">
+        <label>clear_fxp.c</label>
+        <link refid="clear__fxp_8c"/>
+      </node>
+      <node id="113">
+        <label>print_location.c</label>
+        <link refid="print__location_8c"/>
+      </node>
+      <node id="73">
+        <label>fill_scanlist.c</label>
+        <link refid="fill__scanlist_8c"/>
+      </node>
+      <node id="1">
+        <label>cvex.h</label>
+        <link refid="cvex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>do_phase_cal_detect.c</label>
+        <link refid="do__phase__cal__detect_8c"/>
+      </node>
+      <node id="104">
+        <label>nextchar.c</label>
+        <link refid="nextchar_8c"/>
+      </node>
+      <node id="100">
+        <label>ivex_info.c</label>
+        <link refid="ivex__info_8c"/>
+      </node>
+      <node id="64">
+        <label>do_if.c</label>
+        <link refid="do__if_8c"/>
+      </node>
+      <node id="4">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="101">
+        <label>locate_blocks.c</label>
+        <link refid="locate__blocks_8c"/>
+      </node>
+      <node id="19">
+        <label>fill_210.c</label>
+        <link refid="fill__210_8c"/>
+      </node>
+      <node id="37">
+        <label>init_fxp.c</label>
+        <link refid="init__fxp_8c"/>
+      </node>
+      <node id="83">
+        <label>get_logscan.c</label>
+        <link refid="get__logscan_8c"/>
+      </node>
+      <node id="15">
+        <label>fill_203.c</label>
+        <link refid="fill__203_8c"/>
+      </node>
+      <node id="108">
+        <label>parse_pval.c</label>
+        <link refid="parse__pval_8c"/>
+      </node>
+      <node id="49">
+        <label>check_intrange.c</label>
+        <link refid="check__intrange_8c"/>
+      </node>
+      <node id="79">
+        <label>get_corr_mode.c</label>
+        <link refid="get__corr__mode_8c"/>
+      </node>
+      <node id="38">
+        <label>model.c</label>
+        <link refid="model_8c"/>
+      </node>
+      <node id="40">
+        <label>parse_dflag.c</label>
+        <link refid="parse__dflag_8c"/>
+      </node>
+      <node id="18">
+        <label>fill_207.c</label>
+        <link refid="fill__207_8c"/>
+      </node>
+      <node id="75">
+        <label>find_statements.c</label>
+        <link refid="find__statements_8c"/>
+      </node>
+      <node id="10">
+        <label>set_pointers.c</label>
+        <link refid="set__pointers_8c"/>
+      </node>
+      <node id="20">
+        <label>fill_fringe_info.c</label>
+        <link refid="fill__fringe__info_8c"/>
+      </node>
+      <node id="27">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>do_roll.c</label>
+        <link refid="do__roll_8c"/>
+      </node>
+      <node id="48">
+        <label>block_params.c</label>
+        <link refid="block__params_8c"/>
+      </node>
+      <node id="120">
+        <label>write_vexfile.c</label>
+        <link refid="write__vexfile_8c"/>
+      </node>
+      <node id="116">
+        <label>scan_info.c</label>
+        <link refid="scan__info_8c"/>
+      </node>
+      <node id="81">
+        <label>get_drive_init.c</label>
+        <link refid="get__drive__init_8c"/>
+      </node>
+      <node id="93">
+        <label>get_trm_config.c</label>
+        <link refid="get__trm__config_8c"/>
+      </node>
+      <node id="78">
+        <label>get_corr_bd_parms.c</label>
+        <link refid="get__corr__bd__parms_8c"/>
+      </node>
+      <node id="5">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+      <node id="56">
+        <label>do_antenna.c</label>
+        <link refid="do__antenna_8c"/>
+      </node>
+      <node id="95">
+        <label>get_version.c</label>
+        <link refid="get__version_8c"/>
+      </node>
+      <node id="11">
+        <label>time_range.c</label>
+        <link refid="time__range_8c"/>
+      </node>
+      <node id="76">
+        <label>get_block_mode.c</label>
+        <link refid="get__block__mode_8c"/>
+      </node>
+      <node id="44">
+        <label>set_loops.c</label>
+        <link refid="set__loops_8c"/>
+      </node>
+      <node id="2">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+      </node>
+      <node id="109">
+        <label>parse_ra.c</label>
+        <link refid="parse__ra_8c"/>
+      </node>
+      <node id="88">
+        <label>get_section_mode.c</label>
+        <link refid="get__section__mode_8c"/>
+      </node>
+      <node id="51">
+        <label>check_scan.c</label>
+        <link refid="check__scan_8c"/>
+      </node>
+      <node id="33">
+        <label>clear_loops.c</label>
+        <link refid="clear__loops_8c"/>
+      </node>
+      <node id="58">
+        <label>do_clock.c</label>
+        <link refid="do__clock_8c"/>
+      </node>
+      <node id="107">
+        <label>parse_dec.c</label>
+        <link refid="parse__dec_8c"/>
+      </node>
+      <node id="65">
+        <label>do_pass_order.c</label>
+        <link refid="do__pass__order_8c"/>
+      </node>
+      <node id="12">
+        <label>fill_200.c</label>
+        <link refid="fill__200_8c"/>
+      </node>
+      <node id="6">
+        <label>fill_param.c</label>
+        <link refid="fill__param_8c"/>
+      </node>
+      <node id="50">
+        <label>check_realrange.c</label>
+        <link refid="check__realrange_8c"/>
+      </node>
+      <node id="61">
+        <label>do_exper.c</label>
+        <link refid="do__exper_8c"/>
+      </node>
+      <node id="72">
+        <label>fill_deflists.c</label>
+        <link refid="fill__deflists_8c"/>
+      </node>
+      <node id="41">
+        <label>parse_iflag.c</label>
+        <link refid="parse__iflag_8c"/>
+      </node>
+      <node id="26">
+        <label>organize_data.c</label>
+        <link refid="organize__data_8c"/>
+      </node>
+      <node id="30">
+        <label>accum_segs.c</label>
+        <link refid="accum__segs_8c"/>
+      </node>
+      <node id="89">
+        <label>get_statement.c</label>
+        <link refid="get__statement_8c"/>
+      </node>
+      <node id="119">
+        <label>vex_init.c</label>
+        <link refid="vex__init_8c"/>
+      </node>
+      <node id="87">
+        <label>get_pcm_tables.c</label>
+        <link refid="get__pcm__tables_8c"/>
+      </node>
+      <node id="9">
+        <label>make_passes.c</label>
+        <link refid="make__passes_8c"/>
+      </node>
+      <node id="112">
+        <label>parse_vexfile.c</label>
+        <link refid="parse__vexfile_8c"/>
+      </node>
+      <node id="25">
+        <label>create_fname.c</label>
+        <link refid="create__fname_8c"/>
+      </node>
+      <node id="86">
+        <label>get_pcm_config.c</label>
+        <link refid="get__pcm__config_8c"/>
+      </node>
+      <node id="42">
+        <label>read_binaries.c</label>
+        <link refid="read__binaries_8c"/>
+      </node>
+      <node id="74">
+        <label>fill_station_parms.c</label>
+        <link refid="fill__station__parms_8c"/>
+      </node>
+      <node id="55">
+        <label>decode_pval.c</label>
+        <link refid="decode__pval_8c"/>
+      </node>
+      <node id="91">
+        <label>get_su_chan_out.c</label>
+        <link refid="get__su__chan__out_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structCvex__Block" prot="public">Cvex_Block</innerclass>
+    <innerclass refid="structCvex__BlockMode" prot="public">Cvex_BlockMode</innerclass>
+    <innerclass refid="structCvex__Board" prot="public">Cvex_Board</innerclass>
+    <innerclass refid="structCvex__BoardParms" prot="public">Cvex_BoardParms</innerclass>
+    <innerclass refid="structCvex__Chip" prot="public">Cvex_Chip</innerclass>
+    <innerclass refid="structCvex__ChipMode" prot="public">Cvex_ChipMode</innerclass>
+    <innerclass refid="structCvex__Config" prot="public">Cvex_Config</innerclass>
+    <innerclass refid="structCvex__Mode" prot="public">Cvex_Mode</innerclass>
+    <innerclass refid="structCvex__Section" prot="public">Cvex_Section</innerclass>
+    <innerclass refid="structCvex__SectionMode" prot="public">Cvex_SectionMode</innerclass>
+    <innerclass refid="structCvex__Snake" prot="public">Cvex_Snake</innerclass>
+    <innerclass refid="structCvex__XPolPair" prot="public">Cvex_XPolPair</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="cvex_8h_1aeac5c9b8d55429722b244de5b1a046de" prot="public" static="no">
+        <name>MAX_BLKS_P_CHIP</name>
+        <initializer>8                /* Max blocks/chip        */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1a1a3f80674ddabf8ae880b4ef668fab41" prot="public" static="no">
+        <name>MAX_BLKS_P_SNAKE_P_CHIP</name>
+        <initializer>10               /* Max blocks/snake/chip  */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1a48cb75a57101440684f6f242051ba621" prot="public" static="no">
+        <name>MAX_BRDS_P_CORR</name>
+        <initializer>16               /* Max boards/correlator  */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1ab01c86b2f6b508de966517d6e9c4172b" prot="public" static="no">
+        <name>MAX_CHIP_INS_P_CHIP</name>
+        <initializer>4                /* Max chip <ref refid="structinputs" kindref="compound">inputs</ref>/chip   */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1aa63ffc2f346e51546c69875e14a248bc" prot="public" static="no">
+        <name>MAX_CHIPS_P_BRD</name>
+        <initializer>32               /* Max chips/board        */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1a97d21ba807a60c1208f12f0fb5fb8320" prot="public" static="no">
+        <name>MAX_MUXS_P_BLK</name>
+        <initializer>4                /* Max multiplexers/<ref refid="structblock" kindref="compound">block</ref> */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1a786541aa529fc3a483f133c87ae68315" prot="public" static="no">
+        <name>MAX_SECTS_P_BRD</name>
+        <initializer>16               /* Max sections/board     */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1a1548c5f082897be80cc2908c3966d1d3" prot="public" static="no">
+        <name>MAX_SNAKES_P_CHIP</name>
+        <initializer>8                /* Max snakes/chip        */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cvex_8h_1a6f0f410bac57b911a53e950904d8498f" prot="public" static="no">
+        <name>MAX_XPOL_P_BRD</name>
+        <initializer>8                /* Max xpol pairs/board   */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="cvex_8h_1ac09bc6b6b6e3c68ab99d2e649ad086d7" prot="public" static="no">
+        <type>struct <ref refid="structCvex__Block" kindref="compound">Cvex_Block</ref></type>
+        <definition>typedef struct Cvex_Block Cvex_Block</definition>
+        <argsstring></argsstring>
+        <name>Cvex_Block</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="129" column="12"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1af09f505680a74e3cf14593c00c627ebc" prot="public" static="no">
+        <type>struct <ref refid="structCvex__BlockMode" kindref="compound">Cvex_BlockMode</ref></type>
+        <definition>typedef struct Cvex_BlockMode Cvex_BlockMode</definition>
+        <argsstring></argsstring>
+        <name>Cvex_BlockMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="166" column="16"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1a22e3b089971f22985f439ce6d4a2100c" prot="public" static="no">
+        <type>struct <ref refid="structCvex__Board" kindref="compound">Cvex_Board</ref></type>
+        <definition>typedef struct Cvex_Board Cvex_Board</definition>
+        <argsstring></argsstring>
+        <name>Cvex_Board</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="69" column="12"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1ad628679b58b7384c7a2169734b1c39f2" prot="public" static="no">
+        <type>struct <ref refid="structCvex__BoardParms" kindref="compound">Cvex_BoardParms</ref></type>
+        <definition>typedef struct Cvex_BoardParms Cvex_BoardParms</definition>
+        <argsstring></argsstring>
+        <name>Cvex_BoardParms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="98" column="17"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1ab6f91e63a4096bcc0c65b0f99170f6db" prot="public" static="no">
+        <type>struct <ref refid="structCvex__Chip" kindref="compound">Cvex_Chip</ref></type>
+        <definition>typedef struct Cvex_Chip Cvex_Chip</definition>
+        <argsstring></argsstring>
+        <name>Cvex_Chip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="110" column="11"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1a6b6e9c8454b5b0fdd27bcc6cf81bbcdc" prot="public" static="no">
+        <type>struct <ref refid="structCvex__ChipMode" kindref="compound">Cvex_ChipMode</ref></type>
+        <definition>typedef struct Cvex_ChipMode Cvex_ChipMode</definition>
+        <argsstring></argsstring>
+        <name>Cvex_ChipMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="147" column="15"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1af1f9b79d936d519b75954b9e57df22b8" prot="public" static="no">
+        <type>struct <ref refid="structCvex__Config" kindref="compound">Cvex_Config</ref></type>
+        <definition>typedef struct Cvex_Config Cvex_Config</definition>
+        <argsstring></argsstring>
+        <name>Cvex_Config</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="47" column="13"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1a8fbcc2256e1e998debdfba91d56bee46" prot="public" static="no">
+        <type>struct <ref refid="structCvex__Mode" kindref="compound">Cvex_Mode</ref></type>
+        <definition>typedef struct Cvex_Mode Cvex_Mode</definition>
+        <argsstring></argsstring>
+        <name>Cvex_Mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="84" column="11"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1a1c1dd9a5a19e023efaf2eddb571ce504" prot="public" static="no">
+        <type>struct <ref refid="structCvex__Section" kindref="compound">Cvex_Section</ref></type>
+        <definition>typedef struct Cvex_Section Cvex_Section</definition>
+        <argsstring></argsstring>
+        <name>Cvex_Section</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="60" column="14"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1a2a0fc5629c3e1b0276fbbc13bfe186b4" prot="public" static="no">
+        <type>struct <ref refid="structCvex__SectionMode" kindref="compound">Cvex_SectionMode</ref></type>
+        <definition>typedef struct Cvex_SectionMode Cvex_SectionMode</definition>
+        <argsstring></argsstring>
+        <name>Cvex_SectionMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="117" column="18"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1ad868d6489d3a5501dd7a0ee4773003b9" prot="public" static="no">
+        <type>struct <ref refid="structCvex__Snake" kindref="compound">Cvex_Snake</ref></type>
+        <definition>typedef struct Cvex_Snake Cvex_Snake</definition>
+        <argsstring></argsstring>
+        <name>Cvex_Snake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="138" column="12"/>
+      </memberdef>
+      <memberdef kind="typedef" id="cvex_8h_1a6c73db7438984625b37f969927601755" prot="public" static="no">
+        <type>struct <ref refid="structCvex__XPolPair" kindref="compound">Cvex_XPolPair</ref></type>
+        <definition>typedef struct Cvex_XPolPair Cvex_XPolPair</definition>
+        <argsstring></argsstring>
+        <name>Cvex_XPolPair</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="75" column="15"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>CVEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CVEX_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>The<sp/>general<sp/>organization<sp/>of<sp/>a<sp/>binary<sp/>or<sp/>parsed<sp/>cvex:$CORR<sp/>file:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>Cvex_Config<sp/><sp/><sp/><sp/><sp/><sp/>[<sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>Cvex_Mode<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[<sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>Cvex_BoardParms<sp/><sp/>[<sp/>num<sp/>defs<sp/>used<sp/>from<sp/>$CORR_BD_PARMS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>Cvex_SectionMode<sp/>[<sp/>num<sp/>defs<sp/>used<sp/>from<sp/>$CORR_BD_SECTION_MODE<sp/>]</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>Cvex_ChipMode<sp/><sp/><sp/><sp/>[<sp/>num<sp/>defs<sp/>used<sp/>from<sp/>$CORR_CHIP_MODE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>Cvex_BlockMode<sp/><sp/><sp/>[<sp/>num<sp/>defs<sp/>used<sp/>from<sp/>$CORR_CHIP_BLOCK_MODE<sp/>]</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="cvex_8h_1a786541aa529fc3a483f133c87ae68315" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_SECTS_P_BRD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>sections/board<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="cvex_8h_1a48cb75a57101440684f6f242051ba621" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BRDS_P_CORR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>16<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>boards/correlator<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="cvex_8h_1a6f0f410bac57b911a53e950904d8498f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_XPOL_P_BRD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>xpol<sp/>pairs/board<sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="cvex_8h_1ab01c86b2f6b508de966517d6e9c4172b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_CHIP_INS_P_CHIP<sp/><sp/><sp/><sp/><sp/><sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>chip<sp/>inputs/chip<sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="cvex_8h_1aa63ffc2f346e51546c69875e14a248bc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_CHIPS_P_BRD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>32<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>chips/board<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="cvex_8h_1a97d21ba807a60c1208f12f0fb5fb8320" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_MUXS_P_BLK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>multiplexers/block<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="cvex_8h_1a1a3f80674ddabf8ae880b4ef668fab41" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BLKS_P_SNAKE_P_CHIP<sp/><sp/>10<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>blocks/snake/chip<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="cvex_8h_1aeac5c9b8d55429722b244de5b1a046de" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_BLKS_P_CHIP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>blocks/chip<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="cvex_8h_1a1548c5f082897be80cc2908c3966d1d3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_SNAKES_P_CHIP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>snakes/chip<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>$CVEX_REV<sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>$CORR_CONFIG<sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structCvex__Config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Config" kindref="compound">Cvex_Config</ref><sp/>{</highlight></codeline>
+<codeline lineno="42" refid="structCvex__Config_1a68183cc37ce6fcf3702e334d7ea1c006" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Config_1a68183cc37ce6fcf3702e334d7ea1c006" kindref="member">rev</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="43" refid="structCvex__Config_1a5d943b671af15dd4ef22d6a2370d369a" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Config_1a5d943b671af15dd4ef22d6a2370d369a" kindref="member">defId</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="44" refid="structCvex__Config_1ab616cab02421e93566da4a49d502685b" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Mode" kindref="compound">Cvex_Mode</ref><sp/>*<sp/><sp/><ref refid="structCvex__Config_1ab616cab02421e93566da4a49d502685b" kindref="member">mode</ref>;<sp/></highlight></codeline>
+<codeline lineno="45" refid="structCvex__Config_1a4a28b419b2b6459cc1cffdfa11a1769c" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Config_1a4a28b419b2b6459cc1cffdfa11a1769c" kindref="member">ignoreChanNames</ref>;</highlight></codeline>
+<codeline lineno="46" refid="structCvex__Config_1a654db0e252136318a125096fc6bfda54" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Config_1a654db0e252136318a125096fc6bfda54" kindref="member">auto_corr</ref>;</highlight></codeline>
+<codeline lineno="47" refid="cvex_8h_1af1f9b79d936d519b75954b9e57df22b8" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1af1f9b79d936d519b75954b9e57df22b8" kindref="member">Cvex_Config</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>$CORR_MODE</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="structCvex__Section" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Section" kindref="compound">Cvex_Section</ref><sp/>{</highlight></codeline>
+<codeline lineno="56" refid="structCvex__Section_1a6b3498cc80fd905095bce539345a9184" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__SectionMode" kindref="compound">Cvex_SectionMode</ref><sp/>*<sp/><sp/><ref refid="structCvex__Section_1a6b3498cc80fd905095bce539345a9184" kindref="member">mode</ref>;</highlight></codeline>
+<codeline lineno="57" refid="structCvex__Section_1a1f2a1dad7ad8fc00a66b4c49c5469518" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Section_1a1f2a1dad7ad8fc00a66b4c49c5469518" kindref="member">phyChipNum</ref>;</highlight></codeline>
+<codeline lineno="58" refid="structCvex__Section_1ae37a0e3b9a774d375ed6fcd8b2e5640d" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Section_1ae37a0e3b9a774d375ed6fcd8b2e5640d" kindref="member">refId</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="59" refid="structCvex__Section_1a81d6ae6554cd230199229d529222d0f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Section_1a81d6ae6554cd230199229d529222d0f5" kindref="member">remId</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="60" refid="cvex_8h_1a1c1dd9a5a19e023efaf2eddb571ce504" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1a1c1dd9a5a19e023efaf2eddb571ce504" kindref="member">Cvex_Section</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="63" refid="structCvex__Board" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Board" kindref="compound">Cvex_Board</ref><sp/>{</highlight></codeline>
+<codeline lineno="64" refid="structCvex__Board_1a153b07bdda95ce359bc7c9c0d721d1ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Board_1a153b07bdda95ce359bc7c9c0d721d1ee" kindref="member">segId</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="65" refid="structCvex__Board_1ad6a47b19c4d292b6bd4696937e035957" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Board_1ad6a47b19c4d292b6bd4696937e035957" kindref="member">sliceId</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="66" refid="structCvex__Board_1a1a956806154f849445a9e5dff2073d24" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__BoardParms" kindref="compound">Cvex_BoardParms</ref><sp/>*<sp/><sp/><ref refid="structCvex__Board_1a1a956806154f849445a9e5dff2073d24" kindref="member">mode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="structCvex__Board_1aed967c158ad7feca1c0a954319c404ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Board_1aed967c158ad7feca1c0a954319c404ad" kindref="member">numOfSections</ref>;</highlight></codeline>
+<codeline lineno="68" refid="structCvex__Board_1a0c5c6ad8d4f2491ff338e5867971e98b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Section" kindref="compound">Cvex_Section</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Board_1a0c5c6ad8d4f2491ff338e5867971e98b" kindref="member">section</ref>[<ref refid="cvex_8h_1a786541aa529fc3a483f133c87ae68315" kindref="member">MAX_SECTS_P_BRD</ref>];</highlight></codeline>
+<codeline lineno="69" refid="cvex_8h_1a22e3b089971f22985f439ce6d4a2100c" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1a22e3b089971f22985f439ce6d4a2100c" kindref="member">Cvex_Board</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="structCvex__XPolPair" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__XPolPair" kindref="compound">Cvex_XPolPair</ref><sp/>{</highlight></codeline>
+<codeline lineno="73" refid="structCvex__XPolPair_1a42c8a4f729338f965dfd34a66e4a542f" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__XPolPair_1a42c8a4f729338f965dfd34a66e4a542f" kindref="member">chn1Id</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="74" refid="structCvex__XPolPair_1a684c801b7a5568dcc87f516f53ea5ce7" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__XPolPair_1a684c801b7a5568dcc87f516f53ea5ce7" kindref="member">chn2Id</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="75" refid="cvex_8h_1a6c73db7438984625b37f969927601755" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1a6c73db7438984625b37f969927601755" kindref="member">Cvex_XPolPair</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="structCvex__Mode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Mode" kindref="compound">Cvex_Mode</ref><sp/>{</highlight></codeline>
+<codeline lineno="79" refid="structCvex__Mode_1a2d3cf87d9fe470072131cc989f79ba9a" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Mode_1a2d3cf87d9fe470072131cc989f79ba9a" kindref="member">defId</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="80" refid="structCvex__Mode_1a6f8442d3b7afeaa5df255a14ee38d0fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Mode_1a6f8442d3b7afeaa5df255a14ee38d0fe" kindref="member">numOfBoards</ref>;</highlight></codeline>
+<codeline lineno="81" refid="structCvex__Mode_1af281c68c52b3a9dfbad73146377d7cd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Board" kindref="compound">Cvex_Board</ref><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Mode_1af281c68c52b3a9dfbad73146377d7cd4" kindref="member">board</ref>[<ref refid="cvex_8h_1a48cb75a57101440684f6f242051ba621" kindref="member">MAX_BRDS_P_CORR</ref>];</highlight></codeline>
+<codeline lineno="82" refid="structCvex__Mode_1ab516d4ae90e06e6f41b699dcbf9e7dff" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Mode_1ab516d4ae90e06e6f41b699dcbf9e7dff" kindref="member">numOfXPolPairs</ref>;</highlight></codeline>
+<codeline lineno="83" refid="structCvex__Mode_1a2bb5fe3a8a9c3653fcef7f3730f01745" refkind="member"><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__XPolPair" kindref="compound">Cvex_XPolPair</ref><sp/><sp/><ref refid="structCvex__Mode_1a2bb5fe3a8a9c3653fcef7f3730f01745" kindref="member">xPolPair</ref>[<ref refid="cvex_8h_1a6f0f410bac57b911a53e950904d8498f" kindref="member">MAX_XPOL_P_BRD</ref>];</highlight></codeline>
+<codeline lineno="84" refid="cvex_8h_1a8fbcc2256e1e998debdfba91d56bee46" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1a8fbcc2256e1e998debdfba91d56bee46" kindref="member">Cvex_Mode</ref>;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*<sp/>$CORR_BD_PARMS</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="structCvex__BoardParms" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__BoardParms" kindref="compound">Cvex_BoardParms</ref><sp/>{</highlight></codeline>
+<codeline lineno="93" refid="structCvex__BoardParms_1a46ee9fc5cbcff862513687ff8c5704d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__BoardParms_1a46ee9fc5cbcff862513687ff8c5704d7" kindref="member">defId</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="94" refid="structCvex__BoardParms_1acfa2d2a0b318d33882ea5591df8d03fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BoardParms_1acfa2d2a0b318d33882ea5591df8d03fc" kindref="member">accumRatio</ref>;</highlight></codeline>
+<codeline lineno="95" refid="structCvex__BoardParms_1a9d45cb227998935b81c2fb508721a957" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BoardParms_1a9d45cb227998935b81c2fb508721a957" kindref="member">bocfShsmpRatio</ref>;</highlight></codeline>
+<codeline lineno="96" refid="structCvex__BoardParms_1a533702c5efe420b9bd51190d779645c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BoardParms_1a533702c5efe420b9bd51190d779645c5" kindref="member">dataShsmpRatio</ref>;</highlight></codeline>
+<codeline lineno="97" refid="structCvex__BoardParms_1ae457697219d9a9d2f71c6499818ca474" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BoardParms_1ae457697219d9a9d2f71c6499818ca474" kindref="member">sampleCntPerLagEnable</ref>;</highlight></codeline>
+<codeline lineno="98" refid="cvex_8h_1ad628679b58b7384c7a2169734b1c39f2" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1ad628679b58b7384c7a2169734b1c39f2" kindref="member">Cvex_BoardParms</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>$CORR_SECT_MODE</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="structCvex__Chip" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Chip" kindref="compound">Cvex_Chip</ref><sp/>{</highlight></codeline>
+<codeline lineno="107" refid="structCvex__Chip_1ab72ccd75313ce5fad463ced09dfdd284" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__ChipMode" kindref="compound">Cvex_ChipMode</ref><sp/>*<sp/><sp/><ref refid="structCvex__Chip_1ab72ccd75313ce5fad463ced09dfdd284" kindref="member">mode</ref>;</highlight></codeline>
+<codeline lineno="108" refid="structCvex__Chip_1ac9aafcb1ce98c7c894dccf5b4d101a20" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Chip_1ac9aafcb1ce98c7c894dccf5b4d101a20" kindref="member">relChipNum</ref>;</highlight></codeline>
+<codeline lineno="109" refid="structCvex__Chip_1abc0add38b664f55d348636095c7357f1" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Chip_1abc0add38b664f55d348636095c7357f1" kindref="member">input</ref>[<ref refid="cvex_8h_1ab01c86b2f6b508de966517d6e9c4172b" kindref="member">MAX_CHIP_INS_P_CHIP</ref>][<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="110" refid="cvex_8h_1ab6f91e63a4096bcc0c65b0f99170f6db" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1ab6f91e63a4096bcc0c65b0f99170f6db" kindref="member">Cvex_Chip</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="structCvex__SectionMode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__SectionMode" kindref="compound">Cvex_SectionMode</ref><sp/>{</highlight></codeline>
+<codeline lineno="114" refid="structCvex__SectionMode_1ace1c2d67cc5aae4243f25c84d2c5d2d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__SectionMode_1ace1c2d67cc5aae4243f25c84d2c5d2d4" kindref="member">defId</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="115" refid="structCvex__SectionMode_1a7acd37104fcbe8c3d4db11803dd855eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__SectionMode_1a7acd37104fcbe8c3d4db11803dd855eb" kindref="member">numOfChips</ref>;</highlight></codeline>
+<codeline lineno="116" refid="structCvex__SectionMode_1a6bdbd8cb94d43b1b96f9ac175efdaae7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Chip" kindref="compound">Cvex_Chip</ref><sp/><sp/><ref refid="structCvex__SectionMode_1a6bdbd8cb94d43b1b96f9ac175efdaae7" kindref="member">chip</ref>[<ref refid="cvex_8h_1aa63ffc2f346e51546c69875e14a248bc" kindref="member">MAX_CHIPS_P_BRD</ref>];</highlight></codeline>
+<codeline lineno="117" refid="cvex_8h_1a2a0fc5629c3e1b0276fbbc13bfe186b4" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1a2a0fc5629c3e1b0276fbbc13bfe186b4" kindref="member">Cvex_SectionMode</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/>*<sp/>$CORR_CHIP_MODE</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="structCvex__Block" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Block" kindref="compound">Cvex_Block</ref><sp/>{</highlight></codeline>
+<codeline lineno="126" refid="structCvex__Block_1a49ba36fe0d38c45757892eed7c36f2f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__BlockMode" kindref="compound">Cvex_BlockMode</ref><sp/>*<sp/><sp/><ref refid="structCvex__Block_1a49ba36fe0d38c45757892eed7c36f2f3" kindref="member">mode</ref>;</highlight></codeline>
+<codeline lineno="127" refid="structCvex__Block_1a2ce4ab9380ee677c0ad2012609935edf" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Block_1a2ce4ab9380ee677c0ad2012609935edf" kindref="member">blockId</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="128" refid="structCvex__Block_1a1969c2ccae165c129a895e02ea018807" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__Block_1a1969c2ccae165c129a895e02ea018807" kindref="member">mux</ref>[<ref refid="cvex_8h_1a97d21ba807a60c1208f12f0fb5fb8320" kindref="member">MAX_MUXS_P_BLK</ref>];</highlight></codeline>
+<codeline lineno="129" refid="cvex_8h_1ac09bc6b6b6e3c68ab99d2e649ad086d7" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1ac09bc6b6b6e3c68ab99d2e649ad086d7" kindref="member">Cvex_Block</ref>;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="structCvex__Snake" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__Snake" kindref="compound">Cvex_Snake</ref><sp/>{</highlight></codeline>
+<codeline lineno="133" refid="structCvex__Snake_1a3a677b843f0975ca46396fcd5f1c0e30" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Snake_1a3a677b843f0975ca46396fcd5f1c0e30" kindref="member">type</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="134" refid="structCvex__Snake_1a1b2c6b40e7e91f475dce0addc951a4df" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Snake_1a1b2c6b40e7e91f475dce0addc951a4df" kindref="member">refId</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="135" refid="structCvex__Snake_1a3410ec0cde3dba66a1292316d179ecc8" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Snake_1a3410ec0cde3dba66a1292316d179ecc8" kindref="member">remId</ref>[<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="136" refid="structCvex__Snake_1a2eb52f6d04f224a32c068f8902af9084" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__Snake_1a2eb52f6d04f224a32c068f8902af9084" kindref="member">lenOfSnakePath</ref>;</highlight></codeline>
+<codeline lineno="137" refid="structCvex__Snake_1a8917ff327a6e8c813d9a89c963a807fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Snake_1a8917ff327a6e8c813d9a89c963a807fb" kindref="member">path</ref>[<ref refid="cvex_8h_1a1a3f80674ddabf8ae880b4ef668fab41" kindref="member">MAX_BLKS_P_SNAKE_P_CHIP</ref>][<ref refid="vex_8h_1ad4dd202f83c8cbd5beb1e0cb13534964" kindref="member">MAX_PVALSIZE</ref>];</highlight></codeline>
+<codeline lineno="138" refid="cvex_8h_1ad868d6489d3a5501dd7a0ee4773003b9" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1ad868d6489d3a5501dd7a0ee4773003b9" kindref="member">Cvex_Snake</ref>;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="structCvex__ChipMode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__ChipMode" kindref="compound">Cvex_ChipMode</ref><sp/>{</highlight></codeline>
+<codeline lineno="142" refid="structCvex__ChipMode_1aef7e9e5d8848ef6cf45fadd52616213e" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__ChipMode_1aef7e9e5d8848ef6cf45fadd52616213e" kindref="member">defId</ref>[<sp/><ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref><sp/>];</highlight></codeline>
+<codeline lineno="143" refid="structCvex__ChipMode_1a19cd9c67c94be5b2bab0105ed86f4699" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__ChipMode_1a19cd9c67c94be5b2bab0105ed86f4699" kindref="member">numOfBlocks</ref>;</highlight></codeline>
+<codeline lineno="144" refid="structCvex__ChipMode_1a41912021f4da87aecfce85eb039e6340" refkind="member"><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Block" kindref="compound">Cvex_Block</ref><sp/><sp/><ref refid="structblock" kindref="compound">block</ref>[<ref refid="cvex_8h_1aeac5c9b8d55429722b244de5b1a046de" kindref="member">MAX_BLKS_P_CHIP</ref>];<sp/></highlight></codeline>
+<codeline lineno="145" refid="structCvex__ChipMode_1a801b51a6161a4ce5fb11a17129c4c184" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structCvex__ChipMode_1a801b51a6161a4ce5fb11a17129c4c184" kindref="member">numOfSnakes</ref>;</highlight></codeline>
+<codeline lineno="146" refid="structCvex__ChipMode_1a9d7417ab2ad2b20789ec6b6a9fa82f6d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__Snake" kindref="compound">Cvex_Snake</ref><sp/><sp/><ref refid="structCvex__ChipMode_1a9d7417ab2ad2b20789ec6b6a9fa82f6d" kindref="member">snake</ref>[<ref refid="cvex_8h_1a1548c5f082897be80cc2908c3966d1d3" kindref="member">MAX_SNAKES_P_CHIP</ref>];</highlight></codeline>
+<codeline lineno="147" refid="cvex_8h_1a6b6e9c8454b5b0fdd27bcc6cf81bbcdc" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1a6b6e9c8454b5b0fdd27bcc6cf81bbcdc" kindref="member">Cvex_ChipMode</ref>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="comment">/*----------------------------------------------------------------------------</highlight></codeline>
+<codeline lineno="152"><highlight class="comment"><sp/>*<sp/>$CORR_BLOCK_MODE</highlight></codeline>
+<codeline lineno="153"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="structCvex__BlockMode" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structCvex__BlockMode" kindref="compound">Cvex_BlockMode</ref><sp/>{</highlight></codeline>
+<codeline lineno="156" refid="structCvex__BlockMode_1ae3b6ed15f8d0ed03d7600d74910a5b99" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structCvex__BlockMode_1ae3b6ed15f8d0ed03d7600d74910a5b99" kindref="member">defId</ref>[<ref refid="tapeDB_8h_1a2381a4931877d06910d2880b163221a9" kindref="member">MAX_NAMESIZE</ref>];</highlight></codeline>
+<codeline lineno="157" refid="structCvex__BlockMode_1aa4996ee674209e444ac953ab28c46176" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1aa4996ee674209e444ac953ab28c46176" kindref="member">invalidateOnTapMove</ref>;</highlight></codeline>
+<codeline lineno="158" refid="structCvex__BlockMode_1af9efa6023cab3901b1d9e1959ab2d636" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1af9efa6023cab3901b1d9e1959ab2d636" kindref="member">headerMode</ref>;</highlight></codeline>
+<codeline lineno="159" refid="structCvex__BlockMode_1adcd23921eaf9888e6c7ca82e3ba8be49" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1adcd23921eaf9888e6c7ca82e3ba8be49" kindref="member">enableTap</ref>;</highlight></codeline>
+<codeline lineno="160" refid="structCvex__BlockMode_1a83cd4a11133630e7d03b901b651f0e76" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1a83cd4a11133630e7d03b901b651f0e76" kindref="member">lCellRotrMode</ref>;</highlight></codeline>
+<codeline lineno="161" refid="structCvex__BlockMode_1ae00e8b1faec179923c29693aa7d8aee2" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1ae00e8b1faec179923c29693aa7d8aee2" kindref="member">lCellXDly</ref>;</highlight></codeline>
+<codeline lineno="162" refid="structCvex__BlockMode_1a2e91ddb62b8ea43b079f92e184cc0bd9" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1a2e91ddb62b8ea43b079f92e184cc0bd9" kindref="member">lCellYDly</ref>;</highlight></codeline>
+<codeline lineno="163" refid="structCvex__BlockMode_1abf5c496d5f925da474749a1ee02fbf8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1abf5c496d5f925da474749a1ee02fbf8b" kindref="member">rCellRotrMode</ref>;</highlight></codeline>
+<codeline lineno="164" refid="structCvex__BlockMode_1a4079120c934b556e30c38c07d90c9913" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1a4079120c934b556e30c38c07d90c9913" kindref="member">rCellXDly</ref>;</highlight></codeline>
+<codeline lineno="165" refid="structCvex__BlockMode_1a2c23bfde0643f6c95e10ef086a91440a" refkind="member"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><ref refid="structCvex__BlockMode_1a2c23bfde0643f6c95e10ef086a91440a" kindref="member">rCellYDly</ref>;</highlight></codeline>
+<codeline lineno="166" refid="cvex_8h_1af09f505680a74e3cf14593c00c627ebc" refkind="member"><highlight class="normal">}<sp/><ref refid="cvex_8h_1af09f505680a74e3cf14593c00c627ebc" kindref="member">Cvex_BlockMode</ref>;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h"/>
+  </compounddef>
+</doxygen>

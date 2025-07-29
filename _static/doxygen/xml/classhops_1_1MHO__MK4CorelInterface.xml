@@ -1,0 +1,642 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MK4CorelInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MK4CorelInterface</compoundname>
+    <includes refid="MHO__MK4CorelInterface_8hh" local="no">MHO_MK4CorelInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a5ae1a76bacee6e25b7036975ffbbfce0" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &gt;</type>
+        <definition>std::map&lt; std::string, mho_json &gt; hops::MHO_MK4CorelInterface::fAllChannelMap</definition>
+        <argsstring></argsstring>
+        <name>fAllChannelMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="140" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a34476a611e9c445ac5954ba5bd2e4755" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fBaselineName</definition>
+        <argsstring></argsstring>
+        <name>fBaselineName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="132" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a5d0f8ea96b11620f7ae57ad6ebe34f7f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fBaselineShortName</definition>
+        <argsstring></argsstring>
+        <name>fBaselineShortName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="133" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a46cbbbb2a60fd10af7fadba0966929c5" prot="private" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+        <definition>struct mk4_corel* hops::MHO_MK4CorelInterface::fCorel</definition>
+        <argsstring></argsstring>
+        <name>fCorel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="113" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a5b428b259b3f7296511284df834151df" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fCorelFile</definition>
+        <argsstring></argsstring>
+        <name>fCorelFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="116" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a31cda447610f8c7c0ee9e71cfde49ade" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a8408c0f774da156de840825b92005e06" kindref="member">uch_visibility_store_type</ref> *</type>
+        <definition>uch_visibility_store_type* hops::MHO_MK4CorelInterface::fExtractedVisibilities</definition>
+        <argsstring></argsstring>
+        <name>fExtractedVisibilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="153" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a1ff9feacf8e07e4c79932f7a964a073b" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1ac72deb6b4c0793fbb28d5c15b91bb6f4" kindref="member">uch_weight_store_type</ref> *</type>
+        <definition>uch_weight_store_type* hops::MHO_MK4CorelInterface::fExtractedWeights</definition>
+        <argsstring></argsstring>
+        <name>fExtractedWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="154" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1ac8c1661b1d63611cb56a657d32a3de37" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4CorelInterface::fHaveCorel</definition>
+        <argsstring></argsstring>
+        <name>fHaveCorel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="111" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a322d338f390f952d2a56b57badd95369" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4CorelInterface::fHaveVex</definition>
+        <argsstring></argsstring>
+        <name>fHaveVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="112" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1ae4759207ac5f94c87a45c37f385751ab" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterface::fNAPs</definition>
+        <argsstring></argsstring>
+        <name>fNAPs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="125" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1aec80a7daf4ab660634fca19ce37b0db5" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterface::fNChannels</definition>
+        <argsstring></argsstring>
+        <name>fNChannels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="127" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1ab4015ab9bdbf5601da7a8564db13cae8" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterface::fNChannelsPerPP</definition>
+        <argsstring></argsstring>
+        <name>fNChannelsPerPP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="128" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a7b9c5755615620e7b58e7b2bb871609a" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterface::fNPPs</definition>
+        <argsstring></argsstring>
+        <name>fNPPs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="124" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1abfe0c54b8684e32913b16caa95e62bda" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MK4CorelInterface::fNSpectral</definition>
+        <argsstring></argsstring>
+        <name>fNSpectral</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="126" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1ad0a613abc2821080bed9ed17092f9438" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_MK4CorelInterface::fPolProducts</definition>
+        <argsstring></argsstring>
+        <name>fPolProducts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="129" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1af533201ed62747714690f192e971d7a4" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::vector&lt; <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> * &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::vector&lt; mho_json* &gt; &gt; hops::MHO_MK4CorelInterface::fPPSortedChannelInfo</definition>
+        <argsstring></argsstring>
+        <name>fPPSortedChannelInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="145" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1ab1e4ad135f1900adb3a6ecf6958d4cfa" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fRefStation</definition>
+        <argsstring></argsstring>
+        <name>fRefStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="134" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1af270bb8b80cccb0ddd1143f288f1a4d4" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fRefStationMk4Id</definition>
+        <argsstring></argsstring>
+        <name>fRefStationMk4Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="136" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1af288298de420b4143cc076637f7f4684" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fRemStation</definition>
+        <argsstring></argsstring>
+        <name>fRemStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a0a18d64f11b5d2f8b4e01a41094a25da" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fRemStationMk4Id</definition>
+        <argsstring></argsstring>
+        <name>fRemStationMk4Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="137" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1ac273b19a024ff391d659514df608620d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fRootCode</definition>
+        <argsstring></argsstring>
+        <name>fRootCode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="117" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a57fe670a9c0ce278354c31fc41279f99" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_MK4CorelInterface::fVex</definition>
+        <argsstring></argsstring>
+        <name>fVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="114" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4CorelInterface_1a81190c3168e10989a0994dba3d87a5b8" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::fVexFile</definition>
+        <argsstring></argsstring>
+        <name>fVexFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="115" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a1093c6e7b4f9c328805ed03e202d8ae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MK4CorelInterface::MHO_MK4CorelInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MK4CorelInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="50" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="66" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a5f6b1868a4c028a5f06fd54b311e6bf1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MK4CorelInterface::~MHO_MK4CorelInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MK4CorelInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="51" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="87" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a3a0519f94949b1eaabcce685975c3639" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterface::ExtractCorelFile</definition>
+        <argsstring>()</argsstring>
+        <name>ExtractCorelFile</name>
+        <briefdescription>
+<para>Extracts Corel file data and stores it in visibility and weight containers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="78" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="487" bodyend="763"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1ad85e8063b74a5b3ff5cbad18c5f3938a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+        <definition>struct mk4_corel* hops::MHO_MK4CorelInterface::GetCorelData</definition>
+        <argsstring>()</argsstring>
+        <name>GetCorelData</name>
+        <briefdescription>
+<para>Getter for raw mk4 corel data struct. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="72" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1acd07fbc00b9001efd0b46b6763d5ea39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacehops_1a8408c0f774da156de840825b92005e06" kindref="member">uch_visibility_store_type</ref> *</type>
+        <definition>uch_visibility_store_type* hops::MHO_MK4CorelInterface::GetExtractedVisibilities</definition>
+        <argsstring>()</argsstring>
+        <name>GetExtractedVisibilities</name>
+        <briefdescription>
+<para>Getter for extracted visibilities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>uch_visibility_store_type* fExtractedVisibilities </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="92" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a4bd9b8c56a3f3d132fef48d4f330e279" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacehops_1ac72deb6b4c0793fbb28d5c15b91bb6f4" kindref="member">uch_weight_store_type</ref> *</type>
+        <definition>uch_weight_store_type* hops::MHO_MK4CorelInterface::GetExtractedWeights</definition>
+        <argsstring>()</argsstring>
+        <name>GetExtractedWeights</name>
+        <briefdescription>
+<para>Getter for extracted weights. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>uch_weight_store_type* Pointer to the extracted weights. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="99" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1af2b1172cad22d2b399d580c0b49a2fbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterface::SetCorelFile</definition>
+        <argsstring>(const std::string &amp;corel)</argsstring>
+        <name>SetCorelFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>corel</declname>
+        </param>
+        <briefdescription>
+<para>Setter for corel file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>corel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input corel file path as string reference </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="65" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a90661e445af6678c74d781fbeeac1885" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterface::SetVexFile</definition>
+        <argsstring>(const std::string &amp;vex)</argsstring>
+        <name>SetVexFile</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>vex</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vex file, we need both the vex (root) file and corel file to extract the data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vex</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the VEX file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="58" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="58" bodyend="58"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1aab1793945f45495ee476d3dffe903793" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MK4CorelInterface::calc_freq_bin</definition>
+        <argsstring>(double sky_freq, double bw, std::string net_sb, int nlags, int bin_index)</argsstring>
+        <name>calc_freq_bin</name>
+        <param>
+          <type>double</type>
+          <declname>sky_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bw</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>net_sb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nlags</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>bin_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="151" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="789" bodyend="802"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a9610e55a70102e8452c5da10e72a6f4e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4CorelInterface::channel_info_match</definition>
+        <argsstring>(double ref_sky_freq, double rem_sky_freq, double ref_bw, double rem_bw, std::string ref_net_sb, std::string rem_net_sb)</argsstring>
+        <name>channel_info_match</name>
+        <param>
+          <type>double</type>
+          <declname>ref_sky_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rem_sky_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ref_bw</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rem_bw</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>ref_net_sb</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>rem_net_sb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="149" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="770" bodyend="787"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a21815cb079c00733b7d860fb3165776a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterface::DetermineDataDimensions</definition>
+        <argsstring>()</argsstring>
+        <name>DetermineDataDimensions</name>
+        <briefdescription>
+<para>Determines data dimensions for MK4 Corel interface by iterating through indices and channels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="123" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="157" bodyend="485"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1add271e15bb977c99bb1581c3db41653f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MK4CorelInterface::getstr</definition>
+        <argsstring>(const char *char_array, size_t max_size)</argsstring>
+        <name>getstr</name>
+        <param>
+          <type>const char *</type>
+          <declname>char_array</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="148" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="765" bodyend="768"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1ad0825bc8ae2389b63f53f869f06e5c34" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterface::ReadCorelFile</definition>
+        <argsstring>()</argsstring>
+        <name>ReadCorelFile</name>
+        <briefdescription>
+<para>Reads a Corel file and populates the mk4corel struct. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="106" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="96" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4CorelInterface_1a4e9595bb8cd3e1c8e53cf6016099198f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4CorelInterface::ReadVexFile</definition>
+        <argsstring>()</argsstring>
+        <name>ReadVexFile</name>
+        <briefdescription>
+<para>Reads a VEX file and sets fHaveVex if successful. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="110" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4CorelInterface.cc" bodystart="141" bodyend="155"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classhops_1_1MHO__MK4CorelInterface" kindref="compound">MHO_MK4CorelInterface</ref> - Needed to import data from <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> file objects (type_1xx) to HOPS4 format. This class implicitly assumes that the frequency/channel configuration is shared among all polarization products (i.e. nlags), we may want to loosen this restriction in the future. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu May 28 19:47:51 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" line="47" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4CorelInterface.hh" bodystart="48" bodyend="155"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1aab1793945f45495ee476d3dffe903793" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>calc_freq_bin</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a9610e55a70102e8452c5da10e72a6f4e" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>channel_info_match</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a21815cb079c00733b7d860fb3165776a" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>DetermineDataDimensions</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a3a0519f94949b1eaabcce685975c3639" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>ExtractCorelFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a5ae1a76bacee6e25b7036975ffbbfce0" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fAllChannelMap</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a34476a611e9c445ac5954ba5bd2e4755" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fBaselineName</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a5d0f8ea96b11620f7ae57ad6ebe34f7f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fBaselineShortName</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a46cbbbb2a60fd10af7fadba0966929c5" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fCorel</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a5b428b259b3f7296511284df834151df" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fCorelFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a31cda447610f8c7c0ee9e71cfde49ade" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fExtractedVisibilities</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a1ff9feacf8e07e4c79932f7a964a073b" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fExtractedWeights</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ac8c1661b1d63611cb56a657d32a3de37" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fHaveCorel</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a322d338f390f952d2a56b57badd95369" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fHaveVex</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ae4759207ac5f94c87a45c37f385751ab" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fNAPs</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1aec80a7daf4ab660634fca19ce37b0db5" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fNChannels</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ab4015ab9bdbf5601da7a8564db13cae8" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fNChannelsPerPP</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a7b9c5755615620e7b58e7b2bb871609a" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fNPPs</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1abfe0c54b8684e32913b16caa95e62bda" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fNSpectral</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ad0a613abc2821080bed9ed17092f9438" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fPolProducts</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1af533201ed62747714690f192e971d7a4" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fPPSortedChannelInfo</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ab1e4ad135f1900adb3a6ecf6958d4cfa" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fRefStation</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1af270bb8b80cccb0ddd1143f288f1a4d4" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fRefStationMk4Id</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1af288298de420b4143cc076637f7f4684" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fRemStation</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a0a18d64f11b5d2f8b4e01a41094a25da" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fRemStationMk4Id</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ac273b19a024ff391d659514df608620d" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fRootCode</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a57fe670a9c0ce278354c31fc41279f99" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fVex</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a81190c3168e10989a0994dba3d87a5b8" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>fVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ad85e8063b74a5b3ff5cbad18c5f3938a" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>GetCorelData</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1acd07fbc00b9001efd0b46b6763d5ea39" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>GetExtractedVisibilities</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a4bd9b8c56a3f3d132fef48d4f330e279" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>GetExtractedWeights</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1add271e15bb977c99bb1581c3db41653f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>getstr</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a1093c6e7b4f9c328805ed03e202d8ae8" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>MHO_MK4CorelInterface</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1ad0825bc8ae2389b63f53f869f06e5c34" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>ReadCorelFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a4e9595bb8cd3e1c8e53cf6016099198f" prot="private" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>ReadVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1af2b1172cad22d2b399d580c0b49a2fbb" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>SetCorelFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a90661e445af6678c74d781fbeeac1885" prot="public" virt="non-virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>SetVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4CorelInterface_1a5f6b1868a4c028a5f06fd54b311e6bf1" prot="public" virt="virtual"><scope>hops::MHO_MK4CorelInterface</scope><name>~MHO_MK4CorelInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

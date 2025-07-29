@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classafio_1_1afio_1_1rootsum" kind="class" language="Python" prot="public">
+    <compoundname>afio::afio::rootsum</compoundname>
+    <basecompoundref refid="classafio_1_1afio_1_1AFIOStructureBase" prot="public" virt="non-virtual">afio.afio.AFIOStructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classafio_1_1afio_1_1rootsum_1acfdaea719314ac2b2addee9780f33d29" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list afio.afio.rootsum::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;<ref refid="syntax_8c_1a307424ac70f8c1d32a2e307c5040e445" kindref="member">version</ref>&apos;, ctypes.c_short),
+        (&apos;fname&apos;, ctypes.c_char * 6),
+        (&apos;expt_no&apos;, ctypes.c_short),
+        (&apos;extent_no&apos;, ctypes.c_short),
+        (&apos;size&apos;, ctypes.c_short),
+        (&apos;corel_vers&apos;, ctypes.c_char),
+        (&apos;procdate&apos;, ctypes.c_int),
+        (&apos;time_tag&apos;, ctypes.c_int),
+        (&apos;ssec&apos;,  ctypes.c_short),
+        (&apos;source&apos;, ctypes.c_char * 32),
+        (&apos;<ref refid="structstations" kindref="compound">stations</ref>&apos;, ctypes.c_char * 20),
+        (&apos;<ref refid="mk4util_2src_2root__id_8c_1a2650eeb9c31ded3b85b02b679f0d70bb" kindref="member">root_id</ref>&apos;, ctypes.c_char * 7),
+        (&apos;archiv&apos;, ctypes.c_short),
+        (&apos;scan_id&apos;, ctypes.c_char * 32)
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="147" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>afio.afio.rootsum</label>
+        <link refid="classafio_1_1afio_1_1rootsum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes::Structure</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>afio.afio.rootsum</label>
+        <link refid="classafio_1_1afio_1_1rootsum"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes::Structure</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="146" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="146" bodyend="164"/>
+    <listofallmembers>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1aa479315f4e51d0c54b117e940431f009" prot="public" virt="non-virtual"><scope>afio::afio::rootsum</scope><name>__eq__</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1ac1ba246b542db0792a0544259954adc8" prot="public" virt="non-virtual"><scope>afio::afio::rootsum</scope><name>__ne__</name></member>
+      <member refid="classafio_1_1afio_1_1rootsum_1acfdaea719314ac2b2addee9780f33d29" prot="private" virt="non-virtual"><scope>afio::afio::rootsum</scope><name>_fields_</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a2a2bb32f44156b3dcd6b7ad2dfa85503" prot="public" virt="non-virtual"><scope>afio::afio::rootsum</scope><name>approximately_equal</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a21ec9262c919b90a67a039ca50a5a17c" prot="public" virt="non-virtual"><scope>afio::afio::rootsum</scope><name>approximately_equal_field</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a86d37a5619ae22284788a803815f2d04" prot="public" virt="non-virtual"><scope>afio::afio::rootsum</scope><name>contains_floats</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a4c0a78ec964fc11651add113384134aa" prot="public" virt="non-virtual"><scope>afio::afio::rootsum</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

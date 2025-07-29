@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvexpy_1_1vexpy_1_1chan__struct" kind="class" language="Python" prot="public">
+    <compoundname>vexpy::vexpy::chan_struct</compoundname>
+    <basecompoundref refid="classvexpy_1_1vexpy_1_1VexStructureBase" prot="public" virt="non-virtual">vexpy.vexpy.VexStructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classvexpy_1_1vexpy_1_1chan__struct_1a402860b3e0be2010af0e904b3787329e" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list vexpy.vexpy.chan_struct::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;chan_name&apos;, ctypes.c_char * 32), # External channel name */
+        (&apos;polarization&apos;, ctypes.c_char), # R or L */
+        (&apos;sky_frequency&apos;, ctypes.c_double), # Hz */
+        (&apos;net_sideband&apos;, ctypes.c_char), # <ref refid="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" kindref="member">U</ref> or L */
+        (&apos;bandwidth&apos;, ctypes.c_double), # Hz */
+        (&apos;band_id&apos;, ctypes.c_char * 32), # Linkword (internal use) */
+        (&apos;chan_id&apos;, ctypes.c_char * 32), # Linkword (internal use) */
+        (&apos;bbc_id&apos;, ctypes.c_char * 32),  # Linkword (internal use) */
+        (&apos;pcal_id&apos;, ctypes.c_char * 32), # Linkword (internal use) */
+        (&apos;if_id&apos;, ctypes.c_char * 32), # Linkword (internal use) */
+        (&apos;bbc_no&apos;, ctypes.c_short), # Physical BBC# */
+        (&apos;if_name&apos;, ctypes.c_char * 8), # Physical <ref refid="parser_8h_1ac138c68a0709c57bc5f7567abc1558eb" kindref="member">IF</ref> name */
+        (&apos;if_total_lo&apos;, ctypes.c_double), # Hz */
+        (&apos;if_sideband&apos;, ctypes.c_char), # <ref refid="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" kindref="member">U</ref> or L  */
+        (&apos;pcal_spacing&apos;, ctypes.c_float), # Hz */
+        (&apos;pcal_base_freq&apos;, ctypes.c_float), # Hz */
+        (&apos;pcal_detect&apos;, ctypes.c_short * 16), # Integer tone #s */
+        (&apos;sign_tracks&apos;, ctypes.c_short * 4), # Track #s */
+        (&apos;sign_headstack&apos;, ctypes.c_short), # 1-4 */
+        (&apos;mag_tracks&apos;, ctypes.c_short * 4), # Track #s */
+        (&apos;mag_headstack&apos;, ctypes.c_short) # 1-4 */
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="136" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>vexpy.vexpy.VexStructureBase</label>
+        <link refid="classvexpy_1_1vexpy_1_1VexStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vexpy.vexpy.chan_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1chan__struct"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>vexpy.vexpy.VexStructureBase</label>
+        <link refid="classvexpy_1_1vexpy_1_1VexStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vexpy.vexpy.chan_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1chan__struct"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="135" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="135" bodyend="160"/>
+    <listofallmembers>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a977b385c197df406231e1b04697ebe0d" prot="public" virt="non-virtual"><scope>vexpy::vexpy::chan_struct</scope><name>__eq__</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a11038ebcd0191035b2a7e6620ddd58b1" prot="public" virt="non-virtual"><scope>vexpy::vexpy::chan_struct</scope><name>__ne__</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1chan__struct_1a402860b3e0be2010af0e904b3787329e" prot="private" virt="non-virtual"><scope>vexpy::vexpy::chan_struct</scope><name>_fields_</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a110929a2baeb94c6b38d42e056b0c1af" prot="public" virt="non-virtual"><scope>vexpy::vexpy::chan_struct</scope><name>printarray</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1af155ab0d05c4c75c206558a0208a5841" prot="public" virt="non-virtual"><scope>vexpy::vexpy::chan_struct</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

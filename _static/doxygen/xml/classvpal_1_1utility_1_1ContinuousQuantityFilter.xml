@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1utility_1_1ContinuousQuantityFilter" kind="class" language="Python" prot="public">
+    <compoundname>vpal::utility::ContinuousQuantityFilter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a5a4aafe20efe2649e1c2a50fa5175141" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.ContinuousQuantityFilter::invert</definition>
+        <argsstring></argsstring>
+        <name>invert</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="117" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a4761e592822b034514d8ad0ed7cb5354" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.ContinuousQuantityFilter::lower_limit</definition>
+        <argsstring></argsstring>
+        <name>lower_limit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="119" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a6770be3fdfa7b2b23f11f8811037363f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.ContinuousQuantityFilter::quantity_name</definition>
+        <argsstring></argsstring>
+        <name>quantity_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="116" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1ContinuousQuantityFilter_1aff8dca875ec5061580ae9cc4ea05d1c3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.ContinuousQuantityFilter::upper_limit</definition>
+        <argsstring></argsstring>
+        <name>upper_limit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="120" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1utility_1_1ContinuousQuantityFilter_1acbdb812d7c2e763df55a090153fa7669" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.ContinuousQuantityFilter.__init__</definition>
+        <argsstring>(self, quantity_name, lower_limit, upper_limit, invert_selection=False)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a6770be3fdfa7b2b23f11f8811037363f" kindref="member">quantity_name</ref></type>
+          <defname>quantity_name</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a4761e592822b034514d8ad0ed7cb5354" kindref="member">lower_limit</ref></type>
+          <defname>lower_limit</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1aff8dca875ec5061580ae9cc4ea05d1c3" kindref="member">upper_limit</ref></type>
+          <defname>upper_limit</defname>
+        </param>
+        <param>
+          <type>invert_selection</type>
+          <defname>invert_selection</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="115" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="115" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a8eaaaf5832df994e84f474fd3df2432f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.ContinuousQuantityFilter.does_object_pass_filter</definition>
+        <argsstring>(self, obj)</argsstring>
+        <name>does_object_pass_filter</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>obj</type>
+          <defname>obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="125" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="125" bodyend="135"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>representation of a filter which passes objects that have
+a named quantity present in continuous value range
+(although this quantity may in fact take on discrete values).
+filter may be inverted to pass the opposite selection</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.utility.ContinuousQuantityFilter</label>
+        <link refid="classvpal_1_1utility_1_1ContinuousQuantityFilter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.utility.ContinuousQuantityFilter</label>
+        <link refid="classvpal_1_1utility_1_1ContinuousQuantityFilter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="109" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="109" bodyend="136"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1acbdb812d7c2e763df55a090153fa7669" prot="public" virt="non-virtual"><scope>vpal::utility::ContinuousQuantityFilter</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a8eaaaf5832df994e84f474fd3df2432f" prot="public" virt="non-virtual"><scope>vpal::utility::ContinuousQuantityFilter</scope><name>does_object_pass_filter</name></member>
+      <member refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a5a4aafe20efe2649e1c2a50fa5175141" prot="public" virt="non-virtual"><scope>vpal::utility::ContinuousQuantityFilter</scope><name>invert</name></member>
+      <member refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a4761e592822b034514d8ad0ed7cb5354" prot="public" virt="non-virtual"><scope>vpal::utility::ContinuousQuantityFilter</scope><name>lower_limit</name></member>
+      <member refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1a6770be3fdfa7b2b23f11f8811037363f" prot="public" virt="non-virtual"><scope>vpal::utility::ContinuousQuantityFilter</scope><name>quantity_name</name></member>
+      <member refid="classvpal_1_1utility_1_1ContinuousQuantityFilter_1aff8dca875ec5061580ae9cc4ea05d1c3" prot="public" virt="non-virtual"><scope>vpal::utility::ContinuousQuantityFilter</scope><name>upper_limit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

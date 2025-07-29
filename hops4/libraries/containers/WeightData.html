@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Object: weights &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Data Object: station_data" href="StationData.html" />
+    <link rel="prev" title="Data Object: visibilities" href="VisibilityData.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Containers.html">Containers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Objects.html">Data Object Specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VisibilityData.html">Data Object: <cite>visibilities</cite></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Object: <cite>weights</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-information">General Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tags">Tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#axes">Axes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#frequency-axis-index-3-detail">Frequency Axis (Index 3) - Detail</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#channel-axis-index-1-detail">Channel Axis (Index 1) - Detail</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="StationData.html">Data Object: <cite>station_data</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="PcalData.html">Data Object: <cite>pcal</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ObjectTags.html">Data Object: <cite>object_tags</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Containers.html">Containers</a></li>
+      <li class="breadcrumb-item active">Data Object: <cite>weights</cite></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/containers/WeightData.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-object-weights">
+<h1>Data Object: <cite>weights</cite><a class="headerlink" href="#data-object-weights" title="Link to this heading"></a></h1>
+<p>The weights table container is use to store the correlator weights assigned to
+the visibility data, corresponding to each polarization-product, channel, and AP.
+If the combined fraction of data that was lost or flagged invalid for a particular
+channel/AP (from either station) is ‘f’, then the corresponding weight value will be
+(1-f). On disk the data elements of the objects of <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a6d71a9ffaa068345a980f1e1613d97bd">weight_store_type</a> are
+of the type <code class="docutils literal notranslate"><span class="pre">float</span></code>, but this object is promoted to <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a74fe9c8c1d011d62f4fd08db2f915d01">weight_type</a>
+with <code class="docutils literal notranslate"><span class="pre">double</span></code> elements for in-memory processing.</p>
+<section id="general-information">
+<h2>General Information<a class="headerlink" href="#general-information" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Class</strong>: <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a6d71a9ffaa068345a980f1e1613d97bd">weight_store_type</a> or <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a74fe9c8c1d011d62f4fd08db2f915d01">weight_type</a></p></li>
+<li><p><strong>Class UUID</strong>: f05838a616aa848562a57d5ace23e8d1</p></li>
+<li><p><strong>Rank</strong>: 4</p></li>
+<li><p><strong>Shape</strong>: the length of each dimension (e.g. [4, 32, 30, 1] )</p></li>
+<li><p><strong>Strides</strong>: the stride between data in each dimension (e.g. [960, 30, 1, 1])</p></li>
+<li><p><strong>Total Size</strong>: the total number of data elements in the array (e.g. 3840 )</p></li>
+<li><p><strong>Element Type</strong>: <code class="docutils literal notranslate"><span class="pre">float</span></code></p></li>
+</ul>
+<p><strong>Aliases</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>alias</p></th>
+<th class="head"><p>full class name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">weight_store_type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hops::MHO_TableContainer&lt;float,MHO_AxisPack&lt;MHO_Axis&lt;string&gt;,MHO_Axis&lt;double&gt;,MHO_Axis&lt;double&gt;,MHO_Axis&lt;double&gt;&gt;&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">weight_type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">hops::MHO_TableContainer&lt;double,MHO_AxisPack&lt;MHO_Axis&lt;string&gt;,MHO_Axis&lt;double&gt;,MHO_Axis&lt;double&gt;,MHO_Axis&lt;double&gt;&gt;&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tags">
+<h2>Tags<a class="headerlink" href="#tags" title="Link to this heading"></a></h2>
+<p>The meta-data tags (key:value pairs) that are commonly associated with objects
+of this type are as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>key</p></th>
+<th class="head"><p>description</p></th>
+<th class="head"><p>example value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>the container name</p></td>
+<td><p>weights</p></td>
+</tr>
+<tr class="row-odd"><td><p>baseline</p></td>
+<td><p>the baseline name (using 2-char station codes)</p></td>
+<td><p>Gs-Wf</p></td>
+</tr>
+<tr class="row-even"><td><p>baseline_shortname</p></td>
+<td><p>the condensed baseline name (using 1-char mk4 station codes)</p></td>
+<td><p>GE</p></td>
+</tr>
+<tr class="row-odd"><td><p>reference_station</p></td>
+<td><p>the reference station name</p></td>
+<td><p>GGAO12M</p></td>
+</tr>
+<tr class="row-even"><td><p>reference_station_mk4id</p></td>
+<td><p>the reference station 1-char mk4 ID code</p></td>
+<td><p>G</p></td>
+</tr>
+<tr class="row-odd"><td><p>remote_station</p></td>
+<td><p>the remote station name</p></td>
+<td><p>WESTFORD</p></td>
+</tr>
+<tr class="row-even"><td><p>remote_station_mk4id</p></td>
+<td><p>the remote station 1-char mk4 ID code</p></td>
+<td><p>E</p></td>
+</tr>
+<tr class="row-odd"><td><p>correlation_date</p></td>
+<td><p>time of correlation (in vex format)</p></td>
+<td><p>2023y061d02h05m31s</p></td>
+</tr>
+<tr class="row-even"><td><p>start</p></td>
+<td><p>the scan start time (in vex format)</p></td>
+<td><p>2019y105d18h00m00s</p></td>
+</tr>
+<tr class="row-odd"><td><p>stop</p></td>
+<td><p>the scan stop time (in vex format)</p></td>
+<td><p>2019y105d18h00m30s</p></td>
+</tr>
+<tr class="row-even"><td><p>origin</p></td>
+<td><p>the source of the data</p></td>
+<td><p>difx or mark4</p></td>
+</tr>
+<tr class="row-odd"><td><p>difx_baseline_index</p></td>
+<td><p>if the data was imported from DiFX, the integer baseline code</p></td>
+<td><p>260</p></td>
+</tr>
+<tr class="row-even"><td><p>root_code</p></td>
+<td><p>the mk4 style 6-char root code</p></td>
+<td><p>3SMFW3</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="axes">
+<h2>Axes<a class="headerlink" href="#axes" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Axis Index</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description/Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>polarization_product</p></td>
+<td><p>N/A</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;string&gt;</span></code></p></td>
+<td><p>XX, XY, YY, RR, LL, XR, YL</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>channel</p></td>
+<td><p>MHz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;double&gt;</span></code></p></td>
+<td><p>lower channel edge (e.g. 3032.4)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>time</p></td>
+<td><p>s</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;double&gt;</span></code></p></td>
+<td><p>start of each AP (0, 1.0,…)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>frequency</p></td>
+<td><p>MHz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MHO_Axis&lt;double&gt;</span></code></p></td>
+<td><p>size is 1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="frequency-axis-index-3-detail">
+<h2>Frequency Axis (Index 3) - Detail<a class="headerlink" href="#frequency-axis-index-3-detail" title="Link to this heading"></a></h2>
+<p>The last axis (index 3) by default only has length one. There are no sub-channel (or spectral) weights.
+It is possible that at some time in the future, additional data editing features will be implemented which may
+modify weights on a sub-channel basis. If such spectral weighting is applied then it will no longer be safe to
+assume that the size of this dimension is one.</p>
+</section>
+<section id="channel-axis-index-1-detail">
+<h2>Channel Axis (Index 1) - Detail<a class="headerlink" href="#channel-axis-index-1-detail" title="Link to this heading"></a></h2>
+<p>Each axis is capable of having additional data appended in the form of index tags,
+or interval tags. By default both <code class="docutils literal notranslate"><span class="pre">difx2hops</span></code> and <code class="docutils literal notranslate"><span class="pre">mark42hops</span></code> will append the channel
+axis with additional index tags which contain information needed to process the visibility data.
+The index tag entries along the channel axis include <em>(but are not limited to)</em> the following:</p>
+<ul class="simple">
+<li><p><strong>channel_id</strong>: the reference/remote channel id pairs (e.g. <cite>X04LX:X04LY</cite>)</p></li>
+<li><p><strong>bandwidth</strong>: float (MHz) e.g. 32.0 MHz</p></li>
+<li><p><strong>difx_frequency_index</strong>: integer (e.g. 0-31)</p></li>
+<li><p><strong>frequency_band</strong>: X</p></li>
+<li><p><strong>net_sideband</strong>: L (lower) or U (upper)</p></li>
+<li><p><strong>sky_frequency</strong>: float (MHz) e.g. 3032.4</p></li>
+</ul>
+<p>An example of such index tag entries for the channel axis could look like:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>index</p></th>
+<th class="head"><p>sky_frequency</p></th>
+<th class="head"><p>net_sideband</p></th>
+<th class="head"><p>bandwidth</p></th>
+<th class="head"><p>DIFX Index</p></th>
+<th class="head"><p>channel_id</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>3032.4</p></td>
+<td><p>L</p></td>
+<td><p>32</p></td>
+<td><p>7</p></td>
+<td><p>X00LX:X00LX</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>3064.4</p></td>
+<td><p>L</p></td>
+<td><p>32</p></td>
+<td><p>6</p></td>
+<td><p>X01LX:X01LX</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>3096.4</p></td>
+<td><p>L</p></td>
+<td><p>32</p></td>
+<td><p>5</p></td>
+<td><p>X02LX:X02LX</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>10680.4</p></td>
+<td><p>L</p></td>
+<td><p>32</p></td>
+<td><p>24</p></td>
+<td><p>X31LX:X31LX</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="VisibilityData.html" class="btn btn-neutral float-left" title="Data Object: visibilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="StationData.html" class="btn btn-neutral float-right" title="Data Object: station_data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

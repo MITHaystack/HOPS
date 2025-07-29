@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range" kind="struct" language="C++" prot="private">
+    <compoundname>hops::MHO_DiFXChannelNameConstructor::band_range</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range_1ab7d89380a355be2512b85f20d4e36a32" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXChannelNameConstructor::band_range::fHigh</definition>
+        <argsstring></argsstring>
+        <name>fHigh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="81" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range_1a3623cb1a3fe7796d915e70d24440eb75" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXChannelNameConstructor::band_range::fLabel</definition>
+        <argsstring></argsstring>
+        <name>fLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="82" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range_1a1e533a35fb39b5527754228da9711365" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXChannelNameConstructor::band_range::fLow</definition>
+        <argsstring></argsstring>
+        <name>fLow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="80" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class band_range. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DiFXChannelNameConstructor::band_range</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fHigh</edgelabel>
+          <edgelabel>fLow</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fLabel</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" line="78" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXChannelNameConstructor.hh" bodystart="79" bodyend="83"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range_1ab7d89380a355be2512b85f20d4e36a32" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor::band_range</scope><name>fHigh</name></member>
+      <member refid="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range_1a3623cb1a3fe7796d915e70d24440eb75" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor::band_range</scope><name>fLabel</name></member>
+      <member refid="structhops_1_1MHO__DiFXChannelNameConstructor_1_1band__range_1a1e533a35fb39b5527754228da9711365" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXChannelNameConstructor::band_range</scope><name>fLow</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__CompoundReductions_8hh" kind="file" language="C++">
+    <compoundname>MHO_CompoundReductions.hh</compoundname>
+    <includes local="no">complex</includes>
+    <includes local="no">cstddef</includes>
+    <includedby refid="MHO__Reducer_8hh" local="yes">MHO_Reducer.hh</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>MHO_CompoundReductions.hh</label>
+        <link refid="MHO__CompoundReductions_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cstddef</label>
+      </node>
+      <node id="2">
+        <label>complex</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="9">
+        <label>MHO_LinearDParCorrectionBuilder.cc</label>
+        <link refid="MHO__LinearDParCorrectionBuilder_8cc"/>
+      </node>
+      <node id="4">
+        <label>MHO_CircularFieldRotationCorrection.cc</label>
+        <link refid="MHO__CircularFieldRotationCorrection_8cc"/>
+      </node>
+      <node id="7">
+        <label>MHO_LinearDParCorrection.cc</label>
+        <link refid="MHO__LinearDParCorrection_8cc"/>
+      </node>
+      <node id="13">
+        <label>MHO_DiFXScanProcessor.cc</label>
+        <link refid="MHO__DiFXScanProcessor_8cc"/>
+      </node>
+      <node id="11">
+        <label>MHO_PolProductSummation.cc</label>
+        <link refid="MHO__PolProductSummation_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_Reducer.hh</label>
+        <link refid="MHO__Reducer_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MHO_PolProductSummationBuilder.cc</label>
+        <link refid="MHO__PolProductSummationBuilder_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_PolProductSummation.hh</label>
+        <link refid="MHO__PolProductSummation_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_CircularFieldRotationCorrection.hh</label>
+        <link refid="MHO__CircularFieldRotationCorrection_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_CompoundReductions.hh</label>
+        <link refid="MHO__CompoundReductions_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_CircularFieldRotationBuilder.cc</label>
+        <link refid="MHO__CircularFieldRotationBuilder_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_LinearDParCorrection.hh</label>
+        <link refid="MHO__LinearDParCorrection_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>MHO_InitialFringeInfo.cc</label>
+        <link refid="MHO__InitialFringeInfo_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structhops_1_1MHO__CompoundMultiply" prot="public">hops::MHO_CompoundMultiply</innerclass>
+    <innerclass refid="structhops_1_1MHO__CompoundSum" prot="public">hops::MHO_CompoundSum</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity" prot="public">hops::MHO_MultiplyIdentity</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01bool_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; bool &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01double_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; double &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01float_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; float &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01int_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; int &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01long_01double_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; long double &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01short_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; short &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01double_01_4_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; std::complex&lt; double &gt; &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01float_01_4_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; std::complex&lt; float &gt; &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; std::complex&lt; long double &gt; &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1size__t_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; std::size_t &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__MultiplyIdentity_3_01unsigned_01int_01_4" prot="public">hops::MHO_MultiplyIdentity&lt; unsigned int &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity" prot="public">hops::MHO_SumIdentity</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01bool_01_4" prot="public">hops::MHO_SumIdentity&lt; bool &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01double_01_4" prot="public">hops::MHO_SumIdentity&lt; double &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01float_01_4" prot="public">hops::MHO_SumIdentity&lt; float &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01int_01_4" prot="public">hops::MHO_SumIdentity&lt; int &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01long_01double_01_4" prot="public">hops::MHO_SumIdentity&lt; long double &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01short_01_4" prot="public">hops::MHO_SumIdentity&lt; short &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01double_01_4_01_4" prot="public">hops::MHO_SumIdentity&lt; std::complex&lt; double &gt; &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01float_01_4_01_4" prot="public">hops::MHO_SumIdentity&lt; std::complex&lt; float &gt; &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4" prot="public">hops::MHO_SumIdentity&lt; std::complex&lt; long double &gt; &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01std_1_1size__t_01_4" prot="public">hops::MHO_SumIdentity&lt; std::size_t &gt;</innerclass>
+    <innerclass refid="structhops_1_1MHO__SumIdentity_3_01unsigned_01int_01_4" prot="public">hops::MHO_SumIdentity&lt; unsigned int &gt;</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_CompoundReductions_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_CompoundReductions_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;complex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="structhops_1_1MHO__SumIdentity" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30" refid="structhops_1_1MHO__SumIdentity_1a76d1a60131bc7f5211ec9fab7e62987d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>XValueType<sp/><ref refid="structhops_1_1MHO__SumIdentity_1a76d1a60131bc7f5211ec9fab7e62987d" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0;<sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//specializations<sp/>for<sp/>common<sp/>types</highlight></codeline>
+<codeline lineno="37" refid="structhops_1_1MHO__SumIdentity_3_01bool_01_4" refkind="compound"><highlight class="comment"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>bool<sp/>&gt;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45" refid="structhops_1_1MHO__SumIdentity_3_01bool_01_4_1a353f8e508072ad3936ed1fb0ebaf97d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01bool_01_4_1a353f8e508072ad3936ed1fb0ebaf97d4" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="structhops_1_1MHO__SumIdentity_3_01int_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>int<sp/>&gt;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59" refid="structhops_1_1MHO__SumIdentity_3_01int_01_4_1a7d57598419981a6684e7f46a8f2383e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01int_01_4_1a7d57598419981a6684e7f46a8f2383e9" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/>};</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="structhops_1_1MHO__SumIdentity_3_01short_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>short<sp/>&gt;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73" refid="structhops_1_1MHO__SumIdentity_3_01short_01_4_1a01706473aeb100764425663e17609b04" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01short_01_4_1a01706473aeb100764425663e17609b04" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/>};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="structhops_1_1MHO__SumIdentity_3_01unsigned_01int_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>unsigned<sp/>int<sp/>&gt;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="87" refid="structhops_1_1MHO__SumIdentity_3_01unsigned_01int_01_4_1a360fc136481f29cfb8413d9679233443" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01unsigned_01int_01_4_1a360fc136481f29cfb8413d9679233443" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/>};</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1size__t_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>std::size_t<sp/>&gt;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="101" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1size__t_01_4_1a683c688e62f6242e5c5c0084eb05be4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::size_t<sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01std_1_1size__t_01_4_1a683c688e62f6242e5c5c0084eb05be4b" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/>};</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="structhops_1_1MHO__SumIdentity_3_01float_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>float<sp/>&gt;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115" refid="structhops_1_1MHO__SumIdentity_3_01float_01_4_1aa84a6256ed634846596725a4f7ea0126" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01float_01_4_1aa84a6256ed634846596725a4f7ea0126" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0;<sp/>};</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="structhops_1_1MHO__SumIdentity_3_01double_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>double<sp/>&gt;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="129" refid="structhops_1_1MHO__SumIdentity_3_01double_01_4_1a3d33f13e1870a40efb8afd57805268c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01double_01_4_1a3d33f13e1870a40efb8afd57805268c0" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0;<sp/>};</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="structhops_1_1MHO__SumIdentity_3_01long_01double_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>long<sp/>double<sp/>&gt;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="143" refid="structhops_1_1MHO__SumIdentity_3_01long_01double_01_4_1ab853f9c5ebe0444d8b84fb2587b7a72b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01long_01double_01_4_1ab853f9c5ebe0444d8b84fb2587b7a72b" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0;<sp/>};</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01float_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>std::complex&lt;<sp/>float<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01float_01_4_01_4_1a7139722e574a15465ff161cb70df8cf3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>float<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01float_01_4_01_4_1a7139722e574a15465ff161cb70df8cf3" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>float<sp/>&gt;(0.0,<sp/>0.0);<sp/>};</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01double_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="171" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01double_01_4_01_4_1acf365ffedba0cbdcf9d4b1109b309894" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01double_01_4_01_4_1acf365ffedba0cbdcf9d4b1109b309894" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>double<sp/>&gt;(0.0,<sp/>0.0);<sp/>};</highlight></codeline>
+<codeline lineno="172"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__SumIdentity" kindref="compound">MHO_SumIdentity</ref>&lt;<sp/>std::complex&lt;<sp/>long<sp/>double<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="185" refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4_1a67a0bd53df71af257f1a6ab263340a48" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>long<sp/>double<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__SumIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4_1a67a0bd53df71af257f1a6ab263340a48" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>long<sp/>double<sp/>&gt;(0.0,<sp/>0.0);<sp/>};</highlight></codeline>
+<codeline lineno="186"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="structhops_1_1MHO__MultiplyIdentity" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref></highlight></codeline>
+<codeline lineno="192"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="199" refid="structhops_1_1MHO__MultiplyIdentity_1a449f64a45aca3ba4a6fbbf7cd2c8c5e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>XValueType<sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_1a449f64a45aca3ba4a6fbbf7cd2c8c5e1" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0;<sp/>};</highlight></codeline>
+<codeline lineno="200"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight><highlight class="comment">//specializations<sp/>for<sp/>common<sp/>types</highlight></codeline>
+<codeline lineno="206" refid="structhops_1_1MHO__MultiplyIdentity_3_01bool_01_4" refkind="compound"><highlight class="comment"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>bool<sp/>&gt;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="214" refid="structhops_1_1MHO__MultiplyIdentity_3_01bool_01_4_1af09c8acd71ead515ecc24c1245d334de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01bool_01_4_1af09c8acd71ead515ecc24c1245d334de" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="215"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="structhops_1_1MHO__MultiplyIdentity_3_01int_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>int<sp/>&gt;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="228" refid="structhops_1_1MHO__MultiplyIdentity_3_01int_01_4_1a1eb7a91c16054c9479da2c9668c09ee9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01int_01_4_1a1eb7a91c16054c9479da2c9668c09ee9" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/>};</highlight></codeline>
+<codeline lineno="229"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234" refid="structhops_1_1MHO__MultiplyIdentity_3_01short_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>short<sp/>&gt;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="242" refid="structhops_1_1MHO__MultiplyIdentity_3_01short_01_4_1a84083c72404f3a9e717533d2fe4aa585" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01short_01_4_1a84083c72404f3a9e717533d2fe4aa585" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/>};</highlight></codeline>
+<codeline lineno="243"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248" refid="structhops_1_1MHO__MultiplyIdentity_3_01unsigned_01int_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>unsigned<sp/>int<sp/>&gt;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="256" refid="structhops_1_1MHO__MultiplyIdentity_3_01unsigned_01int_01_4_1a82692cb60cb1ddbf98764f8b1b8a4cfe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01unsigned_01int_01_4_1a82692cb60cb1ddbf98764f8b1b8a4cfe" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/>};</highlight></codeline>
+<codeline lineno="257"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1size__t_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>std::size_t<sp/>&gt;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="270" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1size__t_01_4_1aab59b4fd421a41dea2f28a9aa81524e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::size_t<sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1size__t_01_4_1aab59b4fd421a41dea2f28a9aa81524e8" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/>};</highlight></codeline>
+<codeline lineno="271"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276" refid="structhops_1_1MHO__MultiplyIdentity_3_01float_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>float<sp/>&gt;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="284" refid="structhops_1_1MHO__MultiplyIdentity_3_01float_01_4_1a5ec7f6c1d06d236521a308cf9c950a1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01float_01_4_1a5ec7f6c1d06d236521a308cf9c950a1d" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;<sp/>};</highlight></codeline>
+<codeline lineno="285"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290" refid="structhops_1_1MHO__MultiplyIdentity_3_01double_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>double<sp/>&gt;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="298" refid="structhops_1_1MHO__MultiplyIdentity_3_01double_01_4_1aef2df56b882fe80bd1812637fae2e06e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01double_01_4_1aef2df56b882fe80bd1812637fae2e06e" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;<sp/>};</highlight></codeline>
+<codeline lineno="299"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight></codeline>
+<codeline lineno="301" refid="structhops_1_1MHO__MultiplyIdentity_3_01long_01double_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>long<sp/>double<sp/>&gt;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="309" refid="structhops_1_1MHO__MultiplyIdentity_3_01long_01double_01_4_1aac4aabbfd8528ce3748c6e62ed1d18e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01long_01double_01_4_1aac4aabbfd8528ce3748c6e62ed1d18e2" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1.0;<sp/>};</highlight></codeline>
+<codeline lineno="310"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01float_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>std::complex&lt;<sp/>float<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="314" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01float_01_4_01_4_1aa461baf7c02066c4a9e53e5473a22de0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>float<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01float_01_4_01_4_1aa461baf7c02066c4a9e53e5473a22de0" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>float<sp/>&gt;(1.0,<sp/>0.0);<sp/>};</highlight></codeline>
+<codeline lineno="315"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01double_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="319" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01double_01_4_01_4_1a81079470c4c1678a32f3571774b3bb9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01double_01_4_01_4_1a81079470c4c1678a32f3571774b3bb9d" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>double<sp/>&gt;(1.0,<sp/>0.0);<sp/>};</highlight></codeline>
+<codeline lineno="320"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight></codeline>
+<codeline lineno="322" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__MultiplyIdentity" kindref="compound">MHO_MultiplyIdentity</ref>&lt;<sp/>std::complex&lt;<sp/>long<sp/>double<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="324" refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4_1a3ce13166bd388fb803fd1c1dc76c6720" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>long<sp/>double<sp/>&gt;<sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01long_01double_01_4_01_4_1a3ce13166bd388fb803fd1c1dc76c6720" kindref="member">value</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>long<sp/>double<sp/>&gt;(1.0,<sp/>0.0);<sp/>};</highlight></codeline>
+<codeline lineno="325"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight><highlight class="comment">//struct<sp/>which<sp/>implements<sp/>operator<sp/>as<sp/>compound<sp/>summation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328" refid="structhops_1_1MHO__CompoundSum" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__CompoundSum" kindref="compound">MHO_CompoundSum</ref></highlight></codeline>
+<codeline lineno="329"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="330" refid="structhops_1_1MHO__CompoundSum_1a1c0b3ec6ec67e7e167b7c7dc93241c8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__CompoundSum_1a1c0b3ec6ec67e7e167b7c7dc93241c8b" kindref="member">operator()</ref>(XValueType&amp;<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XValueType&amp;<sp/>b)<sp/>{<sp/>a<sp/>+=<sp/>b;<sp/>}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332" refid="structhops_1_1MHO__CompoundSum_1a42d5ae050545632c551babe23b7a0331" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XValueType<sp/><ref refid="structhops_1_1MHO__CompoundSum_1a42d5ae050545632c551babe23b7a0331" kindref="member">identity</ref><sp/>=<sp/><ref refid="structhops_1_1MHO__SumIdentity_1a76d1a60131bc7f5211ec9fab7e62987d" kindref="member">MHO_SumIdentity&lt; XValueType &gt;::value</ref>();</highlight></codeline>
+<codeline lineno="333"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight><highlight class="comment">//struct<sp/>which<sp/>implements<sp/>operator<sp/>as<sp/>compound<sp/>multiplication</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="336" refid="structhops_1_1MHO__CompoundMultiply" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1MHO__CompoundMultiply" kindref="compound">MHO_CompoundMultiply</ref></highlight></codeline>
+<codeline lineno="337"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="338" refid="structhops_1_1MHO__CompoundMultiply_1a984033cd5f108aeb06ed1b46ef806ae1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1MHO__CompoundMultiply_1a984033cd5f108aeb06ed1b46ef806ae1" kindref="member">operator()</ref>(XValueType&amp;<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XValueType&amp;<sp/>b)<sp/>{<sp/>a<sp/>*=<sp/>b;<sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340" refid="structhops_1_1MHO__CompoundMultiply_1ae4603c25b32220cffb5acc546b05ac86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>XValueType<sp/><ref refid="structhops_1_1MHO__CompoundMultiply_1ae4603c25b32220cffb5acc546b05ac86" kindref="member">identity</ref><sp/>=<sp/><ref refid="structhops_1_1MHO__MultiplyIdentity_1a449f64a45aca3ba4a6fbbf7cd2c8c5e1" kindref="member">MHO_MultiplyIdentity&lt; XValueType &gt;::value</ref>();</highlight></codeline>
+<codeline lineno="341"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal">}</highlight><highlight class="comment">//end<sp/>of<sp/>namespace<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh"/>
+  </compounddef>
+</doxygen>

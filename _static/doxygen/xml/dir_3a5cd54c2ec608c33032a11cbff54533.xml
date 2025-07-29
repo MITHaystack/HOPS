@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_3a5cd54c2ec608c33032a11cbff54533" kind="dir">
+    <compoundname>python_src</compoundname>
+    <innerdir refid="dir_3de3da6d4c9d65ab754731601bf39ce5">ffcontrol_module</innerdir>
+    <innerdir refid="dir_469e060f35e382c6a6585929b393bdd7">hops</innerdir>
+    <innerdir refid="dir_a8bbc854e9ceabd6883885b83f19bec2">hops_io</innerdir>
+    <innerdir refid="dir_25097122e2659ae6b3db0658fc4c59df">hops_visualization</innerdir>
+    <innerdir refid="dir_746ab561e3f268ae19ded2e50e15eee2">mk4_module</innerdir>
+    <innerdir refid="dir_c75d96f515bbe54fee3a4ce4ed241cab">plugins</innerdir>
+    <innerdir refid="dir_db22b67ef289fa976c0b6e3af50d2f49">vpal_module</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/"/>
+  </compounddef>
+</doxygen>

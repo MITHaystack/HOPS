@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structChanCount" kind="struct" language="C++" prot="public">
+    <compoundname>ChanCount</compoundname>
+    <includes refid="type__307_8h" local="no">type_307.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structChanCount_1a111a5def7865c38a13c8d3bb1e3318c7" prot="public" static="no" mutable="no">
+        <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+        <definition>U32 ChanCount::count[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_307.h" line="19" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_307.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structChanCount_1a1d1266df0151945f4ee40eda9a16df77" prot="public" static="no" mutable="no">
+        <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+        <definition>U32 ChanCount::val_count</definition>
+        <argsstring></argsstring>
+        <name>val_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_307.h" line="20" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_307.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>ChanCount</label>
+        <link refid="structChanCount"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>count</edgelabel>
+          <edgelabel>val_count</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_307.h" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_307.h" bodystart="18" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structChanCount_1a111a5def7865c38a13c8d3bb1e3318c7" prot="public" virt="non-virtual"><scope>ChanCount</scope><name>count</name></member>
+      <member refid="structChanCount_1a1d1266df0151945f4ee40eda9a16df77" prot="public" virt="non-virtual"><scope>ChanCount</scope><name>val_count</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

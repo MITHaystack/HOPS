@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Profiler" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Profiler</compoundname>
+    <includes refid="MHO__Profiler_8hh" local="no">MHO_Profiler.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Profiler_1ad0f2cb1ea551804bd7ee11695db899af" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Profiler::fDisabled</definition>
+        <argsstring></argsstring>
+        <name>fDisabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="162" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Profiler_1ab3025d5b1adbadebc9c7565d7f61cf09" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structhops_1_1MHO__ProfileEvent" kindref="compound">MHO_ProfileEvent</ref> &gt;</type>
+        <definition>std::vector&lt; MHO_ProfileEvent &gt; hops::MHO_Profiler::fEvents</definition>
+        <argsstring></argsstring>
+        <name>fEvents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="166" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Profiler_1a24300dc2edf5d509c4a0d27f53362df8" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex hops::MHO_Profiler::fMutex</definition>
+        <argsstring></argsstring>
+        <name>fMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="159" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Profiler_1a0c7cecb999be35bc667d34d05f35c6f0" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_Profiler::fNThreads</definition>
+        <argsstring></argsstring>
+        <name>fNThreads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="161" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Profiler_1a054ddb77a4da65a504b3ec5c4515e035" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Timer" kindref="compound">MHO_Timer</ref></type>
+        <definition>MHO_Timer hops::MHO_Profiler::fTimer</definition>
+        <argsstring></argsstring>
+        <name>fTimer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="168" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Profiler_1abf2f723d8fc9804c19cf266bbd9ad5f5" prot="private" static="yes" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> *</type>
+        <definition>MHO_Profiler * hops::MHO_Profiler::fInstance</definition>
+        <argsstring></argsstring>
+        <name>fInstance</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="160" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a5e96a8a085edc622e6765e0f614306d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Profiler::MHO_Profiler</definition>
+        <argsstring>(MHO_Profiler &amp;&amp;)=delete</argsstring>
+        <name>MHO_Profiler</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="74" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a46d7bd856c6c59e2ae63dbfd2b7c4c35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Profiler::MHO_Profiler</definition>
+        <argsstring>(MHO_Profiler const &amp;)=delete</argsstring>
+        <name>MHO_Profiler</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="73" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a5805d294f841c197fb0547ba5571098a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Profiler::AddEntry</definition>
+        <argsstring>(int flag, uint64_t thread_id, std::string filename, int line_num, std::string func_name)</argsstring>
+        <name>AddEntry</name>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <param>
+          <type>uint64_t</type>
+          <declname>thread_id</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>line_num</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>func_name</declname>
+        </param>
+        <briefdescription>
+<para>Adds a profiling event to the internal list if not disabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>flag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A flag indicating the type of event (e.g., stop timer for this segment). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>thread_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the thread generating the event. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The truncated filename associated with the event. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>line_num</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The line number in the source code where the event occurred. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>func_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The function name associated with the event. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="135" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Profiler.cc" bodystart="9" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a7043e49288910f70298470ada7c2485e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Profiler::Disable</definition>
+        <argsstring>()</argsstring>
+        <name>Disable</name>
+        <briefdescription>
+<para>Sets HOPS_COLOR_MSG to disabled state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="101" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="101" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a9956a1ac33698dc9085d4c4115147e39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Profiler::DumpEvents</definition>
+        <argsstring>()</argsstring>
+        <name>DumpEvents</name>
+        <briefdescription>
+<para>Prints all stored events along with their details. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="147" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Profiler.cc" bodystart="28" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a571a36dd764cf8ddf06acb6b053ebdd0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Profiler::Enable</definition>
+        <argsstring>()</argsstring>
+        <name>Enable</name>
+        <briefdescription>
+<para>Sets the enabled state to true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="96" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a5a97f42ea00b2cf181d281d6a9a6b042" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Profiler::GetEvents</definition>
+        <argsstring>(std::vector&lt; MHO_ProfileEvent &gt; &amp;events)</argsstring>
+        <name>GetEvents</name>
+        <param>
+          <type>std::vector&lt; <ref refid="structhops_1_1MHO__ProfileEvent" kindref="compound">MHO_ProfileEvent</ref> &gt; &amp;</type>
+          <declname>events</declname>
+        </param>
+        <briefdescription>
+<para>Getter for events - at end of program, retrieve and utilize the profiler events. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>events</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to std::vector&lt;<ref refid="structhops_1_1MHO__ProfileEvent" kindref="compound">MHO_ProfileEvent</ref> to store retrieved events </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="142" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="142" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a0eac8936545843d364043250e88b7c96" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_Profiler::IsEnabled</definition>
+        <argsstring>() const</argsstring>
+        <name>IsEnabled</name>
+        <briefdescription>
+<para>Checks if the feature is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if enabled, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="108" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1aaf1c696e0869570b577ff5833bde984b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Profiler::Lock</definition>
+        <argsstring>()</argsstring>
+        <name>Lock</name>
+        <briefdescription>
+<para>Acquires a lock using fMutex for thread synchronization. TODO we need to eliminate the need for locks...which sort of interferes with the objective of profiling. However, to do that we would probably need a lock free map implementation in order to map the thread_id&apos;s to a local index and push the events into a thread-specific vector so for now, mutex it is... </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="119" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="119" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1ac0f11dcb740b3d93534ee0dbd021c5f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> &amp;</type>
+        <definition>MHO_Profiler&amp; hops::MHO_Profiler::operator=</definition>
+        <argsstring>(MHO_Profiler &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="76" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a866d239d4000862b2d1b6814e9e3dbd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> &amp;</type>
+        <definition>MHO_Profiler&amp; hops::MHO_Profiler::operator=</definition>
+        <argsstring>(MHO_Profiler const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="75" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a3324c4162b108d347f1942038c55f1a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Profiler::Unlock</definition>
+        <argsstring>()</argsstring>
+        <name>Unlock</name>
+        <briefdescription>
+<para>Releases control of the mutex. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="124" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="124" bodyend="124"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a3e11305304bb58f9932d80b035457459" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> &amp;</type>
+        <definition>static MHO_Profiler&amp; hops::MHO_Profiler::GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+<para>provide public access to the only static instance </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to the singleton instance of <ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="84" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="84" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a952390d35b30174d75b026d1b45fdaaa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Profiler::MHO_Profiler</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Profiler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="150" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="150" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Profiler_1a187a1263f0b5412573240882c3a6833b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Profiler::~MHO_Profiler</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Profiler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="157" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="157" bodyend="157"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__Profiler" kindref="compound">MHO_Profiler</ref> - uses the singleton pattern. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>class for running time/performance profiling when the profile is enabled, a section of code can be profiled by wrapping it between a call to <ref refid="MHO__Profiler_8hh_1a749ffd4807ab8b95afc5b20ef5d13d87" kindref="member">profiler_start()</ref> and <ref refid="MHO__Profiler_8hh_1ad81947734289cfba81adf8690b6492e3" kindref="member">profiler_stop()</ref>, for example:</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sat Feb 10 11:17:05 2024 -0500</para>
+</simplesect>
+<ref refid="MHO__Profiler_8hh_1a749ffd4807ab8b95afc5b20ef5d13d87" kindref="member">profiler_start()</ref>; function_to_profile(); <ref refid="MHO__Profiler_8hh_1ad81947734289cfba81adf8690b6492e3" kindref="member">profiler_stop()</ref>; </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" line="68" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Profiler.hh" bodystart="69" bodyend="169"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Profiler_1a5805d294f841c197fb0547ba5571098a" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>AddEntry</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a7043e49288910f70298470ada7c2485e" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>Disable</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a9956a1ac33698dc9085d4c4115147e39" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>DumpEvents</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a571a36dd764cf8ddf06acb6b053ebdd0" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>Enable</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1ad0f2cb1ea551804bd7ee11695db899af" prot="private" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>fDisabled</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1ab3025d5b1adbadebc9c7565d7f61cf09" prot="private" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>fEvents</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1abf2f723d8fc9804c19cf266bbd9ad5f5" prot="private" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>fInstance</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a24300dc2edf5d509c4a0d27f53362df8" prot="private" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>fMutex</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a0c7cecb999be35bc667d34d05f35c6f0" prot="private" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>fNThreads</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a054ddb77a4da65a504b3ec5c4515e035" prot="private" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>fTimer</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a5a97f42ea00b2cf181d281d6a9a6b042" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>GetEvents</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a3e11305304bb58f9932d80b035457459" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>GetInstance</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a0eac8936545843d364043250e88b7c96" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>IsEnabled</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1aaf1c696e0869570b577ff5833bde984b" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>Lock</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a46d7bd856c6c59e2ae63dbfd2b7c4c35" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>MHO_Profiler</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a5e96a8a085edc622e6765e0f614306d7" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>MHO_Profiler</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a952390d35b30174d75b026d1b45fdaaa" prot="private" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>MHO_Profiler</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a866d239d4000862b2d1b6814e9e3dbd6" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1ac0f11dcb740b3d93534ee0dbd021c5f7" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a3324c4162b108d347f1942038c55f1a8" prot="public" virt="non-virtual"><scope>hops::MHO_Profiler</scope><name>Unlock</name></member>
+      <member refid="classhops_1_1MHO__Profiler_1a187a1263f0b5412573240882c3a6833b" prot="private" virt="virtual"><scope>hops::MHO_Profiler</scope><name>~MHO_Profiler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

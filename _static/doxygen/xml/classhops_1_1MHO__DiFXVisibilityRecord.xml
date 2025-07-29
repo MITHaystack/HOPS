@@ -1,0 +1,429 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DiFXVisibilityRecord" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DiFXVisibilityRecord</compoundname>
+    <includes refid="MHO__DiFXVisibilityRecord_8hh" local="no">MHO_DiFXVisibilityRecord.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a22689dddb4b9c4d54b0aaead7814c5d9" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXVisibilityRecord::bandwidth</definition>
+        <argsstring></argsstring>
+        <name>bandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>nchan complex values (2x float) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="105" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a21a24468d0499bdb2d3f07a272a7befd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>0=old style, 1=new binary style </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="92" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a75dd7eb016c31081ed20b97f8fef2315" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::configindex</definition>
+        <argsstring></argsstring>
+        <name>configindex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The seconds offset from mjd </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="95" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1ae8926dd6b7c1778d4505274db9d32f7f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXVisibilityRecord::dataweight</definition>
+        <argsstring></argsstring>
+        <name>dataweight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The pulsar bin </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="100" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1aed93bc61bc2ddb8c8bf4c824dde53c1d" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXVisibilityRecord::freq_band</definition>
+        <argsstring></argsstring>
+        <name>freq_band</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="107" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1af43af247bfa5e38fcea07bc7b41ac374" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::freqindex</definition>
+        <argsstring></argsstring>
+        <name>freqindex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The index to the source table </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="97" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a83517dcfb7b84583f92a6a6304914ff2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::headerversion</definition>
+        <argsstring></argsstring>
+        <name>headerversion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>space to store the sync value </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="91" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a03e0c0d641ad5b4a7c57cdf08e8edd92" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::mjd</definition>
+        <argsstring></argsstring>
+        <name>mjd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The baseline number (256*A1 + A2, 1 indexed) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="93" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a6521c943222b062de7275ab36119f26b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::nchan</definition>
+        <argsstring></argsstring>
+        <name>nchan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="88" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1aacb0244a2c481180093d9388d8c22ee4" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXVisibilityRecord::net_sideband</definition>
+        <argsstring></argsstring>
+        <name>net_sideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="108" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char hops::MHO_DiFXVisibilityRecord::polpair[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>polpair</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The index to the freq table </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="98" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a28adbe2fafeff504eaa390dfd0f55ac6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::pulsarbin</definition>
+        <argsstring></argsstring>
+        <name>pulsarbin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The polarisation pair </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="99" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a45eb9252416fb2321615a64a2b38f1da" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXVisibilityRecord::seconds</definition>
+        <argsstring></argsstring>
+        <name>seconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The MJD integer day </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="94" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a73f11b9855f483a3a2175780d6ef7b49" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXVisibilityRecord::sky_freq</definition>
+        <argsstring></argsstring>
+        <name>sky_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="106" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a6d01a4b48fc5bf57537750634656a6fb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::sourceindex</definition>
+        <argsstring></argsstring>
+        <name>sourceindex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The index to the configuration table </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="96" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a1cb38a3e5a5511d502c32b154c2612b1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::sync</definition>
+        <argsstring></argsstring>
+        <name>sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>counter of number of vis </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="90" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXVisibilityRecord::uvw[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>uvw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The fractional data weight </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="101" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1a106faf11ae31196527359dcab7136fcf" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::complex&lt; float &gt; &gt;</type>
+        <definition>std::vector&lt; std::complex&lt; float &gt; &gt; hops::MHO_DiFXVisibilityRecord::visdata</definition>
+        <argsstring></argsstring>
+        <name>visdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The u,v,w values in metres </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="102" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityRecord_1abd6a37dc2344177fe01d5496195f856b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DiFXVisibilityRecord::visnum</definition>
+        <argsstring></argsstring>
+        <name>visnum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of channels to expect </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="89" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityRecord_1a71d6d04318411fcfc200ef1c4ad9d7ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXVisibilityRecord::MHO_DiFXVisibilityRecord</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DiFXVisibilityRecord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityRecord_1ac1afc23a0c7f4bf6c62b049a2e5180e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXVisibilityRecord::MHO_DiFXVisibilityRecord</definition>
+        <argsstring>(const MHO_DiFXVisibilityRecord &amp;copy)</argsstring>
+        <name>MHO_DiFXVisibilityRecord</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="28" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityRecord_1a9c17f2ea6f5d212c57e23b6c3614a7cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_DiFXVisibilityRecord::~MHO_DiFXVisibilityRecord</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DiFXVisibilityRecord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="52" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityRecord_1a8587d848817a26e0dadcbc47a781ba20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXVisibilityRecord::Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <briefdescription>
+<para>Resets the state of the object to its initial values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="57" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Wrapper class for the smallest discrete chunk of data from a DiFX Swinburne file (see DifxVisRecord)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Feb 3 11:15:07 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_DiFXVisibilityRecord</label>
+        <link refid="classhops_1_1MHO__DiFXVisibilityRecord"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>dataweight</edgelabel>
+          <edgelabel>seconds</edgelabel>
+          <edgelabel>sky_freq</edgelabel>
+          <edgelabel>uvw</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>polpair</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>visdata</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>configindex</edgelabel>
+          <edgelabel>freqindex</edgelabel>
+          <edgelabel>headerversion</edgelabel>
+          <edgelabel>mjd</edgelabel>
+          <edgelabel>nchan</edgelabel>
+          <edgelabel>pulsarbin</edgelabel>
+          <edgelabel>sourceindex</edgelabel>
+          <edgelabel>sync</edgelabel>
+          <edgelabel>visnum</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>freq_band</edgelabel>
+          <edgelabel>net_sideband</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; std::complex&lt; float &gt; &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::complex&lt; float &gt;</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="7">
+        <label>std::string</label>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh" bodystart="24" bodyend="109"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a22689dddb4b9c4d54b0aaead7814c5d9" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>bandwidth</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a21a24468d0499bdb2d3f07a272a7befd" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>baseline</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a75dd7eb016c31081ed20b97f8fef2315" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>configindex</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1ae8926dd6b7c1778d4505274db9d32f7f" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>dataweight</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1aed93bc61bc2ddb8c8bf4c824dde53c1d" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>freq_band</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1af43af247bfa5e38fcea07bc7b41ac374" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>freqindex</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a83517dcfb7b84583f92a6a6304914ff2" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>headerversion</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a71d6d04318411fcfc200ef1c4ad9d7ad" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>MHO_DiFXVisibilityRecord</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1ac1afc23a0c7f4bf6c62b049a2e5180e3" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>MHO_DiFXVisibilityRecord</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a03e0c0d641ad5b4a7c57cdf08e8edd92" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>mjd</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6521c943222b062de7275ab36119f26b" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>nchan</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1aacb0244a2c481180093d9388d8c22ee4" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>net_sideband</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>polpair</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a28adbe2fafeff504eaa390dfd0f55ac6" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>pulsarbin</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a8587d848817a26e0dadcbc47a781ba20" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>Reset</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a45eb9252416fb2321615a64a2b38f1da" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>seconds</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a73f11b9855f483a3a2175780d6ef7b49" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>sky_freq</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6d01a4b48fc5bf57537750634656a6fb" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>sourceindex</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a1cb38a3e5a5511d502c32b154c2612b1" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>sync</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>uvw</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a106faf11ae31196527359dcab7136fcf" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>visdata</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1abd6a37dc2344177fe01d5496195f856b" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>visnum</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityRecord_1a9c17f2ea6f5d212c57e23b6c3614a7cd" prot="public" virt="virtual"><scope>hops::MHO_DiFXVisibilityRecord</scope><name>~MHO_DiFXVisibilityRecord</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

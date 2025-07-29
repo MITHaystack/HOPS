@@ -1,0 +1,692 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="addr__207_8c" kind="file" language="C++">
+    <compoundname>addr_207.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="bytflp_8h" local="yes">bytflp.h</includes>
+    <includes refid="type__207_8h" local="yes">type_207.h</includes>
+    <includes refid="mk4__dfio_8h" local="yes">mk4_dfio.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <incdepgraph>
+      <node id="44">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="8">
+        <label>stdarg.h</label>
+      </node>
+      <node id="48">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>sys/times.h</label>
+      </node>
+      <node id="27">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="1">
+        <label>addr_207.c</label>
+        <link refid="addr__207_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="54">
+        <label>stdint.h</label>
+      </node>
+      <node id="17">
+        <label>mk4_dfio.h</label>
+        <link refid="mk4__dfio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="5">
+        <label>bytflp.h</label>
+        <link refid="bytflp_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="7">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="31">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="23">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>sys/types.h</label>
+      </node>
+      <node id="42">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="19">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="46">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>complex.h</label>
+      </node>
+      <node id="38">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops_config.h</label>
+      </node>
+      <node id="28">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="12">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="29">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="53">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="13">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="37">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="51">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="addr__207_8c_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
+        <name>FALSE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/addr_207.c" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/addr_207.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="addr__207_8c_1aa8cecfc5c5c054d2875c03e77b7be15d" prot="public" static="no">
+        <name>TRUE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/addr_207.c" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/addr_207.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="addr__207_8c_1af5d61bfa5b4e95b5674457802d9c8351" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structtype__207" kindref="compound">type_207</ref> *</type>
+        <definition>struct type_207* addr_207</definition>
+        <argsstring>(short version, void *address, int *size)</argsstring>
+        <name>addr_207</name>
+        <param>
+          <type>short</type>
+          <declname>version</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>address</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/addr_207.c" line="37" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/addr_207.c" bodystart="37" bodyend="186"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Standard<sp/>record<sp/>version<sp/>control.<sp/><sp/>This<sp/>routine<sp/>returns<sp/>the<sp/>address<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>of<sp/>a<sp/>structure<sp/>containing<sp/>the<sp/>desired<sp/>record<sp/>information.<sp/><sp/>This<sp/>can<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>either<sp/>be<sp/>the<sp/>address<sp/>of<sp/>the<sp/>raw<sp/>memory<sp/>image<sp/>of<sp/>the<sp/>disk<sp/>record<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>that<sp/>was<sp/>read<sp/>in,<sp/>or<sp/>a<sp/>memory-allocated<sp/>structure<sp/>filled<sp/>in<sp/>element<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>by<sp/>element,<sp/>depending<sp/>on<sp/>whether<sp/>or<sp/>not<sp/>the<sp/>disk<sp/>format<sp/>and<sp/>the<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>structure<sp/>definitions<sp/>match.<sp/><sp/>Either<sp/>way,<sp/>byte<sp/>flipping<sp/>is<sp/>performed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>as<sp/>necessary<sp/>by<sp/>the<sp/>architecture-dependent<sp/>macros<sp/>cp_xxxx()<sp/>defined<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>in<sp/>bytflp.h<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>version<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Version<sp/>number<sp/>of<sp/>disk<sp/>image<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>address<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Memory<sp/>address<sp/>of<sp/>disk<sp/>image<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>size<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>number<sp/>of<sp/>bytes<sp/>read<sp/>from<sp/>input<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>address<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Return<sp/>value<sp/><sp/><sp/><sp/>Address<sp/>of<sp/>filled<sp/>app<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>25<sp/>September<sp/>1995<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Redesigned<sp/>17<sp/>September<sp/>1997<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Added<sp/>version<sp/>1<sp/>16<sp/>March<sp/>2000<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Added<sp/>version<sp/>2<sp/><sp/><sp/>2010.1.5<sp/><sp/><sp/><sp/>rjc<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bytflp_8h" kindref="compound">bytflp.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="type__207_8h" kindref="compound">type_207.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__dfio_8h" kindref="compound">mk4_dfio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207" kindref="compound">type_207</ref><sp/>*</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><ref refid="addr__207_8c_1af5d61bfa5b4e95b5674457802d9c8351" kindref="member">addr_207</ref><sp/>(</highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*address,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*size)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>malloced;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207" kindref="compound">type_207</ref><sp/>*t207;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207__v0" kindref="compound">type_207_v0</ref><sp/>*t207_v0;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207__v1" kindref="compound">type_207_v1</ref><sp/>*t207_v1;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="type__207_8h_1a6def5a2e51170ea4367c7330e3396da1" kindref="member">type_207_v2</ref><sp/>*t207_v2;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Create<sp/>application<sp/>structure,<sp/>which<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>might<sp/>be<sp/>simply<sp/>the<sp/>overlay<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>malloced<sp/>=<sp/><ref refid="addr__207_8c_1aa93f0eb578d23995850d61f7d61c55c1" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/><ref refid="type__207_8h_1ae79ee900630544e27cd24f0f2b538d68" kindref="member">T207_VERSION</ref>)<sp/>t207<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207" kindref="compound">type_207</ref><sp/>*)address;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t207<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207" kindref="compound">type_207</ref><sp/>*)malloc<sp/>(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__207" kindref="compound">type_207</ref>));</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t207<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Memory<sp/>allocation<sp/>failure<sp/>in<sp/>addr_207()&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(NULL);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Allocated<sp/>memory<sp/>block<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>-1,<sp/>t207);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mk4__dfio_8h_1ad163a45c8e780bda591fd492d53e326d" kindref="member">clear_207</ref><sp/>(t207);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>malloced<sp/>=<sp/><ref refid="addr__207_8c_1aa8cecfc5c5c054d2875c03e77b7be15d" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Handle<sp/>each<sp/>version<sp/>number<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>individually.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Overlay<sp/>version-specific<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>noting<sp/>size<sp/>so<sp/>we<sp/>can<sp/>maintain<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pointer<sp/>in<sp/>file<sp/>image<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*size<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207__v0" kindref="compound">type_207_v0</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t207_v0<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207__v0" kindref="compound">type_207_v0</ref><sp/>*)address;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Copy<sp/>structure<sp/>elements,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>with<sp/>hidden<sp/>byte<sp/>flipping<sp/>if<sp/>needed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(see<sp/>bytflp.h)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t207-&gt;<ref refid="structtype__207_1a61866e508e8c842a1aa6c09bbe683259" kindref="member">record_id</ref>,<sp/></highlight><highlight class="stringliteral">&quot;207&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t207-&gt;<ref refid="structtype__207_1a63205b93ca8d3c60b7d22846de490244" kindref="member">version_no</ref>,<sp/></highlight><highlight class="stringliteral">&quot;00&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;16;<sp/>i++)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a57745921ec18111c89d91c8bd262c6dc" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a558cddfd1ff4a21ca00cb253f4dbfb61" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a57745921ec18111c89d91c8bd262c6dc" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a558cddfd1ff4a21ca00cb253f4dbfb61" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a80c4f500cbfe9375f949e38378c38c3e" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1adf3b76f60c94f8ab9e865e4e56afddb0" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a80c4f500cbfe9375f949e38378c38c3e" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1adf3b76f60c94f8ab9e865e4e56afddb0" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a5ce746d79a1a84dd66b4449b4f7c346e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a9445d2c599887f2e7184355873701776" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a5ce746d79a1a84dd66b4449b4f7c346e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a9445d2c599887f2e7184355873701776" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af26376e545f26327c529e98902785a76" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a4e9c813c2c75ae9d554ad62b6b6e1577" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af26376e545f26327c529e98902785a76" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a4e9c813c2c75ae9d554ad62b6b6e1577" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1aa7c80a42dd669fb369e1ad893ccce706" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1adc905d1929611fa80fa7b47528dcd585" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1aa7c80a42dd669fb369e1ad893ccce706" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1adc905d1929611fa80fa7b47528dcd585" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af81528021d533b3172b09846a216f130" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a18a4358814c5a96bed5003ac8d21f4c0" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af81528021d533b3172b09846a216f130" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a18a4358814c5a96bed5003ac8d21f4c0" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a2e0705f54c9f1dc5c62e9d07a72c0ad8" kindref="member">ref_errate</ref>[i],<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a8596f37122b36dc0a7ec3a5ad935c323" kindref="member">ref_errate</ref>[i]);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1ab20d3379022d46f497433637260b12b6" kindref="member">rem_errate</ref>[i],<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1ae4334a33962aeb19d2c3721a4ca59bea" kindref="member">rem_errate</ref>[i]);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a39be8203df6f57625bf281bc97568131" kindref="member">ref_pcrate</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1a8981b252a13b3c603ade64774266e1a9" kindref="member">ref_pcrate</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a195056d1731d5c35faf6a260f4fe80b8" kindref="member">rem_pcrate</ref>,<sp/>t207_v0-&gt;<ref refid="structtype__207__v0_1aeea2aa895257a6d609b67955e202c978" kindref="member">rem_pcrate</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(t207);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Overlay<sp/>version-specific<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>noting<sp/>size<sp/>so<sp/>we<sp/>can<sp/>maintain<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pointer<sp/>in<sp/>file<sp/>image<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*size<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207__v1" kindref="compound">type_207_v1</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t207_v1<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__207__v1" kindref="compound">type_207_v1</ref><sp/>*)address;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Copy<sp/>structure<sp/>elements,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>with<sp/>hidden<sp/>byte<sp/>flipping<sp/>if<sp/>needed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(see<sp/>bytflp.h)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t207-&gt;<ref refid="structtype__207_1a61866e508e8c842a1aa6c09bbe683259" kindref="member">record_id</ref>,<sp/></highlight><highlight class="stringliteral">&quot;207&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t207-&gt;<ref refid="structtype__207_1a63205b93ca8d3c60b7d22846de490244" kindref="member">version_no</ref>,<sp/></highlight><highlight class="stringliteral">&quot;01&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a19e76b5098442dda44ab42c01ad47f7f" kindref="member">cp_int</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a38d60268300d2919a3037c640c80970c" kindref="member">pcal_mode</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a9297bb5528c51d0b77ec1e9cf524f0c6" kindref="member">pcal_mode</ref>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;16;<sp/>i++)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a57745921ec18111c89d91c8bd262c6dc" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a5417aa5ff702c71dcd7a605e5315681f" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a57745921ec18111c89d91c8bd262c6dc" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a5417aa5ff702c71dcd7a605e5315681f" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a80c4f500cbfe9375f949e38378c38c3e" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a29c4c838fb21eab402893d25aebc0f04" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a80c4f500cbfe9375f949e38378c38c3e" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a29c4c838fb21eab402893d25aebc0f04" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a5ce746d79a1a84dd66b4449b4f7c346e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ab54db80ee8448e92fc1f9b9559dcb93e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a5ce746d79a1a84dd66b4449b4f7c346e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ab54db80ee8448e92fc1f9b9559dcb93e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af26376e545f26327c529e98902785a76" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a575db3f2137bf62a3b64add08b12c26a" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af26376e545f26327c529e98902785a76" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a575db3f2137bf62a3b64add08b12c26a" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a3f192204c65a616b38f5aaaa34ee254d" kindref="member">ref_pcoffset</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a50a88950a4c841c1d1e3cd542eba82ed" kindref="member">ref_pcoffset</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a3f192204c65a616b38f5aaaa34ee254d" kindref="member">ref_pcoffset</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a50a88950a4c841c1d1e3cd542eba82ed" kindref="member">ref_pcoffset</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a34c1b1cd46294f8e40796efbc5e8b6e0" kindref="member">rem_pcoffset</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ada984ea5ba0a7509e6afa4902b0cb22d" kindref="member">rem_pcoffset</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a34c1b1cd46294f8e40796efbc5e8b6e0" kindref="member">rem_pcoffset</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ada984ea5ba0a7509e6afa4902b0cb22d" kindref="member">rem_pcoffset</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1aa7c80a42dd669fb369e1ad893ccce706" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ae1d187b7103a876aa75bd404367842f4" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1aa7c80a42dd669fb369e1ad893ccce706" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ae1d187b7103a876aa75bd404367842f4" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af81528021d533b3172b09846a216f130" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1aa5910a69009c314f2ce137ca9528510d" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af81528021d533b3172b09846a216f130" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1aa5910a69009c314f2ce137ca9528510d" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a2e0705f54c9f1dc5c62e9d07a72c0ad8" kindref="member">ref_errate</ref>[i],<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1a67e89f6e543de4b3c6914d377bedf7b5" kindref="member">ref_errate</ref>[i]);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1ab20d3379022d46f497433637260b12b6" kindref="member">rem_errate</ref>[i],<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ad8dd31ba2e75e5d991bc1273cfbb89d9" kindref="member">rem_errate</ref>[i]);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a39be8203df6f57625bf281bc97568131" kindref="member">ref_pcrate</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1afb98a05f5d4894a00971edc34d55eeea" kindref="member">ref_pcrate</ref>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a195056d1731d5c35faf6a260f4fe80b8" kindref="member">rem_pcrate</ref>,<sp/>t207_v1-&gt;<ref refid="structtype__207__v1_1ae02e3752a432e2d165595dc30f8953bc" kindref="member">rem_pcrate</ref>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(t207);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref><sp/>==<sp/>2)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Overlay<sp/>version-specific<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>noting<sp/>size<sp/>so<sp/>we<sp/>can<sp/>maintain<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pointer<sp/>in<sp/>file<sp/>image<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*size<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="type__207_8h_1a6def5a2e51170ea4367c7330e3396da1" kindref="member">type_207_v2</ref>);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t207_v2<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="type__207_8h_1a6def5a2e51170ea4367c7330e3396da1" kindref="member">type_207_v2</ref><sp/>*)address;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Copy<sp/>structure<sp/>elements,<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>with<sp/>hidden<sp/>byte<sp/>flipping<sp/>if<sp/>needed<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(see<sp/>bytflp.h)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t207-&gt;<ref refid="structtype__207_1a61866e508e8c842a1aa6c09bbe683259" kindref="member">record_id</ref>,<sp/></highlight><highlight class="stringliteral">&quot;207&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strncpy<sp/>(t207-&gt;<ref refid="structtype__207_1a63205b93ca8d3c60b7d22846de490244" kindref="member">version_no</ref>,<sp/></highlight><highlight class="stringliteral">&quot;02&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a19e76b5098442dda44ab42c01ad47f7f" kindref="member">cp_int</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a38d60268300d2919a3037c640c80970c" kindref="member">pcal_mode</ref>,<sp/>t207_v2-&gt;pcal_mode);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;64;<sp/>i++)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a57745921ec18111c89d91c8bd262c6dc" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;ref_pcamp[i].lsb);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a57745921ec18111c89d91c8bd262c6dc" kindref="member">ref_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;ref_pcamp[i].usb);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a80c4f500cbfe9375f949e38378c38c3e" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;rem_pcamp[i].lsb);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a80c4f500cbfe9375f949e38378c38c3e" kindref="member">rem_pcamp</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;rem_pcamp[i].usb);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a5ce746d79a1a84dd66b4449b4f7c346e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;ref_pcphase[i].lsb);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a5ce746d79a1a84dd66b4449b4f7c346e" kindref="member">ref_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;ref_pcphase[i].usb);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af26376e545f26327c529e98902785a76" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;rem_pcphase[i].lsb);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af26376e545f26327c529e98902785a76" kindref="member">rem_pcphase</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;rem_pcphase[i].usb);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a3f192204c65a616b38f5aaaa34ee254d" kindref="member">ref_pcoffset</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;ref_pcoffset[i].lsb);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a3f192204c65a616b38f5aaaa34ee254d" kindref="member">ref_pcoffset</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;ref_pcoffset[i].usb);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a34c1b1cd46294f8e40796efbc5e8b6e0" kindref="member">rem_pcoffset</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;rem_pcoffset[i].lsb);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a34c1b1cd46294f8e40796efbc5e8b6e0" kindref="member">rem_pcoffset</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;rem_pcoffset[i].usb);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1aa7c80a42dd669fb369e1ad893ccce706" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;ref_pcfreq[i].lsb);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1aa7c80a42dd669fb369e1ad893ccce706" kindref="member">ref_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;ref_pcfreq[i].usb);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af81528021d533b3172b09846a216f130" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" kindref="member">lsb</ref>,<sp/>t207_v2-&gt;rem_pcfreq[i].lsb);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1af81528021d533b3172b09846a216f130" kindref="member">rem_pcfreq</ref>[i].<ref refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" kindref="member">usb</ref>,<sp/>t207_v2-&gt;rem_pcfreq[i].usb);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a2e0705f54c9f1dc5c62e9d07a72c0ad8" kindref="member">ref_errate</ref>[i],<sp/>t207_v2-&gt;ref_errate[i]);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1ab20d3379022d46f497433637260b12b6" kindref="member">rem_errate</ref>[i],<sp/>t207_v2-&gt;rem_errate[i]);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a39be8203df6f57625bf281bc97568131" kindref="member">ref_pcrate</ref>,<sp/>t207_v2-&gt;ref_pcrate);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bytflp_8h_1a70329a7d58af33f569b9b621da37de16" kindref="member">cp_float</ref><sp/>(t207-&gt;<ref refid="structtype__207_1a195056d1731d5c35faf6a260f4fe80b8" kindref="member">rem_pcrate</ref>,<sp/>t207_v2-&gt;rem_pcrate);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(t207);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Unrecognized<sp/>type<sp/>207<sp/>record<sp/>version<sp/>number<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,<sp/><ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(malloced)<sp/></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free<sp/>(t207);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Freed<sp/>memory<sp/>block<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>-1,<sp/>t207);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(NULL);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/addr_207.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyFringeFitterInstance" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PyFringeFitterInstance</compoundname>
+    <includes refid="MHO__PyFringeFitterInstance_8hh" local="no">MHO_PyFringeFitterInstance.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeFitterInstance_1ad9f8b941331dcd9e0cb121d6a2dbcdd0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyFringeFitterInstance::MHO_PyFringeFitterInstance</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_PyFringeFitterInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyFringeFitterInstance.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyFringeFitterInstance.hh" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyFringeFitterInstance_1a4ad9b1bdae61837190d3cf558424c0bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PyFringeFitterInstance::~MHO_PyFringeFitterInstance</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PyFringeFitterInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyFringeFitterInstance.hh" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyFringeFitterInstance.hh" bodystart="30" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyFringeFitterInstance.hh" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyFringeFitterInstance.hh" bodystart="27" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyFringeFitterInstance_1ad9f8b941331dcd9e0cb121d6a2dbcdd0" prot="public" virt="non-virtual"><scope>hops::MHO_PyFringeFitterInstance</scope><name>MHO_PyFringeFitterInstance</name></member>
+      <member refid="classhops_1_1MHO__PyFringeFitterInstance_1a4ad9b1bdae61837190d3cf558424c0bd" prot="public" virt="virtual"><scope>hops::MHO_PyFringeFitterInstance</scope><name>~MHO_PyFringeFitterInstance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

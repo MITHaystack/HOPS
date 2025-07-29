@@ -1,0 +1,621 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DelayRate" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DelayRate</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__BinaryOperator" prot="public" virt="non-virtual">hops::MHO_BinaryOperator&lt; visibility_type, weight_type, sbd_type &gt;</basecompoundref>
+    <includes refid="MHO__DelayRate_8hh" local="no">MHO_DelayRate.hh</includes>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__DelayRate_1af867beb847b3aeedcd914c4b04238331" prot="protected" static="no">
+        <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref></type>
+        <definition>using hops::MHO_DelayRate::XArgType1 =  visibility_type</definition>
+        <argsstring></argsstring>
+        <name>XArgType1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="63" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__DelayRate_1a07a8eecf3b587d9dc1d6bef3c6670cf7" prot="protected" static="no">
+        <type><ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref></type>
+        <definition>using hops::MHO_DelayRate::XArgType2 =  weight_type</definition>
+        <argsstring></argsstring>
+        <name>XArgType2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="64" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__DelayRate_1a04b0dc7ee6c051dea8e69f7899aa066f" prot="protected" static="no">
+        <type><ref refid="namespacehops_1a263565c55505788061e161e68af995e2" kindref="member">sbd_type</ref></type>
+        <definition>using hops::MHO_DelayRate::XArgType3 =  sbd_type</definition>
+        <argsstring></argsstring>
+        <name>XArgType3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="65" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__DelayRate_1abc2d2190079452b2bbdcb93f115b24da" prot="private" static="no">
+        <type><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" kindref="compound">MHO_MultidimensionalFastFourierTransform</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>using hops::MHO_DelayRate::FFT_ENGINE_TYPE =  MHO_MultidimensionalFastFourierTransform&lt; visibility_type &gt;</definition>
+        <argsstring></argsstring>
+        <name>FFT_ENGINE_TYPE</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="119" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a44fe0b3f6e20d0b6469d038d9e94accd" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__CyclicRotator" kindref="compound">MHO_CyclicRotator</ref>&lt; <ref refid="namespacehops_1a263565c55505788061e161e68af995e2" kindref="member">sbd_type</ref> &gt;</type>
+        <definition>MHO_CyclicRotator&lt; sbd_type &gt; hops::MHO_DelayRate::fCyclicRotator</definition>
+        <argsstring></argsstring>
+        <name>fCyclicRotator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="123" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a99b25cdc0fd4ddd8c11857fca25aff75" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::MHO_DelayRate::fDRSPSize</definition>
+        <argsstring></argsstring>
+        <name>fDRSPSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="128" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a729ca390ec34c5ed24c3065ff21e9426" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" kindref="compound">FFT_ENGINE_TYPE</ref></type>
+        <definition>FFT_ENGINE_TYPE hops::MHO_DelayRate::fFFTEngine</definition>
+        <argsstring></argsstring>
+        <name>fFFTEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="126" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a65433462d79156fde9006c48824b62c4" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DelayRate::fInDims[VIS_NDIM]</definition>
+        <argsstring>[VIS_NDIM]</argsstring>
+        <name>fInDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="89" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a09585790934d4cfe20d753828364e56f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DelayRate::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="131" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a6f8245ac18832542bc78f46fd9240755" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_DelayRate::fOutDims[VIS_NDIM]</definition>
+        <argsstring>[VIS_NDIM]</argsstring>
+        <name>fOutDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="90" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1afe9d1ae81efa8783ad140df8a1b3ed07" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayRate::fRefFreq</definition>
+        <argsstring></argsstring>
+        <name>fRefFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="129" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a4cd502c0a018ba1b18de25a5ad55f7c8" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__SubSample" kindref="compound">MHO_SubSample</ref>&lt; <ref refid="namespacehops_1a263565c55505788061e161e68af995e2" kindref="member">sbd_type</ref> &gt;</type>
+        <definition>MHO_SubSample&lt; sbd_type &gt; hops::MHO_DelayRate::fSubSampler</definition>
+        <argsstring></argsstring>
+        <name>fSubSampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="122" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayRate_1a09c0c9230a035a65c034e11cd1499157" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__EndZeroPadder" kindref="compound">MHO_EndZeroPadder</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>MHO_EndZeroPadder&lt; visibility_type &gt; hops::MHO_DelayRate::fZeroPadder</definition>
+        <argsstring></argsstring>
+        <name>fZeroPadder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="125" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1a45911c8a0e2b0a9b81a0f91ab60811c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DelayRate::MHO_DelayRate</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DelayRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="11" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1a26148ac27a860252cdb7d3f810901075" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_DelayRate::~MHO_DelayRate</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DelayRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1ace873ac8e9af48c9452a718ae25d0b6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_DelayRate::CalculateSearchSpaceSize</definition>
+        <argsstring>(unsigned int input_size)</argsstring>
+        <name>CalculateSearchSpaceSize</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>input_size</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the search space size based on input size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input size for which to calculate the search space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Calculated search space size as an unsigned integer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="60" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="172" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1afc4cf6c1d108499990f4ed874802bb99" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_DelayRate::GetDelayRateSearchSpaceSize</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDelayRateSearchSpaceSize</name>
+        <briefdescription>
+<para>Getter for delay rate search space size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Delay rate search space size as an integer </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="52" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1a1f4d45df9eb28da25b5dbdec4b72e1c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayRate::SetReferenceFrequency</definition>
+        <argsstring>(double ref_freq)</argsstring>
+        <name>SetReferenceFrequency</name>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New reference frequency value in Hertz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1a7b8c95a341a7279c717cb5f4e7628ca0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_DelayRate::ExecuteImpl</definition>
+        <argsstring>(const XArgType1 *in1, const XArgType2 *in2, XArgType3 *out) override</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplements refid="classhops_1_1MHO__BinaryOperator_1a7448e37ee77a50fb3cbe4d93e0df92e7">ExecuteImpl</reimplements>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__DelayRate_1af867beb847b3aeedcd914c4b04238331" kindref="member">XArgType1</ref> *</type>
+          <declname>in1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__DelayRate_1a07a8eecf3b587d9dc1d6bef3c6670cf7" kindref="member">XArgType2</ref> *</type>
+          <declname>in2</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__DelayRate_1a04b0dc7ee6c051dea8e69f7899aa066f" kindref="member">XArgType3</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Executes <ref refid="classhops_1_1MHO__DelayRate" kindref="compound">MHO_DelayRate</ref> operations: zero padding, FFT, cyclic rotation, and interpolation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data for interpolation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data weights </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output padded array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if all operations succeed, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="86" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="79" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1abadb66da4b56072ea38f22bfd47437ac" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_DelayRate::InitializeImpl</definition>
+        <argsstring>(const XArgType1 *in1, const XArgType2 *in2, XArgType3 *out) override</argsstring>
+        <name>InitializeImpl</name>
+        <reimplements refid="classhops_1_1MHO__BinaryOperator_1a7640bfa5a29b53673e615aaf1c2ff3a1">InitializeImpl</reimplements>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__DelayRate_1af867beb847b3aeedcd914c4b04238331" kindref="member">XArgType1</ref> *</type>
+          <declname>in1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__DelayRate_1a07a8eecf3b587d9dc1d6bef3c6670cf7" kindref="member">XArgType2</ref> *</type>
+          <declname>in2</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__DelayRate_1a04b0dc7ee6c051dea8e69f7899aa066f" kindref="member">XArgType3</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes <ref refid="classhops_1_1MHO__DelayRate" kindref="compound">MHO_DelayRate</ref> with input data and prepares for delay rate calculation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data of type XArgType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Additional input data of type XArgType2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output workspace of type XArgType3 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization is successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="76" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="18" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1a5828c1072f5afc7290fd8e35aa67215c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayRate::ApplyDataWeights</definition>
+        <argsstring>(const XArgType2 *in2, XArgType3 *out)</argsstring>
+        <name>ApplyDataWeights</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__DelayRate_1a07a8eecf3b587d9dc1d6bef3c6670cf7" kindref="member">XArgType2</ref> *</type>
+          <declname>in2</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__DelayRate_1a04b0dc7ee6c051dea8e69f7899aa066f" kindref="member">XArgType3</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Applies data weights from input array to output array elements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input weight array of type XArgType2 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output data array of type XArgType3 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="98" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="115" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1ab7db6970703e7d9d4e3e9ca06c086948" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayRate::ApplyInterpolation</definition>
+        <argsstring>(const XArgType1 *in1, XArgType3 *out)</argsstring>
+        <name>ApplyInterpolation</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__DelayRate_1af867beb847b3aeedcd914c4b04238331" kindref="member">XArgType1</ref> *</type>
+          <declname>in1</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__DelayRate_1a04b0dc7ee6c051dea8e69f7899aa066f" kindref="member">XArgType3</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Applies linear interpolation and modifies delay rate axis for input data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data array of type XArgType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output data array of type XArgType3 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="114" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="185" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayRate_1a7727d9cf636da460a06f863056277099" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayRate::ConditionallyResizeOutput</definition>
+        <argsstring>(const std::size_t *dims, std::size_t size, XArgType3 *out)</argsstring>
+        <name>ConditionallyResizeOutput</name>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>dims</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__DelayRate_1a04b0dc7ee6c051dea8e69f7899aa066f" kindref="member">XArgType3</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Conditionally resizes output array dimensions if they differ from required dimensions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dims</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input dimension sizes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Desired size for time axis </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array to be conditionally resized </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="106" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayRate.cc" bodystart="143" bodyend="170"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DelayRate" kindref="compound">MHO_DelayRate</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>implements the delay rate search</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Feb 3 15:13:40 2023 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_BinaryOperator&lt; visibility_type, weight_type, sbd_type &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DelayRate</label>
+        <link refid="classhops_1_1MHO__DelayRate"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_BinaryOperator&lt; visibility_type, weight_type, sbd_type &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DelayRate</label>
+        <link refid="classhops_1_1MHO__DelayRate"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayRate.hh" bodystart="35" bodyend="132"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DelayRate_1a5828c1072f5afc7290fd8e35aa67215c" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>ApplyDataWeights</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1ab7db6970703e7d9d4e3e9ca06c086948" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>ApplyInterpolation</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1ace873ac8e9af48c9452a718ae25d0b6f" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>CalculateSearchSpaceSize</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a7727d9cf636da460a06f863056277099" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>ConditionallyResizeOutput</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1af0716d50495400b0510af28a5ec75c8e" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a7b8c95a341a7279c717cb5f4e7628ca0" prot="protected" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1aa1c256e7acb08712ff0349d3dfacf994" prot="protected" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fArgs</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a44fe0b3f6e20d0b6469d038d9e94accd" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fCyclicRotator</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a99b25cdc0fd4ddd8c11857fca25aff75" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fDRSPSize</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a729ca390ec34c5ed24c3065ff21e9426" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fFFTEngine</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1abc2d2190079452b2bbdcb93f115b24da" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>FFT_ENGINE_TYPE</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a65433462d79156fde9006c48824b62c4" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fInDims</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a09585790934d4cfe20d753828364e56f" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a6f8245ac18832542bc78f46fd9240755" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fOutDims</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1afe9d1ae81efa8783ad140df8a1b3ed07" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fRefFreq</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a4cd502c0a018ba1b18de25a5ad55f7c8" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fSubSampler</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a09c0c9230a035a65c034e11cd1499157" prot="private" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>fZeroPadder</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1afc4cf6c1d108499990f4ed874802bb99" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>GetDelayRateSearchSpaceSize</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1aa9d4b322af4ea6f5e98afc218681abe1" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1abadb66da4b56072ea38f22bfd47437ac" prot="protected" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1abd9b011b1ad9ce7ed98fac23e0153afa" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>MHO_BinaryOperator</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a45911c8a0e2b0a9b81a0f91ab60811c8" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>MHO_DelayRate</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1ab98c0e7cdbc7f23197964387625f9e66" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a1f4d45df9eb28da25b5dbdec4b72e1c0" prot="public" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>SetReferenceFrequency</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1af867beb847b3aeedcd914c4b04238331" prot="protected" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>XArgType1</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a07a8eecf3b587d9dc1d6bef3c6670cf7" prot="protected" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>XArgType2</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a04b0dc7ee6c051dea8e69f7899aa066f" prot="protected" virt="non-virtual"><scope>hops::MHO_DelayRate</scope><name>XArgType3</name></member>
+      <member refid="classhops_1_1MHO__BinaryOperator_1ace7fcbd64341e102dd5f42985a8d26f4" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>~MHO_BinaryOperator</name></member>
+      <member refid="classhops_1_1MHO__DelayRate_1a26148ac27a860252cdb7d3f810901075" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>~MHO_DelayRate</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_DelayRate</scope><name>~MHO_Operator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

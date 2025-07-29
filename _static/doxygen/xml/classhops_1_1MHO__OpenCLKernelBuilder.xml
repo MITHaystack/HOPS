@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OpenCLKernelBuilder" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_OpenCLKernelBuilder</compoundname>
+    <includes refid="MHO__OpenCLKernelBuilder_8hh" local="no">MHO_OpenCLKernelBuilder.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLKernelBuilder_1aef6f08d4fdd81f9d60bf5eb9e708d935" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLKernelBuilder::MHO_OpenCLKernelBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_OpenCLKernelBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLKernelBuilder.hh" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLKernelBuilder.hh" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLKernelBuilder_1a6f63adb4ee7716644d103413448bca33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_OpenCLKernelBuilder::~MHO_OpenCLKernelBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OpenCLKernelBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLKernelBuilder.hh" line="14" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLKernelBuilder.hh" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLKernelBuilder_1a2c730f55bd520cede72b9851d7236f60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>cl::Kernel *</type>
+        <definition>cl::Kernel * hops::MHO_OpenCLKernelBuilder::BuildKernel</definition>
+        <argsstring>(std::string SourceFileName, std::string KernelName, std::string BuildFlags=std::string(&quot;&quot;))</argsstring>
+        <name>BuildKernel</name>
+        <param>
+          <type>std::string</type>
+          <declname>SourceFileName</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>KernelName</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>BuildFlags</declname>
+          <defval>std::string(&quot;&quot;)</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLKernelBuilder.hh" line="16" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/src/MHO_OpenCLKernelBuilder.cc" bodystart="17" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLKernelBuilder.hh" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLKernelBuilder.hh" bodystart="11" bodyend="19"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OpenCLKernelBuilder_1a2c730f55bd520cede72b9851d7236f60" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLKernelBuilder</scope><name>BuildKernel</name></member>
+      <member refid="classhops_1_1MHO__OpenCLKernelBuilder_1aef6f08d4fdd81f9d60bf5eb9e708d935" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLKernelBuilder</scope><name>MHO_OpenCLKernelBuilder</name></member>
+      <member refid="classhops_1_1MHO__OpenCLKernelBuilder_1a6f63adb4ee7716644d103413448bca33" prot="public" virt="virtual"><scope>hops::MHO_OpenCLKernelBuilder</scope><name>~MHO_OpenCLKernelBuilder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

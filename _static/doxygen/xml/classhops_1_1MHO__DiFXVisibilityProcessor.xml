@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DiFXVisibilityProcessor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DiFXVisibilityProcessor</compoundname>
+    <includes refid="MHO__DiFXVisibilityProcessor_8hh" local="no">MHO_DiFXVisibilityProcessor.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a1f9bd18ac1d7f14a3db80dfb190366b5" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXVisibilityProcessor::fFilename</definition>
+        <argsstring></argsstring>
+        <name>fFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="89" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a6b1d42292915a3654e3b21ecf29d728c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt;</type>
+        <definition>std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt; hops::MHO_DiFXVisibilityProcessor::fFreqBands</definition>
+        <argsstring></argsstring>
+        <name>fFreqBands</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="94" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityProcessor_1ac9f96ae0c8a6bcfd4c2f65e907bd66cc" prot="private" static="no" mutable="no">
+        <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+        <definition>const mho_json* hops::MHO_DiFXVisibilityProcessor::fInput</definition>
+        <argsstring></argsstring>
+        <name>fInput</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="87" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a028b9a70fa64e7b59b0c02d2ac13c98a" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::pair&lt; int, int &gt;, int &gt;</type>
+        <definition>std::map&lt; std::pair&lt; int, int &gt;, int &gt; hops::MHO_DiFXVisibilityProcessor::fNChannelsMap</definition>
+        <argsstring></argsstring>
+        <name>fNChannelsMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="91" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a0dba08e1f27121448242f13b19114af7" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXVisibilityProcessor::fOnlyBandwidth</definition>
+        <argsstring></argsstring>
+        <name>fOnlyBandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="97" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a522537568d4843dbf42fce926a1dd117" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_DiFXVisibilityProcessor::fOnlyFreqGroups</definition>
+        <argsstring></argsstring>
+        <name>fOnlyFreqGroups</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="95" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a43b340a5de592e3f9d5d2f04dcc954f4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXVisibilityProcessor::fSelectByBandwidth</definition>
+        <argsstring></argsstring>
+        <name>fSelectByBandwidth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="96" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1ad30f4e794763b4785a38016655815043" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXVisibilityProcessor::MHO_DiFXVisibilityProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DiFXVisibilityProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXVisibilityProcessor.cc" bodystart="8" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a9d8eb3352726f559af882f7dc7c0f42a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_DiFXVisibilityProcessor::~MHO_DiFXVisibilityProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DiFXVisibilityProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a218606eb31d93184399699fb9caf50a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXVisibilityProcessor::ReadDIFXFile</definition>
+        <argsstring>(std::map&lt; int, MHO_DiFXBaselineProcessor &gt; &amp;allBaselineVisibilities)</argsstring>
+        <name>ReadDIFXFile</name>
+        <param>
+          <type>std::map&lt; int, <ref refid="classhops_1_1MHO__DiFXBaselineProcessor" kindref="compound">MHO_DiFXBaselineProcessor</ref> &gt; &amp;</type>
+          <declname>allBaselineVisibilities</declname>
+        </param>
+        <briefdescription>
+<para>read the visibilities from Swinburne file and allocate memory to store them as we go memory management of the visibility records is delegated to the caller </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>allBaselineVisibilities</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to std::map containing baseline visibilities </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXVisibilityProcessor.cc" bodystart="18" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1ac6d9300e241bd4a3370ac5d9f610bbb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXVisibilityProcessor::SetDiFXInputData</definition>
+        <argsstring>(const mho_json *input)</argsstring>
+        <name>SetDiFXInputData</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Setter for difx .input data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json object containing DiFX data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1adb747780f292245dad4f455ab6257080" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXVisibilityProcessor::SetFilename</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>SetFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Setter for filename. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new filename to set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="42" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a54eb508d3cc30bd5312a1b0133caa301" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXVisibilityProcessor::SetFreqGroups</definition>
+        <argsstring>(std::vector&lt; std::string &gt; fgroups)</argsstring>
+        <name>SetFreqGroups</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>fgroups</declname>
+        </param>
+        <briefdescription>
+<para>Setter for (allowed) freq groups/bands. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fgroups</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of frequency group strings </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1a643b76de5cd38deb1818deb3c7f8b293" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXVisibilityProcessor::SetFrequencyBands</definition>
+        <argsstring>(std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt; fbands)</argsstring>
+        <name>SetFrequencyBands</name>
+        <param>
+          <type>std::vector&lt; std::tuple&lt; std::string, double, double &gt; &gt;</type>
+          <declname>fbands</declname>
+        </param>
+        <briefdescription>
+<para>Setter for frequency bands (label, limits) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fbands</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of tuples containing band name, lower and upper frequencies </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="66" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXVisibilityProcessor_1aade278cbba411b00bd6606f01de648bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXVisibilityProcessor::SetOnlyBandwidth</definition>
+        <argsstring>(double bw)</argsstring>
+        <name>SetOnlyBandwidth</name>
+        <param>
+          <type>double</type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+<para>Setter for allow channel bandwidth (only channels with this bandwidth will be kept) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The allowed channel bandwidth value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="80" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="80" bodyend="84"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DiFXVisibilityProcessor" kindref="compound">MHO_DiFXVisibilityProcessor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>reads a DiFX Swinburne file and extracts the visibilities into a baseline-index mapped set of vectors, and keeps track of the unique pol-pairs seen on each baseline</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Feb 11 12:44:50 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityProcessor.hh" bodystart="32" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a1f9bd18ac1d7f14a3db80dfb190366b5" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>fFilename</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a6b1d42292915a3654e3b21ecf29d728c" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>fFreqBands</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1ac9f96ae0c8a6bcfd4c2f65e907bd66cc" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>fInput</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a028b9a70fa64e7b59b0c02d2ac13c98a" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>fNChannelsMap</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a0dba08e1f27121448242f13b19114af7" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>fOnlyBandwidth</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a522537568d4843dbf42fce926a1dd117" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>fOnlyFreqGroups</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a43b340a5de592e3f9d5d2f04dcc954f4" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>fSelectByBandwidth</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1ad30f4e794763b4785a38016655815043" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>MHO_DiFXVisibilityProcessor</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a218606eb31d93184399699fb9caf50a1" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>ReadDIFXFile</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1ac6d9300e241bd4a3370ac5d9f610bbb7" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>SetDiFXInputData</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1adb747780f292245dad4f455ab6257080" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>SetFilename</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a54eb508d3cc30bd5312a1b0133caa301" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>SetFreqGroups</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a643b76de5cd38deb1818deb3c7f8b293" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>SetFrequencyBands</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1aade278cbba411b00bd6606f01de648bc" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>SetOnlyBandwidth</name></member>
+      <member refid="classhops_1_1MHO__DiFXVisibilityProcessor_1a9d8eb3352726f559af882f7dc7c0f42a" prot="public" virt="virtual"><scope>hops::MHO_DiFXVisibilityProcessor</scope><name>~MHO_DiFXVisibilityProcessor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

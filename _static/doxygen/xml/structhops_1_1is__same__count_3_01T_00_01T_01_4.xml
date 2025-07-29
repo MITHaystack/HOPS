@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1is__same__count_3_01T_00_01T_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>hops::is_same_count&lt; T, T &gt;</compoundname>
+    <includes refid="MHO__Meta_8hh" local="no">MHO_Meta.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structhops_1_1is__same__count_3_01T_00_01T_01_4_1a92bdea14f5c3e57ee30c628f615f2035" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static size_t</type>
+        <definition>constexpr static size_t hops::is_same_count&lt; T, T &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="71" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1is__same__count_3_01T_00_01T_01_4" kindref="compound">is_same_count&lt;T, T&gt;</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>size_t</label>
+      </node>
+      <node id="1">
+        <label>hops::is_same_count&lt; T, T &gt;</label>
+        <link refid="structhops_1_1is__same__count_3_01T_00_01T_01_4"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="69" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="70" bodyend="72"/>
+    <listofallmembers>
+      <member refid="structhops_1_1is__same__count_3_01T_00_01T_01_4_1a92bdea14f5c3e57ee30c628f615f2035" prot="public" virt="non-virtual"><scope>hops::is_same_count&lt; T, T &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

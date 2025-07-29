@@ -1,0 +1,711 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MBDelaySearchCUDA" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MBDelaySearchCUDA</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__MBDelaySearch" prot="public" virt="non-virtual">hops::MHO_MBDelaySearch</basecompoundref>
+    <includes refid="MHO__MBDelaySearchCUDA_8hh" local="no">MHO_MBDelaySearchCUDA.hh</includes>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__MBDelaySearchCUDA_1a0ef3b75af3e2d5d2920af1d095a5e5ac" prot="protected" static="no">
+        <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref></type>
+        <definition>using hops::MHO_MBDelaySearchCUDA::XArgType =  visibility_type</definition>
+        <argsstring></argsstring>
+        <name>XArgType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MBDelaySearchCUDA_1a5aebb2f837daf56e9a7f38394062f353" prot="private" static="no" mutable="no">
+        <type>cufftHandle</type>
+        <definition>cufftHandle hops::MHO_MBDelaySearchCUDA::fCUFFTPlan</definition>
+        <argsstring></argsstring>
+        <name>fCUFFTPlan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="72" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MBDelaySearchCUDA_1a2b31c906ac786cdeade43ba4047ad13e" prot="private" static="no" mutable="no">
+        <type>cufftDoubleComplex *</type>
+        <definition>cufftDoubleComplex* hops::MHO_MBDelaySearchCUDA::fDeviceBuffer</definition>
+        <argsstring></argsstring>
+        <name>fDeviceBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="70" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MBDelaySearchCUDA_1a5037fca7c210c73213778f0653f9e572" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a34485a13f7dbf2dc3fee00cbd94618ba" kindref="member">mbd_dr_type</ref></type>
+        <definition>mbd_dr_type hops::MHO_MBDelaySearchCUDA::fHostBuffer</definition>
+        <argsstring></argsstring>
+        <name>fHostBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="68" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MBDelaySearchCUDA_1ab35f365b347ac1b6f1d5c7cea8a4553a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MBDelaySearchCUDA::MHO_MBDelaySearchCUDA</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MBDelaySearchCUDA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="43" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/src/MHO_MBDelaySearchCUDA.cc" bodystart="6" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MBDelaySearchCUDA_1ac446185d605f24a284bc9021207c7780" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MBDelaySearchCUDA::~MHO_MBDelaySearchCUDA</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MBDelaySearchCUDA</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/src/MHO_MBDelaySearchCUDA.cc" bodystart="9" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MBDelaySearchCUDA_1acbf2b7d00d02571ffc5371381143927e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MBDelaySearchCUDA::ExecuteImpl</definition>
+        <argsstring>(const XArgType *in) override</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplements refid="classhops_1_1MHO__MBDelaySearch_1a6c7d8f119fa61cbd9355e2d078e1a57a">ExecuteImpl</reimplements>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__MBDelaySearch_1a1a63ab9ecee5c210b853f651ba5c34a1" kindref="member">XArgType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Executes MBDelaySearch algorithm using provided input arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument of type const XArgType* containing frequency axis and delay rate workspace. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the execution was successful or not. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="64" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/src/MHO_MBDelaySearchCUDA.cc" bodystart="107" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MBDelaySearchCUDA_1a518b72e9b20b6670f865916ed2c4e697" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MBDelaySearchCUDA::InitializeImpl</definition>
+        <argsstring>(const XArgType *in) override</argsstring>
+        <name>InitializeImpl</name>
+        <reimplements refid="classhops_1_1MHO__MBDelaySearch_1ad502fee097a883471fb1e4c51f1d7ce1">InitializeImpl</reimplements>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__MBDelaySearch_1a1a63ab9ecee5c210b853f651ba5c34a1" kindref="member">XArgType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes <ref refid="classhops_1_1MHO__MBDelaySearchCUDA" kindref="compound">MHO_MBDelaySearchCUDA</ref> with input arguments and calculates frequency grid for MBD search. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument of type const XArgType* containing channel axis data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization is successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="56" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/src/MHO_MBDelaySearchCUDA.cc" bodystart="15" bodyend="105"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MBDelaySearchCUDA" kindref="compound">MHO_MBDelaySearchCUDA</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This is an ultra basic CUDA implementation of the the coarse MBD/SBD/DR search, its quite primitive and only calls the CUFFT library to speed up the inner-most loop over (DR,MBD) space. It is not optimized and has far too much movement of data between host &lt;-&gt; device, additional work is need to optimize this routine.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> @dateTue Jul 16 10:40:47 PM EDT 2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_InspectingOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__InspectingOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MBDelaySearchCUDA</label>
+        <link refid="classhops_1_1MHO__MBDelaySearchCUDA"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_MBDelaySearch</label>
+        <link refid="classhops_1_1MHO__MBDelaySearch"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_InspectingOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__InspectingOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="42">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 1 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_011_01_4"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>size_t</label>
+      </node>
+      <node id="35">
+        <label>std::map&lt; std::size_t, std::size_t &gt;</label>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="38">
+        <label>hops::MHO_Axis&lt; double &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="39" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="public-inheritance">
+        </childnode>
+        <childnode refid="43" relation="public-inheritance">
+        </childnode>
+        <childnode refid="44" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fAxesToXForm</edgelabel>
+          <edgelabel>fForward</edgelabel>
+          <edgelabel>fInitialized</edgelabel>
+          <edgelabel>fIsValid</edgelabel>
+          <edgelabel>fTransformAxisLabels</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fDimensionSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>std::vector&lt; double &gt;</label>
+        <childnode refid="26" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MBDelaySearchCUDA</label>
+        <link refid="classhops_1_1MHO__MBDelaySearchCUDA"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_BinaryOperator&lt; visibility_type, weight_type, sbd_type &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>hops::MHO_InspectingOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__InspectingOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="49" relation="usage">
+          <edgelabel>fArg</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_TableContainerBase</label>
+        <link refid="classhops_1_1MHO__TableContainerBase"/>
+      </node>
+      <node id="32">
+        <label>hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>hops::MHO_UnaryOperator&lt; MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>hops::MHO_AxisBase</label>
+        <link refid="classhops_1_1MHO__AxisBase"/>
+      </node>
+      <node id="41">
+        <label>hops::MHO_VectorContainerBase</label>
+        <link refid="classhops_1_1MHO__VectorContainerBase"/>
+      </node>
+      <node id="25">
+        <label>json</label>
+      </node>
+      <node id="23">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>mbd_axis_pack</label>
+        <link refid="classhops_1_1MHO__AxisPack"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>tuple&lt; XArgType * &gt;</label>
+      </node>
+      <node id="40">
+        <label>hops::MHO_VectorContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__VectorContainer"/>
+        <childnode refid="41" relation="public-inheritance">
+        </childnode>
+        <childnode refid="42" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, RANK &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>int</label>
+      </node>
+      <node id="47">
+        <label>hops::MHO_ExtremaSearch&lt; MHO_TableContainer&lt; double, mbd_axis_pack &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__ExtremaSearch"/>
+        <childnode refid="48" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>double</label>
+      </node>
+      <node id="7">
+        <label>tuple&lt; const XArgType *, XArgType * &gt;</label>
+      </node>
+      <node id="17">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="18" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>hops::MHO_UniformGridPointsCalculator</label>
+        <link refid="classhops_1_1MHO__UniformGridPointsCalculator"/>
+        <childnode refid="26" relation="usage">
+          <edgelabel>fAbsEps</edgelabel>
+          <edgelabel>fAverageLocation</edgelabel>
+          <edgelabel>fEpsilon</edgelabel>
+          <edgelabel>fMaxSpacing</edgelabel>
+          <edgelabel>fMinSpacing</edgelabel>
+          <edgelabel>fNGridPoints</edgelabel>
+          <edgelabel>fSpacing</edgelabel>
+          <edgelabel>fSpread</edgelabel>
+          <edgelabel>fStart</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>fDefaultGridPoints</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fSpacingError</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>fIndexMap</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>fPoints</edgelabel>
+        </childnode>
+      </node>
+      <node id="43">
+        <label>hops::MHO_IndexLabelInterface</label>
+        <link refid="classhops_1_1MHO__IndexLabelInterface"/>
+      </node>
+      <node id="24">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="25" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="21">
+        <label>std::tuple&lt; XAxisTypeS... &gt;</label>
+      </node>
+      <node id="12">
+        <label>hops::MHO_DelayRate</label>
+        <link refid="classhops_1_1MHO__DelayRate"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>XAxisPackType</label>
+        <link refid="classXAxisPackType"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; mbd_type &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_UnaryOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fOutOfPlaceArgs</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fInPlace</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fInPlaceArgs</edgelabel>
+        </childnode>
+      </node>
+      <node id="45">
+        <label>hops::MHO_CyclicRotator&lt; MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__CyclicRotator"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>bool</label>
+      </node>
+      <node id="44">
+        <label>hops::MHO_IntervalLabelInterface</label>
+        <link refid="classhops_1_1MHO__IntervalLabelInterface"/>
+      </node>
+      <node id="22">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="49">
+        <label>const XArgType *</label>
+      </node>
+      <node id="30">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_MBDelaySearch</label>
+        <link refid="classhops_1_1MHO__MBDelaySearch"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fFFTEngine</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fDelayRateCalc</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fSBDDrWorkspace</edgelabel>
+          <edgelabel>sbd_dr_data</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>fAverageFreq</edgelabel>
+          <edgelabel>fCoarseDR</edgelabel>
+          <edgelabel>fCoarseMBD</edgelabel>
+          <edgelabel>fCoarseSBD</edgelabel>
+          <edgelabel>fDRBinSep</edgelabel>
+          <edgelabel>fDRWin</edgelabel>
+          <edgelabel>fGridSpace</edgelabel>
+          <edgelabel>fGridStart</edgelabel>
+          <edgelabel>fMBDBinSep</edgelabel>
+          <edgelabel>fMBDWin</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>fMBDAmpWorkspace</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>fWeights</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>fWeightsWorkspace</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>fGridCalc</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>fDRMaxBin</edgelabel>
+          <edgelabel>fMBDMaxBin</edgelabel>
+          <edgelabel>fSBDMaxBin</edgelabel>
+          <edgelabel>fSBDStart</edgelabel>
+          <edgelabel>fSBDStop</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>fMBDWorkspace</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fDRWinSet</edgelabel>
+          <edgelabel>fInitialized</edgelabel>
+          <edgelabel>fMBDWinSet</edgelabel>
+          <edgelabel>fSBDWinSet</edgelabel>
+        </childnode>
+        <childnode refid="38" relation="usage">
+          <edgelabel>fDRAxis</edgelabel>
+          <edgelabel>fMBDAxis</edgelabel>
+          <edgelabel>fSBDAxis</edgelabel>
+        </childnode>
+        <childnode refid="45" relation="usage">
+          <edgelabel>fCyclicRotator</edgelabel>
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>fChannelIndexToFreqPointIndex</edgelabel>
+          <edgelabel>fMBDBinMap</edgelabel>
+        </childnode>
+        <childnode refid="47" relation="usage">
+          <edgelabel>fMaxSearch</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fNDR</edgelabel>
+          <edgelabel>fNDRSP</edgelabel>
+          <edgelabel>fNGridPoints</edgelabel>
+          <edgelabel>fNSBD</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>fChannelFreqs</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>baseline_axis_pack</label>
+        <link refid="classhops_1_1MHO__AxisPack"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/include/MHO_MBDelaySearchCUDA.hh" bodystart="41" bodyend="73"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a2b4643b0fa8840e2cd9c563ff94b7b09" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1acbf2b7d00d02571ffc5371381143927e" prot="protected" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a5f6eb3f05738ed013a1ae555399caa07" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fArg</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a73232b82b54d18fcd911a910077af3ad" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fAverageFreq</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a8b371c021f02088ec91b867dbc7004be" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fChannelFreqs</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1af716e7e14172c5d1f2fa867f04802c9e" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fChannelIndexToFreqPointIndex</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a20c19fa494cd7decdd5408c42a8a7512" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fCoarseDR</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a694fbeae9d868994bbd03df80443a7e8" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fCoarseMBD</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a3fd30d067f98625a5155c58fb66f6313" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fCoarseSBD</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1a5aebb2f837daf56e9a7f38394062f353" prot="private" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fCUFFTPlan</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ae504e2a866b9c1d9eadd3c1c73accabe" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fCyclicRotator</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a1874a8ea95372cf6ef18425b81976fc1" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fDelayRateCalc</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1a2b31c906ac786cdeade43ba4047ad13e" prot="private" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fDeviceBuffer</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1af8ec0ea3793ae9fce360da128164f4d7" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fDRAxis</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a20a8c9d15cb2674415b8450e35483a16" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fDRBinSep</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a1647bdc8554e33409e9d33889377590b" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fDRMaxBin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ae0e5b0dfdeaac5f221a721ea506931f7" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fDRWin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a7b5514b495cd6986325fcb4a2d3c3fc7" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fDRWinSet</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1af30737a8e61d4ad121bb4051b68727a7" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fFFTEngine</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a966b0971a35029f0647a038785864036" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>FFT_ENGINE_TYPE</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ac0402f8633e87ce601c3fa4565bf28d3" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fGridCalc</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a2c36cff0c0428b514603e332f64cc219" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fGridSpace</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ac84d000d058d5b115b1364e154b93fd8" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fGridStart</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1a5037fca7c210c73213778f0653f9e572" prot="private" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fHostBuffer</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ac530663982e0c1fb776b2bb0bb1cd965" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1aa4caf730d5a4137c55f1baa57e987871" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMax</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1af2c9472188899c36b684b5c362826185" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMaxSearch</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a9c0f907e3eab6e9af4a8255b175ce9d0" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDAmpWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1acb8b0e967ed3a16fa8929b9a9c9e01de" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDAxis</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1aa59d076da2e91b79c27d94e67f9c1064" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDBinMap</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1aa44a98b599c775a9dc17f27f68d785db" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDBinSep</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1af3184229468b7be59e2b6d3144b3f8c6" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDMaxBin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a8ee8813f24e9a31248f22a8c61e65b1a" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDWin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1aba0cbc274efc1e904638df0619396eb4" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDWinSet</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a11c0a48e15bb1d3bea74cce65b634d7d" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fMBDWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a85cfd49775e8d2d22b8ad0bd7fa15db6" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fNDR</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a9bdbbd6e9ceced11874e6fd5a2b739ff" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fNDRSP</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a71c5290448e6dd1787a9a16ba6c27209" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fNGridPoints</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a6910a20da16dca4f419af1a91c074b7c" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fNPointsSearched</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a8d5d8e8a869b8a106c7e4e3b4d516dab" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fNSBD</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ab620a16fef3c2263e111c91c26ad53f0" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fRefFreq</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a1a3905593f1e349c73e9d066b0e700d8" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDAxis</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a7f6c8619ad500bf201056e8606e27048" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDBinSep</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a87e14de6e6cefdc7e1ab79372dde3047" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDDrWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1aad24643ad0c018cca25e4a0b4c797095" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDMaxBin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ac5c919be10071061ddd572b27c8136ed" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDStart</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a1229e0a1e2821bb1c119802317347ed9" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDStop</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a3f265b975b291b4d8b302b867a77ed51" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDWin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a6370ae309995d1aed54fba3e2166f5c6" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fSBDWinSet</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a92cc7fd73c25a3867a5835fa63341535" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fWeights</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a086d8a855b2093b19bbb4030deed2c5a" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>fWeightsWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a2f30bf36dc93592313b99cfd4347a42b" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetAverageFrequency</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a36e821dc89a3fc73c96c8a014b563ea8" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetCoarseDR</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ac7ccb2ee4ae1f6fdc5522a8b1c292045" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetCoarseMBD</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a6e19b9c16825daacfc765c899239ae25" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetCoarseSBD</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ae393f71ca143476ffd772eb9daca3edd" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetDRAxis</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a8ebb51a36c4516e3acefab3c0b4eac94" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetDRMaxBin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ac9a7d09d145a259ca96d0e51963f490f" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetDRWindow</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a67754feb40b3ebb8f434edbdb16f1ea5" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetFrequencySpacing</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a61930f5dde82541c16c5acf509d6eda8" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetMBDAxis</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1aa5831c04d102b27fc1e4ae3fabdd2fa1" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetMBDMaxBin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a262f8cedd9db8b11b54e0a66d286f3e8" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetMBDWindow</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1acc958f34a6c2a8e75f428aa33e42e73c" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetNDRBins</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1abc7ddf0acba3a473cd8be1f98b9fab40" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetNDRSPBins</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ac7c61dac046db8c8250e5fd9066163c4" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetNMBDBins</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ad7bb39d859b0aa05d9cf8b7fda930826" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetNPointsSearched</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ace88547f936925e6bd819580aaac7663" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetNSBDBins</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a4dab3c58b2eb7db185fc794787fcc4a9" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetSBDBinSeparation</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1af0a9f5cbea7ef52e0cff0510af2d787f" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetSBDMaxBin</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1adca3a4b567724f902570f4a6272b72df" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetSBDWindow</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ad74a5661ce1c5a45db2ab09abeb5a3d8" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetSearchMaximumAmplitude</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a029357e11953acbebcc2b4da6026e8a5" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>GetWindow</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1aee87234b1bfcec770ca95db0d527b6ab" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1a518b72e9b20b6670f865916ed2c4e697" prot="protected" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1ade9ff5dfb10fd46f60d4b05e388f52e6" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>MHO_InspectingOperator</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a01f6d4fa5fa6934b33bcaa33333bf507" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>MHO_MBDelaySearch</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1ab35f365b347ac1b6f1d5c7cea8a4553a" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>MHO_MBDelaySearchCUDA</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a2421eee719f6e390d107454d99f5c0ab" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>sbd_dr_data</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a3cea8e96348fc6b912aaf73a39dc0812" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ae3fd88ae87d7cb5615ec68a0f04f9b84" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetDRWindow</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a0b69afee9d1f1ceb7927296f4411276f" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetMBDWindow</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a886425f779cb85b83047a2b39ba2384b" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetReferenceFrequency</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ad1a116da802bdf1f2bd04ebd479aac43" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetSBDWindow</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1ad369ba101b073dd9e3b72700c52f9c4a" prot="public" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetWeights</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a63959d685fa630f323d3689aef6697d2" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>SetWindow</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1a0ef3b75af3e2d5d2920af1d095a5e5ac" prot="protected" virt="non-virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>XArgType</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a02d0f0c0080c0465abafb7594aa2d12c" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>~MHO_InspectingOperator</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearch_1a62efdc4a136bee00a4defb1fd0321300" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>~MHO_MBDelaySearch</name></member>
+      <member refid="classhops_1_1MHO__MBDelaySearchCUDA_1ac446185d605f24a284bc9021207c7780" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>~MHO_MBDelaySearchCUDA</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_MBDelaySearchCUDA</scope><name>~MHO_Operator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

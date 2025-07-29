@@ -1,0 +1,477 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection" kind="class" language="Python" prot="public">
+    <compoundname>vpal::fringe_file_manipulation::SingleScanBaselineCollection</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1ae6097d477b299dd6075e2d5cb2a64e99" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::associated_root_file</definition>
+        <argsstring></argsstring>
+        <name>associated_root_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="616" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="616" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1add40e17e705f95695cceb99fbdba80b3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::control_file_hash</definition>
+        <argsstring></argsstring>
+        <name>control_file_hash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="618" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="618" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a5bfbb37c7dca2d491edfc63f8b06851d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::control_filename</definition>
+        <argsstring></argsstring>
+        <name>control_filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="617" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="617" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a7fa0ed7b12df80ad30624d7b4f76d10f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::max_dtec_mdev</definition>
+        <argsstring></argsstring>
+        <name>max_dtec_mdev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="623" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="623" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a3aee607bb56c1ec5b77f0d4b599cb496" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::max_snr</definition>
+        <argsstring></argsstring>
+        <name>max_snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="620" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="620" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a4d58f5b5b7e2575979444af11d1c661f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::mean_dtec_mdev</definition>
+        <argsstring></argsstring>
+        <name>mean_dtec_mdev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="622" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="622" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1af2c432e23965a869459cd9ec19e75fd6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::mean_snr</definition>
+        <argsstring></argsstring>
+        <name>mean_snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="619" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="619" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a51cafd547d45f067598537da77b51f7c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::min_dtec_mdev</definition>
+        <argsstring></argsstring>
+        <name>min_dtec_mdev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="624" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="624" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a6966c10b44a90e80e52b550f2c17c2f5" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::min_snr</definition>
+        <argsstring></argsstring>
+        <name>min_snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="621" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="621" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a5e386aba32e6577abf6e9f610b02e78c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::root_id</definition>
+        <argsstring></argsstring>
+        <name>root_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="614" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="614" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a8f92ae377f9bf46782aaaffd96e3715f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::scan_name</definition>
+        <argsstring></argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="615" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="615" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a4459fac7d79557a6c5ce39eb6a81c9ae" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fringe_file_manipulation.SingleScanBaselineCollection::single_baseline_pp_collection_dict</definition>
+        <argsstring></argsstring>
+        <name>single_baseline_pp_collection_dict</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="625" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="625" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a91ab3724125eba3ee11b175a55ae4f95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="613" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="613" bodyend="626"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a197df884818129d07c17cdc41171c169" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.add_baseline_collection</definition>
+        <argsstring>(self, baseline_collection)</argsstring>
+        <name>add_baseline_collection</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>baseline_collection</type>
+          <defname>baseline_collection</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> add the polarization-product collection of a single baseline </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="636" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="636" bodyend="645"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a272cddafdcd5edc3e7701240abe537f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_baselines_present</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_baselines_present</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> return list of unique baselines present </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="693" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="693" bodyend="699"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a94a479e86f8c4be94891024593d1f4dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_collection_for_baseline</definition>
+        <argsstring>(self, bl)</argsstring>
+        <name>get_collection_for_baseline</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bl</type>
+          <defname>bl</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> retrieve the single-baseline polarization product collection associated with a particular baseline </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="709" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="709" bodyend="715"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a4220a9f41b11cda223529daee3206094" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_list_of_baselines</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_list_of_baselines</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> a list of baselines with data </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="646" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="646" bodyend="650"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a3ead2da58d72ac56e94a25817f277f88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_max_dtec_mdev</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_max_dtec_mdev</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> the max value of the maximum-dTEC deviation over all baselines </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="679" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="679" bodyend="685"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a546390218da2783b59e71dfb4306e9a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_max_snr</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_max_snr</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="660" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="660" bodyend="665"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a7cd124ffa530218c48ea9a5f776a2aee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_mean_dtec_mdev</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_mean_dtec_mdev</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> the mean value of the maximum-dTEC deviation over all baselines </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="672" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="672" bodyend="678"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a33210c661f883e8dd4e7fb574fd26b2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_mean_snr</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_mean_snr</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="654" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="654" bodyend="659"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a2ccec7e315066fe4102a92a4fdb8541b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_min_dtec_mdev</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_min_dtec_mdev</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> the min value of the maximum-dTEC deviation over all baselines </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="686" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="686" bodyend="692"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a6234548e407ab19c59ec38b60ba759c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_min_snr</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_min_snr</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="666" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="666" bodyend="671"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a59a2a5686bb721e3ff1e1f117806c1ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_n_baseline_collections</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_n_baseline_collections</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="651" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="651" bodyend="653"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a7ff3c8b4745b0dadc1fc02e277329665" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.get_stations_present</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_stations_present</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> return list of unique station present </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="700" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="700" bodyend="708"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a175181cc426708e32aef2575268cb3cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fringe_file_manipulation.SingleScanBaselineCollection.init_values</definition>
+        <argsstring>(self)</argsstring>
+        <name>init_values</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="627" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="627" bodyend="635"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> a collection of all the fringe-collections (over polarization-products) of each baseline associated with a single scan </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fringe_file_manipulation.SingleScanBaselineCollection</label>
+        <link refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fringe_file_manipulation.SingleScanBaselineCollection</label>
+        <link refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" line="610" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fringe_file_manipulation.py" bodystart="610" bodyend="715"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a91ab3724125eba3ee11b175a55ae4f95" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a197df884818129d07c17cdc41171c169" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>add_baseline_collection</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1ae6097d477b299dd6075e2d5cb2a64e99" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>associated_root_file</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1add40e17e705f95695cceb99fbdba80b3" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>control_file_hash</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a5bfbb37c7dca2d491edfc63f8b06851d" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>control_filename</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a272cddafdcd5edc3e7701240abe537f7" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_baselines_present</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a94a479e86f8c4be94891024593d1f4dc" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_collection_for_baseline</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a4220a9f41b11cda223529daee3206094" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_list_of_baselines</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a3ead2da58d72ac56e94a25817f277f88" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_max_dtec_mdev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a546390218da2783b59e71dfb4306e9a9" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_max_snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a7cd124ffa530218c48ea9a5f776a2aee" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_mean_dtec_mdev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a33210c661f883e8dd4e7fb574fd26b2a" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_mean_snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a2ccec7e315066fe4102a92a4fdb8541b" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_min_dtec_mdev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a6234548e407ab19c59ec38b60ba759c5" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_min_snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a59a2a5686bb721e3ff1e1f117806c1ae" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_n_baseline_collections</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a7ff3c8b4745b0dadc1fc02e277329665" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>get_stations_present</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a175181cc426708e32aef2575268cb3cd" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>init_values</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a7fa0ed7b12df80ad30624d7b4f76d10f" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>max_dtec_mdev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a3aee607bb56c1ec5b77f0d4b599cb496" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>max_snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a4d58f5b5b7e2575979444af11d1c661f" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>mean_dtec_mdev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1af2c432e23965a869459cd9ec19e75fd6" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>mean_snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a51cafd547d45f067598537da77b51f7c" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>min_dtec_mdev</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a6966c10b44a90e80e52b550f2c17c2f5" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>min_snr</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a5e386aba32e6577abf6e9f610b02e78c" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>root_id</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a8f92ae377f9bf46782aaaffd96e3715f" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>scan_name</name></member>
+      <member refid="classvpal_1_1fringe__file__manipulation_1_1SingleScanBaselineCollection_1a4459fac7d79557a6c5ce39eb6a81c9ae" prot="public" virt="non-virtual"><scope>vpal::fringe_file_manipulation::SingleScanBaselineCollection</scope><name>single_baseline_pp_collection_dict</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

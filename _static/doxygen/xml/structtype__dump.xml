@@ -1,0 +1,1860 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__dump" kind="struct" language="C++" prot="public">
+    <compoundname>type_dump</compoundname>
+    <includes refid="plot__data__dir_8h" local="no">plot_data_dir.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__dump_1a448035420da71095e8e4f10d79a071e6" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structmk4__fringe" kindref="compound">mk4_fringe</ref> *</type>
+        <definition>struct mk4_fringe* type_dump::fringe</definition>
+        <argsstring></argsstring>
+        <name>fringe</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="30" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__dump_1a93f48bf093b1eb5e1954919d591944e4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__meta" kindref="compound">type_meta</ref> *</type>
+        <definition>struct type_meta* type_dump::meta</definition>
+        <argsstring></argsstring>
+        <name>meta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="28" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__dump_1ad4274b67704c8fed264646072eb974e0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__param" kindref="compound">type_param</ref> *</type>
+        <definition>struct type_param* type_dump::param</definition>
+        <argsstring></argsstring>
+        <name>param</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="26" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__dump_1a321b93d10896a9625f881021ebba9c3d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+        <definition>struct type_pass* type_dump::pass</definition>
+        <argsstring></argsstring>
+        <name>pass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="25" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__dump_1ab0cc62d38dea5152960a25c353b8ebe4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__plot" kindref="compound">type_plot</ref> *</type>
+        <definition>struct type_plot* type_dump::plot</definition>
+        <argsstring></argsstring>
+        <name>plot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="29" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__dump_1a485c5bb816206e6ba61b16f17c560575" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structvex" kindref="compound">vex</ref> *</type>
+        <definition>struct vex* type_dump::root</definition>
+        <argsstring></argsstring>
+        <name>root</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="24" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__dump_1a4ca87c957ed6f892260239706b96e308" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+        <definition>struct type_status* type_dump::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="27" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="92">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="84">
+        <label>gat_struct</label>
+        <link refid="structgat__struct"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>on_delay</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Cvex_Chip</label>
+        <link refid="structCvex__Chip"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>input</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>relChipNum</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="93">
+        <label>spectral</label>
+        <link refid="structspectral"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>im</edgelabel>
+          <edgelabel>re</edgelabel>
+        </childnode>
+      </node>
+      <node id="87">
+        <label>data_corel</label>
+        <link refid="structdata__corel"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lsbfrac</edgelabel>
+          <edgelabel>usbfrac</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>sband</edgelabel>
+        </childnode>
+        <childnode refid="88" relation="usage">
+          <edgelabel>ref_sdata</edgelabel>
+          <edgelabel>rem_sdata</edgelabel>
+        </childnode>
+        <childnode refid="89" relation="usage">
+          <edgelabel>sbdelay</edgelabel>
+        </childnode>
+        <childnode refid="90" relation="usage">
+          <edgelabel>apdata_ll</edgelabel>
+          <edgelabel>apdata_lr</edgelabel>
+          <edgelabel>apdata_rl</edgelabel>
+          <edgelabel>apdata_rr</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>pc_phasor</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>lvex_struct</label>
+        <link refid="structlvex__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>nstation</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>stn</edgelabel>
+        </childnode>
+      </node>
+      <node id="75">
+        <label>void *</label>
+      </node>
+      <node id="86">
+        <label>freq_corel</label>
+        <link refid="structfreq__corel"/>
+        <childnode refid="87" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>frequency</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mean_lcp_trk_err</edgelabel>
+          <edgelabel>mean_rcp_trk_err</edgelabel>
+          <edgelabel>pc_freqs</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>bbc_lcp</edgelabel>
+          <edgelabel>bbc_rcp</edgelabel>
+          <edgelabel>trk_lcp</edgelabel>
+          <edgelabel>trk_rcp</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>ch_lsb_lcp</edgelabel>
+          <edgelabel>ch_lsb_rcp</edgelabel>
+          <edgelabel>ch_usb_lcp</edgelabel>
+          <edgelabel>ch_usb_rcp</edgelabel>
+          <edgelabel>fgroup</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ch_idx</edgelabel>
+          <edgelabel>data_alloc</edgelabel>
+          <edgelabel>index</edgelabel>
+        </childnode>
+      </node>
+      <node id="47">
+        <label>CUCC_port_struct</label>
+        <link refid="structCUCC__port__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>crate_number</edgelabel>
+          <edgelabel>port_A_number</edgelabel>
+          <edgelabel>port_B_number</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>long long</label>
+      </node>
+      <node id="40">
+        <label>drive_init_struct</label>
+        <link refid="structdrive__init__struct"/>
+        <childnode refid="41" relation="usage">
+          <edgelabel>monitor_module</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>capstan_relative_diameter</edgelabel>
+          <edgelabel>tape_acceleration</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>computer_name</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>drive_type</edgelabel>
+          <edgelabel>nheads</edgelabel>
+        </childnode>
+        <childnode refid="42" relation="usage">
+          <edgelabel>vacuum</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>mcb_addr_id</edgelabel>
+          <edgelabel>mcb_addr_start</edgelabel>
+        </childnode>
+        <childnode refid="43" relation="usage">
+          <edgelabel>headstack</edgelabel>
+        </childnode>
+        <childnode refid="44" relation="usage">
+          <edgelabel>DIM_connect</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Cvex_Mode</label>
+        <link refid="structCvex__Mode"/>
+        <childnode refid="19" relation="usage">
+          <edgelabel>xPolPair</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>numOfBoards</edgelabel>
+          <edgelabel>numOfXPolPairs</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>board</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>discinfo</label>
+        <link refid="structdiscinfo"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>disc_model_num</edgelabel>
+          <edgelabel>disc_serial_num</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>disc_size</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>station_log</label>
+        <link refid="structstation__log"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>end_footage</edgelabel>
+          <edgelabel>headpos</edgelabel>
+          <edgelabel>start_footage</edgelabel>
+          <edgelabel>start_speed</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>disc_set_ID</edgelabel>
+          <edgelabel>linked_stations</edgelabel>
+          <edgelabel>pass</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>station</edgelabel>
+          <edgelabel>vsn</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>start_byte</edgelabel>
+          <edgelabel>stop_byte</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>autopeak_interval</edgelabel>
+          <edgelabel>ndiscs</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>disc</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>discstart</edgelabel>
+          <edgelabel>discstop</edgelabel>
+          <edgelabel>tapestart</edgelabel>
+          <edgelabel>tapestop</edgelabel>
+          <edgelabel>time_on_source</edgelabel>
+        </childnode>
+      </node>
+      <node id="91">
+        <label>lag_data</label>
+        <link refid="unionlag__data"/>
+        <childnode refid="92" relation="usage">
+          <edgelabel>apl</edgelabel>
+        </childnode>
+        <childnode refid="93" relation="usage">
+          <edgelabel>spec</edgelabel>
+        </childnode>
+        <childnode refid="94" relation="usage">
+          <edgelabel>ag</edgelabel>
+        </childnode>
+        <childnode refid="95" relation="usage">
+          <edgelabel>cg</edgelabel>
+        </childnode>
+        <childnode refid="97" relation="usage">
+          <edgelabel>cpl</edgelabel>
+        </childnode>
+      </node>
+      <node id="50">
+        <label>pcm_cfg_struct</label>
+        <link refid="structpcm__cfg__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>counter_coeff</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="51">
+        <label>SU_chan_out_struct</label>
+        <link refid="structSU__chan__out__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>freq_a</edgelabel>
+          <edgelabel>freq_b</edgelabel>
+          <edgelabel>freq_c</edgelabel>
+          <edgelabel>freq_d</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>chan_ID</edgelabel>
+        </childnode>
+      </node>
+      <node id="66">
+        <label>sidebands</label>
+        <link refid="structsidebands"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="56">
+        <label>type_000</label>
+        <link refid="structtype__000"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="85">
+        <label>dstats</label>
+        <link refid="structdstats"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>scan_struct</label>
+        <link refid="structscan__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>a1_tai</edgelabel>
+          <edgelabel>tai_utc</edgelabel>
+          <edgelabel>ut1_utc</edgelabel>
+          <edgelabel>x_wobble</edgelabel>
+          <edgelabel>y_wobble</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>nst</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>correlator</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>filename</edgelabel>
+          <edgelabel>scan_name</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>src</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>eop_interval</edgelabel>
+          <edgelabel>neop</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>st</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>eop_reftime</edgelabel>
+          <edgelabel>ffit_reftime</edgelabel>
+          <edgelabel>start_time</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Cvex_Section</label>
+        <link refid="structCvex__Section"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>phyChipNum</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="77">
+        <label>newphasor</label>
+        <link refid="structnewphasor"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>amp</edgelabel>
+          <edgelabel>phase</edgelabel>
+          <edgelabel>weight</edgelabel>
+        </childnode>
+      </node>
+      <node id="97">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="72">
+        <label>sbandf</label>
+        <link refid="structsbandf"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Cvex_Snake</label>
+        <link refid="structCvex__Snake"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>lenOfSnakePath</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>path</edgelabel>
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="67">
+        <label>sbweights</label>
+        <link refid="structsbweights"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="98">
+        <label>flag_wgt</label>
+        <link refid="unionflag__wgt"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Cvex_BlockMode</label>
+        <link refid="structCvex__BlockMode"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>enableTap</edgelabel>
+          <edgelabel>headerMode</edgelabel>
+          <edgelabel>invalidateOnTapMove</edgelabel>
+          <edgelabel>lCellRotrMode</edgelabel>
+          <edgelabel>lCellXDly</edgelabel>
+          <edgelabel>lCellYDly</edgelabel>
+          <edgelabel>rCellRotrMode</edgelabel>
+          <edgelabel>rCellXDly</edgelabel>
+          <edgelabel>rCellYDly</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="49">
+        <label>pcm_tab_struct</label>
+        <link refid="structpcm__tab__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>delta_phase</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>cos_value</edgelabel>
+          <edgelabel>sin_value</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>nval</edgelabel>
+        </childnode>
+      </node>
+      <node id="83">
+        <label>istats</label>
+        <link refid="structistats"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ref</edgelabel>
+          <edgelabel>rem</edgelabel>
+        </childnode>
+      </node>
+      <node id="94">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="89">
+        <label>hops_complex *</label>
+      </node>
+      <node id="95">
+        <label>counts_global</label>
+        <link refid="structcounts__global"/>
+        <childnode refid="96" relation="usage">
+          <edgelabel>lags</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>chan_struct</label>
+        <link refid="structchan__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>if_total_lo</edgelabel>
+          <edgelabel>sky_frequency</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>pcal_base_freq</edgelabel>
+          <edgelabel>pcal_spacing</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>bbc_no</edgelabel>
+          <edgelabel>mag_headstack</edgelabel>
+          <edgelabel>mag_tracks</edgelabel>
+          <edgelabel>pcal_detect</edgelabel>
+          <edgelabel>sign_headstack</edgelabel>
+          <edgelabel>sign_tracks</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>band_id</edgelabel>
+          <edgelabel>bbc_id</edgelabel>
+          <edgelabel>chan_id</edgelabel>
+          <edgelabel>chan_name</edgelabel>
+          <edgelabel>if_id</edgelabel>
+          <edgelabel>if_name</edgelabel>
+          <edgelabel>if_sideband</edgelabel>
+          <edgelabel>net_sideband</edgelabel>
+          <edgelabel>pcal_id</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="48">
+        <label>svex_struct</label>
+        <link refid="structsvex__struct"/>
+        <childnode refid="49" relation="usage">
+          <edgelabel>tables</edgelabel>
+        </childnode>
+        <childnode refid="50" relation="usage">
+          <edgelabel>pcm_cfg</edgelabel>
+        </childnode>
+        <childnode refid="51" relation="usage">
+          <edgelabel>SU_chan_out</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>type_dump</label>
+        <link refid="structtype__dump"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>status</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+        <childnode refid="52" relation="usage">
+          <edgelabel>fringe</edgelabel>
+        </childnode>
+        <childnode refid="78" relation="usage">
+          <edgelabel>meta</edgelabel>
+        </childnode>
+        <childnode refid="79" relation="usage">
+          <edgelabel>param</edgelabel>
+        </childnode>
+        <childnode refid="80" relation="usage">
+          <edgelabel>plot</edgelabel>
+        </childnode>
+        <childnode refid="81" relation="usage">
+          <edgelabel>pass</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops_complex</label>
+      </node>
+      <node id="52">
+        <label>mk4_fringe</label>
+        <link refid="structmk4__fringe"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>file_image</edgelabel>
+        </childnode>
+        <childnode refid="53" relation="usage">
+          <edgelabel>t200</edgelabel>
+        </childnode>
+        <childnode refid="54" relation="usage">
+          <edgelabel>t201</edgelabel>
+        </childnode>
+        <childnode refid="55" relation="usage">
+          <edgelabel>t202</edgelabel>
+        </childnode>
+        <childnode refid="56" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>n212</edgelabel>
+          <edgelabel>n230</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+        </childnode>
+        <childnode refid="57" relation="usage">
+          <edgelabel>t203</edgelabel>
+        </childnode>
+        <childnode refid="59" relation="usage">
+          <edgelabel>t204</edgelabel>
+        </childnode>
+        <childnode refid="60" relation="usage">
+          <edgelabel>t230</edgelabel>
+        </childnode>
+        <childnode refid="62" relation="usage">
+          <edgelabel>t205</edgelabel>
+        </childnode>
+        <childnode refid="64" relation="usage">
+          <edgelabel>t220</edgelabel>
+        </childnode>
+        <childnode refid="65" relation="usage">
+          <edgelabel>t206</edgelabel>
+        </childnode>
+        <childnode refid="68" relation="usage">
+          <edgelabel>t221</edgelabel>
+        </childnode>
+        <childnode refid="69" relation="usage">
+          <edgelabel>t210</edgelabel>
+        </childnode>
+        <childnode refid="71" relation="usage">
+          <edgelabel>t207</edgelabel>
+        </childnode>
+        <childnode refid="73" relation="usage">
+          <edgelabel>t222</edgelabel>
+        </childnode>
+        <childnode refid="74" relation="usage">
+          <edgelabel>t208</edgelabel>
+        </childnode>
+        <childnode refid="75" relation="usage">
+          <edgelabel>allocated</edgelabel>
+        </childnode>
+        <childnode refid="76" relation="usage">
+          <edgelabel>t212</edgelabel>
+        </childnode>
+      </node>
+      <node id="82">
+        <label>c_block</label>
+        <link refid="structc__block"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>adhoc_amp</edgelabel>
+          <edgelabel>adhoc_period</edgelabel>
+          <edgelabel>adhoc_poly</edgelabel>
+          <edgelabel>adhoc_tref</edgelabel>
+          <edgelabel>avxpzoom</edgelabel>
+          <edgelabel>chid_rf</edgelabel>
+          <edgelabel>dec_offset</edgelabel>
+          <edgelabel>dr_window</edgelabel>
+          <edgelabel>fmatch_bw_pct</edgelabel>
+          <edgelabel>ion_window</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>dc_block</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>ion_smooth</edgelabel>
+          <edgelabel>knot</edgelabel>
+          <edgelabel>optimize_closure</edgelabel>
+          <edgelabel>skip</edgelabel>
+          <edgelabel>switched_mode</edgelabel>
+          <edgelabel>switched_period</edgelabel>
+          <edgelabel>use_samples</edgelabel>
+          <edgelabel>x_crc</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>adhoc_file</edgelabel>
+          <edgelabel>adhoc_file_chans</edgelabel>
+          <edgelabel>adhoc_flag_files</edgelabel>
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>chid</edgelabel>
+          <edgelabel>f_group</edgelabel>
+          <edgelabel>plot_data_dir</edgelabel>
+          <edgelabel>psamplers</edgelabel>
+          <edgelabel>sampler_codes</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="83" relation="usage">
+          <edgelabel>pc_mode</edgelabel>
+          <edgelabel>pc_period</edgelabel>
+          <edgelabel>pc_tonemask</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>accept_sbs</edgelabel>
+          <edgelabel>adhoc_phase</edgelabel>
+          <edgelabel>avxplopt</edgelabel>
+          <edgelabel>est_pc_manual</edgelabel>
+          <edgelabel>gen_cf_record</edgelabel>
+          <edgelabel>interpolator</edgelabel>
+          <edgelabel>ion_npts</edgelabel>
+          <edgelabel>mbd_anchor</edgelabel>
+          <edgelabel>mbdrplopt</edgelabel>
+          <edgelabel>mixed_mode_rot</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="82" relation="usage">
+          <edgelabel>cb_chain</edgelabel>
+        </childnode>
+        <childnode refid="84" relation="usage">
+          <edgelabel>gates</edgelabel>
+        </childnode>
+        <childnode refid="85" relation="usage">
+          <edgelabel>delay_offs</edgelabel>
+          <edgelabel>delay_offs_pol</edgelabel>
+          <edgelabel>ionosphere</edgelabel>
+          <edgelabel>lsb_offset</edgelabel>
+          <edgelabel>pc_delay_l</edgelabel>
+          <edgelabel>pc_delay_r</edgelabel>
+          <edgelabel>pc_freq</edgelabel>
+          <edgelabel>pc_phase</edgelabel>
+          <edgelabel>pc_phase_offset</edgelabel>
+          <edgelabel>sampler_delay</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="44">
+        <label>headstack_DIM_connect_struct</label>
+        <link refid="structheadstack__DIM__connect__struct"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>eqlzr</edgelabel>
+          <edgelabel>headstack</edgelabel>
+          <edgelabel>parity</edgelabel>
+        </childnode>
+      </node>
+      <node id="88">
+        <label>interp_sdata</label>
+        <link refid="structinterp__sdata"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mt_delay</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>bigneg</edgelabel>
+          <edgelabel>bigpos</edgelabel>
+          <edgelabel>neg</edgelabel>
+          <edgelabel>pcweight_lcp</edgelabel>
+          <edgelabel>pcweight_rcp</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mt_pcal</edgelabel>
+          <edgelabel>phasecal_lcp</edgelabel>
+          <edgelabel>phasecal_rcp</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>sky_coord</label>
+        <link refid="structsky__coord"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>dec_secs</edgelabel>
+          <edgelabel>ra_secs</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>dec_degs</edgelabel>
+          <edgelabel>dec_mins</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ra_mins</edgelabel>
+        </childnode>
+      </node>
+      <node id="70">
+        <label>polars</label>
+        <link refid="structpolars"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ampl</edgelabel>
+          <edgelabel>phase</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="17">
+        <label>Cvex_Config</label>
+        <link refid="structCvex__Config"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>auto_corr</edgelabel>
+          <edgelabel>ignoreChanNames</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>defId</edgelabel>
+          <edgelabel>rev</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Cvex_ChipMode</label>
+        <link refid="structCvex__ChipMode"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>numOfBlocks</edgelabel>
+          <edgelabel>numOfSnakes</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>block</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>snake</edgelabel>
+        </childnode>
+      </node>
+      <node id="41">
+        <label>moni_read_struct</label>
+        <link refid="structmoni__read__struct"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>equalizer</edgelabel>
+          <edgelabel>track</edgelabel>
+        </childnode>
+      </node>
+      <node id="69">
+        <label>type_210</label>
+        <link refid="structtype__210"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="70" relation="usage">
+          <edgelabel>amp_phas</edgelabel>
+        </childnode>
+      </node>
+      <node id="76">
+        <label>type_212</label>
+        <link refid="structtype__212"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>channel</edgelabel>
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>nap</edgelabel>
+          <edgelabel>sbd_chan</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="77" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="58">
+        <label>ch_struct</label>
+        <link refid="structch__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>rem_freq</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>refpol</edgelabel>
+          <edgelabel>refsb</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>rempol</edgelabel>
+          <edgelabel>remsb</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>index</edgelabel>
+          <edgelabel>sample_rate</edgelabel>
+        </childnode>
+      </node>
+      <node id="64">
+        <label>type_220</label>
+        <link refid="structtype__220"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>height</edgelabel>
+          <edgelabel>width</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fplot</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="68">
+        <label>type_221</label>
+        <link refid="structtype__221"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>padded</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>pplot</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ps_length</edgelabel>
+        </childnode>
+      </node>
+      <node id="73">
+        <label>type_222</label>
+        <link refid="structtype__222"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>padded</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>control_contents</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cf_length</edgelabel>
+          <edgelabel>control_hash</edgelabel>
+          <edgelabel>setstring_hash</edgelabel>
+          <edgelabel>setstring_length</edgelabel>
+        </childnode>
+      </node>
+      <node id="63">
+        <label>anonymous:ffit_chan</label>
+      </node>
+      <node id="60">
+        <label>type_230</label>
+        <link refid="structtype__230"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lsbweight</edgelabel>
+          <edgelabel>usbweight</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nspec_pts</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>frq</edgelabel>
+        </childnode>
+        <childnode refid="61" relation="usage">
+          <edgelabel>xpower</edgelabel>
+        </childnode>
+      </node>
+      <node id="46">
+        <label>bad_frame_struct</label>
+        <link refid="structbad__frame__struct"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>CRC_error</edgelabel>
+          <edgelabel>PE_limit_exceeded</edgelabel>
+          <edgelabel>lost_sync</edgelabel>
+          <edgelabel>unexpected_sync</edgelabel>
+        </childnode>
+      </node>
+      <node id="80">
+        <label>type_plot</label>
+        <link refid="structtype__plot"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>d_rate</edgelabel>
+          <edgelabel>mb_amp</edgelabel>
+          <edgelabel>mean_ap</edgelabel>
+          <edgelabel>sb_amp</edgelabel>
+          <edgelabel>seg_amp</edgelabel>
+          <edgelabel>seg_frac_lsb</edgelabel>
+          <edgelabel>seg_frac_usb</edgelabel>
+          <edgelabel>seg_phs</edgelabel>
+          <edgelabel>seg_refbias_lsb</edgelabel>
+          <edgelabel>seg_refbias_usb</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>dr_size</edgelabel>
+          <edgelabel>dr_size_max</edgelabel>
+          <edgelabel>num_ap</edgelabel>
+          <edgelabel>num_freq</edgelabel>
+          <edgelabel>num_mb_pts</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>cp_spectrum</edgelabel>
+          <edgelabel>phasor</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Cvex_XPolPair</label>
+        <link refid="structCvex__XPolPair"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>chn1Id</edgelabel>
+          <edgelabel>chn2Id</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>tim_mon_struct</label>
+        <link refid="structtim__mon__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>maximum</edgelabel>
+          <edgelabel>minimum</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>switch_pos</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>measurement_name</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fail_action</edgelabel>
+        </childnode>
+      </node>
+      <node id="39">
+        <label>su_connect_struct</label>
+        <link refid="structsu__connect__struct"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>corr_segment</edgelabel>
+          <edgelabel>inputbd_chan_grp</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>vex</label>
+        <link refid="structvex"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>lvex</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>evex</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>cvex</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>ovex</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>cvex_src</edgelabel>
+          <edgelabel>evex_src</edgelabel>
+          <edgelabel>filename</edgelabel>
+          <edgelabel>ivex_src</edgelabel>
+          <edgelabel>lvex_src</edgelabel>
+          <edgelabel>ovex_src</edgelabel>
+          <edgelabel>svex_src</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>ivex</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>vextypes</edgelabel>
+        </childnode>
+        <childnode refid="48" relation="usage">
+          <edgelabel>svex</edgelabel>
+        </childnode>
+      </node>
+      <node id="53">
+        <label>type_200</label>
+        <link refid="structtype__200"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>software_rev</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>correlator</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>scan_name</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>start_offset</edgelabel>
+          <edgelabel>stop_offset</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>corr_date</edgelabel>
+          <edgelabel>fourfit_date</edgelabel>
+          <edgelabel>frt</edgelabel>
+          <edgelabel>scantime</edgelabel>
+        </childnode>
+      </node>
+      <node id="54">
+        <label>type_201</label>
+        <link refid="structtype__201"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dec_rate</edgelabel>
+          <edgelabel>dispersion</edgelabel>
+          <edgelabel>pulsar_epoch</edgelabel>
+          <edgelabel>pulsar_phase</edgelabel>
+          <edgelabel>ra_rate</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>epoch</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>coord</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>coord_date</edgelabel>
+        </childnode>
+      </node>
+      <node id="55">
+        <label>type_202</label>
+        <link refid="structtype__202"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_xpos</edgelabel>
+          <edgelabel>ref_ypos</edgelabel>
+          <edgelabel>ref_zpos</edgelabel>
+          <edgelabel>rem_xpos</edgelabel>
+          <edgelabel>rem_ypos</edgelabel>
+          <edgelabel>rem_zpos</edgelabel>
+          <edgelabel>u</edgelabel>
+          <edgelabel>uf</edgelabel>
+          <edgelabel>v</edgelabel>
+          <edgelabel>vf</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_clock</edgelabel>
+          <edgelabel>ref_clockrate</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>ref_idelay</edgelabel>
+          <edgelabel>ref_zdelay</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>rem_clock</edgelabel>
+          <edgelabel>rem_clockrate</edgelabel>
+          <edgelabel>rem_elev</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>ref_intl_id</edgelabel>
+          <edgelabel>ref_name</edgelabel>
+          <edgelabel>ref_tape</edgelabel>
+          <edgelabel>rem_intl_id</edgelabel>
+          <edgelabel>rem_name</edgelabel>
+          <edgelabel>rem_tape</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="57">
+        <label>type_203</label>
+        <link refid="structtype__203"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="58" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+      </node>
+      <node id="59">
+        <label>type_204</label>
+        <link refid="structtype__204"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>ff_version</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>control_file</edgelabel>
+          <edgelabel>override</edgelabel>
+          <edgelabel>platform</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>ffcf_date</edgelabel>
+        </childnode>
+      </node>
+      <node id="62">
+        <label>type_205</label>
+        <link refid="structtype__205"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>filter</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>search</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>ffmode</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="63" relation="usage">
+          <edgelabel>ffit_chan</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+          <edgelabel>utc_central</edgelabel>
+        </childnode>
+      </node>
+      <node id="65">
+        <label>type_206</label>
+        <link refid="structtype__206"/>
+        <childnode refid="66" relation="usage">
+          <edgelabel>accepted</edgelabel>
+          <edgelabel>reason1</edgelabel>
+          <edgelabel>reason2</edgelabel>
+          <edgelabel>reason3</edgelabel>
+          <edgelabel>reason4</edgelabel>
+          <edgelabel>reason5</edgelabel>
+          <edgelabel>reason6</edgelabel>
+          <edgelabel>reason7</edgelabel>
+          <edgelabel>reason8</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>accept_ratio</edgelabel>
+          <edgelabel>discard</edgelabel>
+          <edgelabel>intg_time</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>last_ap</edgelabel>
+          <edgelabel>mbdsize</edgelabel>
+          <edgelabel>ratesize</edgelabel>
+          <edgelabel>sbdsize</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="67" relation="usage">
+          <edgelabel>weights</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>start</edgelabel>
+        </childnode>
+      </node>
+      <node id="71">
+        <label>type_207</label>
+        <link refid="structtype__207"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ref_errate</edgelabel>
+          <edgelabel>ref_pcrate</edgelabel>
+          <edgelabel>rem_errate</edgelabel>
+          <edgelabel>rem_pcrate</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>pcal_mode</edgelabel>
+          <edgelabel>unused2</edgelabel>
+        </childnode>
+        <childnode refid="72" relation="usage">
+          <edgelabel>ref_pcamp</edgelabel>
+          <edgelabel>ref_pcfreq</edgelabel>
+          <edgelabel>ref_pcoffset</edgelabel>
+          <edgelabel>ref_pcphase</edgelabel>
+          <edgelabel>rem_pcamp</edgelabel>
+          <edgelabel>rem_pcfreq</edgelabel>
+          <edgelabel>rem_pcoffset</edgelabel>
+          <edgelabel>rem_pcphase</edgelabel>
+        </childnode>
+      </node>
+      <node id="74">
+        <label>type_208</label>
+        <link refid="structtype__208"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>aaccel</edgelabel>
+          <edgelabel>adelay</edgelabel>
+          <edgelabel>arate</edgelabel>
+          <edgelabel>tot_mbd</edgelabel>
+          <edgelabel>tot_mbd_ref</edgelabel>
+          <edgelabel>tot_rate</edgelabel>
+          <edgelabel>tot_rate_ref</edgelabel>
+          <edgelabel>tot_sbd</edgelabel>
+          <edgelabel>tot_sbd_ref</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amplitude</edgelabel>
+          <edgelabel>inc_chan_ampl</edgelabel>
+          <edgelabel>inc_seg_ampl</edgelabel>
+          <edgelabel>mbd_error</edgelabel>
+          <edgelabel>prob_false</edgelabel>
+          <edgelabel>rate_error</edgelabel>
+          <edgelabel>resid_mbd</edgelabel>
+          <edgelabel>resid_rate</edgelabel>
+          <edgelabel>resid_sbd</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>tape_qcode</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>short</label>
+      </node>
+      <node id="61">
+        <label>hops_complex_tag</label>
+        <link refid="structhops__complex__tag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+      <node id="43">
+        <label>headstack_parms_struct</label>
+        <link refid="structheadstack__parms__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>param</edgelabel>
+        </childnode>
+      </node>
+      <node id="38">
+        <label>SUCC_port_struct</label>
+        <link refid="structSUCC__port__struct"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>DPU_port</edgelabel>
+          <edgelabel>console_port</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>source_struct</label>
+        <link refid="structsource__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>dec_rate</edgelabel>
+          <edgelabel>ra_rate</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>calibrator</edgelabel>
+          <edgelabel>position_ref_frame</edgelabel>
+          <edgelabel>source_type</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>iau_name</edgelabel>
+          <edgelabel>source_name</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>position_epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="42">
+        <label>vacuum_struct</label>
+        <link refid="structvacuum__struct"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>inches_of_H2O</edgelabel>
+          <edgelabel>setting</edgelabel>
+        </childnode>
+      </node>
+      <node id="81">
+        <label>type_pass</label>
+        <link refid="structtype__pass"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>reftime</edgelabel>
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap_off</edgelabel>
+          <edgelabel>autocorr</edgelabel>
+          <edgelabel>channels</edgelabel>
+          <edgelabel>linpol</edgelabel>
+          <edgelabel>nfreq</edgelabel>
+          <edgelabel>nlags</edgelabel>
+          <edgelabel>npctones</edgelabel>
+          <edgelabel>npols</edgelabel>
+          <edgelabel>num_ap</edgelabel>
+          <edgelabel>pci</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="82" relation="usage">
+          <edgelabel>control</edgelabel>
+        </childnode>
+        <childnode refid="86" relation="usage">
+          <edgelabel>pass_data</edgelabel>
+        </childnode>
+      </node>
+      <node id="90">
+        <label>type_120</label>
+        <link refid="structtype__120"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>fr_delay</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>status</edgelabel>
+        </childnode>
+        <childnode refid="91" relation="usage">
+          <edgelabel>ld</edgelabel>
+        </childnode>
+        <childnode refid="98" relation="usage">
+          <edgelabel>fw</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>station_struct</label>
+        <link refid="structstation__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>coordinates</edgelabel>
+          <edgelabel>samplerate</edgelabel>
+          <edgelabel>site_velocity</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>mk4_site_id</edgelabel>
+          <edgelabel>occucode</edgelabel>
+          <edgelabel>pass_direction</edgelabel>
+          <edgelabel>site_id</edgelabel>
+          <edgelabel>site_name</edgelabel>
+          <edgelabel>subpass</edgelabel>
+          <edgelabel>tape_id</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>axis_offset</edgelabel>
+          <edgelabel>clock_early</edgelabel>
+          <edgelabel>clockrate</edgelabel>
+          <edgelabel>head_position</edgelabel>
+          <edgelabel>record_density</edgelabel>
+          <edgelabel>roll_period</edgelabel>
+          <edgelabel>start_tapepos</edgelabel>
+          <edgelabel>tape_length</edgelabel>
+          <edgelabel>zenith_atm</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>axis_type</edgelabel>
+          <edgelabel>bits_sample</edgelabel>
+          <edgelabel>drive_no</edgelabel>
+          <edgelabel>early_start</edgelabel>
+          <edgelabel>late_finish</edgelabel>
+          <edgelabel>modulation</edgelabel>
+          <edgelabel>multiplex_ratio</edgelabel>
+          <edgelabel>passno</edgelabel>
+          <edgelabel>rack_type</edgelabel>
+          <edgelabel>recorder_id</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>clockrate_epoch</edgelabel>
+          <edgelabel>coordinate_epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="79">
+        <label>type_param</label>
+        <link refid="structtype__param"/>
+        <childnode refid="35" relation="usage">
+          <edgelabel>bocf_period</edgelabel>
+          <edgelabel>error_mask</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>acc_period</edgelabel>
+          <edgelabel>ah_amp</edgelabel>
+          <edgelabel>ah_period</edgelabel>
+          <edgelabel>ah_poly</edgelabel>
+          <edgelabel>ah_tref</edgelabel>
+          <edgelabel>avxpzoom</edgelabel>
+          <edgelabel>cor_limit</edgelabel>
+          <edgelabel>elevation</edgelabel>
+          <edgelabel>epoch_time</edgelabel>
+          <edgelabel>fmatch_bw_pct</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>corr_type</edgelabel>
+          <edgelabel>dc_block</edgelabel>
+          <edgelabel>ion_smooth</edgelabel>
+          <edgelabel>ov_bline</edgelabel>
+          <edgelabel>pc_mode</edgelabel>
+          <edgelabel>pc_period</edgelabel>
+          <edgelabel>pol</edgelabel>
+          <edgelabel>su_number</edgelabel>
+          <edgelabel>use_sample_cnts</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>ah_file</edgelabel>
+          <edgelabel>ah_file_chans</edgelabel>
+          <edgelabel>ah_flag_files</edgelabel>
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>control_file_buff</edgelabel>
+          <edgelabel>plot_data_dir</edgelabel>
+          <edgelabel>rf_fglist</edgelabel>
+          <edgelabel>set_string_buff</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ah_phase</edgelabel>
+          <edgelabel>avxplopt</edgelabel>
+          <edgelabel>bits_sample</edgelabel>
+          <edgelabel>bocfs_per_ap</edgelabel>
+          <edgelabel>cormode</edgelabel>
+          <edgelabel>est_pc_manual</edgelabel>
+          <edgelabel>first_plot</edgelabel>
+          <edgelabel>gen_cf_record</edgelabel>
+          <edgelabel>interpol</edgelabel>
+          <edgelabel>ion_pts</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="35">
+        <label>unsigned long</label>
+      </node>
+      <node id="45">
+        <label>TRM_config_struct</label>
+        <link refid="structTRM__config__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>parity_error_limit</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>mux1_1bit</edgelabel>
+          <edgelabel>mux1_2bit</edgelabel>
+          <edgelabel>mux2_1bit</edgelabel>
+          <edgelabel>mux2_2bit</edgelabel>
+          <edgelabel>mux4_1bit</edgelabel>
+          <edgelabel>mux4_2bit</edgelabel>
+        </childnode>
+        <childnode refid="46" relation="usage">
+          <edgelabel>invalid_frame_control</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>evex_struct</label>
+        <link refid="structevex__struct"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ap_length</edgelabel>
+          <edgelabel>speedup_factor</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>corr_config_key</edgelabel>
+          <edgelabel>cvex_name</edgelabel>
+          <edgelabel>lvex_name</edgelabel>
+          <edgelabel>ovex_name</edgelabel>
+          <edgelabel>svex_name</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>su_config</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>mirror</edgelabel>
+          <edgelabel>nst</edgelabel>
+          <edgelabel>realtime_latency</edgelabel>
+          <edgelabel>tape_mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Cvex_Block</label>
+        <link refid="structCvex__Block"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>mux</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>blockId</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>type_status</label>
+        <link refid="structtype__status"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>AN</edgelabel>
+          <edgelabel>GHA</edgelabel>
+          <edgelabel>amp_corr_fact</edgelabel>
+          <edgelabel>amp_err</edgelabel>
+          <edgelabel>amp_rate_corr</edgelabel>
+          <edgelabel>ap_frac</edgelabel>
+          <edgelabel>apdelay</edgelabel>
+          <edgelabel>apphase</edgelabel>
+          <edgelabel>coh_avg_phase</edgelabel>
+          <edgelabel>corr_dr_max</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>total_ap_frac</edgelabel>
+          <edgelabel>total_lsb_frac</edgelabel>
+          <edgelabel>total_usb_frac</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>ap_num</edgelabel>
+          <edgelabel>apbyfreq</edgelabel>
+          <edgelabel>apseg</edgelabel>
+          <edgelabel>dr</edgelabel>
+          <edgelabel>dr_indx</edgelabel>
+          <edgelabel>drsp_size</edgelabel>
+          <edgelabel>f_rate_size</edgelabel>
+          <edgelabel>freq</edgelabel>
+          <edgelabel>grid_points</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fringe</edgelabel>
+        </childnode>
+      </node>
+      <node id="37">
+        <label>pbs_init_struct</label>
+        <link refid="structpbs__init__struct"/>
+        <childnode refid="38" relation="usage">
+          <edgelabel>succ_port</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>tape_servo_interval</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>cHost</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>SU_ID</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>timing_monitor</edgelabel>
+        </childnode>
+        <childnode refid="39" relation="usage">
+          <edgelabel>su_connect</edgelabel>
+        </childnode>
+        <childnode refid="40" relation="usage">
+          <edgelabel>drive</edgelabel>
+        </childnode>
+        <childnode refid="45" relation="usage">
+          <edgelabel>TRM_config</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>ivex_struct</label>
+        <link refid="structivex__struct"/>
+        <childnode refid="35" relation="usage">
+          <edgelabel>bocf_period</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>counter_envname</edgelabel>
+          <edgelabel>switch_envname</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>counter_port</edgelabel>
+          <edgelabel>header_duration</edgelabel>
+          <edgelabel>nmonitor</edgelabel>
+          <edgelabel>nplayback_systems</edgelabel>
+          <edgelabel>switch_port</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>system_tempo</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>timing_monitor</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>pbs_init</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cf_edit_mask</edgelabel>
+        </childnode>
+        <childnode refid="47" relation="usage">
+          <edgelabel>cucc_ports</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Cvex_BoardParms</label>
+        <link refid="structCvex__BoardParms"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>accumRatio</edgelabel>
+          <edgelabel>bocfShsmpRatio</edgelabel>
+          <edgelabel>dataShsmpRatio</edgelabel>
+          <edgelabel>sampleCntPerLagEnable</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>char</label>
+      </node>
+      <node id="23">
+        <label>Cvex_SectionMode</label>
+        <link refid="structCvex__SectionMode"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>numOfChips</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>chip</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Cvex_Board</label>
+        <link refid="structCvex__Board"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>numOfSections</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>segId</edgelabel>
+          <edgelabel>sliceId</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>section</edgelabel>
+        </childnode>
+      </node>
+      <node id="96">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="78">
+        <label>type_meta</label>
+        <link refid="structtype__meta"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>build_time</edgelabel>
+          <edgelabel>corr_time</edgelabel>
+          <edgelabel>corrvers</edgelabel>
+          <edgelabel>dec</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>ff_time</edgelabel>
+          <edgelabel>fourfitcmd</edgelabel>
+          <edgelabel>pass_frt</edgelabel>
+          <edgelabel>pass_start</edgelabel>
+          <edgelabel>pass_stop</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>nplots</edgelabel>
+          <edgelabel>start_plot</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>anonymous:su_config</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/plot_data_dir.h" bodystart="23" bodyend="31"/>
+    <listofallmembers>
+      <member refid="structtype__dump_1a448035420da71095e8e4f10d79a071e6" prot="public" virt="non-virtual"><scope>type_dump</scope><name>fringe</name></member>
+      <member refid="structtype__dump_1a93f48bf093b1eb5e1954919d591944e4" prot="public" virt="non-virtual"><scope>type_dump</scope><name>meta</name></member>
+      <member refid="structtype__dump_1ad4274b67704c8fed264646072eb974e0" prot="public" virt="non-virtual"><scope>type_dump</scope><name>param</name></member>
+      <member refid="structtype__dump_1a321b93d10896a9625f881021ebba9c3d" prot="public" virt="non-virtual"><scope>type_dump</scope><name>pass</name></member>
+      <member refid="structtype__dump_1ab0cc62d38dea5152960a25c353b8ebe4" prot="public" virt="non-virtual"><scope>type_dump</scope><name>plot</name></member>
+      <member refid="structtype__dump_1a485c5bb816206e6ba61b16f17c560575" prot="public" virt="non-virtual"><scope>type_dump</scope><name>root</name></member>
+      <member refid="structtype__dump_1a4ca87c957ed6f892260239706b96e308" prot="public" virt="non-virtual"><scope>type_dump</scope><name>status</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

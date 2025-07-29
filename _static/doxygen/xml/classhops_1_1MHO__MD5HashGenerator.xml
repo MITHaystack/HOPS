@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MD5HashGenerator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MD5HashGenerator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__MD5HashGeneratorMultiType" prot="public" virt="non-virtual">hops::MHO_MD5HashGeneratorMultiType&lt; XValueTypeS &gt;</basecompoundref>
+    <includes refid="MHO__MD5HashGenerator_8hh" local="no">MHO_MD5HashGenerator.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MD5HashGenerator_1a2966725dd4f892c6fbc87161e33a7396" prot="protected" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t hops::MHO_MD5HashGenerator::fDigest[PICOHASH_MD5_DIGEST_LENGTH]</definition>
+        <argsstring>[PICOHASH_MD5_DIGEST_LENGTH]</argsstring>
+        <name>fDigest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="209" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MD5HashGenerator_1a9057716a272fbb4f884fb4c1da03dd61" prot="protected" static="no" mutable="no">
+        <type><ref refid="struct__picohash__md5__ctx__t" kindref="compound">_picohash_md5_ctx_t</ref></type>
+        <definition>_picohash_md5_ctx_t hops::MHO_MD5HashGenerator::fHashStruct</definition>
+        <argsstring></argsstring>
+        <name>fHashStruct</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="208" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1a2d97fd757920975e165e0cba26d473e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MD5HashGenerator::MHO_MD5HashGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MD5HashGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="137" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1ae526aeacad51eab0e276f3a7bde9dca2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_MD5HashGenerator::~MHO_MD5HashGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MD5HashGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="139" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="139" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1a2f241d622e45fad39c52f82e220892ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MD5HashGenerator::Finalize</definition>
+        <argsstring>()</argsstring>
+        <name>Finalize</name>
+        <briefdescription>
+<para>Finalizes the MD5 hash calculation and stores the result in fDigest. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="156" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="156" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1a3468e178759dd1daf70ab91aebfca2fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_MD5HashGenerator::GetDigest</definition>
+        <argsstring>()</argsstring>
+        <name>GetDigest</name>
+        <briefdescription>
+<para>Getter for digest. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MD5 digest as a hexadecimal string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="163" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="163" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1a3eb6fbdf8590d6e4e7b7bf28522594bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_MD5HashGenerator::GetDigestAsUUID</definition>
+        <argsstring>()</argsstring>
+        <name>GetDigestAsUUID</name>
+        <briefdescription>
+<para>Getter for digest as uuid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> representing the MD5 digest </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="182" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="182" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1acc337cf08e26da386701f34d83681d1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MD5HashGenerator::Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <briefdescription>
+<para>Recursive function to initialize a game state. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="144" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="144" bodyend="151"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1a9c3a7ed4ddac844ca7f61ca8df1f6227" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="struct__picohash__md5__ctx__t" kindref="compound">_picohash_md5_ctx_t</ref> *</type>
+        <definition>virtual _picohash_md5_ctx_t* hops::MHO_MD5HashGenerator::GetMD5CTXPtr</definition>
+        <argsstring>() override</argsstring>
+        <name>GetMD5CTXPtr</name>
+        <briefdescription>
+<para>Getter for md5ctxptr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>_picohash_md5_ctx_t* Pointer to the MD5 context structure. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="199" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="199" bodyend="199"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGenerator_1a3988993cb444353e3290d884681c737f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref> &amp;</type>
+        <definition>MHO_MD5HashGenerator&amp; hops::MHO_MD5HashGenerator::Self</definition>
+        <argsstring>() override</argsstring>
+        <name>Self</name>
+        <briefdescription>
+<para>Returns a reference to the current instance of <ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref>&amp;: Reference to the current instance </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="206" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="206" bodyend="206"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref> declares the concrete class which does the work for file streams. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Class <ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref>, uses picohash library to create MD5 hashes of stream data.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="2">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="3">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>uint8_t</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="134" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="135" bodyend="210"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a2966725dd4f892c6fbc87161e33a7396" prot="protected" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>fDigest</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a9057716a272fbb4f884fb4c1da03dd61" prot="protected" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>fHashStruct</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a2f241d622e45fad39c52f82e220892ec" prot="public" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>Finalize</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a3468e178759dd1daf70ab91aebfca2fb" prot="public" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>GetDigest</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a3eb6fbdf8590d6e4e7b7bf28522594bf" prot="public" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>GetDigestAsUUID</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a9c3a7ed4ddac844ca7f61ca8df1f6227" prot="protected" virt="virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>GetMD5CTXPtr</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1acc337cf08e26da386701f34d83681d1d" prot="public" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a2d97fd757920975e165e0cba26d473e0" prot="public" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>MHO_MD5HashGenerator</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1a3988993cb444353e3290d884681c737f" prot="protected" virt="non-virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>Self</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGenerator_1ae526aeacad51eab0e276f3a7bde9dca2" prot="public" virt="virtual"><scope>hops::MHO_MD5HashGenerator</scope><name>~MHO_MD5HashGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

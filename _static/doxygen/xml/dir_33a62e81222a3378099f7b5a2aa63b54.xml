@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_33a62e81222a3378099f7b5a2aa63b54" kind="dir">
+    <compoundname>Operators</compoundname>
+    <innerdir refid="dir_cd0f5cddee6236cbb9b8f69ea5da5bdc">cl</innerdir>
+    <innerdir refid="dir_5f54002e10037f8fa6b21f97509f63d1">include</innerdir>
+    <innerdir refid="dir_07e50417bbcc869d922b4463d87e0cdf">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/"/>
+  </compounddef>
+</doxygen>

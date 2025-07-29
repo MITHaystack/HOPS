@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_692e4fa8827bc0493914a8892ac7caba" kind="dir">
+    <compoundname>Applications</compoundname>
+    <innerfile refid="alist4_8cc">alist4.cc</innerfile>
+    <innerfile refid="CompareCorFiles_8cc">CompareCorFiles.cc</innerfile>
+    <innerfile refid="ComparePcal_8cc">ComparePcal.cc</innerfile>
+    <innerfile refid="fourfit4_8cc">fourfit4.cc</innerfile>
+    <innerfile refid="fplot4_8cc">fplot4.cc</innerfile>
+    <innerfile refid="hops2flat_8cc">hops2flat.cc</innerfile>
+    <innerfile refid="hops2keys_8cc">hops2keys.cc</innerfile>
+    <innerfile refid="mark42hops_8cc">mark42hops.cc</innerfile>
+    <innerfile refid="TestMultiObjectStreaming_8cc">TestMultiObjectStreaming.cc</innerfile>
+    <innerfile refid="TestPCalExtraction_8cc">TestPCalExtraction.cc</innerfile>
+    <innerfile refid="TestSignalFFT_8cc">TestSignalFFT.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Applications/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_a9cd4a31284cbea32c0beb9190310289" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="account_8h">account.h</innerfile>
+    <innerfile refid="adler32__checksum_8h">adler32_checksum.h</innerfile>
+    <innerfile refid="fileset_8h">fileset.h</innerfile>
+    <innerfile refid="fstruct_8h">fstruct.h</innerfile>
+    <innerfile refid="general_8h">general.h</innerfile>
+    <innerfile refid="hops__complex_8h">hops_complex.h</innerfile>
+    <innerfile refid="mk4__sizes_8h">mk4_sizes.h</innerfile>
+    <innerfile refid="mk4__typedefs_8h">mk4_typedefs.h</innerfile>
+    <innerfile refid="mk4__util_8h">mk4_util.h</innerfile>
+    <innerfile refid="mk4stub_8h">mk4stub.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/"/>
+  </compounddef>
+</doxygen>

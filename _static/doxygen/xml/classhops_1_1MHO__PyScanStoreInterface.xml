@@ -1,0 +1,652 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyScanStoreInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PyScanStoreInterface</compoundname>
+    <includes refid="MHO__PyScanStoreInterface_8hh" local="no">MHO_PyScanStoreInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyScanStoreInterface_1aa06e46fa576bd991cbb82ad6fe599e77" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::pair&lt; <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *, <ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref> * &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::pair&lt; MHO_ContainerStore*, MHO_PyContainerStoreInterface* &gt; &gt; hops::MHO_PyScanStoreInterface::fBaselineContainers</definition>
+        <argsstring></argsstring>
+        <name>fBaselineContainers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="319" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="319" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyScanStoreInterface_1ae27413f752c0387b48f67bbcdeaef1b6" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref></type>
+        <definition>MHO_PyContainerStoreInterface hops::MHO_PyScanStoreInterface::fEmptyContainer</definition>
+        <argsstring></argsstring>
+        <name>fEmptyContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="317" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="317" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyScanStoreInterface_1aa73de00e17a21fe117e71e80aa903890" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::pair&lt; <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *, <ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref> * &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::pair&lt; MHO_ContainerStore*, MHO_PyContainerStoreInterface* &gt; &gt; hops::MHO_PyScanStoreInterface::fFringeContainers</definition>
+        <argsstring></argsstring>
+        <name>fFringeContainers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="321" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="321" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyScanStoreInterface_1a6f40bb288452fc40107f26014288b6bf" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="314" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="314" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyScanStoreInterface_1a53821de234de38b74998682ad2b2afe3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::fIsOwned</definition>
+        <argsstring></argsstring>
+        <name>fIsOwned</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="313" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="313" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyScanStoreInterface_1a1d304ebf92dc02575a0779537ff2cb0c" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> *</type>
+        <definition>MHO_ScanDataStore* hops::MHO_PyScanStoreInterface::fScanStore</definition>
+        <argsstring></argsstring>
+        <name>fScanStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="312" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="312" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyScanStoreInterface_1aa814721eb84f37553ba90be3f386bb35" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::pair&lt; <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *, <ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref> * &gt; &gt;</type>
+        <definition>std::map&lt; std::string, std::pair&lt; MHO_ContainerStore*, MHO_PyContainerStoreInterface* &gt; &gt; hops::MHO_PyScanStoreInterface::fStationContainers</definition>
+        <argsstring></argsstring>
+        <name>fStationContainers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="320" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="320" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a573372c0fb15a4420c55ab3349bb89d7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyScanStoreInterface::MHO_PyScanStoreInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_PyScanStoreInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="41" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="41" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a642e2ce1edadcf8581a9a9a87ff2ed07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyScanStoreInterface::MHO_PyScanStoreInterface</definition>
+        <argsstring>(MHO_ScanDataStore *scan_store)</argsstring>
+        <name>MHO_PyScanStoreInterface</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> *</type>
+          <declname>scan_store</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a365e31c27d46e810f7f58720bf43b4ae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PyScanStoreInterface::~MHO_PyScanStoreInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PyScanStoreInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="48" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a2d769829886176ea3f3089aeaa198457" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PyScanStoreInterface::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="287" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="287" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a6ba282a11d8ba797141c1c11fe7838b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref> &amp;</type>
+        <definition>MHO_PyContainerStoreInterface&amp; hops::MHO_PyScanStoreInterface::GetBaselineData</definition>
+        <argsstring>(std::string baseline)</argsstring>
+        <name>GetBaselineData</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="247" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="247" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1ad909faed5b787979afb91c754833da8a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PyScanStoreInterface::GetBaselineFilename</definition>
+        <argsstring>(std::string baseline) const</argsstring>
+        <name>GetBaselineFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="94" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="94" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a4547fd763bc35b2629502b9c7684e8b9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_PyScanStoreInterface::GetBaselinesLoaded</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaselinesLoaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="217" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="217" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a77cb2a204946ae4fee478026663dd09e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_PyScanStoreInterface::GetBaselinesPresent</definition>
+        <argsstring>() const</argsstring>
+        <name>GetBaselinesPresent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="83" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a201768ae4efac54cc92fb991315c4ff7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref> &amp;</type>
+        <definition>MHO_PyContainerStoreInterface&amp; hops::MHO_PyScanStoreInterface::GetFringeData</definition>
+        <argsstring>(std::string fringe)</argsstring>
+        <name>GetFringeData</name>
+        <param>
+          <type>std::string</type>
+          <declname>fringe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="273" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="273" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1adc8e7cd2a7e08e4d46839b2336083986" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PyScanStoreInterface::GetFringeFilename</definition>
+        <argsstring>(std::string fringe) const</argsstring>
+        <name>GetFringeFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>fringe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="98" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="98" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a48b70845b778195eea9fa19e1f9ebd94" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_PyScanStoreInterface::GetFringesLoaded</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFringesLoaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="237" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="237" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a56fa21965934f8a3ade284f59b915360" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_PyScanStoreInterface::GetFringesPresent</definition>
+        <argsstring>() const</argsstring>
+        <name>GetFringesPresent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="87" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1abd265f1c7cdcd6a562508773be723b91" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_PyScanStoreInterface::GetNBaselines</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNBaselines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="77" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a7bb03cf418413688c4a0d8fff73f0e8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_PyScanStoreInterface::GetNFringes</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNFringes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="81" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="81" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a4a3af86c850289757e77add827f4f2c0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_PyScanStoreInterface::GetNStations</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNStations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="79" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a2130e28075e7beffbae835402548933b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PyScanStoreInterface::GetRootFileBasename</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRootFileBasename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="92" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a1336da2e84a839bc7a3ac2464a0fb09d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>py::dict</type>
+        <definition>py::dict hops::MHO_PyScanStoreInterface::GetRootFileData</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRootFileData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="90" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a07752baf8e0e0046906074c54928b026" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__PyContainerStoreInterface" kindref="compound">MHO_PyContainerStoreInterface</ref> &amp;</type>
+        <definition>MHO_PyContainerStoreInterface&amp; hops::MHO_PyScanStoreInterface::GetStationData</definition>
+        <argsstring>(std::string station)</argsstring>
+        <name>GetStationData</name>
+        <param>
+          <type>std::string</type>
+          <declname>station</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="260" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="260" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a3e927d79b33f52e620cb08fc72c104c1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PyScanStoreInterface::GetStationFilename</definition>
+        <argsstring>(std::string station) const</argsstring>
+        <name>GetStationFilename</name>
+        <param>
+          <type>std::string</type>
+          <declname>station</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="96" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a062b56164b7069005fb3c98350d83e3f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_PyScanStoreInterface::GetStationsLoaded</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStationsLoaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="227" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="227" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1afe57008ac32ced2bb9cffb61207bb1d6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_PyScanStoreInterface::GetStationsPresent</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStationsPresent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="85" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a0338275ef843b1dcafd425f8966a053c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="63" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="63" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1af143cb3162973809abd21f3d03cae480" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::IsBaselineLoaded</definition>
+        <argsstring>(std::string baseline) const</argsstring>
+        <name>IsBaselineLoaded</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="125" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="125" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a543bfe51e129c7d2c8d36794aeefbc8f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::IsBaselinePresent</definition>
+        <argsstring>(std::string bl) const</argsstring>
+        <name>IsBaselinePresent</name>
+        <param>
+          <type>std::string</type>
+          <declname>bl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="71" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1aac0aafc257e95d048628ce60667faa95" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::IsFringeLoaded</definition>
+        <argsstring>(std::string fringe) const</argsstring>
+        <name>IsFringeLoaded</name>
+        <param>
+          <type>std::string</type>
+          <declname>fringe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="203" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="203" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a580d7261153247d105e7dd2df56e0dea" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::IsFringePresent</definition>
+        <argsstring>(std::string fr) const</argsstring>
+        <name>IsFringePresent</name>
+        <param>
+          <type>std::string</type>
+          <declname>fr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="75" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a9d481ac0d6461f31f6d68a1b006e939b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::IsStationLoaded</definition>
+        <argsstring>(std::string station) const</argsstring>
+        <name>IsStationLoaded</name>
+        <param>
+          <type>std::string</type>
+          <declname>station</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="164" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="164" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a5e2bd2d5d59ad3cc1aefe494342e7d13" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::IsStationPresent</definition>
+        <argsstring>(std::string st) const</argsstring>
+        <name>IsStationPresent</name>
+        <param>
+          <type>std::string</type>
+          <declname>st</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1adfb98f61f8a109967df132f9f6829f62" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyScanStoreInterface::IsValid</definition>
+        <argsstring>() const</argsstring>
+        <name>IsValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a3c62b897c1ac495918d2323623570525" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_PyScanStoreInterface::LoadBaseline</definition>
+        <argsstring>(std::string baseline)</argsstring>
+        <name>LoadBaseline</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="100" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="100" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1aad255cc6a213021f9e3f0da4e5c739da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_PyScanStoreInterface::LoadFringe</definition>
+        <argsstring>(std::string fringe)</argsstring>
+        <name>LoadFringe</name>
+        <param>
+          <type>std::string</type>
+          <declname>fringe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="178" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="178" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1ad92a944906dd6278988a034959eb28da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_PyScanStoreInterface::LoadStation</definition>
+        <argsstring>(std::string station)</argsstring>
+        <name>LoadStation</name>
+        <param>
+          <type>std::string</type>
+          <declname>station</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="139" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="139" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyScanStoreInterface_1a9fa4e2f867739aa965d92131c03c3cbc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PyScanStoreInterface::SetDirectory</definition>
+        <argsstring>(std::string dir)</argsstring>
+        <name>SetDirectory</name>
+        <param>
+          <type>std::string</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="57" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>python bindings for the <ref refid="classhops_1_1MHO__ScanDataStore" kindref="compound">MHO_ScanDataStore</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sun Feb 11 05:10:07 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyScanStoreInterface.hh" bodystart="31" bodyend="322"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a2d769829886176ea3f3089aeaa198457" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1aa06e46fa576bd991cbb82ad6fe599e77" prot="private" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>fBaselineContainers</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1ae27413f752c0387b48f67bbcdeaef1b6" prot="private" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>fEmptyContainer</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1aa73de00e17a21fe117e71e80aa903890" prot="private" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>fFringeContainers</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a6f40bb288452fc40107f26014288b6bf" prot="private" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a53821de234de38b74998682ad2b2afe3" prot="private" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>fIsOwned</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a1d304ebf92dc02575a0779537ff2cb0c" prot="private" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>fScanStore</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1aa814721eb84f37553ba90be3f386bb35" prot="private" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>fStationContainers</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a6ba282a11d8ba797141c1c11fe7838b5" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetBaselineData</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1ad909faed5b787979afb91c754833da8a" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetBaselineFilename</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a4547fd763bc35b2629502b9c7684e8b9" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetBaselinesLoaded</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a77cb2a204946ae4fee478026663dd09e" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetBaselinesPresent</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a201768ae4efac54cc92fb991315c4ff7" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetFringeData</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1adc8e7cd2a7e08e4d46839b2336083986" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetFringeFilename</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a48b70845b778195eea9fa19e1f9ebd94" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetFringesLoaded</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a56fa21965934f8a3ade284f59b915360" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetFringesPresent</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1abd265f1c7cdcd6a562508773be723b91" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetNBaselines</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a7bb03cf418413688c4a0d8fff73f0e8d" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetNFringes</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a4a3af86c850289757e77add827f4f2c0" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetNStations</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a2130e28075e7beffbae835402548933b" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetRootFileBasename</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a1336da2e84a839bc7a3ac2464a0fb09d" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetRootFileData</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a07752baf8e0e0046906074c54928b026" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetStationData</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a3e927d79b33f52e620cb08fc72c104c1" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetStationFilename</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a062b56164b7069005fb3c98350d83e3f" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetStationsLoaded</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1afe57008ac32ced2bb9cffb61207bb1d6" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>GetStationsPresent</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a0338275ef843b1dcafd425f8966a053c" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1af143cb3162973809abd21f3d03cae480" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>IsBaselineLoaded</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a543bfe51e129c7d2c8d36794aeefbc8f" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>IsBaselinePresent</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1aac0aafc257e95d048628ce60667faa95" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>IsFringeLoaded</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a580d7261153247d105e7dd2df56e0dea" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>IsFringePresent</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a9d481ac0d6461f31f6d68a1b006e939b" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>IsStationLoaded</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a5e2bd2d5d59ad3cc1aefe494342e7d13" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>IsStationPresent</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1adfb98f61f8a109967df132f9f6829f62" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>IsValid</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a3c62b897c1ac495918d2323623570525" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>LoadBaseline</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1aad255cc6a213021f9e3f0da4e5c739da" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>LoadFringe</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1ad92a944906dd6278988a034959eb28da" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>LoadStation</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a642e2ce1edadcf8581a9a9a87ff2ed07" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>MHO_PyScanStoreInterface</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a573372c0fb15a4420c55ab3349bb89d7" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>MHO_PyScanStoreInterface</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a9fa4e2f867739aa965d92131c03c3cbc" prot="public" virt="non-virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>SetDirectory</name></member>
+      <member refid="classhops_1_1MHO__PyScanStoreInterface_1a365e31c27d46e810f7f58720bf43b4ae" prot="public" virt="virtual"><scope>hops::MHO_PyScanStoreInterface</scope><name>~MHO_PyScanStoreInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

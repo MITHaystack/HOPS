@@ -1,0 +1,362 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FringeControlInitialization" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FringeControlInitialization</compoundname>
+    <includes refid="MHO__FringeControlInitialization_8hh" local="no">MHO_FringeControlInitialization.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1a4e9ce9378e44afe5c9410a3461892933" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FringeControlInitialization::MHO_FringeControlInitialization</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FringeControlInitialization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1a2cbd22454c5807b532896e592e7d7c46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FringeControlInitialization::~MHO_FringeControlInitialization</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FringeControlInitialization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" bodystart="36" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1acd318113ba16240617e86f41e713e746" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeControlInitialization::add_circ_field_rotation_operator</definition>
+        <argsstring>(mho_json &amp;statements)</argsstring>
+        <name>add_circ_field_rotation_operator</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>statements</declname>
+        </param>
+        <briefdescription>
+<para>Adds a predefined correction operator for circular-pol field rotation to the given statements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>statements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to a list of JSON statements where the correction operator will be added. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="108" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="355" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1ab50f60e19e1e11898ae8abf215c54272" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeControlInitialization::add_default_operator_format_def</definition>
+        <argsstring>(mho_json &amp;format)</argsstring>
+        <name>add_default_operator_format_def</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Adds default operator format definitions to an mho_json object for fringe control initialization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object where defaults will be added. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="58" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="160" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1ae24aa152091d47cb06a9a0cd7e171cdf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeControlInitialization::add_default_operators</definition>
+        <argsstring>(mho_json &amp;statements)</argsstring>
+        <name>add_default_operators</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>statements</declname>
+        </param>
+        <briefdescription>
+<para>Adds default operators to control statements for MHO fringe control initialization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>statements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object where default operators will be added. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="66" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="237" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1a6989d3e03c0f3f141a6d8798b24693a2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeControlInitialization::add_dpar_sign_correction_operator</definition>
+        <argsstring>(mho_json &amp;statements)</argsstring>
+        <name>add_dpar_sign_correction_operator</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>statements</declname>
+        </param>
+        <briefdescription>
+<para>Adds a default correction operator for dpar (delta parallactic angle) to the given statements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>statements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object containing control statements </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="91" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="286" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1a5c1a1ab183bd637aaa77ea05a5decb16" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeControlInitialization::add_polprod_sum_operator</definition>
+        <argsstring>(mho_json &amp;statements)</argsstring>
+        <name>add_polprod_sum_operator</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>statements</declname>
+        </param>
+        <briefdescription>
+<para>Adds a default polarization product sum operator to the given statements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>statements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object containing control statements. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="74" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="276" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1afe9f26872079d525260f751abfec205c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FringeControlInitialization::is_circular_polprod</definition>
+        <argsstring>(std::string pp)</argsstring>
+        <name>is_circular_polprod</name>
+        <param>
+          <type>std::string</type>
+          <declname>pp</declname>
+        </param>
+        <briefdescription>
+<para>Checks if given polarization product is circular (RR, LL, RL, LR). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input polarization product string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if circular, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="100" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="334" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1a068bbf825f588e059d112e5a47df9708" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FringeControlInitialization::is_linear_polprod</definition>
+        <argsstring>(std::string pp)</argsstring>
+        <name>is_linear_polprod</name>
+        <param>
+          <type>std::string</type>
+          <declname>pp</declname>
+        </param>
+        <briefdescription>
+<para>Checks if input string represents a linear polarization product. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string representing polarization product. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if pp is one of predefined linear products, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="83" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="296" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1aacb24193928697d0f587ced1c61a7bc1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_FringeControlInitialization::need_ion_search</definition>
+        <argsstring>(mho_json *control)</argsstring>
+        <name>need_ion_search</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>control</declname>
+        </param>
+        <briefdescription>
+<para>Checks if special ionospheric fringe fitter is needed by searching control statements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>control</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json object containing control statements </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether ion search is needed </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="118" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="15" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeControlInitialization_1aa9c2f7dbb18cc2b4be977c7b3699f067" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FringeControlInitialization::process_control_file</definition>
+        <argsstring>(MHO_ParameterStore *paramStore, mho_json &amp;control_format, mho_json &amp;control_statements)</argsstring>
+        <name>process_control_file</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>control_format</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>control_statements</declname>
+        </param>
+        <briefdescription>
+<para>Process control file and populate applicable statements in parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object for storing parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control_format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object for control format definition. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control_statements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object for applicable control statements. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="49" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_FringeControlInitialization.cc" bodystart="46" bodyend="158"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FringeControlInitialization" kindref="compound">MHO_FringeControlInitialization</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>collection of helper functions for fringe fitter start-up</para>
+<para><simplesect kind="author"><para>J. Barrettj - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Feb 5 13:59:09 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeControlInitialization.hh" bodystart="32" bodyend="119"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1acd318113ba16240617e86f41e713e746" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>add_circ_field_rotation_operator</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1ab50f60e19e1e11898ae8abf215c54272" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>add_default_operator_format_def</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1ae24aa152091d47cb06a9a0cd7e171cdf" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>add_default_operators</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1a6989d3e03c0f3f141a6d8798b24693a2" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>add_dpar_sign_correction_operator</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1a5c1a1ab183bd637aaa77ea05a5decb16" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>add_polprod_sum_operator</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1afe9f26872079d525260f751abfec205c" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>is_circular_polprod</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1a068bbf825f588e059d112e5a47df9708" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>is_linear_polprod</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1a4e9ce9378e44afe5c9410a3461892933" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>MHO_FringeControlInitialization</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1aacb24193928697d0f587ced1c61a7bc1" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>need_ion_search</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1aa9c2f7dbb18cc2b4be977c7b3699f067" prot="public" virt="non-virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>process_control_file</name></member>
+      <member refid="classhops_1_1MHO__FringeControlInitialization_1a2cbd22454c5807b532896e592e7d7c46" prot="public" virt="virtual"><scope>hops::MHO_FringeControlInitialization</scope><name>~MHO_FringeControlInitialization</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

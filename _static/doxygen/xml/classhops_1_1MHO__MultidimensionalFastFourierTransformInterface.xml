@@ -1,0 +1,502 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MultidimensionalFastFourierTransformInterface</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; mbd_type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; hops::MHO_TableContainer &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; visibility_type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; pcal_type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; XArgType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__OpenCLFastFourierTransformRadix2Stage" prot="public" virt="non-virtual">hops::MHO_OpenCLFastFourierTransformRadix2Stage&lt; XArgType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__OpenCLMultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_OpenCLMultidimensionalFastFourierTransform&lt; XArgType &gt;</derivedcompoundref>
+    <includes refid="MHO__MultidimensionalFastFourierTransformInterface_8hh" local="no">MHO_MultidimensionalFastFourierTransformInterface.hh</includes>
+    <innerclass refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1_1TransformAxis" prot="protected">hops::MHO_MultidimensionalFastFourierTransformInterface::TransformAxis</innerclass>
+    <templateparamlist>
+      <param>
+        <type>typename XArgType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a69c256470d83da4c91b9d873b42bd3a4" prot="public" static="no">
+        <type>typename XArgType::value_type</type>
+        <definition>using hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::complex_value_type =  typename XArgType::value_type</definition>
+        <argsstring></argsstring>
+        <name>complex_value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48aa57e2eba5569636fba88f2a6bac4e" prot="public" static="no">
+        <type>typename XArgType::value_type::value_type</type>
+        <definition>using hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::floating_point_value_type =  typename XArgType::value_type::value_type</definition>
+        <argsstring></argsstring>
+        <name>floating_point_value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::fAxesToXForm[XArgType::rank::value]</definition>
+        <argsstring>[XArgType::rank::value]</argsstring>
+        <name>fAxesToXForm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="237" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a00d4d2c72414cebc55955a8813306b91" prot="protected" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::fDimensionSize[XArgType::rank::value]</definition>
+        <argsstring>[XArgType::rank::value]</argsstring>
+        <name>fDimensionSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="236" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::fForward</definition>
+        <argsstring></argsstring>
+        <name>fForward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="232" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="233" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a792f2c5df090bc623e39fc140a328f10" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::fIsValid</definition>
+        <argsstring></argsstring>
+        <name>fIsValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="231" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::fTransformAxisLabels</definition>
+        <argsstring></argsstring>
+        <name>fTransformAxisLabels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="234" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a2f79775a9703a315bbaf3fa4680c2331" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::MHO_MultidimensionalFastFourierTransformInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MultidimensionalFastFourierTransformInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="32" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48ba7e7463a6149a58e1ae3723ec090b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::~MHO_MultidimensionalFastFourierTransformInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MultidimensionalFastFourierTransformInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a8e49b888c2afb4c39329bc1e31f6bd0b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::DeselectAllAxes</definition>
+        <argsstring>()</argsstring>
+        <name>DeselectAllAxes</name>
+        <briefdescription>
+<para>Deselects all axes by setting fAxesToXForm to false and resetting initialization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="79" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="79" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1af017acd142a8a83640ea15506ac97dea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::DisableAxisLabelTransformation</definition>
+        <argsstring>()</argsstring>
+        <name>DisableAxisLabelTransformation</name>
+        <briefdescription>
+<para>Disables axis label transformation by setting fTransformAxisLabels to false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="116" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76c42f20af267617d7e1dbb835c33716" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::EnableAxisLabelTransformation</definition>
+        <argsstring>()</argsstring>
+        <name>EnableAxisLabelTransformation</name>
+        <briefdescription>
+<para>Enables transformation for axis labels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="111" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1affbe2be4dd4fd0925daab1b4eb485a71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::SelectAllAxes</definition>
+        <argsstring>()</argsstring>
+        <name>SelectAllAxes</name>
+        <briefdescription>
+<para>Selects all axes for transformation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="66" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="66" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5f9dc49f66367e30a50aa4153d6b6614" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::SelectAxis</definition>
+        <argsstring>(std::size_t axis_index)</argsstring>
+        <name>SelectAxis</name>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLFastFourierTransformRadix2Stage_1ada39c0251bf84180a875d4e69d081fff">SelectAxis</reimplementedby>
+        <param>
+          <type>std::size_t</type>
+          <declname>axis_index</declname>
+        </param>
+        <briefdescription>
+<para>Selects an axis for transformation if within array rank. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>axis_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the axis to select. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="94" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="94" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5e2e88affc72fe272de201a20dca1ccb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::SetBackward</definition>
+        <argsstring>()</argsstring>
+        <name>SetBackward</name>
+        <briefdescription>
+<para>Setter for backward. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="58" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76b6d126eae8c01d867ef260ef35dd09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::SetForward</definition>
+        <argsstring>()</argsstring>
+        <name>SetForward</name>
+        <briefdescription>
+<para>Setter for forward. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="52" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a0c856afe52df1f2b17ae364ca9132c6a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XCheckType</type>
+            <defval>XArgType</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; !std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XCheckType &gt;::<ref refid="structvalue" kindref="compound">value</ref>, void &gt;::type</type>
+        <definition>std::enable_if&lt; !std::is_base_of&lt; MHO_TableContainerBase, XCheckType &gt;::value, void &gt;::type hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::IfTableTransformAxis</definition>
+        <argsstring>(XArgType *, std::size_t)</argsstring>
+        <name>IfTableTransformAxis</name>
+        <param>
+          <type>XArgType *</type>
+        </param>
+        <param>
+          <type>std::size_t</type>
+        </param>
+        <briefdescription>
+<para>Transforms axis of input data if transformation is enabled and axis was transformed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCheckType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCheckType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!axis_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="129" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="129" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1adaaf13b5ad51362c4ad39ffffccecca8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XCheckType</type>
+            <defval>XArgType</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XCheckType &gt;::<ref refid="structvalue" kindref="compound">value</ref>, void &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_base_of&lt; MHO_TableContainerBase, XCheckType &gt;::value, void &gt;::type hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;::IfTableTransformAxis</definition>
+        <argsstring>(XArgType *in, std::size_t axis_index)</argsstring>
+        <name>IfTableTransformAxis</name>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>axis_index</declname>
+        </param>
+        <briefdescription>
+<para>Transforms axis of input table if specified dimension was transformed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCheckType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCheckType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input table of type XArgType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>axis_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of axis to transform </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="141" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="141" bodyend="151"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface" kindref="compound">MHO_MultidimensionalFastFourierTransformInterface</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Jul 31 17:16:37 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; pcal_type &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_OpenCLMultidimensionalFastFourierTransform&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__OpenCLMultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_OpenCLFastFourierTransformRadix2Stage&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__OpenCLFastFourierTransformRadix2Stage"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; mbd_type &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; hops::MHO_TableContainer &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>size_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fAxesToXForm</edgelabel>
+          <edgelabel>fForward</edgelabel>
+          <edgelabel>fInitialized</edgelabel>
+          <edgelabel>fIsValid</edgelabel>
+          <edgelabel>fTransformAxisLabels</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fDimensionSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>bool</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" line="24" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformInterface.hh" bodystart="25" bodyend="238"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a69c256470d83da4c91b9d873b42bd3a4" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>complex_value_type</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a8e49b888c2afb4c39329bc1e31f6bd0b" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>DeselectAllAxes</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1af017acd142a8a83640ea15506ac97dea" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>DisableAxisLabelTransformation</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76c42f20af267617d7e1dbb835c33716" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>EnableAxisLabelTransformation</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>fAxesToXForm</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a00d4d2c72414cebc55955a8813306b91" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>fDimensionSize</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>fForward</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a792f2c5df090bc623e39fc140a328f10" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>fIsValid</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48aa57e2eba5569636fba88f2a6bac4e" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>floating_point_value_type</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>fTransformAxisLabels</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a0c856afe52df1f2b17ae364ca9132c6a" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>IfTableTransformAxis</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1adaaf13b5ad51362c4ad39ffffccecca8" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>IfTableTransformAxis</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a2f79775a9703a315bbaf3fa4680c2331" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>MHO_MultidimensionalFastFourierTransformInterface</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1affbe2be4dd4fd0925daab1b4eb485a71" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>SelectAllAxes</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5f9dc49f66367e30a50aa4153d6b6614" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>SelectAxis</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5e2e88affc72fe272de201a20dca1ccb" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>SetBackward</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76b6d126eae8c01d867ef260ef35dd09" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>SetForward</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48ba7e7463a6149a58e1ae3723ec090b" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformInterface</scope><name>~MHO_MultidimensionalFastFourierTransformInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

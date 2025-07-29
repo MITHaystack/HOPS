@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyGenericOperator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PyGenericOperator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__Operator" prot="public" virt="non-virtual">hops::MHO_Operator</basecompoundref>
+    <includes refid="MHO__PyGenericOperator_8hh" local="no">MHO_PyGenericOperator.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyGenericOperator_1ae52a35227d28106ce8a56511af0ea524" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+        <definition>MHO_FringeData* hops::MHO_PyGenericOperator::fFringeData</definition>
+        <argsstring></argsstring>
+        <name>fFringeData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="131" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyGenericOperator_1ad0ff05574f2a1218d82e14e7d5a504d8" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__PyFringeDataInterface" kindref="compound">MHO_PyFringeDataInterface</ref> *</type>
+        <definition>MHO_PyFringeDataInterface* hops::MHO_PyGenericOperator::fFringeDataInterface</definition>
+        <argsstring></argsstring>
+        <name>fFringeDataInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="132" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyGenericOperator_1a106d9b819ae9b13e21cec16624f39a0b" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PyGenericOperator::fFunctionName</definition>
+        <argsstring></argsstring>
+        <name>fFunctionName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="129" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyGenericOperator_1a6be8c7949d1947671425349e865ee784" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyGenericOperator::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="127" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PyGenericOperator_1af113ae1dd7009556ae3a61da012c1d54" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PyGenericOperator::fModuleName</definition>
+        <argsstring></argsstring>
+        <name>fModuleName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="128" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyGenericOperator_1ae2aea711e97fb2c89b7e287c23024550" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyGenericOperator::MHO_PyGenericOperator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_PyGenericOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="36" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyGenericOperator_1a83ed192fd90140d259309852dd7d9ac2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PyGenericOperator::~MHO_PyGenericOperator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PyGenericOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyGenericOperator_1ac4a3360ed0e072af509fcc8cdb8809bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_PyGenericOperator::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7">Execute</reimplements>
+        <briefdescription>
+<para>Function Execute. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="89" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="89" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyGenericOperator_1a164305ef7617b4bcbcb70372ca6e7aeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_PyGenericOperator::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171">Initialize</reimplements>
+        <briefdescription>
+<para>Function Initialize. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="60" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="60" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyGenericOperator_1ab25fce0911c02f35392527714bab8bba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PyGenericOperator::SetFringeData</definition>
+        <argsstring>(MHO_FringeData *fdata)</argsstring>
+        <name>SetFringeData</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>fdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyGenericOperator_1a8a2eca9fed48579d5ca21890acf87b54" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PyGenericOperator::SetFunctionName</definition>
+        <argsstring>(std::string function_name)</argsstring>
+        <name>SetFunctionName</name>
+        <param>
+          <type>std::string</type>
+          <declname>function_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="58" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyGenericOperator_1a954b8c8de11c685499b4cedd21775442" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PyGenericOperator::SetModuleName</definition>
+        <argsstring>(std::string module_name)</argsstring>
+        <name>SetModuleName</name>
+        <param>
+          <type>std::string</type>
+          <declname>module_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="56" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="56" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>this class allows a user to inject a python function of the form: func(fringe_data_interface) into the control flow of the fringe fitter. It is basically allowed full access to any data or parameters encompassed by the fringe_data object (container store, parameter store, plot data). The only exception is that re-sizing of arrays is not allowed. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Sep 18 13:51:51 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PyGenericOperator</label>
+        <link refid="classhops_1_1MHO__PyGenericOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PyGenericOperator</label>
+        <link refid="classhops_1_1MHO__PyGenericOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyGenericOperator.hh" bodystart="34" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1ac4a3360ed0e072af509fcc8cdb8809bd" prot="public" virt="virtual"><scope>hops::MHO_PyGenericOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1ae52a35227d28106ce8a56511af0ea524" prot="private" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>fFringeData</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1ad0ff05574f2a1218d82e14e7d5a504d8" prot="private" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>fFringeDataInterface</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1a106d9b819ae9b13e21cec16624f39a0b" prot="private" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>fFunctionName</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1a6be8c7949d1947671425349e865ee784" prot="private" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1af113ae1dd7009556ae3a61da012c1d54" prot="private" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>fModuleName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1a164305ef7617b4bcbcb70372ca6e7aeb" prot="public" virt="virtual"><scope>hops::MHO_PyGenericOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1ae2aea711e97fb2c89b7e287c23024550" prot="public" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>MHO_PyGenericOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_PyGenericOperator</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1ab25fce0911c02f35392527714bab8bba" prot="public" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>SetFringeData</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1a8a2eca9fed48579d5ca21890acf87b54" prot="public" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>SetFunctionName</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1a954b8c8de11c685499b4cedd21775442" prot="public" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>SetModuleName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_PyGenericOperator</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_PyGenericOperator</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_PyGenericOperator</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__PyGenericOperator_1a83ed192fd90140d259309852dd7d9ac2" prot="public" virt="virtual"><scope>hops::MHO_PyGenericOperator</scope><name>~MHO_PyGenericOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

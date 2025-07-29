@@ -1,0 +1,1284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="compress_8c" kind="file" language="C++">
+    <compoundname>compress.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="mk4__typedefs_8h" local="yes">mk4_typedefs.h</includes>
+    <includes refid="mk4__dfio_8h" local="yes">mk4_dfio.h</includes>
+    <incdepgraph>
+      <node id="33">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="37">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="43">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>mk4_dfio.h</label>
+        <link refid="mk4__dfio_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="32">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="19">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="11">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>sys/types.h</label>
+      </node>
+      <node id="31">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="7">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+      <node id="35">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_110.h</label>
+        <link refid="type__110_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>complex.h</label>
+      </node>
+      <node id="27">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="41">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>compress.c</label>
+        <link refid="compress_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="42">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="26">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="40">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structcompress__identity" prot="public">compress_identity</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="compress_8c_1a50c09f35ae12c1a3cb40627c7b189c2a" prot="public" static="no">
+        <name>ALIGNMENT_FUDGE</name>
+        <initializer>(<ref refid="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" kindref="member">U</ref>(16))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="52" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a5185ee69315fc3a249953c3895584ab2" prot="public" static="no">
+        <name>ANY_HASH_INDEX</name>
+        <initializer>(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="137" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a10278e673366c6b927ddafc0b02c8a08" prot="public" static="no">
+        <name>COMPRESS_ACTION_COMPRESS</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a0b3e5accd43dfe43f7e4a8801737878b" prot="public" static="no">
+        <name>COMPRESS_ACTION_DECOMPRESS</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1ac73b3bf580bfb942cd84fc244102cbe5" prot="public" static="no">
+        <name>COMPRESS_ACTION_IDENTITY</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a0c99ff5170359641b4582b268fae6f97" prot="public" static="no">
+        <name>DEPTH_MASK</name>
+        <initializer>(<ref refid="compress_8c_1aad84829216eeb081bf3cce3b0347d1f3" kindref="member">HASH_TABLE_DEPTH</ref>-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="121" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" prot="public" static="no">
+        <name>FLAG_BYTES</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="97" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a402bf0615dc2dfeb8d47965eca476532" prot="public" static="no">
+        <name>FLAG_COMPRESS</name>
+        <initializer>0     /* Signals that <ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref> was result of compression. */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="99" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a93d18aad39dd11491c4a642c0bafd7a9" prot="public" static="no">
+        <name>FLAG_COPY</name>
+        <initializer>1     /* Signals that <ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref> was simply copied over.    */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="100" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a54cade762a2058562bada4a97c818cc8" prot="public" static="no">
+        <name>HASH</name>
+        <param><defname>PTR</defname></param>
+        <initializer> ( \
+     (((40543*(((*(PTR))&lt;&lt;8)^((*((PTR)+1))&lt;&lt;4)^(*((PTR)+2))))&gt;&gt;4) &amp; <ref refid="compress_8c_1a8ba578169aad59095035a05d2f7323a7" kindref="member">HASH_MASK</ref>) \
+  &lt;&lt; <ref refid="compress_8c_1a8cb9c341c3a2355011afe739ebeed3b7" kindref="member">HASH_TABLE_DEPTH_BITS</ref> \
+ )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="125" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a8ba578169aad59095035a05d2f7323a7" prot="public" static="no">
+        <name>HASH_MASK</name>
+        <initializer>(<ref refid="compress_8c_1a994e7fc0245802de6fcf2b100a732a3d" kindref="member">PARTITION_LENGTH</ref>-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="120" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1aad84829216eeb081bf3cce3b0347d1f3" prot="public" static="no">
+        <name>HASH_TABLE_DEPTH</name>
+        <initializer>(1&lt;&lt;<ref refid="compress_8c_1a8cb9c341c3a2355011afe739ebeed3b7" kindref="member">HASH_TABLE_DEPTH_BITS</ref> )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="119" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a8cb9c341c3a2355011afe739ebeed3b7" prot="public" static="no">
+        <name>HASH_TABLE_DEPTH_BITS</name>
+        <initializer>(3)      /* Must be in range [0,12].            */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="115" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a961a361752cb56ed6a03bc3440bbe30b" prot="public" static="no">
+        <name>HASH_TABLE_LENGTH</name>
+        <initializer>(4096)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="113" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a8b6826addfb24b62afb65fd9192e3245" prot="public" static="no">
+        <name>MAX_CMP_GROUP</name>
+        <initializer>(2+16*2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="111" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a8059bf6e3eca130994b50543c6578819" prot="public" static="no">
+        <name>MAX_RAW_GROUP</name>
+        <initializer>(16*<ref refid="compress_8c_1ad80220c85919d3b97aa905603f662991" kindref="member">MAX_RAW_ITEM</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="109" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1ad80220c85919d3b97aa905603f662991" prot="public" static="no">
+        <name>MAX_RAW_ITEM</name>
+        <initializer>(18)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="107" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a5c6fa15bce34ba9d4085b4bacf0fa947" prot="public" static="no">
+        <name>MEM_REQ</name>
+        <initializer>( <ref refid="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" kindref="member">U</ref>(4096)*(<ref refid="compress_8c_1a528e11d29da827a7e336bf1b85ab648e" kindref="member">SIZE_P_BYTE</ref>) + <ref refid="compress_8c_1a50c09f35ae12c1a3cb40627c7b189c2a" kindref="member">ALIGNMENT_FUDGE</ref> )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="53" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a994e7fc0245802de6fcf2b100a732a3d" prot="public" static="no">
+        <name>PARTITION_LENGTH</name>
+        <initializer>(1&lt;&lt;<ref refid="compress_8c_1aeb043c41ea7064dffc6855ab39123853" kindref="member">PARTITION_LENGTH_BITS</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="118" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1aeb043c41ea7064dffc6855ab39123853" prot="public" static="no">
+        <name>PARTITION_LENGTH_BITS</name>
+        <initializer>(12-<ref refid="compress_8c_1a8cb9c341c3a2355011afe739ebeed3b7" kindref="member">HASH_TABLE_DEPTH_BITS</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="117" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" prot="public" static="no">
+        <name>PS</name>
+        <initializer>*p++!=*s++</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="239" column="22"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a528e11d29da827a7e336bf1b85ab648e" prot="public" static="no">
+        <name>SIZE_P_BYTE</name>
+        <initializer>(<ref refid="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" kindref="member">U</ref>(sizeof(<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *)))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="51" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1ab3b8eb0c5dcdf70d138b52b8d2335ec2" prot="public" static="no">
+        <name>START_STRING_18</name>
+        <initializer>((<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *) &quot;123456789012345678&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="123" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a1ed2ddd8debea25a75a1b29ca34a444c" prot="public" static="no">
+        <name>TOPWORD</name>
+        <initializer>0xFFFF0000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="166" column="10"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" prot="public" static="no">
+        <name>U</name>
+        <param><defname>X</defname></param>
+        <initializer>((<ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref>) X)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="50" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a34e2a76f0032e727a816b986bdebd050" prot="public" static="no">
+        <name>U32_ALIGN_UP</name>
+        <param><defname>X</defname></param>
+        <initializer>(X)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="105" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" prot="public" static="no">
+        <name>UCARD</name>
+        <initializer>unsigned</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="95" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1ac6b0ab137342e2fdf7a69aa5f1dc95b9" prot="public" static="no">
+        <name>UPDATE_I</name>
+        <param><defname>I_BASE</defname></param>
+        <param><defname>NEWPTR</defname></param>
+        <initializer>{hash[(I_BASE)+cycle++]=(NEWPTR); cycle&amp;=<ref refid="compress_8c_1a0c99ff5170359641b4582b268fae6f97" kindref="member">DEPTH_MASK</ref>;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="134" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a6fe92383d585e3b5bc8ade76dbaacb23" prot="public" static="no">
+        <name>UPDATE_P</name>
+        <param><defname>P_BASE</defname></param>
+        <param><defname>NEWPTR</defname></param>
+        <initializer>{(P_BASE)[cycle++]=(NEWPTR); cycle&amp;=<ref refid="compress_8c_1a0c99ff5170359641b4582b268fae6f97" kindref="member">DEPTH_MASK</ref>;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="131" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a595faa6e260998a29c7f1021f172fad5" prot="public" static="no">
+        <name>ZH</name>
+        <initializer>*p_h++=<ref refid="compress_8c_1ab3b8eb0c5dcdf70d138b52b8d2335ec2" kindref="member">START_STRING_18</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="183" column="11"/>
+      </memberdef>
+      <memberdef kind="define" id="compress_8c_1a34bd209c91a359ad950048996c017047" prot="public" static="no">
+        <name>ZJ</name>
+        <initializer>*p_h++=<ref refid="compress_8c_1ab3b8eb0c5dcdf70d138b52b8d2335ec2" kindref="member">START_STRING_18</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="350" column="11"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="compress_8c_1ac8889df7cdac38467178189777bdcec8" prot="public" static="yes" mutable="no">
+        <type>struct compress_identity</type>
+        <definition>struct compress_identity identity</definition>
+        <argsstring></argsstring>
+        <name>identity</name>
+        <initializer>=
+{
+ <ref refid="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" kindref="member">U</ref>(0x01B90B91),                           
+ <ref refid="compress_8c_1a5c6fa15bce34ba9d4085b4bacf0fa947" kindref="member">MEM_REQ</ref>,                                 
+ &quot;LZRW3-A&quot;,                               
+ &quot;1.0&quot;,                                   
+ &quot;15-Jul-1990&quot;,                           
+ &quot;Public Domain&quot;,                         
+ &quot;Ross N. Williams&quot;,                      
+ &quot;Renaissance Software&quot;,                  
+ &quot;Public Domain&quot;                          
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="37" column="7" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="compress_8c_1a457cdad46d00bf627879b0ebac38d6b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void compress</definition>
+        <argsstring>(U16 action, U8 *wrk_mem, U8 *src_adr, U32 src_len, U8 *dst_adr, U32 *p_dst_len)</argsstring>
+        <name>compress</name>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1ac4de1ae30664d5bd186fb6b2ae44e725" kindref="member">U16</ref></type>
+          <declname>action</declname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <declname>wrk_mem</declname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <declname>src_adr</declname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+          <declname>src_len</declname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <declname>dst_adr</declname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref> *</type>
+          <declname>p_dst_len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="71" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="71" bodyend="93" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" declline="37" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="compress_8c_1a897786f54a6e59162ae1f9e57ca66666" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void compress_compress</definition>
+        <argsstring>(U8 *, U8 *, U32, U8 *, U32 *)</argsstring>
+        <name>compress_compress</name>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <defname>p_wrk_mem</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <defname>p_src_first</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+          <defname>src_len</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <defname>p_dst_first</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref> *</type>
+          <defname>p_dst_len</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="141" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="141" bodyend="306" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" declline="68" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="compress_8c_1a1ff22f049adb558d4ec3da8497a50bae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void compress_decompress</definition>
+        <argsstring>(U8 *, U8 *, U32, U8 *, U32 *)</argsstring>
+        <name>compress_decompress</name>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <defname>p_wrk_mem</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <defname>p_src_first</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref></type>
+          <defname>src_len</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref> *</type>
+          <defname>p_dst_first</defname>
+        </param>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref> *</type>
+          <defname>p_dst_len</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" line="310" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" bodystart="310" bodyend="420" declfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c" declline="69" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>In-memory<sp/>compression/decompression<sp/>utility,<sp/>used<sp/>for<sp/>squishing<sp/>the<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>postscript<sp/>fringe<sp/>plot<sp/>in<sp/>the<sp/>DFIO<sp/>library.<sp/><sp/>This<sp/>code<sp/>was<sp/>taken<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>from<sp/>a<sp/>distribution<sp/>of<sp/>LZRW3-A<sp/>by<sp/>Ross<sp/>Williams,<sp/>and<sp/>has<sp/>had<sp/>most<sp/>of<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>the<sp/>comments<sp/>removed.<sp/><sp/>Extremely<sp/>verbose<sp/>comments<sp/>and<sp/>algorithm<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>descriptions<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>original<sp/>source<sp/>code<sp/>file,<sp/>called<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>old_lzrw3-a.c,<sp/>included<sp/>in<sp/>the<sp/>DFIO<sp/>source<sp/>code<sp/>directory.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Borrowed<sp/>November<sp/>1<sp/>1999<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__typedefs_8h" kindref="compound">mk4_typedefs.h</ref>&quot;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Simpler<sp/>for<sp/>use<sp/>in<sp/>DFIO<sp/>library<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__dfio_8h" kindref="compound">mk4_dfio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>COMPRESS_ACTION_IDENTITY<sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>COMPRESS_ACTION_COMPRESS<sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>COMPRESS_ACTION_DECOMPRESS<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">compress_identity</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>id;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Identifying<sp/>number<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>memory;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Number<sp/>of<sp/>bytes<sp/>of<sp/>working<sp/>memory<sp/>required.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*name;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Version<sp/>number.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Date<sp/>of<sp/>release<sp/>of<sp/>this<sp/>version.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*copyright;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Copyright<sp/>message.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*<ref refid="difx2mark4_8c_1a687d469a2c726c8d2b2931364667bbec" kindref="member">author</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Author<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*affiliation;<sp/></highlight><highlight class="comment">/*<sp/>Affiliation<sp/>of<sp/>author.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/>*vendor;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Where<sp/>the<sp/>algorithm<sp/>can<sp/>be<sp/>obtained.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="compress_8c_1a457cdad46d00bf627879b0ebac38d6b0" kindref="member">compress</ref>(<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Single<sp/>function<sp/>interface<sp/>to<sp/>compression<sp/>algorithm.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><ref refid="mk4__typedefs_8h_1ac4de1ae30664d5bd186fb6b2ae44e725" kindref="member">U16</ref><sp/><sp/>action,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Action<sp/>to<sp/>be<sp/>performed.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/><sp/><sp/>*wrk_mem,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Working<sp/>memory<sp/>temporarily<sp/>given<sp/>to<sp/>routine<sp/>to<sp/>use.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/><sp/><sp/>*src_adr,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Address<sp/>of<sp/>input<sp/><sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/><sp/>src_len,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Length<sp/><sp/>of<sp/>input<sp/><sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/><sp/><sp/>*dst_adr,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Address<sp/>of<sp/>output<sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/><sp/>*p_dst_len<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pointer<sp/>to<sp/>a<sp/>longword<sp/>where<sp/>routine<sp/>will<sp/>write:<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>If<sp/>action=..IDENTITY<sp/><sp/><sp/>=&gt;<sp/>Adr<sp/>of<sp/>id<sp/>structure.<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>If<sp/>action=..COMPRESS<sp/><sp/><sp/>=&gt;<sp/>Length<sp/>of<sp/>output<sp/>data.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>If<sp/>action=..DECOMPRESS<sp/>=&gt;<sp/>Length<sp/>of<sp/>output<sp/>data.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>U(X)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((U32)<sp/>X)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SIZE_P_BYTE<sp/><sp/><sp/><sp/><sp/>(U(sizeof(U8<sp/>*)))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALIGNMENT_FUDGE<sp/>(U(16))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MEM_REQ<sp/>(<sp/>U(4096)*(SIZE_P_BYTE)<sp/>+<sp/>ALIGNMENT_FUDGE<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">compress_identity<sp/>identity<sp/>=</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><ref refid="compress_8c_1a785c5aea36b191813eb1c8e27c420ec4" kindref="member">U</ref>(0x01B90B91),<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Algorithm<sp/>identification<sp/>number.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><ref refid="compress_8c_1a5c6fa15bce34ba9d4085b4bacf0fa947" kindref="member">MEM_REQ</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Working<sp/>memory<sp/>(bytes)<sp/>required.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;LZRW3-A&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Name<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;1.0&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Version<sp/>number<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;15-Jul-1990&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Date<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Public<sp/>Domain&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Copyright<sp/>notice.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Ross<sp/>N.<sp/>Williams&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Author<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Renaissance<sp/>Software&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Affiliation<sp/>of<sp/>author.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Public<sp/>Domain&quot;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vendor<sp/>of<sp/>algorithm.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a897786f54a6e59162ae1f9e57ca66666" kindref="member">compress_compress</ref><sp/><sp/>(<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*,<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*,<ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref>,<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*,<ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>*);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a1ff22f049adb558d4ec3da8497a50bae" kindref="member">compress_decompress</ref>(<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*,<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*,<ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref>,<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*,<ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>*);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a457cdad46d00bf627879b0ebac38d6b0" kindref="member">compress</ref>(</highlight><highlight class="comment">/*<sp/>action,wrk_mem,src_adr,src_len,dst_adr,p_dst_len)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><ref refid="mk4__typedefs_8h_1ac4de1ae30664d5bd186fb6b2ae44e725" kindref="member">U16</ref><sp/><sp/><sp/><sp/><sp/>action,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Action<sp/>to<sp/>be<sp/>performed.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/><sp/><sp/><sp/>*wrk_mem,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Address<sp/>of<sp/>working<sp/>memory<sp/>we<sp/>can<sp/>use.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/><sp/><sp/><sp/>*src_adr,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Address<sp/>of<sp/>input<sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/><sp/><sp/><sp/>src_len,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Length<sp/><sp/>of<sp/>input<sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/><sp/><sp/><sp/>*dst_adr,<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Address<sp/>to<sp/>put<sp/>output<sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>*p_dst_len)<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Address<sp/>of<sp/>longword<sp/>for<sp/>length<sp/>of<sp/>output<sp/>data.<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(action)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1ac73b3bf580bfb942cd84fc244102cbe5" kindref="member">COMPRESS_ACTION_IDENTITY</ref>:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>*p_dst_len=(U32)<sp/>&amp;identity;<sp/>disabled;<sp/>apparently<sp/>unused<sp/>rjc<sp/>2010.3.3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst_len<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;possibly<sp/>fatal<sp/>error<sp/>in<sp/>compress.c!!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a10278e673366c6b927ddafc0b02c8a08" kindref="member">COMPRESS_ACTION_COMPRESS</ref>:</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a897786f54a6e59162ae1f9e57ca66666" kindref="member">compress_compress</ref>(wrk_mem,src_adr,src_len,dst_adr,p_dst_len);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a0b3e5accd43dfe43f7e4a8801737878b" kindref="member">COMPRESS_ACTION_DECOMPRESS</ref>:</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a1ff22f049adb558d4ec3da8497a50bae" kindref="member">compress_decompress</ref>(wrk_mem,src_adr,src_len,dst_adr,p_dst_len);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UCARD<sp/>unsigned</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLAG_BYTES<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLAG_COMPRESS<sp/>0<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Signals<sp/>that<sp/>output<sp/>was<sp/>result<sp/>of<sp/>compression.<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FLAG_COPY<sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Signals<sp/>that<sp/>output<sp/>was<sp/>simply<sp/>copied<sp/>over.<sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>U32_ALIGN_UP(X)<sp/>((((U32)X)+3)&amp;~3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assume<sp/>work<sp/>size<sp/>is<sp/>multiple<sp/>of<sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>..otherwise<sp/>code<sp/>failed<sp/>on<sp/>64<sp/>bit<sp/>arch.<sp/>rjc<sp/>2009.3.11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>U32_ALIGN_UP(X)<sp/>(X)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_RAW_ITEM<sp/>(18)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_RAW_GROUP<sp/>(16*MAX_RAW_ITEM)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_CMP_GROUP<sp/>(2+16*2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HASH_TABLE_LENGTH<sp/>(4096)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HASH_TABLE_DEPTH_BITS<sp/>(3)<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Must<sp/>be<sp/>in<sp/>range<sp/>[0,12].<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PARTITION_LENGTH_BITS<sp/>(12-HASH_TABLE_DEPTH_BITS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PARTITION_LENGTH<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;PARTITION_LENGTH_BITS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HASH_TABLE_DEPTH<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;HASH_TABLE_DEPTH_BITS<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HASH_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(PARTITION_LENGTH-1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEPTH_MASK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(HASH_TABLE_DEPTH-1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>START_STRING_18<sp/>((U8<sp/>*)<sp/>&quot;123456789012345678&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HASH(PTR)<sp/>\</highlight></codeline>
+<codeline lineno="126"><highlight class="preprocessor"><sp/>(<sp/>\</highlight></codeline>
+<codeline lineno="127"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/>(((40543*(((*(PTR))&lt;&lt;8)^((*((PTR)+1))&lt;&lt;4)^(*((PTR)+2))))&gt;&gt;4)<sp/>&amp;<sp/>HASH_MASK)<sp/>\</highlight></codeline>
+<codeline lineno="128"><highlight class="preprocessor"><sp/><sp/>&lt;&lt;<sp/>HASH_TABLE_DEPTH_BITS<sp/>\</highlight></codeline>
+<codeline lineno="129"><highlight class="preprocessor"><sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UPDATE_P(P_BASE,NEWPTR)<sp/>\</highlight></codeline>
+<codeline lineno="132"><highlight class="preprocessor">{(P_BASE)[cycle++]=(NEWPTR);<sp/>cycle&amp;=DEPTH_MASK;}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UPDATE_I(I_BASE,NEWPTR)<sp/>\</highlight></codeline>
+<codeline lineno="135"><highlight class="preprocessor">{hash[(I_BASE)+cycle++]=(NEWPTR);<sp/>cycle&amp;=DEPTH_MASK;}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ANY_HASH_INDEX<sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a897786f54a6e59162ae1f9e57ca66666" kindref="member">compress_compress</ref>(<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref>*<sp/>p_wrk_mem,<sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref>*<sp/>p_src_first,<sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>src_len,<sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref>*<sp/>p_dst_first,<sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref>*<sp/>p_dst_len)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Hand<sp/>over<sp/>the<sp/>required<sp/>amount<sp/>of<sp/>working<sp/>memory<sp/>in<sp/>p_wrk_mem.<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Specify<sp/>input<sp/>block<sp/>using<sp/>p_src_first<sp/>and<sp/>src_len.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Point<sp/>p_dst_first<sp/>to<sp/>the<sp/>start<sp/>of<sp/>the<sp/>output<sp/>zone<sp/>(OZ).<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Point<sp/>p_dst_len<sp/>to<sp/>a<sp/>U32<sp/>to<sp/>receive<sp/>the<sp/>output<sp/>length.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Input<sp/>block<sp/>and<sp/>output<sp/>zone<sp/>must<sp/>not<sp/>overlap.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Output<sp/>:<sp/>Length<sp/>of<sp/>output<sp/>block<sp/>written<sp/>to<sp/>*p_dst_len.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Output<sp/>:<sp/>Output<sp/>block<sp/>in<sp/>Mem[p_dst_first..p_dst_first+*p_dst_len-1].<sp/>May<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Output<sp/>:<sp/>write<sp/>in<sp/>OZ=Mem[p_dst_first..p_dst_first+src_len+MAX_CMP_GROUP-1].*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Output<sp/>:<sp/>Upon<sp/>completion<sp/>guaranteed<sp/>*p_dst_len&lt;=src_len+FLAG_BYTES.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U8<sp/>*p_wrk_mem;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U8<sp/>*p_src_first;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U32<sp/><sp/>src_len;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U8<sp/>*p_dst_first;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U32<sp/>*p_dst_len;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>p_src<sp/>and<sp/>p_dst<sp/>step<sp/>through<sp/>the<sp/>source<sp/>and<sp/>destination<sp/>blocks.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_src<sp/>=<sp/>p_src_first;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_dst<sp/>=<sp/>p_dst_first;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_src_post<sp/><sp/>=<sp/>p_src_first+src_len;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_dst_post<sp/><sp/>=<sp/>p_dst_first+src_len;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_src_max1<sp/><sp/>=<sp/>p_src_first+src_len-<ref refid="compress_8c_1ad80220c85919d3b97aa905603f662991" kindref="member">MAX_RAW_ITEM</ref>;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_src_max16<sp/>=<sp/>p_src_first+src_len-<ref refid="compress_8c_1ad80220c85919d3b97aa905603f662991" kindref="member">MAX_RAW_ITEM</ref>*16;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/>#define<sp/>TOPWORD<sp/>0xFFFF0000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_control;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>control=<ref refid="compress_8c_1a1ed2ddd8debea25a75a1b29ca34a444c" kindref="member">TOPWORD</ref>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**hash=<sp/>(<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**)<sp/><ref refid="compress_8c_1a34e2a76f0032e727a816b986bdebd050" kindref="member">U32_ALIGN_UP</ref>(p_wrk_mem);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**p_h1=0;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**p_h2=0;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>cycle=0;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/>*p_dst++=<ref refid="compress_8c_1a402bf0615dc2dfeb8d47965eca476532" kindref="member">FLAG_COMPRESS</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/>{<ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>i;<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=2;i&lt;=<ref refid="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" kindref="member">FLAG_BYTES</ref>;i++)<sp/>*p_dst++=0;}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/>p_control=p_dst;<sp/>p_dst+=2;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/>{<ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>i;<sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**p_h=hash;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#define<sp/>ZH<sp/>*p_h++=START_STRING_18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;256;i++)<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>256=HASH_TABLE_LENGTH/16.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;<ref refid="compress_8c_1a595faa6e260998a29c7f1021f172fad5" kindref="member">ZH</ref>;}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/>}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(1)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/>{</highlight><highlight class="comment">/*<sp/>Begin<sp/>main<sp/>processing<sp/>loop.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_ziv;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Points<sp/>to<sp/>first<sp/>byte<sp/>of<sp/>current<sp/>Ziv.<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>unroll;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>counter<sp/>for<sp/>unrolled<sp/>inner<sp/>loop.<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>index;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Index<sp/>of<sp/>current<sp/>partition.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**p_h0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pointer<sp/>to<sp/>current<sp/>partition.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>d;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Depth<sp/>looping<sp/>variable.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>bestlen;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Holds<sp/>the<sp/>best<sp/>length<sp/>seen<sp/>so<sp/>far.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>bestpos;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Holds<sp/>number<sp/>of<sp/>best<sp/>pointer<sp/>seen<sp/>so<sp/>far.<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Test<sp/>for<sp/>overrun<sp/>and<sp/>jump<sp/>to<sp/>overrun<sp/>code<sp/>if<sp/>necessary.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_dst&gt;p_dst_post)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>overrun;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>The<sp/>following<sp/>cascade<sp/>of<sp/>if<sp/>statements<sp/>efficiently<sp/>catches<sp/>and<sp/>deals<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>with<sp/>varying<sp/>degrees<sp/>of<sp/>closeness<sp/>to<sp/>the<sp/>end<sp/>of<sp/>the<sp/>input<sp/>block.<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>unroll=16;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_src&gt;p_src_max16)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>unroll=1;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_src&gt;p_src_max1)</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_src==p_src_post)</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{p_h0=&amp;hash[<ref refid="compress_8c_1a5185ee69315fc3a249953c3895584ab2" kindref="member">ANY_HASH_INDEX</ref>];<sp/></highlight><highlight class="comment">/*<sp/>Avoid<sp/>undefined<sp/>pointer.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>literal;}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>begin_unrolled_loop:</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_ziv=p_src;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index=<ref refid="compress_8c_1a54cade762a2058562bada4a97c818cc8" kindref="member">HASH</ref>(p_src);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_h0=&amp;hash[index];</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bestlen=0;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bestpos=0;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(d=0;d&lt;<ref refid="compress_8c_1aad84829216eeb081bf3cce3b0347d1f3" kindref="member">HASH_TABLE_DEPTH</ref>;d++)</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*s=p_src;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p=p_h0[d];</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>len;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s[bestlen]<sp/>==<sp/>p[bestlen])</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>PS<sp/>*p++!=*s++</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/><ref refid="compress_8c_1ad7f630556c2cd30d8d8976e0f6e7f749" kindref="member">PS</ref><sp/>||<sp/>s++;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len=s-p_src-1;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(len&gt;bestlen)</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bestpos=d;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bestlen=len;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bestlen&lt;3)</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>literal:<sp/>*p_dst++=*p_src++;<sp/>control&amp;=0xFFFEFFFF;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_h2!=0)</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="compress_8c_1a6fe92383d585e3b5bc8ade76dbaacb23" kindref="member">UPDATE_P</ref>(p_h2,p_ziv-2);}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_h2=p_h1;<sp/>p_h1=p_h0;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index+=bestpos;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst++=((index&amp;0xF00)&gt;&gt;4)|(bestlen-3);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst++=index&amp;0xFF;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_src+=bestlen;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_h1!=0)</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_h2!=0)</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="compress_8c_1a6fe92383d585e3b5bc8ade76dbaacb23" kindref="member">UPDATE_P</ref>(p_h2,p_ziv-2);<sp/>p_h2=0;}</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a6fe92383d585e3b5bc8ade76dbaacb23" kindref="member">UPDATE_P</ref>(p_h1,p_ziv-1);<sp/>p_h1=0;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a6fe92383d585e3b5bc8ade76dbaacb23" kindref="member">UPDATE_P</ref>(p_h0,p_ziv);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>control&gt;&gt;=1;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>end_unrolled_loop:<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(--unroll)<sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>begin_unrolled_loop;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((control&amp;<ref refid="compress_8c_1a1ed2ddd8debea25a75a1b29ca34a444c" kindref="member">TOPWORD</ref>)==0)</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_control++=<sp/><sp/>control<sp/><sp/><sp/><sp/><sp/>&amp;0xFF;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_control<sp/><sp/>=<sp/>(control&gt;&gt;8)<sp/>&amp;0xFF;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_control=p_dst;<sp/>p_dst+=2;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>control=<ref refid="compress_8c_1a1ed2ddd8debea25a75a1b29ca34a444c" kindref="member">TOPWORD</ref>;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">/*<sp/>End<sp/>main<sp/>processing<sp/>loop.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(control&amp;<ref refid="compress_8c_1a1ed2ddd8debea25a75a1b29ca34a444c" kindref="member">TOPWORD</ref>)<sp/>control&gt;&gt;=1;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/>*p_control++=<sp/>control<sp/><sp/><sp/><sp/><sp/>&amp;0xFF;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/>*p_control++=(control&gt;&gt;8)<sp/>&amp;0xFF;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_control==p_dst)<sp/>p_dst-=2;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/>*p_dst_len=p_dst-p_dst_first;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/>overrun:</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/>*p_dst_first=<ref refid="compress_8c_1a93d18aad39dd11491c4a642c0bafd7a9" kindref="member">FLAG_COPY</ref>;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/>memcpy<sp/>(p_dst_first+<ref refid="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" kindref="member">FLAG_BYTES</ref>,<sp/>p_src_first,<sp/>src_len);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/>*p_dst_len=src_len+<ref refid="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" kindref="member">FLAG_BYTES</ref>;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a1ff22f049adb558d4ec3da8497a50bae" kindref="member">compress_decompress</ref>(<sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref>*<sp/>p_wrk_mem,<sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref>*<sp/>p_src_first,<sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>src_len,<sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref>*<sp/>p_dst_first,<sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref>*<sp/>p_dst_len)</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Hand<sp/>over<sp/>the<sp/>required<sp/>amount<sp/>of<sp/>working<sp/>memory<sp/>in<sp/>p_wrk_mem.<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Specify<sp/>input<sp/>block<sp/>using<sp/>p_src_first<sp/>and<sp/>src_len.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Point<sp/>p_dst_first<sp/>to<sp/>the<sp/>start<sp/>of<sp/>the<sp/>output<sp/>zone.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Point<sp/>p_dst_len<sp/>to<sp/>a<sp/>U32<sp/>to<sp/>receive<sp/>the<sp/>output<sp/>length.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>Input<sp/>block<sp/>and<sp/>output<sp/>zone<sp/>must<sp/>not<sp/>overlap.<sp/>User<sp/>knows<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>upperbound<sp/>on<sp/>output<sp/>block<sp/>length<sp/>from<sp/>earlier<sp/>compression.<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Input<sp/><sp/>:<sp/>In<sp/>any<sp/>case,<sp/>maximum<sp/>expansion<sp/>possible<sp/>is<sp/>nine<sp/>times.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Output<sp/>:<sp/>Length<sp/>of<sp/>output<sp/>block<sp/>written<sp/>to<sp/>*p_dst_len.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Output<sp/>:<sp/>Output<sp/>block<sp/>in<sp/>Mem[p_dst_first..p_dst_first+*p_dst_len-1].<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Output<sp/>:<sp/>Writes<sp/>only<sp/><sp/>in<sp/>Mem[p_dst_first..p_dst_first+*p_dst_len-1].<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U8<sp/>*p_wrk_mem;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U8<sp/>*p_src_first;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U32<sp/><sp/>src_len;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U8<sp/>*p_dst_first;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="comment">//<sp/>U32<sp/>*p_dst_len;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>Byte<sp/>pointers<sp/>p_src<sp/>and<sp/>p_dst<sp/>scan<sp/>through<sp/>the<sp/>input<sp/>and<sp/>output<sp/>blocks.<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_src<sp/>=<sp/>p_src_first+<ref refid="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" kindref="member">FLAG_BYTES</ref>;</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_dst<sp/>=<sp/>p_dst_first;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_src_post<sp/><sp/>=<sp/>p_src_first+src_len;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_src_max16<sp/>=<sp/>p_src_first+src_len-(<ref refid="compress_8c_1a8b6826addfb24b62afb65fd9192e3245" kindref="member">MAX_CMP_GROUP</ref>-2);</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**hash<sp/>=<sp/>(<ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**)<sp/><ref refid="compress_8c_1a34e2a76f0032e727a816b986bdebd050" kindref="member">U32_ALIGN_UP</ref>(p_wrk_mem);</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1ac3df7cf3c8cb172a588adec881447d68" kindref="member">U32</ref><sp/>control=1;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>literals=0;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>cycle=0;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*p_src_first==<ref refid="compress_8c_1a93d18aad39dd11491c4a642c0bafd7a9" kindref="member">FLAG_COPY</ref>)</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy<sp/>(p_dst_first,<sp/>p_src_first+<ref refid="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" kindref="member">FLAG_BYTES</ref>,<sp/>src_len-<ref refid="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" kindref="member">FLAG_BYTES</ref>);</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/>*p_dst_len=src_len-<ref refid="compress_8c_1ac1b797a8d8199068960799aafd5ac3d2" kindref="member">FLAG_BYTES</ref>;</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/>{<ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>i;<sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>**p_h=hash;</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#define<sp/>ZJ<sp/>*p_h++=START_STRING_18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;i&lt;256;i++)<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>256=HASH_TABLE_LENGTH/16.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;<ref refid="compress_8c_1a34bd209c91a359ad950048996c017047" kindref="member">ZJ</ref>;}</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/>}</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(p_src!=p_src_post)</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/>{</highlight><highlight class="comment">/*<sp/>Start<sp/>of<sp/>outer<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>unroll;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Counts<sp/>unrolled<sp/>loop<sp/>executions.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(control==1)</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>control=0x10000|*p_src++;</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>control|=(*p_src++)&lt;&lt;8;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>unroll=<sp/>p_src&lt;=p_src_max16<sp/>?<sp/>16<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"></highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(unroll--)</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>Begin<sp/>unrolled<sp/>inner<sp/>loop.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="373"><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(control&amp;1)</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Points<sp/>to<sp/>place<sp/>from<sp/>which<sp/>to<sp/>copy.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>lenmt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Length<sp/>of<sp/>copy<sp/>item<sp/>minus<sp/>three.<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p_ziv=p_dst;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pointer<sp/>to<sp/>start<sp/>of<sp/>current<sp/>Ziv.<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="compress_8c_1a8a8e2688c65d59458485cdb393ef5e14" kindref="member">UCARD</ref><sp/>index;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Index<sp/>of<sp/>hash<sp/>table<sp/>copy<sp/>pointer.<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"></highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lenmt=*p_src++;</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index=((lenmt&amp;0xF0)&lt;&lt;4)|*p_src++;</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p=hash[index];</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lenmt&amp;=0xF;</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst++=*p++;</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst++=*p++;</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst++=*p++;</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(lenmt--)</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst++=*p++;</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"></highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(literals&gt;0)</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*r=p_ziv-literals;;</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1ac6b0ab137342e2fdf7a69aa5f1dc95b9" kindref="member">UPDATE_I</ref>(<ref refid="compress_8c_1a54cade762a2058562bada4a97c818cc8" kindref="member">HASH</ref>(r),r);</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(literals==2)</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{r++;<sp/><ref refid="compress_8c_1ac6b0ab137342e2fdf7a69aa5f1dc95b9" kindref="member">UPDATE_I</ref>(<ref refid="compress_8c_1a54cade762a2058562bada4a97c818cc8" kindref="member">HASH</ref>(r),r);}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>literals=0;</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"></highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1ac6b0ab137342e2fdf7a69aa5f1dc95b9" kindref="member">UPDATE_I</ref>(index&amp;(~<ref refid="compress_8c_1a0c99ff5170359641b4582b268fae6f97" kindref="member">DEPTH_MASK</ref>),p_ziv);</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dst++=*p_src++;</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"></highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(++literals<sp/>==<sp/>3)</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="keyword">register</highlight><highlight class="normal"><sp/><ref refid="mk4__typedefs_8h_1a3cb25ca6f51f003950f9625ff05536fc" kindref="member">U8</ref><sp/>*p=p_dst-3;</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="compress_8c_1ac6b0ab137342e2fdf7a69aa5f1dc95b9" kindref="member">UPDATE_I</ref>(<ref refid="compress_8c_1a54cade762a2058562bada4a97c818cc8" kindref="member">HASH</ref>(p),p);<sp/>literals=2;}</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"></highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>control&gt;&gt;=1;</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"></highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">/*<sp/>End<sp/>unrolled<sp/>inner<sp/>loop.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="416"><highlight class="normal"></highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/>}<sp/></highlight><highlight class="comment">/*<sp/>End<sp/>of<sp/>outer<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="418"><highlight class="normal"></highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/>*p_dst_len=p_dst-p_dst_first;</highlight></codeline>
+<codeline lineno="420"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/src/compress.c"/>
+  </compounddef>
+</doxygen>

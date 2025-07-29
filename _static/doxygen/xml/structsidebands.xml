@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsidebands" kind="struct" language="C++" prot="public">
+    <compoundname>sidebands</compoundname>
+    <includes refid="type__206_8h" local="no">type_206.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsidebands_1a1342468348302e21f6fb8c328fedc805" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short sidebands::lsb</definition>
+        <argsstring></argsstring>
+        <name>lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="13" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsidebands_1a6acadced7671d2f3742fe090d9a44571" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short sidebands::usb</definition>
+        <argsstring></argsstring>
+        <name>usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="14" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>sidebands</label>
+        <link refid="structsidebands"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="11" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="12" bodyend="15"/>
+    <listofallmembers>
+      <member refid="structsidebands_1a1342468348302e21f6fb8c328fedc805" prot="public" virt="non-virtual"><scope>sidebands</scope><name>lsb</name></member>
+      <member refid="structsidebands_1a6acadced7671d2f3742fe090d9a44571" prot="public" virt="non-virtual"><scope>sidebands</scope><name>usb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

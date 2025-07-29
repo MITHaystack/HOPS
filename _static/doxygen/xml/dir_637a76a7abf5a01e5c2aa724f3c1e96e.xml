@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_637a76a7abf5a01e5c2aa724f3c1e96e" kind="dir">
+    <compoundname>afio</compoundname>
+    <innerdir refid="dir_83c1a9c78d2f4f53a1ff6f61772b58f2">include</innerdir>
+    <innerdir refid="dir_a83f57f9bf6352142b006be3d76b0075">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/"/>
+  </compounddef>
+</doxygen>

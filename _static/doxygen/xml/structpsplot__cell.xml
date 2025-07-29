@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpsplot__cell" kind="struct" language="C++" prot="public">
+    <compoundname>psplot_cell</compoundname>
+    <includes refid="psplot_8h" local="no">psplot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpsplot__cell_1a17880f5c841d0edf6f572b4ce742e190" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_cell::colour_index[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>colour_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="68" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__cell_1a8064266cdb636b65a8d1846579e48708" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_cell::data_index[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>data_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="67" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__cell_1a842622ac121bf1e7780dc4ca15f33915" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_cell::flag[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="69" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>psplot_cell</label>
+        <link refid="structpsplot__cell"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>colour_index</edgelabel>
+          <edgelabel>data_index</edgelabel>
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="65" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="66" bodyend="70"/>
+    <listofallmembers>
+      <member refid="structpsplot__cell_1a17880f5c841d0edf6f572b4ce742e190" prot="public" virt="non-virtual"><scope>psplot_cell</scope><name>colour_index</name></member>
+      <member refid="structpsplot__cell_1a8064266cdb636b65a8d1846579e48708" prot="public" virt="non-virtual"><scope>psplot_cell</scope><name>data_index</name></member>
+      <member refid="structpsplot__cell_1a842622ac121bf1e7780dc4ca15f33915" prot="public" virt="non-virtual"><scope>psplot_cell</scope><name>flag</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

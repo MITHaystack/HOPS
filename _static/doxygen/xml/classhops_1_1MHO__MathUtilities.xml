@@ -1,0 +1,715 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MathUtilities" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MathUtilities</compoundname>
+    <includes refid="MHO__MathUtilities_8hh" local="no">MHO_MathUtilities.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1a3efef9829567f820dea4c39a116ba2d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MathUtilities::MHO_MathUtilities</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MathUtilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1ad9fc31e50d0a43c2aa75275808c34a1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_MathUtilities::~MHO_MathUtilities</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MathUtilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" bodystart="28" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1a4cb30a17c5a35d05f07e1eff68a8e9be" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MathUtilities::angular_average</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;vec)</argsstring>
+        <name>angular_average</name>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the average angle in radians from a vector of angles. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of angles in radians. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Average angle in radians. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="115" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_MathUtilities.cc" bodystart="346" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1a062cb13bf55ff2477c4287c63a9200f8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MathUtilities::ap_mean</definition>
+        <argsstring>(double start, double stop, double *coords, double *val1, double *val2, int n, int *nstart, double *result1, double *result2)</argsstring>
+        <name>ap_mean</name>
+        <param>
+          <type>double</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>stop</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>coords</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>val1</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>val2</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>nstart</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>result1</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>result2</declname>
+        </param>
+        <briefdescription>
+<para>Calculates average phase from start to stop using given coordinates and values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting point for averaging </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ending point for averaging </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coords</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of coordinate points </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First set of value points corresponding to coords </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second set of value points corresponding to coords </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of points in coords and val arrays </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nstart</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting point for averaging, saved from previous call </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Average of first set of values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Average of second set of values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 on success, -1 on error </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="95" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_MathUtilities.cc" bodystart="159" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1ab841024e3cf4596341013f9806392080" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MathUtilities::average</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;vec)</argsstring>
+        <name>average</name>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the average of values in a vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input vector of doubles </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Average value as double </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="105" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_MathUtilities.cc" bodystart="330" bodyend="344"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1a91cdadcf0b22144ae7d3ef02d4537975" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_MathUtilities::DetermineChannelFrequencyLimits</definition>
+        <argsstring>(double sky_freq, double bandwidth, std::string net_sideband, double &amp;lower_freq, double &amp;upper_freq)</argsstring>
+        <name>DetermineChannelFrequencyLimits</name>
+        <param>
+          <type>double</type>
+          <declname>sky_freq</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>bandwidth</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>net_sideband</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>lower_freq</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>upper_freq</declname>
+        </param>
+        <briefdescription>
+<para>Calculates lower and upper frequency limits for a given channel based on sky frequency, bandwidth, and net sideband. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sky_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input sky frequency in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bandwidth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bandwidth of the channel in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>net_sideband</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Network sideband (&apos;U&apos; for upper, &apos;L&apos; for lower) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lower_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output lower frequency limit in MHz </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output upper frequency limit in MHz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="127" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" bodystart="127" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1aae6ddafe901f952f0fda5542c177189a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_MathUtilities::dwin</definition>
+        <argsstring>(double value, double lower, double upper)</argsstring>
+        <name>dwin</name>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>lower</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>upper</declname>
+        </param>
+        <briefdescription>
+<para>Clamps a value between lower and upper bounds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input value to be clamped. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The lower bound for clamping. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The upper bound for clamping. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The clamped value within the specified bounds. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="41" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_MathUtilities.cc" bodystart="12" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1a74409d74e887982a8c48d14bf6eec79b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>int</type>
+        <definition>static int hops::MHO_MathUtilities::FindIntersection</definition>
+        <argsstring>(XValueType a, XValueType b, XValueType c, XValueType d, XValueType result[2])</argsstring>
+        <name>FindIntersection</name>
+        <param>
+          <type>XValueType</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>XValueType</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>XValueType</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>XValueType</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>XValueType</type>
+          <declname>result</declname>
+          <array>[2]</array>
+        </param>
+        <briefdescription>
+<para>Function FindIntersection looks for overlap between the intervals [a,b) and [c,d) although if a,b and c,d are the end-points of an intervals we do not explicitly assume they are ordered there. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>result[2]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (int) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="163" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" bodystart="163" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1ae74f654306832ed66c519a33e29921c6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MathUtilities::linterp</definition>
+        <argsstring>(double coord1, double value1, double coord2, double value2, double coord, double *value)</argsstring>
+        <name>linterp</name>
+        <param>
+          <type>double</type>
+          <declname>coord1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>coord2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>coord</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Performs linear interpolation between two points and returns the interpolated value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coord1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordinate of the first point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value at the first coordinate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coord2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordinate of the second point </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value at the second coordinate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coord</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Coordinate for which to interpolate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output parameter for the interpolated value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 if successful, -1 and error message on failure </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="78" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_MathUtilities.cc" bodystart="110" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1a5ca2c1ae18c45c7ba38ed3ce405d9b3a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MathUtilities::minvert3</definition>
+        <argsstring>(double a[3][3], double ainv[3][3])</argsstring>
+        <name>minvert3</name>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+          <array>[3][3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ainv</declname>
+          <array>[3][3]</array>
+        </param>
+        <briefdescription>
+<para>Calculates the inverse of a 3x3 matrix and stores it in ainv. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a[3][3]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input 3x3 matrix to be inverted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ainv[3][3]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Non-zero if input matrix is singular, zero otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="64" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_MathUtilities.cc" bodystart="57" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MathUtilities_1a935a69db3aff7abd3916792739f173d3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MathUtilities::parabola</definition>
+        <argsstring>(double y[3], double lower, double upper, double *x_max, double *amp_max, double q[3])</argsstring>
+        <name>parabola</name>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>lower</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>upper</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>x_max</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>amp_max</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>q</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+<para>Calculates parabola parameters and maximum x, amplitude values within a range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y[3]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input coordinates for parabola calculation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lower</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound of the range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound of the range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x_max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Maximum x-value in the given range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>amp_max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Maximum amplitude value in the given range </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>q[3]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: Coefficients for parabola equation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Error code indicating interpolation status (0: success, 1: max at edge, 2: positive curvature) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="54" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_MathUtilities.cc" bodystart="22" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MathUtilities" kindref="compound">MHO_MathUtilities</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>implements a variety of simple math functions copied from original hops3 c code with minimal changes along with some other simple helper functions</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue Dec 5 17:01:15 2023 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_MathUtilities.hh" bodystart="25" bodyend="255"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MathUtilities_1a4cb30a17c5a35d05f07e1eff68a8e9be" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>angular_average</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1a062cb13bf55ff2477c4287c63a9200f8" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>ap_mean</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1ab841024e3cf4596341013f9806392080" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>average</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1a91cdadcf0b22144ae7d3ef02d4537975" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>DetermineChannelFrequencyLimits</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1aae6ddafe901f952f0fda5542c177189a" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>dwin</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1a74409d74e887982a8c48d14bf6eec79b" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>FindIntersection</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1ae74f654306832ed66c519a33e29921c6" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>linterp</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1a3efef9829567f820dea4c39a116ba2d2" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>MHO_MathUtilities</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1a5ca2c1ae18c45c7ba38ed3ce405d9b3a" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>minvert3</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1a935a69db3aff7abd3916792739f173d3" prot="public" virt="non-virtual"><scope>hops::MHO_MathUtilities</scope><name>parabola</name></member>
+      <member refid="classhops_1_1MHO__MathUtilities_1ad9fc31e50d0a43c2aa75275808c34a1b" prot="public" virt="virtual"><scope>hops::MHO_MathUtilities</scope><name>~MHO_MathUtilities</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

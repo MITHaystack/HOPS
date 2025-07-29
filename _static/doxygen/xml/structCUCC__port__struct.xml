@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCUCC__port__struct" kind="struct" language="C++" prot="public">
+    <compoundname>CUCC_port_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCUCC__port__struct_1a03b736c5519fe39dcc4cd1717b51bf40" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short CUCC_port_struct::crate_number</definition>
+        <argsstring></argsstring>
+        <name>crate_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="105" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCUCC__port__struct_1a35548ce3bc4c7dd4946de4bf2af858fb" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short CUCC_port_struct::port_A_number</definition>
+        <argsstring></argsstring>
+        <name>port_A_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="107" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCUCC__port__struct_1ae804e7b93cf5664d6985117568194e77" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short CUCC_port_struct::port_B_number</definition>
+        <argsstring></argsstring>
+        <name>port_B_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="108" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCUCC__port__struct_1a9d9b4e21049872fc45f17214dd9f0b32" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char CUCC_port_struct::server_envname[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>server_envname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="106" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>CUCC_port_struct</label>
+        <link refid="structCUCC__port__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>crate_number</edgelabel>
+          <edgelabel>port_A_number</edgelabel>
+          <edgelabel>port_B_number</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="103" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="104" bodyend="109"/>
+    <listofallmembers>
+      <member refid="structCUCC__port__struct_1a03b736c5519fe39dcc4cd1717b51bf40" prot="public" virt="non-virtual"><scope>CUCC_port_struct</scope><name>crate_number</name></member>
+      <member refid="structCUCC__port__struct_1a35548ce3bc4c7dd4946de4bf2af858fb" prot="public" virt="non-virtual"><scope>CUCC_port_struct</scope><name>port_A_number</name></member>
+      <member refid="structCUCC__port__struct_1ae804e7b93cf5664d6985117568194e77" prot="public" virt="non-virtual"><scope>CUCC_port_struct</scope><name>port_B_number</name></member>
+      <member refid="structCUCC__port__struct_1a9d9b4e21049872fc45f17214dd9f0b32" prot="public" virt="non-virtual"><scope>CUCC_port_struct</scope><name>server_envname</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

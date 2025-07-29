@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__210" kind="struct" language="C++" prot="public">
+    <compoundname>type_210</compoundname>
+    <includes refid="type__210_8h" local="no">type_210.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__210_1a6de33ce1748bb961fc81a4e8bd505bb1" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpolars" kindref="compound">polars</ref></type>
+        <definition>struct polars type_210::amp_phas[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>amp_phas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="27" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__210_1aa148ae86acd529f8bb685eae3296d1e5" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_210::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="25" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__210_1a25e1ff5c72353ab973a12da64392f480" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_210::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="27" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__210_1a2701e2de99127d857ca76b576bedcdbf" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_210::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="26" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="3">
+        <label>polars</label>
+        <link refid="structpolars"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ampl</edgelabel>
+          <edgelabel>phase</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>type_210</label>
+        <link refid="structtype__210"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>amp_phas</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_210.h" bodystart="24" bodyend="29"/>
+    <listofallmembers>
+      <member refid="structtype__210_1a6de33ce1748bb961fc81a4e8bd505bb1" prot="public" virt="non-virtual"><scope>type_210</scope><name>amp_phas</name></member>
+      <member refid="structtype__210_1aa148ae86acd529f8bb685eae3296d1e5" prot="public" virt="non-virtual"><scope>type_210</scope><name>record_id</name></member>
+      <member refid="structtype__210_1a25e1ff5c72353ab973a12da64392f480" prot="public" virt="non-virtual"><scope>type_210</scope><name>unused1</name></member>
+      <member refid="structtype__210_1a2701e2de99127d857ca76b576bedcdbf" prot="public" virt="non-virtual"><scope>type_210</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

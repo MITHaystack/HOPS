@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1type__205" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::type_205</compoundname>
+    <basecompoundref refid="classmk4io_1_1mk4io_1_1Mk4StructureBase" prot="public" virt="non-virtual">mk4io.mk4io.Mk4StructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1type__205_1a3493c553438f46b48c44da7555f14ac1" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.type_205::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;record_id&apos;, ctypes.c_char * 3),
+        (&apos;<ref refid="fourfit3_8c_1a82699a6dd4ee034f1a73b9eed053e7bd" kindref="member">version_no</ref>&apos;, ctypes.c_char * 2),
+        (&apos;unused1&apos;, ctypes.c_char * 3),
+        (&apos;utc_central&apos;, <ref refid="classmk4io_1_1mk4io_1_1date" kindref="compound">date</ref>),
+        (&apos;offset&apos;, ctypes.c_float),
+        (&apos;ffmode&apos;, ctypes.c_char * 8),
+        (&apos;<ref refid="fourfit__libs_2ffsearch_2src_2search_8c_1a99c5d1ab4680bcfdf7c0a0d6d6ab5475" kindref="member">search</ref>&apos;, ctypes.c_float * 6),
+        (&apos;<ref refid="apply__filter_8c_1ab4ec20cd43e06573475f4a497045983a" kindref="member">filter</ref>&apos;, ctypes.c_float * 8),
+        (&apos;start&apos;, <ref refid="classmk4io_1_1mk4io_1_1date" kindref="compound">date</ref>),
+        (&apos;stop&apos;, <ref refid="classmk4io_1_1mk4io_1_1date" kindref="compound">date</ref>),
+        (&apos;ref_freq&apos;, ctypes.c_double),
+        (&apos;ffit_chan&apos;, <ref refid="classmk4io_1_1mk4io_1_1ffit__chan__struct" kindref="compound">ffit_chan_struct</ref> * 64),
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="443" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="443" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_205</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__205"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>mk4io.mk4io.Mk4StructureBase</label>
+        <link refid="classmk4io_1_1mk4io_1_1Mk4StructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4io.mk4io.type_205</label>
+        <link refid="classmk4io_1_1mk4io_1_1type__205"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="442" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="442" bodyend="458"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a0772ef701b441c652a3bbde35de2261a" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_205</scope><name>__eq__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a7347e4cacf99a75b7d7788d94e502398" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_205</scope><name>__ne__</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1type__205_1a3493c553438f46b48c44da7555f14ac1" prot="private" virt="non-virtual"><scope>mk4io::mk4io::type_205</scope><name>_fields_</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1af9c631103b72450dc357ed98d0f7b6d5" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_205</scope><name>approximately_equal</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1a27bca4a0801b033de3fdbebe84eae485" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_205</scope><name>contains_floats</name></member>
+      <member refid="classmk4io_1_1mk4io_1_1Mk4StructureBase_1ae00dca3ceb7ad4ebb8144fbcd6ef51b6" prot="public" virt="non-virtual"><scope>mk4io::mk4io::type_205</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

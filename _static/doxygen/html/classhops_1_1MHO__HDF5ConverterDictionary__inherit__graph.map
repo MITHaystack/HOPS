@@ -1,0 +1,4 @@
+<map id="hops::MHO_HDF5ConverterDictionary" name="hops::MHO_HDF5ConverterDictionary">
+<area shape="rect" id="node1" title="Dictionary of objects which do the conversion to HDF5 for each type." alt="" coords="5,5,247,32"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__HDF5ContainerFileInterface.html" title="Class to convert a HOPS4 file to HDF5." alt="" coords="24,80,228,121"/>
+</map>

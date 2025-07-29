@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="ffcontrol__module__extern_8c" kind="file" language="C++">
+    <compoundname>ffcontrol_module_extern.c</compoundname>
+    <includes local="no">stddef.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>stddef.h</label>
+      </node>
+      <node id="1">
+        <label>ffcontrol_module_extern.c</label>
+        <link refid="ffcontrol__module__extern_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="ffcontrol__module__extern_8c_1a330b69253c7f98c907b4b3b767f8e0a2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structc__block" kindref="compound">c_block</ref> *</type>
+        <definition>struct c_block* cb_head</definition>
+        <argsstring></argsstring>
+        <name>cb_head</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" line="10" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ffcontrol__module__extern_8c_1a60d5aa5945374d3928ea4852513bbc8a" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* char_values</definition>
+        <argsstring></argsstring>
+        <name>char_values</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" line="11" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ffcontrol__module__extern_8c_1ae7eb53515aa2d5d946ff456d42605f61" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* control_file_buff</definition>
+        <argsstring></argsstring>
+        <name>control_file_buff</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" line="13" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ffcontrol__module__extern_8c_1ad6d23835b07f1486d02781beae1fba5d" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* float_values</definition>
+        <argsstring></argsstring>
+        <name>float_values</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" line="8" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ffcontrol__module__extern_8c_1a2f20d1bdda76b8e24273c759fd9e1517" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structfsm__table__entry" kindref="compound">fsm_table_entry</ref> *</type>
+        <definition>struct fsm_table_entry* fsm_base</definition>
+        <argsstring></argsstring>
+        <name>fsm_base</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" line="9" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ffcontrol__module__extern_8c_1ac6154145c8f23d98cdb13f7be11b3b95" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* set_string_buff</definition>
+        <argsstring></argsstring>
+        <name>set_string_buff</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" line="14" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ffcontrol__module__extern_8c_1a5fa05140bf6690c8fea8250127dd3336" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtoken__struct" kindref="compound">token_struct</ref> *</type>
+        <definition>struct token_struct* tokens</definition>
+        <argsstring></argsstring>
+        <name>tokens</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" line="7" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>char<sp/>progname[200]<sp/>=<sp/>&quot;ffcontrolpy.so&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>int<sp/>msglev<sp/>=<sp/>3;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>char<sp/>datadir[200]<sp/>=<sp/>&quot;&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtoken__struct" kindref="compound">token_struct</ref><sp/>*<ref refid="ffcontrol__module__extern_8c_1a5fa05140bf6690c8fea8250127dd3336" kindref="member">tokens</ref><sp/>=<sp/>NULL;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>input<sp/>struct<sp/>of<sp/>tokens<sp/>&amp;<sp/>values<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<ref refid="ffcontrol__module__extern_8c_1ad6d23835b07f1486d02781beae1fba5d" kindref="member">float_values</ref><sp/>=<sp/>NULL;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>array<sp/>of<sp/>actual<sp/>fl.<sp/>pt.<sp/>values<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structfsm__table__entry" kindref="compound">fsm_table_entry</ref><sp/>*<ref refid="ffcontrol__module__extern_8c_1a2f20d1bdda76b8e24273c759fd9e1517" kindref="member">fsm_base</ref><sp/>=<sp/>NULL;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>start<sp/>of<sp/>fsm<sp/>table<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structc__block" kindref="compound">c_block</ref><sp/>*<ref refid="ffcontrol__module__extern_8c_1a330b69253c7f98c907b4b3b767f8e0a2" kindref="member">cb_head</ref><sp/>=<sp/>NULL;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>start<sp/>of<sp/>c_block<sp/>chain<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="ffcontrol__module__extern_8c_1a60d5aa5945374d3928ea4852513bbc8a" kindref="member">char_values</ref><sp/>=<sp/>NULL;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>pointer<sp/>to<sp/>array<sp/>of<sp/>actual<sp/>strings*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="ffcontrol__module__extern_8c_1ae7eb53515aa2d5d946ff456d42605f61" kindref="member">control_file_buff</ref><sp/>=<sp/>NULL;<sp/><sp/></highlight><highlight class="comment">//stash<sp/>stripped<sp/>but<sp/>unparsed<sp/>contents<sp/>of<sp/>control<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="ffcontrol__module__extern_8c_1ac6154145c8f23d98cdb13f7be11b3b95" kindref="member">set_string_buff</ref><sp/>=<sp/>NULL;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//stash<sp/>stripped<sp/>but<sp/>unparsed<sp/>contents<sp/>of<sp/>set<sp/>commands</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/src/ffcontrol_module_extern.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structplot__ptqual" kind="struct" language="C++" prot="public">
+    <compoundname>plot_ptqual</compoundname>
+    <includes refid="pstruct_8h" local="no">pstruct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_ptqual::x</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="99" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__ptqual_1a8289e785f6640239954fbd0631a0b084" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_ptqual::xerrh</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>xerrh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="101" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__ptqual_1a819239cda796ed87dcc60b366402e967" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_ptqual::xerrl</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>xerrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="102" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_ptqual::y</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="100" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__ptqual_1a470abf2064fc98fd10d564244a1ebc5f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_ptqual::yerrh</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>yerrh</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="103" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__ptqual_1a29dc3d52ea77833b4cfc029ae738dcf7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_ptqual::yerrl</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>yerrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="104" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>plot_ptqual</label>
+        <link refid="structplot__ptqual"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>xerrh</edgelabel>
+          <edgelabel>xerrl</edgelabel>
+          <edgelabel>y</edgelabel>
+          <edgelabel>yerrh</edgelabel>
+          <edgelabel>yerrl</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="97" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="98" bodyend="105"/>
+    <listofallmembers>
+      <member refid="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" prot="public" virt="non-virtual"><scope>plot_ptqual</scope><name>x</name></member>
+      <member refid="structplot__ptqual_1a8289e785f6640239954fbd0631a0b084" prot="public" virt="non-virtual"><scope>plot_ptqual</scope><name>xerrh</name></member>
+      <member refid="structplot__ptqual_1a819239cda796ed87dcc60b366402e967" prot="public" virt="non-virtual"><scope>plot_ptqual</scope><name>xerrl</name></member>
+      <member refid="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" prot="public" virt="non-virtual"><scope>plot_ptqual</scope><name>y</name></member>
+      <member refid="structplot__ptqual_1a470abf2064fc98fd10d564244a1ebc5f" prot="public" virt="non-virtual"><scope>plot_ptqual</scope><name>yerrh</name></member>
+      <member refid="structplot__ptqual_1a29dc3d52ea77833b4cfc029ae738dcf7" prot="public" virt="non-virtual"><scope>plot_ptqual</scope><name>yerrl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

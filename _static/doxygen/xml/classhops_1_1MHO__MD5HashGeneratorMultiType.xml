@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MD5HashGeneratorMultiType" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MD5HashGeneratorMultiType</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__MD5HashGenerator" prot="public" virt="non-virtual">hops::MHO_MD5HashGenerator</derivedcompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+        <declname>XValueTypeS</declname>
+        <defname>XValueTypeS</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MD5HashGeneratorMultiType" kindref="compound">MHO_MD5HashGeneratorMultiType</ref> declares a multi-type streamer with a variadic template parameter for the types to be streamed. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MD5HashGeneratorMultiType&lt; XValueTypeS &gt;</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="105" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="105" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

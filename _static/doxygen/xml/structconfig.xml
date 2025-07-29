@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structconfig" kind="struct" language="C++" prot="public">
+    <compoundname>config</compoundname>
+    <includes refid="average_8h" local="no">average.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structconfig_1add785599cb162476ee1d825afb60dffb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int config::account</definition>
+        <argsstring></argsstring>
+        <name>account</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="64" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structconfig_1a8fbc73f31b683d3faeb4b7a393ea8ccb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int config::binary_input</definition>
+        <argsstring></argsstring>
+        <name>binary_input</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="61" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structconfig_1aaaad45b7a2fedccaf2101f187dfe7b2f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int config::cofit_output</definition>
+        <argsstring></argsstring>
+        <name>cofit_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="60" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structconfig_1a876b3abfe84dbeb619443128f8aeee76" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int config::coherent</definition>
+        <argsstring></argsstring>
+        <name>coherent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="59" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structconfig_1a5465f49ec366561c7c7c9226db07e4ee" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int config::header</definition>
+        <argsstring></argsstring>
+        <name>header</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="65" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structconfig_1ae5afdbb49c66129c9a62d9c75cb56a1a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int config::int_time</definition>
+        <argsstring></argsstring>
+        <name>int_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="58" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structconfig_1a5f48c683af53425dd91ff901e9f8b829" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int config::multiscan</definition>
+        <argsstring></argsstring>
+        <name>multiscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="63" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structconfig_1af9c609e683995e6f19b42985315aa8d7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float config::snrfact</definition>
+        <argsstring></argsstring>
+        <name>snrfact</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="62" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>config</label>
+        <link refid="structconfig"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>snrfact</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>account</edgelabel>
+          <edgelabel>binary_input</edgelabel>
+          <edgelabel>cofit_output</edgelabel>
+          <edgelabel>coherent</edgelabel>
+          <edgelabel>header</edgelabel>
+          <edgelabel>int_time</edgelabel>
+          <edgelabel>multiscan</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="56" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="57" bodyend="66"/>
+    <listofallmembers>
+      <member refid="structconfig_1add785599cb162476ee1d825afb60dffb" prot="public" virt="non-virtual"><scope>config</scope><name>account</name></member>
+      <member refid="structconfig_1a8fbc73f31b683d3faeb4b7a393ea8ccb" prot="public" virt="non-virtual"><scope>config</scope><name>binary_input</name></member>
+      <member refid="structconfig_1aaaad45b7a2fedccaf2101f187dfe7b2f" prot="public" virt="non-virtual"><scope>config</scope><name>cofit_output</name></member>
+      <member refid="structconfig_1a876b3abfe84dbeb619443128f8aeee76" prot="public" virt="non-virtual"><scope>config</scope><name>coherent</name></member>
+      <member refid="structconfig_1a5465f49ec366561c7c7c9226db07e4ee" prot="public" virt="non-virtual"><scope>config</scope><name>header</name></member>
+      <member refid="structconfig_1ae5afdbb49c66129c9a62d9c75cb56a1a" prot="public" virt="non-virtual"><scope>config</scope><name>int_time</name></member>
+      <member refid="structconfig_1a5f48c683af53425dd91ff901e9f8b829" prot="public" virt="non-virtual"><scope>config</scope><name>multiscan</name></member>
+      <member refid="structconfig_1af9c609e683995e6f19b42985315aa8d7" prot="public" virt="non-virtual"><scope>config</scope><name>snrfact</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

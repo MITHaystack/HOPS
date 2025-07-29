@@ -1,0 +1,5 @@
+<map id="hops::MHO_IonosphericFringeFitter" name="hops::MHO_IonosphericFringeFitter">
+<area shape="rect" id="node1" title="Class MHO_IonosphericFringeFitter." alt="" coords="5,155,203,196"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__BasicFringeFitter.html" title="Class MHO_BasicFringeFitter." alt="" coords="7,80,201,107"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__FringeFitter.html" title="Class MHO_FringeFitter." alt="" coords="24,5,184,32"/>
+</map>

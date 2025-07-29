@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_1bd9ec73ebdcc653377763de55af03cc" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__VexBlockParser_8cc">MHO_VexBlockParser.cc</innerfile>
+    <innerfile refid="MHO__VexDefinitions_8cc">MHO_VexDefinitions.cc</innerfile>
+    <innerfile refid="MHO__VexElementLineGenerator_8cc">MHO_VexElementLineGenerator.cc</innerfile>
+    <innerfile refid="MHO__VexGenerator_8cc">MHO_VexGenerator.cc</innerfile>
+    <innerfile refid="MHO__VexParser_8cc">MHO_VexParser.cc</innerfile>
+    <innerfile refid="MHO__VexTokenProcessor_8cc">MHO_VexTokenProcessor.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/"/>
+  </compounddef>
+</doxygen>

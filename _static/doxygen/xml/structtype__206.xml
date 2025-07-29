@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__206" kind="struct" language="C++" prot="public">
+    <compoundname>type_206</compoundname>
+    <includes refid="type__206_8h" local="no">type_206.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__206_1ae043673c1f55b002b9d418608700cabc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_206::accept_ratio</definition>
+        <argsstring></argsstring>
+        <name>accept_ratio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="87" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1aeeaeb7a4d427d3b82d00936fe13a20fd" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::accepted[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>accepted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="83" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1ad2a89e660184d2c53593d4568a1fb372" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_206::discard</definition>
+        <argsstring></argsstring>
+        <name>discard</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a3f5818991aa707c3bbcc984ac23fb595" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_206::first_ap</definition>
+        <argsstring></argsstring>
+        <name>first_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="82" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a89d763d1843c7a9e3271a123c698a2ca" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_206::intg_time</definition>
+        <argsstring></argsstring>
+        <name>intg_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="86" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a893c6688df8956e02f4ce1ba6db45816" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_206::last_ap</definition>
+        <argsstring></argsstring>
+        <name>last_ap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="83" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1aef57fcbc64c1b9417814ba4a415dc961" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_206::mbdsize</definition>
+        <argsstring></argsstring>
+        <name>mbdsize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="98" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a88d669bbfaefc52933d588ec97e1f4b7" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_206::ratesize</definition>
+        <argsstring></argsstring>
+        <name>ratesize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="97" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1ad2a7d378cb6144db522f3c21b8551fc4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason1[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a9f2744142166fd4803c5b32db2d0f077" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason2[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1ae5aa1b091553750c089a859cee489a4b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason3[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1aa297a1874973a674919453c3f01541dc" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason4[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason4</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1aa52a1c184cf3991a0ef385898ad1eb9b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason5[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason5</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1aadcaf9aa586bfd19c285f706d7a8f76b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason6[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason6</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a6d1d46bf90e4ed4efee066b04c78631c" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason7[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason7</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a6284c2c4ad25e17f4b4513e473373d55" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsidebands" kindref="compound">sidebands</ref></type>
+        <definition>struct sidebands type_206::reason8[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>reason8</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="88" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1aaea7edaa4fbddf3d6f59c2b983b79202" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_206::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="78" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1aca774a6674f4f55218cc423772981bdc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_206::sbdsize</definition>
+        <argsstring></argsstring>
+        <name>sbdsize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="99" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a7b44da6347cb39bb091cd4c4fcd0db8d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_206::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="80" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1a6c8d2fee917a97b40b9e3a28107f330c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_206::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="80" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1ac5913b318d950c9636ad6034dd71f796" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_206::unused2[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>unused2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="100" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1ac5e1b00e7fc430535dbab993a4f7d514" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_206::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="79" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__206_1af6999f19dfa19d345e52ff18f3df8dff" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsbweights" kindref="compound">sbweights</ref></type>
+        <definition>struct sbweights type_206::weights[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="83" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>sidebands</label>
+        <link refid="structsidebands"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>sbweights</label>
+        <link refid="structsbweights"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="8">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_206</label>
+        <link refid="structtype__206"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>accepted</edgelabel>
+          <edgelabel>reason1</edgelabel>
+          <edgelabel>reason2</edgelabel>
+          <edgelabel>reason3</edgelabel>
+          <edgelabel>reason4</edgelabel>
+          <edgelabel>reason5</edgelabel>
+          <edgelabel>reason6</edgelabel>
+          <edgelabel>reason7</edgelabel>
+          <edgelabel>reason8</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>accept_ratio</edgelabel>
+          <edgelabel>discard</edgelabel>
+          <edgelabel>intg_time</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>last_ap</edgelabel>
+          <edgelabel>mbdsize</edgelabel>
+          <edgelabel>ratesize</edgelabel>
+          <edgelabel>sbdsize</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>weights</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>start</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="76" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="77" bodyend="101"/>
+    <listofallmembers>
+      <member refid="structtype__206_1ae043673c1f55b002b9d418608700cabc" prot="public" virt="non-virtual"><scope>type_206</scope><name>accept_ratio</name></member>
+      <member refid="structtype__206_1aeeaeb7a4d427d3b82d00936fe13a20fd" prot="public" virt="non-virtual"><scope>type_206</scope><name>accepted</name></member>
+      <member refid="structtype__206_1ad2a89e660184d2c53593d4568a1fb372" prot="public" virt="non-virtual"><scope>type_206</scope><name>discard</name></member>
+      <member refid="structtype__206_1a3f5818991aa707c3bbcc984ac23fb595" prot="public" virt="non-virtual"><scope>type_206</scope><name>first_ap</name></member>
+      <member refid="structtype__206_1a89d763d1843c7a9e3271a123c698a2ca" prot="public" virt="non-virtual"><scope>type_206</scope><name>intg_time</name></member>
+      <member refid="structtype__206_1a893c6688df8956e02f4ce1ba6db45816" prot="public" virt="non-virtual"><scope>type_206</scope><name>last_ap</name></member>
+      <member refid="structtype__206_1aef57fcbc64c1b9417814ba4a415dc961" prot="public" virt="non-virtual"><scope>type_206</scope><name>mbdsize</name></member>
+      <member refid="structtype__206_1a88d669bbfaefc52933d588ec97e1f4b7" prot="public" virt="non-virtual"><scope>type_206</scope><name>ratesize</name></member>
+      <member refid="structtype__206_1ad2a7d378cb6144db522f3c21b8551fc4" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason1</name></member>
+      <member refid="structtype__206_1a9f2744142166fd4803c5b32db2d0f077" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason2</name></member>
+      <member refid="structtype__206_1ae5aa1b091553750c089a859cee489a4b" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason3</name></member>
+      <member refid="structtype__206_1aa297a1874973a674919453c3f01541dc" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason4</name></member>
+      <member refid="structtype__206_1aa52a1c184cf3991a0ef385898ad1eb9b" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason5</name></member>
+      <member refid="structtype__206_1aadcaf9aa586bfd19c285f706d7a8f76b" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason6</name></member>
+      <member refid="structtype__206_1a6d1d46bf90e4ed4efee066b04c78631c" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason7</name></member>
+      <member refid="structtype__206_1a6284c2c4ad25e17f4b4513e473373d55" prot="public" virt="non-virtual"><scope>type_206</scope><name>reason8</name></member>
+      <member refid="structtype__206_1aaea7edaa4fbddf3d6f59c2b983b79202" prot="public" virt="non-virtual"><scope>type_206</scope><name>record_id</name></member>
+      <member refid="structtype__206_1aca774a6674f4f55218cc423772981bdc" prot="public" virt="non-virtual"><scope>type_206</scope><name>sbdsize</name></member>
+      <member refid="structtype__206_1a7b44da6347cb39bb091cd4c4fcd0db8d" prot="public" virt="non-virtual"><scope>type_206</scope><name>start</name></member>
+      <member refid="structtype__206_1a6c8d2fee917a97b40b9e3a28107f330c" prot="public" virt="non-virtual"><scope>type_206</scope><name>unused1</name></member>
+      <member refid="structtype__206_1ac5913b318d950c9636ad6034dd71f796" prot="public" virt="non-virtual"><scope>type_206</scope><name>unused2</name></member>
+      <member refid="structtype__206_1ac5e1b00e7fc430535dbab993a4f7d514" prot="public" virt="non-virtual"><scope>type_206</scope><name>version_no</name></member>
+      <member refid="structtype__206_1af6999f19dfa19d345e52ff18f3df8dff" prot="public" virt="non-virtual"><scope>type_206</scope><name>weights</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

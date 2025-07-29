@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classmk4io_1_1mk4io_1_1mutable__length__char__array" kind="class" language="Python" prot="public">
+    <compoundname>mk4io::mk4io::mutable_length_char_array</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ctypes.Structure</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classmk4io_1_1mk4io_1_1mutable__length__char__array_1adb74ade172a8d729b1b551f7e404cc34" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list mk4io.mk4io.mutable_length_char_array::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="619" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="619" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> this dummy class is used to get access to the char arrays in type_221 and type_222
+this is just straight up abuse of ctypes and should be frowned upon </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>mk4io.mk4io.mutable_length_char_array</label>
+        <link refid="classmk4io_1_1mk4io_1_1mutable__length__char__array"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes.Structure</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>mk4io.mk4io.mutable_length_char_array</label>
+        <link refid="classmk4io_1_1mk4io_1_1mutable__length__char__array"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes.Structure</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="616" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="616" bodyend="621"/>
+    <listofallmembers>
+      <member refid="classmk4io_1_1mk4io_1_1mutable__length__char__array_1adb74ade172a8d729b1b551f7e404cc34" prot="private" virt="non-virtual"><scope>mk4io::mk4io::mutable_length_char_array</scope><name>_fields_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

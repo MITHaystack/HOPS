@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DefaultPythonPlotVisitor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DefaultPythonPlotVisitor</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__FringePlotVisitor" prot="public" virt="non-virtual">hops::MHO_FringePlotVisitor</basecompoundref>
+    <includes refid="MHO__DefaultPythonPlotVisitor_8hh" local="no">MHO_DefaultPythonPlotVisitor.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DefaultPythonPlotVisitor_1aa70b7c0c68cb3cbf1284a58302098141" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DefaultPythonPlotVisitor::MHO_DefaultPythonPlotVisitor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DefaultPythonPlotVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_DefaultPythonPlotVisitor.hh" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_DefaultPythonPlotVisitor.hh" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DefaultPythonPlotVisitor_1af70149c7d8500b32b95b6d36c7ea79dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_DefaultPythonPlotVisitor::~MHO_DefaultPythonPlotVisitor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DefaultPythonPlotVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_DefaultPythonPlotVisitor.hh" line="16" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_DefaultPythonPlotVisitor.hh" bodystart="16" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DefaultPythonPlotVisitor_1ad22ccc97a7a667ed40f325385284ddfa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DefaultPythonPlotVisitor::Plot</definition>
+        <argsstring>(MHO_FringeData *data) override</argsstring>
+        <name>Plot</name>
+        <reimplements refid="classhops_1_1MHO__FringePlotVisitor_1a5348adb4857b6aab8644bf9bbdb5b611">Plot</reimplements>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Plots fringe data using default Python plotting utility. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input <ref refid="classhops_1_1MHO__FringeData" kindref="compound">MHO_FringeData</ref> for plotting. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_DefaultPythonPlotVisitor.hh" line="29" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_DefaultPythonPlotVisitor.cc" bodystart="29" bodyend="96"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DefaultPythonPlotVisitor" kindref="compound">MHO_DefaultPythonPlotVisitor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_FringePlotVisitor</label>
+        <link refid="classhops_1_1MHO__FringePlotVisitor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DefaultPythonPlotVisitor</label>
+        <link refid="classhops_1_1MHO__DefaultPythonPlotVisitor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_FringeFitterVisitor</label>
+        <link refid="classhops_1_1MHO__FringeFitterVisitor"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_FringePlotVisitor</label>
+        <link refid="classhops_1_1MHO__FringePlotVisitor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_DefaultPythonPlotVisitor</label>
+        <link refid="classhops_1_1MHO__DefaultPythonPlotVisitor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_FringeFitterVisitor</label>
+        <link refid="classhops_1_1MHO__FringeFitterVisitor"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_DefaultPythonPlotVisitor.hh" line="12" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_DefaultPythonPlotVisitor.hh" bodystart="13" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DefaultPythonPlotVisitor_1aa70b7c0c68cb3cbf1284a58302098141" prot="public" virt="non-virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>MHO_DefaultPythonPlotVisitor</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterVisitor_1a70d9b2dfaef769c36fef7baecb1dab2b" prot="public" virt="non-virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>MHO_FringeFitterVisitor</name></member>
+      <member refid="classhops_1_1MHO__FringePlotVisitor_1aedd146631845beee039c6c49a2252f73" prot="public" virt="non-virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>MHO_FringePlotVisitor</name></member>
+      <member refid="classhops_1_1MHO__DefaultPythonPlotVisitor_1ad22ccc97a7a667ed40f325385284ddfa" prot="protected" virt="virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>Plot</name></member>
+      <member refid="classhops_1_1MHO__FringePlotVisitor_1a9183d84e43e28bd3877eab5a4a596563" prot="public" virt="virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>Visit</name></member>
+      <member refid="classhops_1_1MHO__DefaultPythonPlotVisitor_1af70149c7d8500b32b95b6d36c7ea79dc" prot="public" virt="virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>~MHO_DefaultPythonPlotVisitor</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterVisitor_1adffbf2db3c40674cacabd5cade30fdd5" prot="public" virt="virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>~MHO_FringeFitterVisitor</name></member>
+      <member refid="classhops_1_1MHO__FringePlotVisitor_1a52aded318e1544ecd0ad1c8110f01565" prot="public" virt="virtual"><scope>hops::MHO_DefaultPythonPlotVisitor</scope><name>~MHO_FringePlotVisitor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

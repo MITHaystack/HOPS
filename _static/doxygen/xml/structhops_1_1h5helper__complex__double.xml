@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1h5helper__complex__double" kind="struct" language="C++" prot="public">
+    <compoundname>hops::h5helper_complex_double</compoundname>
+    <includes refid="MHO__HDF5TypeCode_8hh" local="no">MHO_HDF5TypeCode.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1h5helper__complex__double_1acef40dca4882e0851467056b8a243f28" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::h5helper_complex_double::imag</definition>
+        <argsstring></argsstring>
+        <name>imag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" line="52" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1h5helper__complex__double_1a550dc10b5ace1c29e05a727ecccb84aa" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::h5helper_complex_double::real</definition>
+        <argsstring></argsstring>
+        <name>real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" line="51" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::h5helper_complex_double</label>
+        <link refid="structhops_1_1h5helper__complex__double"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" line="49" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" bodystart="50" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structhops_1_1h5helper__complex__double_1acef40dca4882e0851467056b8a243f28" prot="public" virt="non-virtual"><scope>hops::h5helper_complex_double</scope><name>imag</name></member>
+      <member refid="structhops_1_1h5helper__complex__double_1a550dc10b5ace1c29e05a727ecccb84aa" prot="public" virt="non-virtual"><scope>hops::h5helper_complex_double</scope><name>real</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

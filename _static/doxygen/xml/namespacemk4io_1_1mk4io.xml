@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacemk4io_1_1mk4io" kind="namespace" language="Python">
+    <compoundname>mk4io::mk4io</compoundname>
+    <innerclass refid="classmk4io_1_1mk4io_1_1auto__global" prot="public">mk4io::mk4io::auto_global</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1auto__per__lag" prot="public">mk4io::mk4io::auto_per_lag</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1ch1__tag" prot="public">mk4io::mk4io::ch1_tag</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1ch__struct" prot="public">mk4io::mk4io::ch_struct</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1ChanCount" prot="public">mk4io::mk4io::ChanCount</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1complex__struct" prot="public">mk4io::mk4io::complex_struct</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1counts__global" prot="public">mk4io::mk4io::counts_global</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1counts__per__lag" prot="public">mk4io::mk4io::counts_per_lag</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1date" prot="public">mk4io::mk4io::date</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1ffit__chan__struct" prot="public">mk4io::mk4io::ffit_chan_struct</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1flag__wgt" prot="public">mk4io::mk4io::flag_wgt</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1index__tag" prot="public">mk4io::mk4io::index_tag</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1lag__data" prot="public">mk4io::mk4io::lag_data</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1lag__tag" prot="public">mk4io::mk4io::lag_tag</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1mk4__corel" prot="public">mk4io::mk4io::mk4_corel</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1mk4__fringe" prot="public">mk4io::mk4io::mk4_fringe</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1mk4__sdata" prot="public">mk4io::mk4io::mk4_sdata</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1Mk4StructureBase" prot="public">mk4io::mk4io::Mk4StructureBase</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1model__struct" prot="public">mk4io::mk4io::model_struct</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1mutable__length__char__array" prot="public">mk4io::mk4io::mutable_length_char_array</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1newphasor" prot="public">mk4io::mk4io::newphasor</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1pcal__struct" prot="public">mk4io::mk4io::pcal_struct</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1phasor" prot="public">mk4io::mk4io::phasor</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1polars" prot="public">mk4io::mk4io::polars</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1sbandf" prot="public">mk4io::mk4io::sbandf</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1sbweights" prot="public">mk4io::mk4io::sbweights</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1sidebands" prot="public">mk4io::mk4io::sidebands</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1sky__coord" prot="public">mk4io::mk4io::sky_coord</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1spectral" prot="public">mk4io::mk4io::spectral</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1stcount__struct" prot="public">mk4io::mk4io::stcount_struct</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1trackstat" prot="public">mk4io::mk4io::trackstat</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__000" prot="public">mk4io::mk4io::type_000</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__100" prot="public">mk4io::mk4io::type_100</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__101" prot="public">mk4io::mk4io::type_101</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__120" prot="public">mk4io::mk4io::type_120</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__200" prot="public">mk4io::mk4io::type_200</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__201" prot="public">mk4io::mk4io::type_201</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__202" prot="public">mk4io::mk4io::type_202</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__203" prot="public">mk4io::mk4io::type_203</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__204" prot="public">mk4io::mk4io::type_204</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__205" prot="public">mk4io::mk4io::type_205</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__206" prot="public">mk4io::mk4io::type_206</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__207" prot="public">mk4io::mk4io::type_207</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__208" prot="public">mk4io::mk4io::type_208</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__210" prot="public">mk4io::mk4io::type_210</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__212" prot="public">mk4io::mk4io::type_212</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__220" prot="public">mk4io::mk4io::type_220</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__221" prot="public">mk4io::mk4io::type_221</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__222" prot="public">mk4io::mk4io::type_222</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__230" prot="public">mk4io::mk4io::type_230</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__300" prot="public">mk4io::mk4io::type_300</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__301" prot="public">mk4io::mk4io::type_301</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__302" prot="public">mk4io::mk4io::type_302</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__303" prot="public">mk4io::mk4io::type_303</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__304" prot="public">mk4io::mk4io::type_304</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__305" prot="public">mk4io::mk4io::type_305</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__306" prot="public">mk4io::mk4io::type_306</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__307" prot="public">mk4io::mk4io::type_307</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__308" prot="public">mk4io::mk4io::type_308</innerclass>
+    <innerclass refid="classmk4io_1_1mk4io_1_1type__309" prot="public">mk4io::mk4io::type_309</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1a4b3420022cec7dbcfbb39a3bee68978a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.clear_mk4fringe</definition>
+        <argsstring>(mk4_fringe_obj)</argsstring>
+        <name>clear_mk4fringe</name>
+        <param>
+          <type>mk4_fringe_obj</type>
+          <defname>mk4_fringe_obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>clear/delete a mk4fringe object</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="991" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="991" bodyend="995"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1a8d4475f82fd107a912087bdd9b56682e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4corel</definition>
+        <argsstring>(filename)</argsstring>
+        <name>mk4corel</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>read and return mk4corel file object</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="977" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="977" bodyend="983"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1aa909ba4245eac7b212a166bb13f216ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4fp_approximately_equal</definition>
+        <argsstring>(a, b, abs_tol=1e-14, rel_tol=1e-6)</argsstring>
+        <name>mk4fp_approximately_equal</name>
+        <param>
+          <type>a</type>
+          <defname>a</defname>
+        </param>
+        <param>
+          <type>b</type>
+          <defname>b</defname>
+        </param>
+        <param>
+          <type>abs_tol</type>
+          <defname>abs_tol</defname>
+          <defval>1e-14</defval>
+        </param>
+        <param>
+          <type>rel_tol</type>
+          <defname>rel_tol</defname>
+          <defval>1e-6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>simple floating point comparison</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="28" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="28" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1a3a2b7d7fc5e9c6918ebc3fcbaeea8184" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4fringe</definition>
+        <argsstring>(filename)</argsstring>
+        <name>mk4fringe</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>read and return a mk4fringe file object</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="984" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="984" bodyend="990"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1a16e4a853325f3bca3c94282a84a2be46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4io_load</definition>
+        <argsstring>()</argsstring>
+        <name>mk4io_load</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>locate and load the mk4 c-library</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="939" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="939" bodyend="976"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1a3d422fdac3bb5c5df38f252016837fba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4redefine_array_length</definition>
+        <argsstring>(array, new_size)</argsstring>
+        <name>mk4redefine_array_length</name>
+        <param>
+          <type>array</type>
+          <defname>array</defname>
+        </param>
+        <param>
+          <type>new_size</type>
+          <defname>new_size</defname>
+        </param>
+        <briefdescription>
+<para>general records and utils </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> This function is nasty hack needed for redefining the size of a variable
+length array this mimics the c-structs ability to ignore bounds checking.
+Otherwise python/ctypes complains that we are accessing data at an invalid
+index and wont let us get at the data.
+For example, this can be used for accessing data beyond the first
+element in the &apos;data&apos; field of type_212, by doing something like: (x is a type_212 ptr)
+accessible_data = mk4redefine_array_length(x.contents.data, x.contents.nap ) </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="13" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="13" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1a31d6f9a0b60c5d904428dc9a1801e912" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4redefine_char_array_length</definition>
+        <argsstring>(array, new_size)</argsstring>
+        <name>mk4redefine_char_array_length</name>
+        <param>
+          <type>array</type>
+          <defname>array</defname>
+        </param>
+        <param>
+          <type>new_size</type>
+          <defname>new_size</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>same as mk4redefine_array_length, but specific to char arrays (strings)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="23" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemk4io_1_1mk4io_1a07c94174a008f44f284e1f51eed517b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def mk4io.mk4io.mk4sdata</definition>
+        <argsstring>(filename)</argsstring>
+        <name>mk4sdata</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>read an return a mk4sdata file object</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="996" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" bodystart="996" bodyend="1006"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>provides python access to mk4 data-types via c-library</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/mk4io.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__meta" kind="struct" language="C++" prot="public">
+    <compoundname>type_meta</compoundname>
+    <includes refid="meta__struct_8h" local="no">meta_struct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__meta_1aad4c4b8f7d37aaf3b187c386fbb6349b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::build_time[23]</definition>
+        <argsstring>[23]</argsstring>
+        <name>build_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a91e5c4a4681ab23ae5a9fa39430d0106" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::corr_time[23]</definition>
+        <argsstring>[23]</argsstring>
+        <name>corr_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="18" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a2a1da4bd70a2dd5487280107097e5224" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::corrvers[36]</definition>
+        <argsstring>[36]</argsstring>
+        <name>corrvers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="9" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1ae346d90d56ab691853efd68b3e9bb493" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::dec[23]</definition>
+        <argsstring>[23]</argsstring>
+        <name>dec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="23" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1ad6b4e087d03f57493e60a555b5ee2f59" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::exper_name[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>exper_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="12" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a165876d290f421897bcc948be1862de4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_meta::exper_num</definition>
+        <argsstring></argsstring>
+        <name>exper_num</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1af0c6c8caf837f08408abe9963fda1635" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::ff_time[23]</definition>
+        <argsstring>[23]</argsstring>
+        <name>ff_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a7bab1721872eb2186487f65994ff9c2a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::fourfitcmd[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>fourfitcmd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="21" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a7b70699220a70e49aeeaf8c92af66bd9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_meta::nplots</definition>
+        <argsstring></argsstring>
+        <name>nplots</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="27" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1ae6f40aecd445903ac3ab79653658c598" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::pass_frt[13]</definition>
+        <argsstring>[13]</argsstring>
+        <name>pass_frt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a60ebf032d7bf6401b0557997ca7b4066" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::pass_start[13]</definition>
+        <argsstring>[13]</argsstring>
+        <name>pass_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="15" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a496145f4f32e85636fb382e23b89b0d2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::pass_stop[13]</definition>
+        <argsstring>[13]</argsstring>
+        <name>pass_stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="16" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1aac02380271cfe416e42785f6f5287f9f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::polstr[13]</definition>
+        <argsstring>[13]</argsstring>
+        <name>polstr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="11" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a172dfe0bb96f69acb79eb5cf26a5d6ef" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::ra[23]</definition>
+        <argsstring>[23]</argsstring>
+        <name>ra</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="22" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1ac51706098428d5c9af887808bd2c076a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::rt_sn_bl[80]</definition>
+        <argsstring>[80]</argsstring>
+        <name>rt_sn_bl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1a4c809fd7a902c745c9e57edc460d03e5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int type_meta::start_plot</definition>
+        <argsstring></argsstring>
+        <name>start_plot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="26" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__meta_1ad8f5e36b171a70c1f5609ccfa7c86131" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_meta::yr_doy[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>yr_doy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="14" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>type_meta</label>
+        <link refid="structtype__meta"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>build_time</edgelabel>
+          <edgelabel>corr_time</edgelabel>
+          <edgelabel>corrvers</edgelabel>
+          <edgelabel>dec</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>ff_time</edgelabel>
+          <edgelabel>fourfitcmd</edgelabel>
+          <edgelabel>pass_frt</edgelabel>
+          <edgelabel>pass_start</edgelabel>
+          <edgelabel>pass_stop</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>nplots</edgelabel>
+          <edgelabel>start_plot</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" line="7" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/meta_struct.h" bodystart="7" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structtype__meta_1aad4c4b8f7d37aaf3b187c386fbb6349b" prot="public" virt="non-virtual"><scope>type_meta</scope><name>build_time</name></member>
+      <member refid="structtype__meta_1a91e5c4a4681ab23ae5a9fa39430d0106" prot="public" virt="non-virtual"><scope>type_meta</scope><name>corr_time</name></member>
+      <member refid="structtype__meta_1a2a1da4bd70a2dd5487280107097e5224" prot="public" virt="non-virtual"><scope>type_meta</scope><name>corrvers</name></member>
+      <member refid="structtype__meta_1ae346d90d56ab691853efd68b3e9bb493" prot="public" virt="non-virtual"><scope>type_meta</scope><name>dec</name></member>
+      <member refid="structtype__meta_1ad6b4e087d03f57493e60a555b5ee2f59" prot="public" virt="non-virtual"><scope>type_meta</scope><name>exper_name</name></member>
+      <member refid="structtype__meta_1a165876d290f421897bcc948be1862de4" prot="public" virt="non-virtual"><scope>type_meta</scope><name>exper_num</name></member>
+      <member refid="structtype__meta_1af0c6c8caf837f08408abe9963fda1635" prot="public" virt="non-virtual"><scope>type_meta</scope><name>ff_time</name></member>
+      <member refid="structtype__meta_1a7bab1721872eb2186487f65994ff9c2a" prot="public" virt="non-virtual"><scope>type_meta</scope><name>fourfitcmd</name></member>
+      <member refid="structtype__meta_1a7b70699220a70e49aeeaf8c92af66bd9" prot="public" virt="non-virtual"><scope>type_meta</scope><name>nplots</name></member>
+      <member refid="structtype__meta_1ae6f40aecd445903ac3ab79653658c598" prot="public" virt="non-virtual"><scope>type_meta</scope><name>pass_frt</name></member>
+      <member refid="structtype__meta_1a60ebf032d7bf6401b0557997ca7b4066" prot="public" virt="non-virtual"><scope>type_meta</scope><name>pass_start</name></member>
+      <member refid="structtype__meta_1a496145f4f32e85636fb382e23b89b0d2" prot="public" virt="non-virtual"><scope>type_meta</scope><name>pass_stop</name></member>
+      <member refid="structtype__meta_1aac02380271cfe416e42785f6f5287f9f" prot="public" virt="non-virtual"><scope>type_meta</scope><name>polstr</name></member>
+      <member refid="structtype__meta_1a172dfe0bb96f69acb79eb5cf26a5d6ef" prot="public" virt="non-virtual"><scope>type_meta</scope><name>ra</name></member>
+      <member refid="structtype__meta_1ac51706098428d5c9af887808bd2c076a" prot="public" virt="non-virtual"><scope>type_meta</scope><name>rt_sn_bl</name></member>
+      <member refid="structtype__meta_1a4c809fd7a902c745c9e57edc460d03e5" prot="public" virt="non-virtual"><scope>type_meta</scope><name>start_plot</name></member>
+      <member refid="structtype__meta_1ad8f5e36b171a70c1f5609ccfa7c86131" prot="public" virt="non-virtual"><scope>type_meta</scope><name>yr_doy</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

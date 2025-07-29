@@ -1,0 +1,510 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DiFXInputProcessor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DiFXInputProcessor</compoundname>
+    <includes refid="MHO__DiFXInputProcessor_8hh" local="no">MHO_DiFXInputProcessor.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXInputProcessor_1a2d2cd49ecae6d83b854b5fc8c184e0f0" prot="private" static="no" mutable="no">
+        <type>DifxInput *</type>
+        <definition>DifxInput* hops::MHO_DiFXInputProcessor::fD</definition>
+        <argsstring></argsstring>
+        <name>fD</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="138" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DiFXInputProcessor_1a536e7bf0d338b754f757b523ed776786" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXInputProcessor::fFilename</definition>
+        <argsstring></argsstring>
+        <name>fFilename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="139" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a3585b5013b8930846869d6dbe3ab79cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXInputProcessor::MHO_DiFXInputProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DiFXInputProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a554a4df0753a960726fca0c7118d2312" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_DiFXInputProcessor::~MHO_DiFXInputProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DiFXInputProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="9" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a43a990ef9acc6b4f29dff3ce5a90e5a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXInputProcessor::ConvertToJSON</definition>
+        <argsstring>(mho_json &amp;input)</argsstring>
+        <name>ConvertToJSON</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Converts DiFX input data to JSON format and populates the provided mho_json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object that will be populated with converted data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="40" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="34" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1abd204cb11330369b634e8a68d76777d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXInputProcessor::LoadDiFXInputFile</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>LoadDiFXInputFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Loads DiFX .input file and stores it in member variable (fD) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the DiFX input file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="34" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="17" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1ae88e507a5c34aaa1cc23792c84a578fa" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractAntennaQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractAntennaQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts antenna quantities from DifxAntenna struct and returns as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of antenna to extract </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json containing extracted antenna quantities </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="72" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="190" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1ada988602aa9e9f0c22e4bb06c902dabc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractBaselineQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractBaselineQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts baseline quantities from DifxBaseline at index n and returns them as a JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the baseline to extract quantities from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>JSON object containing dsA, dsB, nFreq, nPolProd arrays, bandA and bandB matrices </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="112" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="433" bodyend="465"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1adf7f77bf18cea28130570e73658cf251" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DiFXInputProcessor::ExtractBaseStructQuantities</definition>
+        <argsstring>(mho_json &amp;input)</argsstring>
+        <name>ExtractBaseStructQuantities</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Copies base struct quantities from fD to input mho_json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object to store extracted quantities. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="48" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="104" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1ae2e0d9492f40c7608386304d4308440c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractConfigQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractConfigQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts configuration quantities from DifxConfig at index n and returns it as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of DifxConfig to extract quantities from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json containing extracted configuration quantities </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="56" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="131" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a807de066f1b69baef6f59b3a4d4c5507" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractDatastreamQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractDatastreamQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts and returns a JSON object containing various quantities from the specified datastream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the datastream to extract quantities from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A mho_json object containing extracted quantities. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="104" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="342" bodyend="431"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a96d77dfec0960715672fa5e19c125881" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractDifxPolyModel</definition>
+        <argsstring>(DifxPolyModel *m)</argsstring>
+        <name>ExtractDifxPolyModel</name>
+        <param>
+          <type>DifxPolyModel *</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Extracts DifxPolyModel data and converts it to mho_json format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input DifxPolyModel pointer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing extracted DifxPolyModel data </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="120" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="467" bodyend="495"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a5276636ce0bb566c73389e949359ba2a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractEOPQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractEOPQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts and returns EOP (earth orientation parameter) quantities as a JSON object for a given index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the DifxEOP struct to extract quantities from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json containing extracted EOP quantities (mjd, tai_utc, ut1_utc, xPole, yPole) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="96" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="327" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a227b6a6beb0ecbac07b364192c594897" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractFreqQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractFreqQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts frequency quantities from DifxFreq struct at index n and returns as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of DifxFreq struct to extract quantities from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json containing extracted frequency quantities </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="64" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="165" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a641d884615728969a934ce1c63129e68" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractScanQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractScanQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts scan quantities from DifxScan at index n and returns as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of DifxScan to extract quantities from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json containing extracted scan quantities </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="80" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="247" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a91dadb600a931d993e9f2bc1b2ec0bc5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_DiFXInputProcessor::ExtractSourceQuantities</definition>
+        <argsstring>(int n)</argsstring>
+        <name>ExtractSourceQuantities</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Extracts source quantities from DifxSource at index n and returns as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of DifxSource to extract quantities from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json containing extracted source quantities </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="88" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="303" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a6f752c289304d9aa42f13c3dc4392b38" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXInputProcessor::GetAntennaMountTypeString</definition>
+        <argsstring>(AntennaMountType type)</argsstring>
+        <name>GetAntennaMountTypeString</name>
+        <param>
+          <type>AntennaMountType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Getter for antenna mount type string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input AntennaMountType enum value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Encoded string for the input mount type </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="128" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="235" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DiFXInputProcessor_1a155ea194a605f0a15caff5d00741c9a5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DiFXInputProcessor::GetAntennaSiteTypeString</definition>
+        <argsstring>(AntennaSiteType type)</argsstring>
+        <name>GetAntennaSiteTypeString</name>
+        <param>
+          <type>AntennaSiteType</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Getter for antenna site type string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input AntennaSiteType enum value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::string containing the corresponding antenna site type name </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="136" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/MHO_DiFXInputProcessor.cc" bodystart="241" bodyend="245"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DiFXInputProcessor" kindref="compound">MHO_DiFXInputProcessor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Feb 21 00:33:14 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXInputProcessor.hh" bodystart="24" bodyend="140"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a43a990ef9acc6b4f29dff3ce5a90e5a2" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ConvertToJSON</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1ae88e507a5c34aaa1cc23792c84a578fa" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractAntennaQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1ada988602aa9e9f0c22e4bb06c902dabc" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractBaselineQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1adf7f77bf18cea28130570e73658cf251" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractBaseStructQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1ae2e0d9492f40c7608386304d4308440c" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractConfigQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a807de066f1b69baef6f59b3a4d4c5507" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractDatastreamQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a96d77dfec0960715672fa5e19c125881" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractDifxPolyModel</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a5276636ce0bb566c73389e949359ba2a" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractEOPQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a227b6a6beb0ecbac07b364192c594897" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractFreqQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a641d884615728969a934ce1c63129e68" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractScanQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a91dadb600a931d993e9f2bc1b2ec0bc5" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>ExtractSourceQuantities</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a2d2cd49ecae6d83b854b5fc8c184e0f0" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>fD</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a536e7bf0d338b754f757b523ed776786" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>fFilename</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a6f752c289304d9aa42f13c3dc4392b38" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>GetAntennaMountTypeString</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a155ea194a605f0a15caff5d00741c9a5" prot="private" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>GetAntennaSiteTypeString</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1abd204cb11330369b634e8a68d76777d7" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>LoadDiFXInputFile</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a3585b5013b8930846869d6dbe3ab79cb" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>MHO_DiFXInputProcessor</name></member>
+      <member refid="classhops_1_1MHO__DiFXInputProcessor_1a554a4df0753a960726fca0c7118d2312" prot="public" virt="virtual"><scope>hops::MHO_DiFXInputProcessor</scope><name>~MHO_DiFXInputProcessor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

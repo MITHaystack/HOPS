@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionhops_1_1MHO__UUID_1_1byte2ints" kind="union" language="C++" prot="protected">
+    <compoundname>hops::MHO_UUID::byte2ints</compoundname>
+    <includes refid="MHO__UUID_8hh" local="no">MHO_UUID.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionhops_1_1MHO__UUID_1_1byte2ints_1a34e2c79ed25ca00ccbdd0c2de014552e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t hops::MHO_UUID::byte2ints::byte_values[MHO_UUID_LENGTH]</definition>
+        <argsstring>[MHO_UUID_LENGTH]</argsstring>
+        <name>byte_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="185" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionhops_1_1MHO__UUID_1_1byte2ints_1a1d5f86a5d2fbd76ed89dac9a55fa50c6" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_UUID::byte2ints::uint_values[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>uint_values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="186" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>uint64_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_UUID::byte2ints</label>
+        <link refid="unionhops_1_1MHO__UUID_1_1byte2ints"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>uint_values</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>byte_values</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>uint8_t</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="183" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="184" bodyend="187"/>
+    <listofallmembers>
+      <member refid="unionhops_1_1MHO__UUID_1_1byte2ints_1a34e2c79ed25ca00ccbdd0c2de014552e" prot="public" virt="non-virtual"><scope>hops::MHO_UUID::byte2ints</scope><name>byte_values</name></member>
+      <member refid="unionhops_1_1MHO__UUID_1_1byte2ints_1a1d5f86a5d2fbd76ed89dac9a55fa50c6" prot="public" virt="non-virtual"><scope>hops::MHO_UUID::byte2ints</scope><name>uint_values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

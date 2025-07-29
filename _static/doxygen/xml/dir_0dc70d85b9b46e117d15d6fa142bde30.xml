@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_0dc70d85b9b46e117d15d6fa142bde30" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__ChannelLabelerBuilder_8hh">MHO_ChannelLabelerBuilder.hh</innerfile>
+    <innerfile refid="MHO__ChannelQuantity_8hh">MHO_ChannelQuantity.hh</innerfile>
+    <innerfile refid="MHO__CircularFieldRotationBuilder_8hh">MHO_CircularFieldRotationBuilder.hh</innerfile>
+    <innerfile refid="MHO__DataSelectionBuilder_8hh">MHO_DataSelectionBuilder.hh</innerfile>
+    <innerfile refid="MHO__DCBlockBuilder_8hh">MHO_DCBlockBuilder.hh</innerfile>
+    <innerfile refid="MHO__LinearDParCorrectionBuilder_8hh">MHO_LinearDParCorrectionBuilder.hh</innerfile>
+    <innerfile refid="MHO__LSBOffsetBuilder_8hh">MHO_LSBOffsetBuilder.hh</innerfile>
+    <innerfile refid="MHO__ManualChannelDelayCorrectionBuilder_8hh">MHO_ManualChannelDelayCorrectionBuilder.hh</innerfile>
+    <innerfile refid="MHO__ManualChannelPhaseCorrectionBuilder_8hh">MHO_ManualChannelPhaseCorrectionBuilder.hh</innerfile>
+    <innerfile refid="MHO__ManualPolDelayCorrectionBuilder_8hh">MHO_ManualPolDelayCorrectionBuilder.hh</innerfile>
+    <innerfile refid="MHO__ManualPolPhaseCorrectionBuilder_8hh">MHO_ManualPolPhaseCorrectionBuilder.hh</innerfile>
+    <innerfile refid="MHO__MinWeightBuilder_8hh">MHO_MinWeightBuilder.hh</innerfile>
+    <innerfile refid="MHO__MixedPolYShiftBuilder_8hh">MHO_MixedPolYShiftBuilder.hh</innerfile>
+    <innerfile refid="MHO__MultitonePhaseCorrectionBuilder_8hh">MHO_MultitonePhaseCorrectionBuilder.hh</innerfile>
+    <innerfile refid="MHO__NotchesBuilder_8hh">MHO_NotchesBuilder.hh</innerfile>
+    <innerfile refid="MHO__OperatorBuilder_8hh">MHO_OperatorBuilder.hh</innerfile>
+    <innerfile refid="MHO__OperatorBuilderManager_8hh">MHO_OperatorBuilderManager.hh</innerfile>
+    <innerfile refid="MHO__ParameterConfigurator_8hh">MHO_ParameterConfigurator.hh</innerfile>
+    <innerfile refid="MHO__ParameterManager_8hh">MHO_ParameterManager.hh</innerfile>
+    <innerfile refid="MHO__PassbandBuilder_8hh">MHO_PassbandBuilder.hh</innerfile>
+    <innerfile refid="MHO__PolProductSummationBuilder_8hh">MHO_PolProductSummationBuilder.hh</innerfile>
+    <innerfile refid="MHO__SamplerLabelerBuilder_8hh">MHO_SamplerLabelerBuilder.hh</innerfile>
+    <innerfile refid="MHO__StationDelayCorrectionBuilder_8hh">MHO_StationDelayCorrectionBuilder.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionflag__wgt" kind="union" language="C++" prot="public">
+    <compoundname>flag_wgt</compoundname>
+    <includes refid="type__120_8h" local="no">type_120.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionflag__wgt_1a45ca170b7ffd6ddcecca3ff4b1f0fe9a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int flag_wgt::flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="75" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionflag__wgt_1a5fb3486bd6cf3fb0c88923a27e91cc88" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float flag_wgt::weight</definition>
+        <argsstring></argsstring>
+        <name>weight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="76" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>flag_wgt</label>
+        <link refid="unionflag__wgt"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="73" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="74" bodyend="77"/>
+    <listofallmembers>
+      <member refid="unionflag__wgt_1a45ca170b7ffd6ddcecca3ff4b1f0fe9a" prot="public" virt="non-virtual"><scope>flag_wgt</scope><name>flag</name></member>
+      <member refid="unionflag__wgt_1a5fb3486bd6cf3fb0c88923a27e91cc88" prot="public" virt="non-virtual"><scope>flag_wgt</scope><name>weight</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

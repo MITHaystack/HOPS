@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_429db2d64f0c0f538d584935e0378e89" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="cvex_8h">cvex.h</innerfile>
+    <innerfile refid="evex_8h">evex.h</innerfile>
+    <innerfile refid="ivex_8h">ivex.h</innerfile>
+    <innerfile refid="lvex_8h">lvex.h</innerfile>
+    <innerfile refid="mk4__vex_8h">mk4_vex.h</innerfile>
+    <innerfile refid="ovex_8h">ovex.h</innerfile>
+    <innerfile refid="svex_8h">svex.h</innerfile>
+    <innerfile refid="vex_8h">vex.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,509 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="eph__time_8c" kind="file" language="C++">
+    <compoundname>eph_time.c</compoundname>
+    <includes local="no">math.h</includes>
+    <includes local="no">strings.h</includes>
+    <includes refid="htime_8h" local="yes">htime.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>hetetimecode.h</label>
+        <link refid="hetetimecode_8h"/>
+      </node>
+      <node id="11">
+        <label>time_float_type.h</label>
+        <link refid="time__float__type_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>stdlib.h</label>
+      </node>
+      <node id="10">
+        <label>string.h</label>
+      </node>
+      <node id="12">
+        <label>hops_config.h</label>
+      </node>
+      <node id="6">
+        <label>time.h</label>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="7">
+        <label>sys/time.h</label>
+      </node>
+      <node id="3">
+        <label>strings.h</label>
+      </node>
+      <node id="4">
+        <label>htime.h</label>
+        <link refid="htime_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>eph_time.c</label>
+        <link refid="eph__time_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="eph__time_8c_1aa3a613eaac0cbac459e069c95cee4fb5" prot="public" static="no">
+        <name>EB_TDB_TDT</name>
+        <initializer>0.016710</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="eph__time_8c_1a29f277b8158cbf91f9b84d69b844bb57" prot="public" static="no">
+        <name>KK_TDB_TDT</name>
+        <initializer>0.001657</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="eph__time_8c_1abf9b030977fd54a7a51dc3ae053f6440" prot="public" static="no">
+        <name>M0_TDB_TDT</name>
+        <initializer>6.239996</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="eph__time_8c_1a45d8aae4b69cbb6b6bc638d54363bfef" prot="public" static="no">
+        <name>M1_TDB_TDT</name>
+        <initializer>1.99096871e-07</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="eph__time_8c_1af165e06d60e494805acb8e530cb18f03" prot="public" static="no">
+        <name>ORIGINAL_TIMEIS_CODE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="148" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="eph__time_8c_1afed711b7337acc3f21500f7371a12be3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl e_tdb_tdt</definition>
+        <argsstring>(HTLdbl t)</argsstring>
+        <name>e_tdb_tdt</name>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="51" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1ad5f2b9b96e9e504ccfd275d1ffa473a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* Ht_convert_et_to_gps</definition>
+        <argsstring>(char *arg, int eph_type)</argsstring>
+        <name>Ht_convert_et_to_gps</name>
+        <param>
+          <type>char *</type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>eph_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="89" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="89" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1ada85bc29b223faa4dcefd0f949f23f84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Ht_ephem_type</definition>
+        <argsstring>(char *arg)</argsstring>
+        <name>Ht_ephem_type</name>
+        <param>
+          <type>char *</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="75" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="75" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1a75c8591f21524453b7c73016e26f981f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl Ht_GPS_to_TAI</definition>
+        <argsstring>(HTLdbl gps)</argsstring>
+        <name>Ht_GPS_to_TAI</name>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>gps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1a44c3fd1d694d6a7f1c62c49dbd185d1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl Ht_GPS_to_TDT</definition>
+        <argsstring>(HTLdbl gps)</argsstring>
+        <name>Ht_GPS_to_TDT</name>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>gps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="29" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1a8337ef72853ad3255b7138c7f50306f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Ht_spice_sprintf</definition>
+        <argsstring>(char *b, char *tla, HTLdbl t)</argsstring>
+        <name>Ht_spice_sprintf</name>
+        <param>
+          <type>char *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>tla</declname>
+        </param>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="112" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="112" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1a1fb67765cf1ba80aac57d6a1e2b18dab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl Ht_TAI_to_GPS</definition>
+        <argsstring>(HTLdbl tai)</argsstring>
+        <name>Ht_TAI_to_GPS</name>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>tai</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="45" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1a675bbf79da63999e3e0911372ca629ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl Ht_TDB_to_TDT</definition>
+        <argsstring>(HTLdbl tdb)</argsstring>
+        <name>Ht_TDB_to_TDT</name>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>tdb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="66" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1acb0a4683750acbe2cc084561189a6dd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl Ht_TDT_to_GPS</definition>
+        <argsstring>(HTLdbl tdt)</argsstring>
+        <name>Ht_TDT_to_GPS</name>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>tdt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="34" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="eph__time_8c_1ab2405aef0f678b53e8b985f9fc8e2473" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl Ht_TDT_to_TDB</definition>
+        <argsstring>(HTLdbl tdt)</argsstring>
+        <name>Ht_TDT_to_TDB</name>
+        <param>
+          <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+          <declname>tdt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" line="59" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c" bodystart="59" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>eph_time.c<sp/>1231<sp/>2008-02-20<sp/>01:01:12Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Routines<sp/>to<sp/>support<sp/>ephemeris<sp/>time<sp/>calculation<sp/>relative<sp/>to<sp/>J2000</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>TDT<sp/>-<sp/>GPS<sp/>==<sp/>51.184<sp/>s<sp/>(TDT_GPS_DELTA)</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>TAI<sp/>-<sp/>GPS<sp/>==<sp/>19.000<sp/>s<sp/>(TAI_GPS_DELTA)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>TDB<sp/>-<sp/>TDT<sp/>=<sp/><sp/>K<sp/>*<sp/>sin(E(t))</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t<sp/>is<sp/>secs<sp/>from<sp/>J2000<sp/>epoch<sp/>(TDB)</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>E(t)<sp/>=<sp/>M<sp/>+<sp/>EB<sp/>*<sp/>sin(M)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>M(t)<sp/>=<sp/>M0<sp/>+<sp/>M1<sp/>*<sp/>t</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;strings.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="htime_8h" kindref="compound">htime.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KK_TDB_TDT<sp/><sp/>0.001657</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EB_TDB_TDT<sp/><sp/>0.016710</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>M0_TDB_TDT<sp/><sp/>6.239996</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>M1_TDB_TDT<sp/><sp/>1.99096871e-07</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>J2000_EPOCH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>J2000_EPOCH<sp/>630763200.000000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>J2000_EPOCH<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="eph__time_8c_1a44c3fd1d694d6a7f1c62c49dbd185d1f" kindref="member">Ht_GPS_to_TDT</ref>(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/>gps)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(gps<sp/>+<sp/><ref refid="htime_8h_1a5aab7fab19d4a7b7b8c2464873401929" kindref="member">TDT_GPS_DELTA</ref><sp/>-<sp/><ref refid="htime_8h_1a3bd7226dc60194ad396c4157b0007a04" kindref="member">J2000_EPOCH</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><ref refid="eph__time_8c_1acb0a4683750acbe2cc084561189a6dd9" kindref="member">Ht_TDT_to_GPS</ref>(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/>tdt)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(tdt<sp/>-<sp/><ref refid="htime_8h_1a5aab7fab19d4a7b7b8c2464873401929" kindref="member">TDT_GPS_DELTA</ref><sp/>+<sp/><ref refid="htime_8h_1a3bd7226dc60194ad396c4157b0007a04" kindref="member">J2000_EPOCH</ref>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><ref refid="eph__time_8c_1a75c8591f21524453b7c73016e26f981f" kindref="member">Ht_GPS_to_TAI</ref>(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/>gps)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(gps<sp/>+<sp/><ref refid="htime_8h_1a691d6c9cb21051f7778fc2a0be9af2b8" kindref="member">TAI_GPS_DELTA</ref><sp/>-<sp/><ref refid="htime_8h_1a3bd7226dc60194ad396c4157b0007a04" kindref="member">J2000_EPOCH</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><ref refid="eph__time_8c_1a1fb67765cf1ba80aac57d6a1e2b18dab" kindref="member">Ht_TAI_to_GPS</ref>(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/>tai)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(tai<sp/>-<sp/><ref refid="htime_8h_1a691d6c9cb21051f7778fc2a0be9af2b8" kindref="member">TAI_GPS_DELTA</ref><sp/>+<sp/><ref refid="htime_8h_1a3bd7226dc60194ad396c4157b0007a04" kindref="member">J2000_EPOCH</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><ref refid="eph__time_8c_1afed711b7337acc3f21500f7371a12be3" kindref="member">e_tdb_tdt</ref>(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><sp/>m<sp/>=<sp/><ref refid="eph__time_8c_1abf9b030977fd54a7a51dc3ae053f6440" kindref="member">M0_TDB_TDT</ref><sp/>+<sp/><ref refid="eph__time_8c_1a45d8aae4b69cbb6b6bc638d54363bfef" kindref="member">M1_TDB_TDT</ref>*<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(m<sp/>+<sp/><ref refid="eph__time_8c_1aa3a613eaac0cbac459e069c95cee4fb5" kindref="member">EB_TDB_TDT</ref><sp/>*<sp/>sin(m));</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>this<sp/>is<sp/>approximate,<sp/>but<sp/>overkill<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><ref refid="eph__time_8c_1ab2405aef0f678b53e8b985f9fc8e2473" kindref="member">Ht_TDT_to_TDB</ref>(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/>tdt)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><sp/>tdb<sp/>=<sp/>tdt<sp/>+<sp/><ref refid="eph__time_8c_1a29f277b8158cbf91f9b84d69b844bb57" kindref="member">KK_TDB_TDT</ref><sp/>*<sp/>sin(<ref refid="eph__time_8c_1afed711b7337acc3f21500f7371a12be3" kindref="member">e_tdb_tdt</ref>(tdt));</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(tdt<sp/>+<sp/><ref refid="eph__time_8c_1a29f277b8158cbf91f9b84d69b844bb57" kindref="member">KK_TDB_TDT</ref><sp/>*<sp/>sin(<ref refid="eph__time_8c_1afed711b7337acc3f21500f7371a12be3" kindref="member">e_tdb_tdt</ref>(tdb)));</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>this<sp/>is<sp/>correct<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><ref refid="eph__time_8c_1a675bbf79da63999e3e0911372ca629ae" kindref="member">Ht_TDB_to_TDT</ref>(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/>tdb)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(tdb<sp/>-<sp/><ref refid="eph__time_8c_1a29f277b8158cbf91f9b84d69b844bb57" kindref="member">KK_TDB_TDT</ref><sp/>*<sp/>sin(<ref refid="eph__time_8c_1afed711b7337acc3f21500f7371a12be3" kindref="member">e_tdb_tdt</ref>(tdb)));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>Return<sp/>an<sp/>ephemeris<sp/>type</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><ref refid="eph__time_8c_1ada85bc29b223faa4dcefd0f949f23f84" kindref="member">Ht_ephem_type</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>(!strcasecmp(arg,<sp/></highlight><highlight class="stringliteral">&quot;gps&quot;</highlight><highlight class="normal">))<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="htime_8h_1a69ffd38cb96bdd22bbcbff390621f863" kindref="member">SPICE_ET_TYPE_GPS</ref>);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!strcasecmp(arg,<sp/></highlight><highlight class="stringliteral">&quot;tai&quot;</highlight><highlight class="normal">))<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="htime_8h_1aa333ab173b4068cd8f9e95a5a8e3a4c6" kindref="member">SPICE_ET_TYPE_TAI</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!strcasecmp(arg,<sp/></highlight><highlight class="stringliteral">&quot;tdt&quot;</highlight><highlight class="normal">))<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="htime_8h_1ac2b03c0770fdf2f84ad5aa5c13b56f7c" kindref="member">SPICE_ET_TYPE_TDT</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!strcasecmp(arg,<sp/></highlight><highlight class="stringliteral">&quot;tdb&quot;</highlight><highlight class="normal">))<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="htime_8h_1a108bbe327e79c9573d8a54c2c81d9944" kindref="member">SPICE_ET_TYPE_TDB</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!strcasecmp(arg,<sp/></highlight><highlight class="stringliteral">&quot;utc&quot;</highlight><highlight class="normal">))<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="htime_8h_1a16a40581f19225157a760a1bd6ca361d" kindref="member">SPICE_ET_TYPE_UTC</ref>);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="htime_8h_1a69ffd38cb96bdd22bbcbff390621f863" kindref="member">SPICE_ET_TYPE_GPS</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*<sp/>this<sp/>might<sp/>be<sp/>useful</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal">*<ref refid="eph__time_8c_1ad5f2b9b96e9e504ccfd275d1ffa473a7" kindref="member">Ht_convert_et_to_gps</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*arg,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>eph_type)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>buf[4096];</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>et<sp/>=<sp/>atof(arg);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(eph_type)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:<sp/>et<sp/>=<sp/><ref refid="eph__time_8c_1a1fb67765cf1ba80aac57d6a1e2b18dab" kindref="member">Ht_TAI_to_GPS</ref>(et);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:<sp/>et<sp/>=<sp/><ref refid="eph__time_8c_1acb0a4683750acbe2cc084561189a6dd9" kindref="member">Ht_TDT_to_GPS</ref>(et);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:<sp/>et<sp/>=<sp/><ref refid="eph__time_8c_1acb0a4683750acbe2cc084561189a6dd9" kindref="member">Ht_TDT_to_GPS</ref>(<ref refid="eph__time_8c_1a675bbf79da63999e3e0911372ca629ae" kindref="member">Ht_TDB_to_TDT</ref>(et));<sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>USE_LONG_DOUBLE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>snprintf(buf,<sp/>4096,<sp/></highlight><highlight class="stringliteral">&quot;%Lf\n&quot;</highlight><highlight class="normal">,<sp/>et);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>snprintf(buf,<sp/>4096,<sp/></highlight><highlight class="stringliteral">&quot;%lf\n&quot;</highlight><highlight class="normal">,<sp/>et);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(buf);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/>This<sp/>routine<sp/>loads<sp/>a<sp/>buffer<sp/>with<sp/>something<sp/>some<sp/>of<sp/>the<sp/>spice</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/>routines<sp/>will<sp/>read.<sp/>I<sp/>think.</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="eph__time_8c_1a8337ef72853ad3255b7138c7f50306f0" kindref="member">Ht_spice_sprintf</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*b,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*tla,<sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*dp;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>[Thu]<sp/>Jun<sp/>13<sp/>05:47:00[.000000]<sp/>UTC<sp/>1996<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>4<sp/><sp/><sp/>8<sp/><sp/>11<sp/><sp/><sp/><sp/><sp/><sp/><sp/>19<sp/><sp/><sp/><sp/><sp/><sp/><sp/>27<sp/><sp/>31<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>dp<sp/>=<sp/><ref refid="htime_8c_1a857047944d91589d8f70bd67d8e946e3" kindref="member">Ht_GPS_to_string</ref>(<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>,<sp/><ref refid="htime_8h_1a8bb7f19f9303f00abe1a3c0e0f9c3dd8" kindref="member">Ht_DS_DATE</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(p<sp/>=<sp/>31;<sp/>p<sp/>&lt;<sp/>35;<sp/>p++)<sp/>*b++<sp/>=<sp/>dp[p];</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>*b++<sp/>=<sp/></highlight><highlight class="charliteral">&apos;<sp/>&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(p<sp/>=<sp/><sp/>4;<sp/>p<sp/>&lt;<sp/>23;<sp/>p++)<sp/>*b++<sp/>=<sp/>dp[p];</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>*b++<sp/>=<sp/></highlight><highlight class="charliteral">&apos;<sp/>&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(p<sp/>=<sp/><sp/>0;<sp/>p<sp/>&lt;<sp/><sp/>3;<sp/>p++)<sp/>*b++<sp/>=<sp/>*tla++;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>*b<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/>*<sp/>code<sp/>fragments...which<sp/>need<sp/>to<sp/>get<sp/>coupled<sp/>to<sp/>the<sp/>C/SPICE<sp/>type.</highlight></codeline>
+<codeline lineno="129"><highlight class="comment"></highlight></codeline>
+<codeline lineno="130"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;The<sp/>-C<sp/>allows<sp/>you<sp/>to<sp/>convert<sp/>a<sp/>time<sp/>into<sp/>the<sp/>ephemeris\n&quot;</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;time<sp/>(relative<sp/>to<sp/>J2000)<sp/>as<sp/>specified<sp/>by<sp/>the<sp/>-c<sp/>flag.\n&quot;</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;To<sp/>convert<sp/>an<sp/>ephemeris<sp/>time<sp/>into<sp/>something<sp/>else,<sp/>you\n&quot;</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;need<sp/>to<sp/>use<sp/>the<sp/>-x<sp/>flag<sp/>flag<sp/>that,<sp/>and<sp/>also<sp/>use<sp/>the<sp/>-c\n&quot;</highlight></codeline>
+<codeline lineno="134"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;flag<sp/>to<sp/>indicate<sp/>whether<sp/>it<sp/>is<sp/>tdb/tdt/tai<sp/>(anything\n&quot;</highlight></codeline>
+<codeline lineno="135"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;else<sp/>treats<sp/>it<sp/>as<sp/>a<sp/>gps<sp/>time).<sp/>E.g.\n&quot;</highlight></codeline>
+<codeline lineno="136"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;\n&quot;</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;<sp/><sp/>ibex_time<sp/>-x<sp/>-c<sp/>tdt<sp/>-E<sp/>277688705.184000\n&quot;</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/>2008/10:19:11:44:00\n&quot;</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;<sp/><sp/>ibex_time<sp/>-c<sp/>tdt<sp/>-C<sp/>2008/10:19:11:44:00\n&quot;</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;<sp/><sp/><sp/>277688705.184000\n&quot;</highlight></codeline>
+<codeline lineno="141"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;\n&quot;</highlight></codeline>
+<codeline lineno="142"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;The<sp/>-O<sp/>(oh)<sp/>option<sp/>prints<sp/>out<sp/>a<sp/>date-like<sp/>thing<sp/>such<sp/>as\n&quot;</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;is<sp/>required<sp/>by<sp/>some<sp/>of<sp/>the<sp/>spice<sp/>tools;<sp/>usually<sp/>requiring\n&quot;</highlight></codeline>
+<codeline lineno="144"><highlight class="comment"><sp/><sp/><sp/><sp/>&quot;that<sp/>you<sp/>use<sp/>-c<sp/>with<sp/>tdt,<sp/>tdb<sp/>or<sp/>tai.\n&quot;</highlight></codeline>
+<codeline lineno="145"><highlight class="comment"></highlight></codeline>
+<codeline lineno="146"><highlight class="comment"><sp/>*<sp/>need<sp/>to<sp/>define<sp/>types<sp/>and<sp/>add<sp/>more<sp/>plumbing....</highlight></codeline>
+<codeline lineno="147"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ORIGINAL_TIMEIS_CODE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>ORIGINAL_TIMEIS_CODE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;O&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>gps<sp/>=<sp/><ref refid="htime_8c_1a937ade1a79370e19c7f0ae1d507bc3ab" kindref="member">Ht_string_to_GPS</ref>(when,<sp/>&amp;terror);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(eph_type)<sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:<sp/><sp/>tla<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;TAI&quot;</highlight><highlight class="normal">;<sp/>gps<sp/>+=<sp/><ref refid="htime_8h_1a691d6c9cb21051f7778fc2a0be9af2b8" kindref="member">TAI_GPS_DELTA</ref>;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:<sp/><sp/>tla<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;TDT&quot;</highlight><highlight class="normal">;<sp/>gps<sp/>+=<sp/><ref refid="htime_8h_1a5aab7fab19d4a7b7b8c2464873401929" kindref="member">TDT_GPS_DELTA</ref>;<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:<sp/><sp/>tla<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;TDB&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gps<sp/>=<sp/><ref refid="eph__time_8c_1ab2405aef0f678b53e8b985f9fc8e2473" kindref="member">Ht_TDT_to_TDB</ref>(<ref refid="eph__time_8c_1a44c3fd1d694d6a7f1c62c49dbd185d1f" kindref="member">Ht_GPS_to_TDT</ref>(gps))</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/><ref refid="htime_8h_1a7506f20af7af1ff5ebfe77619ea5d9f2" kindref="member">SPICE_ET_ORIGIN</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/>tla<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;WTF&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>spice_printf(buf,<sp/>tla,<sp/>gps);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/></highlight><highlight class="charliteral">&apos;C&apos;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>gps<sp/>=<sp/><ref refid="htime_8c_1a937ade1a79370e19c7f0ae1d507bc3ab" kindref="member">Ht_string_to_GPS</ref>(when,<sp/>&amp;terror);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>get<sp/>leapsecs<sp/>since<sp/>j2000<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(eph_type)<sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:<sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:<sp/>gps<sp/>=<sp/><ref refid="eph__time_8c_1a75c8591f21524453b7c73016e26f981f" kindref="member">Ht_GPS_to_TAI</ref>(gps);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:<sp/>gps<sp/>=<sp/><ref refid="eph__time_8c_1a44c3fd1d694d6a7f1c62c49dbd185d1f" kindref="member">Ht_GPS_to_TDT</ref>(gps);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:<sp/>gps<sp/>=<sp/><ref refid="eph__time_8c_1ab2405aef0f678b53e8b985f9fc8e2473" kindref="member">Ht_TDT_to_TDB</ref>(<ref refid="eph__time_8c_1a44c3fd1d694d6a7f1c62c49dbd185d1f" kindref="member">Ht_GPS_to_TDT</ref>(gps));<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:<sp/>gps<sp/>=<sp/><ref refid="htime_8h_1a55d9068b707b2ca6fbd5a576206dd218" kindref="member">Ht_leapsecs_since_J2000</ref>(gps);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gps<sp/>+=<sp/><ref refid="htime_8h_1a5aab7fab19d4a7b7b8c2464873401929" kindref="member">TDT_GPS_DELTA</ref><sp/>+<sp/>13.0;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>USE_LONG_DOUBLE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(buf,<sp/></highlight><highlight class="stringliteral">&quot;%Lf\n&quot;</highlight><highlight class="normal">,<sp/>gps);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf(buf,<sp/></highlight><highlight class="stringliteral">&quot;%lf\n&quot;</highlight><highlight class="normal">,<sp/>gps);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ORIGINAL_TIMEIS_CODE<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="185"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="186"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/eph_time.c"/>
+  </compounddef>
+</doxygen>

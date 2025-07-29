@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_57f445dd524d26a2684c85cbf39324f0" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="adhoc__flag_8h">adhoc_flag.h</innerfile>
+    <innerfile refid="apply__funcs_8h">apply_funcs.h</innerfile>
+    <innerfile refid="ffsearch_8h">ffsearch.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/include/"/>
+  </compounddef>
+</doxygen>

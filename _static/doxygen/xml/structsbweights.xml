@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsbweights" kind="struct" language="C++" prot="public">
+    <compoundname>sbweights</compoundname>
+    <includes refid="type__206_8h" local="no">type_206.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsbweights_1a4c0fa56d69f1c2b5f2a392c670038b4a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbweights::lsb</definition>
+        <argsstring></argsstring>
+        <name>lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="19" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsbweights_1a90ce470173c564528e192172ece35749" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sbweights::usb</definition>
+        <argsstring></argsstring>
+        <name>usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="20" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>sbweights</label>
+        <link refid="structsbweights"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_206.h" bodystart="18" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structsbweights_1a4c0fa56d69f1c2b5f2a392c670038b4a" prot="public" virt="non-virtual"><scope>sbweights</scope><name>lsb</name></member>
+      <member refid="structsbweights_1a90ce470173c564528e192172ece35749" prot="public" virt="non-virtual"><scope>sbweights</scope><name>usb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

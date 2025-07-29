@@ -1,0 +1,240 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__205" kind="struct" language="C++" prot="public">
+    <compoundname>type_205</compoundname>
+    <includes refid="type__205_8h" local="no">type_205.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__205_1aa74cfe562dcd9e8ddd6fe1f36308460c" prot="public" static="no" mutable="no">
+        <type>struct type_205::@8</type>
+        <definition>struct type_205::@8 type_205::ffit_chan[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>ffit_chan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="52" column="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a0a3a31e359ef34b537f850178680c1d2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_205::ffmode[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>ffmode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="40" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a92d4edb8f5f59cecadc6bc41c107577a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_205::filter[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>filter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="43" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1ae61e048227a2a4241c47c9f03ed282e7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_205::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="39" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a7fc83f8ac628eeede826b3409c548b5b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_205::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="35" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a69b3e7c7af83e14382fcb3242d9c5799" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_205::ref_freq</definition>
+        <argsstring></argsstring>
+        <name>ref_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="46" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a690aa9165d2ca4f4b89940e2f4ab078c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_205::search[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>search</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="41" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1abde931cbdd690397f3569f9b6f398960" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_205::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="43" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a493d6055da190829a51414b38b0dff78" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_205::stop</definition>
+        <argsstring></argsstring>
+        <name>stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="43" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1ad447e7a7bc462dc706c0f06bd15efa55" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_205::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="37" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a93a450861768e4cc1872f515c4228798" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date type_205::utc_central</definition>
+        <argsstring></argsstring>
+        <name>utc_central</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="37" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__205_1a22ca48300b088a4edc48912ab7453d69" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_205::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="36" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="6">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="5">
+        <label>anonymous:ffit_chan</label>
+      </node>
+      <node id="1">
+        <label>type_205</label>
+        <link refid="structtype__205"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>filter</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>search</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ffmode</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ffit_chan</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+          <edgelabel>utc_central</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_205.h" bodystart="34" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structtype__205_1aa74cfe562dcd9e8ddd6fe1f36308460c" prot="public" virt="non-virtual"><scope>type_205</scope><name>ffit_chan</name></member>
+      <member refid="structtype__205_1a0a3a31e359ef34b537f850178680c1d2" prot="public" virt="non-virtual"><scope>type_205</scope><name>ffmode</name></member>
+      <member refid="structtype__205_1a92d4edb8f5f59cecadc6bc41c107577a" prot="public" virt="non-virtual"><scope>type_205</scope><name>filter</name></member>
+      <member refid="structtype__205_1ae61e048227a2a4241c47c9f03ed282e7" prot="public" virt="non-virtual"><scope>type_205</scope><name>offset</name></member>
+      <member refid="structtype__205_1a7fc83f8ac628eeede826b3409c548b5b" prot="public" virt="non-virtual"><scope>type_205</scope><name>record_id</name></member>
+      <member refid="structtype__205_1a69b3e7c7af83e14382fcb3242d9c5799" prot="public" virt="non-virtual"><scope>type_205</scope><name>ref_freq</name></member>
+      <member refid="structtype__205_1a690aa9165d2ca4f4b89940e2f4ab078c" prot="public" virt="non-virtual"><scope>type_205</scope><name>search</name></member>
+      <member refid="structtype__205_1abde931cbdd690397f3569f9b6f398960" prot="public" virt="non-virtual"><scope>type_205</scope><name>start</name></member>
+      <member refid="structtype__205_1a493d6055da190829a51414b38b0dff78" prot="public" virt="non-virtual"><scope>type_205</scope><name>stop</name></member>
+      <member refid="structtype__205_1ad447e7a7bc462dc706c0f06bd15efa55" prot="public" virt="non-virtual"><scope>type_205</scope><name>unused1</name></member>
+      <member refid="structtype__205_1a93a450861768e4cc1872f515c4228798" prot="public" virt="non-virtual"><scope>type_205</scope><name>utc_central</name></member>
+      <member refid="structtype__205_1a22ca48300b088a4edc48912ab7453d69" prot="public" virt="non-virtual"><scope>type_205</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__CheckForNaN" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_CheckForNaN</compoundname>
+    <includes refid="MHO__CheckForNaN_8hh" local="no">MHO_CheckForNaN.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XNumericalType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__CheckForNaN_1ae722e29483d299928a1b8501bf4f8ca6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_CheckForNaN&lt; XNumericalType &gt;::MHO_CheckForNaN</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_CheckForNaN</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="24" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CheckForNaN_1a72d0ebd4fa24af76b420a56fcb0007c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_CheckForNaN&lt; XNumericalType &gt;::~MHO_CheckForNaN</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_CheckForNaN</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="25" column="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__CheckForNaN_1aca5fd8f3a7a889caf03c0542d8a32ea0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool hops::MHO_CheckForNaN&lt; XNumericalType &gt;::isnan</definition>
+        <argsstring>(const XNumericalType &amp;value)</argsstring>
+        <name>isnan</name>
+        <param>
+          <type>const XNumericalType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a numerical value is NaN by comparing it to itself. note that this primitive (X != X) comparison will not detect &quot;INF&quot; (only NAN) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input value of type XNumericalType&amp; to check for NaN. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if value is NaN, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="35" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__CheckForNaN" kindref="compound">MHO_CheckForNaN</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" line="21" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_CheckForNaN.hh" bodystart="22" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__CheckForNaN_1aca5fd8f3a7a889caf03c0542d8a32ea0" prot="public" virt="non-virtual"><scope>hops::MHO_CheckForNaN</scope><name>isnan</name></member>
+      <member refid="classhops_1_1MHO__CheckForNaN_1ae722e29483d299928a1b8501bf4f8ca6" prot="public" virt="non-virtual"><scope>hops::MHO_CheckForNaN</scope><name>MHO_CheckForNaN</name></member>
+      <member refid="classhops_1_1MHO__CheckForNaN_1a72d0ebd4fa24af76b420a56fcb0007c0" prot="public" virt="virtual"><scope>hops::MHO_CheckForNaN</scope><name>~MHO_CheckForNaN</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

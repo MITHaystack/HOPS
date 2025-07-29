@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="time__float__type_8h" kind="file" language="C++">
+    <compoundname>time_float_type.h</compoundname>
+    <includes local="yes">hops_config.h</includes>
+    <includedby refid="htime_8h" local="yes">htime.h</includedby>
+    <includedby refid="julian_8h" local="yes">julian.h</includedby>
+    <includedby refid="sc__time_8c" local="yes">sc_time.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>time_float_type.h</label>
+        <link refid="time__float__type_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops_config.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>time_float_type.h</label>
+        <link refid="time__float__type_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>lifetime.c</label>
+        <link refid="lifetime_8c"/>
+      </node>
+      <node id="5">
+        <label>hops_time.c</label>
+        <link refid="hops__time_8c"/>
+      </node>
+      <node id="4">
+        <label>hops_time.h</label>
+        <link refid="hops__time_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ht_parser.c</label>
+        <link refid="ht__parser_8c"/>
+      </node>
+      <node id="7">
+        <label>ht_timeis.c</label>
+        <link refid="ht__timeis_8c"/>
+      </node>
+      <node id="13">
+        <label>julian.c</label>
+        <link refid="julian_8c"/>
+      </node>
+      <node id="9">
+        <label>leapsec.c</label>
+        <link refid="leapsec_8c"/>
+      </node>
+      <node id="12">
+        <label>julian.h</label>
+        <link refid="julian_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>sc_time.c</label>
+        <link refid="sc__time_8c"/>
+      </node>
+      <node id="8">
+        <label>htime.c</label>
+        <link refid="htime_8c"/>
+      </node>
+      <node id="2">
+        <label>htime.h</label>
+        <link refid="htime_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>eph_time.c</label>
+        <link refid="eph__time_8c"/>
+      </node>
+      <node id="11">
+        <label>rtype.c</label>
+        <link refid="rtype_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="time__float__type_8h_1add6b4ba57f16197f64d1212d4fec2f11" prot="public" static="no">
+        <name>HLDL</name>
+        <initializer>&quot;l&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/time_float_type.h" line="23" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/time_float_type.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="time__float__type_8h_1af21c891154c6537609687b864f8e9949" prot="public" static="no">
+        <type>double</type>
+        <definition>typedef double HTLdbl</definition>
+        <argsstring></argsstring>
+        <name>HTLdbl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/time_float_type.h" line="22" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/time_float_type.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Fix<sp/>to<sp/>retain<sp/>precision<sp/>in<sp/>GPS<sp/>post<sp/>2019</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TIME_FLOAT_TYPE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIME_FLOAT_TYPE_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>We<sp/>now<sp/>rely<sp/>on<sp/>hops_config.h/autoconf<sp/>to<sp/>determine<sp/>if<sp/>this</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>system<sp/>supports<sp/>80-bit<sp/>long<sp/>doubles.<sp/><sp/>This<sp/>is<sp/>needed<sp/>for</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>~microsecond<sp/>level<sp/>precision<sp/>for<sp/>times<sp/>which<sp/>are<sp/>more<sp/>than</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>~40<sp/>years<sp/>after<sp/>the<sp/>GPS<sp/>epoch<sp/>start.<sp/><sp/>Tempus<sp/>fugit.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hops_config.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>HAVE_LONG_DOUBLE_WIDER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>USE_LONG_DOUBLE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>HLDL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;L&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref>;</highlight></codeline>
+<codeline lineno="23" refid="time__float__type_8h_1add6b4ba57f16197f64d1212d4fec2f11" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>HLDL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;l&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#warning<sp/>&quot;This<sp/>system<sp/>does<sp/>not<sp/>support<sp/>a<sp/>long<sp/>double<sp/>type&quot;</highlight><highlight class="normal"><sp/>\</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;<sp/>greater<sp/>than<sp/>64<sp/>bits.<sp/>GPS<sp/>time<sp/>precision<sp/>will<sp/>be<sp/>impaired.&quot;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/time_float_type.h"/>
+  </compounddef>
+</doxygen>

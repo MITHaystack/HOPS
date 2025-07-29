@@ -1,0 +1,448 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::StationExperimentPhasorCollection</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1abc6a3137ec40efb921d74236432f7f84" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::active_band_pol_list</definition>
+        <argsstring></argsstring>
+        <name>active_band_pol_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="747" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="747" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a8f3cbb9884059aa6edb6f42b53313709" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::channel_to_band_map</definition>
+        <argsstring></argsstring>
+        <name>channel_to_band_map</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="739" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="739" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a825d8954d5176fbc41734494b8ec757e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::datfile_list</definition>
+        <argsstring></argsstring>
+        <name>datfile_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="750" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="750" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a51ba9b1960cc66b0cdcddf4b55e37169" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::exp_dir</definition>
+        <argsstring></argsstring>
+        <name>exp_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="737" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="737" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a6fb90056aa56306c68b01e74ed84a18c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::exp_name</definition>
+        <argsstring></argsstring>
+        <name>exp_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="741" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="741" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad43327b421f0d6563dc4505c5223ecd7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::exp_num</definition>
+        <argsstring></argsstring>
+        <name>exp_num</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="738" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="738" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a0efe2383df50cd2e57c5e6617976b9ee" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::mk4_site_id</definition>
+        <argsstring></argsstring>
+        <name>mk4_site_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="740" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="740" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad82c6664f4ff2437a509a1e0735417a9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::reference_scan_name</definition>
+        <argsstring></argsstring>
+        <name>reference_scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="743" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="743" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1adfcde3234dc2a7573685bf4a6398c8b3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::reference_scan_object</definition>
+        <argsstring></argsstring>
+        <name>reference_scan_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="744" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="744" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a2c1bbff04b364d7e620884e8f3428bdb" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::root_files</definition>
+        <argsstring></argsstring>
+        <name>root_files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="748" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="748" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a03b27a6b7fd3905f2e2f93bcb300d61f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::sspc_list</definition>
+        <argsstring></argsstring>
+        <name>sspc_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="749" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="749" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1adabac573c9b2c63154369ccdddf6bb04" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::station_code</definition>
+        <argsstring></argsstring>
+        <name>station_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="742" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="742" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a4bc321b895e42d0f7a2403934b251003" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.StationExperimentPhasorCollection::verbosity</definition>
+        <argsstring></argsstring>
+        <name>verbosity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="746" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="746" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad51576de161915eb1ed62978480054c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.__init__</definition>
+        <argsstring>(self, experiment_directory, channel_to_band_map, mk4_site_id, verbosity=0)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>experiment_directory</type>
+          <defname>experiment_directory</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a8f3cbb9884059aa6edb6f42b53313709" kindref="member">channel_to_band_map</ref></type>
+          <defname>channel_to_band_map</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a0efe2383df50cd2e57c5e6617976b9ee" kindref="member">mk4_site_id</ref></type>
+          <defname>mk4_site_id</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a4bc321b895e42d0f7a2403934b251003" kindref="member">verbosity</ref></type>
+          <defname>verbosity</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="736" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="736" bodyend="751"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1aa2004926359209bf62b36eebb3146860" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.apply_arbitrary_scan_as_phase_reference</definition>
+        <argsstring>(self, scan_name)</argsstring>
+        <name>apply_arbitrary_scan_as_phase_reference</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>scan_name</type>
+          <defname>scan_name</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>apply a selected scan as the phase reference to all other scan-phasor collections </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="796" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="796" bodyend="812"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1aa5329cc3801f18f88880afd713db2591" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.apply_start_as_phase_reference</definition>
+        <argsstring>(self)</argsstring>
+        <name>apply_start_as_phase_reference</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>apply the first scan as the phase reference to all other scan-phasor collections </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="784" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="784" bodyend="795"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ac1cdb7edbf46e96c9a285ae4e6e92e36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.fit_scan_band_delays</definition>
+        <argsstring>(self, active_band_pol_list, method=&apos;basinhopping&apos;, trim_length=DISCARD_OFFSET, cut_threshold=2.5, outputdir=&quot;./&quot;, verbosity=0, use_progress_ticker=False)</argsstring>
+        <name>fit_scan_band_delays</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1abc6a3137ec40efb921d74236432f7f84" kindref="member">active_band_pol_list</ref></type>
+          <defname>active_band_pol_list</defname>
+        </param>
+        <param>
+          <type>method</type>
+          <defname>method</defname>
+          <defval>&apos;basinhopping&apos;</defval>
+        </param>
+        <param>
+          <type>trim_length</type>
+          <defname>trim_length</defname>
+          <defval><ref refid="namespacevpal_1_1proxy__cable__cal_1aad959a2e063ee7be4e5afa796695f13e" kindref="member">DISCARD_OFFSET</ref></defval>
+        </param>
+        <param>
+          <type>cut_threshold</type>
+          <defname>cut_threshold</defname>
+          <defval>2.5</defval>
+        </param>
+        <param>
+          <type>outputdir</type>
+          <defname>outputdir</defname>
+          <defval>&quot;./&quot;</defval>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a4bc321b895e42d0f7a2403934b251003" kindref="member">verbosity</ref></type>
+          <defname>verbosity</defname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>use_progress_ticker</type>
+          <defname>use_progress_ticker</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>fit each scan-band phasor data for a delay</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="817" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="818" bodyend="836"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a4f77e13fbbd97d02e23c548bdf3845bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.generate_dat_files</definition>
+        <argsstring>(self, pcc_config)</argsstring>
+        <name>generate_dat_files</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>pcc_config</type>
+          <defname>pcc_config</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>create a .dat file containg the proxy-cable-cal delay information </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="837" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="837" bodyend="886"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a9b2bc0ed61c335acd15eabcf211419e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.get_refererence_scan</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_refererence_scan</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="813" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="813" bodyend="816"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1af97b0d19ad400b37a56b9b3b91101f0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.initialize</definition>
+        <argsstring>(self)</argsstring>
+        <name>initialize</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="752" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="752" bodyend="758"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad4da296cceaef2322783e10f10520a72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.locate_root_files</definition>
+        <argsstring>(self)</argsstring>
+        <name>locate_root_files</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="759" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="759" bodyend="771"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ae1ccef54a15831da343056c581155601" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.StationExperimentPhasorCollection.read_in_data</definition>
+        <argsstring>(self)</argsstring>
+        <name>read_in_data</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="772" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="772" bodyend="783"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>container class for all station-scan phasor data for the whole experiment </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.StationExperimentPhasorCollection</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.StationExperimentPhasorCollection</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="733" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="733" bodyend="892"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad51576de161915eb1ed62978480054c6" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1abc6a3137ec40efb921d74236432f7f84" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>active_band_pol_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1aa2004926359209bf62b36eebb3146860" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>apply_arbitrary_scan_as_phase_reference</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1aa5329cc3801f18f88880afd713db2591" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>apply_start_as_phase_reference</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a8f3cbb9884059aa6edb6f42b53313709" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>channel_to_band_map</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a825d8954d5176fbc41734494b8ec757e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>datfile_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a51ba9b1960cc66b0cdcddf4b55e37169" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>exp_dir</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a6fb90056aa56306c68b01e74ed84a18c" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>exp_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad43327b421f0d6563dc4505c5223ecd7" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>exp_num</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ac1cdb7edbf46e96c9a285ae4e6e92e36" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>fit_scan_band_delays</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a4f77e13fbbd97d02e23c548bdf3845bb" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>generate_dat_files</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a9b2bc0ed61c335acd15eabcf211419e0" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>get_refererence_scan</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1af97b0d19ad400b37a56b9b3b91101f0c" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>initialize</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad4da296cceaef2322783e10f10520a72" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>locate_root_files</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a0efe2383df50cd2e57c5e6617976b9ee" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>mk4_site_id</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ae1ccef54a15831da343056c581155601" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>read_in_data</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1ad82c6664f4ff2437a509a1e0735417a9" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>reference_scan_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1adfcde3234dc2a7573685bf4a6398c8b3" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>reference_scan_object</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a2c1bbff04b364d7e620884e8f3428bdb" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>root_files</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a03b27a6b7fd3905f2e2f93bcb300d61f" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>sspc_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1adabac573c9b2c63154369ccdddf6bb04" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>station_code</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection_1a4bc321b895e42d0f7a2403934b251003" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::StationExperimentPhasorCollection</scope><name>verbosity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

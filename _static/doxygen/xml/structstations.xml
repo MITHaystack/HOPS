@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structstations" kind="struct" language="C++" prot="public">
+    <compoundname>stations</compoundname>
+    <includes refid="difx2mark4_8h" local="no">difx2mark4.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structstations_1aa2c668bf6efa37d3f0680914edb0ad63" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char stations::difx_name[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>difx_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="107" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstations_1ac3b2b09494de596a90d4014121aecd58" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stations::inscan</definition>
+        <argsstring></argsstring>
+        <name>inscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="103" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstations_1a94fd8563f197140371275aeb937334f0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char stations::intl_name[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>intl_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="106" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstations_1a94f820da5b097578368382585f8f7c14" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stations::invis</definition>
+        <argsstring></argsstring>
+        <name>invis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="104" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structstations_1af17f5f0c3e710549bfa4d7effef382b1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char stations::mk4_id</definition>
+        <argsstring></argsstring>
+        <name>mk4_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="105" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>stations</label>
+        <link refid="structstations"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>difx_name</edgelabel>
+          <edgelabel>intl_name</edgelabel>
+          <edgelabel>mk4_id</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>inscan</edgelabel>
+          <edgelabel>invis</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="101" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="102" bodyend="108"/>
+    <listofallmembers>
+      <member refid="structstations_1aa2c668bf6efa37d3f0680914edb0ad63" prot="public" virt="non-virtual"><scope>stations</scope><name>difx_name</name></member>
+      <member refid="structstations_1ac3b2b09494de596a90d4014121aecd58" prot="public" virt="non-virtual"><scope>stations</scope><name>inscan</name></member>
+      <member refid="structstations_1a94fd8563f197140371275aeb937334f0" prot="public" virt="non-virtual"><scope>stations</scope><name>intl_name</name></member>
+      <member refid="structstations_1a94f820da5b097578368382585f8f7c14" prot="public" virt="non-virtual"><scope>stations</scope><name>invis</name></member>
+      <member refid="structstations_1af17f5f0c3e710549bfa4d7effef382b1" prot="public" virt="non-virtual"><scope>stations</scope><name>mk4_id</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

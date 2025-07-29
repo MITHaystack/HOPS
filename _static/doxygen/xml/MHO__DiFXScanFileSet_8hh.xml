@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__DiFXScanFileSet_8hh" kind="file" language="C++">
+    <compoundname>MHO_DiFXScanFileSet.hh</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includedby refid="MHO__DiFXInterface_8hh" local="yes">MHO_DiFXInterface.hh</includedby>
+    <includedby refid="MHO__DiFXScanProcessor_8hh" local="yes">MHO_DiFXScanProcessor.hh</includedby>
+    <incdepgraph>
+      <node id="14">
+        <label>atomic</label>
+      </node>
+      <node id="6">
+        <label>cstdint</label>
+      </node>
+      <node id="17">
+        <label>stdexcept</label>
+      </node>
+      <node id="18">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ostream</label>
+      </node>
+      <node id="16">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>ctime</label>
+      </node>
+      <node id="20">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="1">
+        <label>MHO_DiFXScanFileSet.hh</label>
+        <link refid="MHO__DiFXScanFileSet_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>sstream</label>
+      </node>
+      <node id="13">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>cstdlib</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>mutex</label>
+      </node>
+      <node id="15">
+        <label>thread</label>
+      </node>
+      <node id="10">
+        <label>set</label>
+      </node>
+      <node id="12">
+        <label>stdio.h</label>
+      </node>
+      <node id="19">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>TestVexStripper.cc</label>
+        <link refid="TestVexStripper_8cc"/>
+      </node>
+      <node id="7">
+        <label>MHO_DiFXScanProcessor.cc</label>
+        <link refid="MHO__DiFXScanProcessor_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_DiFXInterface.hh</label>
+        <link refid="MHO__DiFXInterface_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_DiFXScanFileSet.hh</label>
+        <link refid="MHO__DiFXScanFileSet_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>difx2hops.cc</label>
+        <link refid="difx2hops_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_DiFXScanProcessor.hh</label>
+        <link refid="MHO__DiFXScanProcessor_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_DiFXInterface.cc</label>
+        <link refid="MHO__DiFXInterface_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__DiFXScanFileSet" prot="public">hops::MHO_DiFXScanFileSet</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_DiFXScanFileSet_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_DiFXScanFileSet_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classhops_1_1MHO__DiFXScanFileSet" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__DiFXScanFileSet" kindref="compound">MHO_DiFXScanFileSet</ref></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25" refid="classhops_1_1MHO__DiFXScanFileSet_1ad620297090415eb333f7d69f31861eaa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ad620297090415eb333f7d69f31861eaa" kindref="member">MHO_DiFXScanFileSet</ref>()</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//direct<sp/>public<sp/>access<sp/>since<sp/>all<sp/>we<sp/>are<sp/>doing<sp/>is<sp/>get/set<sp/>anyways</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1abf85e6609b98b85251a84184a0160f52" kindref="member">fIndex</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a8552e30d92d670e73a5cc6446e8236b6" kindref="member">fLocalIndex</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a8d792ee4d1814c6950a0ee472f603067" kindref="member">fScanName</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a4bcd07f6bbd2e56565a365ec207a9f05" kindref="member">fInputBaseDirectory</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a1e5808b0acfc4a44d2af5d08ed78cf6b" kindref="member">fOutputBaseDirectory</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a42608f2bccbdeca2cb0bc59cd9df9217" kindref="member">fScanDirectory</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ab6ac8428a968b16ddc59fcfd3cc1fa11" kindref="member">fInputFile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a19b71757d00bc9409e9af7b7e5e86e28" kindref="member">fIMFile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a12e1bc9e3fa7a233a31a99a8099c1255" kindref="member">fCalcFile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a74bd3df44740c906c81a309063ff8467" kindref="member">fFlagFile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a826c370a0db31c2a454b72167c54986a" kindref="member">fV2DFile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ac9fb9f6d8b6c03df2db3faa8d31e6ab0" kindref="member">fVexFile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a236db95f78954951858138b119b89b12" kindref="member">fVisibilityFileList</ref>.clear();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a2cb1d9fa6d4aa35650b7218a9dec271b" kindref="member">fPCALFileList</ref>.clear();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="classhops_1_1MHO__DiFXScanFileSet_1ae80e7132f1c082b45a3c3934d3935986" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ae80e7132f1c082b45a3c3934d3935986" kindref="member">~MHO_DiFXScanFileSet</ref>(){};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//direct<sp/>public<sp/>access<sp/>since<sp/>all<sp/>we<sp/>are<sp/>doing<sp/>is<sp/>get/set<sp/>anyways</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="classhops_1_1MHO__DiFXScanFileSet_1abf85e6609b98b85251a84184a0160f52" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1abf85e6609b98b85251a84184a0160f52" kindref="member">fIndex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//numerical<sp/>index</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="classhops_1_1MHO__DiFXScanFileSet_1a8552e30d92d670e73a5cc6446e8236b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a8552e30d92d670e73a5cc6446e8236b6" kindref="member">fLocalIndex</ref>;</highlight></codeline>
+<codeline lineno="49" refid="classhops_1_1MHO__DiFXScanFileSet_1a8d792ee4d1814c6950a0ee472f603067" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a8d792ee4d1814c6950a0ee472f603067" kindref="member">fScanName</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//difx<sp/>scan<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="classhops_1_1MHO__DiFXScanFileSet_1a4bcd07f6bbd2e56565a365ec207a9f05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a4bcd07f6bbd2e56565a365ec207a9f05" kindref="member">fInputBaseDirectory</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//root<sp/>input<sp/>directory<sp/>for<sp/>this<sp/>experiment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classhops_1_1MHO__DiFXScanFileSet_1a1e5808b0acfc4a44d2af5d08ed78cf6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a1e5808b0acfc4a44d2af5d08ed78cf6b" kindref="member">fOutputBaseDirectory</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//root<sp/>output<sp/>directory<sp/>for<sp/>this<sp/>experiment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="classhops_1_1MHO__DiFXScanFileSet_1a42608f2bccbdeca2cb0bc59cd9df9217" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a42608f2bccbdeca2cb0bc59cd9df9217" kindref="member">fScanDirectory</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//.difx<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="classhops_1_1MHO__DiFXScanFileSet_1ab6ac8428a968b16ddc59fcfd3cc1fa11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ab6ac8428a968b16ddc59fcfd3cc1fa11" kindref="member">fInputFile</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//.input<sp/>file<sp/>associated<sp/>with<sp/>this<sp/>scan</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classhops_1_1MHO__DiFXScanFileSet_1a19b71757d00bc9409e9af7b7e5e86e28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a19b71757d00bc9409e9af7b7e5e86e28" kindref="member">fIMFile</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//.im<sp/>file<sp/>associated<sp/>with<sp/>this<sp/>scan</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classhops_1_1MHO__DiFXScanFileSet_1a12e1bc9e3fa7a233a31a99a8099c1255" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a12e1bc9e3fa7a233a31a99a8099c1255" kindref="member">fCalcFile</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//.calc<sp/>file<sp/>associated<sp/>with<sp/>this<sp/>scan</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="classhops_1_1MHO__DiFXScanFileSet_1a74bd3df44740c906c81a309063ff8467" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a74bd3df44740c906c81a309063ff8467" kindref="member">fFlagFile</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//.flag<sp/>file<sp/>associated<sp/>with<sp/>this<sp/>scan</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="classhops_1_1MHO__DiFXScanFileSet_1a826c370a0db31c2a454b72167c54986a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a826c370a0db31c2a454b72167c54986a" kindref="member">fV2DFile</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//.v2d<sp/>file<sp/>for<sp/>this<sp/>experiment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="classhops_1_1MHO__DiFXScanFileSet_1ac9fb9f6d8b6c03df2db3faa8d31e6ab0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ac9fb9f6d8b6c03df2db3faa8d31e6ab0" kindref="member">fVexFile</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//.vex<sp/>file<sp/>for<sp/>this<sp/>experiment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="classhops_1_1MHO__DiFXScanFileSet_1a236db95f78954951858138b119b89b12" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a236db95f78954951858138b119b89b12" kindref="member">fVisibilityFileList</ref>;<sp/></highlight><highlight class="comment">//list<sp/>of<sp/>all<sp/>DIFX_<sp/>files<sp/>under<sp/>the<sp/>.difx<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classhops_1_1MHO__DiFXScanFileSet_1a2cb1d9fa6d4aa35650b7218a9dec271b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a2cb1d9fa6d4aa35650b7218a9dec271b" kindref="member">fPCALFileList</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//list<sp/>of<sp/>all<sp/>PCAL_<sp/>files<sp/>under<sp/>the<sp/>.difx<sp/>directory</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//flag<sp/>which<sp/>indicates<sp/>if<sp/>this<sp/>file<sp/>set<sp/>has<sp/>all<sp/>the<sp/>necessary<sp/>bits<sp/>to<sp/>be<sp/>converted</highlight></codeline>
+<codeline lineno="69" refid="classhops_1_1MHO__DiFXScanFileSet_1aec4cf5d045f2d07444509e75dc461f53" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1aec4cf5d045f2d07444509e75dc461f53" kindref="member">IsComplete</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="70"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//fFlagFile<sp/>and<sp/>fV2DFile<sp/>are<sp/>optional</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a8d792ee4d1814c6950a0ee472f603067" kindref="member">fScanName</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a4bcd07f6bbd2e56565a365ec207a9f05" kindref="member">fInputBaseDirectory</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a1e5808b0acfc4a44d2af5d08ed78cf6b" kindref="member">fOutputBaseDirectory</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a42608f2bccbdeca2cb0bc59cd9df9217" kindref="member">fScanDirectory</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1ab6ac8428a968b16ddc59fcfd3cc1fa11" kindref="member">fInputFile</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a19b71757d00bc9409e9af7b7e5e86e28" kindref="member">fIMFile</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a12e1bc9e3fa7a233a31a99a8099c1255" kindref="member">fCalcFile</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1ac9fb9f6d8b6c03df2db3faa8d31e6ab0" kindref="member">fVexFile</ref><sp/>==<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a236db95f78954951858138b119b89b12" kindref="member">fVisibilityFileList</ref>.size()<sp/>==<sp/>0){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a2cb1d9fa6d4aa35650b7218a9dec271b" kindref="member">fPCALFileList</ref>.size()<sp/>==<sp/>0){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88" refid="classhops_1_1MHO__DiFXScanFileSet_1ab3f620ecc4561c514737c54e06719cfe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ab3f620ecc4561c514737c54e06719cfe" kindref="member">PrintSummary</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="89"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;scan<sp/>summary:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;index:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1abf85e6609b98b85251a84184a0160f52" kindref="member">fIndex</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;name:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a8d792ee4d1814c6950a0ee472f603067" kindref="member">fScanName</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;.input<sp/>file:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ab6ac8428a968b16ddc59fcfd3cc1fa11" kindref="member">fInputFile</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;.im<sp/>file:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a19b71757d00bc9409e9af7b7e5e86e28" kindref="member">fIMFile</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;.calc<sp/>file:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a12e1bc9e3fa7a233a31a99a8099c1255" kindref="member">fCalcFile</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;.flag<sp/>file:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a74bd3df44740c906c81a309063ff8467" kindref="member">fFlagFile</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;.v2d<sp/>file:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a826c370a0db31c2a454b72167c54986a" kindref="member">fV2DFile</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;.vex<sp/>file:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1ac9fb9f6d8b6c03df2db3faa8d31e6ab0" kindref="member">fVexFile</ref><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i=0<sp/>;i&lt;<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a236db95f78954951858138b119b89b12" kindref="member">fVisibilityFileList</ref>.size();<sp/>i++)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;visibility<sp/>file<sp/>#<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;i&lt;&lt;</highlight><highlight class="stringliteral">&quot;<sp/>:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a236db95f78954951858138b119b89b12" kindref="member">fVisibilityFileList</ref>[i]<sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i=0<sp/>;i&lt;<ref refid="classhops_1_1MHO__DiFXScanFileSet_1a2cb1d9fa6d4aa35650b7218a9dec271b" kindref="member">fPCALFileList</ref>.size();<sp/>i++)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;pcal<sp/>file<sp/>#<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;i&lt;&lt;</highlight><highlight class="stringliteral">&quot;<sp/>:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;<sp/><ref refid="classhops_1_1MHO__DiFXScanFileSet_1a2cb1d9fa6d4aa35650b7218a9dec271b" kindref="member">fPCALFileList</ref>[i]<sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;difx_interface&quot;</highlight><highlight class="normal">,<sp/>eom);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXScanFileSet.hh"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PyParameterStoreInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PyParameterStoreInterface</compoundname>
+    <includes refid="MHO__PyParameterStoreInterface_8hh" local="no">MHO_PyParameterStoreInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PyParameterStoreInterface_1abfd3e0c8ee4497444d72b5e159327f27" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+        <definition>MHO_ParameterStore* hops::MHO_PyParameterStoreInterface::fParameterStore</definition>
+        <argsstring></argsstring>
+        <name>fParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="69" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PyParameterStoreInterface_1aef80f8fdc1b537587f0d34d8a49fbeec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PyParameterStoreInterface::MHO_PyParameterStoreInterface</definition>
+        <argsstring>(MHO_ParameterStore *paramStore)</argsstring>
+        <name>MHO_PyParameterStoreInterface</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyParameterStoreInterface_1abb04dbab71327499f07ce15b43ffd6ef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_PyParameterStoreInterface::~MHO_PyParameterStoreInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PyParameterStoreInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="29" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyParameterStoreInterface_1a7c04fe35d59a1ec10db4f1d4c7463402" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>py::object</type>
+        <definition>py::object hops::MHO_PyParameterStoreInterface::Get</definition>
+        <argsstring>(const std::string &amp;value_path) const</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="34" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="34" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyParameterStoreInterface_1af8959434856c597170473ede44a6be0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>py::dict</type>
+        <definition>py::dict hops::MHO_PyParameterStoreInterface::GetContents</definition>
+        <argsstring>()</argsstring>
+        <name>GetContents</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="60" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="60" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyParameterStoreInterface_1ad823077ef717b35d49c01e7d455209c2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PyParameterStoreInterface::IsPresent</definition>
+        <argsstring>(const std::string &amp;value_path) const</argsstring>
+        <name>IsPresent</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="31" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PyParameterStoreInterface_1ab6a1a4d171fdbd2c64ec768801eaa0af" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PyParameterStoreInterface::Set</definition>
+        <argsstring>(const std::string &amp;value_path, py::object value) const</argsstring>
+        <name>Set</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <param>
+          <type>py::object</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="48" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="48" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>python bindings for the <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Sep 14 13:04:32 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" line="25" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/MHO_PyParameterStoreInterface.hh" bodystart="26" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__PyParameterStoreInterface_1abfd3e0c8ee4497444d72b5e159327f27" prot="private" virt="non-virtual"><scope>hops::MHO_PyParameterStoreInterface</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__PyParameterStoreInterface_1a7c04fe35d59a1ec10db4f1d4c7463402" prot="public" virt="non-virtual"><scope>hops::MHO_PyParameterStoreInterface</scope><name>Get</name></member>
+      <member refid="classhops_1_1MHO__PyParameterStoreInterface_1af8959434856c597170473ede44a6be0f" prot="public" virt="non-virtual"><scope>hops::MHO_PyParameterStoreInterface</scope><name>GetContents</name></member>
+      <member refid="classhops_1_1MHO__PyParameterStoreInterface_1ad823077ef717b35d49c01e7d455209c2" prot="public" virt="non-virtual"><scope>hops::MHO_PyParameterStoreInterface</scope><name>IsPresent</name></member>
+      <member refid="classhops_1_1MHO__PyParameterStoreInterface_1aef80f8fdc1b537587f0d34d8a49fbeec" prot="public" virt="non-virtual"><scope>hops::MHO_PyParameterStoreInterface</scope><name>MHO_PyParameterStoreInterface</name></member>
+      <member refid="classhops_1_1MHO__PyParameterStoreInterface_1ab6a1a4d171fdbd2c64ec768801eaa0af" prot="public" virt="non-virtual"><scope>hops::MHO_PyParameterStoreInterface</scope><name>Set</name></member>
+      <member refid="classhops_1_1MHO__PyParameterStoreInterface_1abb04dbab71327499f07ce15b43ffd6ef" prot="public" virt="virtual"><scope>hops::MHO_PyParameterStoreInterface</scope><name>~MHO_PyParameterStoreInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

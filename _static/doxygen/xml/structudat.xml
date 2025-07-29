@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structudat" kind="struct" language="C++" prot="public">
+    <compoundname>udat</compoundname>
+    <includes refid="usearray_8h" local="no">usearray.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int udat::parameter_id</definition>
+        <argsstring></argsstring>
+        <name>parameter_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="95" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structudat_1a65559310e04660f3df7042f63e8f9373" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int udat::parameter_index</definition>
+        <argsstring></argsstring>
+        <name>parameter_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="93" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structudat_1aae010554c9a05db80c1e2d9425094de6" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* udat::parameter_name</definition>
+        <argsstring></argsstring>
+        <name>parameter_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="92" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>udat</label>
+        <link refid="structudat"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>parameter_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>parameter_id</edgelabel>
+          <edgelabel>parameter_index</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="90" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="91" bodyend="96"/>
+    <listofallmembers>
+      <member refid="structudat_1aa034489d4f4a2ab4faadc4c614b2c59c" prot="public" virt="non-virtual"><scope>udat</scope><name>parameter_id</name></member>
+      <member refid="structudat_1a65559310e04660f3df7042f63e8f9373" prot="public" virt="non-virtual"><scope>udat</scope><name>parameter_index</name></member>
+      <member refid="structudat_1aae010554c9a05db80c1e2d9425094de6" prot="public" virt="non-virtual"><scope>udat</scope><name>parameter_name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

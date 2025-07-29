@@ -1,0 +1,495 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor" kind="class" language="Python" prot="public">
+    <compoundname>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a23d5a07df2d8c401d2833639a438655e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::baseline_dtec</definition>
+        <argsstring></argsstring>
+        <name>baseline_dtec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="88" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a806c0b8ab048b4cd6c20470d578375db" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::config_obj</definition>
+        <argsstring></argsstring>
+        <name>config_obj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="74" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1acf8789495b770a6e55ffd920845e8eb1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::control_file_path</definition>
+        <argsstring></argsstring>
+        <name>control_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="80" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a302f7ec014dd8ba0adb812ac55f3718f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::dtec_tolerance</definition>
+        <argsstring></argsstring>
+        <name>dtec_tolerance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="87" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ac3565ec4b7a02acb37f1f1c3f3e971a1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::error_condition</definition>
+        <argsstring></argsstring>
+        <name>error_condition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="84" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a17253924bbe15fd84df5aa64b760b59f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::exp_dir</definition>
+        <argsstring></argsstring>
+        <name>exp_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="77" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1abb7c9b2c5e585ec5678e73c4d1f06acd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::exp_name</definition>
+        <argsstring></argsstring>
+        <name>exp_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="79" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1adc14dbc6f5c41134794beb27ae32147a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::ion_fix_control_file_path</definition>
+        <argsstring></argsstring>
+        <name>ion_fix_control_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="82" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a4e50cf5e4bf088bf4d02cd78432f7b56" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::ion_search_control_file_path</definition>
+        <argsstring></argsstring>
+        <name>ion_search_control_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="81" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a7075d3257086cdf86b863225b6c647c8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::num_proc</definition>
+        <argsstring></argsstring>
+        <name>num_proc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="86" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a6dabac758ae774203b4e45e821a430a4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::pol_products</definition>
+        <argsstring></argsstring>
+        <name>pol_products</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="85" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a3bab764b4b34f81c941ec9bdc0fe74b1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::root_file_path</definition>
+        <argsstring></argsstring>
+        <name>root_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="75" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a30799e12f69dff5470831ad2249f79dc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::scan_dir</definition>
+        <argsstring></argsstring>
+        <name>scan_dir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="76" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a7dc710f316dbf1fe47d04b6b503386d6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::scan_name</definition>
+        <argsstring></argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="78" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a52762d6845f53ec958f65e6638791a6c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::station_y_minus_x_delays</definition>
+        <argsstring></argsstring>
+        <name>station_y_minus_x_delays</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="89" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a396ba225097174b6b2f2851eee042b5d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::station_y_minus_x_phases</definition>
+        <argsstring></argsstring>
+        <name>station_y_minus_x_phases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="90" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a80facdf050080f9e2255719c5c578bbf" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::stations</definition>
+        <argsstring></argsstring>
+        <name>stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="83" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1acaa4904e6275a0aeba21b95e0ee75424" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor::use_progress_ticker</definition>
+        <argsstring></argsstring>
+        <name>use_progress_ticker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="91" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ad7d1504708ae53e873dd66a982cc3f15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.__init__</definition>
+        <argsstring>(self, config_obj, root_file, control_file)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a806c0b8ab048b4cd6c20470d578375db" kindref="member">config_obj</ref></type>
+          <defname>config_obj</defname>
+        </param>
+        <param>
+          <type>root_file</type>
+          <defname>root_file</defname>
+        </param>
+        <param>
+          <type>control_file</type>
+          <defname>control_file</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="73" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="73" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1af1ddddf8a6634d5f2add8c0b7b698561" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.calculate_delay_phase_offsets</definition>
+        <argsstring>(self)</argsstring>
+        <name>calculate_delay_phase_offsets</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> compute the phase/delay offsets for Y-X at each station </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="177" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="177" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1aaaaf6c6aded794304f7d45d48d127064" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.construct_ionosphere_fix_control_file</definition>
+        <argsstring>(self)</argsstring>
+        <name>construct_ionosphere_fix_control_file</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>construct a control file with a fixed dTEC for each baseline </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="151" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="151" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ac91a6c17727dd95c0f8cbd22dab4cd3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.construct_ionosphere_search_control_file</definition>
+        <argsstring>(self)</argsstring>
+        <name>construct_ionosphere_search_control_file</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>create and ionosphere search control file for the first pass</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="96" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="96" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a48615b8570a3c3ce886f0eb6b6e3fa7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.determine_ionosphere</definition>
+        <argsstring>(self)</argsstring>
+        <name>determine_ionosphere</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>determine the dTEC for each baseline</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="119" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="119" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a8020a80f8cfbc3835fa29c86b00924f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.get_mean_station_delay_offsets_and_error</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_mean_station_delay_offsets_and_error</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="255" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="255" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a80de9c62c86e5f83b8c4bb9434bbc825" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.get_mean_station_phase_offsets_and_error</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_mean_station_phase_offsets_and_error</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="265" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="265" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1aed2f3ce6311222d2778a218c6ed4ec50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.get_raw_station_delay_offsets</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_raw_station_delay_offsets</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="249" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="249" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a9a90a652655a86432da046d33890767d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.get_raw_station_phase_offsets</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_raw_station_phase_offsets</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="252" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="252" bodyend="254"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ad80e6737754e2547a824f3f8382215c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor.set_stations</definition>
+        <argsstring>(self, stations=&apos;&apos;)</argsstring>
+        <name>set_stations</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="structstations" kindref="compound">stations</ref></type>
+          <defname>stations</defname>
+          <defval>&apos;&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="93" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="93" bodyend="95"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> simplified fourphase processor, single baseline values (no least-squares fitting involved)
+we just average the results of this processor over multiple scans to obtain results for each station</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.fourphase_lib.VGOSFourphaseSingleScanProcessor</label>
+        <link refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" line="68" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/fourphase_lib.py" bodystart="68" bodyend="280"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ad7d1504708ae53e873dd66a982cc3f15" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a23d5a07df2d8c401d2833639a438655e" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>baseline_dtec</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1af1ddddf8a6634d5f2add8c0b7b698561" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>calculate_delay_phase_offsets</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a806c0b8ab048b4cd6c20470d578375db" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>config_obj</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1aaaaf6c6aded794304f7d45d48d127064" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>construct_ionosphere_fix_control_file</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ac91a6c17727dd95c0f8cbd22dab4cd3b" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>construct_ionosphere_search_control_file</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1acf8789495b770a6e55ffd920845e8eb1" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>control_file_path</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a48615b8570a3c3ce886f0eb6b6e3fa7e" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>determine_ionosphere</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a302f7ec014dd8ba0adb812ac55f3718f" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>dtec_tolerance</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ac3565ec4b7a02acb37f1f1c3f3e971a1" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>error_condition</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a17253924bbe15fd84df5aa64b760b59f" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>exp_dir</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1abb7c9b2c5e585ec5678e73c4d1f06acd" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>exp_name</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a8020a80f8cfbc3835fa29c86b00924f7" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>get_mean_station_delay_offsets_and_error</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a80de9c62c86e5f83b8c4bb9434bbc825" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>get_mean_station_phase_offsets_and_error</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1aed2f3ce6311222d2778a218c6ed4ec50" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>get_raw_station_delay_offsets</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a9a90a652655a86432da046d33890767d" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>get_raw_station_phase_offsets</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1adc14dbc6f5c41134794beb27ae32147a" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>ion_fix_control_file_path</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a4e50cf5e4bf088bf4d02cd78432f7b56" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>ion_search_control_file_path</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a7075d3257086cdf86b863225b6c647c8" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>num_proc</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a6dabac758ae774203b4e45e821a430a4" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>pol_products</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a3bab764b4b34f81c941ec9bdc0fe74b1" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>root_file_path</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a30799e12f69dff5470831ad2249f79dc" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>scan_dir</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a7dc710f316dbf1fe47d04b6b503386d6" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>scan_name</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1ad80e6737754e2547a824f3f8382215c0" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>set_stations</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a52762d6845f53ec958f65e6638791a6c" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>station_y_minus_x_delays</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a396ba225097174b6b2f2851eee042b5d" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>station_y_minus_x_phases</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1a80facdf050080f9e2255719c5c578bbf" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>stations</name></member>
+      <member refid="classvpal_1_1fourphase__lib_1_1VGOSFourphaseSingleScanProcessor_1acaa4904e6275a0aeba21b95e0ee75424" prot="public" virt="non-virtual"><scope>vpal::fourphase_lib::VGOSFourphaseSingleScanProcessor</scope><name>use_progress_ticker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

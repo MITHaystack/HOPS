@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_cac4f289f826463483511d62ea918348" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__PyOperatorsModuleDefinition_8cc">MHO_PyOperatorsModuleDefinition.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/src/"/>
+  </compounddef>
+</doxygen>

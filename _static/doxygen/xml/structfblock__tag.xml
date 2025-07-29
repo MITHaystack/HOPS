@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfblock__tag" kind="struct" language="C++" prot="public">
+    <compoundname>fblock_tag</compoundname>
+    <includes refid="difx2mark4_8h" local="no">difx2mark4.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfblock__tag_1a6ffbdc0fa99513a8f9acb2dc725045c8" prot="public" static="no" mutable="no">
+        <type>struct fblock_tag::@3</type>
+        <definition>struct fblock_tag::@3 fblock_tag::stn[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>stn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="133" column="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>anonymous:stn</label>
+      </node>
+      <node id="1">
+        <label>fblock_tag</label>
+        <link refid="structfblock__tag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>stn</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="117" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="118" bodyend="134"/>
+    <listofallmembers>
+      <member refid="structfblock__tag_1a6ffbdc0fa99513a8f9acb2dc725045c8" prot="public" virt="non-virtual"><scope>fblock_tag</scope><name>stn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

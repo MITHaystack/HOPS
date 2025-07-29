@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PhaseCalibrationTrim" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PhaseCalibrationTrim</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; multitone_pcal_type &gt;</basecompoundref>
+    <includes refid="MHO__PhaseCalibrationTrim_8hh" local="no">MHO_PhaseCalibrationTrim.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PhaseCalibrationTrim_1a3f2a6a8c77fdab2cd09a0ce157e0e5d9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_PhaseCalibrationTrim::fAPEps</definition>
+        <argsstring></argsstring>
+        <name>fAPEps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="85" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PhaseCalibrationTrim_1ab2bf80be09aeeda57cb8f48094c28f36" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_PhaseCalibrationTrim::fStartEps</definition>
+        <argsstring></argsstring>
+        <name>fStartEps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="86" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PhaseCalibrationTrim_1abba75ed211c71f73bb0b4946c4fd4274" prot="private" static="no" mutable="no">
+        <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+        <definition>const visibility_type* hops::MHO_PhaseCalibrationTrim::fVis</definition>
+        <argsstring></argsstring>
+        <name>fVis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="84" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PhaseCalibrationTrim_1ab71807f2d04da5d4048b98b82322d7b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PhaseCalibrationTrim::MHO_PhaseCalibrationTrim</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_PhaseCalibrationTrim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PhaseCalibrationTrim.cc" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PhaseCalibrationTrim_1a243339414ea9b01c2e33a57dfd458937" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_PhaseCalibrationTrim::~MHO_PhaseCalibrationTrim</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PhaseCalibrationTrim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="37" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PhaseCalibrationTrim.cc" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PhaseCalibrationTrim_1adcc8cb1295191d7718429dbb462def4e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PhaseCalibrationTrim::SetVisibilities</definition>
+        <argsstring>(const visibility_type *vis)</argsstring>
+        <name>SetVisibilities</name>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>vis</declname>
+        </param>
+        <briefdescription>
+<para>Setter for visibilities. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input const visibility_type* array containing visibilities </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="44" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" bodystart="44" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PhaseCalibrationTrim_1ad77b4d0bf8b3a60668aa187dff162aa5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PhaseCalibrationTrim::ExecuteInPlace</definition>
+        <argsstring>(multitone_pcal_type *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Trims and aligns multitone phase calibration data in-place based on visibility data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input multitone_pcal_type* containing phase calibration data to be trimmed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool indicating success or failure of the trimming operation </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="72" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PhaseCalibrationTrim.cc" bodystart="16" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PhaseCalibrationTrim_1afa513c7b6b58038b3a3d5d9e76760895" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PhaseCalibrationTrim::ExecuteOutOfPlace</definition>
+        <argsstring>(const multitone_pcal_type *in, multitone_pcal_type *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input multitone_pcal_type and executes in-place trim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input multitone_pcal_type data to be copied </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(multitone_pcal_type*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of ExecuteInPlace operation on copied data </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="81" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PhaseCalibrationTrim.cc" bodystart="149" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PhaseCalibrationTrim_1a3ee38433f97dc8755cdfea7642a6b464" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PhaseCalibrationTrim::InitializeInPlace</definition>
+        <argsstring>(multitone_pcal_type *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Trims down multitone_pcal_type data for phase calibration in-place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to multitone_pcal_type data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if trimming was successful. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="54" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PhaseCalibrationTrim.cc" bodystart="155" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PhaseCalibrationTrim_1ab5464a373036416c818fd4904cff7dce" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PhaseCalibrationTrim::InitializeOutOfPlace</definition>
+        <argsstring>(const multitone_pcal_type *in, multitone_pcal_type *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1a635984d730aadef0172598ca5fbfe135" kindref="member">multitone_pcal_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes out-of-place phase calibration trim using input and output multitone_pcal_type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input multitone_pcal_type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to output multitone_pcal_type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="63" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PhaseCalibrationTrim.cc" bodystart="160" bodyend="163"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__PhaseCalibrationTrim" kindref="compound">MHO_PhaseCalibrationTrim</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Trims the time range of the pcal data to match that of the visibilities, very minimal implementation. Assumes that the p-cal and visibility data have the same accumulation period (this is true of most sane data) If they did not, then we would need to interpolate between p-cal points to match the visbility gridding (this is not done here)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jan 27 10:36:00 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PhaseCalibrationTrim</label>
+        <link refid="classhops_1_1MHO__PhaseCalibrationTrim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; multitone_pcal_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PhaseCalibrationTrim</label>
+        <link refid="classhops_1_1MHO__PhaseCalibrationTrim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; multitone_pcal_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PhaseCalibrationTrim.hh" bodystart="34" bodyend="87"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1ad77b4d0bf8b3a60668aa187dff162aa5" prot="protected" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1afa513c7b6b58038b3a3d5d9e76760895" prot="protected" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1a3f2a6a8c77fdab2cd09a0ce157e0e5d9" prot="private" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>fAPEps</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1ab2bf80be09aeeda57cb8f48094c28f36" prot="private" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>fStartEps</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1abba75ed211c71f73bb0b4946c4fd4274" prot="private" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>fVis</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1a3ee38433f97dc8755cdfea7642a6b464" prot="protected" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1ab5464a373036416c818fd4904cff7dce" prot="protected" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1ab71807f2d04da5d4048b98b82322d7b7" prot="public" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>MHO_PhaseCalibrationTrim</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1adcc8cb1295191d7718429dbb462def4e" prot="public" virt="non-virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>SetVisibilities</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__PhaseCalibrationTrim_1a243339414ea9b01c2e33a57dfd458937" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>~MHO_PhaseCalibrationTrim</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_PhaseCalibrationTrim</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

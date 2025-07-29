@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_42a987f8cfdd983be9677f634438bfef" kind="dir">
+    <compoundname>CUDAModules</compoundname>
+    <innerdir refid="dir_eafb08cc50b44fd3d5a5354e0f178598">include</innerdir>
+    <innerdir refid="dir_b12962be78f8f68eec3eadb4368d629b">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/CUDA/CUDAModules/"/>
+  </compounddef>
+</doxygen>

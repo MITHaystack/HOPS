@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_0c6283dd7716efebfcf76fdb98d8e794" kind="dir">
+    <compoundname>c_src</compoundname>
+    <innerdir refid="dir_637a76a7abf5a01e5c2aa724f3c1e96e">afio</innerdir>
+    <innerdir refid="dir_9de42bc92121356a26b664e34e3ff194">applications</innerdir>
+    <innerdir refid="dir_db8d68003073a61b7114dbc4f792cfed">dfio</innerdir>
+    <innerdir refid="dir_9ef7e4ca5af767b4d78801a8e1d37f3e">fourfit_libs</innerdir>
+    <innerdir refid="dir_6a3dba19d7ed4d02543522954172b2ac">misc</innerdir>
+    <innerdir refid="dir_cb2d4e92f47691559fc9d122a5e37fac">mk4util</innerdir>
+    <innerdir refid="dir_758df28fbdbb54fb46d6d3d6484a4984">msg</innerdir>
+    <innerdir refid="dir_64078e4dd55db1ba2b4e557207803e4b">vex</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/"/>
+  </compounddef>
+</doxygen>

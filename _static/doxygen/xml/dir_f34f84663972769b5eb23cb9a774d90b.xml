@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_f34f84663972769b5eb23cb9a774d90b" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__DiFXBaselineProcessor_8hh">MHO_DiFXBaselineProcessor.hh</innerfile>
+    <innerfile refid="MHO__DiFXChannelNameConstructor_8hh">MHO_DiFXChannelNameConstructor.hh</innerfile>
+    <innerfile refid="MHO__DiFXInputProcessor_8hh">MHO_DiFXInputProcessor.hh</innerfile>
+    <innerfile refid="MHO__DiFXInterface_8hh">MHO_DiFXInterface.hh</innerfile>
+    <innerfile refid="MHO__DiFXPCalProcessor_8hh">MHO_DiFXPCalProcessor.hh</innerfile>
+    <innerfile refid="MHO__DiFXScanFileSet_8hh">MHO_DiFXScanFileSet.hh</innerfile>
+    <innerfile refid="MHO__DiFXScanProcessor_8hh">MHO_DiFXScanProcessor.hh</innerfile>
+    <innerfile refid="MHO__DiFXTimeUtilities_8hh">MHO_DiFXTimeUtilities.hh</innerfile>
+    <innerfile refid="MHO__DiFXVisibilityProcessor_8hh">MHO_DiFXVisibilityProcessor.hh</innerfile>
+    <innerfile refid="MHO__DiFXVisibilityRecord_8hh">MHO_DiFXVisibilityRecord.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_ea77c5aa62ce6fce68ae5996a6713140" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="clear__srchdata_8c">clear_srchdata.c</innerfile>
+    <innerfile refid="fill__grids_8c">fill_grids.c</innerfile>
+    <innerfile refid="fit__peaks_8c">fit_peaks.c</innerfile>
+    <innerfile refid="grid__filler_8c">grid_filler.c</innerfile>
+    <innerfile refid="applications_2search_2src_2parabola_8c">applications/search/src/parabola.c</innerfile>
+    <innerfile refid="applications_2search_2src_2parse__cmdline_8c">applications/search/src/parse_cmdline.c</innerfile>
+    <innerfile refid="plot__srchdata_8c">plot_srchdata.c</innerfile>
+    <innerfile refid="search_2src_2read__data_8c">search/src/read_data.c</innerfile>
+    <innerfile refid="search_2src_2sort__data_8c">search/src/sort_data.c</innerfile>
+    <innerfile refid="search_2src_2sorter_8c">search/src/sorter.c</innerfile>
+    <innerfile refid="write__srchdata_8c">write_srchdata.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/"/>
+  </compounddef>
+</doxygen>

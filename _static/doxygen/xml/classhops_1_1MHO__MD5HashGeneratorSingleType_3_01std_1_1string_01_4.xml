@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;</compoundname>
+    <includes refid="MHO__MD5HashGenerator_8hh" local="no">MHO_MD5HashGenerator.hh</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a1ba88743e5eb3fd94155fb445a94dd0c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;::MHO_MD5HashGeneratorSingleType</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MD5HashGeneratorSingleType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="70" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a1bb1a53f8743c2e18721f3c7e64175bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;::~MHO_MD5HashGeneratorSingleType</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MD5HashGeneratorSingleType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="71" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="71" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a88a09a553f3bfafaf6b66b39124f4622" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref> &amp;</type>
+        <definition>MHO_MD5HashGenerator&amp; operator&lt;&lt;</definition>
+        <argsstring>(MHO_MD5HashGeneratorSingleType&lt; std::string &gt; &amp;s, std::string &amp;obj)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__MD5HashGeneratorSingleType" kindref="compound">MHO_MD5HashGeneratorSingleType</ref>&lt; std::string &gt; &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="73" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="73" bodyend="82"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a0d83123812d24a4198968f87b4849f25" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="struct__picohash__md5__ctx__t" kindref="compound">_picohash_md5_ctx_t</ref> *</type>
+        <definition>virtual _picohash_md5_ctx_t* hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;::GetMD5CTXPtr</definition>
+        <argsstring>()=0</argsstring>
+        <name>GetMD5CTXPtr</name>
+        <briefdescription>
+<para>Getter for md5ctxptr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>_picohash_md5_ctx_t* Pointer to the MD5 context structure. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="91" column="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a4553f4cb7735590144ae8fa3be311080" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref> &amp;</type>
+        <definition>virtual MHO_MD5HashGenerator&amp; hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;::Self</definition>
+        <argsstring>()=0</argsstring>
+        <name>Self</name>
+        <briefdescription>
+<para>Returns a reference to the current instance of <ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref>&amp;: Reference to the current instance </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="98" column="38"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4" kindref="compound">MHO_MD5HashGeneratorSingleType&lt;std::string&gt;</ref> specialization for string type. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" line="67" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_MD5HashGenerator.hh" bodystart="68" bodyend="99"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a0d83123812d24a4198968f87b4849f25" prot="protected" virt="pure-virtual"><scope>hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;</scope><name>GetMD5CTXPtr</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a1ba88743e5eb3fd94155fb445a94dd0c" prot="public" virt="non-virtual"><scope>hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;</scope><name>MHO_MD5HashGeneratorSingleType</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a88a09a553f3bfafaf6b66b39124f4622" prot="public" virt="non-virtual"><scope>hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a4553f4cb7735590144ae8fa3be311080" prot="protected" virt="pure-virtual"><scope>hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;</scope><name>Self</name></member>
+      <member refid="classhops_1_1MHO__MD5HashGeneratorSingleType_3_01std_1_1string_01_4_1a1bb1a53f8743c2e18721f3c7e64175bf" prot="public" virt="virtual"><scope>hops::MHO_MD5HashGeneratorSingleType&lt; std::string &gt;</scope><name>~MHO_MD5HashGeneratorSingleType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

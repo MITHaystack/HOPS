@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compiling &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HOPS4 Applications and Libraries" href="hops4/hops4.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HOPS
+              <img src="_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#build-instructions">Build Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-the-build">Testing the Build</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-documentation">Building the Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license-and-authorship">License and Authorship</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hops4/hops4.html">HOPS4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Compiling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/compiling.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compiling">
+<h1>Compiling<a class="headerlink" href="#compiling" title="Link to this heading"></a></h1>
+<section id="build-instructions">
+<h2>Build Instructions<a class="headerlink" href="#build-instructions" title="Link to this heading"></a></h2>
+<p>To configure the build system with the default options and compile the code using CMake, execute the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;hops-source&gt;
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>../
+make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>For faster builds, you may use parallel compilation with <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">N</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">8</span></code>).</p>
+<p>After building, update your <code class="docutils literal notranslate"><span class="pre">PATH</span></code> variable by executing the environment setup script with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>&lt;hops-install&gt;/bin/hops.bash
+</pre></div>
+</div>
+<p>If you are using the default install directory, you should see something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HOPS</span> <span class="n">install</span> <span class="n">directory</span> <span class="nb">set</span> <span class="n">to</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">oper</span><span class="o">/</span><span class="n">HOPS</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="mf">4.0.0</span>
+</pre></div>
+</div>
+<p>The default installation directory (on x86 systems) will be: <code class="docutils literal notranslate"><span class="pre">&lt;build-dir&gt;/../x86_64-4.00</span></code>.
+To override this, you may specify the install prefix as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">HOPS4_INSTALL_DIR</span><span class="o">=</span><span class="s2">&quot;~/hops-install&quot;</span>
+cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="si">${</span><span class="nv">HOPS4_INSTALL_DIR</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Use the command <code class="docutils literal notranslate"><span class="pre">ccmake</span></code> (CMake curses GUI) to configure options manually, and to set paths to dependencies which may not be detected automatically.
+On the first run, press ‘c’ to configure the build, ‘e’ to exit and edit, then ‘c’ to re-configure, and then ‘g’ to generate.</p>
+<p>For example, the options table provided by <code class="docutils literal notranslate"><span class="pre">ccmake</span></code> may look like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BASH_PROGRAM</span>                    <span class="o">*/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span>
+<span class="n">BC_PROGRAM</span>                      <span class="o">*/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bc</span>
+<span class="n">BUILD_DOXYGEN_REF</span>               <span class="o">*</span><span class="n">OFF</span>
+<span class="n">BUILD_LATEX_DOCS</span>                <span class="o">*</span><span class="n">OFF</span>
+<span class="n">CMAKE_BUILD_TYPE</span>                <span class="o">*</span><span class="n">Release</span>
+<span class="n">CMAKE_INSTALL_PREFIX</span>            <span class="o">*/</span><span class="n">home</span><span class="o">/</span><span class="n">oper</span><span class="o">/</span><span class="n">HOPS</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="mf">4.0.0</span>
+<span class="n">CPGPLOT_LIBRARY</span>                 <span class="o">*/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">libcpgplot</span><span class="o">.</span><span class="n">so</span>
+<span class="n">ENABLE_COLOR_MSG</span>                <span class="o">*</span><span class="n">ON</span>
+<span class="n">ENABLE_DEBUG_MSG</span>                <span class="o">*</span><span class="n">ON</span>
+<span class="n">ENABLE_EXTRA_VERBOSE_MSG</span>        <span class="o">*</span><span class="n">OFF</span>
+<span class="n">ENABLE_SNAPSHOTS</span>                <span class="o">*</span><span class="n">OFF</span>
+<span class="n">ENABLE_STEPWISE_CHECK</span>           <span class="o">*</span><span class="n">OFF</span>
+<span class="n">EXTRA_WARNINGS</span>                  <span class="o">*</span><span class="n">OFF</span>
+<span class="n">GFORTRAN_LIB</span>                    <span class="o">*/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libgfortran</span><span class="o">.</span><span class="n">so</span><span class="mf">.5</span>
+<span class="n">GS_EXE</span>                          <span class="o">*/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gs</span>
+<span class="n">HOPS3_DISABLE_WARNINGS</span>          <span class="o">*</span><span class="n">ON</span>
+<span class="n">HOPS3_PYTHON_EXTRAS</span>             <span class="o">*</span><span class="n">ON</span>
+<span class="n">HOPS3_USE_ADHOC_FLAGGING</span>        <span class="o">*</span><span class="n">ON</span>
+<span class="n">HOPS_BUILD_EXTRA_CONTAINERS</span>     <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_CACHED_TEST_DATADIR</span>        <span class="o">*/</span><span class="n">home</span><span class="o">/</span><span class="n">oper</span><span class="o">/</span><span class="n">HOPS</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="mf">4.0.0</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">test_data</span>
+<span class="n">HOPS_ENABLE_DEV_TODO</span>            <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_ENABLE_TEST</span>                <span class="o">*</span><span class="n">ON</span>
+<span class="n">HOPS_IS_HOPS4</span>                   <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_PYPI_MANAGE_DEPS</span>           <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_USE_CUDA</span>                   <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_USE_DIFXIO</span>                 <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_USE_FFTW3</span>                  <span class="o">*</span><span class="n">ON</span>
+<span class="n">HOPS_USE_MPI</span>                    <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_USE_OPENCL</span>                 <span class="o">*</span><span class="n">OFF</span>
+<span class="n">HOPS_USE_PYBIND11</span>               <span class="o">*</span><span class="n">ON</span>
+<span class="n">PYBIND11_FINDPYTHON</span>             <span class="o">*</span><span class="n">OFF</span>
+<span class="n">PYBIND11_INSTALL</span>                <span class="o">*</span><span class="n">OFF</span>
+<span class="n">PYBIND11_INTERNALS_VERSION</span>      <span class="o">*</span>
+<span class="n">PYBIND11_NOPYTHON</span>               <span class="o">*</span><span class="n">OFF</span>
+<span class="n">PYBIND11_SIMPLE_GIL_MANAGEMENT</span>  <span class="o">*</span><span class="n">OFF</span>
+<span class="n">PYBIND11_TEST</span>                   <span class="o">*</span><span class="n">OFF</span>
+<span class="n">TAR_PROGRAM</span>                     <span class="o">*/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">tar</span>
+<span class="n">WGET_PROGRAM</span>                    <span class="o">*/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">wget</span>
+</pre></div>
+</div>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<p>The minimum required dependencies (to build HOPS4) are:</p>
+<ol class="arabic simple">
+<li><p>cmake, cmake-curses-gui, GNU make, and bash</p></li>
+<li><p>A C++11 compiler (gcc &gt;= 4.8.5 or clang &gt;= 3.6)</p></li>
+<li><p>Python 3 and pip</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span></code> and <code class="docutils literal notranslate"><span class="pre">jq</span></code> (not required, but used for testing)</p></li>
+</ol>
+<p>To install the software on Ubuntu/Debian, first install the dependencies as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>cmake-curses-gui<span class="w"> </span>python3-dev<span class="w"> </span>python3-pip<span class="w"> </span>wget<span class="w"> </span>jq
+</pre></div>
+</div>
+<p>Similarly, to get the dependencies on on RHEL/Fedora, do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>gcc-c++<span class="w"> </span>cmake<span class="w"> </span>cmake-gui<span class="w"> </span>python3-devel<span class="w"> </span>python3-pip<span class="w"> </span>wget<span class="w"> </span>jq
+</pre></div>
+</div>
+<p>In some circumstances certain RHEL-based distributions may require the following additional package repositories to be added:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--set-enabled<span class="w"> </span>crb
+dnf<span class="w"> </span>install<span class="w"> </span>epel-release
+</pre></div>
+</div>
+<p>The package FFTW while not required, is highly recommended as it will accelerate fringe-fitting over the native FFT implementation. In can be installed with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libfftw3-dev
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>fftw-devel
+</pre></div>
+</div>
+<p>The Python packages required by HOPS4 can be installed via pip.
+If the build flag <code class="docutils literal notranslate"><span class="pre">HOPS_PYPI_MANAGE_DEPS</span></code> is set to <code class="docutils literal notranslate"><span class="pre">ON</span></code>, then pip will automatically locate and locally install the necessary python dependencies
+in the HOPS install directory when <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> is run. If this flag is set to OFF, then it is expected that users will manage they python dependencies (numpy, matplotlib, scipy, future)
+manually themselves. Be aware, that if these packages (numpy, matplotlib, scipy) are already installed system wide, and <code class="docutils literal notranslate"><span class="pre">HOPS_PYPI_MANAGE_DEPS</span></code> is also set to <code class="docutils literal notranslate"><span class="pre">ON</span></code>, then
+you may run into a package conflict between the two installations, so it is best to pick one strategy and stick to it.</p>
+<p>If you desire to build the original HOPS3 software there are additional requirements, these are:</p>
+<ol class="arabic simple">
+<li><p>Python 3.x</p></li>
+<li><p>FFTW3</p></li>
+<li><p>PGPLOT</p></li>
+<li><p>X11</p></li>
+<li><p>GNU Fortran</p></li>
+<li><p>Ghostscript</p></li>
+</ol>
+<p>To install these on on Ubuntu/Debian, do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-dev<span class="w"> </span>python3-pip<span class="w"> </span>pgplot5<span class="w"> </span>libgfortran5<span class="w"> </span>libfftw3-dev<span class="w"> </span>libx11-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                     </span>gnuplot<span class="w"> </span>binutils<span class="w"> </span>libxpm-dev<span class="w"> </span>ghostscript<span class="w"> </span>ghostscript-x
+</pre></div>
+</div>
+<p>Whereas to install these on RHEL/Fedora, do:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>python3-devel<span class="w"> </span>python3-pip<span class="w"> </span>gcc-gfortran<span class="w"> </span>fftw-devel<span class="w"> </span>libX11-devel<span class="w"> </span>gnuplot<span class="w"> </span><span class="se">\</span>
+<span class="w">                 </span>binutils<span class="w"> </span>libXpm-devel<span class="w"> </span>ghostscript
+</pre></div>
+</div>
+<p>The package PGPLOT must be installed manually on Fedora/RHEL since there is no readily available package. See the document <code class="docutils literal notranslate"><span class="pre">&lt;hops-source&gt;/doc/notes/pgplot.txt</span></code>
+for additional information on how to do this.</p>
+</section>
+<section id="testing-the-build">
+<h2>Testing the Build<a class="headerlink" href="#testing-the-build" title="Link to this heading"></a></h2>
+<p>In order to run the test suite after installation, you must first download the test data with the <code class="docutils literal notranslate"><span class="pre">testdata_download_all.sh</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>&lt;hops-git&gt;
+<span class="nb">cd</span><span class="w"> </span>./build
+<span class="nb">source</span><span class="w"> </span>&lt;hops-install&gt;/bin/hops.bash
+testdata_download_all.sh
+make<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>Note that some some tests require a CI/CD key in order to download non-public data, if this data is not present, then these tests will be skipped.
+Also, a terminal width of at least 95 characters is needed to avoid line wrap in the test output.</p>
+</section>
+<section id="building-the-documentation">
+<h2>Building the Documentation<a class="headerlink" href="#building-the-documentation" title="Link to this heading"></a></h2>
+<p>To build the documentation using Doxygen and Sphinx, set <code class="docutils literal notranslate"><span class="pre">BUILD_DOCS=ON</span></code> and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>reference<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>The output will be placed in: <code class="docutils literal notranslate"><span class="pre">&lt;hops-install&gt;/doc/reference</span></code>, with the index file at: <code class="docutils literal notranslate"><span class="pre">&lt;hops-install&gt;/doc/reference/index.html</span></code>.
+You will need doxygen, sphinx, and python packages breathe and myst_parser to build the documentation files.</p>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<p>For questions or comments, please contact the developer mailing list:</p>
+<p><code class="docutils literal notranslate"><span class="pre">hops-dev&#64;mit.edu</span></code></p>
+</section>
+<section id="license-and-authorship">
+<h2>License and Authorship<a class="headerlink" href="#license-and-authorship" title="Link to this heading"></a></h2>
+<p>See the <a class="reference internal" href="license.html"><span class="doc">License</span></a> and <a class="reference internal" href="authors.html"><span class="doc">AUTHORS</span></a> sections for information on license and authorship.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hops4/hops4.html" class="btn btn-neutral float-right" title="HOPS4 Applications and Libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,592 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="tempo_8h" kind="file" language="C++">
+    <compoundname>tempo.h</compoundname>
+    <innerclass refid="structplot__info" prot="public">plot_info</innerclass>
+    <innerclass refid="structplot__points" prot="public">plot_points</innerclass>
+    <innerclass refid="structplot__ptqual" prot="public">plot_ptqual</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="tempo_8h_1ae577083c340e3eeb8e470db7e9a26b30" prot="public" static="no">
+        <name>ALL_PLOT</name>
+        <initializer>020</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ab2454f0476e6bba17385e4f70dc805f9" prot="public" static="no">
+        <name>ANY_PLOT</name>
+        <initializer>037</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a5914319d5b1088581e873c3bf970b354" prot="public" static="no">
+        <name>AX_AMPLITUDE</name>
+        <initializer>202</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ab9af8dcf6e47f32ef66f500207c5ba27" prot="public" static="no">
+        <name>AX_AZIMUTH</name>
+        <initializer>105</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ae3f32089ab1e014f37be638131127944" prot="public" static="no">
+        <name>AX_CAMP</name>
+        <initializer>400		/* By quad */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ae6c8c1c55abb7ca0172b4f2a5c227ec8" prot="public" static="no">
+        <name>AX_CMBDELAY</name>
+        <initializer>303</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a67cac0a02b8a8bdaddd347a0fec6731b" prot="public" static="no">
+        <name>AX_CPHASE</name>
+        <initializer>300		/* By triangle */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a0317630cea3feebe19b610c8877d234e" prot="public" static="no">
+        <name>AX_CRATE</name>
+        <initializer>301</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="43" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a742efff2115484d984c8806954244a13" prot="public" static="no">
+        <name>AX_CSBDELAY</name>
+        <initializer>302</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="44" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1aebc89bbf430a8a33931aa81adfa53e5f" prot="public" static="no">
+        <name>AX_DRATE</name>
+        <initializer>206</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="38" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ae93d710b31d8a241a42b3e8bc63d2754" prot="public" static="no">
+        <name>AX_ELEVATION</name>
+        <initializer>104</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a8897e6c8c6460afe22c035f1bf85bf1e" prot="public" static="no">
+        <name>AX_ERRORATE</name>
+        <initializer>103</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a9458971f1ca0cbaabe7d5912e27b84e3" prot="public" static="no">
+        <name>AX_MBDELAY</name>
+        <initializer>205</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a6c7e12a1c358567b9032f51df5c31a63" prot="public" static="no">
+        <name>AX_NCOTIME</name>
+        <initializer>207</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="39" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a0b72a00a7a8fcd0170f38461247d45b1" prot="public" static="no">
+        <name>AX_PARAMETER</name>
+        <initializer>600		/* parameter number in aux input variable */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="53" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a138f55b57a40083403e72238e031ba9c" prot="public" static="no">
+        <name>AX_PCAL_AMP</name>
+        <initializer>102</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a75fbf6b3eb80adfd581f55ea6120fc2d" prot="public" static="no">
+        <name>AX_PCAL_DIFF</name>
+        <initializer>101		/* <ref refid="structref" kindref="compound">ref</ref> and remote in aux input variable) */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ac00e70455c50a4fc8009e8511610294a" prot="public" static="no">
+        <name>AX_PCAL_PHASE</name>
+        <initializer>100		/* By station (1st 4 extracted params only, */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a1edb9b223382998ac999f5d56238b84f" prot="public" static="no">
+        <name>AX_PHASE</name>
+        <initializer>203</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a5d96defa5a2a49ecee3a0325f079c1b5" prot="public" static="no">
+        <name>AX_SBDELAY</name>
+        <initializer>204</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ac4b932d49910b743dbf2e6e77dcdbcb9" prot="public" static="no">
+        <name>AX_SCOTIME</name>
+        <initializer>208</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a43da4ecc269084a8cc0738629769197f" prot="public" static="no">
+        <name>AX_SNR</name>
+        <initializer>201		/* By <ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref> */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a663ea2cbce93fa99b869b8013b8c0ad9" prot="public" static="no">
+        <name>AX_TIMETAG</name>
+        <initializer>0		/* By any */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ac25dea6eb1474eb2784775fffe8f470d" prot="public" static="no">
+        <name>AX_U</name>
+        <initializer>500		/* By <ref refid="hops__time_8c_1ab99a7ec2d33e014b5ebe0850968fbe9b" kindref="member">all</ref> */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="49" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a643d170d72607566330164dffb5bf209" prot="public" static="no">
+        <name>AX_UVDIST</name>
+        <initializer>502</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="51" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a247ee22facef524aa232c7b79eec55ba" prot="public" static="no">
+        <name>AX_V</name>
+        <initializer>501</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="50" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" prot="public" static="no">
+        <name>BASELINE_PLOT</name>
+        <initializer>02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" prot="public" static="no">
+        <name>MAXPLT</name>
+        <initializer>20000			/* Max # of points in single <ref refid="plot_8c_1aa7eb77a7764bbfc536852c0a352fe2a9" kindref="member">plot</ref>, */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="56" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" prot="public" static="no">
+        <name>NO_AXIS</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a3bf9baefaee67b0b441d0524a5fcba4d" prot="public" static="no">
+        <name>NSYMBOL</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="59" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1aba428f09d48079e50fa27ef70ef7be2b" prot="public" static="no">
+        <name>PQ_BAD</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1aa601bd24419a49e82aefff66697b97e0" prot="public" static="no">
+        <name>PQ_GOOD</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a204632786b6b92c3fa630c46fed7b123" prot="public" static="no">
+        <name>PQ_SUSPECT</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1addd3200f648cbefaab99bfe55a3f0615" prot="public" static="no">
+        <name>QUAD_PLOT</name>
+        <initializer>010</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a62a0f8a0b822f31ff84bc8252b33e7c8" prot="public" static="no">
+        <name>REFERENCE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a62ca51b78468397b2ef98ee55a5e6e2a" prot="public" static="no">
+        <name>REMOTE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a06799ae81acde5dcd898c3717f2eea86" prot="public" static="no">
+        <name>SOURCE_NOSPLIT</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1adfdad1a86f7ab215a8173be4ba4d634e" prot="public" static="no">
+        <name>SOURCE_SPLIT</name>
+        <initializer>01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" prot="public" static="no">
+        <name>STATION_PLOT</name>
+        <initializer>01		/* Identified families of <ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref> below */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" prot="public" static="no">
+        <name>TRIANGLE_PLOT</name>
+        <initializer>04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a275506c6ee8302d1e81f963e96d77ce2" prot="public" static="no">
+        <name>Y_MULTIPLE</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="3" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="tempo_8h_1a13fbc120586392dfebf6c1944dfcc24a" prot="public" static="no">
+        <name>Y_SINGLE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="2" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Various<sp/>plotting<sp/>mode<sp/>definitions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="tempo_8h_1a13fbc120586392dfebf6c1944dfcc24a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Y_SINGLE<sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="tempo_8h_1a275506c6ee8302d1e81f963e96d77ce2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Y_MULTIPLE<sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="tempo_8h_1a06799ae81acde5dcd898c3717f2eea86" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SOURCE_NOSPLIT<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="tempo_8h_1adfdad1a86f7ab215a8173be4ba4d634e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SOURCE_SPLIT<sp/><sp/><sp/><sp/>01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Plotted<sp/>point<sp/>quality<sp/>indicators<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="tempo_8h_1aa601bd24419a49e82aefff66697b97e0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PQ_GOOD<sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="tempo_8h_1a204632786b6b92c3fa630c46fed7b123" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PQ_SUSPECT<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="tempo_8h_1aba428f09d48079e50fa27ef70ef7be2b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PQ_BAD<sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="tempo_8h_1adb2b4ddf9bdb685de66db8178552f875" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STATION_PLOT<sp/><sp/><sp/><sp/>01<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Identified<sp/>families<sp/>of<sp/>axes<sp/>below<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="tempo_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASELINE_PLOT<sp/><sp/><sp/>02</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="tempo_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRIANGLE_PLOT<sp/><sp/><sp/>04</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="tempo_8h_1addd3200f648cbefaab99bfe55a3f0615" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>QUAD_PLOT<sp/><sp/><sp/>010</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="tempo_8h_1ae577083c340e3eeb8e470db7e9a26b30" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALL_PLOT<sp/><sp/><sp/><sp/>020</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="tempo_8h_1ab2454f0476e6bba17385e4f70dc805f9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ANY_PLOT<sp/><sp/><sp/><sp/>037</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Used<sp/>for<sp/>station-based<sp/>quantities<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>baseline-based<sp/>plots<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="tempo_8h_1a62a0f8a0b822f31ff84bc8252b33e7c8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REFERENCE<sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="tempo_8h_1a62ca51b78468397b2ef98ee55a5e6e2a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REMOTE<sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Axis<sp/>IDs,<sp/>with<sp/>default<sp/>plot<sp/>mode<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="tempo_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_AXIS<sp/><sp/><sp/><sp/><sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="tempo_8h_1a663ea2cbce93fa99b869b8013b8c0ad9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_TIMETAG<sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>any<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="tempo_8h_1ac00e70455c50a4fc8009e8511610294a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PCAL_PHASE<sp/><sp/><sp/>100<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>station<sp/>(1st<sp/>4<sp/>extracted<sp/>params<sp/>only,<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="tempo_8h_1a75fbf6b3eb80adfd581f55ea6120fc2d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PCAL_DIFF<sp/><sp/><sp/><sp/>101<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ref<sp/>and<sp/>remote<sp/>in<sp/>aux<sp/>input<sp/>variable)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="tempo_8h_1a138f55b57a40083403e72238e031ba9c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PCAL_AMP<sp/>102</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="tempo_8h_1a8897e6c8c6460afe22c035f1bf85bf1e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_ERRORATE<sp/>103</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="tempo_8h_1ae93d710b31d8a241a42b3e8bc63d2754" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_ELEVATION<sp/><sp/><sp/><sp/>104</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="tempo_8h_1ab9af8dcf6e47f32ef66f500207c5ba27" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_AZIMUTH<sp/><sp/>105</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="tempo_8h_1a43da4ecc269084a8cc0738629769197f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_SNR<sp/><sp/><sp/><sp/><sp/><sp/>201<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>baseline<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="tempo_8h_1a5914319d5b1088581e873c3bf970b354" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_AMPLITUDE<sp/><sp/><sp/><sp/>202</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="tempo_8h_1a1edb9b223382998ac999f5d56238b84f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PHASE<sp/><sp/><sp/><sp/>203</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="tempo_8h_1a5d96defa5a2a49ecee3a0325f079c1b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_SBDELAY<sp/><sp/>204</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="tempo_8h_1a9458971f1ca0cbaabe7d5912e27b84e3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_MBDELAY<sp/><sp/>205</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="tempo_8h_1aebc89bbf430a8a33931aa81adfa53e5f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_DRATE<sp/><sp/><sp/><sp/>206</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="tempo_8h_1a6c7e12a1c358567b9032f51df5c31a63" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_NCOTIME<sp/><sp/>207</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="tempo_8h_1ac4b932d49910b743dbf2e6e77dcdbcb9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_SCOTIME<sp/><sp/>208</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="tempo_8h_1a67cac0a02b8a8bdaddd347a0fec6731b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CPHASE<sp/><sp/><sp/>300<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>triangle<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="tempo_8h_1a0317630cea3feebe19b610c8877d234e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CRATE<sp/><sp/><sp/><sp/>301</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="tempo_8h_1a742efff2115484d984c8806954244a13" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CSBDELAY<sp/>302</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="tempo_8h_1ae6c8c1c55abb7ca0172b4f2a5c227ec8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CMBDELAY<sp/>303</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="tempo_8h_1ae3f32089ab1e014f37be638131127944" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CAMP<sp/><sp/><sp/><sp/><sp/>400<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>quad<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="tempo_8h_1ac25dea6eb1474eb2784775fffe8f470d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_U<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>500<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>all<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="tempo_8h_1a247ee22facef524aa232c7b79eec55ba" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_V<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>501</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="tempo_8h_1a643d170d72607566330164dffb5bf209" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_UVDIST<sp/><sp/><sp/>502</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="tempo_8h_1a0b72a00a7a8fcd0170f38461247d45b1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PARAMETER<sp/><sp/><sp/><sp/>600<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>parameter<sp/>number<sp/>in<sp/>aux<sp/>input<sp/>variable<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>was<sp/>2000,<sp/>boosted<sp/>to<sp/>20000<sp/>Nov<sp/>11,<sp/>2016<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXPLT<sp/>20000<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>#<sp/>of<sp/>points<sp/>in<sp/>single<sp/>plot,<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>applies<sp/>separately<sp/>to<sp/>the<sp/>3<sp/>qualities<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>of<sp/>plotted<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="tempo_8h_1a3bf9baefaee67b0b441d0524a5fcba4d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NSYMBOL<sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__info" kindref="compound">plot_info</ref><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Total<sp/>number<sp/>of<sp/>points<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a1b9cd65a27e0e53987f0f3a2854676be" kindref="member">ngood</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>good<sp/>points<sp/>in<sp/>this<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1adb0e5cdb54e131060f5d5cdc0db4c743" kindref="member">nsusp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>suspect<sp/>points<sp/>in<sp/>this<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a6293e887c8fa9009ebd8658fa96d5fb9" kindref="member">nbad</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>bad<sp/>points<sp/>in<sp/>this<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a5b9d4d6be9571b559e65e8dfdf0d0f85" kindref="member">nbadscale</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>points<sp/>off<sp/>scale,<sp/>omitted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1afcb4234b4549822319ac3fb2a0d2c46f" kindref="member">xebar</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Are<sp/>X<sp/>error<sp/>bars<sp/>plotted?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a797dfb97eefaa98e21e1cd8ce721cd7b" kindref="member">yebar</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Are<sp/>Y<sp/>error<sp/>bars<sp/>plotted?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a937e3eec685c830dbdb774af460e5f49" kindref="member">onscreen</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Visible<sp/>on<sp/>interactive<sp/>screen?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a0812913da96d2c99f8bc8c7d5772565a" kindref="member">plotby</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>station,<sp/>baseline,<sp/>whatever?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a02da7da8b9f54cf610673352801ab733" kindref="member">xaind</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>X<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a64d6adfbadab871479c3c923f46fe31a" kindref="member">x_aux</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>field<sp/>for<sp/>parms<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a9d09e2c922b147f68c929c3305be8387" kindref="member">xtype</ref>[30];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>X<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1af0f344f7a4907d006117668097aa6935" kindref="member">yaind</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>Y<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a1555e4cd0cdcd78e4a20f30cd41a77b2" kindref="member">y_aux</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>field<sp/>for<sp/>parms<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a6d7ab9adb190713d730a8d024bc3b9e2" kindref="member">ytype</ref>[30];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>Y<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a079933b220bc15df18578970a06440ef" kindref="member">xmax</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>X-axis<sp/>value<sp/>extrema<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a02c12db36d302a36e005ab20baf1a9eb" kindref="member">xmin</ref>;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1aa2e20f1cc7813daff261a648a1102004" kindref="member">ymax</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Y-axis<sp/>value<sp/>extrema<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a7fff1c109412b7fb3d463d99a71bc015" kindref="member">ymin</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a1066a7bab75004318340a6d9a6152f18" kindref="member">toffset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>time<sp/>axes<sp/>..<sp/>avoids<sp/>f.p.<sp/>roundoff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a4d0523f44a50984939afb768729d9513" kindref="member">vport</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Viewport<sp/>in<sp/>normalized<sp/>device<sp/>coords<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a15fe31a1adf2df50f43a5345c88a2893" kindref="member">window</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>World<sp/>coordinate<sp/>extrema<sp/>of<sp/>viewport<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structplot__info_1a24ed0b7a4afbfdaa3e1a3d412c27f9de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a55428556c78984a89b1bad86839e4099" kindref="member">index</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Indices<sp/>of<sp/>all<sp/>points<sp/>in<sp/>data<sp/>arrays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1abecd6d53d277c7a31c149bb2d19dbb9c" kindref="member">symbol</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Point-by-point<sp/>PGPLOT<sp/>symbol<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a3a5137cf8912c536971005d621edaf26" kindref="member">frq</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Frequency<sp/>code<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1ae91069b8601d75a64df478d1075c15da" kindref="member">expt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Experiment<sp/>number<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" kindref="member">source</ref>[32];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Source<sp/>name<sp/>(if<sp/>applicable)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a0f4405e67ac9ccb9ca25514f02322833" kindref="member">station</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Station<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a9c38f9697339240b9d0358bd2c9397be" kindref="member">bas</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Baseline<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a7a6facc49a12cb5eb32b35f7823fe61d" kindref="member">triangle</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Stations<sp/>in<sp/>closure<sp/>triangle<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1ab4973491bbb518da4f1983553de6689b" kindref="member">ampcl</ref>[5];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Stations<sp/>in<sp/>closure<sp/>amplitude<sp/>quad<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" kindref="member">x</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>X-axis<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" kindref="member">y</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Y-axis<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a8289e785f6640239954fbd0631a0b084" kindref="member">xerrh</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>upper<sp/>extent<sp/>of<sp/>X<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a819239cda796ed87dcc60b366402e967" kindref="member">xerrl</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>lower<sp/>extent<sp/>of<sp/>X<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a470abf2064fc98fd10d564244a1ebc5f" kindref="member">yerrh</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>upper<sp/>extent<sp/>of<sp/>Y<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a29dc3d52ea77833b4cfc029ae738dcf7" kindref="member">yerrl</ref>[<ref refid="tempo_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>lower<sp/>extent<sp/>of<sp/>Y<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__points" kindref="compound">plot_points</ref><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/><sp/><ref refid="structplot__points_1a8cfeb8aa34c372621211e143ed5f748a" kindref="member">good</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Contains<sp/>info<sp/>for<sp/>good<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/><sp/><ref refid="structplot__points_1a1e49d58c98601ee0480b77a234f29671" kindref="member">suspect</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Contains<sp/>info<sp/>for<sp/>suspect<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/><sp/><ref refid="structplot__points_1a2b00109c9dca46517847379204b08a08" kindref="member">bad</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Contains<sp/>info<sp/>for<sp/>bad<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h"/>
+  </compounddef>
+</doxygen>

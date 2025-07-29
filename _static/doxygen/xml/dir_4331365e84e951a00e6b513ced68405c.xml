@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_4331365e84e951a00e6b513ced68405c" kind="dir">
+    <compoundname>average</compoundname>
+    <innerdir refid="dir_37a4a297df559b2b48db0c69fc17cf66">include</innerdir>
+    <innerdir refid="dir_36456e4eab78d2da1fa9681fb069c9cc">src</innerdir>
+    <innerfile refid="average_8c">average.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/"/>
+  </compounddef>
+</doxygen>

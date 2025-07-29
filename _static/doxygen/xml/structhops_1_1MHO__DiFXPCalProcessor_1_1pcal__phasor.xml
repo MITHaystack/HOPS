@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__phasor" kind="struct" language="C++" prot="private">
+    <compoundname>hops::MHO_DiFXPCalProcessor::pcal_phasor</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__phasor_1a2e3b054a2f96e339eace8842dff77164" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehops_1aa558c2e0a424c958495757fab2eaa6dc" kindref="member">pcal_phasor_type</ref></type>
+        <definition>pcal_phasor_type hops::MHO_DiFXPCalProcessor::pcal_phasor::phasor</definition>
+        <argsstring></argsstring>
+        <name>phasor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="111" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__phasor_1ab3c05ed391d8115244263a3aa11f7981" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DiFXPCalProcessor::pcal_phasor::tone_freq</definition>
+        <argsstring></argsstring>
+        <name>tone_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="110" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_DiFXPCalProcessor::pcal_phasor</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>tone_freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>phasor</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::complex&lt; PCFP_TYPE &gt;</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="108" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="109" bodyend="112"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__phasor_1a2e3b054a2f96e339eace8842dff77164" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::pcal_phasor</scope><name>phasor</name></member>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1pcal__phasor_1ab3c05ed391d8115244263a3aa11f7981" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::pcal_phasor</scope><name>tone_freq</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

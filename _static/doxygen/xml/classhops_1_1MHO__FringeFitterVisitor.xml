@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FringeFitterVisitor" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_FringeFitterVisitor</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__FringePlotVisitor" prot="public" virt="non-virtual">hops::MHO_FringePlotVisitor</derivedcompoundref>
+    <includes refid="MHO__FringeFitter_8hh" local="no">MHO_FringeFitter.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitterVisitor_1a70d9b2dfaef769c36fef7baecb1dab2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FringeFitterVisitor::MHO_FringeFitterVisitor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FringeFitterVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="182" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="182" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitterVisitor_1adffbf2db3c40674cacabd5cade30fdd5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FringeFitterVisitor::~MHO_FringeFitterVisitor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FringeFitterVisitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="183" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="183" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FringeFitterVisitor_1a986612be479a95b8aaca7706172f0c5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_FringeFitterVisitor::Visit</definition>
+        <argsstring>(MHO_FringeFitter *fitter)=0</argsstring>
+        <name>Visit</name>
+        <reimplementedby refid="classhops_1_1MHO__FringePlotVisitor_1a9183d84e43e28bd3877eab5a4a596563">Visit</reimplementedby>
+        <param>
+          <type><ref refid="classhops_1_1MHO__FringeFitter" kindref="compound">MHO_FringeFitter</ref> *</type>
+          <declname>fitter</declname>
+        </param>
+        <briefdescription>
+<para>Function Visit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fitter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(MHO_FringeFitter*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a (pure) virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="192" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__FringeFitterVisitor" kindref="compound">MHO_FringeFitterVisitor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_FringePlotVisitor</label>
+        <link refid="classhops_1_1MHO__FringePlotVisitor"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_DefaultPythonPlotVisitor</label>
+        <link refid="classhops_1_1MHO__DefaultPythonPlotVisitor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FringeFitterVisitor</label>
+        <link refid="classhops_1_1MHO__FringeFitterVisitor"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" line="179" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_FringeFitter.hh" bodystart="180" bodyend="193"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FringeFitterVisitor_1a70d9b2dfaef769c36fef7baecb1dab2b" prot="public" virt="non-virtual"><scope>hops::MHO_FringeFitterVisitor</scope><name>MHO_FringeFitterVisitor</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterVisitor_1a986612be479a95b8aaca7706172f0c5b" prot="public" virt="pure-virtual"><scope>hops::MHO_FringeFitterVisitor</scope><name>Visit</name></member>
+      <member refid="classhops_1_1MHO__FringeFitterVisitor_1adffbf2db3c40674cacabd5cade30fdd5" prot="public" virt="virtual"><scope>hops::MHO_FringeFitterVisitor</scope><name>~MHO_FringeFitterVisitor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

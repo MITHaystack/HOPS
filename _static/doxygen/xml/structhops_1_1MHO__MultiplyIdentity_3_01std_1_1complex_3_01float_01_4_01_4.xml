@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01float_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_MultiplyIdentity&lt; std::complex&lt; float &gt; &gt;</compoundname>
+    <includes refid="MHO__CompoundReductions_8hh" local="no">MHO_CompoundReductions.hh</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01float_01_4_01_4_1aa461baf7c02066c4a9e53e5473a22de0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::complex&lt; float &gt;</type>
+        <definition>static std::complex&lt; float &gt; hops::MHO_MultiplyIdentity&lt; std::complex&lt; float &gt; &gt;::value</definition>
+        <argsstring>()</argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="314" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="314" bodyend="314"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" line="312" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CompoundReductions.hh" bodystart="313" bodyend="315"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__MultiplyIdentity_3_01std_1_1complex_3_01float_01_4_01_4_1aa461baf7c02066c4a9e53e5473a22de0" prot="public" virt="non-virtual"><scope>hops::MHO_MultiplyIdentity&lt; std::complex&lt; float &gt; &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

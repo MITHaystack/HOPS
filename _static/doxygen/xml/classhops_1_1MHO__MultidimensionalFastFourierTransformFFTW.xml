@@ -1,0 +1,668 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MultidimensionalFastFourierTransformFFTW</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; XArgType &gt;</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;</basecompoundref>
+    <includes refid="MHO__MultidimensionalFastFourierTransformFFTW_8hh" local="no">MHO_MultidimensionalFastFourierTransformFFTW.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XArgType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a9ee7c4ac1ab3c84fc67ce1f943cf084c" prot="public" static="no">
+        <type>typename XArgType::value_type</type>
+        <definition>using hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::complex_value_type =  typename XArgType::value_type</definition>
+        <argsstring></argsstring>
+        <name>complex_value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" prot="public" static="no">
+        <type>typename XArgType::value_type::value_type</type>
+        <definition>using hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::floating_point_value_type =  typename XArgType::value_type::value_type</definition>
+        <argsstring></argsstring>
+        <name>floating_point_value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="43" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a59564fefa587401462032e8b2b7f675c" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::plan_type *</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::plan_type* hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fCurrentPlan</definition>
+        <argsstring></argsstring>
+        <name>fCurrentPlan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="439" column="44" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="439" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a821e654c6f2ab09b58d2ac0b878da337" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::iodim_type</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::iodim_type hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fDims[XArgType::rank::value]</definition>
+        <argsstring>[XArgType::rank::value]</argsstring>
+        <name>fDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="440" column="45" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="440" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1ac467c9ee1886b194fabeb2178fc882c9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fHaveAlignmentFuncs</definition>
+        <argsstring></argsstring>
+        <name>fHaveAlignmentFuncs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="451" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="451" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1add318b6e45dd7dc6b7a0a3e11f8be851" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::iodim_type</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::iodim_type hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fHowManyDims[XArgType::rank::value]</definition>
+        <argsstring>[XArgType::rank::value]</argsstring>
+        <name>fHowManyDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="441" column="45" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="441" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a293effe26c0a1a63e9453e38a3f87db6" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::fftw_complex_type_ptr</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::fftw_complex_type_ptr hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fInPlacePtr</definition>
+        <argsstring></argsstring>
+        <name>fInPlacePtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="448" column="56" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="448" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4ab0ff4becf332218c9e6d864fb662d9" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::fftw_complex_type_ptr</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::fftw_complex_type_ptr hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fInPtr</definition>
+        <argsstring></argsstring>
+        <name>fInPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="446" column="56" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="446" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1aa0840bedac09294dad8c7aacf9a6f968" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::fftw_complex_type_ptr</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::fftw_complex_type_ptr hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fOutPtr</definition>
+        <argsstring></argsstring>
+        <name>fOutPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="447" column="56" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="447" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4a8fe6c2f76b4fabc5e449ba8f303431" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::plan_type</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::plan_type hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fPlanBackward</definition>
+        <argsstring></argsstring>
+        <name>fPlanBackward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="443" column="44" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="443" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a075d0f8577ef1814bd87368295e50bf3" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::plan_type</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::plan_type hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fPlanBackwardInPlace</definition>
+        <argsstring></argsstring>
+        <name>fPlanBackwardInPlace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="445" column="44" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="445" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a8121a5926a962e235f43ce95674efc7c" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::plan_type</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::plan_type hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fPlanForward</definition>
+        <argsstring></argsstring>
+        <name>fPlanForward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="442" column="44" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="442" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4f2c809cfaed8ca9fae7ceb8b172a030" prot="private" static="no" mutable="no">
+        <type><ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>&lt; <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" kindref="member">floating_point_value_type</ref> &gt;::plan_type</type>
+        <definition>MHO_FFTWTypes&lt; floating_point_value_type &gt;::plan_type hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fPlanForwardInPlace</definition>
+        <argsstring></argsstring>
+        <name>fPlanForwardInPlace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="444" column="44" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="444" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1ac5c6f2b475c41bf2bad780eb59913cb1" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::fTotalArraySize</definition>
+        <argsstring></argsstring>
+        <name>fTotalArraySize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="438" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="438" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1aeefe4002aa7d631be11a6756c8e178b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::MHO_MultidimensionalFastFourierTransformFFTW</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MultidimensionalFastFourierTransformFFTW</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="45" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1adf2d208c41e8179904b7be9e3f4ca883" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::~MHO_MultidimensionalFastFourierTransformFFTW</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MultidimensionalFastFourierTransformFFTW</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="77" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="77" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a048801d8fded9adc7c950434b7c68d3c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArgType *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteInPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="212" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="212" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1aefa1898c524600b874e36e79dc0db865" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input data to output and executes in-place if input/output are different. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data of type XArgType* </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output data of type XArgType* </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of ExecuteInPlace function call </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="286" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="286" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a816361ce32f481ed371b12c5eadf58cb" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArgType *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function InitializeInPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="91" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="91" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1ac54740cac2deb53667912dbc69ffccfb" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function InitializeOutOfPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="151" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="151" bodyend="203"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a17937330cc2c98f8fcf1068b77cb92c8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::AllocateWorkspace</definition>
+        <argsstring>(std::size_t total_array_size)</argsstring>
+        <name>AllocateWorkspace</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>total_array_size</declname>
+        </param>
+        <briefdescription>
+<para>Allocate workspace memory for FFTW operations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>total_array_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of arrays to allocate. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="303" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="303" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a8dcf7c6a22023e2ecbad3adc7c27640e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::ConstructPlan</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructPlan</name>
+        <briefdescription>
+<para>Function ConstructPlan. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="344" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="344" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a599b466d9c85a312412210099adaec39" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::DeallocateWorkspace</definition>
+        <argsstring>()</argsstring>
+        <name>DeallocateWorkspace</name>
+        <briefdescription>
+<para>Frees allocated workspace pointers using <ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref> free_func. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="314" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="314" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a6f5703835aa243fa47603c43328bf952" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::DestructPlan</definition>
+        <argsstring>()</argsstring>
+        <name>DestructPlan</name>
+        <briefdescription>
+<para>Destroys all initialized FFTW plans and sets them to NULL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="324" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="324" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a12422e55c2a1314e690bf04b48f26d71" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XPtrType1</type>
+          </param>
+          <param>
+            <type>typename XPtrType2</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;::HaveSameAlignment</definition>
+        <argsstring>(XPtrType1 ptr1, XPtrType2 ptr2)</argsstring>
+        <name>HaveSameAlignment</name>
+        <param>
+          <type>XPtrType1</type>
+          <declname>ptr1</declname>
+        </param>
+        <param>
+          <type>XPtrType2</type>
+          <declname>ptr2</declname>
+        </param>
+        <briefdescription>
+<para>Checks if two pointers have the same memory alignment. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ptr1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to first data block </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ptr2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to second data block </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether pointers have the same alignment </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="428" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="428" bodyend="435"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW" kindref="compound">MHO_MultidimensionalFastFourierTransformFFTW</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Operator for multidimensional FFTs (FFTW3 implementation)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Oct 23 12:02:01 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="8">
+        <label>size_t</label>
+      </node>
+      <node id="7">
+        <label>hops::MHO_MultidimensionalFastFourierTransformInterface&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fAxesToXForm</edgelabel>
+          <edgelabel>fForward</edgelabel>
+          <edgelabel>fInitialized</edgelabel>
+          <edgelabel>fIsValid</edgelabel>
+          <edgelabel>fTransformAxisLabels</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fDimensionSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>tuple&lt; XArgType * &gt;</label>
+      </node>
+      <node id="4">
+        <label>tuple&lt; const XArgType *, XArgType * &gt;</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fOutOfPlaceArgs</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fInPlace</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fInPlaceArgs</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>bool</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" line="35" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_MultidimensionalFastFourierTransformFFTW.hh" bodystart="37" bodyend="452"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a17937330cc2c98f8fcf1068b77cb92c8" prot="private" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>AllocateWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a9ee7c4ac1ab3c84fc67ce1f943cf084c" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>complex_value_type</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a8dcf7c6a22023e2ecbad3adc7c27640e" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>ConstructPlan</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a599b466d9c85a312412210099adaec39" prot="private" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>DeallocateWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a8e49b888c2afb4c39329bc1e31f6bd0b" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>DeselectAllAxes</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a6f5703835aa243fa47603c43328bf952" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>DestructPlan</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1af017acd142a8a83640ea15506ac97dea" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>DisableAxisLabelTransformation</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76c42f20af267617d7e1dbb835c33716" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>EnableAxisLabelTransformation</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a048801d8fded9adc7c950434b7c68d3c" prot="protected" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1aefa1898c524600b874e36e79dc0db865" prot="protected" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1aa73b5dedd950d376810d3deff178021d" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fAxesToXForm</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a59564fefa587401462032e8b2b7f675c" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fCurrentPlan</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a00d4d2c72414cebc55955a8813306b91" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fDimensionSize</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a821e654c6f2ab09b58d2ac0b878da337" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fDims</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a6f2e82538bb839d30fbd08c1cca58802" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fForward</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1ac467c9ee1886b194fabeb2178fc882c9" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fHaveAlignmentFuncs</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1add318b6e45dd7dc6b7a0a3e11f8be851" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fHowManyDims</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1abf06a691290074e633da0eb9664139b2" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a293effe26c0a1a63e9453e38a3f87db6" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fInPlacePtr</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4ab0ff4becf332218c9e6d864fb662d9" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fInPtr</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a792f2c5df090bc623e39fc140a328f10" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fIsValid</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4fac3f96bce25c07b93572a7da6ff887" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>floating_point_value_type</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1aa0840bedac09294dad8c7aacf9a6f968" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fOutPtr</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4a8fe6c2f76b4fabc5e449ba8f303431" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fPlanBackward</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a075d0f8577ef1814bd87368295e50bf3" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fPlanBackwardInPlace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a8121a5926a962e235f43ce95674efc7c" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fPlanForward</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a4f2c809cfaed8ca9fae7ceb8b172a030" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fPlanForwardInPlace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1ac5c6f2b475c41bf2bad780eb59913cb1" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fTotalArraySize</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a33442bfd03f6b8954be62bbd0566a699" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>fTransformAxisLabels</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a12422e55c2a1314e690bf04b48f26d71" prot="private" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>HaveSameAlignment</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a0c856afe52df1f2b17ae364ca9132c6a" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>IfTableTransformAxis</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1adaaf13b5ad51362c4ad39ffffccecca8" prot="protected" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>IfTableTransformAxis</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a816361ce32f481ed371b12c5eadf58cb" prot="protected" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1ac54740cac2deb53667912dbc69ffccfb" prot="protected" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1aeefe4002aa7d631be11a6756c8e178b7" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>MHO_MultidimensionalFastFourierTransformFFTW</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a2f79775a9703a315bbaf3fa4680c2331" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>MHO_MultidimensionalFastFourierTransformInterface</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1affbe2be4dd4fd0925daab1b4eb485a71" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SelectAllAxes</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5f9dc49f66367e30a50aa4153d6b6614" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SelectAxis</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a5e2e88affc72fe272de201a20dca1ccb" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SetBackward</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a76b6d126eae8c01d867ef260ef35dd09" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SetForward</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1adf2d208c41e8179904b7be9e3f4ca883" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>~MHO_MultidimensionalFastFourierTransformFFTW</name></member>
+      <member refid="classhops_1_1MHO__MultidimensionalFastFourierTransformInterface_1a48ba7e7463a6149a58e1ae3723ec090b" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>~MHO_MultidimensionalFastFourierTransformInterface</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_MultidimensionalFastFourierTransformFFTW</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

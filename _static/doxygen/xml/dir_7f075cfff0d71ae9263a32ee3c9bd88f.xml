@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_7f075cfff0d71ae9263a32ee3c9bd88f" kind="dir">
+    <compoundname>afio</compoundname>
+    <innerfile refid="mk4__module_2afio_2____init_____8py">mk4_module/afio/__init__.py</innerfile>
+    <innerfile refid="afio_8py">afio.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/"/>
+  </compounddef>
+</doxygen>

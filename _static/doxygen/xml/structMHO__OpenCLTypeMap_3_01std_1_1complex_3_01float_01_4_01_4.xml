@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structMHO__OpenCLTypeMap_3_01std_1_1complex_3_01float_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>MHO_OpenCLTypeMap&lt; std::complex&lt; float &gt; &gt;</compoundname>
+    <includes refid="MHO__OpenCLInterface_8hh" local="no">MHO_OpenCLInterface.hh</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structMHO__OpenCLTypeMap_3_01std_1_1complex_3_01float_01_4_01_4_1a60daf04332adf978b36cc4910934731a" prot="public" static="no">
+        <type><ref refid="MHO__OpenCLInterface_8hh_1ac7b4cbecf9466a99c1c1bb6a5a0bb83a" kindref="member">CL_TYPE2</ref></type>
+        <definition>using MHO_OpenCLTypeMap&lt; std::complex&lt; float &gt; &gt;::mapped_type =  CL_TYPE2</definition>
+        <argsstring></argsstring>
+        <name>mapped_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="67" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="65" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="66" bodyend="68"/>
+    <listofallmembers>
+      <member refid="structMHO__OpenCLTypeMap_3_01std_1_1complex_3_01float_01_4_01_4_1a60daf04332adf978b36cc4910934731a" prot="public" virt="non-virtual"><scope>MHO_OpenCLTypeMap&lt; std::complex&lt; float &gt; &gt;</scope><name>mapped_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,925 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mk4__afio_8h" kind="file" language="C++">
+    <compoundname>mk4_afio.h</compoundname>
+    <includes refid="adata_8h" local="yes">adata.h</includes>
+    <includedby refid="afile__header_8c" local="yes">afile_header.c</includedby>
+    <includedby refid="aline__id_8c" local="yes">aline_id.c</includedby>
+    <includedby refid="clear__csumm_8c" local="yes">clear_csumm.c</includedby>
+    <includedby refid="clear__fsumm_8c" local="yes">clear_fsumm.c</includedby>
+    <includedby refid="clear__rsumm_8c" local="yes">clear_rsumm.c</includedby>
+    <includedby refid="clear__tsumm_8c" local="yes">clear_tsumm.c</includedby>
+    <includedby refid="corelname_8c" local="yes">corelname.c</includedby>
+    <includedby refid="fringename_8c" local="yes">fringename.c</includedby>
+    <includedby refid="get__unique__name_8c" local="yes">get_unique_name.c</includedby>
+    <includedby refid="parse__csumm_8c" local="yes">parse_csumm.c</includedby>
+    <includedby refid="parse__fsumm_8c" local="yes">parse_fsumm.c</includedby>
+    <includedby refid="parse__rsumm_8c" local="yes">parse_rsumm.c</includedby>
+    <includedby refid="parse__tsumm_8c" local="yes">parse_tsumm.c</includedby>
+    <includedby refid="rootname_8c" local="yes">rootname.c</includedby>
+    <includedby refid="write__csumm_8c" local="yes">write_csumm.c</includedby>
+    <includedby refid="write__fsumm_8c" local="yes">write_fsumm.c</includedby>
+    <includedby refid="write__rsumm_8c" local="yes">write_rsumm.c</includedby>
+    <includedby refid="write__tsumm_8c" local="yes">write_tsumm.c</includedby>
+    <includedby refid="adump_8c" local="yes">adump.c</includedby>
+    <includedby refid="applications_2adump_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <includedby refid="strip__bline_8c" local="yes">strip_bline.c</includedby>
+    <includedby refid="strip__tline_8c" local="yes">strip_tline.c</includedby>
+    <includedby refid="write__header_8c" local="yes">write_header.c</includedby>
+    <includedby refid="fill__closure_8c" local="yes">fill_closure.c</includedby>
+    <includedby refid="pstag__process_8c" local="yes">pstag_process.c</includedby>
+    <includedby refid="aedit_2src_2read__data_8c" local="yes">read_data.c</includedby>
+    <includedby refid="write__data_8c" local="yes">write_data.c</includedby>
+    <includedby refid="write__families_8c" local="yes">write_families.c</includedby>
+    <includedby refid="write__reproc_8c" local="yes">write_reproc.c</includedby>
+    <includedby refid="write__tdata_8c" local="yes">write_tdata.c</includedby>
+    <includedby refid="alist_8c" local="yes">alist.c</includedby>
+    <includedby refid="open__output_8c" local="yes">open_output.c</includedby>
+    <includedby refid="applications_2alist_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <includedby refid="summarize__mk4fringe_8c" local="yes">summarize_mk4fringe.c</includedby>
+    <includedby refid="baseline__avg_8c" local="yes">baseline_avg.c</includedby>
+    <includedby refid="average_2src_2read__data_8c" local="yes">read_data.c</includedby>
+    <includedby refid="triangle__avg_8c" local="yes">triangle_avg.c</includedby>
+    <includedby refid="fringex_8h" local="yes">fringex.h</includedby>
+    <includedby refid="search_8h" local="yes">search.h</includedby>
+    <includedby refid="snratio_8c" local="yes">snratio.c</includedby>
+    <includedby refid="refringe__list_8c" local="yes">refringe_list.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="1">
+        <label>mk4_afio.h</label>
+        <link refid="mk4__afio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="54">
+        <label>realloc_segs.c</label>
+        <link refid="realloc__segs_8c"/>
+      </node>
+      <node id="47">
+        <label>fill_aline.c</label>
+        <link refid="fill__aline_8c"/>
+      </node>
+      <node id="42">
+        <label>calc_seg.c</label>
+        <link refid="calc__seg_8c"/>
+      </node>
+      <node id="64">
+        <label>plot_srchdata.c</label>
+        <link refid="plot__srchdata_8c"/>
+      </node>
+      <node id="70">
+        <label>refringe_list.c</label>
+        <link refid="refringe__list_8c"/>
+      </node>
+      <node id="62">
+        <label>grid_filler.c</label>
+        <link refid="grid__filler_8c"/>
+      </node>
+      <node id="31">
+        <label>write_tdata.c</label>
+        <link refid="write__tdata_8c"/>
+      </node>
+      <node id="10">
+        <label>get_unique_name.c</label>
+        <link refid="get__unique__name_8c"/>
+      </node>
+      <node id="28">
+        <label>write_data.c</label>
+        <link refid="write__data_8c"/>
+      </node>
+      <node id="39">
+        <label>fringex.h</label>
+        <link refid="fringex_8h"/>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>set_reffreq.c</label>
+        <link refid="set__reffreq_8c"/>
+      </node>
+      <node id="65">
+        <label>read_data.c</label>
+        <link refid="search_2src_2read__data_8c"/>
+      </node>
+      <node id="57">
+        <label>search.h</label>
+        <link refid="search_8h"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>fringex.c</label>
+        <link refid="fringex_8c"/>
+      </node>
+      <node id="68">
+        <label>write_srchdata.c</label>
+        <link refid="write__srchdata_8c"/>
+      </node>
+      <node id="9">
+        <label>fringename.c</label>
+        <link refid="fringename_8c"/>
+      </node>
+      <node id="18">
+        <label>write_rsumm.c</label>
+        <link refid="write__rsumm_8c"/>
+      </node>
+      <node id="24">
+        <label>write_header.c</label>
+        <link refid="write__header_8c"/>
+      </node>
+      <node id="50">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2fringex_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="67">
+        <label>sorter.c</label>
+        <link refid="search_2src_2sorter_8c"/>
+      </node>
+      <node id="45">
+        <label>determine_nsegs.c</label>
+        <link refid="determine__nsegs_8c"/>
+      </node>
+      <node id="4">
+        <label>clear_csumm.c</label>
+        <link refid="clear__csumm_8c"/>
+      </node>
+      <node id="36">
+        <label>baseline_avg.c</label>
+        <link refid="baseline__avg_8c"/>
+      </node>
+      <node id="46">
+        <label>filelist.c</label>
+        <link refid="filelist_8c"/>
+      </node>
+      <node id="15">
+        <label>rootname.c</label>
+        <link refid="rootname_8c"/>
+      </node>
+      <node id="3">
+        <label>aline_id.c</label>
+        <link refid="aline__id_8c"/>
+      </node>
+      <node id="60">
+        <label>fill_grids.c</label>
+        <link refid="fill__grids_8c"/>
+      </node>
+      <node id="26">
+        <label>pstag_process.c</label>
+        <link refid="pstag__process_8c"/>
+      </node>
+      <node id="19">
+        <label>write_tsumm.c</label>
+        <link refid="write__tsumm_8c"/>
+      </node>
+      <node id="11">
+        <label>parse_csumm.c</label>
+        <link refid="parse__csumm_8c"/>
+      </node>
+      <node id="33">
+        <label>open_output.c</label>
+        <link refid="open__output_8c"/>
+      </node>
+      <node id="43">
+        <label>clear_fxp.c</label>
+        <link refid="clear__fxp_8c"/>
+      </node>
+      <node id="37">
+        <label>read_data.c</label>
+        <link refid="average_2src_2read__data_8c"/>
+      </node>
+      <node id="5">
+        <label>clear_fsumm.c</label>
+        <link refid="clear__fsumm_8c"/>
+      </node>
+      <node id="66">
+        <label>sort_data.c</label>
+        <link refid="search_2src_2sort__data_8c"/>
+      </node>
+      <node id="48">
+        <label>init_fxp.c</label>
+        <link refid="init__fxp_8c"/>
+      </node>
+      <node id="12">
+        <label>parse_fsumm.c</label>
+        <link refid="parse__fsumm_8c"/>
+      </node>
+      <node id="1">
+        <label>mk4_afio.h</label>
+        <link refid="mk4__afio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>clear_srchdata.c</label>
+        <link refid="clear__srchdata_8c"/>
+      </node>
+      <node id="32">
+        <label>alist.c</label>
+        <link refid="alist_8c"/>
+      </node>
+      <node id="49">
+        <label>model.c</label>
+        <link refid="model_8c"/>
+      </node>
+      <node id="51">
+        <label>parse_dflag.c</label>
+        <link refid="parse__dflag_8c"/>
+      </node>
+      <node id="20">
+        <label>adump.c</label>
+        <link refid="adump_8c"/>
+      </node>
+      <node id="25">
+        <label>fill_closure.c</label>
+        <link refid="fill__closure_8c"/>
+      </node>
+      <node id="34">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2alist_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="29">
+        <label>write_families.c</label>
+        <link refid="write__families_8c"/>
+      </node>
+      <node id="61">
+        <label>fit_peaks.c</label>
+        <link refid="fit__peaks_8c"/>
+      </node>
+      <node id="30">
+        <label>write_reproc.c</label>
+        <link refid="write__reproc_8c"/>
+      </node>
+      <node id="6">
+        <label>clear_rsumm.c</label>
+        <link refid="clear__rsumm_8c"/>
+      </node>
+      <node id="21">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2adump_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="58">
+        <label>search.c</label>
+        <link refid="applications_2search_2search_8c"/>
+      </node>
+      <node id="55">
+        <label>set_loops.c</label>
+        <link refid="set__loops_8c"/>
+      </node>
+      <node id="23">
+        <label>strip_tline.c</label>
+        <link refid="strip__tline_8c"/>
+      </node>
+      <node id="35">
+        <label>summarize_mk4fringe.c</label>
+        <link refid="summarize__mk4fringe_8c"/>
+      </node>
+      <node id="44">
+        <label>clear_loops.c</label>
+        <link refid="clear__loops_8c"/>
+      </node>
+      <node id="16">
+        <label>write_csumm.c</label>
+        <link refid="write__csumm_8c"/>
+      </node>
+      <node id="13">
+        <label>parse_rsumm.c</label>
+        <link refid="parse__rsumm_8c"/>
+      </node>
+      <node id="38">
+        <label>triangle_avg.c</label>
+        <link refid="triangle__avg_8c"/>
+      </node>
+      <node id="2">
+        <label>afile_header.c</label>
+        <link refid="afile__header_8c"/>
+      </node>
+      <node id="7">
+        <label>clear_tsumm.c</label>
+        <link refid="clear__tsumm_8c"/>
+      </node>
+      <node id="63">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2search_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="52">
+        <label>parse_iflag.c</label>
+        <link refid="parse__iflag_8c"/>
+      </node>
+      <node id="41">
+        <label>accum_segs.c</label>
+        <link refid="accum__segs_8c"/>
+      </node>
+      <node id="27">
+        <label>read_data.c</label>
+        <link refid="aedit_2src_2read__data_8c"/>
+      </node>
+      <node id="22">
+        <label>strip_bline.c</label>
+        <link refid="strip__bline_8c"/>
+      </node>
+      <node id="53">
+        <label>read_binaries.c</label>
+        <link refid="read__binaries_8c"/>
+      </node>
+      <node id="8">
+        <label>corelname.c</label>
+        <link refid="corelname_8c"/>
+      </node>
+      <node id="69">
+        <label>snratio.c</label>
+        <link refid="snratio_8c"/>
+      </node>
+      <node id="17">
+        <label>write_fsumm.c</label>
+        <link refid="write__fsumm_8c"/>
+      </node>
+      <node id="14">
+        <label>parse_tsumm.c</label>
+        <link refid="parse__tsumm_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="mk4__afio_8h_1aaec2234b8234d5a757da31af768d9c13" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int afile_comment</definition>
+        <argsstring>(char *line)</argsstring>
+        <name>afile_comment</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="8" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/afile_header.c" bodystart="283" bodyend="293" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="8" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1ac1ec4cd83d62f188e807eaf12fdc95d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int afile_header</definition>
+        <argsstring>(int version, int type, FILE *fp)</argsstring>
+        <name>afile_header</name>
+        <param>
+          <type>int</type>
+          <declname>version</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="9" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/afile_header.c" bodystart="299" bodyend="422" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="9" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a29c995cda5db9f337450f70947edeae8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void aline_id</definition>
+        <argsstring>(char *line, int *version, int *type)</argsstring>
+        <name>aline_id</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>version</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="10" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/aline_id.c" bodystart="21" bodyend="42" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="10" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a8207fb01cb4aada77721dd7d646c7f8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_csumm</definition>
+        <argsstring>(corelsum *dsumm)</argsstring>
+        <name>clear_csumm</name>
+        <param>
+          <type><ref refid="structcorelsum" kindref="compound">corelsum</ref> *</type>
+          <declname>dsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="11" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/clear_csumm.c" bodystart="21" bodyend="50" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="11" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a4e66006c1ba68e4f49a7df48e9947c4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_fsumm</definition>
+        <argsstring>(fringesum *dsumm)</argsstring>
+        <name>clear_fsumm</name>
+        <param>
+          <type><ref refid="structfringesum" kindref="compound">fringesum</ref> *</type>
+          <declname>dsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="12" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/clear_fsumm.c" bodystart="22" bodyend="88" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="12" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a9503bd50023f81ae60fc0cfc5f9f1f1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_rsumm</definition>
+        <argsstring>(rootsum *dsumm)</argsstring>
+        <name>clear_rsumm</name>
+        <param>
+          <type><ref refid="structrootsum" kindref="compound">rootsum</ref> *</type>
+          <declname>dsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="13" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/clear_rsumm.c" bodystart="22" bodyend="38" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="13" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1aa856152c4d86a6ffc35b501461da43b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_tsumm</definition>
+        <argsstring>(trianglesum *dsumm)</argsstring>
+        <name>clear_tsumm</name>
+        <param>
+          <type><ref refid="structtrianglesum" kindref="compound">trianglesum</ref> *</type>
+          <declname>dsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="14" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/clear_tsumm.c" bodystart="22" bodyend="66" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="14" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a5f383efe26c5466e196c2cfe636e1bcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* corelname</definition>
+        <argsstring>(corelsum *csumm)</argsstring>
+        <name>corelname</name>
+        <param>
+          <type><ref refid="structcorelsum" kindref="compound">corelsum</ref> *</type>
+          <declname>csumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="15" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/corelname.c" bodystart="29" bodyend="94" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="15" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1adda794c4c9a8c4ded6f2b8a7eb446dd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* fringename</definition>
+        <argsstring>(fringesum *fsumm)</argsstring>
+        <name>fringename</name>
+        <param>
+          <type><ref refid="structfringesum" kindref="compound">fringesum</ref> *</type>
+          <declname>fsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="16" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/fringename.c" bodystart="29" bodyend="97" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="16" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a3deb5a067e905e6eb299732fbc9ac3fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char</type>
+        <definition>char get_afile_com_char</definition>
+        <argsstring>(void)</argsstring>
+        <name>get_afile_com_char</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="7" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/afile_header.c" bodystart="273" bodyend="276" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="7" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a935b161ed3c94602913b554a4885c4b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_unique_name</definition>
+        <argsstring>(char *input, char *output)</argsstring>
+        <name>get_unique_name</name>
+        <param>
+          <type>char *</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/get_unique_name.c" bodystart="37" bodyend="124" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="17" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1afeda3ada925025b9f2adde5df64e5341" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_csumm</definition>
+        <argsstring>(char *line, corelsum *file)</argsstring>
+        <name>parse_csumm</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type><ref refid="structcorelsum" kindref="compound">corelsum</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="18" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/parse_csumm.c" bodystart="45" bodyend="258" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="18" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1aa647994375af5775afad398cd4632f05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_fsumm</definition>
+        <argsstring>(char *line, fringesum *file)</argsstring>
+        <name>parse_fsumm</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type><ref refid="structfringesum" kindref="compound">fringesum</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="19" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/parse_fsumm.c" bodystart="60" bodyend="487" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="19" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a19e89b0ca8c0365631df9f3b0332c981" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_rsumm</definition>
+        <argsstring>(char *line, rootsum *file)</argsstring>
+        <name>parse_rsumm</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type><ref refid="structrootsum" kindref="compound">rootsum</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/parse_rsumm.c" bodystart="39" bodyend="206" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="20" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1abe65b75096237c1d1faeead164386c8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_tsumm</definition>
+        <argsstring>(char *line, trianglesum *file)</argsstring>
+        <name>parse_tsumm</name>
+        <param>
+          <type>char *</type>
+          <declname>line</declname>
+        </param>
+        <param>
+          <type><ref refid="structtrianglesum" kindref="compound">trianglesum</ref> *</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="21" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/parse_tsumm.c" bodystart="48" bodyend="426" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="21" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a38555118841f6b56a5a4da1ad0c7386a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* rootname</definition>
+        <argsstring>(rootsum *rsumm)</argsstring>
+        <name>rootname</name>
+        <param>
+          <type><ref refid="structrootsum" kindref="compound">rootsum</ref> *</type>
+          <declname>rsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="22" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/rootname.c" bodystart="29" bodyend="96" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="22" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a850746cf35e20a3ef806dc839cce5c84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void set_afile_com_char</definition>
+        <argsstring>(int star)</argsstring>
+        <name>set_afile_com_char</name>
+        <param>
+          <type>int</type>
+          <declname>star</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="6" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/afile_header.c" bodystart="269" bodyend="272" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="6" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1ac38c3db277e07b94bb7b5f707a643af7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int write_csumm</definition>
+        <argsstring>(corelsum *data, FILE *fp)</argsstring>
+        <name>write_csumm</name>
+        <param>
+          <type><ref refid="structcorelsum" kindref="compound">corelsum</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="23" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/write_csumm.c" bodystart="48" bodyend="232" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="23" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a47dac66c9fed54155e81917a61872fea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int write_fsumm</definition>
+        <argsstring>(fringesum *data, FILE *fp)</argsstring>
+        <name>write_fsumm</name>
+        <param>
+          <type><ref refid="structfringesum" kindref="compound">fringesum</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="24" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/write_fsumm.c" bodystart="79" bodyend="478" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1ab7ec4b03e4e09e2ab9de0f3d35ea60b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int write_rsumm</definition>
+        <argsstring>(rootsum *data, FILE *fp)</argsstring>
+        <name>write_rsumm</name>
+        <param>
+          <type><ref refid="structrootsum" kindref="compound">rootsum</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="25" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/write_rsumm.c" bodystart="44" bodyend="157" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="25" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="mk4__afio_8h_1a90b21174f0f3cc3058f3306a4b48147e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int write_tsumm</definition>
+        <argsstring>(trianglesum *data, FILE *fp)</argsstring>
+        <name>write_tsumm</name>
+        <param>
+          <type><ref refid="structtrianglesum" kindref="compound">trianglesum</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" line="26" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/src/write_tsumm.c" bodystart="45" bodyend="265" declfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h" declline="26" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MK4_AFIO_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MK4_AFIO_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adata_8h" kindref="compound">adata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__afio_8h_1a850746cf35e20a3ef806dc839cce5c84" kindref="member">set_afile_com_char</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>star);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="mk4__afio_8h_1a3deb5a067e905e6eb299732fbc9ac3fc" kindref="member">get_afile_com_char</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1aaec2234b8234d5a757da31af768d9c13" kindref="member">afile_comment</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1ac1ec4cd83d62f188e807eaf12fdc95d9" kindref="member">afile_header</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>type,<sp/>FILE<sp/>*fp);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__afio_8h_1a29c995cda5db9f337450f70947edeae8" kindref="member">aline_id</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*type);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__afio_8h_1a8207fb01cb4aada77721dd7d646c7f8d" kindref="member">clear_csumm</ref>(<ref refid="structcorelsum" kindref="compound">corelsum</ref><sp/>*dsumm);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__afio_8h_1a4e66006c1ba68e4f49a7df48e9947c4d" kindref="member">clear_fsumm</ref>(<ref refid="structfringesum" kindref="compound">fringesum</ref><sp/>*dsumm);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__afio_8h_1a9503bd50023f81ae60fc0cfc5f9f1f1f" kindref="member">clear_rsumm</ref>(<ref refid="structrootsum" kindref="compound">rootsum</ref><sp/>*dsumm);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="mk4__afio_8h_1aa856152c4d86a6ffc35b501461da43b8" kindref="member">clear_tsumm</ref>(<ref refid="structtrianglesum" kindref="compound">trianglesum</ref><sp/>*dsumm);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="mk4__afio_8h_1a5f383efe26c5466e196c2cfe636e1bcf" kindref="member">corelname</ref>(<ref refid="structcorelsum" kindref="compound">corelsum</ref><sp/>*csumm);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="mk4__afio_8h_1adda794c4c9a8c4ded6f2b8a7eb446dd9" kindref="member">fringename</ref>(<ref refid="structfringesum" kindref="compound">fringesum</ref><sp/>*fsumm);<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1a935b161ed3c94602913b554a4885c4b1" kindref="member">get_unique_name</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*input,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1afeda3ada925025b9f2adde5df64e5341" kindref="member">parse_csumm</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line,<sp/><ref refid="structcorelsum" kindref="compound">corelsum</ref><sp/>*file);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1aa647994375af5775afad398cd4632f05" kindref="member">parse_fsumm</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line,<sp/><ref refid="structfringesum" kindref="compound">fringesum</ref><sp/>*file);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1a19e89b0ca8c0365631df9f3b0332c981" kindref="member">parse_rsumm</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line,<sp/><ref refid="structrootsum" kindref="compound">rootsum</ref><sp/>*file);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1abe65b75096237c1d1faeead164386c8b" kindref="member">parse_tsumm</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line,<sp/><ref refid="structtrianglesum" kindref="compound">trianglesum</ref><sp/>*file);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="mk4__afio_8h_1a38555118841f6b56a5a4da1ad0c7386a" kindref="member">rootname</ref>(<ref refid="structrootsum" kindref="compound">rootsum</ref><sp/>*rsumm);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1ac38c3db277e07b94bb7b5f707a643af7" kindref="member">write_csumm</ref>(<ref refid="structcorelsum" kindref="compound">corelsum</ref><sp/>*data,<sp/>FILE<sp/>*fp);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1a47dac66c9fed54155e81917a61872fea" kindref="member">write_fsumm</ref>(<ref refid="structfringesum" kindref="compound">fringesum</ref><sp/>*data,<sp/>FILE<sp/>*fp);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1ab7ec4b03e4e09e2ab9de0f3d35ea60b2" kindref="member">write_rsumm</ref>(<ref refid="structrootsum" kindref="compound">rootsum</ref><sp/>*data,<sp/>FILE<sp/>*fp);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="mk4__afio_8h_1a90b21174f0f3cc3058f3306a4b48147e" kindref="member">write_tsumm</ref>(<ref refid="structtrianglesum" kindref="compound">trianglesum</ref><sp/>*data,<sp/>FILE<sp/>*fp);<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/mk4_afio.h"/>
+  </compounddef>
+</doxygen>

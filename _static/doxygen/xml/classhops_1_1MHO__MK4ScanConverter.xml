@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MK4ScanConverter" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MK4ScanConverter</compoundname>
+    <includes refid="MHO__MK4ScanConverter_8hh" local="no">MHO_MK4ScanConverter.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverter_1a73639dc8c4f9876370c33f1e8aacc3d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MK4ScanConverter::MHO_MK4ScanConverter</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MK4ScanConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" line="61" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverter.cc" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverter_1a1afbf6721447ef052b80f2239a090d04" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MK4ScanConverter::~MHO_MK4ScanConverter</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MK4ScanConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" line="62" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverter.cc" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverter_1accf3c58a550c17916737656c1dc1352b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_MK4ScanConverter::DetermineDirectoryType</definition>
+        <argsstring>(const std::string &amp;in_dir)</argsstring>
+        <name>DetermineDirectoryType</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>in_dir</declname>
+        </param>
+        <briefdescription>
+<para>Determines the type of a given directory (scan, experiment, unknown). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in_dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input directory path to analyze </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Directory type as an integer (MK4_SCANDIR, MK4_EXPDIR, MK4_UNKNOWNDIR) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" line="71" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverter.cc" bodystart="14" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverter_1ad451141213a70a4565f028e9f326c110" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4ScanConverter::ProcessScan</definition>
+        <argsstring>(const std::string &amp;input_dir, const std::string &amp;output_dir)</argsstring>
+        <name>ProcessScan</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>input_dir</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_dir</declname>
+        </param>
+        <briefdescription>
+<para>Processes scan data from input directory (MK4 format) to output directory (HOPS4 format) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input_dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input directory containing scan files </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output_dir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output directory for processed files </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" line="79" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverter.cc" bodystart="224" bodyend="344"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverter_1a94f76c07c7dd17a477b9c4baabcc4855" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4ScanConverter::ConvertCorel</definition>
+        <argsstring>(const std::string &amp;root_file, const std::string &amp;input_file, const std::string &amp;output_file)</argsstring>
+        <name>ConvertCorel</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>root_file</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>input_file</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_file</declname>
+        </param>
+        <briefdescription>
+<para>Converts Corel input file to HOPS4 format and writes output. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>root_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to root VEX file </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input Corel file path </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output file path </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" line="91" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverter.cc" bodystart="60" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4ScanConverter_1a4c9b809590387cb3c328ab980d2dbeb4" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4ScanConverter::ConvertStation</definition>
+        <argsstring>(const std::string &amp;root_file, const std::string &amp;input_file, const std::string &amp;output_file)</argsstring>
+        <name>ConvertStation</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>root_file</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>input_file</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>output_file</declname>
+        </param>
+        <briefdescription>
+<para>Converts a station input file to an output file HOPS4 format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>root_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the root VEX file </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>input_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the input station file </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the output SWIN file </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" line="102" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4ScanConverter.cc" bodystart="187" bodyend="222"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MK4ScanConverter" kindref="compound">MHO_MK4ScanConverter</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Converts an entire Mark4 directory to HOPS4 format (station, corel and ovex data)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Feb 8 13:15:14 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" line="58" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4ScanConverter.hh" bodystart="59" bodyend="103"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MK4ScanConverter_1a94f76c07c7dd17a477b9c4baabcc4855" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverter</scope><name>ConvertCorel</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverter_1a4c9b809590387cb3c328ab980d2dbeb4" prot="private" virt="non-virtual"><scope>hops::MHO_MK4ScanConverter</scope><name>ConvertStation</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverter_1accf3c58a550c17916737656c1dc1352b" prot="public" virt="non-virtual"><scope>hops::MHO_MK4ScanConverter</scope><name>DetermineDirectoryType</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverter_1a73639dc8c4f9876370c33f1e8aacc3d8" prot="public" virt="non-virtual"><scope>hops::MHO_MK4ScanConverter</scope><name>MHO_MK4ScanConverter</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverter_1ad451141213a70a4565f028e9f326c110" prot="public" virt="non-virtual"><scope>hops::MHO_MK4ScanConverter</scope><name>ProcessScan</name></member>
+      <member refid="classhops_1_1MHO__MK4ScanConverter_1a1afbf6721447ef052b80f2239a090d04" prot="public" virt="virtual"><scope>hops::MHO_MK4ScanConverter</scope><name>~MHO_MK4ScanConverter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

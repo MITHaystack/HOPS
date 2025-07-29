@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpval__format" kind="struct" language="C++" prot="public">
+    <compoundname>pval_format</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpval__format_1a378bafd54637262c65647f5bff48a4a0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char pval_format::block[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>block</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="186" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpval__format_1a8059d89e7ff224f32fdd48f41a15e37a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int pval_format::ngroup</definition>
+        <argsstring></argsstring>
+        <name>ngroup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="188" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="188" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpval__format_1aaf2a4ee7c7d34f66bf3f887d04f08cfe" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int pval_format::nval</definition>
+        <argsstring></argsstring>
+        <name>nval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="187" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpval__format_1a8f50b1d59afc50e36e7ecff7af4f922c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char pval_format::param_name[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>param_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="184" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpval__format_1ac11a39b78e9cb6bc66c66db318857620" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int pval_format::typever</definition>
+        <argsstring></argsstring>
+        <name>typever</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="185" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="185" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpval__format_1a54bde3b7d398235424073aae45235969" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structvalue" kindref="compound">value</ref> *</type>
+        <definition>struct value* pval_format::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="189" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>value</label>
+        <link refid="structvalue"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mandatory</edgelabel>
+          <edgelabel>range</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>units</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>pval_format</label>
+        <link refid="structpval__format"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>block</edgelabel>
+          <edgelabel>param_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ngroup</edgelabel>
+          <edgelabel>nval</edgelabel>
+          <edgelabel>typever</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>values</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="182" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="183" bodyend="190"/>
+    <listofallmembers>
+      <member refid="structpval__format_1a378bafd54637262c65647f5bff48a4a0" prot="public" virt="non-virtual"><scope>pval_format</scope><name>block</name></member>
+      <member refid="structpval__format_1a8059d89e7ff224f32fdd48f41a15e37a" prot="public" virt="non-virtual"><scope>pval_format</scope><name>ngroup</name></member>
+      <member refid="structpval__format_1aaf2a4ee7c7d34f66bf3f887d04f08cfe" prot="public" virt="non-virtual"><scope>pval_format</scope><name>nval</name></member>
+      <member refid="structpval__format_1a8f50b1d59afc50e36e7ecff7af4f922c" prot="public" virt="non-virtual"><scope>pval_format</scope><name>param_name</name></member>
+      <member refid="structpval__format_1ac11a39b78e9cb6bc66c66db318857620" prot="public" virt="non-virtual"><scope>pval_format</scope><name>typever</name></member>
+      <member refid="structpval__format_1a54bde3b7d398235424073aae45235969" prot="public" virt="non-virtual"><scope>pval_format</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="check__scan_8c" kind="file" language="C++">
+    <compoundname>check_scan.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="vex_8h" local="yes">vex.h</includes>
+    <includes refid="mk4__vex_8h" local="yes">mk4_vex.h</includes>
+    <includes refid="mk4__util_8h" local="yes">mk4_util.h</includes>
+    <incdepgraph>
+      <node id="12">
+        <label>lvex.h</label>
+        <link refid="lvex_8h"/>
+      </node>
+      <node id="15">
+        <label>stdarg.h</label>
+      </node>
+      <node id="5">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="16">
+        <label>sys/times.h</label>
+      </node>
+      <node id="21">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="14">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>ivex.h</label>
+        <link refid="ivex_8h"/>
+      </node>
+      <node id="17">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cvex.h</label>
+        <link refid="cvex_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="13">
+        <label>mk4_vex.h</label>
+        <link refid="mk4__vex_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="19">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ovex.h</label>
+        <link refid="ovex_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vex.h</label>
+        <link refid="vex_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>evex.h</label>
+        <link refid="evex_8h"/>
+      </node>
+      <node id="1">
+        <label>check_scan.c</label>
+        <link refid="check__scan_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="11">
+        <label>svex.h</label>
+        <link refid="svex_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="20">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="check__scan_8c_1a41e3a90661c978c4ea66c4bf4663a07d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void check_scan</definition>
+        <argsstring>(struct scan_struct *scan)</argsstring>
+        <name>check_scan</name>
+        <param>
+          <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+          <declname>scan</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_scan.c" line="28" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_scan.c" bodystart="28" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="check__scan_8c_1a355623a48898ac1e3bb25e0e2a2bfc66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void prt_date</definition>
+        <argsstring>(char *string, struct date *date)</argsstring>
+        <name>prt_date</name>
+        <param>
+          <type>char *</type>
+          <declname>string</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structdate" kindref="compound">date</ref> *</type>
+          <declname>date</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_scan.c" line="20" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_scan.c" bodystart="20" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>routine<sp/>makes<sp/>sure<sp/>the<sp/>filled<sp/>in<sp/>structure<sp/>is<sp/>filled<sp/>in<sp/>enough<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>and<sp/>in<sp/>its<sp/>initial<sp/>incarnation<sp/>just<sp/>prints<sp/>out<sp/>the<sp/>contents<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scan<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>the<sp/>structure<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>January<sp/>6<sp/>1998<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vex_8h" kindref="compound">vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__vex_8h" kindref="compound">mk4_vex.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__util_8h" kindref="compound">mk4_util.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="check__scan_8c_1a355623a48898ac1e3bb25e0e2a2bfc66" kindref="member">prt_date</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref><sp/>*<ref refid="structdate" kindref="compound">date</ref>)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;%s<sp/>=<sp/>%02dy%03dd%02dh%02dm%fs\n&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">,<sp/><ref refid="structdate" kindref="compound">date</ref>-&gt;<ref refid="structdate_1aef68a8508dda64a80f5fe08202e0da4c" kindref="member">year</ref>,<sp/><ref refid="structdate" kindref="compound">date</ref>-&gt;<ref refid="structdate_1aad570045b0c46ad2ec1333516b19d826" kindref="member">day</ref>,<sp/><ref refid="structdate" kindref="compound">date</ref>-&gt;<ref refid="structdate_1a86616c8f14820a1b884493b3f70d6790" kindref="member">hour</ref>,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structdate" kindref="compound">date</ref>-&gt;<ref refid="structdate_1a0a89d97324551f72b471a80cad3b7b9e" kindref="member">minute</ref>,<sp/><ref refid="structdate" kindref="compound">date</ref>-&gt;<ref refid="structdate_1afda99d94a7ee7ff3dda1dbce576ba524" kindref="member">second</ref>);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><ref refid="check__scan_8c_1a41e3a90661c978c4ea66c4bf4663a07d" kindref="member">check_scan</ref><sp/>(</highlight><highlight class="comment">/*<sp/>scan<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structscan__struct" kindref="compound">scan_struct</ref><sp/>*<ref refid="structscan" kindref="compound">scan</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>j,<sp/>k,<sp/>l;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structstation__struct" kindref="compound">station_struct</ref><sp/>*st;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structchan__struct" kindref="compound">chan_struct</ref><sp/>*ch;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="structscan" kindref="compound">scan</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>scan_struct<sp/>pointer<sp/>in<sp/>check_scan()&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;exper_num<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;exper_num);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;exper_name<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;exper_name);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;correlator<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;correlator);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;scan_name<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;scan_name);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="check__scan_8c_1a355623a48898ac1e3bb25e0e2a2bfc66" kindref="member">prt_date</ref><sp/>(</highlight><highlight class="stringliteral">&quot;start_time&quot;</highlight><highlight class="normal">,<sp/>&amp;(<ref refid="structscan" kindref="compound">scan</ref>-&gt;start_time));</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;tai_utc<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;tai_utc);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;a1_tai<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;a1_tai);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;neop<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;neop);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="check__scan_8c_1a355623a48898ac1e3bb25e0e2a2bfc66" kindref="member">prt_date</ref><sp/>(</highlight><highlight class="stringliteral">&quot;eop_reftime&quot;</highlight><highlight class="normal">,<sp/>&amp;(<ref refid="structscan" kindref="compound">scan</ref>-&gt;eop_reftime));</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;eop_interval<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;eop_interval);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="structscan" kindref="compound">scan</ref>-&gt;neop;<sp/>i++)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="structscan" kindref="compound">scan</ref>-&gt;ut1_utc[i]<sp/>!=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>)<sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;ut1_utc[%d]<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>i,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;ut1_utc[i]);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="structscan" kindref="compound">scan</ref>-&gt;x_wobble[i]<sp/>!=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>)<sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;x_wobble[%d]<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>i,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;x_wobble[i]);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="structscan" kindref="compound">scan</ref>-&gt;y_wobble[i]<sp/>!=<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>)<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;y_wobble[%d]<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>i,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;y_wobble[i]);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;source_name<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.source_name);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;iau_name<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.iau_name);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;source_type<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.source_type);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;calibrator<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.calibrator);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pos1<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.ra_hrs);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pos2<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.ra_mins);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pos3<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.ra_secs);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pos4<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.dec_degs);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pos5<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.dec_mins);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pos6<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position.dec_secs);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="check__scan_8c_1a355623a48898ac1e3bb25e0e2a2bfc66" kindref="member">prt_date</ref><sp/>(</highlight><highlight class="stringliteral">&quot;position_epoch&quot;</highlight><highlight class="normal">,<sp/>&amp;(<ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position_epoch));</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pos_ref_frame<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.position_ref_frame);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;ra_rate<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.ra_rate);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;dec_rate<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;src.dec_rate);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;nst<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;nst);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="structscan" kindref="compound">scan</ref>-&gt;nst;<sp/>i++)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>st<sp/>=<sp/><ref refid="structscan" kindref="compound">scan</ref>-&gt;st<sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;start_offset<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a266619d6727a91faae426e99222ef2d7" kindref="member">start_offset</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;stop_offset<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a97502f8e6191b06c672e739b625dff6d" kindref="member">stop_offset</ref>);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;start_tapepos<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a70b57ab5377795975a939021c966570b" kindref="member">start_tapepos</ref>);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;tape_motion<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a6bb6ede13741a0a552c13b55c429d578" kindref="member">tape_motion</ref>);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;early_start<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a358fdb7e5293acca826e8b043705100d" kindref="member">early_start</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;late_finish<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a7f1b074d30d55f152a0d29bc426f2abc" kindref="member">late_finish</ref>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;tape_gap<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a3ff2a7cd4a46f70d990652713ae1dc65" kindref="member">tape_gap</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;subpass<sp/>=<sp/>%c\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1ac3d94f885692e1147c4c0cb0080dac4c" kindref="member">subpass</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;passno<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a9cdd80b8f6728cbb251c471092ab0030" kindref="member">passno</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;drive_no<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a5477b302032f4ba27bdb24b8ac56de1d" kindref="member">drive_no</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;site_type<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a746841fbde6c194aafdedc606d7be925" kindref="member">site_type</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;site_name<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1af6366fbb80d495702bc869cb96659805" kindref="member">site_name</ref>);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;site_id<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a8e0f89fac47f41bf1b326301a7413ab2" kindref="member">site_id</ref>);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;3;<sp/>j++)<sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;coordinates[%d]<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>j,<sp/>st-&gt;<ref refid="structstation__struct_1a0fecc8f8f3233c7829213851c0298fa1" kindref="member">coordinates</ref>[j]);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="check__scan_8c_1a355623a48898ac1e3bb25e0e2a2bfc66" kindref="member">prt_date</ref><sp/>(</highlight><highlight class="stringliteral">&quot;coordinate_epoch&quot;</highlight><highlight class="normal">,<sp/>&amp;(st-&gt;<ref refid="structstation__struct_1aa249421265c1c6c68ebaf9dadc399977" kindref="member">coordinate_epoch</ref>));</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;3;<sp/>j++)<sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;site_velocity[%d]<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>j,<sp/>st-&gt;<ref refid="structstation__struct_1a3649f3686a3efaa76179a911b8ba7151" kindref="member">site_velocity</ref>[j]);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;zenith_atm<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a223f03fbf664f60d8da1bc168b2cf8c0" kindref="member">zenith_atm</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;occucode<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1ad69d90888d1388164d48a638830df4b4" kindref="member">occucode</ref>);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;axis_type<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1ae825df983ffe16c309b5623f96515126" kindref="member">axis_type</ref>);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;axis_offset<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a661261bc2fdff7677d1fad76a887bdbf" kindref="member">axis_offset</ref>);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;recorder_type<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a990d94bc9da457a7e890ec73fa24cd46" kindref="member">recorder_type</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;rack_type<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1ab7d03e5d71ec6916079633c5ee878ad0" kindref="member">rack_type</ref>);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;record_density<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a814b999829f4f51ca0e33f4397c379c8" kindref="member">record_density</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;tape_length<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a7007efd465ab11efa751fd289b56c6b2" kindref="member">tape_length</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;recorder_id<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a429c2caf6f903457959081c4848f834c" kindref="member">recorder_id</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;clock_early<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a2282cd9ce912fcb46bd9f7e688be37ee" kindref="member">clock_early</ref>);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="check__scan_8c_1a355623a48898ac1e3bb25e0e2a2bfc66" kindref="member">prt_date</ref><sp/>(</highlight><highlight class="stringliteral">&quot;clockrate_epoch&quot;</highlight><highlight class="normal">,<sp/>&amp;(st-&gt;<ref refid="structstation__struct_1a6e05d9b0f20f075f56c2098b53c36c82" kindref="member">clockrate_epoch</ref>));</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;clockrate<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a6940f16cafcd51901416f4c44b8a1ba6" kindref="member">clockrate</ref>);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;tape_id<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a817b6af709c26e5968392c4b296cca77" kindref="member">tape_id</ref>);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;samplerate<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a8e81d776ed155d1d593760ffc9d60864" kindref="member">samplerate</ref>);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;track_format<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a5536c7bda0f333b9fc6f39d87e56ec0e" kindref="member">track_format</ref>);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;modulation<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1ad170d68bad1277ab160c9f49472657a7" kindref="member">modulation</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pass_direction<sp/>=<sp/>%c\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a93f1cce1da7283a86459de290542c5e1" kindref="member">pass_direction</ref>);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;4;<sp/>j++)<sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;head_position[%d]<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>j,<sp/>st-&gt;<ref refid="structstation__struct_1a81a158180e3dafc11e9a10cc73bb159b" kindref="member">head_position</ref>[j]);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;roll<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a618d5c05372a49481ae21b848c27b4f4" kindref="member">roll</ref>);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;roll_increment<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a7139575e75b8f78ff4dfa3c06ec49be5" kindref="member">roll_increment</ref>);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;roll_period<sp/>=<sp/>%f\n&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a53e57b3059a9883d51becf12ebe42660" kindref="member">roll_period</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=1;<sp/>j&lt;=4;<sp/>j++)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=2;<sp/>k&lt;34;<sp/>k++)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(st-&gt;<ref refid="structstation__struct_1a4dff8c60edb8bc99ece30a323ad9a3c4" kindref="member">roll_seq</ref>[j][k][0]<sp/>==<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;roll_seq,<sp/>hs<sp/>%d:<sp/>home<sp/>%2d:&quot;</highlight><highlight class="normal">,<sp/>j,<sp/>k);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(l=0;<sp/>l&lt;32;<sp/>l++)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(st-&gt;<ref refid="structstation__struct_1a4dff8c60edb8bc99ece30a323ad9a3c4" kindref="member">roll_seq</ref>[j][k][l]<sp/>!=<sp/><ref refid="ovex_8h_1a9eaefac61d2cfc8ae6a016745103ea92" kindref="member">I_UNDEFINED</ref>)<sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;<sp/>%2d&quot;</highlight><highlight class="normal">,<sp/>st-&gt;<ref refid="structstation__struct_1a4dff8c60edb8bc99ece30a323ad9a3c4" kindref="member">roll_seq</ref>[j][k][l]);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j=0;<sp/>j&lt;16;<sp/>j++)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ch<sp/>=<sp/>st-&gt;<ref refid="structstation__struct_1a2ec6764e0f4e6673001e80c0aeb15476" kindref="member">channels</ref><sp/>+<sp/>j;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Skip<sp/>if<sp/>freq<sp/>undefined<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ch-&gt;<ref refid="structchan__struct_1a198a87ce0e2dd69100642afff49398dd" kindref="member">sky_frequency</ref><sp/>==<sp/><ref refid="ovex_8h_1a75f92d171fa8dc6c9ea204a322347e51" kindref="member">F_UNDEFINED</ref>)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;Channel<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>j);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;polarization<sp/>=<sp/>%c\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a151d5d452c24ec490a59799f3da6f404" kindref="member">polarization</ref>);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;sky_frequency<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a198a87ce0e2dd69100642afff49398dd" kindref="member">sky_frequency</ref>);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;net_sideband<sp/>=<sp/>%c\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a05ed789db01fe497c1e3e33d8334145d" kindref="member">net_sideband</ref>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;bandwidth<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1aaf6877105412bc1d0e04fa9d54711461" kindref="member">bandwidth</ref>);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;band_id<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1abd44e27247d40002c8d4b69c463bb4dc" kindref="member">band_id</ref>);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;chan_id<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1aa9a3203cb2c33b5a24257d1d8d719cbc" kindref="member">chan_id</ref>);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;bbc_id<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1af22a41a9e8d403579d72331583637c3a" kindref="member">bbc_id</ref>);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pcal_id<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a78d9d5ab0369089d9059504ca9516898" kindref="member">pcal_id</ref>);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;if_id<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1adf646ac59fdda3e03a645eb133506483" kindref="member">if_id</ref>);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;bbc_no<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a832af496c4591d9514d4ef5d50efefe0" kindref="member">bbc_no</ref>);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;if_name<sp/>=<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a85f23795a149f13b2251c0b74558edfe" kindref="member">if_name</ref>);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;if_total_lo<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1abc73fc8503f2e5ad2154d9910e14488e" kindref="member">if_total_lo</ref>);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;if_sideband<sp/>=<sp/>%c\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a32053a195b68fb6fc80281be98cfd5b2" kindref="member">if_sideband</ref>);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pcal_spacing<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a656c8c37280a1ede7371e38aef8f5255" kindref="member">pcal_spacing</ref>);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pcal_base_freq<sp/>=<sp/>%g\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a75f2d414e08dfa103427e56131ff985f" kindref="member">pcal_base_freq</ref>);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=0;<sp/>k&lt;8;<sp/>k++)<sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;pcal_detect[%d]<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>k,<sp/>ch-&gt;<ref refid="structchan__struct_1a634bcbc81f56119dc9eaa58cbea509ea" kindref="member">pcal_detect</ref>[k]);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=0;<sp/>k&lt;4;<sp/>k++)<sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;sign_tracks[%d]<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>k,<sp/>ch-&gt;<ref refid="structchan__struct_1a130f805b58a561102efba8a976e8d46c" kindref="member">sign_tracks</ref>[k]);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;sign_headstack<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a94a399109bd65a0236b6213391b5f861" kindref="member">sign_headstack</ref>);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k=0;<sp/>k&lt;4;<sp/>k++)<sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;mag_tracks[%d]<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>k,<sp/>ch-&gt;<ref refid="structchan__struct_1a31f25ee3d18ffcabb858a6feeaaf057f" kindref="member">mag_tracks</ref>[k]);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;mag_headstack<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>ch-&gt;<ref refid="structchan__struct_1a63df25c8178747ec4fb5134e5b419e89" kindref="member">mag_headstack</ref>);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/src/check_scan.c"/>
+  </compounddef>
+</doxygen>

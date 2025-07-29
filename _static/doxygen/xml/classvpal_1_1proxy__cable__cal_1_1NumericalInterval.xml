@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::NumericalInterval</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1afd7818cf2b8325bec6953fe82c7683b8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.NumericalInterval::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="138" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1abc9d86fc0dcddd9aa1f77e95261efc7a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.NumericalInterval::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="139" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a8dc2838f60775490fd864683cbce9aa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.NumericalInterval.__init__</definition>
+        <argsstring>(self, center, width)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1afd7818cf2b8325bec6953fe82c7683b8" kindref="member">center</ref></type>
+          <defname>center</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1abc9d86fc0dcddd9aa1f77e95261efc7a" kindref="member">width</ref></type>
+          <defname>width</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="137" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="137" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a0915a676e3ae12478ce1a843380eda31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.NumericalInterval.__str__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__str__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="153" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="153" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1aa74477ebd40af4701946ab1d47aa05fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.NumericalInterval.get_center</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_center</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="141" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="141" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a292dee3af88d3647e78df9369593c1ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.NumericalInterval.get_lower_limit</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_lower_limit</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="147" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="147" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a8f1b5d82c1f890b2a3d3ef1dacdf4796" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.NumericalInterval.get_upper_limit</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_upper_limit</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="150" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="150" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a2b35aad7130b777d04f129889f7df6ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.NumericalInterval.get_width</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_width</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="144" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="144" bodyend="146"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>simple class for a numerical interval </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.NumericalInterval</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>object</label>
+      </node>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.NumericalInterval</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="134" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="134" bodyend="157"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a8dc2838f60775490fd864683cbce9aa4" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a0915a676e3ae12478ce1a843380eda31" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>__str__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1afd7818cf2b8325bec6953fe82c7683b8" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>center</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1aa74477ebd40af4701946ab1d47aa05fa" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>get_center</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a292dee3af88d3647e78df9369593c1ab" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>get_lower_limit</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a8f1b5d82c1f890b2a3d3ef1dacdf4796" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>get_upper_limit</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1a2b35aad7130b777d04f129889f7df6ba" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>get_width</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval_1abc9d86fc0dcddd9aa1f77e95261efc7a" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::NumericalInterval</scope><name>width</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

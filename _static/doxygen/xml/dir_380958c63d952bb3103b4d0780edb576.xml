@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_380958c63d952bb3103b4d0780edb576" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="parse__bfields_8c">parse_bfields.c</innerfile>
+    <innerfile refid="applications_2adump_2src_2parse__cmdline_8c">applications/adump/src/parse_cmdline.c</innerfile>
+    <innerfile refid="parse__tfields_8c">parse_tfields.c</innerfile>
+    <innerfile refid="strip__bline_8c">strip_bline.c</innerfile>
+    <innerfile refid="strip__tline_8c">strip_tline.c</innerfile>
+    <innerfile refid="write__header_8c">write_header.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/adump/src/"/>
+  </compounddef>
+</doxygen>

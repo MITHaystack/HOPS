@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__UUID" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_UUID</compoundname>
+    <includes refid="MHO__UUID_8hh" local="no">MHO_UUID.hh</includes>
+    <innerclass refid="unionhops_1_1MHO__UUID_1_1byte2ints" prot="protected">hops::MHO_UUID::byte2ints</innerclass>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__UUID_1a5319b9c7315163abfa02cd15a21dd273" prot="protected" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t hops::MHO_UUID::fBytes[MHO_UUID_LENGTH]</definition>
+        <argsstring>[MHO_UUID_LENGTH]</argsstring>
+        <name>fBytes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="189" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="189" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a91db6d546c5e4707c08eff7361f6710e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_UUID::MHO_UUID</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_UUID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="30" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1af9fd87b6c492e1252db2a1f1d0f4c29d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_UUID::MHO_UUID</definition>
+        <argsstring>(const MHO_UUID &amp;copy)</argsstring>
+        <name>MHO_UUID</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="40" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a83df062dc25a29b445574b42ecbbac12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_UUID::~MHO_UUID</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_UUID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a0993c6e246e2aabb313e6336f627c650" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_UUID::as_long</definition>
+        <argsstring>() const</argsstring>
+        <name>as_long</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Split the UUID byte array into two halves conver to uint64_t and return the sum <simplesect kind="return"><para>A uint64_t composed of the sum of the two halves of the uuid </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="108" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="108" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1ab0f1d5dbbf417b230cf1e741996221e8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_UUID::as_string</definition>
+        <argsstring>() const</argsstring>
+        <name>as_string</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Convert the UUID byte array into a string <simplesect kind="return"><para>A std::string containing the hexadecimal digits of the UUID. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="125" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="125" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a34626316186146ebf0bd6e48a016b142" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_UUID::as_truncated_long</definition>
+        <argsstring>(bool first_half=true) const</argsstring>
+        <name>as_truncated_long</name>
+        <param>
+          <type>bool</type>
+          <declname>first_half</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Truncate the UUID byte array to the first (last) 8 bytes and convert into a 64 bit int <simplesect kind="return"><para>A uint64_t composed of the first or last 8 bytes of the UUID </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="87" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="87" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1ae89a750c7587f308d0585b82c2b319b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_UUID::from_string</definition>
+        <argsstring>(const std::string &amp;uuid_str)</argsstring>
+        <name>from_string</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>uuid_str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Convert a formatted string into a UUID byte array and fill this object <simplesect kind="return"><para>update the uuid object from std::string containing the hexadecimal digits of the UUID. </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="143" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="143" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1ac8ee26515febb33da49203778de7b612" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_UUID::is_empty</definition>
+        <argsstring>() const</argsstring>
+        <name>is_empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="168" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="168" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a74788767268f36d2a0c56ebc81b8b75f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_UUID::operator!=</definition>
+        <argsstring>(const MHO_UUID &amp;rhs) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="74" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a790e83987766e104bd281d35f8f6c23a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_UUID::operator&lt;</definition>
+        <argsstring>(const MHO_UUID &amp;rhs) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="76" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="76" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1accb68b31415a346fb17bcc99e4b5dda7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+        <definition>MHO_UUID&amp; hops::MHO_UUID::operator=</definition>
+        <argsstring>(const MHO_UUID &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="48" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="48" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1ae8484c44102488a6149de3bb13b61a9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_UUID::operator==</definition>
+        <argsstring>(const MHO_UUID &amp;rhs) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="62" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="62" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a91d353237ae87a1e39a7b461284968b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint8_t &amp;</type>
+        <definition>uint8_t&amp; hops::MHO_UUID::operator[]</definition>
+        <argsstring>(std::size_t i)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="58" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1a8a7816ae8593e636a8af1df705f0c1a7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const uint8_t &amp;</type>
+        <definition>const uint8_t&amp; hops::MHO_UUID::operator[]</definition>
+        <argsstring>(std::size_t i) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="60" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1af8c0e272c98b54a45708370273273b9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_UUID::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="166" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="166" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__UUID_1ab9cd3ac9a54cdd51afb18f6a713ec5fe" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint64_t</type>
+        <definition>static uint64_t hops::MHO_UUID::ByteSize</definition>
+        <argsstring>()</argsstring>
+        <name>ByteSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="180" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="180" bodyend="180"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> - a class for a 16 byte UUID (for object and type identification) </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>uint8_t</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_UUID.hh" bodystart="27" bodyend="190"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UUID_1a0993c6e246e2aabb313e6336f627c650" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>as_long</name></member>
+      <member refid="classhops_1_1MHO__UUID_1ab0f1d5dbbf417b230cf1e741996221e8" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>as_string</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a34626316186146ebf0bd6e48a016b142" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>as_truncated_long</name></member>
+      <member refid="classhops_1_1MHO__UUID_1ab9cd3ac9a54cdd51afb18f6a713ec5fe" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>ByteSize</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a5319b9c7315163abfa02cd15a21dd273" prot="protected" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>fBytes</name></member>
+      <member refid="classhops_1_1MHO__UUID_1ae89a750c7587f308d0585b82c2b319b7" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>from_string</name></member>
+      <member refid="classhops_1_1MHO__UUID_1ac8ee26515febb33da49203778de7b612" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>is_empty</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a91db6d546c5e4707c08eff7361f6710e" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>MHO_UUID</name></member>
+      <member refid="classhops_1_1MHO__UUID_1af9fd87b6c492e1252db2a1f1d0f4c29d" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>MHO_UUID</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a74788767268f36d2a0c56ebc81b8b75f" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>operator!=</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a790e83987766e104bd281d35f8f6c23a" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>operator&lt;</name></member>
+      <member refid="classhops_1_1MHO__UUID_1accb68b31415a346fb17bcc99e4b5dda7" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__UUID_1ae8484c44102488a6149de3bb13b61a9f" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>operator==</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a91d353237ae87a1e39a7b461284968b8" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>operator[]</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a8a7816ae8593e636a8af1df705f0c1a7" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>operator[]</name></member>
+      <member refid="classhops_1_1MHO__UUID_1af8c0e272c98b54a45708370273273b9f" prot="public" virt="non-virtual"><scope>hops::MHO_UUID</scope><name>size</name></member>
+      <member refid="classhops_1_1MHO__UUID_1a83df062dc25a29b445574b42ecbbac12" prot="public" virt="virtual"><scope>hops::MHO_UUID</scope><name>~MHO_UUID</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

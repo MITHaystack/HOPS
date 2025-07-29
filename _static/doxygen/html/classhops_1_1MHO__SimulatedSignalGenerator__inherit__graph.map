@@ -1,0 +1,5 @@
+<map id="hops::MHO_SimulatedSignalGenerator" name="hops::MHO_SimulatedSignalGenerator">
+<area shape="rect" id="node1" title=" " alt="" coords="134,5,322,47"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__GaussianWhiteNoiseSignal.html" title=" " alt="" coords="5,95,221,136"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__SingleToneSignal.html" title=" " alt="" coords="245,102,440,129"/>
+</map>

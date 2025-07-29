@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_5ebd03be8ed102a6345395c359644522" kind="dir">
+    <compoundname>cl</compoundname>
+    <innerfile refid="MHO__ArrayMath_8cl">MHO_ArrayMath.cl</innerfile>
+    <innerfile refid="MHO__BitReversalPermutation_8cl">MHO_BitReversalPermutation.cl</innerfile>
+    <innerfile refid="MHO__ComplexUtils_8cl">MHO_ComplexUtils.cl</innerfile>
+    <innerfile refid="MHO__FastFourierTransformUtilities_8cl">MHO_FastFourierTransformUtilities.cl</innerfile>
+    <innerfile refid="MHO__PointwiseComplexVectorAdd__kernel_8cl">MHO_PointwiseComplexVectorAdd_kernel.cl</innerfile>
+    <innerfile refid="MHO__PointwiseComplexVectorMultiply__kernel_8cl">MHO_PointwiseComplexVectorMultiply_kernel.cl</innerfile>
+    <innerfile refid="MHO__ZeroComplexArray__kernel_8cl">MHO_ZeroComplexArray_kernel.cl</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Math/cl/"/>
+  </compounddef>
+</doxygen>

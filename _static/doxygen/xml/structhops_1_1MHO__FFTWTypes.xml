@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__FFTWTypes" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FFTWTypes</compoundname>
+    <includes refid="MHO__FFTWTypes_8hh" local="no">MHO_FFTWTypes.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XFloatType</type>
+        <defval>void</defval>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__FFTWTypes" kindref="compound">MHO_FFTWTypes</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>template declaration of common FFTW3 types (dependent on floating precision) These are necessary to get around partial template specialization in the FFT x-form classes</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue Jun 22 14:53:20 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="59" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvexpy_1_1vexpy_1_1source__struct" kind="class" language="Python" prot="public">
+    <compoundname>vexpy::vexpy::source_struct</compoundname>
+    <basecompoundref refid="classvexpy_1_1vexpy_1_1VexStructureBase" prot="public" virt="non-virtual">vexpy.vexpy.VexStructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classvexpy_1_1vexpy_1_1source__struct_1a24720bda1a5f347c6abfd01c141fc5fd" prot="private" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list vexpy.vexpy.source_struct::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <initializer>=  [
+        (&apos;source_name&apos;, ctypes.c_char * 32),
+        (&apos;iau_name&apos;, ctypes.c_char * 32),
+        (&apos;source_type&apos;, ctypes.c_short),
+        (&apos;calibrator&apos;, ctypes.c_short),
+        (&apos;position&apos;, <ref refid="classmk4io_1_1mk4io_1_1sky__coord" kindref="compound">sky_coord</ref> ),
+        (&apos;position_epoch&apos;, <ref refid="classmk4io_1_1mk4io_1_1date" kindref="compound">date</ref>),
+        (&apos;position_ref_frame&apos;, ctypes.c_short),
+        (&apos;ra_rate&apos;, ctypes.c_float),
+        (&apos;dec_rate&apos;, ctypes.c_float)
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="123" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>vexpy.vexpy.VexStructureBase</label>
+        <link refid="classvexpy_1_1vexpy_1_1VexStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vexpy.vexpy.source_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1source__struct"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="2">
+        <label>vexpy.vexpy.VexStructureBase</label>
+        <link refid="classvexpy_1_1vexpy_1_1VexStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vexpy.vexpy.source_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1source__struct"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="122" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="122" bodyend="135"/>
+    <listofallmembers>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a977b385c197df406231e1b04697ebe0d" prot="public" virt="non-virtual"><scope>vexpy::vexpy::source_struct</scope><name>__eq__</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a11038ebcd0191035b2a7e6620ddd58b1" prot="public" virt="non-virtual"><scope>vexpy::vexpy::source_struct</scope><name>__ne__</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1source__struct_1a24720bda1a5f347c6abfd01c141fc5fd" prot="private" virt="non-virtual"><scope>vexpy::vexpy::source_struct</scope><name>_fields_</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a110929a2baeb94c6b38d42e056b0c1af" prot="public" virt="non-virtual"><scope>vexpy::vexpy::source_struct</scope><name>printarray</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1af155ab0d05c4c75c206558a0208a5841" prot="public" virt="non-virtual"><scope>vexpy::vexpy::source_struct</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

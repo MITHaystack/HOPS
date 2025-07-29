@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="isoclog_8h" kind="file" language="C++">
+    <compoundname>isoclog.h</compoundname>
+    <includedby refid="lifetime_8c" local="yes">lifetime.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>lifetime.c</label>
+        <link refid="lifetime_8c"/>
+      </node>
+      <node id="1">
+        <label>isoclog.h</label>
+        <link refid="isoclog_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="isoclog_8h_1ac9f4817a8881fbbf7e7236030aad1bc6" prot="public" static="no">
+        <name>comlog</name>
+        <param><defname>X</defname></param>
+        <initializer>(void)0;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="isoclog_8h_1a287df4e353ff1384c6dd7911de83521e" prot="public" static="no">
+        <name>comlog_enabled</name>
+        <initializer>*((int*)0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="isoclog_8h_1ab888eab2f32d36457bc7afb603ae357f" prot="public" static="no">
+        <name>errlog</name>
+        <param><defname>X</defname></param>
+        <initializer>(void)0;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="isoclog_8h_1af266e1e8ca46e805204679c0bf6a6236" prot="public" static="no">
+        <name>errlog_enabled</name>
+        <initializer>*((int*)0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="isoclog_8h_1addf2ba0e9e90cd92217cafdfc7776956" prot="public" static="no">
+        <name>isoclog</name>
+        <param><defname>X</defname></param>
+        <initializer>(void)0;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/><sp/>Ops<sp/>include<sp/>file</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>$Id:<sp/>isoclog.h<sp/>842<sp/>2007-12-10<sp/>16:37:49Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>just<sp/>disable<sp/>the<sp/>whole<sp/>thing<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ISOCOPS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ISOCOPS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>provoke<sp/>a<sp/>segfault<sp/>if<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="isoclog_8h_1af266e1e8ca46e805204679c0bf6a6236" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>errlog_enabled<sp/><sp/>*((int*)0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="isoclog_8h_1a287df4e353ff1384c6dd7911de83521e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>comlog_enabled<sp/><sp/>*((int*)0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>stub<sp/>out<sp/>the<sp/>library<sp/>calls<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="isoclog_8h_1addf2ba0e9e90cd92217cafdfc7776956" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>isoclog(X)<sp/><sp/>(void)0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="isoclog_8h_1ab888eab2f32d36457bc7afb603ae357f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>errlog(X)<sp/><sp/><sp/>(void)0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="isoclog_8h_1ac9f4817a8881fbbf7e7236030aad1bc6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>comlog(X)<sp/><sp/><sp/>(void)0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ISOCOPS_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>original<sp/>include<sp/>is<sp/>below<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ISOCOPS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ISOCOPS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/>Ops<sp/>error<sp/>logging<sp/>routines</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="isoclog_8h_1af266e1e8ca46e805204679c0bf6a6236" kindref="member">errlog_enabled</ref>;<sp/><sp/></highlight><highlight class="comment">/*<sp/>allows<sp/>logging<sp/>control<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="isoclog_8h_1a287df4e353ff1384c6dd7911de83521e" kindref="member">comlog_enabled</ref>;<sp/><sp/></highlight><highlight class="comment">/*<sp/>allows<sp/>logging<sp/>control<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="isoclog_8h_1addf2ba0e9e90cd92217cafdfc7776956" kindref="member">isoclog</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*process);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>open<sp/>log<sp/>for<sp/>process<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="isoclog_8h_1ab888eab2f32d36457bc7afb603ae357f" kindref="member">errlog</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*message);<sp/></highlight><highlight class="comment">/*<sp/>forserious<sp/>conditions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="isoclog_8h_1ac9f4817a8881fbbf7e7236030aad1bc6" kindref="member">comlog</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*message);<sp/></highlight><highlight class="comment">/*<sp/>for<sp/>useful<sp/>commentary<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/><sp/>Legal<sp/>values<sp/>for<sp/>the<sp/>IBEX_LOG<sp/>environment<sp/>variable</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IBEX_LOG_TRUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;true&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IBEX_LOG_FALSE<sp/><sp/><sp/><sp/><sp/><sp/>&quot;false&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ISOCOPS_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/isoclog.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,763 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__PolProductSummation" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_PolProductSummation</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; visibility_type &gt;</basecompoundref>
+    <includes refid="MHO__PolProductSummation_8hh" local="no">MHO_PolProductSummation.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a364195513a5bc7d19a3311ded986eed6" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_PolProductSummation::fPolProductSet</definition>
+        <argsstring></argsstring>
+        <name>fPolProductSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="174" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a382715de502889967afde4e4b5587768" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Reducer" kindref="compound">MHO_Reducer</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref>, <ref refid="structhops_1_1MHO__CompoundSum" kindref="compound">MHO_CompoundSum</ref> &gt;</type>
+        <definition>MHO_Reducer&lt; visibility_type, MHO_CompoundSum &gt; hops::MHO_PolProductSummation::fReducer</definition>
+        <argsstring></argsstring>
+        <name>fReducer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="153" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a4b2cefa99fc7084129bc1654f99e7c80" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+        <definition>station_coord_type* hops::MHO_PolProductSummation::fRefData</definition>
+        <argsstring></argsstring>
+        <name>fRefData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="180" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1adb493682d56bea71eab071e915f90686" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PolProductSummation::fRefMountType</definition>
+        <argsstring></argsstring>
+        <name>fRefMountType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="178" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a6d5dbba3d1d6dc3c6a31929003f2671d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_PolProductSummation::fRefParAngle</definition>
+        <argsstring></argsstring>
+        <name>fRefParAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="176" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="176" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a3c7ad9fb6c7d9291cf58396a3fd79098" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+        <definition>station_coord_type* hops::MHO_PolProductSummation::fRemData</definition>
+        <argsstring></argsstring>
+        <name>fRemData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="181" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a8d10ea0dcf672da0d57b7e1ab4103a90" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PolProductSummation::fRemMountType</definition>
+        <argsstring></argsstring>
+        <name>fRemMountType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="179" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1aaecb090551458560f8c7fa8ed24a291d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_PolProductSummation::fRemParAngle</definition>
+        <argsstring></argsstring>
+        <name>fRemParAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="177" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1ac0fef16f088ba8aeb1c47a74f9f64f92" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_PolProductSummation::fSummedPolProdLabel</definition>
+        <argsstring></argsstring>
+        <name>fSummedPolProdLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="173" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a3918d8ba4071e6a5f1f4a1fd1b6ef09c" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref> *</type>
+        <definition>weight_type* hops::MHO_PolProductSummation::fWeights</definition>
+        <argsstring></argsstring>
+        <name>fWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="150" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__PolProductSummation_1a1c13e57de6e18b4978fad6276ea485fd" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Reducer" kindref="compound">MHO_Reducer</ref>&lt; <ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref>, <ref refid="structhops_1_1MHO__CompoundSum" kindref="compound">MHO_CompoundSum</ref> &gt;</type>
+        <definition>MHO_Reducer&lt; weight_type, MHO_CompoundSum &gt; hops::MHO_PolProductSummation::fWReducer</definition>
+        <argsstring></argsstring>
+        <name>fWReducer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="154" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1afb7a515d9907697c57e5a083657502e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_PolProductSummation::MHO_PolProductSummation</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_PolProductSummation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a30e8afdfc5f9a996b2957199fd26f536" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_PolProductSummation::~MHO_PolProductSummation</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_PolProductSummation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="37" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1ae4826d31a4944669380a84ec6c25ead4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetPolProductSet</definition>
+        <argsstring>(std::vector&lt; std::string &gt; &amp;pp_vec)</argsstring>
+        <name>SetPolProductSet</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>pp_vec</declname>
+        </param>
+        <briefdescription>
+<para>Setter for pol product set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pp_vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to a vector of strings representing the pol product set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1ae29265e95c5fcf7d0be1944f534ec175" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetPolProductSumLabel</definition>
+        <argsstring>(std::string ppl)</argsstring>
+        <name>SetPolProductSumLabel</name>
+        <param>
+          <type>std::string</type>
+          <declname>ppl</declname>
+        </param>
+        <briefdescription>
+<para>Setter for pol product sum label. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ppl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New pol product sum label (typically &apos;I&apos; for pseudo-Stokes-I) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1ae045c5dd117f926dd8a37fe4c07261d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetReferenceMountType</definition>
+        <argsstring>(std::string mt)</argsstring>
+        <name>SetReferenceMountType</name>
+        <param>
+          <type>std::string</type>
+          <declname>mt</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference mount type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reference station mount type as string</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+not currently used (but needed for circ-circ pol sum)! </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="102" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="102" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1ad0ffe3aa37744520168889d247b50b76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetReferenceParallacticAngle</definition>
+        <argsstring>(double p)</argsstring>
+        <name>SetReferenceParallacticAngle</name>
+        <param>
+          <type>double</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference station parallactic angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input parallactic angle value in degrees </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="86" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a9bd87d45b3424c5d770ea22dcf27c0a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetReferenceStationCoordinateData</definition>
+        <argsstring>(station_coord_type *ref_data)</argsstring>
+        <name>SetReferenceStationCoordinateData</name>
+        <param>
+          <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+          <declname>ref_data</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference station coordinate data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ref_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to station_coord_type structure</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+this data object is not used yet, but could be needed if we want to apply/determine time-dependence in the pol-product pre-factors </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="69" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a9dde82db70f5ceafb480fa25e4898620" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetRemoteMountType</definition>
+        <argsstring>(std::string mt)</argsstring>
+        <name>SetRemoteMountType</name>
+        <param>
+          <type>std::string</type>
+          <declname>mt</declname>
+        </param>
+        <briefdescription>
+<para>Setter for remote mount type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>remote station mount type as string</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+not currently used (but needed for circ-circ pol sum)! </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="110" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1ac00e253d720855ae0e9c41e6409e52e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetRemoteParallacticAngle</definition>
+        <argsstring>(double p)</argsstring>
+        <name>SetRemoteParallacticAngle</name>
+        <param>
+          <type>double</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Setter for remote station parallactic angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value for remote station parallactic angle in degrees </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="93" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1af776ff4b22cf3467c603ddcd8e21d7f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetRemoteStationCoordinateData</definition>
+        <argsstring>(station_coord_type *rem_data)</argsstring>
+        <name>SetRemoteStationCoordinateData</name>
+        <param>
+          <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+          <declname>rem_data</declname>
+        </param>
+        <briefdescription>
+<para>Setter for remote station coordinate data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rem_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to station_coord_type structure containing remote station coordinates</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+this data object is not used yet, but could be needed if we want to apply/determine time-dependence in the pol-product pre-factors </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="78" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a0aca5706be91bb39bd848251c778db78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::SetWeights</definition>
+        <argsstring>(weight_type *w)</argsstring>
+        <name>SetWeights</name>
+        <param>
+          <type><ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref> *</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>Setter for weights. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to weight_type array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1ac25065e017b766df1fe878905e2389b5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PolProductSummation::ExecuteInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Executes pol-product summation in-place and updates weights. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer for processing. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful execution of both operations. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="138" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="16" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a12f32c59993081089e5bf7bf5a770f70" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PolProductSummation::ExecuteOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input visibility data to output, pre-multiplies it, executes reducers and fixes labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output visibility data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful execution of reducers </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="147" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="35" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1ab95673da1ca4b5945f496ac167f0a997" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PolProductSummation::InitializeInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes reducer (operators) and checks initialization status. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful initialization of both reducers. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="120" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="53" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a736a52b5bb4776644fa0e1240fd15daa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_PolProductSummation::InitializeOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes reducer (operators) and checks their initialization status for out-of-place processing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output visibility_type data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful initialization of both reducers. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="129" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="63" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a14add6222bba7756a035c4ad1e2cf4f3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::FixLabels</definition>
+        <argsstring>(visibility_type *in)</argsstring>
+        <name>FixLabels</name>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="171" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="191" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a1c81e07a21003fb3ad82d52fff4b7aea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_PolProductSummation::GetPrefactor</definition>
+        <argsstring>(std::string pp_label)</argsstring>
+        <name>GetPrefactor</name>
+        <param>
+          <type>std::string</type>
+          <declname>pp_label</declname>
+        </param>
+        <briefdescription>
+<para>Getter for prefactor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pp_label</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input polarization product label (XX, YY, XY, YX) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Complex prefactor value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="169" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="102" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__PolProductSummation_1a523ed90a52884dd60314afc9759fa9a0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_PolProductSummation::PreMultiply</definition>
+        <argsstring>(visibility_type *in)</argsstring>
+        <name>PreMultiply</name>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies each polarization product by its appropriate pre-factor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="161" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_PolProductSummation.cc" bodystart="73" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__PolProductSummation" kindref="compound">MHO_PolProductSummation</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sun Jan 14 17:16:10 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PolProductSummation</label>
+        <link refid="classhops_1_1MHO__PolProductSummation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_PolProductSummation</label>
+        <link refid="classhops_1_1MHO__PolProductSummation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_PolProductSummation.hh" bodystart="34" bodyend="182"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_PolProductSummation</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ac25065e017b766df1fe878905e2389b5" prot="protected" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a12f32c59993081089e5bf7bf5a770f70" prot="protected" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a14add6222bba7756a035c4ad1e2cf4f3" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>FixLabels</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a364195513a5bc7d19a3311ded986eed6" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fPolProductSet</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a382715de502889967afde4e4b5587768" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fReducer</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a4b2cefa99fc7084129bc1654f99e7c80" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fRefData</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1adb493682d56bea71eab071e915f90686" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fRefMountType</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a6d5dbba3d1d6dc3c6a31929003f2671d" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fRefParAngle</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a3c7ad9fb6c7d9291cf58396a3fd79098" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fRemData</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a8d10ea0dcf672da0d57b7e1ab4103a90" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fRemMountType</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1aaecb090551458560f8c7fa8ed24a291d" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fRemParAngle</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ac0fef16f088ba8aeb1c47a74f9f64f92" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fSummedPolProdLabel</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a3918d8ba4071e6a5f1f4a1fd1b6ef09c" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fWeights</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a1c13e57de6e18b4978fad6276ea485fd" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>fWReducer</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a1c81e07a21003fb3ad82d52fff4b7aea" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>GetPrefactor</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_PolProductSummation</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ab95673da1ca4b5945f496ac167f0a997" prot="protected" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a736a52b5bb4776644fa0e1240fd15daa" prot="protected" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1afb7a515d9907697c57e5a083657502e4" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>MHO_PolProductSummation</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a523ed90a52884dd60314afc9759fa9a0" prot="private" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>PreMultiply</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ae4826d31a4944669380a84ec6c25ead4" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetPolProductSet</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ae29265e95c5fcf7d0be1944f534ec175" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetPolProductSumLabel</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ae045c5dd117f926dd8a37fe4c07261d6" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetReferenceMountType</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ad0ffe3aa37744520168889d247b50b76" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetReferenceParallacticAngle</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a9bd87d45b3424c5d770ea22dcf27c0a2" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetReferenceStationCoordinateData</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a9dde82db70f5ceafb480fa25e4898620" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetRemoteMountType</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1ac00e253d720855ae0e9c41e6409e52e6" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetRemoteParallacticAngle</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1af776ff4b22cf3467c603ddcd8e21d7f5" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetRemoteStationCoordinateData</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a0aca5706be91bb39bd848251c778db78" prot="public" virt="non-virtual"><scope>hops::MHO_PolProductSummation</scope><name>SetWeights</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__PolProductSummation_1a30e8afdfc5f9a996b2957199fd26f536" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>~MHO_PolProductSummation</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_PolProductSummation</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

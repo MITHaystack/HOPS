@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__TypelistSizeImpl" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_TypelistSizeImpl</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename L</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__TypelistSizeImpl" kindref="compound">MHO_TypelistSizeImpl</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="40" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="40" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

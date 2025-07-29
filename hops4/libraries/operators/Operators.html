@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operators &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Calibration" href="../calibration/Calibration.html" />
+    <link rel="prev" title="Data Object: object_tags" href="../containers/ObjectTags.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#specific-data-operations">Specific data operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-complexconjugator">MHO_ComplexConjugator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-cyclicrotator">MHO_CyclicRotator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-fastfouriertransform">MHO_FastFourierTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-functorbroadcaster">MHO_FunctorBroadcaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-multidimensionalfastfouriertransform">MHO_MultidimensionalFastFourierTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-multidimensionalfastfouriertransformfftw">MHO_MultidimensionalFastFourierTransformFFTW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-reducer">MHO_Reducer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-subsample">MHO_SubSample</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-absolutevalue">MHO_AbsoluteValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-elementtypecaster">MHO_ElementTypeCaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-endzeropadder">MHO_EndZeroPadder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-extremasearch">MHO_ExtremaSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-nanmasker">MHO_NaNMasker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-selectrepack">MHO_SelectRepack</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compound-data-operations">Compound data operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+      <li class="breadcrumb-item active">Operators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/operators/Operators.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operators">
+<span id="id1"></span><h1>Operators<a class="headerlink" href="#operators" title="Link to this heading"></a></h1>
+<p>The data operator classes are meant to organize the various mathematic
+manipulations that are performed on the data containers. For
+example, many of the operations performed in the existing HOPS3
+code-base (such as the application of <em>a priori</em> phase calibration) are
+relatively trivial linear transformations applied to the visibility
+data. However, in the HOPS3 code base these simple operations have
+become intertwined with a large amount of control logic which obscures
+the basic data pathway (e.g see source/c_src/fourfit_libs/ffsearch/src/norm_fx.c)</p>
+<p>Most unary or binary operations that are to applied to visibility or
+other data residing in a <code class="docutils literal notranslate"><span class="pre">MHO_TableContainers</span></code> object such as scaling,
+multiplication, transposition, summation, Fourier transformation, etc.
+have in HOPS4 been reorganized into individual classes inheriting from the same
+operator interface. A uniform class interface allows these data operators to
+be composed or modified to create more complicated composite operators
+or strung together and called in an ordered fashion in order to
+accomplish data pipelines of arbitrary complexity. An additional
+advantage of encapsulating individual operations is that (coupled with
+the data container extensions) most SIMD parallel-processing extensions
+(e.g. CUDA/OpenCL plugins) used to accelerate data processing can be made
+opaque to the caller.</p>
+<p>The following code gives a brief sketch of the class templates generalizing
+the data operators.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MHO_Operator</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">MHO_Operator</span><span class="p">();</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MHO_Operator</span><span class="p">();</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Initialize</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Execute</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XArgType</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_UnaryOperator</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Operator</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">MHO_UnaryOperator</span><span class="p">();</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MHO_UnaryOperator</span><span class="p">();</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetArgs</span><span class="p">(</span><span class="n">XArgType</span><span class="o">*</span><span class="w"> </span><span class="n">in</span><span class="p">);</span><span class="w"> </span><span class="c1">//in-place</span>
+<span class="w">        </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetArgs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">XArgType</span><span class="o">*</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">XArgType</span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="p">);</span><span class="w"> </span><span class="c1">//out-of-place</span>
+<span class="p">};</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">XArgType1</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">XArgType2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XArgType1</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">XArgType3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XArgType2</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MHO_BinaryOperator</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">MHO_Operator</span>
+<span class="p">{</span>
+<span class="w">   </span><span class="k">public</span><span class="o">:</span>
+<span class="w">       </span><span class="n">MHO_BinaryOperator</span><span class="p">();</span>
+<span class="w">       </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">MHO_BinaryOperator</span><span class="p">();</span>
+<span class="w">       </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SetArgs</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">XArgType1</span><span class="o">*</span><span class="w"> </span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">XArgType2</span><span class="o">*</span><span class="w"> </span><span class="n">in2</span><span class="p">,</span><span class="w"> </span><span class="n">XArgType3</span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="c1">//out-of-place</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The common inheritance from the base class <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Operator.html">hops::MHO_Operator</a> allows
+operators of various types to all be stored in an common container (
+e.g. <code class="docutils literal notranslate"><span class="pre">std::vector&lt;MHO_Operator*&gt;</span></code>) so that once they are constructed they may
+be retrieved and intialized/executed in the appropriate order. The following code
+shows a brief code sketch demonstrating how two simple operators would be
+constructed, assigned arguments, initialized, and then executed in order.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//prexisting pointers to a particular data container</span>
+<span class="c1">//data_type* array1;</span>
+<span class="c1">//data_type* array2;</span>
+
+<span class="c1">//storage for an ordered list of operators</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="w"> </span><span class="n">MHO_Operator</span><span class="o">*</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">operators</span><span class="p">;</span>
+
+<span class="c1">//construct and configure two operations, and insert in list</span>
+<span class="n">MHO_ScalarMultiply</span><span class="w"> </span><span class="n">mult</span><span class="p">;</span>
+<span class="n">mult</span><span class="p">.</span><span class="n">SetFactor</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">mult</span><span class="p">.</span><span class="n">SetArgs</span><span class="p">(</span><span class="n">array1</span><span class="p">);</span>
+
+<span class="n">MHO_SubSample</span><span class="w"> </span><span class="n">sub</span><span class="p">;</span>
+<span class="n">sub</span><span class="p">.</span><span class="n">SetDimensionStride</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="n">sub</span><span class="p">.</span><span class="n">SetArgs</span><span class="p">(</span><span class="n">array1</span><span class="p">,</span><span class="w"> </span><span class="n">array2</span><span class="p">);</span>
+
+<span class="n">operators</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mult</span><span class="p">);</span>
+<span class="n">operators</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sub</span><span class="p">);</span>
+
+<span class="c1">//chained initialization of the operators</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operators</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">operators</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">Initialize</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="p">{</span><span class="w"> </span><span class="c1">//some possible outer loop here...</span>
+
+<span class="w">    </span><span class="c1">//chained execution of the operators</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operators</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">operators</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">Execute</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+<span class="c1">//array2 now contains the contents of array1, multiplied by 2</span>
+<span class="c1">//but sampled only every 4th element in the 0-th dimension</span>
+</pre></div>
+</div>
+<p>The vast majority of the data operators are either unary or binary. Unary
+operators accepting either single input data container (to operate in-place), or
+both an input and output data container (of the same type) to operate out-of-place.
+Binary operators require two input data containers, and a single output data
+container (all not necessarily of the same type) to carry out an
+out-of-place execution. There are two additional categories of operator beyond unary/binary.
+These are ‘transforming’ and ‘inspecting’ operators. Transforming operators are
+specific form of unary operator which accept an input and output data container, that
+are not of the same type, and change the input into the output. While, inspecting
+operators do not modifying the input data container at all, but are used to compute
+some information from it (e.g. finding a maximum in an array).
+While the aforementioned cases cover all of the use cases in HOPS4, the operator
+interface is very generic and for future use cases any number of input/output
+arguments is possible, as long as the underlying implementation provides the
+appropriate overloads.</p>
+<section id="specific-data-operations">
+<h2>Specific data operations<a class="headerlink" href="#specific-data-operations" title="Link to this heading"></a></h2>
+<p>Below is an incomplete list of various data operations. A full
+specification of each operation is detailed in the subsequent pages.</p>
+<section id="mho-complexconjugator">
+<h3>MHO_ComplexConjugator<a class="headerlink" href="#mho-complexconjugator" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ComplexConjugator.html">MHO_ComplexConjugator</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>A N dimensional array type</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with complex double/float value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Iterates over all values in an N dimensional array and applies the operation
+<code class="docutils literal notranslate"><span class="pre">std::conj()</span></code> to each element. This is a template class supporting both in-place and
+out-of-place operations.</p>
+</section>
+<section id="mho-cyclicrotator">
+<h3>MHO_CyclicRotator<a class="headerlink" href="#mho-cyclicrotator" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__CyclicRotator.html">MHO_CyclicRotator</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>The specific N dimensional array type</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">Integer index of axis to rotate and integer offset</div>
+<div class="line">for rotation size</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with arbitrary trivially copyable type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Performs cyclic rotation upon the requested axis for the specified offset.
+A positive value of the rotation offset results in a right shift cyclic
+rotation, while a negative value results in a left shift cyclic rotation.
+This is a template class supporting both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-fastfouriertransform">
+<h3>MHO_FastFourierTransform<a class="headerlink" href="#mho-fastfouriertransform" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FastFourierTransform.html">MHO_FastFourierTransform</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XFloatType (floating point type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">Direction of transform (forward/backward, follows FFTW</div>
+<div class="line">convention)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>One dimensional array with complex double/float value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Performs a Fourier transform (or inverse transform) on the input array using
+an FFT algorithm. If the array size is a power of two, then either a Cooley-Tukey
+or Gentleman-Sande radix-2 algorithm will be applied. For all other sizes, the
+Bluestein/Chirp-Z algorithm is used. This is a template class supporting both in-place and
+out-of-place operations.</p>
+</section>
+<section id="mho-functorbroadcaster">
+<h3>MHO_FunctorBroadcaster<a class="headerlink" href="#mho-functorbroadcaster" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FunctorBroadcaster.html">MHO_FunctorBroadcaster</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type), XFunctorType (functor type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>The unary functor class to be applied to each element</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><div class="line-block">
+<div class="line">N dimensional array with any value type (must be</div>
+<div class="line">acceptable to functor)</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>For every element in the array the functor operation will be applied. In the
+case of an out-of-place operation a copy will take place. This is a template class
+supporting both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-multidimensionalfastfouriertransform">
+<h3>MHO_MultidimensionalFastFourierTransform<a class="headerlink" href="#mho-multidimensionalfastfouriertransform" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MultidimensionalFastFourierTransform.html">MHO_MultidimensionalFastFourierTransform</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArgType (N dimensional array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">Indices of dimensions to transform (default all),</div>
+<div class="line">direction (forward/backward)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with complex double/float value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Executes a Fourier transform on the selected dimensions of the array using
+the native FFT calculator. The direction follows the convention of FFTW.
+This is a template class supporting both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-multidimensionalfastfouriertransformfftw">
+<h3>MHO_MultidimensionalFastFourierTransformFFTW<a class="headerlink" href="#mho-multidimensionalfastfouriertransformfftw" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW.html">MHO_MultidimensionalFastFourierTransformFFTW</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArgType (N dimensional array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">Indices of dimensions to transform (default all),</div>
+<div class="line">direction (forward/backward)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with complex double/float value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Executes a Fourier transform on the selected dimensions of the array using
+the FFTW library. The precise algorithm selected is determined by FFTW. The
+direction follows the convention of FFTW. This is a template class supporting both
+in-place and out-of-place operations.</p>
+</section>
+<section id="mho-reducer">
+<h3>MHO_Reducer<a class="headerlink" href="#mho-reducer" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__Reducer.html">MHO_Reducer</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type), XFunctorType (reduction operation)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">Indices of dimensions to reduce, operation type</div>
+<div class="line">(addition/multiplication)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with numerical value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>The input array will be reduced along the selected axes, and depending on
+the operation (addition or multiplication), the contents will be resized
+and replaced by the sum or product of the elements along that axis. Template
+class supporting both in-place (requires copy and resize) and out-of-place
+operations.</p>
+</section>
+<section id="mho-subsample">
+<h3>MHO_SubSample<a class="headerlink" href="#mho-subsample" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__SubSample.html">MHO_SubSample</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><div class="line-block">
+<div class="line">Dimension index for sub-sampling, stride for element</div>
+<div class="line">selection</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with any value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>For a stride value of k, and dimension index j, the output array will be
+resized and populated in such a way that only every k-th element (along the
+j-th dimension) from the original array will remain. This is a template class supporting
+both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-absolutevalue">
+<h3>MHO_AbsoluteValue<a class="headerlink" href="#mho-absolutevalue" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__AbsoluteValue.html">MHO_AbsoluteValue</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with numerical value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies the absolute value operation to every element of the input array.
+This is a template class supporting both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-elementtypecaster">
+<h3>MHO_ElementTypeCaster<a class="headerlink" href="#mho-elementtypecaster" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ElementTypeCaster.html">MHO_ElementTypeCaster</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type), XNewType (target type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with any value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Casts the elements of the input array from one type to another. Template
+class supporting both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-endzeropadder">
+<h3>MHO_EndZeroPadder<a class="headerlink" href="#mho-endzeropadder" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__EndZeroPadder.html">MHO_EndZeroPadder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>Dimension index and padding size</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with numerical value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Pads the end of the specified dimension with zeros. This is a template class supporting
+both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-extremasearch">
+<h3>MHO_ExtremaSearch<a class="headerlink" href="#mho-extremasearch" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ExtremaSearch.html">MHO_ExtremaSearch</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>Search type (minimum/maximum)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with numerical value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Searches for the minimum or maximum value in the input array and returns
+the value and its location. This is a template class for inspecting array contents.</p>
+</section>
+<section id="mho-nanmasker">
+<h3>MHO_NaNMasker<a class="headerlink" href="#mho-nanmasker" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__NaNMasker.html">MHO_NaNMasker</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>Mask value to replace NaN with</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with floating point value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Replaces NaN values in the input array with a specified mask value. Template
+class supporting both in-place and out-of-place operations.</p>
+</section>
+<section id="mho-selectrepack">
+<h3>MHO_SelectRepack<a class="headerlink" href="#mho-selectrepack" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__SelectRepack.html">MHO_SelectRepack</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>XArrayType (array type)</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>Selection criteria and packing parameters</p></td>
+</tr>
+<tr class="row-odd"><td><p>Argument Data Type</p></td>
+<td><p>N dimensional array with any value type</p></td>
+</tr>
+</tbody>
+</table>
+<p>Selects elements from the input array based on specified criteria and repacks
+them into a new array structure. This is a template class supporting data reorganization.</p>
+</section>
+</section>
+<section id="compound-data-operations">
+<h2>Compound data operations<a class="headerlink" href="#compound-data-operations" title="Link to this heading"></a></h2>
+<p>On their own each of the specific data operations listed in the previous
+section are of limited utility. However, they can be composed to produce
+more useful manipulations of the data (e.g. <code class="docutils literal notranslate"><span class="pre">norm_fx.c</span></code>). The
+advantage of composing complex operations via a series of simple
+operators is that more fine grained testing can be done at each sub-step
+to ensure it is operating correctly without involving the much more
+complicated process.</p>
+<p>Let us consider the data manipulation done by the fourfit function
+<code class="docutils literal notranslate"><span class="pre">norm_fx.c</span></code>. This function is responsible for a large number of
+changes to the data, but at its core is largely concerned with
+transforming the visibility data from frequency-space to delay-space, so
+that a peak in delay-space can be found. However, in the process of
+executing this function, several other modifications are introduced to
+the data, such as: the application of phase and delay calibration
+corrections, the summation of the visibilities of different
+polarization-products, the application of delta-parallatic angle
+corrections, and the excision of data due to low correlator weights or
+ad-hoc flagging. A brief sketch of the operations performed on the set
+of visibilties by <code class="docutils literal notranslate"><span class="pre">norm_fx.c</span></code> is summarized with minimal detail below.</p>
+<p>[algo:normfx]</p>
+<p>Once <code class="docutils literal notranslate"><span class="pre">norm_fx.c</span></code> has been applied to the visibility data, what was
+originally the frequency axis of the input array, is now the
+(single-band) delay axis, and a search function to locate the maximum
+delay value can be executed. Once a maximum is found, an additional
+interpolation step is executed to fine tune the delay value.</p>
+<p>Following the application of <code class="docutils literal notranslate"><span class="pre">norm_fx.c</span></code>, the resulting output data
+can then be Fourier transformed along the time-axis, in order to search
+for the maximum delay rate. This process is handled by the fourfit
+function <code class="docutils literal notranslate"><span class="pre">delay_rate.c</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../containers/ObjectTags.html" class="btn btn-neutral float-left" title="Data Object: object_tags" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../calibration/Calibration.html" class="btn btn-neutral float-right" title="Calibration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

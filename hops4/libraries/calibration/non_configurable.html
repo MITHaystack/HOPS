@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Non-configurable Operators &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Non-Operator Utility Classes" href="non_operator.html" />
+    <link rel="prev" title="Finalize Operators" href="finalize.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Calibration.html">Calibration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="labeling.html">Labeling Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flagging.html">Flagging Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="calibration.html">Calibration Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html">Selection Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalize.html">Finalize Operators</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Non-configurable Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-delayrate">MHO_DelayRate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-doublesidebandchannellabeler">MHO_DoubleSidebandChannelLabeler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-interpolatefringepeak">MHO_InterpolateFringePeak</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-ionosphericphasecorrection">MHO_IonosphericPhaseCorrection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-mbdelaysearch">MHO_MBDelaySearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-normfx">MHO_NormFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-mixedsidebandnormfx">MHO_MixedSidebandNormFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-singlesidebandnormfx">MHO_SingleSidebandNormFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-phasecalibrationtrim">MHO_PhaseCalibrationTrim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-sbdtablegenerator">MHO_SBDTableGenerator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-visibilitychannelizer">MHO_VisibilityChannelizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-weightchannelizer">MHO_WeightChannelizer</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="non_operator.html">Non-Operator Utility Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Calibration.html">Calibration</a></li>
+      <li class="breadcrumb-item active">Non-configurable Operators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/calibration/non_configurable.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="non-configurable-operators">
+<h1>Non-configurable Operators<a class="headerlink" href="#non-configurable-operators" title="Link to this heading"></a></h1>
+<section id="mho-delayrate">
+<h2>MHO_DelayRate<a class="headerlink" href="#mho-delayrate" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DelayRate.html">MHO_DelayRate</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Binary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (search)</p></td>
+</tr>
+<tr class="row-even"><td><p>Input Argument Data Types</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a>, <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a74fe9c8c1d011d62f4fd08db2f915d01">weight_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Output Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a263565c55505788061e161e68af995e2">sbd_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Performs the transform to the delay-rate space by applying a FFT. This operator
+also applies the data-weights. The FFT is done with zero-padding and a cyclic rotation
+to center the delay rate at zero. Linear interpolation over the delay-rate values
+is applied to the output.</p>
+</section>
+<section id="mho-doublesidebandchannellabeler">
+<h2>MHO_DoubleSidebandChannelLabeler<a class="headerlink" href="#mho-doublesidebandchannellabeler" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__DoubleSidebandChannelLabeler.html">MHO_DoubleSidebandChannelLabeler</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (labeling)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a> or <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a74fe9c8c1d011d62f4fd08db2f915d01">weight_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Detects adjacent LSB/USB channels pairs which share the same sky-frequency and
+bandwidth. These are then marked as ‘double-sideband’ channels so they can
+receive the legacy treatment.</p>
+</section>
+<section id="mho-interpolatefringepeak">
+<h2>MHO_InterpolateFringePeak<a class="headerlink" href="#mho-interpolatefringepeak" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__InterpolateFringePeak.html">MHO_InterpolateFringePeak</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Special</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (search)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Implements fine interpolation about the fringe peak
+(see interp.c and max555.c code).</p>
+</section>
+<section id="mho-ionosphericphasecorrection">
+<h2>MHO_IonosphericPhaseCorrection<a class="headerlink" href="#mho-ionosphericphasecorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__IonosphericPhaseCorrection.html">MHO_IonosphericPhaseCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (search)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ion_n_pts</span></code>, <code class="docutils literal notranslate"><span class="pre">ion_smooth</span></code>, <code class="docutils literal notranslate"><span class="pre">ion_win</span></code>, <code class="docutils literal notranslate"><span class="pre">ionosphere</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies differential ionospheric phase correction to visibility data based on
+differential TEC values.</p>
+</section>
+<section id="mho-mbdelaysearch">
+<h2>MHO_MBDelaySearch<a class="headerlink" href="#mho-mbdelaysearch" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MBDelaySearch.html">MHO_MBDelaySearch</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Inspecting</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (search)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Implements the coarse MBD/SBD/DR search, see search.c. Performs coarse
+multi-band delay search operations.</p>
+</section>
+<section id="mho-normfx">
+<h2>MHO_NormFX<a class="headerlink" href="#mho-normfx" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__NormFX.html">MHO_NormFX</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (search)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Wrapper class for the interface which provides the functionality of the original
+norm_fx.c operation. This is a unary operator on visibilities that accepts
+weights as an additional parameter.</p>
+</section>
+<section id="mho-mixedsidebandnormfx">
+<h2>MHO_MixedSidebandNormFX<a class="headerlink" href="#mho-mixedsidebandnormfx" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MixedSidebandNormFX.html">MHO_MixedSidebandNormFX</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (search)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Implements a subset of the functionality found in norm_fx.c, mainly the transform
+from frequency to delay space for data that contains channels with a mixture of
+upper and lower (USB/LSB) sideband data. Preserves the use of the extra padding
+factor (8x) followed by factor-of-2 sub-sampling during the transform to delay-space.</p>
+</section>
+<section id="mho-singlesidebandnormfx">
+<h2>MHO_SingleSidebandNormFX<a class="headerlink" href="#mho-singlesidebandnormfx" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__SingleSidebandNormFX.html">MHO_SingleSidebandNormFX</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (search)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Implements a subset of the functionality found in norm_fx.c, mainly the transform
+from frequency to delay space for data that contains channels of only a single
+sideband type (either USB or LSB). This implementation reduces the required zero
+padding factor by 2x over the original norm_fx.c implemention.</p>
+</section>
+<section id="mho-phasecalibrationtrim">
+<h2>MHO_PhaseCalibrationTrim<a class="headerlink" href="#mho-phasecalibrationtrim" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__PhaseCalibrationTrim.html">MHO_PhaseCalibrationTrim</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (selection)</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a635984d730aadef0172598ca5fbfe135">multitone_pcal_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Required Input</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Trims the time range of the pcal data to match that of the visibilities. If the
+pcal or visibilty data is missing the ‘start_time’ tag, it is implicitly assumed
+to be the same.</p>
+</section>
+<section id="mho-sbdtablegenerator">
+<h2>MHO_SBDTableGenerator<a class="headerlink" href="#mho-sbdtablegenerator" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__SBDTableGenerator.html">MHO_SBDTableGenerator</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Transforming</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (utility)</p></td>
+</tr>
+<tr class="row-even"><td><p>Input Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Output Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a263565c55505788061e161e68af995e2">sbd_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Implements the conversion of the input visibility array into a data object which can
+be transformed into single-band delay space (via the NormFX operators).</p>
+</section>
+<section id="mho-visibilitychannelizer">
+<h2>MHO_VisibilityChannelizer<a class="headerlink" href="#mho-visibilitychannelizer" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__VisibilityChannelizer.html">MHO_VisibilityChannelizer</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Transforming</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (utility)</p></td>
+</tr>
+<tr class="row-even"><td><p>Input Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a8408c0f774da156de840825b92005e06">uch_visibility_store_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Output Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#aa8731e6011eaaa14a1fbd1bb5515ea65">visibility_store_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Collects unchannelized (3d) visibility data and groups by channel into 4d object.
+All channels must be of equal size. This is a utility operator only used by the
+MK4Interface library when converting Mark4 visibility objects to HOPS4 format.</p>
+</section>
+<section id="mho-weightchannelizer">
+<h2>MHO_WeightChannelizer<a class="headerlink" href="#mho-weightchannelizer" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__WeightChannelizer.html">MHO_WeightChannelizer</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Transforming</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>Non-configurable (utility)</p></td>
+</tr>
+<tr class="row-even"><td><p>Input Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#ac72deb6b4c0793fbb28d5c15b91bb6f4">uch_weight_store_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Output Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a6d71a9ffaa068345a980f1e1613d97bd">weight_store_type</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>Collects unchannelized (3d) weight data and groups by channel into 4d object.
+All channels must be of equal size. This is a utility operator only used by the
+MK4Interface library when converting Mark4 weight objects to HOPS4 format.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="finalize.html" class="btn btn-neutral float-left" title="Finalize Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="non_operator.html" class="btn btn-neutral float-right" title="Non-Operator Utility Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

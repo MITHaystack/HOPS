@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structrootarray" kind="struct" language="C++" prot="public">
+    <compoundname>rootarray</compoundname>
+    <includes refid="aedata_8h" local="no">aedata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrootarray_1ae59297d746c034819447978eec1ed6fb" prot="public" static="no" mutable="no">
+        <type><ref refid="structrootsum" kindref="compound">rootsum</ref></type>
+        <definition>rootsum rootarray::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="15" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootarray_1ac1f1da26312391ce7d105e8062e5b92c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rootarray::flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="14" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootarray_1a0ccad7660c77e714447e1d1222e47841" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rootarray::keyval</definition>
+        <argsstring></argsstring>
+        <name>keyval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="13" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootarray_1ac0ae34eb40604360f37b8e6c72e4fc40" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rootarray::lastorder</definition>
+        <argsstring></argsstring>
+        <name>lastorder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="12" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootarray_1a042b499a0da203eb42a60da2ba8522ce" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rootarray::order</definition>
+        <argsstring></argsstring>
+        <name>order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="11" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>rootsum</label>
+        <link refid="structrootsum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>stations</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>ssec</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>rootarray</label>
+        <link refid="structrootarray"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="10" bodyend="16"/>
+    <listofallmembers>
+      <member refid="structrootarray_1ae59297d746c034819447978eec1ed6fb" prot="public" virt="non-virtual"><scope>rootarray</scope><name>data</name></member>
+      <member refid="structrootarray_1ac1f1da26312391ce7d105e8062e5b92c" prot="public" virt="non-virtual"><scope>rootarray</scope><name>flag</name></member>
+      <member refid="structrootarray_1a0ccad7660c77e714447e1d1222e47841" prot="public" virt="non-virtual"><scope>rootarray</scope><name>keyval</name></member>
+      <member refid="structrootarray_1ac0ae34eb40604360f37b8e6c72e4fc40" prot="public" virt="non-virtual"><scope>rootarray</scope><name>lastorder</name></member>
+      <member refid="structrootarray_1a042b499a0da203eb42a60da2ba8522ce" prot="public" virt="non-virtual"><scope>rootarray</scope><name>order</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,850 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Message" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Message</compoundname>
+    <includes refid="MHO__Message_8hh" local="no">MHO_Message.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a09d03043f1604c1d4e88b996b16d035b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Message::fAcceptAllKeys</definition>
+        <argsstring></argsstring>
+        <name>fAcceptAllKeys</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="204" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a109b3d64c11003085144e99560fda69b" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a94a3ffdec6ff39967590ca955ab81e09" kindref="member">MHO_MessageLevel</ref></type>
+        <definition>MHO_MessageLevel hops::MHO_Message::fAllowedLevel</definition>
+        <argsstring></argsstring>
+        <name>fAllowedLevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="200" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a242ff9af61abe1f2346f212fdf5c1106" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Message::fCurrentKeyIsAllowed</definition>
+        <argsstring></argsstring>
+        <name>fCurrentKeyIsAllowed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="203" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a1eb814e945754f8655bed93b29d67a54" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a94a3ffdec6ff39967590ca955ab81e09" kindref="member">MHO_MessageLevel</ref></type>
+        <definition>MHO_MessageLevel hops::MHO_Message::fCurrentLevel</definition>
+        <argsstring></argsstring>
+        <name>fCurrentLevel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="202" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1adfc9294d05999f555aebdb3cb61ac6e7" prot="private" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_Message::fKeys</definition>
+        <argsstring></argsstring>
+        <name>fKeys</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="199" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1abf72056c345b7930deddff27cf79ee87" prot="private" static="no" mutable="no">
+        <type>std::stringstream</type>
+        <definition>std::stringstream hops::MHO_Message::fMessageStream</definition>
+        <argsstring></argsstring>
+        <name>fMessageStream</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="205" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a6e7881d634b7660db00931af28bf27af" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex hops::MHO_Message::fMutex</definition>
+        <argsstring></argsstring>
+        <name>fMutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="195" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1ad9cf3a2a830d886a09c9f6f27e063d2a" prot="private" static="no" mutable="no">
+        <type>std::ostream *</type>
+        <definition>std::ostream* hops::MHO_Message::fTerminalStream</definition>
+        <argsstring></argsstring>
+        <name>fTerminalStream</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="198" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1ad68748cb2e3c0f40ce97d535d446d1d3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Message::fWasLastLineNewLine</definition>
+        <argsstring></argsstring>
+        <name>fWasLastLineNewLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="216" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a129118a43b0f001322edcf6c066a61bd" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fBlue</definition>
+        <argsstring></argsstring>
+        <name>fBlue</name>
+        <initializer>= &quot;\33[34;1m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="210" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1ae56b6a0f13aa5089db393c136b9cd5a1" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fColorSuffix</definition>
+        <argsstring></argsstring>
+        <name>fColorSuffix</name>
+        <initializer>= &quot;\33[0m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="214" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1ae5604e693e0e5f3f9eb6d283faed340f" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fCyan</definition>
+        <argsstring></argsstring>
+        <name>fCyan</name>
+        <initializer>= &quot;\33[36;1m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="212" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a4ab7808b8c5e54716c1b0070e12b90f7" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fGreen</definition>
+        <argsstring></argsstring>
+        <name>fGreen</name>
+        <initializer>= &quot;\33[32;1m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="211" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1aca43c5598a04fa76f10b08e720495ca6" prot="private" static="yes" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> *</type>
+        <definition>MHO_Message * hops::MHO_Message::fInstance</definition>
+        <argsstring></argsstring>
+        <name>fInstance</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="197" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a13450d585ea02440910a2651d3e7d176" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fOrange</definition>
+        <argsstring></argsstring>
+        <name>fOrange</name>
+        <initializer>= &quot;\33[33;1m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="209" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a5ab3be610de95a186aa93fb96a66c7c4" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fRed</definition>
+        <argsstring></argsstring>
+        <name>fRed</name>
+        <initializer>= &quot;\33[31;1m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="207" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1ab52e0ce1492f506cca489502dc487693" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fWhite</definition>
+        <argsstring></argsstring>
+        <name>fWhite</name>
+        <initializer>= &quot;\33[37;1m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="213" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Message_1a09619a46bcc05d42be4c249782d93713" prot="private" static="yes" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::fYellow</definition>
+        <argsstring></argsstring>
+        <name>fYellow</name>
+        <initializer>= &quot;\33[93;1m&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="208" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a86640e66b63ec15b86ca21c9af51e6d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Message::MHO_Message</definition>
+        <argsstring>(MHO_Message &amp;&amp;)=delete</argsstring>
+        <name>MHO_Message</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+<para>Deleted move constructor (singleton). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="106" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a05dd2d3e384451defb5644ded73a0401" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Message::MHO_Message</definition>
+        <argsstring>(MHO_Message const &amp;)=delete</argsstring>
+        <name>MHO_Message</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+<para>Deleted copy constructor (singleton). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="104" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a443147f9df934f1f7373bd622d6024d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::AcceptAllKeys</definition>
+        <argsstring>()</argsstring>
+        <name>AcceptAllKeys</name>
+        <briefdescription>
+<para>Allow all message keys (no category/library filtering). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="131" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="131" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a5510102b6f37b06e3885d0f8a2ac01b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::AddKey</definition>
+        <argsstring>(const char *key)</argsstring>
+        <name>AddKey</name>
+        <param>
+          <type>const char *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="139" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1ac4bd561aa99e923dfed3300db2149467" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::AddKey</definition>
+        <argsstring>(const std::string &amp;key)</argsstring>
+        <name>AddKey</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Add a message key to the allowed key set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key string to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="138" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1aab12eda3ae8602f216777ea6ff338e59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::Flush</definition>
+        <argsstring>()</argsstring>
+        <name>Flush</name>
+        <briefdescription>
+<para>Flush the current output stream buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="150" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="55" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1adc51fb6cff5191bc4ee05d705129cb97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespacehops_1a94a3ffdec6ff39967590ca955ab81e09" kindref="member">MHO_MessageLevel</ref></type>
+        <definition>MHO_MessageLevel hops::MHO_Message::GetMessageLevel</definition>
+        <argsstring>() const</argsstring>
+        <name>GetMessageLevel</name>
+        <briefdescription>
+<para>Get the currently configured message level threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The currently allowed message level. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="162" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="162" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a4ee8d8506adc95f655c56fa4b1b8e706" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::LimitToKeySet</definition>
+        <argsstring>()</argsstring>
+        <name>LimitToKeySet</name>
+        <briefdescription>
+<para>Restrict messages to a defined key set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="134" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="134" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1abfe146c68b505e0c919cea3985f724b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::Lock</definition>
+        <argsstring>()</argsstring>
+        <name>Lock</name>
+        <briefdescription>
+<para>Lock the message handler for thread-safe operations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="125" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1ac4d57ff9763bc97750aad921c9ddca84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>MHO_Message &amp; hops::MHO_Message::operator&lt;&lt;</definition>
+        <argsstring>(const MHO_MessageEndline &amp;)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__MessageEndline" kindref="compound">MHO_MessageEndline</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="180" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="110" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a8674ee2e08de07e31473ecd46deb5d97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>MHO_Message &amp; hops::MHO_Message::operator&lt;&lt;</definition>
+        <argsstring>(const MHO_MessageNewline &amp;)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__MessageNewline" kindref="compound">MHO_MessageNewline</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="179" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="103" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a98cad938350032e83842299d024e8712" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class XStreamableItemType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>MHO_Message &amp; hops::MHO_Message::operator&lt;&lt;</definition>
+        <argsstring>(const XStreamableItemType &amp;item)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>const XStreamableItemType &amp;</type>
+          <declname>item</declname>
+        </param>
+        <briefdescription>
+<para>Stream an item into the current message. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XStreamableItemType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Any type that supports output streaming via <computeroutput>operator&lt;&lt;</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>item</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The item to insert into the message stream. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the <ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> instance for chaining. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="177" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="219" bodyend="226"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1aca3f1f8b7924b0817eb6a5a68c11b34a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>MHO_Message&amp; hops::MHO_Message::operator=</definition>
+        <argsstring>(MHO_Message &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+<para>Deleted move assignment operator (singleton). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="110" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a32ee0f208795c29d1508c8b244a4fd42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>MHO_Message&amp; hops::MHO_Message::operator=</definition>
+        <argsstring>(MHO_Message const &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> const &amp;</type>
+        </param>
+        <briefdescription>
+<para>Deleted copy assignment operator (singleton). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="108" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a601e13738fa30e95439cf03faaeaf51c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::RemoveAllKeys</definition>
+        <argsstring>()</argsstring>
+        <name>RemoveAllKeys</name>
+        <briefdescription>
+<para>Remove all message keys (disables all filtering). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="147" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1adecebbf053ae4d930a120ad255254a4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::RemoveKey</definition>
+        <argsstring>(const char *key)</argsstring>
+        <name>RemoveKey</name>
+        <param>
+          <type>const char *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="144" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="40" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a77bcb1c200f5ccfc90d39737722056ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::RemoveKey</definition>
+        <argsstring>(const std::string &amp;key)</argsstring>
+        <name>RemoveKey</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Remove a message key from the allowed key set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The key string to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="143" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="31" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1ac74fd9026df58ae80d40981496ed0b2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>MHO_Message &amp; hops::MHO_Message::SendMessage</definition>
+        <argsstring>(const MHO_MessageLevel &amp;level, const char *key)</argsstring>
+        <name>SendMessage</name>
+        <param>
+          <type>const <ref refid="namespacehops_1a94a3ffdec6ff39967590ca955ab81e09" kindref="member">MHO_MessageLevel</ref> &amp;</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="170" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="84" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a2370101ce99be068bdcdabaaac64f8d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>MHO_Message &amp; hops::MHO_Message::SendMessage</definition>
+        <argsstring>(const MHO_MessageLevel &amp;level, const std::string &amp;key)</argsstring>
+        <name>SendMessage</name>
+        <param>
+          <type>const <ref refid="namespacehops_1a94a3ffdec6ff39967590ca955ab81e09" kindref="member">MHO_MessageLevel</ref> &amp;</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Begin a new message with a specific level and key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message level. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The message key to associate with this message. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to the <ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> instance for streaming content. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="169" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="66" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a2af2d4dc37c200683a7919b5e358c429" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::SetLegacyMessageLevel</definition>
+        <argsstring>(int legacy_message_level)</argsstring>
+        <name>SetLegacyMessageLevel</name>
+        <param>
+          <type>int</type>
+          <declname>legacy_message_level</declname>
+        </param>
+        <briefdescription>
+<para>Set the message level using a legacy integer interface. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>legacy_message_level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>legacy integer representation of message level (lower is more verbose, min: -2, max: 5). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="158" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="206" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a6981d1a95436f3615d29965519ffc945" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::SetMessageLevel</definition>
+        <argsstring>(MHO_MessageLevel level)</argsstring>
+        <name>SetMessageLevel</name>
+        <param>
+          <type><ref refid="namespacehops_1a94a3ffdec6ff39967590ca955ab81e09" kindref="member">MHO_MessageLevel</ref></type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+<para>Set the allowed message level threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new minimum message level to accept. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="154" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="154" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1ac6797e4e105ff2ba81956ba0f29ad752" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Message::Unlock</definition>
+        <argsstring>()</argsstring>
+        <name>Unlock</name>
+        <briefdescription>
+<para>Unlock the message handler. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="128" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="128" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1affbea24b2e9d8a835a8ac97f4307e2ce" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> &amp;</type>
+        <definition>static MHO_Message&amp; hops::MHO_Message::GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+<para>Access the singleton instance of the message handler. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to the singleton <ref refid="classhops_1_1MHO__Message" kindref="compound">MHO_Message</ref> instance. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="115" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="115" bodyend="122"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a2a9c86cae039ff9ba290b1b326159f92" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Message::MHO_Message</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Message</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="187" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="187" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a076138e183e0c956310d24117357f1aa" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Message::~MHO_Message</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Message</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="190" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="190" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a8a1ba9b400fb9ccd5ccc892c78d0f58e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Message::GetCurrentPrefix</definition>
+        <argsstring>(const MHO_MessageLevel &amp;level, const std::string &amp;key)</argsstring>
+        <name>GetCurrentPrefix</name>
+        <param>
+          <type>const <ref refid="namespacehops_1a94a3ffdec6ff39967590ca955ab81e09" kindref="member">MHO_MessageLevel</ref> &amp;</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="193" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="127" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Message_1a77c49c0673416f4a4f18686b5a9933f0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_Message::PassMessage</definition>
+        <argsstring>()</argsstring>
+        <name>PassMessage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="192" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/src/MHO_Message.cc" bodystart="122" bodyend="125"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>uses the singleton pattern (as we only have one terminal) </para>
+    </briefdescription>
+    <detaileddescription>
+<para>class for managing messages to stdout</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Oct 14 17:17:31 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" line="99" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_Message.hh" bodystart="100" bodyend="217"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Message_1a443147f9df934f1f7373bd622d6024d2" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>AcceptAllKeys</name></member>
+      <member refid="classhops_1_1MHO__Message_1ac4bd561aa99e923dfed3300db2149467" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>AddKey</name></member>
+      <member refid="classhops_1_1MHO__Message_1a5510102b6f37b06e3885d0f8a2ac01b0" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>AddKey</name></member>
+      <member refid="classhops_1_1MHO__Message_1a09d03043f1604c1d4e88b996b16d035b" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fAcceptAllKeys</name></member>
+      <member refid="classhops_1_1MHO__Message_1a109b3d64c11003085144e99560fda69b" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fAllowedLevel</name></member>
+      <member refid="classhops_1_1MHO__Message_1a129118a43b0f001322edcf6c066a61bd" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fBlue</name></member>
+      <member refid="classhops_1_1MHO__Message_1ae56b6a0f13aa5089db393c136b9cd5a1" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fColorSuffix</name></member>
+      <member refid="classhops_1_1MHO__Message_1a242ff9af61abe1f2346f212fdf5c1106" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fCurrentKeyIsAllowed</name></member>
+      <member refid="classhops_1_1MHO__Message_1a1eb814e945754f8655bed93b29d67a54" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fCurrentLevel</name></member>
+      <member refid="classhops_1_1MHO__Message_1ae5604e693e0e5f3f9eb6d283faed340f" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fCyan</name></member>
+      <member refid="classhops_1_1MHO__Message_1a4ab7808b8c5e54716c1b0070e12b90f7" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fGreen</name></member>
+      <member refid="classhops_1_1MHO__Message_1aca43c5598a04fa76f10b08e720495ca6" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fInstance</name></member>
+      <member refid="classhops_1_1MHO__Message_1adfc9294d05999f555aebdb3cb61ac6e7" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fKeys</name></member>
+      <member refid="classhops_1_1MHO__Message_1aab12eda3ae8602f216777ea6ff338e59" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>Flush</name></member>
+      <member refid="classhops_1_1MHO__Message_1abf72056c345b7930deddff27cf79ee87" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fMessageStream</name></member>
+      <member refid="classhops_1_1MHO__Message_1a6e7881d634b7660db00931af28bf27af" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fMutex</name></member>
+      <member refid="classhops_1_1MHO__Message_1a13450d585ea02440910a2651d3e7d176" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fOrange</name></member>
+      <member refid="classhops_1_1MHO__Message_1a5ab3be610de95a186aa93fb96a66c7c4" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fRed</name></member>
+      <member refid="classhops_1_1MHO__Message_1ad9cf3a2a830d886a09c9f6f27e063d2a" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fTerminalStream</name></member>
+      <member refid="classhops_1_1MHO__Message_1ad68748cb2e3c0f40ce97d535d446d1d3" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fWasLastLineNewLine</name></member>
+      <member refid="classhops_1_1MHO__Message_1ab52e0ce1492f506cca489502dc487693" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fWhite</name></member>
+      <member refid="classhops_1_1MHO__Message_1a09619a46bcc05d42be4c249782d93713" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>fYellow</name></member>
+      <member refid="classhops_1_1MHO__Message_1a8a1ba9b400fb9ccd5ccc892c78d0f58e" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>GetCurrentPrefix</name></member>
+      <member refid="classhops_1_1MHO__Message_1affbea24b2e9d8a835a8ac97f4307e2ce" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>GetInstance</name></member>
+      <member refid="classhops_1_1MHO__Message_1adc51fb6cff5191bc4ee05d705129cb97" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>GetMessageLevel</name></member>
+      <member refid="classhops_1_1MHO__Message_1a4ee8d8506adc95f655c56fa4b1b8e706" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>LimitToKeySet</name></member>
+      <member refid="classhops_1_1MHO__Message_1abfe146c68b505e0c919cea3985f724b5" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>Lock</name></member>
+      <member refid="classhops_1_1MHO__Message_1a05dd2d3e384451defb5644ded73a0401" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>MHO_Message</name></member>
+      <member refid="classhops_1_1MHO__Message_1a86640e66b63ec15b86ca21c9af51e6d1" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>MHO_Message</name></member>
+      <member refid="classhops_1_1MHO__Message_1a2a9c86cae039ff9ba290b1b326159f92" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>MHO_Message</name></member>
+      <member refid="classhops_1_1MHO__Message_1a98cad938350032e83842299d024e8712" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__Message_1a8674ee2e08de07e31473ecd46deb5d97" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__Message_1ac4d57ff9763bc97750aad921c9ddca84" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__Message_1a32ee0f208795c29d1508c8b244a4fd42" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Message_1aca3f1f8b7924b0817eb6a5a68c11b34a" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Message_1a77c49c0673416f4a4f18686b5a9933f0" prot="private" virt="non-virtual"><scope>hops::MHO_Message</scope><name>PassMessage</name></member>
+      <member refid="classhops_1_1MHO__Message_1a601e13738fa30e95439cf03faaeaf51c" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>RemoveAllKeys</name></member>
+      <member refid="classhops_1_1MHO__Message_1a77bcb1c200f5ccfc90d39737722056ca" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>RemoveKey</name></member>
+      <member refid="classhops_1_1MHO__Message_1adecebbf053ae4d930a120ad255254a4f" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>RemoveKey</name></member>
+      <member refid="classhops_1_1MHO__Message_1a2370101ce99be068bdcdabaaac64f8d1" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>SendMessage</name></member>
+      <member refid="classhops_1_1MHO__Message_1ac74fd9026df58ae80d40981496ed0b2d" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>SendMessage</name></member>
+      <member refid="classhops_1_1MHO__Message_1a2af2d4dc37c200683a7919b5e358c429" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>SetLegacyMessageLevel</name></member>
+      <member refid="classhops_1_1MHO__Message_1a6981d1a95436f3615d29965519ffc945" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>SetMessageLevel</name></member>
+      <member refid="classhops_1_1MHO__Message_1ac6797e4e105ff2ba81956ba0f29ad752" prot="public" virt="non-virtual"><scope>hops::MHO_Message</scope><name>Unlock</name></member>
+      <member refid="classhops_1_1MHO__Message_1a076138e183e0c956310d24117357f1aa" prot="private" virt="virtual"><scope>hops::MHO_Message</scope><name>~MHO_Message</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

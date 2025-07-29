@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1lockfile__data" kind="struct" language="C++" prot="public">
+    <compoundname>hops::lockfile_data</compoundname>
+    <includes refid="MHO__LockFileHandler_8hh" local="no">MHO_LockFileHandler.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1a6aa9fff6b17ada52629baa6766ef08e8" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char hops::lockfile_data::active_directory[MAX_LOCKNAME_LEN]</definition>
+        <argsstring>[MAX_LOCKNAME_LEN]</argsstring>
+        <name>active_directory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="51" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1a53b8808c9a468a7f4b5e7df60471220a" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char hops::lockfile_data::hostname[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>hostname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1aebf2684f179af5e6d8652248b8327424" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char hops::lockfile_data::lockfile_name[MAX_LOCKNAME_LEN]</definition>
+        <argsstring>[MAX_LOCKNAME_LEN]</argsstring>
+        <name>lockfile_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1a7eb724704f2182d7b4f3dbcbf035d939" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::lockfile_data::pid</definition>
+        <argsstring></argsstring>
+        <name>pid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="47" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1a3210a72fdbf90ff197027dee1f509458" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::lockfile_data::seq_number</definition>
+        <argsstring></argsstring>
+        <name>seq_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="46" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1a999b1b73a45188519705a25c83e0515b" prot="public" static="no" mutable="no">
+        <type>unsigned long int</type>
+        <definition>unsigned long int hops::lockfile_data::time_sec</definition>
+        <argsstring></argsstring>
+        <name>time_sec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="48" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1a8914b7f80cfebbab8f6b203765b4f226" prot="public" static="no" mutable="no">
+        <type>unsigned long int</type>
+        <definition>unsigned long int hops::lockfile_data::time_usec</definition>
+        <argsstring></argsstring>
+        <name>time_usec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="49" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1lockfile__data_1ac3d9e99caf6c89e136dbd5e674dff30c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hops::lockfile_data::validity</definition>
+        <argsstring></argsstring>
+        <name>validity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="45" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>struct <ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref> - struct for holding data about the lock file&apos;s creation </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>hops::lockfile_data</label>
+        <link refid="structhops_1_1lockfile__data"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>active_directory</edgelabel>
+          <edgelabel>hostname</edgelabel>
+          <edgelabel>lockfile_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pid</edgelabel>
+          <edgelabel>seq_number</edgelabel>
+          <edgelabel>time_sec</edgelabel>
+          <edgelabel>time_usec</edgelabel>
+          <edgelabel>validity</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="44" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structhops_1_1lockfile__data_1a6aa9fff6b17ada52629baa6766ef08e8" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>active_directory</name></member>
+      <member refid="structhops_1_1lockfile__data_1a53b8808c9a468a7f4b5e7df60471220a" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>hostname</name></member>
+      <member refid="structhops_1_1lockfile__data_1aebf2684f179af5e6d8652248b8327424" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>lockfile_name</name></member>
+      <member refid="structhops_1_1lockfile__data_1a7eb724704f2182d7b4f3dbcbf035d939" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>pid</name></member>
+      <member refid="structhops_1_1lockfile__data_1a3210a72fdbf90ff197027dee1f509458" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>seq_number</name></member>
+      <member refid="structhops_1_1lockfile__data_1a999b1b73a45188519705a25c83e0515b" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>time_sec</name></member>
+      <member refid="structhops_1_1lockfile__data_1a8914b7f80cfebbab8f6b203765b4f226" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>time_usec</name></member>
+      <member refid="structhops_1_1lockfile__data_1ac3d9e99caf6c89e136dbd5e674dff30c" prot="public" virt="non-virtual"><scope>hops::lockfile_data</scope><name>validity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,601 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MixedSidebandNormFX" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MixedSidebandNormFX</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__NormFX" prot="public" virt="non-virtual">hops::MHO_NormFX</basecompoundref>
+    <includes refid="MHO__MixedSidebandNormFX_8hh" local="no">MHO_MixedSidebandNormFX.hh</includes>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" prot="protected" static="no">
+        <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref></type>
+        <definition>using hops::MHO_MixedSidebandNormFX::XArgType =  visibility_type</definition>
+        <argsstring></argsstring>
+        <name>XArgType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="49" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__MixedSidebandNormFX_1a0d51cef07b6ffa7dc4b0a4c1208843e5" prot="private" static="no">
+        <type><ref refid="classhops_1_1MHO__ComplexConjugator" kindref="compound">MHO_ComplexConjugator</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>typedef MHO_ComplexConjugator&lt; visibility_type &gt; hops::MHO_MixedSidebandNormFX::conjType</definition>
+        <argsstring></argsstring>
+        <name>conjType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="96" column="39" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__MixedSidebandNormFX_1af18020ee8d5397b8ccc40eb7542a6ed1" prot="private" static="no">
+        <type><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" kindref="compound">MHO_MultidimensionalFastFourierTransform</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>using hops::MHO_MixedSidebandNormFX::FFT_ENGINE_TYPE =  MHO_MultidimensionalFastFourierTransform&lt; visibility_type &gt;</definition>
+        <argsstring></argsstring>
+        <name>FFT_ENGINE_TYPE</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="103" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__MixedSidebandNormFX_1af84681af1ceef73860efd9e74a2a7571" prot="private" static="no">
+        <type><ref refid="classhops_1_1MHO__NaNMasker" kindref="compound">MHO_NaNMasker</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>typedef MHO_NaNMasker&lt; visibility_type &gt; hops::MHO_MixedSidebandNormFX::nanMaskerType</definition>
+        <argsstring></argsstring>
+        <name>nanMaskerType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="95" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1a2b5159454b7a6fca21aece79fa5ea2b1" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__CyclicRotator" kindref="compound">MHO_CyclicRotator</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>MHO_CyclicRotator&lt; visibility_type &gt; hops::MHO_MixedSidebandNormFX::fCyclicRotator</definition>
+        <argsstring></argsstring>
+        <name>fCyclicRotator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="109" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1af741f24be0ed4b906b4401a27410b490" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" kindref="compound">FFT_ENGINE_TYPE</ref></type>
+        <definition>FFT_ENGINE_TYPE hops::MHO_MixedSidebandNormFX::fFFTEngine</definition>
+        <argsstring></argsstring>
+        <name>fFFTEngine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="106" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1a87c48f327feee3817dd7fc04bc76bd29" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MixedSidebandNormFX::fInDims[VIS_NDIM]</definition>
+        <argsstring>[VIS_NDIM]</argsstring>
+        <name>fInDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="91" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1a57c6564adc8608ce2bb7738e9409d238" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MixedSidebandNormFX::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="112" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1a5f74f80f74809651b199688ca85e2b3a" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__FunctorBroadcaster" kindref="compound">MHO_FunctorBroadcaster</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref>, <ref refid="classhops_1_1MHO__NaNMasker" kindref="compound">nanMaskerType</ref> &gt;</type>
+        <definition>MHO_FunctorBroadcaster&lt; visibility_type, nanMaskerType &gt; hops::MHO_MixedSidebandNormFX::fNaNBroadcaster</definition>
+        <argsstring></argsstring>
+        <name>fNaNBroadcaster</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="98" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1ac7c87153f581a7485bb06ec9fa4d6ee8" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MixedSidebandNormFX::fOutDims[VIS_NDIM]</definition>
+        <argsstring>[VIS_NDIM]</argsstring>
+        <name>fOutDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="93" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1a6170526235c2e66e6484616a249e006c" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__SubSample" kindref="compound">MHO_SubSample</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>MHO_SubSample&lt; visibility_type &gt; hops::MHO_MixedSidebandNormFX::fSubSampler</definition>
+        <argsstring></argsstring>
+        <name>fSubSampler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="108" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1ac29c8f14d4a84faa4b75b8f34be22b66" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_MixedSidebandNormFX::fWorkDims[VIS_NDIM]</definition>
+        <argsstring>[VIS_NDIM]</argsstring>
+        <name>fWorkDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="92" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1a60b283d391c87d67fe381201a1cb922d" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref></type>
+        <definition>visibility_type hops::MHO_MixedSidebandNormFX::fWorkspace</definition>
+        <argsstring></argsstring>
+        <name>fWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="111" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MixedSidebandNormFX_1acdfb5a3de59ebea73e481e7c3f042d09" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__EndZeroPadder" kindref="compound">MHO_EndZeroPadder</ref>&lt; <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> &gt;</type>
+        <definition>MHO_EndZeroPadder&lt; visibility_type &gt; hops::MHO_MixedSidebandNormFX::fZeroPadder</definition>
+        <argsstring></argsstring>
+        <name>fZeroPadder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="107" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1ab6892e8da58de562c0647d75c52414bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MixedSidebandNormFX::MHO_MixedSidebandNormFX</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MixedSidebandNormFX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="6" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1ae8b65a6d7732dd0e0f175063c217e36e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MixedSidebandNormFX::~MHO_MixedSidebandNormFX</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MixedSidebandNormFX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="8" bodyend="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1a7de31ee0593f726ca65dfeaa0829262b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MixedSidebandNormFX::ExecuteInPlace</definition>
+        <argsstring>(XArgType *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__NormFX_1a4c7d687c21e9543a36e99fbc9998ecbf">ExecuteInPlace</reimplements>
+        <param>
+          <type><ref refid="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" kindref="member">XArgType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Executes in-place operation using ExecuteOutOfPlace and copies result back to input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data of type XArgType* </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Status of execution as bool </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="76" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="215" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1a7b043386c2906cc71eb3ba644e402a42" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MixedSidebandNormFX::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__NormFX_1aeecc52b42cb4df773ed2267b5227533f">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" kindref="member">XArgType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" kindref="member">XArgType</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Executes out-of-place processing for mixed sideband data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data buffer of type XArgType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output data buffer of type XArgType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success or failure of the operation. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="85" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="157" bodyend="204"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1a5520e3d1125a044f772f2058d210a7b0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MixedSidebandNormFX::InitializeInPlace</definition>
+        <argsstring>(XArgType *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__NormFX_1a3187980999e8a4f21a602261272d32e0">InitializeInPlace</reimplements>
+        <param>
+          <type><ref refid="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" kindref="member">XArgType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place data by copying from temporary out-of-place data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to XArgType object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success of initialization. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="58" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="206" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1a6632cb305bce709561d714eb416ad5e3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MixedSidebandNormFX::InitializeOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__NormFX_1a48fd9a575a9c1a22da4f6b623af6b10b">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" kindref="member">XArgType</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" kindref="member">XArgType</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes out-of-place processing for mixed sideband data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data buffer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output data buffer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization is successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="67" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="10" bodyend="155"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1a31fb514c2f9542588a90c3b2bf006551" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MixedSidebandNormFX::FillWorkspace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *workspace)</argsstring>
+        <name>FillWorkspace</name>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>workspace</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="114" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="224" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MixedSidebandNormFX_1a02c5150ffdfd642a32cb8c64a595ed5e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MixedSidebandNormFX::TreatDoubleSidebandChannels</definition>
+        <argsstring>(const visibility_type *in, visibility_type *workspace)</argsstring>
+        <name>TreatDoubleSidebandChannels</name>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>workspace</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="115" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_MixedSidebandNormFX.cc" bodystart="270" bodyend="356"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__MixedSidebandNormFX" kindref="compound">MHO_MixedSidebandNormFX</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>implements a subset of the functionality found in <ref refid="norm__fx_8c" kindref="compound">norm_fx.c</ref>, mainly the transform from frequency to delay space <ndash/> this implementation is closer to the original since it preserves the extra padding factor (8x), which is later followed by a factor of 2 sub-sampling. The original motivation for this extra computation appears to be lost.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Jul 9 11:47:00 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_NormFX</label>
+        <link refid="classhops_1_1MHO__NormFX"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MixedSidebandNormFX</label>
+        <link refid="classhops_1_1MHO__MixedSidebandNormFX"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_NormFX</label>
+        <link refid="classhops_1_1MHO__NormFX"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fWeights</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_TableContainerBase</label>
+        <link refid="classhops_1_1MHO__TableContainerBase"/>
+      </node>
+      <node id="14">
+        <label>json</label>
+      </node>
+      <node id="12">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>XAxisPackType</label>
+        <link refid="classXAxisPackType"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_MixedSidebandNormFX</label>
+        <link refid="classhops_1_1MHO__MixedSidebandNormFX"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="7">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_MixedSidebandNormFX.hh" bodystart="43" bodyend="118"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a0d51cef07b6ffa7dc4b0a4c1208843e5" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>conjType</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a7de31ee0593f726ca65dfeaa0829262b" prot="protected" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a7b043386c2906cc71eb3ba644e402a42" prot="protected" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a2b5159454b7a6fca21aece79fa5ea2b1" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fCyclicRotator</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1af741f24be0ed4b906b4401a27410b490" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fFFTEngine</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1af18020ee8d5397b8ccc40eb7542a6ed1" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>FFT_ENGINE_TYPE</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a31fb514c2f9542588a90c3b2bf006551" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>FillWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a87c48f327feee3817dd7fc04bc76bd29" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fInDims</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a57c6564adc8608ce2bb7738e9409d238" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a5f74f80f74809651b199688ca85e2b3a" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fNaNBroadcaster</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1ac7c87153f581a7485bb06ec9fa4d6ee8" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fOutDims</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a6170526235c2e66e6484616a249e006c" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fSubSampler</name></member>
+      <member refid="classhops_1_1MHO__NormFX_1a333e509f67e5a0880a17a48cfde7ee96" prot="protected" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fWeights</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1ac29c8f14d4a84faa4b75b8f34be22b66" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fWorkDims</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a60b283d391c87d67fe381201a1cb922d" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fWorkspace</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1acdfb5a3de59ebea73e481e7c3f042d09" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>fZeroPadder</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a5520e3d1125a044f772f2058d210a7b0" prot="protected" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a6632cb305bce709561d714eb416ad5e3" prot="protected" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1ab6892e8da58de562c0647d75c52414bf" prot="public" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>MHO_MixedSidebandNormFX</name></member>
+      <member refid="classhops_1_1MHO__NormFX_1a0f419578c5f985757c0420b1c2370f0b" prot="public" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>MHO_NormFX</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1af84681af1ceef73860efd9e74a2a7571" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>nanMaskerType</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__NormFX_1a1a5f1fe4e8b9926f54c3f52271069fe0" prot="public" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>SetWeights</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a02c5150ffdfd642a32cb8c64a595ed5e" prot="private" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>TreatDoubleSidebandChannels</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1a08bcbd14d57f500cc57a2b3d6579a7bd" prot="protected" virt="non-virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>XArgType</name></member>
+      <member refid="classhops_1_1MHO__MixedSidebandNormFX_1ae8b65a6d7732dd0e0f175063c217e36e" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>~MHO_MixedSidebandNormFX</name></member>
+      <member refid="classhops_1_1MHO__NormFX_1a4c9a0aadc7f0066fff7f37e9f034226c" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>~MHO_NormFX</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_MixedSidebandNormFX</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

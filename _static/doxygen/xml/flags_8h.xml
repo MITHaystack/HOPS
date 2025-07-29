@@ -1,0 +1,690 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="flags_8h" kind="file" language="C++">
+    <compoundname>flags.h</compoundname>
+    <includedby refid="active__filter_8c" local="yes">active_filter.c</includedby>
+    <includedby refid="cfilter_8c" local="yes">cfilter.c</includedby>
+    <includedby refid="cursor__select_8c" local="yes">cursor_select.c</includedby>
+    <includedby refid="dup__flag_8c" local="yes">dup_flag.c</includedby>
+    <includedby refid="edit_8c" local="yes">edit.c</includedby>
+    <includedby refid="edit__close_8c" local="yes">edit_close.c</includedby>
+    <includedby refid="edit__families_8c" local="yes">edit_families.c</includedby>
+    <includedby refid="ffilter_8c" local="yes">ffilter.c</includedby>
+    <includedby refid="get__plot__data_8c" local="yes">get_plot_data.c</includedby>
+    <includedby refid="ps__proc__datum_8c" local="yes">ps_proc_datum.c</includedby>
+    <includedby refid="pstag__process_8c" local="yes">pstag_process.c</includedby>
+    <includedby refid="qfilter_8c" local="yes">qfilter.c</includedby>
+    <includedby refid="rfilter_8c" local="yes">rfilter.c</includedby>
+    <includedby refid="station__reduce_8c" local="yes">station_reduce.c</includedby>
+    <includedby refid="tfilter_8c" local="yes">tfilter.c</includedby>
+    <includedby refid="unflag_8c" local="yes">unflag.c</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>flags.h</label>
+        <link refid="flags_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>qfilter.c</label>
+        <link refid="qfilter_8c"/>
+      </node>
+      <node id="2">
+        <label>active_filter.c</label>
+        <link refid="active__filter_8c"/>
+      </node>
+      <node id="9">
+        <label>ffilter.c</label>
+        <link refid="ffilter_8c"/>
+      </node>
+      <node id="4">
+        <label>cursor_select.c</label>
+        <link refid="cursor__select_8c"/>
+      </node>
+      <node id="14">
+        <label>rfilter.c</label>
+        <link refid="rfilter_8c"/>
+      </node>
+      <node id="11">
+        <label>ps_proc_datum.c</label>
+        <link refid="ps__proc__datum_8c"/>
+      </node>
+      <node id="12">
+        <label>pstag_process.c</label>
+        <link refid="pstag__process_8c"/>
+      </node>
+      <node id="3">
+        <label>cfilter.c</label>
+        <link refid="cfilter_8c"/>
+      </node>
+      <node id="15">
+        <label>station_reduce.c</label>
+        <link refid="station__reduce_8c"/>
+      </node>
+      <node id="10">
+        <label>get_plot_data.c</label>
+        <link refid="get__plot__data_8c"/>
+      </node>
+      <node id="17">
+        <label>unflag.c</label>
+        <link refid="unflag_8c"/>
+      </node>
+      <node id="7">
+        <label>edit_close.c</label>
+        <link refid="edit__close_8c"/>
+      </node>
+      <node id="6">
+        <label>edit.c</label>
+        <link refid="edit_8c"/>
+      </node>
+      <node id="5">
+        <label>dup_flag.c</label>
+        <link refid="dup__flag_8c"/>
+      </node>
+      <node id="16">
+        <label>tfilter.c</label>
+        <link refid="tfilter_8c"/>
+      </node>
+      <node id="8">
+        <label>edit_families.c</label>
+        <link refid="edit__families_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="flags_8h_1a445d43e66ba3d7fc6bca4a053808a496" prot="public" static="no">
+        <name>BADBASELN</name>
+        <initializer>(1&lt;&lt;7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a0eb03c4aa395e2da4bf15a520224395f" prot="public" static="no">
+        <name>BADBSNR</name>
+        <initializer>(1&lt;&lt;4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1afb19c913b033d2b6da731f23a2637caa" prot="public" static="no">
+        <name>BADEXPT</name>
+        <initializer>(1&lt;&lt;10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a344305a220740db9821a4597969317fa" prot="public" static="no">
+        <name>BADFRAC</name>
+        <initializer>(1&lt;&lt;15)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1ada26222368ad37e9abff8fdda6f82f1f" prot="public" static="no">
+        <name>BADFREQA</name>
+        <initializer>(1&lt;&lt;11)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1ae9dd09fa8314726bcd5a1fada1b2b8f7" prot="public" static="no">
+        <name>BADLENGTH</name>
+        <initializer>(1&lt;&lt;14)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a473ebb6be4f5e7be91aea6b0ba4aa5ae" prot="public" static="no">
+        <name>BADNFREQ</name>
+        <initializer>(1&lt;&lt;16)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a9ad73643b862d17f759047e3fd0f5cd5" prot="public" static="no">
+        <name>BADPARAM</name>
+        <initializer>(1&lt;&lt;17)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1ab8d959493caafb7022739ef7e8bc05e3" prot="public" static="no">
+        <name>BADPOL</name>
+        <initializer>(1&lt;&lt;24)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a825be15d1f82907f4979742d70e24655" prot="public" static="no">
+        <name>BADPROC</name>
+        <initializer>(1&lt;&lt;18)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a717eb4501bfe6b69b74b611259cbd67a" prot="public" static="no">
+        <name>BADQF</name>
+        <initializer>(1&lt;&lt;2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a240d037ec319d6c7a120bb8539b229c4" prot="public" static="no">
+        <name>BADQUAD</name>
+        <initializer>(1&lt;&lt;9)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a87928ad0f854e09bc310524da3676156" prot="public" static="no">
+        <name>BADSNR</name>
+        <initializer>(1&lt;&lt;3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a0dee3553a021bdbf411396d9504aa5c4" prot="public" static="no">
+        <name>BADSOURCE</name>
+        <initializer>(1&lt;&lt;13)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a607f62a4969e3948f0beae074e2645d3" prot="public" static="no">
+        <name>BADSTATION</name>
+        <initializer>(1&lt;&lt;6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a0e6e0ee043884c1ca7bab82709fc599e" prot="public" static="no">
+        <name>BADTIME</name>
+        <initializer>(1&lt;&lt;5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1afda8157cdf7b66584ffe545389e9058f" prot="public" static="no">
+        <name>BADTRNGL</name>
+        <initializer>(1&lt;&lt;8)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a0955fe6159ef464d39d9a600bc3a3f75" prot="public" static="no">
+        <name>BADTYPE</name>
+        <initializer>(1&lt;&lt;12)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a136050738b493cb16af1634b5fbff54d" prot="public" static="no">
+        <name>CHILDLESS</name>
+        <initializer>(1&lt;&lt;19)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a69ecc2a23196292ef2c155154ae15819" prot="public" static="no">
+        <name>DUPLICATE</name>
+        <initializer>(1&lt;&lt;0)              /* Bit specifications for flag <ref refid="fourmer_8c_1a783f7a36014ceb59b473085926d009e0" kindref="member">field</ref> of */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a8fe83ac76edc595f6b98cd4a4127aed5" prot="public" static="no">
+        <name>ERROR</name>
+        <initializer>(1&lt;&lt;25)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a44ffb3f98219f22f3db7327c50a4a6b5" prot="public" static="no">
+        <name>F_BASELINE</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a62255f44545353ef3b96e23cdfe9d573" prot="public" static="no">
+        <name>F_BSNR</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="46" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a228bfa42a5f77f7d5ca54d3c39c4c8e6" prot="public" static="no">
+        <name>F_EXPERIMENT</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="41" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1ad3b914b4dc1f7c147c51b626f3fb935e" prot="public" static="no">
+        <name>F_FRACTION</name>
+        <initializer>15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="48" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1ad1f4b5dab141db6587acf13431d3e8bd" prot="public" static="no">
+        <name>F_FREQUENCY</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1afdefddc27f341cd20efe1ea58e579747" prot="public" static="no">
+        <name>F_LENGTH</name>
+        <initializer>14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a87e20a96c7ea45cb5642a563da6afb78" prot="public" static="no">
+        <name>F_NFREQ</name>
+        <initializer>16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="49" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a478c3d6fbb3f4728936420dd74bb500a" prot="public" static="no">
+        <name>F_PARAMETER</name>
+        <initializer>17</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="50" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a1ea9c1588390504e2c369de1d984dfc7" prot="public" static="no">
+        <name>F_POLARIZATION</name>
+        <initializer>18</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="51" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a0eb8541eed3dd2e5ede2de810e07a147" prot="public" static="no">
+        <name>F_PROCDATE</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a2dc438e50e80e23e2db2d08e2b0be22e" prot="public" static="no">
+        <name>F_QCODE</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a50bf825195e77c2e6590fb493c997cc5" prot="public" static="no">
+        <name>F_QUAD</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="39" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a2a1040bc48d6a07279db27bfb04193e2" prot="public" static="no">
+        <name>F_SNR</name>
+        <initializer>12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1aa94afd1143c60e08560b29a2f98018ca" prot="public" static="no">
+        <name>F_SOURCE</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="43" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a7c31db42f26e72a6e871b1234628992d" prot="public" static="no">
+        <name>F_STATION</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a36ac3b2583464df914e4ba80efd8389d" prot="public" static="no">
+        <name>F_TIMETAG</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a3613282d24422ff937455695387e2ef2" prot="public" static="no">
+        <name>F_TRIANGLE</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="38" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a97508f041e42f64005162b87a77ca365" prot="public" static="no">
+        <name>F_TYPE</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="44" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a593938b12615291ac6a596dbd95eacef" prot="public" static="no">
+        <name>MODE_BASE</name>
+        <initializer>(1&lt;&lt;1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="3" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a5b0bcaaf55753a9640b8b1224cec373e" prot="public" static="no">
+        <name>MODE_TRI</name>
+        <initializer>(1&lt;&lt;0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="2" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1af589f0d1cc74330c509ab2bddfa7f524" prot="public" static="no">
+        <name>NO_BASELINE</name>
+        <initializer>(1&lt;&lt;22)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a5d377bbb903706f87d44ccefa84d0752" prot="public" static="no">
+        <name>NO_TRIANGLE</name>
+        <initializer>(1&lt;&lt;21)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1ad4caaed3ae8075a052077724e8a1d41f" prot="public" static="no">
+        <name>ORPHAN</name>
+        <initializer>(1&lt;&lt;20)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a46f44492635db360059cee12eae104b5" prot="public" static="no">
+        <name>TAGGED</name>
+        <initializer>(1&lt;&lt;23)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="flags_8h_1a9338b984a192674e4f9e9e54e1903032" prot="public" static="no">
+        <name>ZAPPED</name>
+        <initializer>(1&lt;&lt;1)              /* data structure */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" line="6" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Operational<sp/>modes<sp/>for<sp/>edit_close()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="flags_8h_1a5b0bcaaf55753a9640b8b1224cec373e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MODE_TRI<sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="flags_8h_1a593938b12615291ac6a596dbd95eacef" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MODE_BASE<sp/><sp/><sp/><sp/>(1&lt;&lt;1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="flags_8h_1a69ecc2a23196292ef2c155154ae15819" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUPLICATE<sp/><sp/><sp/><sp/>(1&lt;&lt;0)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Bit<sp/>specifications<sp/>for<sp/>flag<sp/>field<sp/>of<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="flags_8h_1a9338b984a192674e4f9e9e54e1903032" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ZAPPED<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;1)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>data<sp/>structure<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="flags_8h_1a717eb4501bfe6b69b74b611259cbd67a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADQF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="flags_8h_1a87928ad0f854e09bc310524da3676156" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSNR<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="flags_8h_1a0eb03c4aa395e2da4bf15a520224395f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADBSNR<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="flags_8h_1a0e6e0ee043884c1ca7bab82709fc599e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADTIME<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="flags_8h_1a607f62a4969e3948f0beae074e2645d3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSTATION<sp/><sp/><sp/>(1&lt;&lt;6)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="flags_8h_1a445d43e66ba3d7fc6bca4a053808a496" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADBASELN<sp/><sp/><sp/><sp/>(1&lt;&lt;7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="flags_8h_1afda8157cdf7b66584ffe545389e9058f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADTRNGL<sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;8)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="flags_8h_1a240d037ec319d6c7a120bb8539b229c4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADQUAD<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;9)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="flags_8h_1afb19c913b033d2b6da731f23a2637caa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADEXPT<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;10)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="flags_8h_1ada26222368ad37e9abff8fdda6f82f1f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFREQA<sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;11)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="flags_8h_1a0955fe6159ef464d39d9a600bc3a3f75" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADTYPE<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;12)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="flags_8h_1a0dee3553a021bdbf411396d9504aa5c4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADSOURCE<sp/><sp/><sp/><sp/>(1&lt;&lt;13)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="flags_8h_1ae9dd09fa8314726bcd5a1fada1b2b8f7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADLENGTH<sp/><sp/><sp/><sp/>(1&lt;&lt;14)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="flags_8h_1a344305a220740db9821a4597969317fa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADFRAC<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;15)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="flags_8h_1a473ebb6be4f5e7be91aea6b0ba4aa5ae" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADNFREQ<sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;16)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="flags_8h_1a9ad73643b862d17f759047e3fd0f5cd5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADPARAM<sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;17)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="flags_8h_1a825be15d1f82907f4979742d70e24655" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADPROC<sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;18)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="flags_8h_1a136050738b493cb16af1634b5fbff54d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CHILDLESS<sp/><sp/><sp/><sp/>(1&lt;&lt;19)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="flags_8h_1ad4caaed3ae8075a052077724e8a1d41f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ORPHAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;20)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="flags_8h_1a5d377bbb903706f87d44ccefa84d0752" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_TRIANGLE<sp/><sp/>(1&lt;&lt;21)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="flags_8h_1af589f0d1cc74330c509ab2bddfa7f524" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_BASELINE<sp/><sp/>(1&lt;&lt;22)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="flags_8h_1a46f44492635db360059cee12eae104b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TAGGED<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;23)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="flags_8h_1ab8d959493caafb7022739ef7e8bc05e3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BADPOL<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;24)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="flags_8h_1a8fe83ac76edc595f6b98cd4a4127aed5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ERROR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1&lt;&lt;25)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>filter<sp/>ids<sp/>used<sp/>by<sp/>active_filter()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="flags_8h_1a36ac3b2583464df914e4ba80efd8389d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_TIMETAG<sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="flags_8h_1a0eb8541eed3dd2e5ede2de810e07a147" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_PROCDATE<sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="flags_8h_1a7c31db42f26e72a6e871b1234628992d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_STATION<sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="flags_8h_1a44ffb3f98219f22f3db7327c50a4a6b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_BASELINE<sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="flags_8h_1a3613282d24422ff937455695387e2ef2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_TRIANGLE<sp/><sp/><sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="flags_8h_1a50bf825195e77c2e6590fb493c997cc5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_QUAD<sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="flags_8h_1ad1f4b5dab141db6587acf13431d3e8bd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_FREQUENCY<sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="flags_8h_1a228bfa42a5f77f7d5ca54d3c39c4c8e6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_EXPERIMENT<sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="flags_8h_1a2dc438e50e80e23e2db2d08e2b0be22e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_QCODE<sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="flags_8h_1aa94afd1143c60e08560b29a2f98018ca" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_SOURCE<sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="flags_8h_1a97508f041e42f64005162b87a77ca365" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_TYPE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="flags_8h_1a2a1040bc48d6a07279db27bfb04193e2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_SNR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="flags_8h_1a62255f44545353ef3b96e23cdfe9d573" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_BSNR<sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="flags_8h_1afdefddc27f341cd20efe1ea58e579747" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_LENGTH<sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="flags_8h_1ad3b914b4dc1f7c147c51b626f3fb935e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_FRACTION<sp/><sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="flags_8h_1a87e20a96c7ea45cb5642a563da6afb78" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_NFREQ<sp/><sp/><sp/><sp/><sp/><sp/>16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="flags_8h_1a478c3d6fbb3f4728936420dd74bb500a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_PARAMETER<sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="flags_8h_1a1ea9c1588390504e2c369de1d984dfc7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>F_POLARIZATION<sp/><sp/>18</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/flags.h"/>
+  </compounddef>
+</doxygen>

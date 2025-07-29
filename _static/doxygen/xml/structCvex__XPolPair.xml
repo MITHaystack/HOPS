@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCvex__XPolPair" kind="struct" language="C++" prot="public">
+    <compoundname>Cvex_XPolPair</compoundname>
+    <includes refid="cvex_8h" local="no">cvex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCvex__XPolPair_1a42c8a4f729338f965dfd34a66e4a542f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Cvex_XPolPair::chn1Id[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>chn1Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="73" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__XPolPair_1a684c801b7a5568dcc87f516f53ea5ce7" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Cvex_XPolPair::chn2Id[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>chn2Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="74" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Cvex_XPolPair</label>
+        <link refid="structCvex__XPolPair"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>chn1Id</edgelabel>
+          <edgelabel>chn2Id</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="72" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="72" bodyend="75"/>
+    <listofallmembers>
+      <member refid="structCvex__XPolPair_1a42c8a4f729338f965dfd34a66e4a542f" prot="public" virt="non-virtual"><scope>Cvex_XPolPair</scope><name>chn1Id</name></member>
+      <member refid="structCvex__XPolPair_1a684c801b7a5568dcc87f516f53ea5ce7" prot="public" virt="non-virtual"><scope>Cvex_XPolPair</scope><name>chn2Id</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__MK4VexInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_MK4VexInterface</compoundname>
+    <includes refid="MHO__MK4VexInterface_8hh" local="no">MHO_MK4VexInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4VexInterface_1a751c32cfb43130bbfcc9895bf205e6d3" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4VexInterface::fHaveVex</definition>
+        <argsstring></argsstring>
+        <name>fHaveVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="49" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__MK4VexInterface_1adf953fccbfc2cc71fea1853e3e9ba3e2" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_MK4VexInterface::fVex</definition>
+        <argsstring></argsstring>
+        <name>fVex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="50" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__MK4VexInterface_1a225f704acb0c4ebc6874847b815b1f7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_MK4VexInterface::MHO_MK4VexInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_MK4VexInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4VexInterface.cc" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4VexInterface_1a634ff3b0a01513b5092bf011437365b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_MK4VexInterface::~MHO_MK4VexInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_MK4VexInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="25" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4VexInterface.cc" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4VexInterface_1ae8ce1087d2a921df4ce61bcd4c3fbd0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4VexInterface::ExportVexFileToJSON</definition>
+        <argsstring>(mho_json &amp;json_obj)</argsstring>
+        <name>ExportVexFileToJSON</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>json_obj</declname>
+        </param>
+        <briefdescription>
+<para>Exports Vex file data to a JSON object if available. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>json_obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object that will receive the exported data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if successful, false if no Vex file data is available. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="46" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4VexInterface.cc" bodystart="36" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4VexInterface_1af3e17adde41bc72c05fed8f26037ddb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_MK4VexInterface::GetVex</definition>
+        <argsstring>()</argsstring>
+        <name>GetVex</name>
+        <briefdescription>
+<para>Getter for vex as JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>mho_json containing vex data or an empty json object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="38" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4VexInterface.cc" bodystart="23" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__MK4VexInterface_1a5e88548b538edadfc75c27ec8c2a2c27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_MK4VexInterface::OpenVexFile</definition>
+        <argsstring>(std::string file_path)</argsstring>
+        <name>OpenVexFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>file_path</declname>
+        </param>
+        <briefdescription>
+<para>Opens a VEX file and parses its contents into an internal JSON representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the VEX file to be opened and parsed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="32" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/src/MHO_MK4VexInterface.cc" bodystart="15" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classhops_1_1MHO__MK4VexInterface" kindref="compound">MHO_MK4VexInterface</ref> convers root (ovex) file to json file for HOPS4 consumption. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Tue May 19 01:47:28 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" line="21" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4VexInterface.hh" bodystart="22" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__MK4VexInterface_1ae8ce1087d2a921df4ce61bcd4c3fbd0c" prot="public" virt="non-virtual"><scope>hops::MHO_MK4VexInterface</scope><name>ExportVexFileToJSON</name></member>
+      <member refid="classhops_1_1MHO__MK4VexInterface_1a751c32cfb43130bbfcc9895bf205e6d3" prot="private" virt="non-virtual"><scope>hops::MHO_MK4VexInterface</scope><name>fHaveVex</name></member>
+      <member refid="classhops_1_1MHO__MK4VexInterface_1adf953fccbfc2cc71fea1853e3e9ba3e2" prot="private" virt="non-virtual"><scope>hops::MHO_MK4VexInterface</scope><name>fVex</name></member>
+      <member refid="classhops_1_1MHO__MK4VexInterface_1af3e17adde41bc72c05fed8f26037ddb9" prot="public" virt="non-virtual"><scope>hops::MHO_MK4VexInterface</scope><name>GetVex</name></member>
+      <member refid="classhops_1_1MHO__MK4VexInterface_1a225f704acb0c4ebc6874847b815b1f7c" prot="public" virt="non-virtual"><scope>hops::MHO_MK4VexInterface</scope><name>MHO_MK4VexInterface</name></member>
+      <member refid="classhops_1_1MHO__MK4VexInterface_1a5e88548b538edadfc75c27ec8c2a2c27" prot="public" virt="non-virtual"><scope>hops::MHO_MK4VexInterface</scope><name>OpenVexFile</name></member>
+      <member refid="classhops_1_1MHO__MK4VexInterface_1a634ff3b0a01513b5092bf011437365b8" prot="public" virt="virtual"><scope>hops::MHO_MK4VexInterface</scope><name>~MHO_MK4VexInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

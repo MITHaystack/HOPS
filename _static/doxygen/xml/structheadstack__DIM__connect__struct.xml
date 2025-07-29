@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structheadstack__DIM__connect__struct" kind="struct" language="C++" prot="public">
+    <compoundname>headstack_DIM_connect_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structheadstack__DIM__connect__struct_1aaf850ddb73d9cd6c9222bd42c12b88ce" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short headstack_DIM_connect_struct::eqlzr</definition>
+        <argsstring></argsstring>
+        <name>eqlzr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="58" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structheadstack__DIM__connect__struct_1a28ca2d6b0c47c95b7c75789362cdfb1c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short headstack_DIM_connect_struct::headstack</definition>
+        <argsstring></argsstring>
+        <name>headstack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="56" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structheadstack__DIM__connect__struct_1a3eac7355505fd27a4330991dd6bf741c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short headstack_DIM_connect_struct::parity</definition>
+        <argsstring></argsstring>
+        <name>parity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="57" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>headstack_DIM_connect_struct</label>
+        <link refid="structheadstack__DIM__connect__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>eqlzr</edgelabel>
+          <edgelabel>headstack</edgelabel>
+          <edgelabel>parity</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="54" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="55" bodyend="59"/>
+    <listofallmembers>
+      <member refid="structheadstack__DIM__connect__struct_1aaf850ddb73d9cd6c9222bd42c12b88ce" prot="public" virt="non-virtual"><scope>headstack_DIM_connect_struct</scope><name>eqlzr</name></member>
+      <member refid="structheadstack__DIM__connect__struct_1a28ca2d6b0c47c95b7c75789362cdfb1c" prot="public" virt="non-virtual"><scope>headstack_DIM_connect_struct</scope><name>headstack</name></member>
+      <member refid="structheadstack__DIM__connect__struct_1a3eac7355505fd27a4330991dd6bf741c" prot="public" virt="non-virtual"><scope>headstack_DIM_connect_struct</scope><name>parity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

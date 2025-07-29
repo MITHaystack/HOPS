@@ -1,0 +1,655 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ControlConditionEvaluator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ControlConditionEvaluator</compoundname>
+    <includes refid="MHO__ControlConditionEvaluator_8hh" local="no">MHO_ControlConditionEvaluator.hh</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__ControlConditionEvaluator_1a12792556a84306e54a15ad81c7fe365b" prot="private" static="no">
+        <type>std::vector&lt; std::string &gt;::iterator</type>
+        <definition>using hops::MHO_ControlConditionEvaluator::token_iter =  std::vector&lt; std::string &gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>token_iter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="57" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1aa8fb1e5e3c13f3aeb2586ea4a95f06dd" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlConditionEvaluator::fBaseline</definition>
+        <argsstring></argsstring>
+        <name>fBaseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="138" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1aba92981586cdf89ad7e97cee0c943303" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlConditionEvaluator::fFGroup</definition>
+        <argsstring></argsstring>
+        <name>fFGroup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="142" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1ab498a7f445e02f66460dd0628bfa491e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlConditionEvaluator::fRefStation</definition>
+        <argsstring></argsstring>
+        <name>fRefStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="139" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1a2efe49f1be0a548bfb239565a89c8ba3" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlConditionEvaluator::fRemStation</definition>
+        <argsstring></argsstring>
+        <name>fRemStation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="140" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1afa553c4015a652074f0d682a21aa1da2" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlConditionEvaluator::fScanTime</definition>
+        <argsstring></argsstring>
+        <name>fScanTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="143" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1af408870dc90e40e0b066eb6fbf9e8c40" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlConditionEvaluator::fSource</definition>
+        <argsstring></argsstring>
+        <name>fSource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="141" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1a9c13459017e5d83748b33e7558dd464b" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ControlConditionEvaluator::fStartLineNumber</definition>
+        <argsstring></argsstring>
+        <name>fStartLineNumber</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="145" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlConditionEvaluator_1a1f5e312d15de9716ecd2b70fb9cdcdbc" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlConditionEvaluator::fWildcard</definition>
+        <argsstring></argsstring>
+        <name>fWildcard</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="136" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a332a9c58644ec5ad5b33164b58215d0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ControlConditionEvaluator::MHO_ControlConditionEvaluator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ControlConditionEvaluator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="17" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1afb8c172b5059d2c72c5b6afde9c04d98" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ControlConditionEvaluator::~MHO_ControlConditionEvaluator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ControlConditionEvaluator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="28" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a1b28de04a0ae3085d7c408136d1af83a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ControlConditionEvaluator::Evaluate</definition>
+        <argsstring>(mho_json &amp;control_condition)</argsstring>
+        <name>Evaluate</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>control_condition</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates a single condition from an mho_json object and returns the result as a boolean. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>control_condition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object containing the condition to evaluate. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the evaluated condition is true or false. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="70" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a345b1455ca476316490fb246cebeb037" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlConditionEvaluator::GetApplicableStatements</definition>
+        <argsstring>(mho_json &amp;control_contents)</argsstring>
+        <name>GetApplicableStatements</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>control_contents</declname>
+        </param>
+        <briefdescription>
+<para>reduces the contents of a control file to only those statements which are applicable for this pass </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>control_contents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to input mho_json containing control conditions </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json containing applicable conditional statements </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="46" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="42" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a2acb1c9110cff160d40c7589200f2224" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlConditionEvaluator::SetPassInformation</definition>
+        <argsstring>(std::string baseline, std::string source, std::string fgroup, std::string scan_time)</argsstring>
+        <name>SetPassInformation</name>
+        <param>
+          <type>std::string</type>
+          <declname>baseline</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>source</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>fgroup</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>scan_time</declname>
+        </param>
+        <briefdescription>
+<para>Setter for pass (baseline, source, frequency group, scan) information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseline</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Baseline string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>source</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Source string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fgroup</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency Group string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scan_time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scan-time/name string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="38" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="31" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a2b369624477811004f9882c439bf1852" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::EvaluateBaseline</definition>
+        <argsstring>(token_iter &amp;it)</argsstring>
+        <name>EvaluateBaseline</name>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates baseline condition and returns TRUE_STATE if met. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input iterator to evaluate baseline condition. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>TRUE_STATE if baseline condition is met, FALSE_STATE otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="81" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="385" bodyend="408"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a7656c71118625f2c0a6bbd1fd112299f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::EvaluateBooleanOps</definition>
+        <argsstring>(std::list&lt; int &gt; states)</argsstring>
+        <name>EvaluateBooleanOps</name>
+        <param>
+          <type>std::list&lt; int &gt;</type>
+          <declname>states</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates boolean operations (NOT, AND, OR) in a list of states. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>states</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>List of integer states representing boolean operations and values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Resulting state after evaluating all boolean operations </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="134" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="223" bodyend="368"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a40f1eb9311d1f29b1a21b4be441f8163" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::EvaluateFrequencyGroup</definition>
+        <argsstring>(token_iter &amp;it)</argsstring>
+        <name>EvaluateFrequencyGroup</name>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates frequency group and returns TRUE_STATE if it matches fFGroup or fWildcard, otherwise FALSE_STATE. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input iterator to evaluate frequency group. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>TRUE_STATE if frequency group matches fFGroup or fWildcard, otherwise FALSE_STATE. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="95" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="425" bodyend="438"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a255eddd2a27a056ea89d9b2a865d2f5a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::EvaluateScan</definition>
+        <argsstring>(token_iter &amp;it, token_iter &amp;it_end)</argsstring>
+        <name>EvaluateScan</name>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it</declname>
+        </param>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it_end</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates scan statements and returns state based on token iterators. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input iterator to current token </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>it_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Iterator to end of tokens </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>State (TRUE_STATE or FALSE_STATE) based on evaluation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="103" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="440" bodyend="483"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a1cd0e1b2142c0f6f79e0b65001bc6083" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::EvaluateSource</definition>
+        <argsstring>(token_iter &amp;it)</argsstring>
+        <name>EvaluateSource</name>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates source token and returns TRUE_STATE if it&apos;s a wildcard or source, FALSE_STATE otherwise. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input iterator to current token </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>TRUE_STATE if token is wildcard or source, FALSE_STATE otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="88" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="410" bodyend="423"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a020c56d6d02c3dade1cf729ed8ac4f15" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::EvaluateStation</definition>
+        <argsstring>(token_iter &amp;it)</argsstring>
+        <name>EvaluateStation</name>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates station condition and returns TRUE_STATE if it matches reference or remote stations or wildcard. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input iterator to token sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>TRUE_STATE if station matches reference/remove/wildcard, FALSE_STATE otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="74" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="370" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1ae906df62703d5b8f2db76705fbafe5db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::ProcessToken</definition>
+        <argsstring>(token_iter &amp;it, token_iter &amp;it_end)</argsstring>
+        <name>ProcessToken</name>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it</declname>
+        </param>
+        <param>
+          <type>token_iter &amp;</type>
+          <declname>it_end</declname>
+        </param>
+        <briefdescription>
+<para>Processes a token and returns its corresponding state or operation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>it</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output iterator to the current token. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>it_end</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Iterator marking the end of the tokens sequence. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Integer representing the token&apos;s state or operation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="66" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="166" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1ab58f89a4d08c92548d94891b325cb44d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::ScanGreaterThan</definition>
+        <argsstring>(std::string scan)</argsstring>
+        <name>ScanGreaterThan</name>
+        <param>
+          <type>std::string</type>
+          <declname>scan</declname>
+        </param>
+        <briefdescription>
+<para>Checks if fScanTime is greater than scan and returns TRUE_STATE if true. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scan</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string to compare with fScanTime </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>TRUE_STATE if fScanTime scan, FALSE_STATE otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="118" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="494" bodyend="501"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a467b49233723a835f70d88b1f346a60a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::ScanInBetween</definition>
+        <argsstring>(std::string scan_low, std::string scan_high)</argsstring>
+        <name>ScanInBetween</name>
+        <param>
+          <type>std::string</type>
+          <declname>scan_low</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>scan_high</declname>
+        </param>
+        <briefdescription>
+<para>Checks if fScanTime is between scan_low and scan_high. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scan_low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound for time scan </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scan_high</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound for time scan </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>TRUE_STATE (1) if fScanTime is in range, FALSE_STATE (0) otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="126" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="503" bodyend="510"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlConditionEvaluator_1a5c8e1ab2e05032c639c713b4fb27f1ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int hops::MHO_ControlConditionEvaluator::ScanLessThan</definition>
+        <argsstring>(std::string scan)</argsstring>
+        <name>ScanLessThan</name>
+        <param>
+          <type>std::string</type>
+          <declname>scan</declname>
+        </param>
+        <briefdescription>
+<para>Checks if fScanTime is less than input scan string and returns TRUE_STATE if true. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scan</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input scan string to compare with fScanTime </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>TRUE_STATE if fScanTime &lt; scan, FALSE_STATE otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="111" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlConditionEvaluator.cc" bodystart="485" bodyend="492"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>evaluates conditional statements encounterd in control file syntax </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Fri May 19 13:08:22 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlConditionEvaluator.hh" bodystart="24" bodyend="146"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a1b28de04a0ae3085d7c408136d1af83a" prot="public" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>Evaluate</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a2b369624477811004f9882c439bf1852" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>EvaluateBaseline</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a7656c71118625f2c0a6bbd1fd112299f" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>EvaluateBooleanOps</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a40f1eb9311d1f29b1a21b4be441f8163" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>EvaluateFrequencyGroup</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a255eddd2a27a056ea89d9b2a865d2f5a" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>EvaluateScan</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a1cd0e1b2142c0f6f79e0b65001bc6083" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>EvaluateSource</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a020c56d6d02c3dade1cf729ed8ac4f15" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>EvaluateStation</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1aa8fb1e5e3c13f3aeb2586ea4a95f06dd" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fBaseline</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1aba92981586cdf89ad7e97cee0c943303" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fFGroup</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1ab498a7f445e02f66460dd0628bfa491e" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fRefStation</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a2efe49f1be0a548bfb239565a89c8ba3" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fRemStation</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1afa553c4015a652074f0d682a21aa1da2" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fScanTime</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1af408870dc90e40e0b066eb6fbf9e8c40" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fSource</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a9c13459017e5d83748b33e7558dd464b" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fStartLineNumber</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a1f5e312d15de9716ecd2b70fb9cdcdbc" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>fWildcard</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a345b1455ca476316490fb246cebeb037" prot="public" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>GetApplicableStatements</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a332a9c58644ec5ad5b33164b58215d0f" prot="public" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>MHO_ControlConditionEvaluator</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1ae906df62703d5b8f2db76705fbafe5db" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>ProcessToken</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1ab58f89a4d08c92548d94891b325cb44d" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>ScanGreaterThan</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a467b49233723a835f70d88b1f346a60a" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>ScanInBetween</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a5c8e1ab2e05032c639c713b4fb27f1ec" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>ScanLessThan</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a2acb1c9110cff160d40c7589200f2224" prot="public" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>SetPassInformation</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1a12792556a84306e54a15ad81c7fe365b" prot="private" virt="non-virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>token_iter</name></member>
+      <member refid="classhops_1_1MHO__ControlConditionEvaluator_1afb8c172b5059d2c72c5b6afde9c04d98" prot="public" virt="virtual"><scope>hops::MHO_ControlConditionEvaluator</scope><name>~MHO_ControlConditionEvaluator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

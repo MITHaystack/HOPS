@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__GaussianWhiteNoiseSignal" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_GaussianWhiteNoiseSignal</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__SimulatedSignalGenerator" prot="public" virt="non-virtual">hops::MHO_SimulatedSignalGenerator</basecompoundref>
+    <includes refid="MHO__GaussianWhiteNoiseSignal_8hh" local="no">MHO_GaussianWhiteNoiseSignal.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ace49ff566c6c4d1d89b975d0316f3a82" prot="protected" static="no" mutable="no">
+        <type>std::normal_distribution&lt; double &gt; *</type>
+        <definition>std::normal_distribution&lt; double &gt;* hops::MHO_GaussianWhiteNoiseSignal::fDistribution</definition>
+        <argsstring></argsstring>
+        <name>fDistribution</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="68" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1add4c8f35d3e0774c4d87ad234a18e019" prot="protected" static="no" mutable="no">
+        <type>std::mt19937 *</type>
+        <definition>std::mt19937* hops::MHO_GaussianWhiteNoiseSignal::fGenerator</definition>
+        <argsstring></argsstring>
+        <name>fGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="67" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a30f610115fc739fe9d5177b742729cbb" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_GaussianWhiteNoiseSignal::fMean</definition>
+        <argsstring></argsstring>
+        <name>fMean</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="64" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a153e33a233b50eb0264fb451e4e066f8" prot="protected" static="no" mutable="no">
+        <type>std::mt19937::result_type</type>
+        <definition>std::mt19937::result_type hops::MHO_GaussianWhiteNoiseSignal::fSeed</definition>
+        <argsstring></argsstring>
+        <name>fSeed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="66" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ac8e660566bdfdbbe11c00d44de7b7d59" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_GaussianWhiteNoiseSignal::fStandardDeviation</definition>
+        <argsstring></argsstring>
+        <name>fStandardDeviation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="65" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae4a77107a0c76295b25b28b9d27a6bca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_GaussianWhiteNoiseSignal::MHO_GaussianWhiteNoiseSignal</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_GaussianWhiteNoiseSignal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_GaussianWhiteNoiseSignal.cc" bodystart="8" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae8ba0c6d1246917c7614bc2991aeaf1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_GaussianWhiteNoiseSignal::~MHO_GaussianWhiteNoiseSignal</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_GaussianWhiteNoiseSignal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_GaussianWhiteNoiseSignal.cc" bodystart="12" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1adbd94a35d33d3af1533f563b1002fd89" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void hops::MHO_GaussianWhiteNoiseSignal::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__SimulatedSignalGenerator_1a16d5e44fc4c068568abebd337e7d7895">Initialize</reimplements>
+        <briefdescription>
+<para>Initializes random number generator and normal distribution for Gaussian white noise signal. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="51" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_GaussianWhiteNoiseSignal.cc" bodystart="18" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a55f414f6f2f59fa2668293877daf8c69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_GaussianWhiteNoiseSignal::SetMean</definition>
+        <argsstring>(double mean)</argsstring>
+        <name>SetMean</name>
+        <param>
+          <type>double</type>
+          <declname>mean</declname>
+        </param>
+        <briefdescription>
+<para>Setter for mean. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mean</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New mean value to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="37" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ad91f7aa4c3610c5ee92cdab0d5e2a412" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_GaussianWhiteNoiseSignal::SetRandomSeed</definition>
+        <argsstring>(unsigned int seed)</argsstring>
+        <name>SetRandomSeed</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+<para>Setter for random seed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New seed value to initialize the random number generator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="30" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae4d82c8803e29b048d9ec912609f1b9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_GaussianWhiteNoiseSignal::SetStandardDeviation</definition>
+        <argsstring>(double std_dev)</argsstring>
+        <name>SetStandardDeviation</name>
+        <param>
+          <type>double</type>
+          <declname>std_dev</declname>
+        </param>
+        <briefdescription>
+<para>Setter for standard deviation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>std_dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input standard deviation value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="44" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="44" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a07b458a917979108534272a1118eb3ba" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_GaussianWhiteNoiseSignal::GenerateSample</definition>
+        <argsstring>(const double &amp;, double &amp;sample) const override</argsstring>
+        <name>GenerateSample</name>
+        <reimplements refid="classhops_1_1MHO__SimulatedSignalGenerator_1aa8bd998b7c21562b8de01939bb894179">GenerateSample</reimplements>
+        <param>
+          <type>const double &amp;</type>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+<para>Generates a sample from Gaussian white noise distribution. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!sample_time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sample</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output sampled value (reference). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if sample generation is successful. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="62" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_GaussianWhiteNoiseSignal.cc" bodystart="32" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon Dec 19 16:33:05 2022 -0500 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_GaussianWhiteNoiseSignal</label>
+        <link refid="classhops_1_1MHO__GaussianWhiteNoiseSignal"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_SimulatedSignalGenerator</label>
+        <link refid="classhops_1_1MHO__SimulatedSignalGenerator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="6">
+        <label>result_type</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_GaussianWhiteNoiseSignal</label>
+        <link refid="classhops_1_1MHO__GaussianWhiteNoiseSignal"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fMean</edgelabel>
+          <edgelabel>fStandardDeviation</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fGenerator</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fDistribution</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fSeed</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_SimulatedSignalGenerator</label>
+        <link refid="classhops_1_1MHO__SimulatedSignalGenerator"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fSamplingFrequency</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>mt19937 *</label>
+      </node>
+      <node id="5">
+        <label>normal_distribution&lt; double &gt; *</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_GaussianWhiteNoiseSignal.hh" bodystart="20" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ace49ff566c6c4d1d89b975d0316f3a82" prot="protected" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>fDistribution</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1add4c8f35d3e0774c4d87ad234a18e019" prot="protected" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>fGenerator</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a30f610115fc739fe9d5177b742729cbb" prot="protected" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>fMean</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" prot="protected" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>fSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a153e33a233b50eb0264fb451e4e066f8" prot="protected" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>fSeed</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ac8e660566bdfdbbe11c00d44de7b7d59" prot="protected" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>fStandardDeviation</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a07b458a917979108534272a1118eb3ba" prot="protected" virt="virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>GenerateSample</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a7b1760b72d76aa7ede8062e74daa8f33" prot="public" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>GetSample</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a2b883bf6d6c376a72203972707d6bb57" prot="public" virt="virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>GetSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1adbd94a35d33d3af1533f563b1002fd89" prot="public" virt="virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae4a77107a0c76295b25b28b9d27a6bca" prot="public" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>MHO_GaussianWhiteNoiseSignal</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1ac75073821d0b8a599a1b3e3e1011bb94" prot="public" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>MHO_SimulatedSignalGenerator</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1a55f414f6f2f59fa2668293877daf8c69" prot="public" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>SetMean</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ad91f7aa4c3610c5ee92cdab0d5e2a412" prot="public" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>SetRandomSeed</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a988154cd80a59a18e62a6d7cc0401109" prot="public" virt="virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>SetSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae4d82c8803e29b048d9ec912609f1b9b" prot="public" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>SetStandardDeviation</name></member>
+      <member refid="classhops_1_1MHO__GaussianWhiteNoiseSignal_1ae8ba0c6d1246917c7614bc2991aeaf1d" prot="public" virt="non-virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>~MHO_GaussianWhiteNoiseSignal</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a4b30b516c46885e75c938e36d6667cf3" prot="public" virt="virtual"><scope>hops::MHO_GaussianWhiteNoiseSignal</scope><name>~MHO_SimulatedSignalGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

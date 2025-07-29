@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__NDArrayMath_1_1Divide_3_01numerator_00_011_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_NDArrayMath::Divide&lt; numerator, 1 &gt;</compoundname>
+    <includes refid="MHO__NDArrayMath_8hh" local="no">MHO_NDArrayMath.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>numerator</declname>
+        <defname>numerator</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structhops_1_1MHO__NDArrayMath_1_1Divide_3_01numerator_00_011_01_4_1a8572c2790f45cd65abf28551538eff94" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@26</name>
+        <enumvalue id="structhops_1_1MHO__NDArrayMath_1_1Divide_3_01numerator_00_011_01_4_1a8572c2790f45cd65abf28551538eff94a885eb1c58cb4fbf609e62be4703df161" prot="public">
+          <name>value</name>
+          <initializer>= numerator</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" line="345" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" bodystart="346" bodyend="348"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>enum <ref refid="structhops_1_1MHO__NDArrayMath_1_1Divide_3_01numerator_00_011_01_4" kindref="compound">MHO_NDArrayMath::Divide&lt;numerator, 1&gt;</ref> specialization for base case of divide </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" line="343" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayMath.hh" bodystart="344" bodyend="349"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__NDArrayMath_1_1Divide_3_01numerator_00_011_01_4_1a8572c2790f45cd65abf28551538eff94a885eb1c58cb4fbf609e62be4703df161" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayMath::Divide&lt; numerator, 1 &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

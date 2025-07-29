@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OpenCLNDArrayBuffer" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_OpenCLNDArrayBuffer</compoundname>
+    <includes refid="MHO__OpenCLNDArrayBuffer_8hh" local="no">MHO_OpenCLNDArrayBuffer.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XArrayType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" prot="protected" static="no" mutable="no">
+        <type>cl::Buffer *</type>
+        <definition>cl::Buffer* hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::fDataBufferCL</definition>
+        <argsstring></argsstring>
+        <name>fDataBufferCL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="127" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" prot="protected" static="no" mutable="no">
+        <type>cl::Buffer *</type>
+        <definition>cl::Buffer* hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::fDimensionBufferCL</definition>
+        <argsstring></argsstring>
+        <name>fDimensionBufferCL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="124" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a5bc9cee6ff52926ae394a4abe07fadc7" prot="protected" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::fDimensions[XArrayType::rank::value]</definition>
+        <argsstring>[XArrayType::rank::value]</argsstring>
+        <name>fDimensions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="121" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a8c9d01ced348cac227e560863b4af0b4" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ExtensibleElement" kindref="compound">MHO_ExtensibleElement</ref> *</type>
+        <definition>MHO_ExtensibleElement* hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::fElement</definition>
+        <argsstring></argsstring>
+        <name>fElement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="111" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" prot="protected" static="no" mutable="no">
+        <type>XArrayType *</type>
+        <definition>XArrayType* hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::fNDArray</definition>
+        <argsstring></argsstring>
+        <name>fNDArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="112" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" prot="protected" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::fRank</definition>
+        <argsstring></argsstring>
+        <name>fRank</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="113" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1aed9293a799f4d4650f8f1ab3a623b429" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::MHO_OpenCLNDArrayBuffer</definition>
+        <argsstring>(MHO_ExtensibleElement *element)</argsstring>
+        <name>MHO_OpenCLNDArrayBuffer</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ExtensibleElement" kindref="compound">MHO_ExtensibleElement</ref> *</type>
+          <declname>element</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="21" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab0b8d6b54a2f964ee96b88f7046b2da8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::~MHO_OpenCLNDArrayBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OpenCLNDArrayBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="28" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a3589d099720c4ebddfb3daa5d76fe255" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::ConstructDataBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructDataBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="43" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="43" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab955ea7536e320ca85250b833861d96c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::ConstructDimensionBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructDimensionBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="34" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="34" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1ae04d2c8353e67187e132a460198b57df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>cl::Buffer *</type>
+        <definition>cl::Buffer* hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::GetDataBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>GetDataBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="55" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7e00c1a6997102822f77b043a3e95396" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>cl::Buffer *</type>
+        <definition>cl::Buffer* hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::GetDimensionBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>GetDimensionBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="53" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1a40dba36db69ca90f7444ba44f0b02c9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::ReadDataBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>ReadDataBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="92" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="92" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1aab6a2703eaa290ec38b6f898a534c709" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::WriteDataBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>WriteDataBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="75" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="75" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLNDArrayBuffer_1ad42cc5500ecda31d447c323d58ea4ccb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;::WriteDimensionBuffer</definition>
+        <argsstring>()</argsstring>
+        <name>WriteDimensionBuffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="57" bodyend="73"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para></para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>Buffer *</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="4">
+        <label>XArrayType *</label>
+      </node>
+      <node id="5">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_OpenCLNDArrayBuffer&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__OpenCLNDArrayBuffer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fDataBufferCL</edgelabel>
+          <edgelabel>fDimensionBufferCL</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fDimensions</edgelabel>
+          <edgelabel>fRank</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fNDArray</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fElement</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" line="18" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_OpenCLNDArrayBuffer.hh" bodystart="19" bodyend="128"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a3589d099720c4ebddfb3daa5d76fe255" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>ConstructDataBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab955ea7536e320ca85250b833861d96c" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>ConstructDimensionBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a63d486767dd61039b8378b772be9d92d" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>fDataBufferCL</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7799195003324700bfa37464bda6e833" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>fDimensionBufferCL</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a5bc9cee6ff52926ae394a4abe07fadc7" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>fDimensions</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a8c9d01ced348cac227e560863b4af0b4" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>fElement</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a1181d3d8b86bce07a06b8292ff7635fa" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>fNDArray</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a45255dd8092279bd3d590bcd028aaf9b" prot="protected" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>fRank</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ae04d2c8353e67187e132a460198b57df" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>GetDataBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a7e00c1a6997102822f77b043a3e95396" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>GetDimensionBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1aed9293a799f4d4650f8f1ab3a623b429" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>MHO_OpenCLNDArrayBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1a40dba36db69ca90f7444ba44f0b02c9b" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>ReadDataBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1aab6a2703eaa290ec38b6f898a534c709" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>WriteDataBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ad42cc5500ecda31d447c323d58ea4ccb" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>WriteDimensionBuffer</name></member>
+      <member refid="classhops_1_1MHO__OpenCLNDArrayBuffer_1ab0b8d6b54a2f964ee96b88f7046b2da8" prot="public" virt="virtual"><scope>hops::MHO_OpenCLNDArrayBuffer</scope><name>~MHO_OpenCLNDArrayBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_97db59fee4708edccba4daf2e2c41ab1" kind="dir">
+    <compoundname>fourmer</compoundname>
+    <innerdir refid="dir_e4a5190427ac115e2738153ac185f2c6">include</innerdir>
+    <innerdir refid="dir_f60fbe5dc3387f63c1e0cab0f78da170">src</innerdir>
+    <innerfile refid="fourmer_8c">fourmer.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_83c1a9c78d2f4f53a1ff6f61772b58f2" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="adata_8h">adata.h</innerfile>
+    <innerfile refid="afile__structure_8h">afile_structure.h</innerfile>
+    <innerfile refid="mk4__afio_8h">mk4_afio.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/"/>
+  </compounddef>
+</doxygen>

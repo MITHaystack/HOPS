@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__LegacyRootCodeGenerator_8cc" kind="file" language="C++">
+    <compoundname>MHO_LegacyRootCodeGenerator.cc</compoundname>
+    <includes refid="MHO__LegacyRootCodeGenerator_8hh" local="yes">MHO_LegacyRootCodeGenerator.hh</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>MHO_LegacyRootCodeGenerator.cc</label>
+        <link refid="MHO__LegacyRootCodeGenerator_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="2">
+        <label>MHO_LegacyRootCodeGenerator.hh</label>
+        <link refid="MHO__LegacyRootCodeGenerator_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctime</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__LegacyRootCodeGenerator_8cc_1ae8eb92a660cc13d39c42d3787a5528fc" prot="public" static="no">
+        <name>HOPS_ROOT_BREAK</name>
+        <initializer>(1519659904)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__LegacyRootCodeGenerator_8hh" kindref="compound">MHO_LegacyRootCodeGenerator.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>[a-z]x6<sp/>before<sp/>this<sp/>unix<sp/>clock<sp/>and<sp/>[0-9A-Z]x6<sp/>after<sp/>it<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HOPS_ROOT_BREAK<sp/>(1519659904)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">std::string<sp/><ref refid="classhops_1_1MHO__LegacyRootCodeGenerator_1adc2d55da164378e5a2f636999cabffe9" kindref="member">MHO_LegacyRootCodeGenerator::GetCode</ref>()</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>fNow<sp/>=<sp/>time((time_t*)NULL);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">tm*<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref><sp/>=<sp/>gmtime(&amp;fNow);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>fYear<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_year;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>fDay<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_yday<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>fHour<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_hour;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>fMin<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_min;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>fSec<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_sec;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>fNow<sp/>-=<sp/>fSec;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1ac23688f7d5c3092b03b7d3cddfcd34b6" kindref="member">root_id_break</ref>(fNow,<sp/>fYear,<sp/>fDay,<sp/>fHour,<sp/>fMin,<sp/>fSec);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">std::vector&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__LegacyRootCodeGenerator_1ab2771a20700bc9c6b756174f42ae346f" kindref="member">MHO_LegacyRootCodeGenerator::GetCodes</ref>(std::size_t<sp/>N)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>codes;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>fNow<sp/>=<sp/>time((time_t*)NULL);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>N;<sp/>i++)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>time_t<sp/>next<sp/>=<sp/>fNow<sp/>+<sp/>i<sp/>*<sp/><ref refid="difx2mark4_8h_1a4e9c6dc97cedda6b6a45afa5ce6815f5" kindref="member">root_id_delta</ref>(fNow);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">tm*<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref><sp/>=<sp/>gmtime(&amp;next);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fYear<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_year;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fDay<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_yday<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fHour<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_hour;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fMin<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_min;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fSec<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>-&gt;tm_sec;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>next<sp/>-=<sp/>fSec;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>codes.push_back(<ref refid="difx2mark4_8h_1ac23688f7d5c3092b03b7d3cddfcd34b6" kindref="member">root_id_break</ref>(next,<sp/>fYear,<sp/>fDay,<sp/>fHour,<sp/>fMin,<sp/>fSec));</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>codes;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a4e9c6dc97cedda6b6a45afa5ce6815f5" kindref="member">MHO_LegacyRootCodeGenerator::root_id_delta</ref>(time_t<sp/>now)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>delta<sp/>=<sp/>4;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(now<sp/>&gt;=<sp/><ref refid="MHO__LegacyRootCodeGenerator_8cc_1ae8eb92a660cc13d39c42d3787a5528fc" kindref="member">HOPS_ROOT_BREAK</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>delta<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>delta;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">std::string<sp/><ref refid="applications_2difx2mark4_2src_2root__id_8c_1a376c0889452864da6a7ffdb5b060c321" kindref="member">MHO_LegacyRootCodeGenerator::root_id_later</ref>(time_t<sp/>now)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>m,<sp/>u<sp/>=<sp/>now<sp/>-<sp/><ref refid="MHO__LegacyRootCodeGenerator_8cc_1ae8eb92a660cc13d39c42d3787a5528fc" kindref="member">HOPS_ROOT_BREAK</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>datestr[8];</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="structdate" kindref="compound">date</ref><sp/>=<sp/>datestr;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>m<sp/>=<sp/>u<sp/>/<sp/>(36<sp/>*<sp/>36<sp/>*<sp/>36<sp/>*<sp/>36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>u<sp/>-=<sp/>m<sp/>*<sp/>(36<sp/>*<sp/>36<sp/>*<sp/>36<sp/>*<sp/>36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref>++<sp/>=<sp/>(m<sp/>&lt;<sp/>10)<sp/>?<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal"><sp/>+<sp/>m)<sp/>:<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal"><sp/>+<sp/>m<sp/>-<sp/>10);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>m<sp/>=<sp/>u<sp/>/<sp/>(36<sp/>*<sp/>36<sp/>*<sp/>36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>u<sp/>-=<sp/>m<sp/>*<sp/>(36<sp/>*<sp/>36<sp/>*<sp/>36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref>++<sp/>=<sp/>(m<sp/>&lt;<sp/>10)<sp/>?<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal"><sp/>+<sp/>m)<sp/>:<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal"><sp/>+<sp/>m<sp/>-<sp/>10);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>m<sp/>=<sp/>u<sp/>/<sp/>(36<sp/>*<sp/>36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>u<sp/>-=<sp/>m<sp/>*<sp/>(36<sp/>*<sp/>36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref>++<sp/>=<sp/>(m<sp/>&lt;<sp/>10)<sp/>?<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal"><sp/>+<sp/>m)<sp/>:<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal"><sp/>+<sp/>m<sp/>-<sp/>10);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>m<sp/>=<sp/>u<sp/>/<sp/>(36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>u<sp/>-=<sp/>m<sp/>*<sp/>(36<sp/>*<sp/>36);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref>++<sp/>=<sp/>(m<sp/>&lt;<sp/>10)<sp/>?<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal"><sp/>+<sp/>m)<sp/>:<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal"><sp/>+<sp/>m<sp/>-<sp/>10);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>m<sp/>=<sp/>u<sp/>/<sp/>(36);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>u<sp/>-=<sp/>m<sp/>*<sp/>(36);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref>++<sp/>=<sp/>(m<sp/>&lt;<sp/>10)<sp/>?<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal"><sp/>+<sp/>m)<sp/>:<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal"><sp/>+<sp/>m<sp/>-<sp/>10);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref>++<sp/>=<sp/>(u<sp/>&lt;<sp/>10)<sp/>?<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal"><sp/>+<sp/>u)<sp/>:<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">)(</highlight><highlight class="charliteral">&apos;A&apos;</highlight><highlight class="normal"><sp/>+<sp/>u<sp/>-<sp/>10);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="structdate" kindref="compound">date</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>ret_val<sp/>=<sp/>datestr;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret_val;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>original<sp/>implementation<sp/>follows<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">std::string<sp/><ref refid="difx2mark4_8h_1a8a191dd824d0dcce94f1c7825cafb356" kindref="member">MHO_LegacyRootCodeGenerator::root_id</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>year,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>day,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>hour,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="max555_8c_1ac6afabdc09a49a433ee19d8a9486056d" kindref="member">min</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sec)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>year_79,<sp/>elapsed,<sp/>nleaps;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>code[7];</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>inputs<sp/>for<sp/>validity<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>year_79<sp/>=<sp/>(year<sp/>%<sp/>100)<sp/>-<sp/>79;<sp/></highlight><highlight class="comment">/*<sp/>Years<sp/>since<sp/>1979<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(year_79<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>year_79<sp/>+=<sp/>100;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Take<sp/>care<sp/>of<sp/>Y2K<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>nleaps<sp/>=<sp/>(year_79<sp/>+<sp/>2)<sp/>/<sp/>4;<sp/></highlight><highlight class="comment">/*<sp/>Count<sp/>leap<sp/>days<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(day<sp/>&lt;<sp/>1<sp/>||<sp/>day<sp/>&gt;<sp/>366)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(NULL);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(day<sp/>==<sp/>366<sp/>&amp;&amp;<sp/>(year_79<sp/>+<sp/>3)<sp/>%<sp/>4<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(NULL);<sp/></highlight><highlight class="comment">/*<sp/>Leap<sp/>year?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(hour<sp/>&lt;<sp/>0<sp/>||<sp/>hour<sp/>&gt;<sp/>23)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(NULL);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(min<sp/>&lt;<sp/>0<sp/>||<sp/>min<sp/>&gt;<sp/>59)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(NULL);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sec<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(NULL);<sp/></highlight><highlight class="comment">//<sp/>allow<sp/>secs<sp/>beyond<sp/>59<sp/>for<sp/>sequential<sp/>rcode<sp/>gen</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>4-sec<sp/>periods<sp/>elapsed<sp/>since<sp/>00:00<sp/>Jan<sp/>1<sp/>1979<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>elapsed<sp/>=<sp/>year_79<sp/>*<sp/>7884000<sp/>+<sp/>(day<sp/>+<sp/>nleaps<sp/>-<sp/>1)<sp/>*<sp/>21600<sp/>+<sp/>hour<sp/>*<sp/>900<sp/>+<sp/><ref refid="max555_8c_1ac6afabdc09a49a433ee19d8a9486056d" kindref="member">min</ref><sp/>*<sp/>15<sp/>+<sp/>(sec<sp/>/<sp/>4);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>code[6]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>code[5]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal"><sp/>+<sp/>elapsed<sp/>%<sp/>26;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>code[4]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal"><sp/>+<sp/>(elapsed<sp/>/<sp/>26)<sp/>%<sp/>26;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>code[3]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal"><sp/>+<sp/>(elapsed<sp/>/<sp/>676)<sp/>%<sp/>26;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>code[2]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal"><sp/>+<sp/>(elapsed<sp/>/<sp/>17576)<sp/>%<sp/>26;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>code[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal"><sp/>+<sp/>(elapsed<sp/>/<sp/>456976)<sp/>%<sp/>26;<sp/></highlight><highlight class="comment">/*<sp/>0<sp/>--&gt;<sp/>&apos;aaaaaa&apos;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>code[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;a&apos;</highlight><highlight class="normal"><sp/>+<sp/>elapsed<sp/>/<sp/>11881376;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>ret_val<sp/>=<sp/>code;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret_val;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">std::string<sp/><ref refid="difx2mark4_8h_1ac23688f7d5c3092b03b7d3cddfcd34b6" kindref="member">MHO_LegacyRootCodeGenerator::root_id_break</ref>(time_t<sp/>now,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>year,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>day,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>hour,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="max555_8c_1ac6afabdc09a49a433ee19d8a9486056d" kindref="member">min</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sec)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(now<sp/>+<sp/>sec<sp/>&gt;=<sp/><ref refid="MHO__LegacyRootCodeGenerator_8cc_1ae8eb92a660cc13d39c42d3787a5528fc" kindref="member">HOPS_ROOT_BREAK</ref>)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="applications_2difx2mark4_2src_2root__id_8c_1a376c0889452864da6a7ffdb5b060c321" kindref="member">root_id_later</ref>(now<sp/>+<sp/>sec);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="difx2mark4_8h_1a8a191dd824d0dcce94f1c7825cafb356" kindref="member">root_id</ref>(year,<sp/>day,<sp/>hour,<sp/><ref refid="max555_8c_1ac6afabdc09a49a433ee19d8a9486056d" kindref="member">min</ref>,<sp/>sec);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_LegacyRootCodeGenerator.cc"/>
+  </compounddef>
+</doxygen>

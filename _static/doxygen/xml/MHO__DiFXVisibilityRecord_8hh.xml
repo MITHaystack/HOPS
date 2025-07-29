@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__DiFXVisibilityRecord_8hh" kind="file" language="C++">
+    <compoundname>MHO_DiFXVisibilityRecord.hh</compoundname>
+    <includes local="no">complex</includes>
+    <includes local="no">cstdint</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="MHO__DiFXBaselineProcessor_8hh" local="yes">MHO_DiFXBaselineProcessor.hh</includedby>
+    <includedby refid="MHO__DiFXScanProcessor_8hh" local="yes">MHO_DiFXScanProcessor.hh</includedby>
+    <includedby refid="MHO__DiFXVisibilityProcessor_8hh" local="yes">MHO_DiFXVisibilityProcessor.hh</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>cstdint</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="1">
+        <label>MHO_DiFXVisibilityRecord.hh</label>
+        <link refid="MHO__DiFXVisibilityRecord_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>complex</label>
+      </node>
+      <node id="4">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="7">
+        <label>TestVexStripper.cc</label>
+        <link refid="TestVexStripper_8cc"/>
+      </node>
+      <node id="3">
+        <label>MHO_DiFXVisibilityProcessor.hh</label>
+        <link refid="MHO__DiFXVisibilityProcessor_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MHO_DiFXScanProcessor.cc</label>
+        <link refid="MHO__DiFXScanProcessor_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_DiFXInterface.hh</label>
+        <link refid="MHO__DiFXInterface_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MHO_DiFXVisibilityProcessor.cc</label>
+        <link refid="MHO__DiFXVisibilityProcessor_8cc"/>
+      </node>
+      <node id="6">
+        <label>difx2hops.cc</label>
+        <link refid="difx2hops_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_DiFXBaselineProcessor.hh</label>
+        <link refid="MHO__DiFXBaselineProcessor_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_DiFXVisibilityRecord.hh</label>
+        <link refid="MHO__DiFXVisibilityRecord_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_DiFXScanProcessor.hh</label>
+        <link refid="MHO__DiFXScanProcessor_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_DiFXBaselineProcessor.cc</label>
+        <link refid="MHO__DiFXBaselineProcessor_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_DiFXInterface.cc</label>
+        <link refid="MHO__DiFXInterface_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__DiFXVisibilityRecord" prot="public">hops::MHO_DiFXVisibilityRecord</innerclass>
+    <innerclass refid="unionhops_1_1MHO__VisibilityChunk" prot="public">hops::MHO_VisibilityChunk</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_DiFXVisibilityRecord_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_DiFXVisibilityRecord_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;complex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classhops_1_1MHO__DiFXVisibilityRecord" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="26" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a71d6d04318411fcfc200ef1c4ad9d7ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a71d6d04318411fcfc200ef1c4ad9d7ad" kindref="member">MHO_DiFXVisibilityRecord</ref>()<sp/>{<sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a8587d848817a26e0dadcbc47a781ba20" kindref="member">Reset</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classhops_1_1MHO__DiFXVisibilityRecord_1ac1afc23a0c7f4bf6c62b049a2e5180e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ac1afc23a0c7f4bf6c62b049a2e5180e3" kindref="member">MHO_DiFXVisibilityRecord</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord" kindref="compound">MHO_DiFXVisibilityRecord</ref>&amp;<sp/>copy)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6521c943222b062de7275ab36119f26b" kindref="member">nchan</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6521c943222b062de7275ab36119f26b" kindref="member">nchan</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1abd6a37dc2344177fe01d5496195f856b" kindref="member">visnum</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1abd6a37dc2344177fe01d5496195f856b" kindref="member">visnum</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a1cb38a3e5a5511d502c32b154c2612b1" kindref="member">sync</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a1cb38a3e5a5511d502c32b154c2612b1" kindref="member">sync</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a83517dcfb7b84583f92a6a6304914ff2" kindref="member">headerversion</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a83517dcfb7b84583f92a6a6304914ff2" kindref="member">headerversion</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a21a24468d0499bdb2d3f07a272a7befd" kindref="member">baseline</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a21a24468d0499bdb2d3f07a272a7befd" kindref="member">baseline</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a03e0c0d641ad5b4a7c57cdf08e8edd92" kindref="member">mjd</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a03e0c0d641ad5b4a7c57cdf08e8edd92" kindref="member">mjd</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a45eb9252416fb2321615a64a2b38f1da" kindref="member">seconds</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a45eb9252416fb2321615a64a2b38f1da" kindref="member">seconds</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a75dd7eb016c31081ed20b97f8fef2315" kindref="member">configindex</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a75dd7eb016c31081ed20b97f8fef2315" kindref="member">configindex</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6d01a4b48fc5bf57537750634656a6fb" kindref="member">sourceindex</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6d01a4b48fc5bf57537750634656a6fb" kindref="member">sourceindex</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1af43af247bfa5e38fcea07bc7b41ac374" kindref="member">freqindex</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1af43af247bfa5e38fcea07bc7b41ac374" kindref="member">freqindex</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memcpy(<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" kindref="member">polpair</ref>,<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" kindref="member">polpair</ref>,<sp/>3);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a28adbe2fafeff504eaa390dfd0f55ac6" kindref="member">pulsarbin</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a28adbe2fafeff504eaa390dfd0f55ac6" kindref="member">pulsarbin</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ae8926dd6b7c1778d4505274db9d32f7f" kindref="member">dataweight</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ae8926dd6b7c1778d4505274db9d32f7f" kindref="member">dataweight</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memcpy(<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" kindref="member">uvw</ref>,<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" kindref="member">uvw</ref>,<sp/>3<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a106faf11ae31196527359dcab7136fcf" kindref="member">visdata</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a106faf11ae31196527359dcab7136fcf" kindref="member">visdata</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a22689dddb4b9c4d54b0aaead7814c5d9" kindref="member">bandwidth</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a22689dddb4b9c4d54b0aaead7814c5d9" kindref="member">bandwidth</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a73f11b9855f483a3a2175780d6ef7b49" kindref="member">sky_freq</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a73f11b9855f483a3a2175780d6ef7b49" kindref="member">sky_freq</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aed93bc61bc2ddb8c8bf4c824dde53c1d" kindref="member">freq_band</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aed93bc61bc2ddb8c8bf4c824dde53c1d" kindref="member">freq_band</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aacb0244a2c481180093d9388d8c22ee4" kindref="member">net_sideband</ref><sp/>=<sp/>copy.<ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aacb0244a2c481180093d9388d8c22ee4" kindref="member">net_sideband</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a9c17f2ea6f5d212c57e23b6c3614a7cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a9c17f2ea6f5d212c57e23b6c3614a7cd" kindref="member">~MHO_DiFXVisibilityRecord</ref>(){};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a8587d848817a26e0dadcbc47a781ba20" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a8587d848817a26e0dadcbc47a781ba20" kindref="member">Reset</ref>()</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6521c943222b062de7275ab36119f26b" kindref="member">nchan</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1abd6a37dc2344177fe01d5496195f856b" kindref="member">visnum</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a1cb38a3e5a5511d502c32b154c2612b1" kindref="member">sync</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a83517dcfb7b84583f92a6a6304914ff2" kindref="member">headerversion</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a21a24468d0499bdb2d3f07a272a7befd" kindref="member">baseline</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a03e0c0d641ad5b4a7c57cdf08e8edd92" kindref="member">mjd</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a45eb9252416fb2321615a64a2b38f1da" kindref="member">seconds</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a75dd7eb016c31081ed20b97f8fef2315" kindref="member">configindex</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6d01a4b48fc5bf57537750634656a6fb" kindref="member">sourceindex</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1af43af247bfa5e38fcea07bc7b41ac374" kindref="member">freqindex</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" kindref="member">polpair</ref>[0]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" kindref="member">polpair</ref>[1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" kindref="member">polpair</ref>[2]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a28adbe2fafeff504eaa390dfd0f55ac6" kindref="member">pulsarbin</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ae8926dd6b7c1778d4505274db9d32f7f" kindref="member">dataweight</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" kindref="member">uvw</ref>[0]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" kindref="member">uvw</ref>[1]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" kindref="member">uvw</ref>[2]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a106faf11ae31196527359dcab7136fcf" kindref="member">visdata</ref>.clear();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a22689dddb4b9c4d54b0aaead7814c5d9" kindref="member">bandwidth</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a73f11b9855f483a3a2175780d6ef7b49" kindref="member">sky_freq</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aed93bc61bc2ddb8c8bf4c824dde53c1d" kindref="member">freq_band</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aacb0244a2c481180093d9388d8c22ee4" kindref="member">net_sideband</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//we<sp/>leave<sp/>the<sp/>members<sp/>public<sp/><sp/>---<sp/>taken<sp/>from<sp/>directly<sp/>from<sp/>DifxVisRecord;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6521c943222b062de7275ab36119f26b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6521c943222b062de7275ab36119f26b" kindref="member">nchan</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="89" refid="classhops_1_1MHO__DiFXVisibilityRecord_1abd6a37dc2344177fe01d5496195f856b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1abd6a37dc2344177fe01d5496195f856b" kindref="member">visnum</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a1cb38a3e5a5511d502c32b154c2612b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a1cb38a3e5a5511d502c32b154c2612b1" kindref="member">sync</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a83517dcfb7b84583f92a6a6304914ff2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a83517dcfb7b84583f92a6a6304914ff2" kindref="member">headerversion</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a21a24468d0499bdb2d3f07a272a7befd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a21a24468d0499bdb2d3f07a272a7befd" kindref="member">baseline</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a03e0c0d641ad5b4a7c57cdf08e8edd92" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a03e0c0d641ad5b4a7c57cdf08e8edd92" kindref="member">mjd</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a45eb9252416fb2321615a64a2b38f1da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a45eb9252416fb2321615a64a2b38f1da" kindref="member">seconds</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a75dd7eb016c31081ed20b97f8fef2315" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a75dd7eb016c31081ed20b97f8fef2315" kindref="member">configindex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6d01a4b48fc5bf57537750634656a6fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a6d01a4b48fc5bf57537750634656a6fb" kindref="member">sourceindex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="classhops_1_1MHO__DiFXVisibilityRecord_1af43af247bfa5e38fcea07bc7b41ac374" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1af43af247bfa5e38fcea07bc7b41ac374" kindref="member">freqindex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98" refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ade3f50d99ee1937e821ab61774e2e76d" kindref="member">polpair</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a28adbe2fafeff504eaa390dfd0f55ac6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a28adbe2fafeff504eaa390dfd0f55ac6" kindref="member">pulsarbin</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100" refid="classhops_1_1MHO__DiFXVisibilityRecord_1ae8926dd6b7c1778d4505274db9d32f7f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1ae8926dd6b7c1778d4505274db9d32f7f" kindref="member">dataweight</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="101" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a3bc268485c55eda7ccea0cd1e3d3f1e0" kindref="member">uvw</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a106faf11ae31196527359dcab7136fcf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::complex&lt;<sp/>float<sp/>&gt;<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a106faf11ae31196527359dcab7136fcf" kindref="member">visdata</ref>;<sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//these<sp/>are<sp/>extra<sp/>parameters<sp/>that<sp/>we<sp/>will<sp/>fill<sp/>in<sp/>when/if<sp/>we<sp/>have<sp/>the<sp/>info</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a22689dddb4b9c4d54b0aaead7814c5d9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a22689dddb4b9c4d54b0aaead7814c5d9" kindref="member">bandwidth</ref>;</highlight></codeline>
+<codeline lineno="106" refid="classhops_1_1MHO__DiFXVisibilityRecord_1a73f11b9855f483a3a2175780d6ef7b49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1a73f11b9855f483a3a2175780d6ef7b49" kindref="member">sky_freq</ref>;</highlight></codeline>
+<codeline lineno="107" refid="classhops_1_1MHO__DiFXVisibilityRecord_1aed93bc61bc2ddb8c8bf4c824dde53c1d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aed93bc61bc2ddb8c8bf4c824dde53c1d" kindref="member">freq_band</ref>;</highlight></codeline>
+<codeline lineno="108" refid="classhops_1_1MHO__DiFXVisibilityRecord_1aacb0244a2c481180093d9388d8c22ee4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__DiFXVisibilityRecord_1aacb0244a2c481180093d9388d8c22ee4" kindref="member">net_sideband</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="unionhops_1_1MHO__VisibilityChunk" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118" refid="unionhops_1_1MHO__VisibilityChunk_1a28433c99fd26d5b240f18a3e4c9d9737" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>values[2];</highlight></codeline>
+<codeline lineno="119" refid="unionhops_1_1MHO__VisibilityChunk_1aaf44998a72e638aa8ca290e580988425" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32_t<sp/>sync_test[2];</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}<sp/><ref refid="unionhops_1_1MHO__VisibilityChunk" kindref="compound">MHO_VisibilityChunk</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXVisibilityRecord.hh"/>
+  </compounddef>
+</doxygen>

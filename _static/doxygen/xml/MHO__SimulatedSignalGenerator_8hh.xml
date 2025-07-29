@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__SimulatedSignalGenerator_8hh" kind="file" language="C++">
+    <compoundname>MHO_SimulatedSignalGenerator.hh</compoundname>
+    <includes local="no">cmath</includes>
+    <includedby refid="MHO__GaussianWhiteNoiseSignal_8hh" local="yes">MHO_GaussianWhiteNoiseSignal.hh</includedby>
+    <includedby refid="MHO__SingleToneSignal_8hh" local="yes">MHO_SingleToneSignal.hh</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>cmath</label>
+      </node>
+      <node id="1">
+        <label>MHO_SimulatedSignalGenerator.hh</label>
+        <link refid="MHO__SimulatedSignalGenerator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>MHO_SingleToneSignal.cc</label>
+        <link refid="MHO__SingleToneSignal_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_GaussianWhiteNoiseSignal.hh</label>
+        <link refid="MHO__GaussianWhiteNoiseSignal_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>MHO_SingleToneSignal.hh</label>
+        <link refid="MHO__SingleToneSignal_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>TestSignalFFT.cc</label>
+        <link refid="TestSignalFFT_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_SimulatedSignalGenerator.hh</label>
+        <link refid="MHO__SimulatedSignalGenerator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_GaussianWhiteNoiseSignal.cc</label>
+        <link refid="MHO__GaussianWhiteNoiseSignal_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__SimulatedSignalGenerator" prot="public">hops::MHO_SimulatedSignalGenerator</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_SimulatedSignalGenerator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_SimulatedSignalGenerator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="classhops_1_1MHO__SimulatedSignalGenerator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__SimulatedSignalGenerator" kindref="compound">MHO_SimulatedSignalGenerator</ref></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="20" refid="classhops_1_1MHO__SimulatedSignalGenerator_1ac75073821d0b8a599a1b3e3e1011bb94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1ac75073821d0b8a599a1b3e3e1011bb94" kindref="member">MHO_SimulatedSignalGenerator</ref>():<sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" kindref="member">fSamplingFrequency</ref>(0.0){};</highlight></codeline>
+<codeline lineno="21" refid="classhops_1_1MHO__SimulatedSignalGenerator_1a4b30b516c46885e75c938e36d6667cf3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a4b30b516c46885e75c938e36d6667cf3" kindref="member">~MHO_SimulatedSignalGenerator</ref>(){};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//tells<sp/>the<sp/>sample<sp/>generation<sp/>implementation<sp/>what<sp/>the<sp/>expected<sp/>the<sp/>sampling<sp/>frequency<sp/>is</highlight></codeline>
+<codeline lineno="30" refid="classhops_1_1MHO__SimulatedSignalGenerator_1a988154cd80a59a18e62a6d7cc0401109" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a988154cd80a59a18e62a6d7cc0401109" kindref="member">SetSamplingFrequency</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sample_freq)<sp/>{<sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" kindref="member">fSamplingFrequency</ref><sp/>=<sp/>std::fabs(sample_freq);<sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classhops_1_1MHO__SimulatedSignalGenerator_1a2b883bf6d6c376a72203972707d6bb57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a2b883bf6d6c376a72203972707d6bb57" kindref="member">GetSamplingFrequency</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" kindref="member">fSamplingFrequency</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//implementation<sp/>specific</highlight></codeline>
+<codeline lineno="45" refid="classhops_1_1MHO__SimulatedSignalGenerator_1a16d5e44fc4c068568abebd337e7d7895" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a16d5e44fc4c068568abebd337e7d7895" kindref="member">Initialize</ref>()<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="classhops_1_1MHO__SimulatedSignalGenerator_1a7b1760b72d76aa7ede8062e74daa8f33" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a7b1760b72d76aa7ede8062e74daa8f33" kindref="member">GetSample</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>sample_time,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>sample)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1aa8bd998b7c21562b8de01939bb894179" kindref="member">GenerateSample</ref>(sample_time,<sp/>sample);<sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="65" refid="classhops_1_1MHO__SimulatedSignalGenerator_1aa8bd998b7c21562b8de01939bb894179" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1aa8bd998b7c21562b8de01939bb894179" kindref="member">GenerateSample</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>sample_time,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>sample)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//some<sp/>specific<sp/>distributions<sp/>and<sp/>their<sp/>implementations<sp/>(e.g.<sp/>colored<sp/>noise)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//need<sp/>to<sp/>know<sp/>the<sp/>expected<sp/>sampling<sp/>frequency<sp/>in<sp/>advance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" kindref="member">fSamplingFrequency</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SimulatedSignalGenerator.hh"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structlvex__struct" kind="struct" language="C++" prot="public">
+    <compoundname>lvex_struct</compoundname>
+    <includes refid="lvex_8h" local="no">lvex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlvex__struct_1a7971f83ecd7a826ce01ff78803d337ff" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int lvex_struct::nstation</definition>
+        <argsstring></argsstring>
+        <name>nstation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="48" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlvex__struct_1a23aa4b713f9193311da2f7a41156fe76" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structstation__log" kindref="compound">station_log</ref></type>
+        <definition>struct station_log lvex_struct::stn[MAXSTATIONS]</definition>
+        <argsstring>[MAXSTATIONS]</argsstring>
+        <name>stn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="48" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>lvex_struct</label>
+        <link refid="structlvex__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>nstation</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>stn</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>long long</label>
+      </node>
+      <node id="7">
+        <label>discinfo</label>
+        <link refid="structdiscinfo"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>disc_model_num</edgelabel>
+          <edgelabel>disc_serial_num</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>disc_size</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>station_log</label>
+        <link refid="structstation__log"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>end_footage</edgelabel>
+          <edgelabel>headpos</edgelabel>
+          <edgelabel>start_footage</edgelabel>
+          <edgelabel>start_speed</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>disc_set_ID</edgelabel>
+          <edgelabel>linked_stations</edgelabel>
+          <edgelabel>pass</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>station</edgelabel>
+          <edgelabel>vsn</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>start_byte</edgelabel>
+          <edgelabel>stop_byte</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>autopeak_interval</edgelabel>
+          <edgelabel>ndiscs</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>disc</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>discstart</edgelabel>
+          <edgelabel>discstop</edgelabel>
+          <edgelabel>tapestart</edgelabel>
+          <edgelabel>tapestop</edgelabel>
+          <edgelabel>time_on_source</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="8">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>int</label>
+      </node>
+      <node id="9">
+        <label>short</label>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" line="46" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/lvex.h" bodystart="47" bodyend="50"/>
+    <listofallmembers>
+      <member refid="structlvex__struct_1a7971f83ecd7a826ce01ff78803d337ff" prot="public" virt="non-virtual"><scope>lvex_struct</scope><name>nstation</name></member>
+      <member refid="structlvex__struct_1a23aa4b713f9193311da2f7a41156fe76" prot="public" virt="non-virtual"><scope>lvex_struct</scope><name>stn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

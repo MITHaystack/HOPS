@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__JSONConverter" prot="public" virt="non-virtual">hops::MHO_JSONConverter</basecompoundref>
+    <includes refid="MHO__ContainerJSONConverter_8hh" local="no">MHO_ContainerJSONConverter.hh</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1a0c23b390b749e13464afb5bdbc145ced" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref> *</type>
+        <definition>MHO_ObjectTags* hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;::fContainer</definition>
+        <argsstring></argsstring>
+        <name>fContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="598" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="596" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1a0e8c46e6097e73ab22ae1dce31245414" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;::MHO_ContainerJSONConverter</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ContainerJSONConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="538" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="538" bodyend="538"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1afb0acdcd4f4fa0443bc5f9d1154bafcf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;::MHO_ContainerJSONConverter</definition>
+        <argsstring>(MHO_ExtensibleElement *element)</argsstring>
+        <name>MHO_ContainerJSONConverter</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ExtensibleElement" kindref="compound">MHO_ExtensibleElement</ref> *</type>
+          <declname>element</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="540" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="540" bodyend="543"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1a624f084274c2bd011ad0329a1d6e1212" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;::~MHO_ContainerJSONConverter</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ContainerJSONConverter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="545" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="545" bodyend="545"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1adf1d9dfb4665baf3a25c1f5c5fb1d639" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;::ConstructJSONRepresentation</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructJSONRepresentation</name>
+        <reimplements refid="classhops_1_1MHO__JSONConverter_1a89e172de6f0435480bdf7dd6a33e070d">ConstructJSONRepresentation</reimplements>
+        <briefdescription>
+<para>Constructs a JSON representation if fContainer is not nullptr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="559" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="559" bodyend="565"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1af05baba21eeb0a5b4302c3542aec6a02" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;::SetObjectToConvert</definition>
+        <argsstring>(MHO_Serializable *obj)</argsstring>
+        <name>SetObjectToConvert</name>
+        <reimplements refid="classhops_1_1MHO__JSONConverter_1a40c1c51cc43b37e9a35a172d4e4c5ca6">SetObjectToConvert</reimplements>
+        <param>
+          <type><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Setter for object to convert. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to an <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> object to be converted </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="553" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="553" bodyend="553"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1abcc7ca099b32186b4d9a424e60274a98" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;::ConstructJSON</definition>
+        <argsstring>(MHO_ObjectTags *obj)</argsstring>
+        <name>ConstructJSON</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a JSON representation for an object and its container if it exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to an <ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="573" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="573" bodyend="596"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4" kindref="compound">MHO_ContainerJSONConverter&lt;MHO_ObjectTags&gt;</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</label>
+        <link refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</label>
+        <link refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>size_t</label>
+      </node>
+      <node id="4">
+        <label>json</label>
+      </node>
+      <node id="7">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="6">
+        <label>std::string</label>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" line="535" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerJSONConverter.hh" bodystart="536" bodyend="599"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1abcc7ca099b32186b4d9a424e60274a98" prot="private" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>ConstructJSON</name></member>
+      <member refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1adf1d9dfb4665baf3a25c1f5c5fb1d639" prot="public" virt="virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>ConstructJSONRepresentation</name></member>
+      <member refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1a0c23b390b749e13464afb5bdbc145ced" prot="private" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>fContainer</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a1b8b1d5ecd55fb532bb6e2b12ddb61e0" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>fJSON</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1ad6d7506e0f3676e7478e8a2a89a9bd4d" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>fLOD</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a8f22a55bb2839a2c3a1ae9089f1c11bc" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>fRank</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a38a1137a05406bad9433f80cd572fa6b" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>fRawByteSize</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a3fdd11944532fa4b0f2d3b96fae6f12b" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>fRawData</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a97d45380ecb3702466b67400e32e3bce" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>fRawDataDescriptor</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a9dc281927b4cd50592f68ed39fe00cd1" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>GetJSON</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a137869dcd46904f55e21ae8e54cd52e1" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>GetRank</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a94702a4b65d68f58a323eeac8b0fb51a" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>GetRawByteSize</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1aa5268e7d77a0f649f27ff8b510934a0b" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>GetRawData</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a490a45a64b7c659a78aa024a218dea42" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>GetRawDataDescriptor</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a41cfe939b30f7ece8c16a928a01dfdf5" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>InsertElement</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a04020490e7e2aab8fb08cea08198f7f0" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>InsertElement</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1af960dd80fcf74d1eef5d119bf73f9a9c" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>InsertElement</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1ab3dbf5a5c6bc07a12c0e98ace2af23b5" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>InsertElement</name></member>
+      <member refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1a0e8c46e6097e73ab22ae1dce31245414" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>MHO_ContainerJSONConverter</name></member>
+      <member refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1afb0acdcd4f4fa0443bc5f9d1154bafcf" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>MHO_ContainerJSONConverter</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1a8af9bf1cd29605437f19736094e796c3" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>MHO_JSONConverter</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1aa70831eea197fc617bb6b25d55a7b3ad" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>SetLevelOfDetail</name></member>
+      <member refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1af05baba21eeb0a5b4302c3542aec6a02" prot="public" virt="virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>SetObjectToConvert</name></member>
+      <member refid="classhops_1_1MHO__ContainerJSONConverter_3_01MHO__ObjectTags_01_4_1a624f084274c2bd011ad0329a1d6e1212" prot="public" virt="virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>~MHO_ContainerJSONConverter</name></member>
+      <member refid="classhops_1_1MHO__JSONConverter_1ac873741fc2145cbe69b2a5df2d122bf3" prot="public" virt="virtual"><scope>hops::MHO_ContainerJSONConverter&lt; MHO_ObjectTags &gt;</scope><name>~MHO_JSONConverter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

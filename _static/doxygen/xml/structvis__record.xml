@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structvis__record" kind="struct" language="C++" prot="public">
+    <compoundname>vis_record</compoundname>
+    <includes refid="difx2mark4_8h" local="no">difx2mark4.h</includes>
+    <innerclass refid="structvis__record_1_1components" prot="public">vis_record::components</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structvis__record_1ae9c0eea3dd3ba3035daa7a46c27df19d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::baseline</definition>
+        <argsstring></argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="83" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1af2b0cbf801a53bd6c26c2dbd2448e4a7" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structvis__record_1_1components" kindref="compound">vis_record::components</ref></type>
+        <definition>struct vis_record::components vis_record::comp[MAX_VIS]</definition>
+        <argsstring>[MAX_VIS]</argsstring>
+        <name>comp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="98" column="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a830b2f4cb30b160daec5532a1978fd1b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::config_index</definition>
+        <argsstring></argsstring>
+        <name>config_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="87" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a58f62a78e010c80ab32393d3b60fbac7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::freq_index</definition>
+        <argsstring></argsstring>
+        <name>freq_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="89" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1ad89ec1f263d922d9bdda9157760412f4" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double vis_record::iat</definition>
+        <argsstring></argsstring>
+        <name>iat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="86" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1ae6eb8fd5e339b0abf16eed96c885063e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::mjd</definition>
+        <argsstring></argsstring>
+        <name>mjd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="85" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1aee479aa1e80ceba4571eea1f1f05420e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::nvis</definition>
+        <argsstring></argsstring>
+        <name>nvis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="84" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a61ec6c432bc645ff99be9528a2b8d33e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char vis_record::pols[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>pols</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="90" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a54bd8c05879c90e7fa66d2f1ac2d124f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::pulsar_bin</definition>
+        <argsstring></argsstring>
+        <name>pulsar_bin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="91" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a89617b95ffe9234eaaedf7f444580637" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::source_index</definition>
+        <argsstring></argsstring>
+        <name>source_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="88" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a85405915991a6d1834311c6acc4836c8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::sync</definition>
+        <argsstring></argsstring>
+        <name>sync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="81" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1ad7eeb28ccff8050306fa76488f31edaa" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double vis_record::uvw[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>uvw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="93" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a44f88b31ebb56755c0c8cf939dd739fe" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vis_record::version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="82" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvis__record_1a14b52e86107eb4d38bb957e5775a7f3a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double vis_record::weight</definition>
+        <argsstring></argsstring>
+        <name>weight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="92" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="6">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>vis_record</label>
+        <link refid="structvis__record"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>iat</edgelabel>
+          <edgelabel>uvw</edgelabel>
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pols</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>config_index</edgelabel>
+          <edgelabel>freq_index</edgelabel>
+          <edgelabel>mjd</edgelabel>
+          <edgelabel>nvis</edgelabel>
+          <edgelabel>pulsar_bin</edgelabel>
+          <edgelabel>source_index</edgelabel>
+          <edgelabel>sync</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>comp</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="5">
+        <label>vis_record::components</label>
+        <link refid="structvis__record_1_1components"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" line="79" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/difx2mark4.h" bodystart="80" bodyend="99"/>
+    <listofallmembers>
+      <member refid="structvis__record_1ae9c0eea3dd3ba3035daa7a46c27df19d" prot="public" virt="non-virtual"><scope>vis_record</scope><name>baseline</name></member>
+      <member refid="structvis__record_1af2b0cbf801a53bd6c26c2dbd2448e4a7" prot="public" virt="non-virtual"><scope>vis_record</scope><name>comp</name></member>
+      <member refid="structvis__record_1a830b2f4cb30b160daec5532a1978fd1b" prot="public" virt="non-virtual"><scope>vis_record</scope><name>config_index</name></member>
+      <member refid="structvis__record_1a58f62a78e010c80ab32393d3b60fbac7" prot="public" virt="non-virtual"><scope>vis_record</scope><name>freq_index</name></member>
+      <member refid="structvis__record_1ad89ec1f263d922d9bdda9157760412f4" prot="public" virt="non-virtual"><scope>vis_record</scope><name>iat</name></member>
+      <member refid="structvis__record_1ae6eb8fd5e339b0abf16eed96c885063e" prot="public" virt="non-virtual"><scope>vis_record</scope><name>mjd</name></member>
+      <member refid="structvis__record_1aee479aa1e80ceba4571eea1f1f05420e" prot="public" virt="non-virtual"><scope>vis_record</scope><name>nvis</name></member>
+      <member refid="structvis__record_1a61ec6c432bc645ff99be9528a2b8d33e" prot="public" virt="non-virtual"><scope>vis_record</scope><name>pols</name></member>
+      <member refid="structvis__record_1a54bd8c05879c90e7fa66d2f1ac2d124f" prot="public" virt="non-virtual"><scope>vis_record</scope><name>pulsar_bin</name></member>
+      <member refid="structvis__record_1a89617b95ffe9234eaaedf7f444580637" prot="public" virt="non-virtual"><scope>vis_record</scope><name>source_index</name></member>
+      <member refid="structvis__record_1a85405915991a6d1834311c6acc4836c8" prot="public" virt="non-virtual"><scope>vis_record</scope><name>sync</name></member>
+      <member refid="structvis__record_1ad7eeb28ccff8050306fa76488f31edaa" prot="public" virt="non-virtual"><scope>vis_record</scope><name>uvw</name></member>
+      <member refid="structvis__record_1a44f88b31ebb56755c0c8cf939dd739fe" prot="public" virt="non-virtual"><scope>vis_record</scope><name>version</name></member>
+      <member refid="structvis__record_1a14b52e86107eb4d38bb957e5775a7f3a" prot="public" virt="non-virtual"><scope>vis_record</scope><name>weight</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

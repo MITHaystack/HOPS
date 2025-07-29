@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__ComplexUtils_8cl" kind="file" language="C++">
+    <compoundname>MHO_ComplexUtils.cl</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#ifndef<sp/>MHO_ComplexUtils_CL_H__</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>MHO_ComplexUtils_CL_H__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;hopsocl_defines.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>CL_TYPE2<sp/>ComplexMultiply(CL_TYPE2<sp/>x,<sp/>CL_TYPE2<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>z;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>z.s0<sp/>=<sp/>x.s0*y.s0<sp/>-<sp/>x.s1*y.s1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>z.s1<sp/>=<sp/>x.s0*y.s1<sp/>+<sp/>x.s1*y.s0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>z;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">inline<sp/>CL_TYPE2<sp/>ComplexConjugate(CL_TYPE2<sp/>x)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>z;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>z.s0<sp/>=<sp/>x.s0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>z.s1<sp/>=<sp/>-x.s1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>z;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//conjugate<sp/>is<sp/>applied<sp/>to<sp/>the<sp/>second<sp/>argument</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>CL_TYPE2<sp/>ConjugateComplexMultiply(CL_TYPE2<sp/>x,<sp/>CL_TYPE2<sp/>y)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE2<sp/>z;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>z.s0<sp/>=<sp/>x.s0*y.s0<sp/>+<sp/>x.s1*y.s1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>z.s1<sp/>=<sp/>x.s1*y.s0<sp/>-<sp/>x.s0*y.s1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>z;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//strided,<sp/>conjugate<sp/>array</highlight></codeline>
+<codeline><highlight class="normal">void<sp/>Conjugate(unsigned<sp/>int<sp/>N,<sp/>unsigned<sp/>int<sp/>stride,<sp/>__global<sp/>CL_TYPE2*<sp/>array)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;N;<sp/>i++){<sp/>array[i*stride]<sp/>=<sp/>ComplexConjugate(array[i*stride]);<sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*end<sp/>of<sp/>MHO_ComplexUtils_CL_H__<sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Math/cl/MHO_ComplexUtils.cl"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1496 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="pstruct_8h" kind="file" language="C++">
+    <compoundname>pstruct.h</compoundname>
+    <includedby refid="aedit__proto_8h" local="yes">aedit_proto.h</includedby>
+    <includedby refid="axis_8c" local="yes">axis.c</includedby>
+    <includedby refid="axis__scale_8c" local="yes">axis_scale.c</includedby>
+    <includedby refid="clear_8c" local="yes">clear.c</includedby>
+    <includedby refid="clear__pstruct_8c" local="yes">clear_pstruct.c</includedby>
+    <includedby refid="cursor__select_8c" local="yes">cursor_select.c</includedby>
+    <includedby refid="datum__value_8c" local="yes">datum_value.c</includedby>
+    <includedby refid="edit_8c" local="yes">edit.c</includedby>
+    <includedby refid="execute_8c" local="yes">execute.c</includedby>
+    <includedby refid="aedit_2src_2fplot_8c" local="yes">fplot.c</includedby>
+    <includedby refid="get__axis_8c" local="yes">get_axis.c</includedby>
+    <includedby refid="get__plot__data_8c" local="yes">get_plot_data.c</includedby>
+    <includedby refid="get__plot__datum_8c" local="yes">get_plot_datum.c</includedby>
+    <includedby refid="init__inputs_8c" local="yes">init_inputs.c</includedby>
+    <includedby refid="plot_8c" local="yes">plot.c</includedby>
+    <includedby refid="plot__fqex_8c" local="yes">plot_fqex.c</includedby>
+    <includedby refid="plot__points_8c" local="yes">plot_points.c</includedby>
+    <includedby refid="plot__quality_8c" local="yes">plot_quality.c</includedby>
+    <includedby refid="pr__inputs_8c" local="yes">pr_inputs.c</includedby>
+    <includedby refid="setup__plot_8c" local="yes">setup_plot.c</includedby>
+    <includedby refid="symbol__key_8c" local="yes">symbol_key.c</includedby>
+    <includedby refid="time__axis_8c" local="yes">time_axis.c</includedby>
+    <includedby refid="triangle__value_8c" local="yes">triangle_value.c</includedby>
+    <includedby refid="zoom_8c" local="yes">zoom.c</includedby>
+    <invincdepgraph>
+      <node id="46">
+        <label>locate_pscurs.c</label>
+        <link refid="locate__pscurs_8c"/>
+      </node>
+      <node id="69">
+        <label>ps_baselabel.c</label>
+        <link refid="ps__baselabel_8c"/>
+      </node>
+      <node id="45">
+        <label>init_summ.c</label>
+        <link refid="init__summ_8c"/>
+      </node>
+      <node id="31">
+        <label>execute.c</label>
+        <link refid="execute_8c"/>
+      </node>
+      <node id="96">
+        <label>set_pols.c</label>
+        <link refid="set__pols_8c"/>
+      </node>
+      <node id="32">
+        <label>extract_parms.c</label>
+        <link refid="extract__parms_8c"/>
+      </node>
+      <node id="62">
+        <label>pr_inputs.c</label>
+        <link refid="pr__inputs_8c"/>
+      </node>
+      <node id="30">
+        <label>esdesp_check.c</label>
+        <link refid="esdesp__check_8c"/>
+      </node>
+      <node id="109">
+        <label>setup_plot.c</label>
+        <link refid="setup__plot_8c"/>
+      </node>
+      <node id="107">
+        <label>set_type.c</label>
+        <link refid="set__type_8c"/>
+      </node>
+      <node id="132">
+        <label>write_param.c</label>
+        <link refid="write__param_8c"/>
+      </node>
+      <node id="83">
+        <label>qfilter.c</label>
+        <link refid="qfilter_8c"/>
+      </node>
+      <node id="137">
+        <label>write_tdata.c</label>
+        <link refid="write__tdata_8c"/>
+      </node>
+      <node id="74">
+        <label>ps_selbase.c</label>
+        <link refid="ps__selbase_8c"/>
+      </node>
+      <node id="3">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="91" relation="include">
+        </childnode>
+        <childnode refid="92" relation="include">
+        </childnode>
+        <childnode refid="93" relation="include">
+        </childnode>
+        <childnode refid="94" relation="include">
+        </childnode>
+        <childnode refid="95" relation="include">
+        </childnode>
+        <childnode refid="96" relation="include">
+        </childnode>
+        <childnode refid="97" relation="include">
+        </childnode>
+        <childnode refid="98" relation="include">
+        </childnode>
+        <childnode refid="99" relation="include">
+        </childnode>
+        <childnode refid="100" relation="include">
+        </childnode>
+        <childnode refid="101" relation="include">
+        </childnode>
+        <childnode refid="102" relation="include">
+        </childnode>
+        <childnode refid="103" relation="include">
+        </childnode>
+        <childnode refid="104" relation="include">
+        </childnode>
+        <childnode refid="105" relation="include">
+        </childnode>
+        <childnode refid="106" relation="include">
+        </childnode>
+        <childnode refid="107" relation="include">
+        </childnode>
+        <childnode refid="108" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="110" relation="include">
+        </childnode>
+        <childnode refid="111" relation="include">
+        </childnode>
+        <childnode refid="112" relation="include">
+        </childnode>
+        <childnode refid="113" relation="include">
+        </childnode>
+        <childnode refid="114" relation="include">
+        </childnode>
+        <childnode refid="115" relation="include">
+        </childnode>
+        <childnode refid="116" relation="include">
+        </childnode>
+        <childnode refid="117" relation="include">
+        </childnode>
+        <childnode refid="118" relation="include">
+        </childnode>
+        <childnode refid="119" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="121" relation="include">
+        </childnode>
+        <childnode refid="122" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="125" relation="include">
+        </childnode>
+        <childnode refid="126" relation="include">
+        </childnode>
+        <childnode refid="127" relation="include">
+        </childnode>
+        <childnode refid="128" relation="include">
+        </childnode>
+        <childnode refid="129" relation="include">
+        </childnode>
+        <childnode refid="130" relation="include">
+        </childnode>
+        <childnode refid="131" relation="include">
+        </childnode>
+        <childnode refid="132" relation="include">
+        </childnode>
+        <childnode refid="133" relation="include">
+        </childnode>
+        <childnode refid="134" relation="include">
+        </childnode>
+        <childnode refid="135" relation="include">
+        </childnode>
+        <childnode refid="136" relation="include">
+        </childnode>
+        <childnode refid="137" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>ps_scanlabel.c</label>
+        <link refid="ps__scanlabel_8c"/>
+      </node>
+      <node id="50">
+        <label>mk3_qf.c</label>
+        <link refid="mk3__qf_8c"/>
+      </node>
+      <node id="130">
+        <label>write_data.c</label>
+        <link refid="write__data_8c"/>
+      </node>
+      <node id="5">
+        <label>active_filter.c</label>
+        <link refid="active__filter_8c"/>
+      </node>
+      <node id="80">
+        <label>psplot_defaults4.c</label>
+        <link refid="psplot__defaults4_8c"/>
+      </node>
+      <node id="51">
+        <label>param_list.c</label>
+        <link refid="param__list_8c"/>
+      </node>
+      <node id="33">
+        <label>ffilter.c</label>
+        <link refid="ffilter_8c"/>
+      </node>
+      <node id="2">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>set_sources.c</label>
+        <link refid="set__sources_8c"/>
+      </node>
+      <node id="93">
+        <label>set_frequencies.c</label>
+        <link refid="set__frequencies_8c"/>
+      </node>
+      <node id="12">
+        <label>cleanup.c</label>
+        <link refid="cleanup_8c"/>
+      </node>
+      <node id="129">
+        <label>update_sinfo.c</label>
+        <link refid="update__sinfo_8c"/>
+      </node>
+      <node id="43">
+        <label>help.c</label>
+        <link refid="help_8c"/>
+      </node>
+      <node id="21">
+        <label>cursor_select.c</label>
+        <link refid="cursor__select_8c"/>
+      </node>
+      <node id="128">
+        <label>update_fqex.c</label>
+        <link refid="update__fqex_8c"/>
+      </node>
+      <node id="65">
+        <label>pr_ssumm.c</label>
+        <link refid="pr__ssumm_8c"/>
+      </node>
+      <node id="118">
+        <label>summ_root.c</label>
+        <link refid="summ__root_8c"/>
+      </node>
+      <node id="52">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2aedit_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="111">
+        <label>smatch.c</label>
+        <link refid="smatch_8c"/>
+      </node>
+      <node id="60">
+        <label>pr_csumm.c</label>
+        <link refid="pr__csumm_8c"/>
+      </node>
+      <node id="71">
+        <label>ps_inside.c</label>
+        <link refid="ps__inside_8c"/>
+      </node>
+      <node id="100">
+        <label>set_psparam.c</label>
+        <link refid="set__psparam_8c"/>
+      </node>
+      <node id="6">
+        <label>alloc_btq.c</label>
+        <link refid="alloc__btq_8c"/>
+      </node>
+      <node id="126">
+        <label>trngl_present.c</label>
+        <link refid="trngl__present_8c"/>
+      </node>
+      <node id="133">
+        <label>write_prmline.c</label>
+        <link refid="write__prmline_8c"/>
+      </node>
+      <node id="86">
+        <label>rfilter.c</label>
+        <link refid="rfilter_8c"/>
+      </node>
+      <node id="36">
+        <label>fplot.c</label>
+        <link refid="aedit_2src_2fplot_8c"/>
+      </node>
+      <node id="72">
+        <label>ps_proc_datum.c</label>
+        <link refid="ps__proc__datum_8c"/>
+      </node>
+      <node id="13">
+        <label>cleanup_psplot.c</label>
+        <link refid="cleanup__psplot_8c"/>
+      </node>
+      <node id="41">
+        <label>get_plot_datum.c</label>
+        <link refid="get__plot__datum_8c"/>
+      </node>
+      <node id="70">
+        <label>ps_fplot.c</label>
+        <link refid="ps__fplot_8c"/>
+      </node>
+      <node id="81">
+        <label>pstag_process.c</label>
+        <link refid="pstag__process_8c"/>
+      </node>
+      <node id="78">
+        <label>psplot.c</label>
+        <link refid="psplot_8c"/>
+      </node>
+      <node id="77">
+        <label>psfile4.c</label>
+        <link refid="psfile4_8c"/>
+      </node>
+      <node id="18">
+        <label>clear_summ.c</label>
+        <link refid="clear__summ_8c"/>
+      </node>
+      <node id="99">
+        <label>set_pscodes.c</label>
+        <link refid="set__pscodes_8c"/>
+      </node>
+      <node id="108">
+        <label>set_year.c</label>
+        <link refid="set__year_8c"/>
+      </node>
+      <node id="92">
+        <label>set_fraction.c</label>
+        <link refid="set__fraction_8c"/>
+      </node>
+      <node id="11">
+        <label>cfilter.c</label>
+        <link refid="cfilter_8c"/>
+      </node>
+      <node id="101">
+        <label>set_qcodes.c</label>
+        <link refid="set__qcodes_8c"/>
+      </node>
+      <node id="61">
+        <label>pr_fsumm.c</label>
+        <link refid="pr__fsumm_8c"/>
+      </node>
+      <node id="120">
+        <label>symbol_key.c</label>
+        <link refid="symbol__key_8c"/>
+      </node>
+      <node id="24">
+        <label>dup_check.c</label>
+        <link refid="dup__check_8c"/>
+      </node>
+      <node id="113">
+        <label>station_reduce.c</label>
+        <link refid="station__reduce_8c"/>
+      </node>
+      <node id="76">
+        <label>ps_selscan.c</label>
+        <link refid="ps__selscan_8c"/>
+      </node>
+      <node id="10">
+        <label>calc_close.c</label>
+        <link refid="calc__close_8c"/>
+      </node>
+      <node id="87">
+        <label>run_com_file.c</label>
+        <link refid="run__com__file_8c"/>
+      </node>
+      <node id="58">
+        <label>plot_quality.c</label>
+        <link refid="plot__quality_8c"/>
+      </node>
+      <node id="38">
+        <label>get_param.c</label>
+        <link refid="get__param_8c"/>
+      </node>
+      <node id="22">
+        <label>datum_value.c</label>
+        <link refid="datum__value_8c"/>
+      </node>
+      <node id="102">
+        <label>set_quads.c</label>
+        <link refid="set__quads_8c"/>
+      </node>
+      <node id="49">
+        <label>makekey.c</label>
+        <link refid="makekey_8c"/>
+      </node>
+      <node id="19">
+        <label>command_id.c</label>
+        <link refid="command__id_8c"/>
+      </node>
+      <node id="79">
+        <label>psplot4.c</label>
+        <link refid="psplot4_8c"/>
+      </node>
+      <node id="40">
+        <label>get_plot_data.c</label>
+        <link refid="get__plot__data_8c"/>
+      </node>
+      <node id="115">
+        <label>summ_data.c</label>
+        <link refid="summ__data_8c"/>
+      </node>
+      <node id="29">
+        <label>erase_point.c</label>
+        <link refid="erase__point_8c"/>
+      </node>
+      <node id="55">
+        <label>plot_fqex.c</label>
+        <link refid="plot__fqex_8c"/>
+      </node>
+      <node id="23">
+        <label>display_psdata.c</label>
+        <link refid="display__psdata_8c"/>
+      </node>
+      <node id="127">
+        <label>unflag.c</label>
+        <link refid="unflag_8c"/>
+      </node>
+      <node id="57">
+        <label>plot_points.c</label>
+        <link refid="plot__points_8c"/>
+      </node>
+      <node id="110">
+        <label>setup_psplot.c</label>
+        <link refid="setup__psplot_8c"/>
+      </node>
+      <node id="47">
+        <label>make_psarray4.c</label>
+        <link refid="make__psarray4_8c"/>
+      </node>
+      <node id="91">
+        <label>set_device.c</label>
+        <link refid="set__device_8c"/>
+      </node>
+      <node id="15">
+        <label>clear_fqex.c</label>
+        <link refid="clear__fqex_8c"/>
+      </node>
+      <node id="138">
+        <label>zoom.c</label>
+        <link refid="zoom_8c"/>
+      </node>
+      <node id="53">
+        <label>parse_commands.c</label>
+        <link refid="parse__commands_8c"/>
+      </node>
+      <node id="104">
+        <label>set_stations.c</label>
+        <link refid="set__stations_8c"/>
+      </node>
+      <node id="105">
+        <label>set_timerange.c</label>
+        <link refid="set__timerange_8c"/>
+      </node>
+      <node id="106">
+        <label>set_triangles.c</label>
+        <link refid="set__triangles_8c"/>
+      </node>
+      <node id="125">
+        <label>tricheck.c</label>
+        <link refid="tricheck_8c"/>
+      </node>
+      <node id="27">
+        <label>edit_close.c</label>
+        <link refid="edit__close_8c"/>
+      </node>
+      <node id="48">
+        <label>make_tri.c</label>
+        <link refid="make__tri_8c"/>
+      </node>
+      <node id="97">
+        <label>set_prange.c</label>
+        <link refid="set__prange_8c"/>
+      </node>
+      <node id="134">
+        <label>write_psfile.c</label>
+        <link refid="write__psfile_8c"/>
+      </node>
+      <node id="59">
+        <label>pr_allsumm.c</label>
+        <link refid="pr__allsumm_8c"/>
+      </node>
+      <node id="34">
+        <label>fill_closure.c</label>
+        <link refid="fill__closure_8c"/>
+      </node>
+      <node id="20">
+        <label>cross_link.c</label>
+        <link refid="cross__link_8c"/>
+      </node>
+      <node id="26">
+        <label>edit.c</label>
+        <link refid="edit_8c"/>
+      </node>
+      <node id="121">
+        <label>tarray_index.c</label>
+        <link refid="tarray__index_8c"/>
+      </node>
+      <node id="112">
+        <label>sorter.c</label>
+        <link refid="aedit_2src_2sorter_8c"/>
+      </node>
+      <node id="63">
+        <label>pr_rsumm.c</label>
+        <link refid="pr__rsumm_8c"/>
+      </node>
+      <node id="119">
+        <label>summ_triangle.c</label>
+        <link refid="summ__triangle_8c"/>
+      </node>
+      <node id="84">
+        <label>read_cursor.c</label>
+        <link refid="read__cursor_8c"/>
+      </node>
+      <node id="35">
+        <label>fill_tdata.c</label>
+        <link refid="fill__tdata_8c"/>
+      </node>
+      <node id="131">
+        <label>write_families.c</label>
+        <link refid="write__families_8c"/>
+      </node>
+      <node id="116">
+        <label>summ_fringe.c</label>
+        <link refid="summ__fringe_8c"/>
+      </node>
+      <node id="136">
+        <label>write_reproc.c</label>
+        <link refid="write__reproc_8c"/>
+      </node>
+      <node id="54">
+        <label>plot.c</label>
+        <link refid="plot_8c"/>
+      </node>
+      <node id="39">
+        <label>get_param_list.c</label>
+        <link refid="get__param__list_8c"/>
+      </node>
+      <node id="25">
+        <label>dup_flag.c</label>
+        <link refid="dup__flag_8c"/>
+      </node>
+      <node id="90">
+        <label>set_baselines.c</label>
+        <link refid="set__baselines_8c"/>
+      </node>
+      <node id="94">
+        <label>set_mode.c</label>
+        <link refid="set__mode_8c"/>
+      </node>
+      <node id="67">
+        <label>pr_tsumm.c</label>
+        <link refid="pr__tsumm_8c"/>
+      </node>
+      <node id="44">
+        <label>init_inputs.c</label>
+        <link refid="init__inputs_8c"/>
+      </node>
+      <node id="122">
+        <label>tfilter.c</label>
+        <link refid="tfilter_8c"/>
+      </node>
+      <node id="82">
+        <label>qarray_index.c</label>
+        <link refid="qarray__index_8c"/>
+      </node>
+      <node id="135">
+        <label>write_pshdr.c</label>
+        <link refid="write__pshdr_8c"/>
+      </node>
+      <node id="64">
+        <label>pr_source.c</label>
+        <link refid="pr__source_8c"/>
+      </node>
+      <node id="7">
+        <label>allocate_parms.c</label>
+        <link refid="allocate__parms_8c"/>
+      </node>
+      <node id="123">
+        <label>time_axis.c</label>
+        <link refid="time__axis_8c"/>
+      </node>
+      <node id="28">
+        <label>edit_families.c</label>
+        <link refid="edit__families_8c"/>
+      </node>
+      <node id="89">
+        <label>save.c</label>
+        <link refid="save_8c"/>
+      </node>
+      <node id="17">
+        <label>clear_source.c</label>
+        <link refid="clear__source_8c"/>
+      </node>
+      <node id="88">
+        <label>run_pscursor.c</label>
+        <link refid="run__pscursor_8c"/>
+      </node>
+      <node id="124">
+        <label>triangle_value.c</label>
+        <link refid="triangle__value_8c"/>
+      </node>
+      <node id="1">
+        <label>pstruct.h</label>
+        <link refid="pstruct_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="139" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="109" relation="include">
+        </childnode>
+        <childnode refid="120" relation="include">
+        </childnode>
+        <childnode refid="123" relation="include">
+        </childnode>
+        <childnode refid="124" relation="include">
+        </childnode>
+        <childnode refid="138" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>clear.c</label>
+        <link refid="clear_8c"/>
+      </node>
+      <node id="68">
+        <label>print_data.c</label>
+        <link refid="print__data_8c"/>
+      </node>
+      <node id="8">
+        <label>auto_hardcopy.c</label>
+        <link refid="auto__hardcopy_8c"/>
+      </node>
+      <node id="98">
+        <label>set_procrange.c</label>
+        <link refid="set__procrange_8c"/>
+      </node>
+      <node id="85">
+        <label>read_data.c</label>
+        <link refid="aedit_2src_2read__data_8c"/>
+      </node>
+      <node id="66">
+        <label>pr_summary.c</label>
+        <link refid="pr__summary_8c"/>
+      </node>
+      <node id="56">
+        <label>plot_header.c</label>
+        <link refid="plot__header_8c"/>
+      </node>
+      <node id="117">
+        <label>summ_quad.c</label>
+        <link refid="summ__quad_8c"/>
+      </node>
+      <node id="9">
+        <label>axis.c</label>
+        <link refid="axis_8c"/>
+      </node>
+      <node id="16">
+        <label>clear_pstruct.c</label>
+        <link refid="clear__pstruct_8c"/>
+      </node>
+      <node id="4">
+        <label>aedit.c</label>
+        <link refid="aedit_8c"/>
+      </node>
+      <node id="37">
+        <label>get_axis.c</label>
+        <link refid="get__axis_8c"/>
+      </node>
+      <node id="95">
+        <label>set_nfreq.c</label>
+        <link refid="set__nfreq_8c"/>
+      </node>
+      <node id="139">
+        <label>axis_scale.c</label>
+        <link refid="axis__scale_8c"/>
+      </node>
+      <node id="42">
+        <label>get_ps_indices4.c</label>
+        <link refid="get__ps__indices4_8c"/>
+      </node>
+      <node id="75">
+        <label>ps_selqual.c</label>
+        <link refid="ps__selqual_8c"/>
+      </node>
+      <node id="114">
+        <label>summ_corel.c</label>
+        <link refid="summ__corel_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structplot__info" prot="public">plot_info</innerclass>
+    <innerclass refid="structplot__points" prot="public">plot_points</innerclass>
+    <innerclass refid="structplot__ptqual" prot="public">plot_ptqual</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="pstruct_8h_1ae577083c340e3eeb8e470db7e9a26b30" prot="public" static="no">
+        <name>ALL_PLOT</name>
+        <initializer>020</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ab2454f0476e6bba17385e4f70dc805f9" prot="public" static="no">
+        <name>ANY_PLOT</name>
+        <initializer>037</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a5914319d5b1088581e873c3bf970b354" prot="public" static="no">
+        <name>AX_AMPLITUDE</name>
+        <initializer>202</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ab9af8dcf6e47f32ef66f500207c5ba27" prot="public" static="no">
+        <name>AX_AZIMUTH</name>
+        <initializer>105</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ae3f32089ab1e014f37be638131127944" prot="public" static="no">
+        <name>AX_CAMP</name>
+        <initializer>400		/* By quad */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="49" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ae6c8c1c55abb7ca0172b4f2a5c227ec8" prot="public" static="no">
+        <name>AX_CMBDELAY</name>
+        <initializer>303</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a67cac0a02b8a8bdaddd347a0fec6731b" prot="public" static="no">
+        <name>AX_CPHASE</name>
+        <initializer>300		/* By triangle */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="44" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a0317630cea3feebe19b610c8877d234e" prot="public" static="no">
+        <name>AX_CRATE</name>
+        <initializer>301</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a742efff2115484d984c8806954244a13" prot="public" static="no">
+        <name>AX_CSBDELAY</name>
+        <initializer>302</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="46" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1aebc89bbf430a8a33931aa81adfa53e5f" prot="public" static="no">
+        <name>AX_DRATE</name>
+        <initializer>206</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ae93d710b31d8a241a42b3e8bc63d2754" prot="public" static="no">
+        <name>AX_ELEVATION</name>
+        <initializer>104</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a8897e6c8c6460afe22c035f1bf85bf1e" prot="public" static="no">
+        <name>AX_ERRORATE</name>
+        <initializer>103</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a9458971f1ca0cbaabe7d5912e27b84e3" prot="public" static="no">
+        <name>AX_MBDELAY</name>
+        <initializer>205</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="39" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a6c7e12a1c358567b9032f51df5c31a63" prot="public" static="no">
+        <name>AX_NCOTIME</name>
+        <initializer>207</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="41" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a0b72a00a7a8fcd0170f38461247d45b1" prot="public" static="no">
+        <name>AX_PARAMETER</name>
+        <initializer>600		/* parameter number in aux input variable */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="55" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a138f55b57a40083403e72238e031ba9c" prot="public" static="no">
+        <name>AX_PCAL_AMP</name>
+        <initializer>102</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a75fbf6b3eb80adfd581f55ea6120fc2d" prot="public" static="no">
+        <name>AX_PCAL_DIFF</name>
+        <initializer>101		/* <ref refid="structref" kindref="compound">ref</ref> and remote in aux input variable) */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ac00e70455c50a4fc8009e8511610294a" prot="public" static="no">
+        <name>AX_PCAL_PHASE</name>
+        <initializer>100		/* By station (1st 4 extracted params only, */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a1edb9b223382998ac999f5d56238b84f" prot="public" static="no">
+        <name>AX_PHASE</name>
+        <initializer>203</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a5d96defa5a2a49ecee3a0325f079c1b5" prot="public" static="no">
+        <name>AX_SBDELAY</name>
+        <initializer>204</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="38" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ac4b932d49910b743dbf2e6e77dcdbcb9" prot="public" static="no">
+        <name>AX_SCOTIME</name>
+        <initializer>208</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a43da4ecc269084a8cc0738629769197f" prot="public" static="no">
+        <name>AX_SNR</name>
+        <initializer>201		/* By <ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref> */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a663ea2cbce93fa99b869b8013b8c0ad9" prot="public" static="no">
+        <name>AX_TIMETAG</name>
+        <initializer>0		/* By any */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ac25dea6eb1474eb2784775fffe8f470d" prot="public" static="no">
+        <name>AX_U</name>
+        <initializer>500		/* By <ref refid="hops__time_8c_1ab99a7ec2d33e014b5ebe0850968fbe9b" kindref="member">all</ref> */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="51" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a643d170d72607566330164dffb5bf209" prot="public" static="no">
+        <name>AX_UVDIST</name>
+        <initializer>502</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="53" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a247ee22facef524aa232c7b79eec55ba" prot="public" static="no">
+        <name>AX_V</name>
+        <initializer>501</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="52" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" prot="public" static="no">
+        <name>BASELINE_PLOT</name>
+        <initializer>02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" prot="public" static="no">
+        <name>MAXPLT</name>
+        <initializer>2000			/* Max # of points in single <ref refid="plot_8c_1aa7eb77a7764bbfc536852c0a352fe2a9" kindref="member">plot</ref>, */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="57" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" prot="public" static="no">
+        <name>NO_AXIS</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a3bf9baefaee67b0b441d0524a5fcba4d" prot="public" static="no">
+        <name>NSYMBOL</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="60" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1aba428f09d48079e50fa27ef70ef7be2b" prot="public" static="no">
+        <name>PQ_BAD</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1aa601bd24419a49e82aefff66697b97e0" prot="public" static="no">
+        <name>PQ_GOOD</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a204632786b6b92c3fa630c46fed7b123" prot="public" static="no">
+        <name>PQ_SUSPECT</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="10" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1addd3200f648cbefaab99bfe55a3f0615" prot="public" static="no">
+        <name>QUAD_PLOT</name>
+        <initializer>010</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a62a0f8a0b822f31ff84bc8252b33e7c8" prot="public" static="no">
+        <name>REFERENCE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a62ca51b78468397b2ef98ee55a5e6e2a" prot="public" static="no">
+        <name>REMOTE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a06799ae81acde5dcd898c3717f2eea86" prot="public" static="no">
+        <name>SOURCE_NOSPLIT</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="6" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1adfdad1a86f7ab215a8173be4ba4d634e" prot="public" static="no">
+        <name>SOURCE_SPLIT</name>
+        <initializer>01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" prot="public" static="no">
+        <name>STATION_PLOT</name>
+        <initializer>01		/* Identified families of <ref refid="get__axis_8c_1aa8f772ee8b3d109bc9037ed4a4bef169" kindref="member">axes</ref> below */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" prot="public" static="no">
+        <name>TRIANGLE_PLOT</name>
+        <initializer>04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a275506c6ee8302d1e81f963e96d77ce2" prot="public" static="no">
+        <name>Y_MULTIPLE</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="5" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pstruct_8h_1a13fbc120586392dfebf6c1944dfcc24a" prot="public" static="no">
+        <name>Y_SINGLE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="4" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>PSTRUCT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PSTRUCT_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Various<sp/>plotting<sp/>mode<sp/>definitions<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="pstruct_8h_1a13fbc120586392dfebf6c1944dfcc24a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Y_SINGLE<sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="pstruct_8h_1a275506c6ee8302d1e81f963e96d77ce2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Y_MULTIPLE<sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="pstruct_8h_1a06799ae81acde5dcd898c3717f2eea86" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SOURCE_NOSPLIT<sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="pstruct_8h_1adfdad1a86f7ab215a8173be4ba4d634e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SOURCE_SPLIT<sp/><sp/><sp/><sp/>01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Plotted<sp/>point<sp/>quality<sp/>indicators<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="pstruct_8h_1aa601bd24419a49e82aefff66697b97e0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PQ_GOOD<sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="pstruct_8h_1a204632786b6b92c3fa630c46fed7b123" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PQ_SUSPECT<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="pstruct_8h_1aba428f09d48079e50fa27ef70ef7be2b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PQ_BAD<sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STATION_PLOT<sp/><sp/><sp/><sp/>01<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Identified<sp/>families<sp/>of<sp/>axes<sp/>below<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASELINE_PLOT<sp/><sp/><sp/>02</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRIANGLE_PLOT<sp/><sp/><sp/>04</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="pstruct_8h_1addd3200f648cbefaab99bfe55a3f0615" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>QUAD_PLOT<sp/><sp/><sp/>010</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="pstruct_8h_1ae577083c340e3eeb8e470db7e9a26b30" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ALL_PLOT<sp/><sp/><sp/><sp/>020</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="pstruct_8h_1ab2454f0476e6bba17385e4f70dc805f9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ANY_PLOT<sp/><sp/><sp/><sp/>037</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Used<sp/>for<sp/>station-based<sp/>quantities<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>baseline-based<sp/>plots<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="pstruct_8h_1a62a0f8a0b822f31ff84bc8252b33e7c8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REFERENCE<sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="pstruct_8h_1a62ca51b78468397b2ef98ee55a5e6e2a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REMOTE<sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Axis<sp/>IDs,<sp/>with<sp/>default<sp/>plot<sp/>mode<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="pstruct_8h_1ad1dbe0c5d83ed18469c1362d4efdf88d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_AXIS<sp/><sp/><sp/><sp/><sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="pstruct_8h_1a663ea2cbce93fa99b869b8013b8c0ad9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_TIMETAG<sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>any<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="pstruct_8h_1ac00e70455c50a4fc8009e8511610294a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PCAL_PHASE<sp/><sp/><sp/>100<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>station<sp/>(1st<sp/>4<sp/>extracted<sp/>params<sp/>only,<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="pstruct_8h_1a75fbf6b3eb80adfd581f55ea6120fc2d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PCAL_DIFF<sp/><sp/><sp/><sp/>101<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ref<sp/>and<sp/>remote<sp/>in<sp/>aux<sp/>input<sp/>variable)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="pstruct_8h_1a138f55b57a40083403e72238e031ba9c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PCAL_AMP<sp/>102</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="pstruct_8h_1a8897e6c8c6460afe22c035f1bf85bf1e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_ERRORATE<sp/>103</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="pstruct_8h_1ae93d710b31d8a241a42b3e8bc63d2754" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_ELEVATION<sp/><sp/><sp/><sp/>104</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="pstruct_8h_1ab9af8dcf6e47f32ef66f500207c5ba27" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_AZIMUTH<sp/><sp/>105</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="pstruct_8h_1a43da4ecc269084a8cc0738629769197f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_SNR<sp/><sp/><sp/><sp/><sp/><sp/>201<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>baseline<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="pstruct_8h_1a5914319d5b1088581e873c3bf970b354" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_AMPLITUDE<sp/><sp/><sp/><sp/>202</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="pstruct_8h_1a1edb9b223382998ac999f5d56238b84f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PHASE<sp/><sp/><sp/><sp/>203</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="pstruct_8h_1a5d96defa5a2a49ecee3a0325f079c1b5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_SBDELAY<sp/><sp/>204</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="pstruct_8h_1a9458971f1ca0cbaabe7d5912e27b84e3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_MBDELAY<sp/><sp/>205</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="pstruct_8h_1aebc89bbf430a8a33931aa81adfa53e5f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_DRATE<sp/><sp/><sp/><sp/>206</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="pstruct_8h_1a6c7e12a1c358567b9032f51df5c31a63" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_NCOTIME<sp/><sp/>207</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="pstruct_8h_1ac4b932d49910b743dbf2e6e77dcdbcb9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_SCOTIME<sp/><sp/>208</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="pstruct_8h_1a67cac0a02b8a8bdaddd347a0fec6731b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CPHASE<sp/><sp/><sp/>300<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>triangle<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="pstruct_8h_1a0317630cea3feebe19b610c8877d234e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CRATE<sp/><sp/><sp/><sp/>301</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="pstruct_8h_1a742efff2115484d984c8806954244a13" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CSBDELAY<sp/>302</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="pstruct_8h_1ae6c8c1c55abb7ca0172b4f2a5c227ec8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CMBDELAY<sp/>303</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="pstruct_8h_1ae3f32089ab1e014f37be638131127944" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_CAMP<sp/><sp/><sp/><sp/><sp/>400<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>quad<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="pstruct_8h_1ac25dea6eb1474eb2784775fffe8f470d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_U<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>500<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>all<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="pstruct_8h_1a247ee22facef524aa232c7b79eec55ba" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_V<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>501</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="pstruct_8h_1a643d170d72607566330164dffb5bf209" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_UVDIST<sp/><sp/><sp/>502</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="pstruct_8h_1a0b72a00a7a8fcd0170f38461247d45b1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AX_PARAMETER<sp/><sp/><sp/><sp/>600<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>parameter<sp/>number<sp/>in<sp/>aux<sp/>input<sp/>variable<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXPLT<sp/>2000<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Max<sp/>#<sp/>of<sp/>points<sp/>in<sp/>single<sp/>plot,<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>applies<sp/>separately<sp/>to<sp/>the<sp/>3<sp/>qualities<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>of<sp/>plotted<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="pstruct_8h_1a3bf9baefaee67b0b441d0524a5fcba4d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NSYMBOL<sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="structplot__info" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__info" kindref="compound">plot_info</ref><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64" refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Total<sp/>number<sp/>of<sp/>points<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="structplot__info_1a1b9cd65a27e0e53987f0f3a2854676be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a1b9cd65a27e0e53987f0f3a2854676be" kindref="member">ngood</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>good<sp/>points<sp/>in<sp/>this<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="structplot__info_1adb0e5cdb54e131060f5d5cdc0db4c743" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1adb0e5cdb54e131060f5d5cdc0db4c743" kindref="member">nsusp</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>suspect<sp/>points<sp/>in<sp/>this<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="structplot__info_1a6293e887c8fa9009ebd8658fa96d5fb9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a6293e887c8fa9009ebd8658fa96d5fb9" kindref="member">nbad</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>bad<sp/>points<sp/>in<sp/>this<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="structplot__info_1a5b9d4d6be9571b559e65e8dfdf0d0f85" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a5b9d4d6be9571b559e65e8dfdf0d0f85" kindref="member">nbadscale</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>#<sp/>of<sp/>points<sp/>off<sp/>scale,<sp/>omitted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="structplot__info_1afcb4234b4549822319ac3fb2a0d2c46f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1afcb4234b4549822319ac3fb2a0d2c46f" kindref="member">xebar</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Are<sp/>X<sp/>error<sp/>bars<sp/>plotted?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="structplot__info_1a797dfb97eefaa98e21e1cd8ce721cd7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a797dfb97eefaa98e21e1cd8ce721cd7b" kindref="member">yebar</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Are<sp/>Y<sp/>error<sp/>bars<sp/>plotted?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="structplot__info_1a937e3eec685c830dbdb774af460e5f49" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a937e3eec685c830dbdb774af460e5f49" kindref="member">onscreen</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Visible<sp/>on<sp/>interactive<sp/>screen?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="structplot__info_1a0812913da96d2c99f8bc8c7d5772565a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a0812913da96d2c99f8bc8c7d5772565a" kindref="member">plotby</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>By<sp/>station,<sp/>baseline,<sp/>whatever?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="structplot__info_1a02da7da8b9f54cf610673352801ab733" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a02da7da8b9f54cf610673352801ab733" kindref="member">xaind</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>X<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="structplot__info_1a64d6adfbadab871479c3c923f46fe31a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a64d6adfbadab871479c3c923f46fe31a" kindref="member">x_aux</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>field<sp/>for<sp/>parms<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="structplot__info_1a9d09e2c922b147f68c929c3305be8387" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a9d09e2c922b147f68c929c3305be8387" kindref="member">xtype</ref>[30];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>X<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="structplot__info_1af0f344f7a4907d006117668097aa6935" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1af0f344f7a4907d006117668097aa6935" kindref="member">yaind</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>Y<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="structplot__info_1a1555e4cd0cdcd78e4a20f30cd41a77b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a1555e4cd0cdcd78e4a20f30cd41a77b2" kindref="member">y_aux</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Auxiliary<sp/>field<sp/>for<sp/>parms<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="structplot__info_1a6d7ab9adb190713d730a8d024bc3b9e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a6d7ab9adb190713d730a8d024bc3b9e2" kindref="member">ytype</ref>[30];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variable<sp/>plotted<sp/>on<sp/>Y<sp/>axis<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="structplot__info_1a079933b220bc15df18578970a06440ef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a079933b220bc15df18578970a06440ef" kindref="member">xmax</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>X-axis<sp/>value<sp/>extrema<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structplot__info_1a02c12db36d302a36e005ab20baf1a9eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a02c12db36d302a36e005ab20baf1a9eb" kindref="member">xmin</ref>;</highlight></codeline>
+<codeline lineno="81" refid="structplot__info_1aa2e20f1cc7813daff261a648a1102004" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1aa2e20f1cc7813daff261a648a1102004" kindref="member">ymax</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Y-axis<sp/>value<sp/>extrema<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structplot__info_1a7fff1c109412b7fb3d463d99a71bc015" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a7fff1c109412b7fb3d463d99a71bc015" kindref="member">ymin</ref>;</highlight></codeline>
+<codeline lineno="83" refid="structplot__info_1a1066a7bab75004318340a6d9a6152f18" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a1066a7bab75004318340a6d9a6152f18" kindref="member">toffset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>time<sp/>axes<sp/>..<sp/>avoids<sp/>f.p.<sp/>roundoff<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="structplot__info_1a4d0523f44a50984939afb768729d9513" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a4d0523f44a50984939afb768729d9513" kindref="member">vport</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Viewport<sp/>in<sp/>normalized<sp/>device<sp/>coords<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="structplot__info_1a15fe31a1adf2df50f43a5345c88a2893" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__info_1a15fe31a1adf2df50f43a5345c88a2893" kindref="member">window</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>World<sp/>coordinate<sp/>extrema<sp/>of<sp/>viewport<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="structplot__info_1a55428556c78984a89b1bad86839e4099" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a55428556c78984a89b1bad86839e4099" kindref="member">index</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/></highlight><highlight class="comment">/*<sp/>Indices<sp/>of<sp/>all<sp/>points<sp/>in<sp/>data<sp/>arrays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="structplot__info_1abecd6d53d277c7a31c149bb2d19dbb9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1abecd6d53d277c7a31c149bb2d19dbb9c" kindref="member">symbol</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Point-by-point<sp/>PGPLOT<sp/>symbol<sp/>used<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="structplot__info_1a3a5137cf8912c536971005d621edaf26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a3a5137cf8912c536971005d621edaf26" kindref="member">frq</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Frequency<sp/>code<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="structplot__info_1ae91069b8601d75a64df478d1075c15da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structplot__info_1ae91069b8601d75a64df478d1075c15da" kindref="member">expt</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Experiment<sp/>number<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" kindref="member">source</ref>[32];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Source<sp/>name<sp/>(if<sp/>applicable)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="structplot__info_1a0f4405e67ac9ccb9ca25514f02322833" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a0f4405e67ac9ccb9ca25514f02322833" kindref="member">station</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Station<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="structplot__info_1a9c38f9697339240b9d0358bd2c9397be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a9c38f9697339240b9d0358bd2c9397be" kindref="member">bas</ref>[3];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Baseline<sp/>plotted<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="structplot__info_1a7a6facc49a12cb5eb32b35f7823fe61d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1a7a6facc49a12cb5eb32b35f7823fe61d" kindref="member">triangle</ref>[4];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Stations<sp/>in<sp/>closure<sp/>triangle<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="structplot__info_1ab4973491bbb518da4f1983553de6689b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structplot__info_1ab4973491bbb518da4f1983553de6689b" kindref="member">ampcl</ref>[5];<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Stations<sp/>in<sp/>closure<sp/>amplitude<sp/>quad<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="structplot__ptqual" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99" refid="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" kindref="member">x</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>X-axis<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" kindref="member">y</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Y-axis<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="structplot__ptqual_1a8289e785f6640239954fbd0631a0b084" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a8289e785f6640239954fbd0631a0b084" kindref="member">xerrh</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>upper<sp/>extent<sp/>of<sp/>X<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="structplot__ptqual_1a819239cda796ed87dcc60b366402e967" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a819239cda796ed87dcc60b366402e967" kindref="member">xerrl</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>lower<sp/>extent<sp/>of<sp/>X<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="structplot__ptqual_1a470abf2064fc98fd10d564244a1ebc5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a470abf2064fc98fd10d564244a1ebc5f" kindref="member">yerrh</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>upper<sp/>extent<sp/>of<sp/>Y<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structplot__points_1a2b00109c9dca46517847379204b08a08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structplot__ptqual_1a29dc3d52ea77833b4cfc029ae738dcf7" kindref="member">yerrl</ref>[<ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>lower<sp/>extent<sp/>of<sp/>Y<sp/>error<sp/>bar<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="structplot__points" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__points" kindref="compound">plot_points</ref><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/><sp/><ref refid="structplot__points_1a8cfeb8aa34c372621211e143ed5f748a" kindref="member">good</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Contains<sp/>info<sp/>for<sp/>good<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/><sp/><ref refid="structplot__points_1a1e49d58c98601ee0480b77a234f29671" kindref="member">suspect</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Contains<sp/>info<sp/>for<sp/>suspect<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/><sp/><ref refid="structplot__points_1a2b00109c9dca46517847379204b08a08" kindref="member">bad</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Contains<sp/>info<sp/>for<sp/>bad<sp/>points<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>PSTRUCT_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h"/>
+  </compounddef>
+</doxygen>

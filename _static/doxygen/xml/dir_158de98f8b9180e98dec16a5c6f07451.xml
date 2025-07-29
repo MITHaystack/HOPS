@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_158de98f8b9180e98dec16a5c6f07451" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__BitReversalPermutation_8hh">MHO_BitReversalPermutation.hh</innerfile>
+    <innerfile refid="MHO__CheckForNaN_8hh">MHO_CheckForNaN.hh</innerfile>
+    <innerfile refid="MHO__FastFourierTransformCalls_8hh">MHO_FastFourierTransformCalls.hh</innerfile>
+    <innerfile refid="MHO__FastFourierTransformUtilities_8hh">MHO_FastFourierTransformUtilities.hh</innerfile>
+    <innerfile refid="MHO__FastFourierTransformWorkspace_8hh">MHO_FastFourierTransformWorkspace.hh</innerfile>
+    <innerfile refid="MHO__FringeRotation_8hh">MHO_FringeRotation.hh</innerfile>
+    <innerfile refid="MHO__GaussianWhiteNoiseSignal_8hh">MHO_GaussianWhiteNoiseSignal.hh</innerfile>
+    <innerfile refid="MHO__MathUtilities_8hh">MHO_MathUtilities.hh</innerfile>
+    <innerfile refid="MHO__SimulatedSignalGenerator_8hh">MHO_SimulatedSignalGenerator.hh</innerfile>
+    <innerfile refid="MHO__SingleToneSignal_8hh">MHO_SingleToneSignal.hh</innerfile>
+    <innerfile refid="MHO__UniformGridPointsCalculator_8hh">MHO_UniformGridPointsCalculator.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__AFileDefinitions" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_AFileDefinitions</compoundname>
+    <includes refid="MHO__AFileDefinitions_8hh" local="no">MHO_AFileDefinitions.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__AFileDefinitions_1a546fc30087c0126ac4abae5cddc7c1e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_AFileDefinitions::MHO_AFileDefinitions</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_AFileDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileDefinitions_1af2f1f64f0e1bedc0dc74d0708e2e6b3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_AFileDefinitions::~MHO_AFileDefinitions</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_AFileDefinitions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__AFileDefinitions_1a041ab355e422dbe1bf9d0f0ecc51ea8c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_AFileDefinitions::GetAFileFormat</definition>
+        <argsstring>(const std::string &amp;file_type)</argsstring>
+        <name>GetAFileFormat</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>file_type</declname>
+        </param>
+        <briefdescription>
+<para>Getter for afile format (as a json object) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input file type to retrieve formats for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing combined format data </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" line="63" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileDefinitions.cc" bodystart="37" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileDefinitions_1ac06b647ed7b13ba0e85cdba85d9e3fa0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_AFileDefinitions::GetFormatDirectory</definition>
+        <argsstring>(const std::string &amp;file_type)</argsstring>
+        <name>GetFormatDirectory</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>file_type</declname>
+        </param>
+        <briefdescription>
+<para>Getter for afile format directory. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input file type (root, frng, cor) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Format directory as string </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" line="45" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileDefinitions.cc" bodystart="9" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileDefinitions_1abc1c9397630203d81e7230cc5e717547" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_AFileDefinitions::GetKeywordNames</definition>
+        <argsstring>(const std::string &amp;file_type)</argsstring>
+        <name>GetKeywordNames</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>file_type</declname>
+        </param>
+        <briefdescription>
+<para>Getter for afile item keyword names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input file type to search for keywords </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of keyword names as strings </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" line="54" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileDefinitions.cc" bodystart="17" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__AFileDefinitions" kindref="compound">MHO_AFileDefinitions</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>extract useful information from .cor, .frng. and root files for afile (ascii) generation</para>
+<para><simplesect kind="author"><para>Email: </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Sep 20 16:12:23 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileDefinitions.hh" bodystart="31" bodyend="64"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__AFileDefinitions_1a041ab355e422dbe1bf9d0f0ecc51ea8c" prot="public" virt="non-virtual"><scope>hops::MHO_AFileDefinitions</scope><name>GetAFileFormat</name></member>
+      <member refid="classhops_1_1MHO__AFileDefinitions_1ac06b647ed7b13ba0e85cdba85d9e3fa0" prot="public" virt="non-virtual"><scope>hops::MHO_AFileDefinitions</scope><name>GetFormatDirectory</name></member>
+      <member refid="classhops_1_1MHO__AFileDefinitions_1abc1c9397630203d81e7230cc5e717547" prot="public" virt="non-virtual"><scope>hops::MHO_AFileDefinitions</scope><name>GetKeywordNames</name></member>
+      <member refid="classhops_1_1MHO__AFileDefinitions_1a546fc30087c0126ac4abae5cddc7c1e9" prot="public" virt="non-virtual"><scope>hops::MHO_AFileDefinitions</scope><name>MHO_AFileDefinitions</name></member>
+      <member refid="classhops_1_1MHO__AFileDefinitions_1af2f1f64f0e1bedc0dc74d0708e2e6b3f" prot="public" virt="virtual"><scope>hops::MHO_AFileDefinitions</scope><name>~MHO_AFileDefinitions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

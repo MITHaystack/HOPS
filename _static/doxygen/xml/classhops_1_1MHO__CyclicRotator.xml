@@ -1,0 +1,564 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__CyclicRotator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_CyclicRotator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; XArrayType &gt;</basecompoundref>
+    <includes refid="MHO__CyclicRotator_8hh" local="no">MHO_CyclicRotator.hh</includes>
+    <innerclass refid="classhops_1_1MHO__CyclicRotator_1_1RotateAxis" prot="private">hops::MHO_CyclicRotator::RotateAxis</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class XArrayType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__CyclicRotator_1ae80ee925201eee5da7d585597b9ad54b" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_CyclicRotator&lt; XArrayType &gt;::fDimensionSize[XArrayType::rank::value]</definition>
+        <argsstring>[XArrayType::rank::value]</argsstring>
+        <name>fDimensionSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="337" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="337" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__CyclicRotator_1abd53ae62d7fbe7a7d971fa62a4e54dce" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_CyclicRotator&lt; XArrayType &gt;::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="336" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="336" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__CyclicRotator_1ace1f4a64ca43a0505f6656f14cd50eb2" prot="private" static="no" mutable="no">
+        <type><ref refid="classint64__t" kindref="compound">int64_t</ref></type>
+        <definition>int64_t hops::MHO_CyclicRotator&lt; XArrayType &gt;::fModuloOffsets[XArrayType::rank::value]</definition>
+        <argsstring>[XArrayType::rank::value]</argsstring>
+        <name>fModuloOffsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="339" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="339" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__CyclicRotator_1a8255359467051c226a6075fca8e3fb58" prot="private" static="no" mutable="no">
+        <type><ref refid="classint64__t" kindref="compound">int64_t</ref></type>
+        <definition>int64_t hops::MHO_CyclicRotator&lt; XArrayType &gt;::fOffsets[XArrayType::rank::value]</definition>
+        <argsstring>[XArrayType::rank::value]</argsstring>
+        <name>fOffsets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="338" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="338" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__CyclicRotator_1a4c303bf932d9f1103cd7f0bf0069558e" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_CyclicRotator&lt; XArrayType &gt;::fWorkspace[XArrayType::rank::value]</definition>
+        <argsstring>[XArrayType::rank::value]</argsstring>
+        <name>fWorkspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="340" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="340" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1ab228aa6c94667af618ede65dfe297e86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_CyclicRotator&lt; XArrayType &gt;::MHO_CyclicRotator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_CyclicRotator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="31" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1a5efce40478aa93264d376786ca50ce50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_CyclicRotator&lt; XArrayType &gt;::~MHO_CyclicRotator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_CyclicRotator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="41" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1a4253d014f5f946fde92c6cd61c63986e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_CyclicRotator&lt; XArrayType &gt;::SetOffset</definition>
+        <argsstring>(std::size_t dimension_index, int64_t offset_value)</argsstring>
+        <name>SetOffset</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>dimension_index</declname>
+        </param>
+        <param>
+          <type><ref refid="classint64__t" kindref="compound">int64_t</ref></type>
+          <declname>offset_value</declname>
+        </param>
+        <briefdescription>
+<para>set the offset for the cyclic rotation in each dimension (default is zero...do nothing) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dimension_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the dimension to set the offset for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offset_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(int64_t)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+A negative offset_value results in a &quot;right&quot; rotation: e.g. rot by 1: [0 1 2 3] -&gt; [3 0 1 2] A positive offset_value results in a &quot;left&quot; rotation: e.g. rot by -1: [0 1 2 3] -&gt; [1 2 3 0] </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="52" bodyend="64"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1ac7a54a89c3eb5955f7d91c5ab68fafab" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_CyclicRotator&lt; XArrayType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteInPlace - executes the rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="91" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="91" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1ac3f704667fbfecc87d095f8643988b06" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_CyclicRotator&lt; XArrayType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteOutOfPlace - executes the rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="219" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="219" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1ab4907e69d07de93ace8f84e2cf933c52" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_CyclicRotator&lt; XArrayType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place rotation and sets flag if input is not nullptr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array for initialization. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialized successfully, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="74" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="74" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1aa03d367c4346ca80d2eb498cd43f2b3e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_CyclicRotator&lt; XArrayType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function InitializeOutOfPlace - executes the rotation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="177" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="177" bodyend="209"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1a8a62faf621396907f4c4c3f76e1a65eb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XCheckType</type>
+            <defval>XArrayType</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; !std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XCheckType &gt;::<ref refid="structvalue" kindref="compound">value</ref>, void &gt;::type</type>
+        <definition>std::enable_if&lt; !std::is_base_of&lt; MHO_TableContainerBase, XCheckType &gt;::value, void &gt;::type hops::MHO_CyclicRotator&lt; XArrayType &gt;::IfTableRotateAxis</definition>
+        <argsstring>(const XArrayType *, XArrayType *, std::size_t)</argsstring>
+        <name>IfTableRotateAxis</name>
+        <param>
+          <type>const XArrayType *</type>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+        </param>
+        <param>
+          <type>std::size_t</type>
+        </param>
+        <briefdescription>
+<para>use SFINAE to generate specialization for <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> types </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCheckType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCheckType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="266" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="266" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1aea3c6c02d1ede933eed1e6698f693149" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XCheckType</type>
+            <defval>XArrayType</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XCheckType &gt;::<ref refid="structvalue" kindref="compound">value</ref>, void &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_base_of&lt; MHO_TableContainerBase, XCheckType &gt;::value, void &gt;::type hops::MHO_CyclicRotator&lt; XArrayType &gt;::IfTableRotateAxis</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out, std::size_t dim)</argsstring>
+        <name>IfTableRotateAxis</name>
+        <param>
+          <type>const XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+<para>Rotates an input array along a specified axis and dimension using cyclic rotation offsets, and also applies the same cyclic rotation to each respective axis object if the underlying XArrayType is a <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCheckType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCheckType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to rotate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array after rotation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Dimension along which to rotate </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="280" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="280" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__CyclicRotator_1a4f1cc6e8685b5b4ad0409497650d1ad7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classint64__t" kindref="compound">int64_t</ref></type>
+        <definition>int64_t hops::MHO_CyclicRotator&lt; XArrayType &gt;::positive_modulo</definition>
+        <argsstring>(int64_t i, int64_t n)</argsstring>
+        <name>positive_modulo</name>
+        <param>
+          <type><ref refid="classint64__t" kindref="compound">int64_t</ref></type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type><ref refid="classint64__t" kindref="compound">int64_t</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Calculates positive modulo by adding n and taking modulo again to handle negative results. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input value for modulo operation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Modulus value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of positive modulo operation as int64_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="333" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="333" bodyend="333"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__CyclicRotator" kindref="compound">MHO_CyclicRotator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Applies a cyclic rotation to the contents on a multidimensional array by some specified offset for each dimension.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Aug 23 15:27:52 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_CyclicRotator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__CyclicRotator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_CyclicRotator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__CyclicRotator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" line="28" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_CyclicRotator.hh" bodystart="29" bodyend="341"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_CyclicRotator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1ac7a54a89c3eb5955f7d91c5ab68fafab" prot="protected" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1ac3f704667fbfecc87d095f8643988b06" prot="protected" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1ae80ee925201eee5da7d585597b9ad54b" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fDimensionSize</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1abd53ae62d7fbe7a7d971fa62a4e54dce" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1ace1f4a64ca43a0505f6656f14cd50eb2" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fModuloOffsets</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1a8255359467051c226a6075fca8e3fb58" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fOffsets</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1a4c303bf932d9f1103cd7f0bf0069558e" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>fWorkspace</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1a8a62faf621396907f4c4c3f76e1a65eb" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>IfTableRotateAxis</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1aea3c6c02d1ede933eed1e6698f693149" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>IfTableRotateAxis</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_CyclicRotator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1ab4907e69d07de93ace8f84e2cf933c52" prot="protected" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1aa03d367c4346ca80d2eb498cd43f2b3e" prot="protected" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1ab228aa6c94667af618ede65dfe297e86" prot="public" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>MHO_CyclicRotator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1a4f1cc6e8685b5b4ad0409497650d1ad7" prot="private" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>positive_modulo</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1a4253d014f5f946fde92c6cd61c63986e" prot="public" virt="non-virtual"><scope>hops::MHO_CyclicRotator</scope><name>SetOffset</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__CyclicRotator_1a5efce40478aa93264d376786ca50ce50" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>~MHO_CyclicRotator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_CyclicRotator</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Management and Configuration &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Fringe" href="../fringe/Fringe.html" />
+    <link rel="prev" title="Data Selection and Filtering" href="data_selection_filtering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Initialization.html">Initialization</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="data_labeling_organization.html">Data Labeling and Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="phase_delay_corrections.html">Phase and Delay Corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="polarization_processing.html">Polarization Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frequency_domain_processing.html">Frequency Domain Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_selection_filtering.html">Data Selection and Filtering</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">System Management and Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-operatorbuilder">MHO_OperatorBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-operatorbuildermanager">MHO_OperatorBuilderManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-parameterconfigurator">MHO_ParameterConfigurator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-parametermanager">MHO_ParameterManager</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Initialization.html">Initialization</a></li>
+      <li class="breadcrumb-item active">System Management and Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/initialization/system_management_configuration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="system-management-and-configuration">
+<h1>System Management and Configuration<a class="headerlink" href="#system-management-and-configuration" title="Link to this heading"></a></h1>
+<p>The system management and configuration components provide the infrastructure
+for managing operator builders and parameter configuration before fringe fitting
+can take place.</p>
+<section id="mho-operatorbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OperatorBuilder.html">MHO_OperatorBuilder</a><a class="headerlink" href="#mho-operatorbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OperatorBuilder.html">MHO_OperatorBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Abstract base class for builder objects</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Abstract base class with pure virtual Build() method</div>
+<div class="line">Manages toolbox, fringe data, container store, parameter store</div>
+<div class="line">SetToolbox(), SetFringeData(), SetParameterStore() methods</div>
+<div class="line">SetFormat(), SetConditions(), SetAttributes() methods</div>
+<div class="line">IsConfigurationOk() method for validation</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OperatorBuilder.html">MHO_OperatorBuilder</a> class provides the abstract base class for all
+operator builders in the system. It defines the common interface and functionality
+required by all builders, including management of various data stores and
+configuration parameters.</p>
+<p>The class provides setter methods for toolbox, fringe data, parameter store, and
+container store management, as well as configuration validation through
+the virtual IsConfigurationOk() method.</p>
+</section>
+<section id="mho-operatorbuildermanager">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OperatorBuilderManager.html">MHO_OperatorBuilderManager</a><a class="headerlink" href="#mho-operatorbuildermanager" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OperatorBuilderManager.html">MHO_OperatorBuilderManager</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Manages all operator builders in the system</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Manages collections of operator builders</div>
+<div class="line">CreateDefaultBuilders() method for default registration</div>
+<div class="line">BuildOperatorCategory() method for category-based building</div>
+<div class="line">AddBuilderType() template method for adding new builders</div>
+<div class="line">Maps builders by name and category</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__OperatorBuilderManager.html">MHO_OperatorBuilderManager</a> class manages the collection of all operator
+builders in the system. It provides centralized management of builder registration,
+categorization, and life-cycle management.</p>
+<p>The manager includes template methods for adding new builder types and supports
+category-based building operations. It maintains mappings between builder names
+and categories for ordered operator construction/execution.</p>
+</section>
+<section id="mho-parameterconfigurator">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ParameterConfigurator.html">MHO_ParameterConfigurator</a><a class="headerlink" href="#mho-parameterconfigurator" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ParameterConfigurator.html">MHO_ParameterConfigurator</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Handles parameter configuration from control statements</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Supports multiple parameter types (config, global, station, etc.)</div>
+<div class="line">Supports multiple value types (int, real, bool, string, lists)</div>
+<div class="line">SetScalarParameter(), GetScalarParameter() methods</div>
+<div class="line">SetVectorParameter(), GetVectorParameter() methods</div>
+<div class="line">SetCompoundParameter() method for complex parameters</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ParameterConfigurator.html">MHO_ParameterConfigurator</a> class handles parameter configuration from
+control file statements. It supports all of the parameter types encountered in
+control file statements for general configuration, global, station, baseline,
+fit, and plot parameters.</p>
+<p>The parameter configurator provides template methods for both scalar and vector parameter
+handling and supports multiple value types including integers, reals, booleans,
+strings, lists, and compound parameters.</p>
+</section>
+<section id="mho-parametermanager">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ParameterManager.html">MHO_ParameterManager</a><a class="headerlink" href="#mho-parametermanager" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ParameterManager.html">MHO_ParameterManager</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Manager class for MHO_ParameterConfigurator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Manages MHO_ParameterConfigurator instances</div>
+<div class="line">SetControlStatements() method for control file input</div>
+<div class="line">ConfigureAll() method for processing all parameters</div>
+<div class="line">Coordinates parameter configuration across the system</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ParameterManager.html">MHO_ParameterManager</a> class serves as the manager for MHO_ParameterConfigurator
+instances. It handles control file input and processes all control file parameters systematically.
+The manager provides methods for setting control statements and triggering full configuration of
+all parameters through the ConfigureAll() method.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_selection_filtering.html" class="btn btn-neutral float-left" title="Data Selection and Filtering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../fringe/Fringe.html" class="btn btn-neutral float-right" title="Fringe" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

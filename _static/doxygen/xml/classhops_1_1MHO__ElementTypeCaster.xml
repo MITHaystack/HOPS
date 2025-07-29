@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ElementTypeCaster" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ElementTypeCaster</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__TransformingOperator" prot="public" virt="non-virtual">hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;</basecompoundref>
+    <includes refid="MHO__ElementTypeCaster_8hh" local="no">MHO_ElementTypeCaster.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class XArgType1</type>
+      </param>
+      <param>
+        <type>class XArgType2</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ElementTypeCaster_1aaa8e634d6b74e62fe25bcf819b471e5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;::MHO_ElementTypeCaster</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ElementTypeCaster</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ElementTypeCaster_1a67e3be5d4ca236c666e73ac75eea0dcf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;::~MHO_ElementTypeCaster</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ElementTypeCaster</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" line="29" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" bodystart="29" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ElementTypeCaster_1ab44959572a362da87c1aa9e7aa6bb164" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;::ExecuteImpl</definition>
+        <argsstring>(const XArgType1 *in, XArgType2 *out) override</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplements refid="classhops_1_1MHO__TransformingOperator_1a06bb86fafc9bae8e037a5717b989dcf5">ExecuteImpl</reimplements>
+        <param>
+          <type>const XArgType1 *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType2 *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input array to output array and resizes it if necessary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be copied. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType2*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if copying was successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" line="50" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" bodystart="50" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ElementTypeCaster_1aabde5d0952f3f75c3ebc6b81e9fa6599" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;::InitializeImpl</definition>
+        <argsstring>(const XArgType1 *, XArgType2 *) override</argsstring>
+        <name>InitializeImpl</name>
+        <reimplements refid="classhops_1_1MHO__TransformingOperator_1a759d200b0d1284cdac19787900fb3bbf">InitializeImpl</reimplements>
+        <param>
+          <type>const XArgType1 *</type>
+        </param>
+        <param>
+          <type>XArgType2 *</type>
+        </param>
+        <briefdescription>
+<para>Initializes implementation using input and output arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to constant input argument of type XArgType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to output argument of type XArgType2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success or failure of initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" line="40" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ElementTypeCaster_1afbf36ab6eefaaed8f55a673226592e36" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class XArrayType1</type>
+          </param>
+          <param>
+            <type>class XArrayType2</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; !(std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XArrayType1 &gt;::<ref refid="structvalue" kindref="compound">value</ref> &amp;&amp;std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XArrayType2 &gt;::<ref refid="structvalue" kindref="compound">value</ref>), void &gt;::type</type>
+        <definition>std::enable_if&lt; !(std::is_base_of&lt; MHO_TableContainerBase, XArrayType1 &gt;::value &amp;&amp; std::is_base_of&lt; MHO_TableContainerBase, XArrayType2 &gt;::value), void &gt;::type hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;::IfTableCopyAxesAndTags</definition>
+        <argsstring>(const XArrayType1 *, XArrayType2 *)</argsstring>
+        <name>IfTableCopyAxesAndTags</name>
+        <param>
+          <type>const XArrayType1 *</type>
+        </param>
+        <param>
+          <type>XArrayType2 *</type>
+        </param>
+        <briefdescription>
+<para>use SFINAE to generate specialization for <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> types </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XArrayType1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XArrayType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>XArrayType2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XArrayType2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" line="84" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ElementTypeCaster_1ac574d393886441258835762a6f98d27c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class XArrayType1</type>
+          </param>
+          <param>
+            <type>class XArrayType2</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XArrayType1 &gt;::<ref refid="structvalue" kindref="compound">value</ref> &amp;&amp;std::is_base_of&lt; <ref refid="classhops_1_1MHO__TableContainerBase" kindref="compound">MHO_TableContainerBase</ref>, XArrayType2 &gt;::<ref refid="structvalue" kindref="compound">value</ref>, void &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_base_of&lt; MHO_TableContainerBase, XArrayType1 &gt;::value &amp;&amp; std::is_base_of&lt; MHO_TableContainerBase, XArrayType2 &gt;::value, void &gt;::type hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;::IfTableCopyAxesAndTags</definition>
+        <argsstring>(const XArrayType1 *in, XArrayType2 *out)</argsstring>
+        <name>IfTableCopyAxesAndTags</name>
+        <param>
+          <type>const XArrayType1 *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType2 *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies axes and tags from input XArrayType1 to output XArrayType2 if they inherit from <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XArrayType1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XArrayType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>XArrayType2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XArrayType2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array of type XArrayType1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array of type XArrayType2 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" line="98" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" bodystart="98" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ElementTypeCaster" kindref="compound">MHO_ElementTypeCaster</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>operator class which casts the element type of one array type to another (e.g float -&gt; double or double -&gt; etc.)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Apr 13 15:19:20 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;</label>
+        <link refid="classhops_1_1MHO__TransformingOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;</label>
+        <link refid="classhops_1_1MHO__ElementTypeCaster"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_TransformingOperator&lt; XArgType1, XArgType2 &gt;</label>
+        <link refid="classhops_1_1MHO__TransformingOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fArgs</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>tuple&lt; const XArgType1 *, XArgType2 * &gt;</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ElementTypeCaster&lt; XArgType1, XArgType2 &gt;</label>
+        <link refid="classhops_1_1MHO__ElementTypeCaster"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" line="25" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ElementTypeCaster.hh" bodystart="26" bodyend="107"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a062e29f5b17d9614fe409a9324f70b32" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__ElementTypeCaster_1ab44959572a362da87c1aa9e7aa6bb164" prot="protected" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a0c2b19fa9a44df7f78aca771e47d08a8" prot="protected" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>fArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__ElementTypeCaster_1afbf36ab6eefaaed8f55a673226592e36" prot="private" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>IfTableCopyAxesAndTags</name></member>
+      <member refid="classhops_1_1MHO__ElementTypeCaster_1ac574d393886441258835762a6f98d27c" prot="private" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>IfTableCopyAxesAndTags</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a58d4892b457d33038976d1bb11a81528" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__ElementTypeCaster_1aabde5d0952f3f75c3ebc6b81e9fa6599" prot="protected" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__ElementTypeCaster_1aaa8e634d6b74e62fe25bcf819b471e5f" prot="public" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>MHO_ElementTypeCaster</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a59412bbdfd7eae1cab76bb040404f92a" prot="public" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>MHO_TransformingOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a6764f94688d04b3a52f83e13d4b301f6" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__ElementTypeCaster_1a67e3be5d4ca236c666e73ac75eea0dcf" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>~MHO_ElementTypeCaster</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1ad10b0deb1d8c99518443e8714305a91f" prot="public" virt="virtual"><scope>hops::MHO_ElementTypeCaster</scope><name>~MHO_TransformingOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,538 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__202" kind="struct" language="C++" prot="public">
+    <compoundname>type_202</compoundname>
+    <includes refid="type__202_8h" local="no">type_202.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__202_1a68b6105731085a7dcf28afb44efbb523" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::baseline[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="13" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1aba168175634242aad41065027eba853e" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short type_202::nlags</definition>
+        <argsstring></argsstring>
+        <name>nlags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="20" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1aad3be2c1ce76720f0b5b8ec54aa5a821" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="10" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a6a7042bab8ce5e8485fcdf36376bfbcc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::ref_az</definition>
+        <argsstring></argsstring>
+        <name>ref_az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="41" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a6f0570b5e417ef82afbcc8dc704a4204" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::ref_clock</definition>
+        <argsstring></argsstring>
+        <name>ref_clock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="31" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1aaa32b007656415fd44cad7e75c2e2a26" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::ref_clockrate</definition>
+        <argsstring></argsstring>
+        <name>ref_clockrate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="33" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1aca05da77fc537527959bbe7e443e6c13" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::ref_elev</definition>
+        <argsstring></argsstring>
+        <name>ref_elev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="39" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1afca360b8248eb22b463e29cc1084b7b8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::ref_idelay</definition>
+        <argsstring></argsstring>
+        <name>ref_idelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="35" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a270770bf8fa318547488169ace45418e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::ref_intl_id[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>ref_intl_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="14" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a5d039a56134f495a716c172aa8d94028" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::ref_name[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>ref_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="16" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1ade3f35a36a09a647bfb69d2fdf09d5f1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::ref_tape[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>ref_tape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="18" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1abcc71a329608e744e2c6e1f9af4fa69f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::ref_xpos</definition>
+        <argsstring></argsstring>
+        <name>ref_xpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="21" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a8d9db39e34185d3438f50e21c7d75474" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::ref_ypos</definition>
+        <argsstring></argsstring>
+        <name>ref_ypos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="23" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a7b47244d1542856e90be069094f35ac8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::ref_zdelay</definition>
+        <argsstring></argsstring>
+        <name>ref_zdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="37" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a9d088c90b2f8c4255bedf5cd745c11d0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::ref_zpos</definition>
+        <argsstring></argsstring>
+        <name>ref_zpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="25" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a2868b8b174160e7b98627a00cf1f7951" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::rem_az</definition>
+        <argsstring></argsstring>
+        <name>rem_az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="42" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a0a9cbd05594e270a7329f72e418e9f92" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::rem_clock</definition>
+        <argsstring></argsstring>
+        <name>rem_clock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="32" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a4484e07057dd55de6ccd78d566a0fe8f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::rem_clockrate</definition>
+        <argsstring></argsstring>
+        <name>rem_clockrate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="34" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a2455db4bfa3ade121c3bed3e6031aa50" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::rem_elev</definition>
+        <argsstring></argsstring>
+        <name>rem_elev</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="40" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a9e210cd3d1c3653d519b1adb20914df4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::rem_idelay</definition>
+        <argsstring></argsstring>
+        <name>rem_idelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="36" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a33adcf3c205416a1c302d67596137148" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::rem_intl_id[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>rem_intl_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="15" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a53a92c1ffbe4b75bdc4433bdd907f7ff" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::rem_name[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>rem_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="17" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1ac7a97ed004245dd57446f2025c08c350" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::rem_tape[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>rem_tape</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="19" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1ac7ae3e0fc99e367a1ec567b8737d4e1d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::rem_xpos</definition>
+        <argsstring></argsstring>
+        <name>rem_xpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="22" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a79be65be2f3b6f910d701176b067f2db" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::rem_ypos</definition>
+        <argsstring></argsstring>
+        <name>rem_ypos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="24" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1aba75dcf9568f3cde34bf4f9330c6d5fb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_202::rem_zdelay</definition>
+        <argsstring></argsstring>
+        <name>rem_zdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a2ac6c4b7da36606501b9b2dc1bb93f26" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::rem_zpos</definition>
+        <argsstring></argsstring>
+        <name>rem_zpos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="26" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a5d44b8f32d12e7c071436389bb5249db" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::u</definition>
+        <argsstring></argsstring>
+        <name>u</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="27" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1aeaa57b65a5fd0cafb9a09a539f1880b5" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::uf</definition>
+        <argsstring></argsstring>
+        <name>uf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="29" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a44cdedff16d4457834dc037d68f34541" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="12" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a8e9bd7adba5cae87cd0cc659290a16c1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="28" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a2dcfb3f8e10118e1c4d55a87f8685508" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_202::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="11" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__202_1a53a0b32ee4107a049e75664d150d7842" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_202::vf</definition>
+        <argsstring></argsstring>
+        <name>vf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="30" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_202</label>
+        <link refid="structtype__202"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_xpos</edgelabel>
+          <edgelabel>ref_ypos</edgelabel>
+          <edgelabel>ref_zpos</edgelabel>
+          <edgelabel>rem_xpos</edgelabel>
+          <edgelabel>rem_ypos</edgelabel>
+          <edgelabel>rem_zpos</edgelabel>
+          <edgelabel>u</edgelabel>
+          <edgelabel>uf</edgelabel>
+          <edgelabel>v</edgelabel>
+          <edgelabel>vf</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_clock</edgelabel>
+          <edgelabel>ref_clockrate</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>ref_idelay</edgelabel>
+          <edgelabel>ref_zdelay</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>rem_clock</edgelabel>
+          <edgelabel>rem_clockrate</edgelabel>
+          <edgelabel>rem_elev</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>ref_intl_id</edgelabel>
+          <edgelabel>ref_name</edgelabel>
+          <edgelabel>ref_tape</edgelabel>
+          <edgelabel>rem_intl_id</edgelabel>
+          <edgelabel>rem_name</edgelabel>
+          <edgelabel>rem_tape</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" line="8" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_202.h" bodystart="9" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structtype__202_1a68b6105731085a7dcf28afb44efbb523" prot="public" virt="non-virtual"><scope>type_202</scope><name>baseline</name></member>
+      <member refid="structtype__202_1aba168175634242aad41065027eba853e" prot="public" virt="non-virtual"><scope>type_202</scope><name>nlags</name></member>
+      <member refid="structtype__202_1aad3be2c1ce76720f0b5b8ec54aa5a821" prot="public" virt="non-virtual"><scope>type_202</scope><name>record_id</name></member>
+      <member refid="structtype__202_1a6a7042bab8ce5e8485fcdf36376bfbcc" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_az</name></member>
+      <member refid="structtype__202_1a6f0570b5e417ef82afbcc8dc704a4204" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_clock</name></member>
+      <member refid="structtype__202_1aaa32b007656415fd44cad7e75c2e2a26" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_clockrate</name></member>
+      <member refid="structtype__202_1aca05da77fc537527959bbe7e443e6c13" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_elev</name></member>
+      <member refid="structtype__202_1afca360b8248eb22b463e29cc1084b7b8" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_idelay</name></member>
+      <member refid="structtype__202_1a270770bf8fa318547488169ace45418e" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_intl_id</name></member>
+      <member refid="structtype__202_1a5d039a56134f495a716c172aa8d94028" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_name</name></member>
+      <member refid="structtype__202_1ade3f35a36a09a647bfb69d2fdf09d5f1" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_tape</name></member>
+      <member refid="structtype__202_1abcc71a329608e744e2c6e1f9af4fa69f" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_xpos</name></member>
+      <member refid="structtype__202_1a8d9db39e34185d3438f50e21c7d75474" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_ypos</name></member>
+      <member refid="structtype__202_1a7b47244d1542856e90be069094f35ac8" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_zdelay</name></member>
+      <member refid="structtype__202_1a9d088c90b2f8c4255bedf5cd745c11d0" prot="public" virt="non-virtual"><scope>type_202</scope><name>ref_zpos</name></member>
+      <member refid="structtype__202_1a2868b8b174160e7b98627a00cf1f7951" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_az</name></member>
+      <member refid="structtype__202_1a0a9cbd05594e270a7329f72e418e9f92" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_clock</name></member>
+      <member refid="structtype__202_1a4484e07057dd55de6ccd78d566a0fe8f" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_clockrate</name></member>
+      <member refid="structtype__202_1a2455db4bfa3ade121c3bed3e6031aa50" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_elev</name></member>
+      <member refid="structtype__202_1a9e210cd3d1c3653d519b1adb20914df4" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_idelay</name></member>
+      <member refid="structtype__202_1a33adcf3c205416a1c302d67596137148" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_intl_id</name></member>
+      <member refid="structtype__202_1a53a92c1ffbe4b75bdc4433bdd907f7ff" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_name</name></member>
+      <member refid="structtype__202_1ac7a97ed004245dd57446f2025c08c350" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_tape</name></member>
+      <member refid="structtype__202_1ac7ae3e0fc99e367a1ec567b8737d4e1d" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_xpos</name></member>
+      <member refid="structtype__202_1a79be65be2f3b6f910d701176b067f2db" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_ypos</name></member>
+      <member refid="structtype__202_1aba75dcf9568f3cde34bf4f9330c6d5fb" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_zdelay</name></member>
+      <member refid="structtype__202_1a2ac6c4b7da36606501b9b2dc1bb93f26" prot="public" virt="non-virtual"><scope>type_202</scope><name>rem_zpos</name></member>
+      <member refid="structtype__202_1a5d44b8f32d12e7c071436389bb5249db" prot="public" virt="non-virtual"><scope>type_202</scope><name>u</name></member>
+      <member refid="structtype__202_1aeaa57b65a5fd0cafb9a09a539f1880b5" prot="public" virt="non-virtual"><scope>type_202</scope><name>uf</name></member>
+      <member refid="structtype__202_1a44cdedff16d4457834dc037d68f34541" prot="public" virt="non-virtual"><scope>type_202</scope><name>unused1</name></member>
+      <member refid="structtype__202_1a8e9bd7adba5cae87cd0cc659290a16c1" prot="public" virt="non-virtual"><scope>type_202</scope><name>v</name></member>
+      <member refid="structtype__202_1a2dcfb3f8e10118e1c4d55a87f8685508" prot="public" virt="non-virtual"><scope>type_202</scope><name>version_no</name></member>
+      <member refid="structtype__202_1a53a0b32ee4107a049e75664d150d7842" prot="public" virt="non-virtual"><scope>type_202</scope><name>vf</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

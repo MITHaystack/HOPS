@@ -1,0 +1,711 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__DelayModel" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_DelayModel</compoundname>
+    <includes refid="MHO__DelayModel_8hh" local="no">MHO_DelayModel.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a7738d9bc6f7e9f8433f9c16794015902" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fAccel</definition>
+        <argsstring></argsstring>
+        <name>fAccel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="153" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a9e1245f8115c5c6fbfa9fa4e72d90199" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fDelay</definition>
+        <argsstring></argsstring>
+        <name>fDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="151" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a80941485620238f2b5813c9b6e759380" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fRate</definition>
+        <argsstring></argsstring>
+        <name>fRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="152" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a55cd7a5d8367e9f5ef05da2efe1cd018" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fRefClockOff</definition>
+        <argsstring></argsstring>
+        <name>fRefClockOff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="156" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a0e4f3b21a7dced39d8eb2fad20e717cd" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fRefClockRate</definition>
+        <argsstring></argsstring>
+        <name>fRefClockRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="157" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a844db22cbe7552dd3ccc7ff7faf6eb33" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+        <definition>station_coord_type* hops::MHO_DelayModel::fRefData</definition>
+        <argsstring></argsstring>
+        <name>fRefData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="147" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1ad1715a5189ae72e16d5073a475024515" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fRefDelay</definition>
+        <argsstring></argsstring>
+        <name>fRefDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="159" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a0192c1c0e9957e46e21a039fad6cf1c4" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fRefRate</definition>
+        <argsstring></argsstring>
+        <name>fRefRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="160" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a0f13b503be8095935ec71aa1cd544149" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::fRefStationDelay</definition>
+        <argsstring></argsstring>
+        <name>fRefStationDelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="161" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1a43bc6aec58e56d77f92650e4d17feb81" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_DelayModel::fRefTimeString</definition>
+        <argsstring></argsstring>
+        <name>fRefTimeString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="146" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__DelayModel_1ac5025eb9c4c46caac37fe996e7048211" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+        <definition>station_coord_type* hops::MHO_DelayModel::fRemData</definition>
+        <argsstring></argsstring>
+        <name>fRemData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="148" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a141666abcfb46326864ee9996c7a3703" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_DelayModel::MHO_DelayModel</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_DelayModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayModel.cc" bodystart="9" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a9d761bb08090f0541dfef6a46d49e283" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_DelayModel::~MHO_DelayModel</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_DelayModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="25" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayModel.cc" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a0183b1815c978a01c6c4055ca9613056" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::ComputeModel</definition>
+        <argsstring>()</argsstring>
+        <name>ComputeModel</name>
+        <briefdescription>
+<para>Calculates delay model for reference and remote stations using fourfit reference time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="51" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayModel.cc" bodystart="20" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a2ef1ac43ea6bf85c89976f5f23208099" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::GetAcceleration</definition>
+        <argsstring>()</argsstring>
+        <name>GetAcceleration</name>
+        <briefdescription>
+<para>Getter for acceleration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current acceleration as a double. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="72" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a0f464c118deda52d806f9fe060db0667" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::GetDelay</definition>
+        <argsstring>()</argsstring>
+        <name>GetDelay</name>
+        <briefdescription>
+<para>Getter for delay. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current delay value as a double. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="58" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a3ff15993b856d37cf0801066c6aa7930" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::GetRate</definition>
+        <argsstring>()</argsstring>
+        <name>GetRate</name>
+        <briefdescription>
+<para>Getter for rate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current rate as a double. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="65" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a42af2a5fe5ba3d7d3b7f71e7242c9019" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::GetRefDelay</definition>
+        <argsstring>()</argsstring>
+        <name>GetRefDelay</name>
+        <briefdescription>
+<para>Getter for ref delay. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current reference delay as a double. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="93" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a985f91af6211e2f6927e5ccb3048f4e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::GetRefRate</definition>
+        <argsstring>()</argsstring>
+        <name>GetRefRate</name>
+        <briefdescription>
+<para>Getter for ref rate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current reference rate as a double. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="100" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a733811ef3020e50da60113df08b481ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_DelayModel::GetRefStationDelay</definition>
+        <argsstring>()</argsstring>
+        <name>GetRefStationDelay</name>
+        <briefdescription>
+<para>Getter for ref station delay. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current reference station delay as a double. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="107" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a2a3c73b45c710e3aa6e3064551814099" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::SetFourfitReferenceTimeVexString</definition>
+        <argsstring>(std::string fourfit_reftime_string)</argsstring>
+        <name>SetFourfitReferenceTimeVexString</name>
+        <param>
+          <type>std::string</type>
+          <declname>fourfit_reftime_string</declname>
+        </param>
+        <briefdescription>
+<para>Setter for fourfit reference time vex string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fourfit_reftime_string</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new fourfit reference time vex string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="32" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1ad8c65893fb2439ac89d307ed2c4c31cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::SetReferenceStationClockOffset</definition>
+        <argsstring>(double clock_off)</argsstring>
+        <name>SetReferenceStationClockOffset</name>
+        <param>
+          <type>double</type>
+          <declname>clock_off</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference station clock offset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>clock_off</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New clock offset value in seconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="79" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="79" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a97a3d1bdeb3acd61cf73d9bcd470d8d2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::SetReferenceStationClockRate</definition>
+        <argsstring>(double clock_rate)</argsstring>
+        <name>SetReferenceStationClockRate</name>
+        <param>
+          <type>double</type>
+          <declname>clock_rate</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference station clock rate. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>clock_rate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New clock rate value in double precision </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="86" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1acba3335a79f30f062c53f2f58aecff82" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::SetReferenceStationData</definition>
+        <argsstring>(station_coord_type *ref_data)</argsstring>
+        <name>SetReferenceStationData</name>
+        <param>
+          <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+          <declname>ref_data</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference station data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ref_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to station coordinate data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="39" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1acbbb46d9ed769fa9dc2b29a2cc0eac05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::SetRemoteStationData</definition>
+        <argsstring>(station_coord_type *rem_data)</argsstring>
+        <name>SetRemoteStationData</name>
+        <param>
+          <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+          <declname>rem_data</declname>
+        </param>
+        <briefdescription>
+<para>Setter for remote station data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rem_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to remote station coordinate data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="46" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a065dd336125b03c648b8be4babf087fe" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::CheckSplineInterval</definition>
+        <argsstring>(int n_intervals, double tdiff, int &amp;int_no, std::string station_id)</argsstring>
+        <name>CheckSplineInterval</name>
+        <param>
+          <type>int</type>
+          <declname>n_intervals</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tdiff</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>int_no</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>station_id</declname>
+        </param>
+        <briefdescription>
+<para>Checks spline interval and adjusts int_no if necessary, clamps selected interval between [0, n_intervals-1]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n_intervals</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of intervals in the spline. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tdiff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time difference for reference time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>int_no</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>interval number, adjusted if needed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>station_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Identifier of the station. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="134" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_DelayModel.cc" bodystart="172" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a4395755f483c3a698735c6949870421c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XCoeffVectorType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_DelayModel::EvaluateDelaySpline</definition>
+        <argsstring>(const XCoeffVectorType &amp;coeff, double delta_t, double *results)</argsstring>
+        <name>EvaluateDelaySpline</name>
+        <param>
+          <type>const XCoeffVectorType &amp;</type>
+          <declname>coeff</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta_t</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates delay spline model (delay, rate, accel) using given coefficients and time delta. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function MHO_DelayModel::EvaluateDelaySpline.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCoeffVectorType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCoeffVectorType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input coefficient vector of type XCoeffVectorType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time difference for evaluation </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>results</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array to store delay, rate, and acceleration</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCoeffVectorType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCoeffVectorType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XCoeffVectorType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>results</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="123" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="173" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__DelayModel_1a7dac9a8bf4ac5a8b962b5c76a0591527" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XTagType</type>
+          </param>
+        </templateparamlist>
+        <type>XTagType</type>
+        <definition>XTagType hops::MHO_DelayModel::RetrieveTag</definition>
+        <argsstring>(station_coord_type *data, std::string key)</argsstring>
+        <name>RetrieveTag</name>
+        <param>
+          <type><ref refid="namespacehops_1a6f27aa7690ad9ea81270e4c98605d9bb" kindref="member">station_coord_type</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a tag value from station data using a given key. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to station coordinate data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key string used to retrieve the tag. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The retrieved tag value of type XTagType.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to station coordinate data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key string used to lookup the tag. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The retrieved tag value of type XTagType. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="143" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="221" bodyend="232"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__DelayModel" kindref="compound">MHO_DelayModel</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>evaluates the station a priori delay model polynomials</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Aug 18 13:42:45 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" line="21" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_DelayModel.hh" bodystart="22" bodyend="162"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__DelayModel_1a065dd336125b03c648b8be4babf087fe" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>CheckSplineInterval</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a0183b1815c978a01c6c4055ca9613056" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>ComputeModel</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a4395755f483c3a698735c6949870421c" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>EvaluateDelaySpline</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a7738d9bc6f7e9f8433f9c16794015902" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fAccel</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a9e1245f8115c5c6fbfa9fa4e72d90199" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fDelay</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a80941485620238f2b5813c9b6e759380" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRate</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a55cd7a5d8367e9f5ef05da2efe1cd018" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRefClockOff</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a0e4f3b21a7dced39d8eb2fad20e717cd" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRefClockRate</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a844db22cbe7552dd3ccc7ff7faf6eb33" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRefData</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1ad1715a5189ae72e16d5073a475024515" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRefDelay</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a0192c1c0e9957e46e21a039fad6cf1c4" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRefRate</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a0f13b503be8095935ec71aa1cd544149" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRefStationDelay</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a43bc6aec58e56d77f92650e4d17feb81" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRefTimeString</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1ac5025eb9c4c46caac37fe996e7048211" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>fRemData</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a2ef1ac43ea6bf85c89976f5f23208099" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>GetAcceleration</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a0f464c118deda52d806f9fe060db0667" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>GetDelay</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a3ff15993b856d37cf0801066c6aa7930" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>GetRate</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a42af2a5fe5ba3d7d3b7f71e7242c9019" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>GetRefDelay</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a985f91af6211e2f6927e5ccb3048f4e8" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>GetRefRate</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a733811ef3020e50da60113df08b481ca" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>GetRefStationDelay</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a141666abcfb46326864ee9996c7a3703" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>MHO_DelayModel</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a7dac9a8bf4ac5a8b962b5c76a0591527" prot="private" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>RetrieveTag</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a2a3c73b45c710e3aa6e3064551814099" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>SetFourfitReferenceTimeVexString</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1ad8c65893fb2439ac89d307ed2c4c31cd" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>SetReferenceStationClockOffset</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a97a3d1bdeb3acd61cf73d9bcd470d8d2" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>SetReferenceStationClockRate</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1acba3335a79f30f062c53f2f58aecff82" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>SetReferenceStationData</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1acbbb46d9ed769fa9dc2b29a2cc0eac05" prot="public" virt="non-virtual"><scope>hops::MHO_DelayModel</scope><name>SetRemoteStationData</name></member>
+      <member refid="classhops_1_1MHO__DelayModel_1a9d761bb08090f0541dfef6a46d49e283" prot="public" virt="virtual"><scope>hops::MHO_DelayModel</scope><name>~MHO_DelayModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

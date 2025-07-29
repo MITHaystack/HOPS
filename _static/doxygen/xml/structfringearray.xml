@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfringearray" kind="struct" language="C++" prot="public">
+    <compoundname>fringearray</compoundname>
+    <includes refid="aedata_8h" local="no">aedata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfringearray_1ab8773d84a1ebdbea00bb4411cfaffe97" prot="public" static="no" mutable="no">
+        <type><ref refid="structfringesum" kindref="compound">fringesum</ref></type>
+        <definition>fringesum fringearray::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="35" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringearray_1acc4decf94aed84a73a7402b53ba0aa3b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringearray::flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="31" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringearray_1a43f333fda0bc80de02887b5491a3042c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringearray::keyval</definition>
+        <argsstring></argsstring>
+        <name>keyval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="30" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringearray_1ab7cfda43b23792da869f61f1326b2c7b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringearray::lastorder</definition>
+        <argsstring></argsstring>
+        <name>lastorder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="29" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringearray_1accec7960e51c77a6f61aa7b23a3da239" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringearray::order</definition>
+        <argsstring></argsstring>
+        <name>order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="28" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringearray_1ada0b8ccff97ca426a5047d52975ae362" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringearray::param_ptr</definition>
+        <argsstring></argsstring>
+        <name>param_ptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="34" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringearray_1aa1601a85f8fe4a50816f7ac8089bb44b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringearray::parent_corel</definition>
+        <argsstring></argsstring>
+        <name>parent_corel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="33" column="4" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfringearray_1a8e78f844992f7795804fa32dc4f3cfc9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fringearray::parent_root</definition>
+        <argsstring></argsstring>
+        <name>parent_root</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="32" column="4" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>fringearray</label>
+        <link refid="structfringearray"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+          <edgelabel>param_ptr</edgelabel>
+          <edgelabel>parent_corel</edgelabel>
+          <edgelabel>parent_root</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="2">
+        <label>fringesum</label>
+        <link refid="structfringesum"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>total_mbdelay</edgelabel>
+          <edgelabel>total_rate</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amp</edgelabel>
+          <edgelabel>dec_deg</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>mbdelay</edgelabel>
+          <edgelabel>phase_snr</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>reftape</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>no_freq</edgelabel>
+          <edgelabel>noloss_cotime</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>parents</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedata.h" bodystart="27" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structfringearray_1ab8773d84a1ebdbea00bb4411cfaffe97" prot="public" virt="non-virtual"><scope>fringearray</scope><name>data</name></member>
+      <member refid="structfringearray_1acc4decf94aed84a73a7402b53ba0aa3b" prot="public" virt="non-virtual"><scope>fringearray</scope><name>flag</name></member>
+      <member refid="structfringearray_1a43f333fda0bc80de02887b5491a3042c" prot="public" virt="non-virtual"><scope>fringearray</scope><name>keyval</name></member>
+      <member refid="structfringearray_1ab7cfda43b23792da869f61f1326b2c7b" prot="public" virt="non-virtual"><scope>fringearray</scope><name>lastorder</name></member>
+      <member refid="structfringearray_1accec7960e51c77a6f61aa7b23a3da239" prot="public" virt="non-virtual"><scope>fringearray</scope><name>order</name></member>
+      <member refid="structfringearray_1ada0b8ccff97ca426a5047d52975ae362" prot="public" virt="non-virtual"><scope>fringearray</scope><name>param_ptr</name></member>
+      <member refid="structfringearray_1aa1601a85f8fe4a50816f7ac8089bb44b" prot="public" virt="non-virtual"><scope>fringearray</scope><name>parent_corel</name></member>
+      <member refid="structfringearray_1a8e78f844992f7795804fa32dc4f3cfc9" prot="public" virt="non-virtual"><scope>fringearray</scope><name>parent_root</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

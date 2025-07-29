@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdata__corel" kind="struct" language="C++" prot="public">
+    <compoundname>data_corel</compoundname>
+    <includes refid="pass__struct_8h" local="no">pass_struct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdata__corel_1a0ea1ecb45ddc690cda4d67b9885dd38c" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__120" kindref="compound">type_120</ref> *</type>
+        <definition>struct type_120* data_corel::apdata_ll[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>apdata_ll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="43" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1a3e5f4ea7c89e2c1b194e48511b1aa527" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__120" kindref="compound">type_120</ref> *</type>
+        <definition>struct type_120* data_corel::apdata_lr[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>apdata_lr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="45" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1ad2fe12e4d77ebc9c89d82728829caeb1" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__120" kindref="compound">type_120</ref> *</type>
+        <definition>struct type_120* data_corel::apdata_rl[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>apdata_rl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="46" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1ac425e93fbea763e70bbfe3d9ab345d0d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__120" kindref="compound">type_120</ref> *</type>
+        <definition>struct type_120* data_corel::apdata_rr[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>apdata_rr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="44" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1a0db826588b23fc354f43114c30f7b016" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int data_corel::flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="42" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float data_corel::lsbfrac</definition>
+        <argsstring></argsstring>
+        <name>lsbfrac</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="52" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1a36aef802b929a5f654985d2cff0ae279" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref></type>
+        <definition>hops_complex data_corel::pc_phasor[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>pc_phasor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="53" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structinterp__sdata" kindref="compound">interp_sdata</ref></type>
+        <definition>struct interp_sdata data_corel::ref_sdata</definition>
+        <argsstring></argsstring>
+        <name>ref_sdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="48" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structinterp__sdata" kindref="compound">interp_sdata</ref></type>
+        <definition>struct interp_sdata data_corel::rem_sdata</definition>
+        <argsstring></argsstring>
+        <name>rem_sdata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="48" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1aa6c41a7149d8c66fbfcad73e7f0e98c2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int data_corel::sband</definition>
+        <argsstring></argsstring>
+        <name>sband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="47" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1aded93176213e9173b6f5322966bfa270" prot="public" static="no" mutable="no">
+        <type><ref refid="hops__complex_8h_1af7a658adea3e69cd3a77d59ba5183f19" kindref="member">hops_complex</ref> *</type>
+        <definition>hops_complex* data_corel::sbdelay</definition>
+        <argsstring></argsstring>
+        <name>sbdelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="48" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float data_corel::usbfrac</definition>
+        <argsstring></argsstring>
+        <name>usbfrac</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="51" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="12">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>spectral</label>
+        <link refid="structspectral"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>im</edgelabel>
+          <edgelabel>re</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>data_corel</label>
+        <link refid="structdata__corel"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lsbfrac</edgelabel>
+          <edgelabel>usbfrac</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>flag</edgelabel>
+          <edgelabel>sband</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ref_sdata</edgelabel>
+          <edgelabel>rem_sdata</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>sbdelay</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>apdata_ll</edgelabel>
+          <edgelabel>apdata_lr</edgelabel>
+          <edgelabel>apdata_rl</edgelabel>
+          <edgelabel>apdata_rr</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>pc_phasor</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>lag_data</label>
+        <link refid="unionlag__data"/>
+        <childnode refid="12" relation="usage">
+          <edgelabel>apl</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>spec</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>ag</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>cg</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>cpl</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>flag_wgt</label>
+        <link refid="unionflag__wgt"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="14">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops_complex *</label>
+      </node>
+      <node id="15">
+        <label>counts_global</label>
+        <link refid="structcounts__global"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>lags</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops_complex</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="4">
+        <label>interp_sdata</label>
+        <link refid="structinterp__sdata"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>mt_delay</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bigneg</edgelabel>
+          <edgelabel>bigpos</edgelabel>
+          <edgelabel>neg</edgelabel>
+          <edgelabel>pcweight_lcp</edgelabel>
+          <edgelabel>pcweight_rcp</edgelabel>
+          <edgelabel>pos</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mt_pcal</edgelabel>
+          <edgelabel>phasecal_lcp</edgelabel>
+          <edgelabel>phasecal_rcp</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>double</label>
+      </node>
+      <node id="9">
+        <label>short</label>
+      </node>
+      <node id="8">
+        <label>type_120</label>
+        <link refid="structtype__120"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>fr_delay</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>status</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>ld</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fw</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>char</label>
+      </node>
+      <node id="16">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/pass_struct.h" bodystart="41" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structdata__corel_1a0ea1ecb45ddc690cda4d67b9885dd38c" prot="public" virt="non-virtual"><scope>data_corel</scope><name>apdata_ll</name></member>
+      <member refid="structdata__corel_1a3e5f4ea7c89e2c1b194e48511b1aa527" prot="public" virt="non-virtual"><scope>data_corel</scope><name>apdata_lr</name></member>
+      <member refid="structdata__corel_1ad2fe12e4d77ebc9c89d82728829caeb1" prot="public" virt="non-virtual"><scope>data_corel</scope><name>apdata_rl</name></member>
+      <member refid="structdata__corel_1ac425e93fbea763e70bbfe3d9ab345d0d" prot="public" virt="non-virtual"><scope>data_corel</scope><name>apdata_rr</name></member>
+      <member refid="structdata__corel_1a0db826588b23fc354f43114c30f7b016" prot="public" virt="non-virtual"><scope>data_corel</scope><name>flag</name></member>
+      <member refid="structdata__corel_1a5c8c06ec16faeab995567df3d5e11f98" prot="public" virt="non-virtual"><scope>data_corel</scope><name>lsbfrac</name></member>
+      <member refid="structdata__corel_1a36aef802b929a5f654985d2cff0ae279" prot="public" virt="non-virtual"><scope>data_corel</scope><name>pc_phasor</name></member>
+      <member refid="structdata__corel_1a305778d1a5fe13dfdf41eeaf470a9649" prot="public" virt="non-virtual"><scope>data_corel</scope><name>ref_sdata</name></member>
+      <member refid="structdata__corel_1aa8efa5b4a9a12212701f862d3da6a822" prot="public" virt="non-virtual"><scope>data_corel</scope><name>rem_sdata</name></member>
+      <member refid="structdata__corel_1aa6c41a7149d8c66fbfcad73e7f0e98c2" prot="public" virt="non-virtual"><scope>data_corel</scope><name>sband</name></member>
+      <member refid="structdata__corel_1aded93176213e9173b6f5322966bfa270" prot="public" virt="non-virtual"><scope>data_corel</scope><name>sbdelay</name></member>
+      <member refid="structdata__corel_1a9671e24455fd24e9195cf3e680592c84" prot="public" virt="non-virtual"><scope>data_corel</scope><name>usbfrac</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

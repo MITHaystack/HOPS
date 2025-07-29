@@ -1,0 +1,20 @@
+<map id="hops::MHO_Serializable" name="hops::MHO_Serializable">
+<area shape="rect" id="node1" title="Class MHO_Serializable." alt="" coords="5,415,165,441"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__AxisPack.html" title="Class MHO_AxisPack." alt="" coords="213,363,363,405"/>
+<area shape="rect" id="node12" href="$classhops_1_1MHO__Taggable.html" title="Class MHO_Taggable." alt="" coords="215,444,361,471"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="427,5,608,61"/>
+<area shape="rect" id="node4" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="427,85,608,141"/>
+<area shape="rect" id="node5" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="427,166,608,207"/>
+<area shape="rect" id="node6" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="420,232,615,288"/>
+<area shape="rect" id="node7" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="427,312,608,368"/>
+<area shape="rect" id="node8" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="427,392,608,448"/>
+<area shape="rect" id="node9" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="414,473,621,543"/>
+<area shape="rect" id="node10" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="427,568,608,624"/>
+<area shape="rect" id="node11" href="$classhops_1_1MHO__TableContainer.html" title=" " alt="" coords="427,648,608,704"/>
+<area shape="rect" id="node13" href="$classhops_1_1MHO__ObjectTags.html" title="Class MHO_ObjectTags." alt="" coords="437,925,598,952"/>
+<area shape="rect" id="node14" href="$classhops_1_1MHO__ScalarContainer.html" title="MHO_ScalarContainer, and wrapper class for storage of a scalar object." alt="" coords="424,729,611,770"/>
+<area shape="rect" id="node15" href="$classhops_1_1MHO__TableContainer.html" title="Class MHO_TableContainer." alt="" coords="411,794,624,835"/>
+<area shape="rect" id="node16" href="$classhops_1_1MHO__VectorContainer.html" title="MHO_VectorContainer &#45; basis for for axis data objects in HOPS4, it is an 1&#45;dimensional array object,..." alt="" coords="424,859,611,901"/>
+<area shape="rect" id="node17" href="$classhops_1_1MHO__Axis.html" title=" " alt="" coords="688,841,867,868"/>
+<area shape="rect" id="node18" href="$classhops_1_1MHO__Axis.html" title="Class MHO_Axis." alt="" coords="672,892,883,919"/>
+</map>

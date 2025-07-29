@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="clear__date_8c" kind="file" language="C++">
+    <compoundname>clear_date.c</compoundname>
+    <includes refid="mk4__typedefs_8h" local="yes">mk4_typedefs.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="1">
+        <label>clear_date.c</label>
+        <link refid="clear__date_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="clear__date_8c_1a2b15d3f2ac86fad8f73d696d22b946b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void clear_date</definition>
+        <argsstring>(date_struct *timetag)</argsstring>
+        <name>clear_date</name>
+        <param>
+          <type><ref refid="mk4__typedefs_8h_1a6ac64d6bf9e1a401a2680bc89ca78fd0" kindref="member">date_struct</ref> *</type>
+          <declname>timetag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/clear_date.c" line="4" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/clear_date.c" bodystart="4" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__typedefs_8h" kindref="compound">mk4_typedefs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><ref refid="clear__date_8c_1a2b15d3f2ac86fad8f73d696d22b946b1" kindref="member">clear_date</ref><sp/>(<ref refid="structdate" kindref="compound">date_struct</ref><sp/>*timetag)</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>timetag-&gt;<ref refid="structdate_1aef68a8508dda64a80f5fe08202e0da4c" kindref="member">year</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>timetag-&gt;<ref refid="structdate_1aad570045b0c46ad2ec1333516b19d826" kindref="member">day</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>timetag-&gt;<ref refid="structdate_1a86616c8f14820a1b884493b3f70d6790" kindref="member">hour</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>timetag-&gt;<ref refid="structdate_1a0a89d97324551f72b471a80cad3b7b9e" kindref="member">minute</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>timetag-&gt;<ref refid="structdate_1afda99d94a7ee7ff3dda1dbce576ba524" kindref="member">second</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/src/clear_date.c"/>
+  </compounddef>
+</doxygen>

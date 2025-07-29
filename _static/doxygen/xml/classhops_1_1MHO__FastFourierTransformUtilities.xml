@@ -1,0 +1,1385 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__FastFourierTransformUtilities" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_FastFourierTransformUtilities</compoundname>
+    <includes refid="MHO__FastFourierTransformUtilities_8hh" local="no">MHO_FastFourierTransformUtilities.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XFloatType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1aafc842697519b55834e0dcf553e7434f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::MHO_FastFourierTransformUtilities</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_FastFourierTransformUtilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ac678529bf7ce6e065751707ee9d5528a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::~MHO_FastFourierTransformUtilities</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_FastFourierTransformUtilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1aefbddc4e3d4601ea48cde4a13dbf0586" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; double &gt;::ComputeBluesteinScaleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; double &gt; *scale)</argsstring>
+        <name>ComputeBluesteinScaleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; double &gt; *</type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1a4a9f06e98a82b60816ca24707549bd95" kindref="member">MHO_FastFourierTransformUtilities&lt;double&gt;::ComputeBluesteinScaleFactors</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; double &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; double) </para>
+</simplesect>
+<simplesect kind="note"><para>IMPORTANT NOTE! This function computes the CONJUGATE of the scale factors as defined by equation 13.22, page 127 of &quot;Inside the FFT Black Box&quot;, E. Chu and A. George, Ch. 13, CRC Press, 2000 we do this so we can avoid having to take a complex conjugate of the scale factors when performing the actual FFT </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="635" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="635" bodyend="649"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a5ceb3118ee4cbd37fe319242b7ef7626" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; float &gt;::ComputeBluesteinScaleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; float &gt; *scale)</argsstring>
+        <name>ComputeBluesteinScaleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; float &gt; *</type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1a4a9f06e98a82b60816ca24707549bd95" kindref="member">MHO_FastFourierTransformUtilities&lt;float&gt;::ComputeBluesteinScaleFactors</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; float &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; float) </para>
+</simplesect>
+<simplesect kind="note"><para>IMPORTANT NOTE! This function computes the CONJUGATE of the scale factors as defined by equation 13.22, page 127 of &quot;Inside the FFT Black Box&quot;, E. Chu and A. George, Ch. 13, CRC Press, 2000 we do this so we can avoid having to take a complex conjugate of the scale factors when performing the actual FFT </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="604" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="604" bodyend="618"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1aac6d13366de13d8a83ac28ed91100107" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; long double &gt;::ComputeBluesteinScaleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; long double &gt; *scale)</argsstring>
+        <name>ComputeBluesteinScaleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; long double &gt; *</type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1a4a9f06e98a82b60816ca24707549bd95" kindref="member">MHO_FastFourierTransformUtilities&lt;long double&gt;::ComputeBluesteinScaleFactors</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; long double &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; long double) </para>
+</simplesect>
+<simplesect kind="note"><para>IMPORTANT NOTE! This function computes the CONJUGATE of the scale factors as defined by equation 13.22, page 127 of &quot;Inside the FFT Black Box&quot;, E. Chu and A. George, Ch. 13, CRC Press, 2000 we do this so we can avoid having to take a complex conjugate of the scale factors when performing the actual FFT </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="666" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="666" bodyend="680"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a1c7a50a99adb898fea69a19ab155a22c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; double &gt;::ComputeTwiddleFactorBasis</definition>
+        <argsstring>(unsigned int log2N, std::complex&lt; double &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactorBasis</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>log2N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; double &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1a7e99ddf89f9599c00e838f5a6f0f27d9" kindref="member">MHO_FastFourierTransformUtilities&lt;double&gt;::ComputeTwiddleFactorBasis</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>log2N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; double &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; double) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="553" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="553" bodyend="564"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a540b029007bd0b95ffbe653349511546" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; float &gt;::ComputeTwiddleFactorBasis</definition>
+        <argsstring>(unsigned int log2N, std::complex&lt; float &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactorBasis</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>log2N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; float &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1a7e99ddf89f9599c00e838f5a6f0f27d9" kindref="member">MHO_FastFourierTransformUtilities&lt;float&gt;::ComputeTwiddleFactorBasis</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>log2N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; float &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; float) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="532" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="532" bodyend="543"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a5276039b26e4dcfa4a0166963de657f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; long double &gt;::ComputeTwiddleFactorBasis</definition>
+        <argsstring>(unsigned int log2N, std::complex&lt; long double &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactorBasis</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>log2N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; long double &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1a7e99ddf89f9599c00e838f5a6f0f27d9" kindref="member">MHO_FastFourierTransformUtilities&lt;long double&gt;::ComputeTwiddleFactorBasis</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>log2N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; long double &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; long double) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="574" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="574" bodyend="585"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ad2f74bdb1f7d89aef20fd5f84415f101" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; double &gt;::ComputeTwiddleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; double &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; double &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1adb939ca4b4a3a71601b1353befa4a9f1" kindref="member">MHO_FastFourierTransformUtilities&lt;double&gt;::ComputeTwiddleFactors</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; double &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; double) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="485" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="485" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ac4a637aaca5c4cf163e3ddece18406e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; float &gt;::ComputeTwiddleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; float &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; float &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1adb939ca4b4a3a71601b1353befa4a9f1" kindref="member">MHO_FastFourierTransformUtilities&lt;float&gt;::ComputeTwiddleFactors</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; float &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; float) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="464" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="464" bodyend="475"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a576b584a5c98e29a32845332814f096d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_FastFourierTransformUtilities&lt; long double &gt;::ComputeTwiddleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; long double &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; long double &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Function <ref refid="classhops_1_1MHO__FastFourierTransformUtilities_1adb939ca4b4a3a71601b1353befa4a9f1" kindref="member">MHO_FastFourierTransformUtilities&lt;long double&gt;::ComputeTwiddleFactors</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; long double &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (void <ref refid="classhops_1_1MHO__FastFourierTransformUtilities" kindref="compound">MHO_FastFourierTransformUtilities</ref>&lt; long double) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="506" column="47" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="506" bodyend="518"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a12f4bc0e0bc985c83cf69c78db60b568" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ButterflyRadixTwo_CooleyTukey</definition>
+        <argsstring>(XFloatType *H0, XFloatType *H1, XFloatType *W)</argsstring>
+        <name>ButterflyRadixTwo_CooleyTukey</name>
+        <param>
+          <type>XFloatType *</type>
+          <declname>H0</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>H1</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>W</declname>
+        </param>
+        <briefdescription>
+<para>Function ButterflyRadixTwo_CooleyTukey See page 23 of &quot;Inside the FFT Black Box&quot;, E. Chu and A. George, Ch. 13, CRC Press, 2000. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>H0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XFloatType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>H1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XFloatType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>W</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XFloatType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="163" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="163" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a4adef1e4a31f68a15cfbfe8de6f8089b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ButterflyRadixTwo_GentlemanSande</definition>
+        <argsstring>(XFloatType *H0, XFloatType *H1, XFloatType *W)</argsstring>
+        <name>ButterflyRadixTwo_GentlemanSande</name>
+        <param>
+          <type>XFloatType *</type>
+          <declname>H0</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>H1</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>W</declname>
+        </param>
+        <briefdescription>
+<para>Function ButterflyRadixTwo_GentlemanSande See page 25 of &quot;Inside the FFT Black Box&quot;, E. Chu and A. George, Ch. 13, CRC Press, 2000. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>H0</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XFloatType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>H1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XFloatType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>W</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XFloatType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="249" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="249" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a574f0ee07dab4e3627d7cf7c50adb13f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>static unsigned int hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ComputeBluesteinArraySize</definition>
+        <argsstring>(unsigned int N)</argsstring>
+        <name>ComputeBluesteinArraySize</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Function ComputeBluesteinArraySize Computes the array size needed to perform a Bluestein/Chirp-Z FFT for arbitrary N. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (unsigned int) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="331" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="331" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ae1e887f189c42851d4564a24fd417843" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ComputeBluesteinCirculantVector</definition>
+        <argsstring>(unsigned int N, unsigned int M, std::complex&lt; XFloatType &gt; *twiddle, std::complex&lt; XFloatType &gt; *scale, std::complex&lt; XFloatType &gt; *circulant)</argsstring>
+        <name>ComputeBluesteinCirculantVector</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>scale</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>circulant</declname>
+        </param>
+        <briefdescription>
+<para>Function ComputeBluesteinCirculantVector twiddle and circulant array must be length M = 2^p &gt;= (2N - 2), where N is the data length. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>circulant</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="363" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="363" bodyend="390"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a4a9f06e98a82b60816ca24707549bd95" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ComputeBluesteinScaleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; XFloatType &gt; *scale)</argsstring>
+        <name>ComputeBluesteinScaleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>scale</declname>
+        </param>
+        <briefdescription>
+<para>Function ComputeBluesteinScaleFactors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) scale factor array must be length N </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="351" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a617e493099ba2ac1a2f503d67975137b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ComputeConjugateTwiddleFactorBasis</definition>
+        <argsstring>(unsigned int log2N, std::complex&lt; XFloatType &gt; *conj_twiddle)</argsstring>
+        <name>ComputeConjugateTwiddleFactorBasis</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>log2N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>conj_twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Computes conjugate twiddle factor basis for given log2N and stores result in conj_twiddle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>log2N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of bits to divide N by 2 for twiddle factors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>conj_twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType )* </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="103" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="103" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1adb220c38f3a6af776777a7849fa850d2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ComputeConjugateTwiddleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; XFloatType &gt; *conj_twiddle)</argsstring>
+        <name>ComputeConjugateTwiddleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>conj_twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Computes the conjugate twiddle factors for given size N and stores them in provided array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the transform (N must be a power of 2) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>conj_twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array to store the computed conjugate twiddle factors </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="76" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="76" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a7e99ddf89f9599c00e838f5a6f0f27d9" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ComputeTwiddleFactorBasis</definition>
+        <argsstring>(unsigned int log2N, std::complex&lt; XFloatType &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactorBasis</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>log2N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Computes twiddle factors for Fast Fourier Transform up to log2N. computes only the twiddle factors we need in order to easily compute them on the fly e.g e^{ix}, e^{2ix}, e^{4ix}, e^{8ix}, etc up to e^{Nix} ), that way we only need log2N storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>log2N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of bits in N (N = 2^log2N) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array to store computed twiddle factors </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="94" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1adb939ca4b4a3a71601b1353befa4a9f1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::ComputeTwiddleFactors</definition>
+        <argsstring>(unsigned int N, std::complex&lt; XFloatType &gt; *twiddle)</argsstring>
+        <name>ComputeTwiddleFactors</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <briefdescription>
+<para>Compute twiddle factors for a Fast Fourier Transform. computes all the twiddle factors e^{i*2*pi/N} for 0 to N-1 using std::cos and std::sin which is more accurate than the recursive method. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the transform (N). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array to store computed twiddle factors. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="67" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ad7761d2dceec718a6f55e2b3356aa5fe" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::Conjugate</definition>
+        <argsstring>(unsigned int N, std::complex&lt; XFloatType &gt; *array)</argsstring>
+        <name>Conjugate</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+<para>Conjugates each element in a complex array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the input array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output array of complex numbers </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="35" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="35" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ab2f3029bda7aeb6d13fa4f91f9d9f6b1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::Conjugate</definition>
+        <argsstring>(unsigned int N, std::complex&lt; XFloatType &gt; *array, unsigned int stride)</argsstring>
+        <name>Conjugate</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+        </param>
+        <briefdescription>
+<para>Conjugates each element in a complex (strided) array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output complex array to conjugate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="51" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="51" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ab819a1ac797825c434dcb3b1bec0e73b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::FFTBluestein</definition>
+        <argsstring>(unsigned int N, unsigned int M, std::complex&lt; XFloatType &gt; *data, std::complex&lt; XFloatType &gt; *twiddle, std::complex&lt; XFloatType &gt; *conj_twiddle, std::complex&lt; XFloatType &gt; *scale, std::complex&lt; XFloatType &gt; *circulant, std::complex&lt; XFloatType &gt; *workspace, unsigned int stride=1)</argsstring>
+        <name>FFTBluestein</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>conj_twiddle</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>scale</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>circulant</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>workspace</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Function Bluestein algorithm for arbitrary length, N is length of the data, (supports strided data access) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) length of data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) Bluestein array size </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) data array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) twiddle factors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>conj_twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) conjugate twiddle factors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>scale</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) scale factors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>circulant</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) circulant array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>workspace</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::complex&lt; XFloatType &gt;*) scratch space </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(unsigned int) (default is 1, unstrided) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="406" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="406" bodyend="449"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a78b2704dad661adc9d915e92949cc6cc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::FFTRadixTwo_DIF</definition>
+        <argsstring>(unsigned int N, std::complex&lt; XFloatType &gt; *data, std::complex&lt; XFloatType &gt; *twiddle, unsigned int stride=1)</argsstring>
+        <name>FFTRadixTwo_DIF</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Radix-2 DIF FFT wrapper for a std::complex array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the data array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output complex data array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output twiddle factors array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Stride for accessing data elements </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="314" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="314" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1ada1e13703bd40fd445da6b72d15a9dec" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::FFTRadixTwo_DIF</definition>
+        <argsstring>(unsigned int N, XFloatType *data, XFloatType *twiddle, unsigned int stride=1)</argsstring>
+        <name>FFTRadixTwo_DIF</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>twiddle</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Performs Radix-2 Decimation In Frequency (DIF) FFT using conjugate array and twiddle factors. input: data array in normal order output: fft of data in bit-address permutated order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the data array (must be power of 2) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output complex data array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Twiddle factor array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Stride for accessing data elements </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="204" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="204" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a080e315ca6b79dd79f20e75cd399fcca" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::FFTRadixTwo_DIT</definition>
+        <argsstring>(unsigned int N, std::complex&lt; XFloatType &gt; *data, std::complex&lt; XFloatType &gt; *twiddle, unsigned int stride=1)</argsstring>
+        <name>FFTRadixTwo_DIT</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>std::complex&lt; XFloatType &gt; *</type>
+          <declname>twiddle</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Radix-2 DIT FFT wrapper for a std::complex array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the data array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output complex data array with given stride </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Precomputed twiddle factors array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Stride for accessing data elements </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="299" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="299" bodyend="303"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__FastFourierTransformUtilities_1a34f5eae1ccc7175c279ce79cc1f788dc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void hops::MHO_FastFourierTransformUtilities&lt; XFloatType &gt;::FFTRadixTwo_DIT</definition>
+        <argsstring>(unsigned int N, XFloatType *data, XFloatType *twiddle, unsigned int stride=1)</argsstring>
+        <name>FFTRadixTwo_DIT</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>XFloatType *</type>
+          <declname>twiddle</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>stride</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Computes a Radix-2 decimation in time (DIT) FFT. input: data array in bit-address permutated order output: fft of data in normal order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of the data array (must be power of 2) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output array of complex numbers to conjugate </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>twiddle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of precomputed twiddle factors </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>stride</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Stride between elements in the input array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="119" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="119" bodyend="153"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>basic utility functions for native FFTs </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Fri Oct 23 12:02:01 2020 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" line="22" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FastFourierTransformUtilities.hh" bodystart="23" bodyend="451"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a12f4bc0e0bc985c83cf69c78db60b568" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ButterflyRadixTwo_CooleyTukey</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a4adef1e4a31f68a15cfbfe8de6f8089b" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ButterflyRadixTwo_GentlemanSande</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a574f0ee07dab4e3627d7cf7c50adb13f" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeBluesteinArraySize</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ae1e887f189c42851d4564a24fd417843" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeBluesteinCirculantVector</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a4a9f06e98a82b60816ca24707549bd95" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeBluesteinScaleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a5ceb3118ee4cbd37fe319242b7ef7626" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeBluesteinScaleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1aefbddc4e3d4601ea48cde4a13dbf0586" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeBluesteinScaleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1aac6d13366de13d8a83ac28ed91100107" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeBluesteinScaleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a617e493099ba2ac1a2f503d67975137b" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeConjugateTwiddleFactorBasis</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1adb220c38f3a6af776777a7849fa850d2" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeConjugateTwiddleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a7e99ddf89f9599c00e838f5a6f0f27d9" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactorBasis</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a540b029007bd0b95ffbe653349511546" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactorBasis</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a1c7a50a99adb898fea69a19ab155a22c" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactorBasis</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a5276039b26e4dcfa4a0166963de657f7" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactorBasis</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1adb939ca4b4a3a71601b1353befa4a9f1" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ac4a637aaca5c4cf163e3ddece18406e3" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ad2f74bdb1f7d89aef20fd5f84415f101" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a576b584a5c98e29a32845332814f096d" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>ComputeTwiddleFactors</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ad7761d2dceec718a6f55e2b3356aa5fe" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>Conjugate</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ab2f3029bda7aeb6d13fa4f91f9d9f6b1" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>Conjugate</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ab819a1ac797825c434dcb3b1bec0e73b" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>FFTBluestein</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ada1e13703bd40fd445da6b72d15a9dec" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>FFTRadixTwo_DIF</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a78b2704dad661adc9d915e92949cc6cc" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>FFTRadixTwo_DIF</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a34f5eae1ccc7175c279ce79cc1f788dc" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>FFTRadixTwo_DIT</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1a080e315ca6b79dd79f20e75cd399fcca" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>FFTRadixTwo_DIT</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1aafc842697519b55834e0dcf553e7434f" prot="public" virt="non-virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>MHO_FastFourierTransformUtilities</name></member>
+      <member refid="classhops_1_1MHO__FastFourierTransformUtilities_1ac678529bf7ce6e065751707ee9d5528a" prot="public" virt="virtual"><scope>hops::MHO_FastFourierTransformUtilities</scope><name>~MHO_FastFourierTransformUtilities</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

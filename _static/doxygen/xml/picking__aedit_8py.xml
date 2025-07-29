@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="picking__aedit_8py" kind="file" language="Python">
+    <compoundname>picking_aedit.py</compoundname>
+    <innernamespace refid="namespacehops__visualization_1_1picking__aedit">hops_visualization::picking_aedit</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacehops__visualization_1_1picking__aedit" refkind="compound"><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="2"><highlight class="stringliteral">Demonstration<sp/>of<sp/>&apos;picking&apos;,<sp/>or<sp/>interacting<sp/>with<sp/>datapoints<sp/>with<sp/>a<sp/>mouse<sp/>click</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>matplotlib<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>mpl</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">mpl.rcParams[</highlight><highlight class="stringliteral">&apos;toolbar&apos;</highlight><highlight class="normal">]<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;None&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>matplotlib.pyplot<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>plt</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>read_alist<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">#<sp/>for<sp/>now,<sp/>hard<sp/>code<sp/>the<sp/>location<sp/>of<sp/>the<sp/>alist<sp/>file<sp/>and<sp/>the<sp/>figures<sp/>we<sp/>want<sp/>to<sp/>call</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">#<sp/>from<sp/>datapoints<sp/>in<sp/>the<sp/>alist<sp/>file</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">fname,<sp/>amp,<sp/>t<sp/>=<sp/><ref refid="namespacehops__visualization_1_1read__alist_1a85c74ac2bc9d582cbce213c1653435ed" kindref="member">get_amp_time</ref>(</highlight><highlight class="stringliteral">&apos;3765/3765.alist.check&apos;</highlight><highlight class="normal">,<sp/>baseline=</highlight><highlight class="stringliteral">&apos;KZ&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">fig,<sp/>ax<sp/>=<sp/>plt.subplots()</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">ax.set_title(</highlight><highlight class="stringliteral">&apos;AEDIT<sp/>Demo<sp/>plot<sp/>-<sp/>Expt<sp/>3765,<sp/>Freq<sp/>B&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">#<sp/>the<sp/>&apos;picker&apos;<sp/>property<sp/>of<sp/>an<sp/>artist<sp/>(like<sp/>a<sp/>line)<sp/>is<sp/>None<sp/>by<sp/>default</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">#<sp/>if<sp/>it<sp/>is<sp/>nonzero,<sp/>the<sp/>artist<sp/>will<sp/>fire<sp/>a<sp/>pick<sp/>event<sp/>if<sp/>the<sp/>mouse<sp/>event<sp/>is<sp/>over<sp/>the<sp/>artist</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">#<sp/>if<sp/>it<sp/>is<sp/>a<sp/>function,<sp/>that<sp/>function<sp/>must<sp/>determine<sp/>whether<sp/>the<sp/>artist<sp/>was<sp/>hit<sp/>by<sp/>a<sp/>mouse<sp/>event</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">#<sp/>NB:<sp/>the<sp/>&apos;pickradius&apos;<sp/>property<sp/>is<sp/>buggy;<sp/>if<sp/>picker<sp/>is<sp/>a<sp/>float,<sp/>pickradius<sp/>is<sp/>set<sp/>to<sp/>that<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">#<sp/>since<sp/>keyword<sp/>arguments<sp/>are<sp/>assigned<sp/>in<sp/>reverse<sp/>order<sp/>(!)<sp/>it<sp/>makes<sp/>no<sp/>sense<sp/>to<sp/>set<sp/>picker<sp/>and<sp/>pickradius<sp/>separately</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">line,<sp/>=<sp/>ax.plot(t,<sp/>amp,<sp/></highlight><highlight class="stringliteral">&apos;o&apos;</highlight><highlight class="normal">,<sp/>markerfacecolor=</highlight><highlight class="stringliteral">&apos;none&apos;</highlight><highlight class="normal">,<sp/>markersize=5,<sp/>picker=5)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">ax.set_ylabel(</highlight><highlight class="stringliteral">&apos;amplitude<sp/>(e-4)&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">ax.set_xlabel(</highlight><highlight class="stringliteral">&apos;Time<sp/>(UT<sp/>on<sp/>day<sp/>121-105&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">#<sp/>This<sp/>is<sp/>the<sp/>function<sp/>that<sp/>is<sp/>called<sp/>when<sp/>a<sp/>pick_event<sp/>happens<sp/>(see<sp/>the<sp/>mpl_connect<sp/>line<sp/>below)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">#<sp/>The<sp/>argument<sp/>is<sp/>a<sp/>matplotlib.backend_bases.PickEvent<sp/>class,<sp/>which<sp/>has<sp/>two<sp/>attributes:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">#<sp/>the<sp/>mouse<sp/>event<sp/>that<sp/>generated<sp/>the<sp/>pick<sp/>(position,<sp/>button<sp/>pressed,<sp/>etc),<sp/>and<sp/>the<sp/>artist<sp/>that</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">#<sp/>generated<sp/>the<sp/>pick<sp/>event</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacehops__visualization_1_1picking__aedit_1ad2d5b7e2d56cef3465cb1f426496eb14" kindref="member">pick_action</ref>(event):</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>check<sp/>that<sp/>we<sp/>picked<sp/>an<sp/>element<sp/>from<sp/>the<sp/>data<sp/>we<sp/>plotted</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>event.artist<sp/>!=<sp/>line:</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>get<sp/>the<sp/>index<sp/>of<sp/>the<sp/>datapoint<sp/>that<sp/>was<sp/>picked<sp/>in<sp/>the<sp/>artist<sp/>(might<sp/>be<sp/>more<sp/>than<sp/>one<sp/>if<sp/>points<sp/>overlap)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>n<sp/>=<sp/>len(event.ind)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>n:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>generate<sp/>a<sp/>new<sp/>figure,<sp/>with<sp/>enough<sp/>subplots<sp/>to<sp/>accomodate<sp/>the<sp/>number<sp/>of<sp/>datapoints<sp/>that<sp/>were<sp/>picked</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>fig,<sp/>axs<sp/>=<sp/>plt.subplots(n,<sp/>squeeze=</highlight><highlight class="keyword">False</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>associate<sp/>each<sp/>datapoint<sp/>with<sp/>a<sp/>panel<sp/>in<sp/>the<sp/>new<sp/>figure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>dataind,<sp/>ax<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>zip(event.ind,<sp/>axs.flat):</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>read<sp/>in<sp/>the<sp/>kludged<sp/>fourfit<sp/>plot<sp/>and<sp/>plot<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>image<sp/>=<sp/>plt.imread(</highlight><highlight class="stringliteral">&apos;3765/&apos;</highlight><highlight class="normal">+fname[dataind]+</highlight><highlight class="stringliteral">&apos;.jpg&apos;</highlight><highlight class="normal">)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ax.imshow(image)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ax.axis(</highlight><highlight class="stringliteral">&apos;off&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ax.margins(0,0)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#fig.tight_layout()<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#fig.subplots_adjust(left=0,<sp/>bottom=0,<sp/>right=1,<sp/>top=1,<sp/>wspace=None,<sp/>hspace=None)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>show<sp/>the<sp/>new<sp/>figure</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>fig.show()</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">#<sp/>this<sp/>connects<sp/>our<sp/>callback<sp/>function<sp/>to<sp/>the<sp/>event<sp/>manager</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">fig.canvas.mpl_connect(</highlight><highlight class="stringliteral">&apos;pick_event&apos;</highlight><highlight class="normal">,<sp/>pick_action)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">plt.show()</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/picking_aedit.py"/>
+  </compounddef>
+</doxygen>

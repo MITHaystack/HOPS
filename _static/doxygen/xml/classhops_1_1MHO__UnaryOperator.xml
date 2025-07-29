@@ -1,0 +1,680 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__UnaryOperator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_UnaryOperator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__Operator" prot="public" virt="non-virtual">hops::MHO_Operator</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; mbd_type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; pcal_type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__EndZeroPadder" prot="public" virt="non-virtual">hops::MHO_EndZeroPadder&lt; XArgType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransform&lt; XArgType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW" prot="public" virt="non-virtual">hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__SelectRepack" prot="public" virt="non-virtual">hops::MHO_SelectRepack&lt; XArgType &gt;</derivedcompoundref>
+    <includes refid="MHO__UnaryOperator_8hh" local="no">MHO_UnaryOperator.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class XArgType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_UnaryOperator&lt; XArgType &gt;::fInPlace</definition>
+        <argsstring></argsstring>
+        <name>fInPlace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="136" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" static="no" mutable="no">
+        <type>std::tuple&lt; XArgType * &gt;</type>
+        <definition>std::tuple&lt; XArgType* &gt; hops::MHO_UnaryOperator&lt; XArgType &gt;::fInPlaceArgs</definition>
+        <argsstring></argsstring>
+        <name>fInPlaceArgs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="137" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" static="no" mutable="no">
+        <type>std::tuple&lt; const XArgType *, XArgType * &gt;</type>
+        <definition>std::tuple&lt; const XArgType*, XArgType* &gt; hops::MHO_UnaryOperator&lt; XArgType &gt;::fOutOfPlaceArgs</definition>
+        <argsstring></argsstring>
+        <name>fOutOfPlaceArgs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="138" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_UnaryOperator&lt; XArgType &gt;::MHO_UnaryOperator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_UnaryOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="26" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_UnaryOperator&lt; XArgType &gt;::~MHO_UnaryOperator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_UnaryOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7">Execute</reimplements>
+        <briefdescription>
+<para>Executes operation using provided arguments and return type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success of execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="86" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="86" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::Execute</definition>
+        <argsstring>() override=0</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7">Execute</reimplements>
+        <briefdescription>
+<para>Function Execute. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" line="28" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171">Initialize</reimplements>
+        <briefdescription>
+<para>Initializes the system using in-place or out-of-place arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if initialization succeeds, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="68" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="68" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::Initialize</definition>
+        <argsstring>() override=0</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171">Initialize</reimplements>
+        <briefdescription>
+<para>Function Initialize. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" line="27" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Operator::MHO_Operator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Operator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/MHO_PyUnaryOperator.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/src/MHO_Operator.cc" bodystart="7" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_UnaryOperator&lt; XArgType &gt;::SetArgs</definition>
+        <argsstring>(const XArgType *in, XArgType *out)</argsstring>
+        <name>SetArgs</name>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Setter for args. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array of type XArgType* (const) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="56" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="56" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_UnaryOperator&lt; XArgType &gt;::SetArgs</definition>
+        <argsstring>(XArgType *in)</argsstring>
+        <name>SetArgs</name>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Setter for args. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to input array of type XArgType. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="42" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="42" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArgType *in)=0</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a0b4730c52fd1f74289e17ebf0d0ec5fb">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ac7a54a89c3eb5955f7d91c5ab68fafab">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a91494e148d9ccdeee6454b04b07db262">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1a1662a0008009c795f78fc0681fb4712d">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1ab3310d77baf34375519ea7b21fe02ff4">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a56dbd48ab15b0b6e83c574385e95a4e5">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ac7a54a89c3eb5955f7d91c5ab68fafab">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PhaseCalibrationTrim_1ad77b4d0bf8b3a60668aa187dff162aa5">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CircularFieldRotationCorrection_1a73ef3165a46616d5b21582ee6b643b2e">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DCBlock_1a476b37b431ab7862ac3d079cc6754990">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a5a9906e4a9f5593c0697b01ed1192dbd">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LinearDParCorrection_1aa538483377fd0451950821f010ce3eb9">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LSBOffset_1a14529424d3aa61f5879d68d0ff63d1db">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelDelayCorrection_1a128516928ae1849e2c02d7616cf8ef9c">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelPhaseCorrection_1ae69f8123047e45cb5a21b02d9264db93">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolDelayCorrection_1a520831369e6c31dbb597a570fb6dabbe">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a258bd4401e956e5e127dcfb4c4f5733e">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedPolYShift_1a9e676c22c4c52b0e6b9b32a2acc1ec49">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultitonePhaseCorrection_1a928a7d8af1c769076c407363c529ef6b">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Notches_1aca8bd61c4eb530e7f62efd65a0c679ae">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Passband_1ac8f28244f84d58f8ac7be66257a301c3">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PolProductSummation_1ac25065e017b766df1fe878905e2389b5">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__StationDelayCorrection_1aacbc1be11ad96e2446c78e02b9280882">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1a1662a0008009c795f78fc0681fb4712d">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MinWeight_1a5d5aa29c7ee629d4d4f0a2213acbe2b0">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a0b4730c52fd1f74289e17ebf0d0ec5fb">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedSidebandNormFX_1a7de31ee0593f726ca65dfeaa0829262b">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SingleSidebandNormFX_1ae8fa05cbb6dda9ee145832d37a0ff6d7">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1a1662a0008009c795f78fc0681fb4712d">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a048801d8fded9adc7c950434b7c68d3c">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SelectRepack_1a61bd56798d3ed5f5e1a84fc75fc09d36">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__NormFX_1a4c7d687c21e9543a36e99fbc9998ecbf">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLScalarMultiply_1afb9f766f1a24d1da3eef8408eb709914">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ChannelLabeler_1ad5aadccbc59bebabe2d4b02d58127994">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ab8dafcd1af86ea0140d05caf40ea3918">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SamplerLabeler_1a1047dfaf9275903a968897850362f018">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ac7a54a89c3eb5955f7d91c5ab68fafab">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a91494e148d9ccdeee6454b04b07db262">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1ab3310d77baf34375519ea7b21fe02ff4">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a56dbd48ab15b0b6e83c574385e95a4e5">ExecuteInPlace</reimplementedby>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteInPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="124" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out)=0</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a3c2002cb8957f003ed03e47bb371c3ea">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ac3f704667fbfecc87d095f8643988b06">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a211a4090f9e4cde50534b22b9d4ecf19">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1add0337589cc8d4b38f1069938bffc954">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1ad40f481b9196f56e34d71754e3e4dd24">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a9ad20e7b828c02d3380bb3555c58de3f">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ac3f704667fbfecc87d095f8643988b06">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PhaseCalibrationTrim_1afa513c7b6b58038b3a3d5d9e76760895">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CircularFieldRotationCorrection_1ae3a9747e8a0a11f34376ebe5e8062322">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DCBlock_1ac6ec1445c5709552a353af0d1c6a4428">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a043a13a15b1edee5ed0cdda1ea7d88b6">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LinearDParCorrection_1ae3a2fefde5b98f90fb0ea608a4661f0c">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LSBOffset_1a091c31aacc1940e05d661619f289f34d">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelDelayCorrection_1addb7fdfdb66fcf7066d1ea212cd61a68">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelPhaseCorrection_1a3d0398b8c8c08bf9d07027f1eb696045">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolDelayCorrection_1a501932b01cda5b12b3a07fafd7f05bd9">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolPhaseCorrection_1a0479f09c1fb131ef89938d6fcc02a313">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedPolYShift_1a3d57db7658553a273a039b1d5a488a04">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultitonePhaseCorrection_1a3a1c59b9be1c94f8fad78e55f3c9f978">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Notches_1acf4540e8c2c9306f1002a6f7127547b0">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Passband_1a5fbeede62e248b954daa49b033fc1bb4">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PolProductSummation_1a12f32c59993081089e5bf7bf5a770f70">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__StationDelayCorrection_1a0c2fad3ea1f46a845a8132af10cca2ef">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1add0337589cc8d4b38f1069938bffc954">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MinWeight_1a15b492844950e46d592f2acfd3df50d1">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a3c2002cb8957f003ed03e47bb371c3ea">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedSidebandNormFX_1a7b043386c2906cc71eb3ba644e402a42">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SingleSidebandNormFX_1a5e3140bbf4a33bdde243c3f7d0a40bea">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1add0337589cc8d4b38f1069938bffc954">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1aefa1898c524600b874e36e79dc0db865">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SelectRepack_1a25e595cccbdedffe21c4e4453ff7b0fd">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__NormFX_1aeecc52b42cb4df773ed2267b5227533f">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLScalarMultiply_1a909a8a4f2ebda414e167972c53989bac">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ChannelLabeler_1aa79e6aa3fbc8ee613659050f04be690d">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1ab6d9b1e6be998c1beeca726e6c459ef1">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SamplerLabeler_1a27d976c6a5f2bac6917f994f679a3826">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ac3f704667fbfecc87d095f8643988b06">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a211a4090f9e4cde50534b22b9d4ecf19">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1ad40f481b9196f56e34d71754e3e4dd24">ExecuteOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a9ad20e7b828c02d3380bb3555c58de3f">ExecuteOutOfPlace</reimplementedby>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteOutOfPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="133" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArgType *in)=0</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a627f246d440fa644e9de24822a7f6e0f">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ab4907e69d07de93ace8f84e2cf933c52">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a9e42535ff60515b869339a6e434b0a5b">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1a9ffa3cd1ad859160f352343c7d91c9a1">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1acf71932423cfa494bcf9436d53383b3b">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a78678095cb7ba42ff8a39263a313aba4">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ab4907e69d07de93ace8f84e2cf933c52">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PhaseCalibrationTrim_1a3ee38433f97dc8755cdfea7642a6b464">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultitonePhaseCorrection_1a74423cfede2f1536b4b3c6912ac20528">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CircularFieldRotationCorrection_1af871825e3a280e76ef01617ccdd41d6f">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DCBlock_1a7847c12dff1e5f08feb0325472abab9b">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__IonosphericPhaseCorrection_1ae1031d79698aa830c5cf8774edfecdbd">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LinearDParCorrection_1a2df913e68e9978f1cbc777bd81ca0aa4">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LSBOffset_1a6c458e5e0db569bedeefe24da9417585">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelDelayCorrection_1aba5d6eb84fcc18f3efddd9ea75121cb0">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelPhaseCorrection_1aaf99a762bd44019ea51f74c9b64e6462">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolDelayCorrection_1a18ef120d318c569419ccb42e2acab068">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolPhaseCorrection_1ab34ea5f7720868fc07d2329beefd64fe">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedPolYShift_1a798d3c4a44f1711a42e4183ed1dc7f02">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Notches_1a529b2e1ac53f502ae35f85d770c393fa">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Passband_1a666875c833da9ea33ece1b85965fb8c5">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PolProductSummation_1ab95673da1ca4b5945f496ac167f0a997">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__StationDelayCorrection_1a00ed8b68afc8b977c09557b62857ff5f">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1a9ffa3cd1ad859160f352343c7d91c9a1">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MinWeight_1a056c91992cac836c0600d6294229a6bf">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a627f246d440fa644e9de24822a7f6e0f">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedSidebandNormFX_1a5520e3d1125a044f772f2058d210a7b0">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SingleSidebandNormFX_1a73b0da6bcb0cbdc5eb875becd5441a87">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1a9ffa3cd1ad859160f352343c7d91c9a1">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1a816361ce32f481ed371b12c5eadf58cb">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SelectRepack_1a7d62bc6ecc91c129756107bc84b06518">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__NormFX_1a3187980999e8a4f21a602261272d32e0">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLScalarMultiply_1af32f25490339638c174608cb256e8b0d">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ChannelLabeler_1a323721eb59b550c3ff2b38eb191e791c">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a6d700e44c683e3250f8668285cbd3213">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SamplerLabeler_1a0837feeb0c3c1d3683fa069d699881dd">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1ab4907e69d07de93ace8f84e2cf933c52">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a9e42535ff60515b869339a6e434b0a5b">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1acf71932423cfa494bcf9436d53383b3b">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a78678095cb7ba42ff8a39263a313aba4">InitializeInPlace</reimplementedby>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function InitializeInPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="106" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryOperator&lt; XArgType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArgType *in, XArgType *out)=0</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a7c46d065f090b0183785c5eba443acd8">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1aa03d367c4346ca80d2eb498cd43f2b3e">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a0159858c111b49fc45b280f5daa69aff">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1aefd21c5b96c393211f186f9824a893a4">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1abfd248e20eb5f9a2c0e616f5ec8af1eb">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a2047908f076c8bcaf2c0b91a4c7d49bf">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1aa03d367c4346ca80d2eb498cd43f2b3e">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PhaseCalibrationTrim_1ab5464a373036416c818fd4904cff7dce">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultitonePhaseCorrection_1ae2e4e5588fb137776073b841ca2ff2af">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CircularFieldRotationCorrection_1ae787c27574eeed7972ca2261d96fa47c">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DCBlock_1ac685d6adf76a371108e09e8c0d2aa66a">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a3069a60b674db84485f0aaf3d3ae435d">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LinearDParCorrection_1a42aed4fcc03bd6a0364b9a688d4c892c">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__LSBOffset_1a8f27d99ee2eef484f48e06a5e976c7e8">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelDelayCorrection_1aac320131106c59c57b0423eca8e18f03">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualChannelPhaseCorrection_1ab4491ce6409b8bc447e8247200158295">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolDelayCorrection_1abb4824560daf256e926eee4c44319152">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ManualPolPhaseCorrection_1ad3ea8cad4bc2be8a9bd7add478b94556">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedPolYShift_1a95dfb72b58e6409b0738fc22059c6e95">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Notches_1ae3e54e43f821a52a2ccb452e9ffb07e2">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Passband_1a7b4754b5342b189eb28af5bde66b6046">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__PolProductSummation_1a736a52b5bb4776644fa0e1240fd15daa">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__StationDelayCorrection_1a0893ab54e0199a34e1472dbee85ff520">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1aefd21c5b96c393211f186f9824a893a4">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MinWeight_1adc3330239f3dbbd0ee7f89f7b08ac01e">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__EndZeroPadder_1a7c46d065f090b0183785c5eba443acd8">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MixedSidebandNormFX_1a6632cb305bce709561d714eb416ad5e3">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SingleSidebandNormFX_1a6512d9772b9323b5611e10c3046fd0c0">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransform_1aefd21c5b96c393211f186f9824a893a4">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW_1ac54740cac2deb53667912dbc69ffccfb">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SelectRepack_1a9ad52ce5e111f3649a29fd529380ce7d">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__NormFX_1a48fd9a575a9c1a22da4f6b623af6b10b">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ChannelLabeler_1a94888821e239627066487a482ea21ca1">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__DoubleSidebandChannelLabeler_1a4a948aa91864d6db7922cbe42b102011">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SamplerLabeler_1a97acd9d00fa18e7e381adfbeca94eaa0">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLScalarMultiply_1a9d993057556b0c49e7326d4e1e90e6b4">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__CyclicRotator_1aa03d367c4346ca80d2eb498cd43f2b3e">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__FunctorBroadcaster_1a0159858c111b49fc45b280f5daa69aff">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Reducer_1abfd248e20eb5f9a2c0e616f5ec8af1eb">InitializeOutOfPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__SubSample_1a2047908f076c8bcaf2c0b91a4c7d49bf">InitializeOutOfPlace</reimplementedby>
+        <param>
+          <type>const XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArgType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Function InitializeOutOfPlace. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArgType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="115" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__UnaryOperator" kindref="compound">MHO_UnaryOperator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>operator which only operates on a single array, input = ouput, but the output can be a different object</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Oct 15 12:58:01 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="8">
+        <label>hops::MHO_SelectRepack&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__SelectRepack"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; pcal_type &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_MultidimensionalFastFourierTransformFFTW&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransformFFTW"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_EndZeroPadder&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__EndZeroPadder"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_MultidimensionalFastFourierTransform&lt; mbd_type &gt;</label>
+        <link refid="classhops_1_1MHO__MultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_UnaryOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="5">
+        <label>tuple&lt; XArgType * &gt;</label>
+      </node>
+      <node id="3">
+        <label>tuple&lt; const XArgType *, XArgType * &gt;</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_UnaryOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fOutOfPlaceArgs</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fInPlace</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fInPlaceArgs</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>bool</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" line="23" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryOperator.hh" bodystart="24" bodyend="139"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_UnaryOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3" prot="protected" virt="pure-virtual"><scope>hops::MHO_UnaryOperator</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf" prot="protected" virt="pure-virtual"><scope>hops::MHO_UnaryOperator</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_UnaryOperator</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_UnaryOperator</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_UnaryOperator</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryOperator</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_UnaryOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20" prot="protected" virt="pure-virtual"><scope>hops::MHO_UnaryOperator</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058" prot="protected" virt="pure-virtual"><scope>hops::MHO_UnaryOperator</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryOperator</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryOperator</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryOperator</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_UnaryOperator</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

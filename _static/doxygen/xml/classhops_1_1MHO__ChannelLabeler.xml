@@ -1,0 +1,450 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ChannelLabeler" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ChannelLabeler</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; XArrayType &gt;</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__ChannelIndexLabeler" prot="public" virt="non-virtual">hops::MHO_ChannelIndexLabeler</basecompoundref>
+    <includes refid="MHO__ChannelLabeler_8hh" local="no">MHO_ChannelLabeler.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XArrayType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ChannelLabeler_1af369e1d633a0923f34aa30943835ee8f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ChannelLabeler&lt; XArrayType &gt;::fChannelLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fChannelLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="208" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ChannelLabeler_1a7fa2bb45912e57482ba9aa7087739cef" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, double &gt;</type>
+        <definition>std::map&lt; std::string, double &gt; hops::MHO_ChannelLabeler&lt; XArrayType &gt;::fChannelLabelToFrequency</definition>
+        <argsstring></argsstring>
+        <name>fChannelLabelToFrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="211" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ChannelLabeler_1a923dc018c9a6b5d46772ce33d0b3caba" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ChannelLabeler&lt; XArrayType &gt;::fEps</definition>
+        <argsstring></argsstring>
+        <name>fEps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="212" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ChannelLabeler_1a2c271efeaa88426f93d5783f563cf643" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::size_t, std::string &gt;</type>
+        <definition>std::map&lt; std::size_t, std::string &gt; hops::MHO_ChannelLabeler&lt; XArrayType &gt;::fIndexToChannelLabel</definition>
+        <argsstring></argsstring>
+        <name>fIndexToChannelLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="214" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1ab7194982f1998df6cf4b360b4b762163" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ChannelLabeler&lt; XArrayType &gt;::MHO_ChannelLabeler</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ChannelLabeler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="37" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1ab8700886919ea1c518f075587129ab87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ChannelLabeler&lt; XArrayType &gt;::~MHO_ChannelLabeler</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ChannelLabeler</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="44" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1a81655c0edf0d5c425a92991b4e6d79da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ChannelLabeler&lt; XArrayType &gt;::SetChannelLabelToFrequencyMap</definition>
+        <argsstring>(const std::map&lt; std::string, double &gt; &amp;map)</argsstring>
+        <name>SetChannelLabelToFrequencyMap</name>
+        <param>
+          <type>const std::map&lt; std::string, double &gt; &amp;</type>
+          <declname>map</declname>
+        </param>
+        <briefdescription>
+<para>Setter for channel label to frequency map so if there is a user provided labeling scheme, use that (i.e. chan_ids) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input map of channel labels to frequencies </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="58" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1a76907de685a8d29dcf54bfd60c6fa352" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ChannelLabeler&lt; XArrayType &gt;::SetTolerance</definition>
+        <argsstring>(double tol)</argsstring>
+        <name>SetTolerance</name>
+        <param>
+          <type>double</type>
+          <declname>tol</declname>
+        </param>
+        <briefdescription>
+<para>Setter for tolerance - allows channel freq association to use a (freq) difference tolerance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New tolerance value for frequency mapping </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="51" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="51" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1ad5aadccbc59bebabe2d4b02d58127994" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_ChannelLabeler&lt; XArrayType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Function ExecuteInPlace - attaches channel labels based on sky frequency or user specified map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XArrayType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="87" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="87" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1aa79e6aa3fbc8ee613659050f04be690d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_ChannelLabeler&lt; XArrayType &gt;::ExecuteOutOfPlace</definition>
+        <argsstring>(const XArrayType *in, XArrayType *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input array to output and executes in-place operation on output. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input XArrayType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to output XArrayType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Result of ExecuteInPlace operation on out </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="186" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="186" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1a323721eb59b550c3ff2b38eb191e791c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_ChannelLabeler&lt; XArrayType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArrayType *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type>XArrayType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes XArrayType in-place and returns success. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to XArrayType object to initialize. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization was successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="68" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1a94888821e239627066487a482ea21ca1" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_ChannelLabeler&lt; XArrayType &gt;::InitializeOutOfPlace</definition>
+        <argsstring>(const XArrayType *, XArrayType *) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const XArrayType *</type>
+        </param>
+        <param>
+          <type>XArrayType *</type>
+        </param>
+        <briefdescription>
+<para>Initializes output array out-of-place from input array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const input XArrayType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>!out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output XArrayType initialized out-of-place </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization was successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="78" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="78" bodyend="78"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ChannelLabeler_1a14ddec2691c6df88cb5653f93b8d14fb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ChannelLabeler&lt; XArrayType &gt;::FillDefaultMap</definition>
+        <argsstring>(std::size_t nchans)</argsstring>
+        <name>FillDefaultMap</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>nchans</declname>
+        </param>
+        <briefdescription>
+<para>Clears and populates a map with channel labels encoded from indices up to nchans. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nchans</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of channels to generate labels for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="198" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="198" bodyend="205"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ChannelLabeler" kindref="compound">MHO_ChannelLabeler</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Applies &apos;fourfit&apos; labels to each channel (e.g. a, b,...), if no user-defined map is supplied then the default mapping is in order of frequency low -&gt; high, starting with &apos;a&apos;.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jun 1 13:20:19 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ChannelLabeler&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__ChannelLabeler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ChannelIndexLabeler</label>
+        <link refid="classhops_1_1MHO__ChannelIndexLabeler"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ChannelLabeler&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__ChannelLabeler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::string</label>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ChannelIndexLabeler</label>
+        <link refid="classhops_1_1MHO__ChannelIndexLabeler"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fDefaultChannelChars</edgelabel>
+          <edgelabel>fExtendedChannelChars</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" line="32" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ChannelLabeler.hh" bodystart="35" bodyend="215"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a2618bd99a658f1c4d3e26f06086ed499" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>DecodeLabelToValue</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1af90a8a20a36393f52eb71b8f20583945" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>EncodeValueToLabel</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1ad5aadccbc59bebabe2d4b02d58127994" prot="protected" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1aa79e6aa3fbc8ee613659050f04be690d" prot="protected" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1af369e1d633a0923f34aa30943835ee8f" prot="private" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fChannelLabelKey</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a7fa2bb45912e57482ba9aa7087739cef" prot="private" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fChannelLabelToFrequency</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1acfd75935a0d587f73358bfb674d3866b" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fDefaultChannelChars</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a923dc018c9a6b5d46772ce33d0b3caba" prot="private" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fEps</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1ac56b158dbb15375a6b1e5e909815a44d" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fExtendedChannelChars</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a14ddec2691c6df88cb5653f93b8d14fb" prot="private" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>FillDefaultMap</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a2c271efeaa88426f93d5783f563cf643" prot="private" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fIndexToChannelLabel</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a323721eb59b550c3ff2b38eb191e791c" prot="protected" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a94888821e239627066487a482ea21ca1" prot="protected" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a1d38d8aed2fbda05f907571fc6fcc374" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>MHO_ChannelIndexLabeler</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1ab7194982f1998df6cf4b360b4b762163" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>MHO_ChannelLabeler</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a81655c0edf0d5c425a92991b4e6d79da" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetChannelLabelToFrequencyMap</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a48038970d16391f65f6e9d8b71783f95" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetDefaultChannelChars</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1a18ab9b1b4b1304660fef3f1107a27dc4" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetExtendedChannelChars</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1a76907de685a8d29dcf54bfd60c6fa352" prot="public" virt="non-virtual"><scope>hops::MHO_ChannelLabeler</scope><name>SetTolerance</name></member>
+      <member refid="classhops_1_1MHO__ChannelIndexLabeler_1ae5535711ff82459f8166fe18d91cfe38" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>~MHO_ChannelIndexLabeler</name></member>
+      <member refid="classhops_1_1MHO__ChannelLabeler_1ab8700886919ea1c518f075587129ab87" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>~MHO_ChannelLabeler</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_ChannelLabeler</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

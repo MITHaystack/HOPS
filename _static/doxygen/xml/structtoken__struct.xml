@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtoken__struct" kind="struct" language="C++" prot="public">
+    <compoundname>token_struct</compoundname>
+    <includes refid="parser_8h" local="no">parser.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtoken__struct_1a992a86d6f35342183bb5dc7f450ec3bc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short token_struct::category</definition>
+        <argsstring></argsstring>
+        <name>category</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="19" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtoken__struct_1a425570fc6d8387465580cfc51c9ed003" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int token_struct::line</definition>
+        <argsstring></argsstring>
+        <name>line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="22" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtoken__struct_1ae4bdff5c564e5ed0808576cacc577ca3" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short token_struct::symbol</definition>
+        <argsstring></argsstring>
+        <name>symbol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="18" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtoken__struct_1a467c4025d2beead0161f56093ad6661a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int token_struct::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="20" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>token_struct</label>
+        <link refid="structtoken__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>category</edgelabel>
+          <edgelabel>symbol</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>line</edgelabel>
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="17" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structtoken__struct_1a992a86d6f35342183bb5dc7f450ec3bc" prot="public" virt="non-virtual"><scope>token_struct</scope><name>category</name></member>
+      <member refid="structtoken__struct_1a425570fc6d8387465580cfc51c9ed003" prot="public" virt="non-virtual"><scope>token_struct</scope><name>line</name></member>
+      <member refid="structtoken__struct_1ae4bdff5c564e5ed0808576cacc577ca3" prot="public" virt="non-virtual"><scope>token_struct</scope><name>symbol</name></member>
+      <member refid="structtoken__struct_1a467c4025d2beead0161f56093ad6661a" prot="public" virt="non-virtual"><scope>token_struct</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

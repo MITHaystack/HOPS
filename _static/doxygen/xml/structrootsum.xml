@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structrootsum" kind="struct" language="C++" prot="public">
+    <compoundname>rootsum</compoundname>
+    <includes refid="adata_8h" local="no">adata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structrootsum_1ab65b1ac83831027ab93fc01581dcf8c2" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short rootsum::archiv</definition>
+        <argsstring></argsstring>
+        <name>archiv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="20" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a4e0522d57918a1fd14090e407a80f1fb" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char rootsum::corel_vers</definition>
+        <argsstring></argsstring>
+        <name>corel_vers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="13" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a888a5fdcf3b61fa2d6b34fa3f5a7bb20" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short rootsum::expt_no</definition>
+        <argsstring></argsstring>
+        <name>expt_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="10" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1acecda18d3d8e2a235265a0044f809a05" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short rootsum::extent_no</definition>
+        <argsstring></argsstring>
+        <name>extent_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="11" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a8ba0eb30a936c2150e97d4b3090eee75" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char rootsum::fname[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>fname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="9" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1aaec6c7597861c00575d1cf2b3d53a838" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rootsum::procdate</definition>
+        <argsstring></argsstring>
+        <name>procdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="14" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1aa8875b3194022143984257ce465648bb" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char rootsum::root_id[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>root_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="19" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a3cefb82af99959d26adb3d04265ebf97" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char rootsum::scan_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>scan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="24" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a8c63f3a281f90c1df51c16d4c4464695" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short rootsum::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="12" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1aa5ac0abfa73cd35ceb717c99bf57c556" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char rootsum::source[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="17" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a27987035a849f218bd973bb01ed18f1c" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short rootsum::ssec</definition>
+        <argsstring></argsstring>
+        <name>ssec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="16" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1aee44b3f2b16c7ff99ba1a370079a7327" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char rootsum::stations[20]</definition>
+        <argsstring>[20]</argsstring>
+        <name>stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="18" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a1252618d9824b27c15a7b0f784b4593c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rootsum::time_tag</definition>
+        <argsstring></argsstring>
+        <name>time_tag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="15" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structrootsum_1a20ca3e21b3b8fc573c3819f2db8ac777" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short rootsum::version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="8" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>rootsum</label>
+        <link refid="structrootsum"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>corel_vers</edgelabel>
+          <edgelabel>fname</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>stations</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>archiv</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>size</edgelabel>
+          <edgelabel>ssec</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="7" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="7" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structrootsum_1ab65b1ac83831027ab93fc01581dcf8c2" prot="public" virt="non-virtual"><scope>rootsum</scope><name>archiv</name></member>
+      <member refid="structrootsum_1a4e0522d57918a1fd14090e407a80f1fb" prot="public" virt="non-virtual"><scope>rootsum</scope><name>corel_vers</name></member>
+      <member refid="structrootsum_1a888a5fdcf3b61fa2d6b34fa3f5a7bb20" prot="public" virt="non-virtual"><scope>rootsum</scope><name>expt_no</name></member>
+      <member refid="structrootsum_1acecda18d3d8e2a235265a0044f809a05" prot="public" virt="non-virtual"><scope>rootsum</scope><name>extent_no</name></member>
+      <member refid="structrootsum_1a8ba0eb30a936c2150e97d4b3090eee75" prot="public" virt="non-virtual"><scope>rootsum</scope><name>fname</name></member>
+      <member refid="structrootsum_1aaec6c7597861c00575d1cf2b3d53a838" prot="public" virt="non-virtual"><scope>rootsum</scope><name>procdate</name></member>
+      <member refid="structrootsum_1aa8875b3194022143984257ce465648bb" prot="public" virt="non-virtual"><scope>rootsum</scope><name>root_id</name></member>
+      <member refid="structrootsum_1a3cefb82af99959d26adb3d04265ebf97" prot="public" virt="non-virtual"><scope>rootsum</scope><name>scan_id</name></member>
+      <member refid="structrootsum_1a8c63f3a281f90c1df51c16d4c4464695" prot="public" virt="non-virtual"><scope>rootsum</scope><name>size</name></member>
+      <member refid="structrootsum_1aa5ac0abfa73cd35ceb717c99bf57c556" prot="public" virt="non-virtual"><scope>rootsum</scope><name>source</name></member>
+      <member refid="structrootsum_1a27987035a849f218bd973bb01ed18f1c" prot="public" virt="non-virtual"><scope>rootsum</scope><name>ssec</name></member>
+      <member refid="structrootsum_1aee44b3f2b16c7ff99ba1a370079a7327" prot="public" virt="non-virtual"><scope>rootsum</scope><name>stations</name></member>
+      <member refid="structrootsum_1a1252618d9824b27c15a7b0f784b4593c" prot="public" virt="non-virtual"><scope>rootsum</scope><name>time_tag</name></member>
+      <member refid="structrootsum_1a20ca3e21b3b8fc573c3819f2db8ac777" prot="public" virt="non-virtual"><scope>rootsum</scope><name>version</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

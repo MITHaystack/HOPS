@@ -1,0 +1,1143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ContainerStore" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ContainerStore</compoundname>
+    <includes refid="MHO__ContainerStore_8hh" local="no">MHO_ContainerStore.hh</includes>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" prot="protected" static="no">
+        <type>std::pair&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>, <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt;</type>
+        <definition>using hops::MHO_ContainerStore::key_pair =  std::pair&lt; MHO_UUID, MHO_UUID &gt;</definition>
+        <argsstring></argsstring>
+        <name>key_pair</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="215" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ContainerDictionary" kindref="compound">MHO_ContainerDictionary</ref></type>
+        <definition>MHO_ContainerDictionary hops::MHO_ContainerStore::fDictionary</definition>
+        <argsstring></argsstring>
+        <name>fDictionary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="220" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="220" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; <ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref>, <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> * &gt;</type>
+        <definition>std::map&lt; key_pair, MHO_Serializable* &gt; hops::MHO_ContainerStore::fIdsToObjects</definition>
+        <argsstring></argsstring>
+        <name>fIdsToObjects</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="226" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *, <ref refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" kindref="member">key_pair</ref> &gt;</type>
+        <definition>std::map&lt; MHO_Serializable*, key_pair &gt; hops::MHO_ContainerStore::fObjectsToIds</definition>
+        <argsstring></argsstring>
+        <name>fObjectsToIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="229" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="229" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerStore_1a208625904b4d8294c6e2aba41527fb6a" prot="protected" static="no" mutable="no">
+        <type>std::set&lt; std::string &gt;</type>
+        <definition>std::set&lt; std::string &gt; hops::MHO_ContainerStore::fShortNameSet</definition>
+        <argsstring></argsstring>
+        <name>fShortNameSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="233" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt;</type>
+        <definition>std::map&lt; std::string, MHO_UUID &gt; hops::MHO_ContainerStore::fShortNameToIds</definition>
+        <argsstring></argsstring>
+        <name>fShortNameToIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="232" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="232" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a098859e8ed3f641558254b9b11d4656a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerStore::MHO_ContainerStore</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a49821a0ad9e08ffca430837972c14eaf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ContainerStore::~MHO_ContainerStore</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ContainerStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1af5ad680d1a1fd5e0f21cff97da89ec79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_ContainerStore::AddObject</definition>
+        <argsstring>(XClassType *obj)</argsstring>
+        <name>AddObject</name>
+        <param>
+          <type>XClassType *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Adds an object (with specific type) to the container store if it&apos;s non-null and can be cast to <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function <ref refid="classhops_1_1MHO__ContainerStore_1af5ad680d1a1fd5e0f21cff97da89ec79" kindref="member">MHO_ContainerStore::AddObject</ref>, addes and object via pointer.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter, the object type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the object to add, must not be nullptr </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if object was successfully added, false otherwise</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XClassType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (template&lt; typename XClassType &gt; bool) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="51" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="242" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a93df4c1775df05712b86dea3b7f44135" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerStore::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+<para>Deletes all objects in the store. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="41" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="6" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a172a981fef8589ed7e598af870c04994" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ContainerStore::DeleteObject</definition>
+        <argsstring>(const MHO_UUID &amp;obj_id)</argsstring>
+        <name>DeleteObject</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_id</declname>
+        </param>
+        <briefdescription>
+<para>Deletes an object from the container and removes related mappings by its UUID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>UUID of the object to delete. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if deletion was successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="128" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="50" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a2712f221181fe3f0f11e4557475807f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_ContainerStore::DeleteObject</definition>
+        <argsstring>(XClassType *obj_ptr)</argsstring>
+        <name>DeleteObject</name>
+        <param>
+          <type>XClassType *</type>
+          <declname>obj_ptr</declname>
+        </param>
+        <briefdescription>
+<para>Deletes an object and removes associated entries from containers, returns true if successful. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function <ref refid="classhops_1_1MHO__ContainerStore_1a2712f221181fe3f0f11e4557475807f3" kindref="member">MHO_ContainerStore::DeleteObject</ref> - removes an object via pointer.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XClassType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the object of type XClassType to delete. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if deletion was successful, false otherwise.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_ptr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XClassType*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (template&lt; typename XClassType &gt; bool) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="86" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="349" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a1cba89cd988f64128a6c562c301d7d3e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerStore::DumpShortNamesToIds</definition>
+        <argsstring>()</argsstring>
+        <name>DumpShortNamesToIds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="206" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="206" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1ab9da68866bf1259aa65c7c22ab61e3b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::tuple&lt; std::string, std::string, std::string &gt; &gt;</type>
+        <definition>std::vector&lt; std::tuple&lt; std::string, std::string, std::string &gt; &gt; hops::MHO_ContainerStore::GetAllObjectInfo</definition>
+        <argsstring>()</argsstring>
+        <name>GetAllObjectInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="194" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="162" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1aa6c23daa08ef67b61c8f7f7d5224049d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerStore::GetAllObjectUUIDsOfType</definition>
+        <argsstring>(MHO_UUID type_id, std::vector&lt; MHO_UUID &gt; &amp;obj_ids)</argsstring>
+        <name>GetAllObjectUUIDsOfType</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+          <declname>type_id</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt; &amp;</type>
+          <declname>obj_ids</declname>
+        </param>
+        <briefdescription>
+<para>get every object uuid in store associated with the specified type UUID </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input type ID of <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> to filter objects </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj_ids</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> )&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="143" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="78" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a1bf5872e1b8eb1947c0d6ded1248ffad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerStore::GetAllShortNames</definition>
+        <argsstring>(std::vector&lt; std::string &gt; &amp;shortnames)</argsstring>
+        <name>GetAllShortNames</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>shortnames</declname>
+        </param>
+        <briefdescription>
+<para>get all short names currently in use </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reference</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>to (std::vector&lt; std::string&gt;&amp;) to be filled </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="190" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="135" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a6971d6e9313b086e2d70c32d7837564a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerStore::GetAllTypeUUIDs</definition>
+        <argsstring>(std::vector&lt; MHO_UUID &gt; &amp;type_ids)</argsstring>
+        <name>GetAllTypeUUIDs</name>
+        <param>
+          <type>std::vector&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt; &amp;</type>
+          <declname>type_ids</declname>
+        </param>
+        <briefdescription>
+<para>get every type uuid that is present in store </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type_ids</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output parameter: vector to hold retrieved UUIDs. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="135" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="61" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1aea90e8cc518d391e85e4d84b8a18c6af" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ContainerStore::GetNObjects</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNObjects</name>
+        <briefdescription>
+<para>get the number of objects of a specific type </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Counts and returns the number of objects of type XClassType stored in <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XClassType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Size of fObjectsToIds vector as std::size_t</para>
+</simplesect>
+<simplesect kind="return"><para>Number of objects of type XClassType found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="102" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="407" bodyend="421"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1abb5deba9d4de9f7be5e51d32c96fa86d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ContainerStore::GetNObjects</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNObjects</name>
+        <briefdescription>
+<para>get total number of objects in store </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Number of objects as std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="150" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="150" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>XClassType *</type>
+        <definition>XClassType * hops::MHO_ContainerStore::GetObject</definition>
+        <argsstring>(const MHO_UUID &amp;obj_id)</argsstring>
+        <name>GetObject</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_id</declname>
+        </param>
+        <briefdescription>
+<para>get an object of a specific type via object uuid (returns nullptr if not present) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves an object of type XClassType from the container store using its UUID.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>UUID of the object to retrieve </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the object of type XClassType if found, nullptr otherwise</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The unique identifier (UUID) of the desired object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A pointer to the object of type XClassType, or nullptr if not found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="59" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="274" bodyend="290"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a17b1cd88623ab61ccd64f62de046fac2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *</type>
+        <definition>MHO_Serializable * hops::MHO_ContainerStore::GetObject</definition>
+        <argsstring>(const MHO_UUID &amp;obj_id)</argsstring>
+        <name>GetObject</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_id</declname>
+        </param>
+        <briefdescription>
+<para>get an object via uuid (returns nullptr if not present) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>UUID of the object to retrieve </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the object if found, nullptr otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="120" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="33" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a750746e89aa37ec1512c17361de19427" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>XClassType *</type>
+        <definition>XClassType * hops::MHO_ContainerStore::GetObject</definition>
+        <argsstring>(const std::string &amp;shortname)</argsstring>
+        <name>GetObject</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>shortname</declname>
+        </param>
+        <briefdescription>
+<para>provides retrieval of an object via shortname/nickname, returns nullptr on failure </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves an object of type XClassType from the container store using its shortname.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XClassType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the object if found, nullptr otherwise</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the retrieved object of type XClassType, or nullptr if not found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="68" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="298" bodyend="307"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a98ba66c6240f2eaae3df2e6df7d93307" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>XClassType *</type>
+        <definition>XClassType * hops::MHO_ContainerStore::GetObject</definition>
+        <argsstring>(std::size_t index)</argsstring>
+        <name>GetObject</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>get an object of a specific type via integer index (returns nullptr if not present) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves an object of type XClassType at a specific index (for this class type) in the container.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XClassType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the retrieved object cast to XClassType, or nullptr if not found</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the desired object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Pointer to the object of type XClassType if found, nullptr otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="77" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="315" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a23fd693e5669ed386f15c7a7862bdff2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_ContainerStore::GetObjectTypeUUID</definition>
+        <argsstring>(const MHO_UUID &amp;obj_id)</argsstring>
+        <name>GetObjectTypeUUID</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_id</declname>
+        </param>
+        <briefdescription>
+<para>returns the type uuid of the object with obj_id (if it exists) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The ID of the object whose type&apos;s UUID is to be retrieved. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The UUID of the object type if found, otherwise an empty UUID. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="175" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="145" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a9b6cb68b46ed10595a6d11ed0c14fa31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_ContainerStore::GetObjectUUID</definition>
+        <argsstring>(const std::string &amp;shortname)</argsstring>
+        <name>GetObjectUUID</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>shortname</declname>
+        </param>
+        <briefdescription>
+<para>provide retrieval of an object uuid via shortname/nickname, returns zero&apos;d uuid if none exist </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Short name of the object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Object UUID; zero&apos;d if none exist </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="167" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="108" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a462ef5eb99c761de5a4bca823737b5d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ContainerStore::GetShortName</definition>
+        <argsstring>(const MHO_UUID &amp;obj_id)</argsstring>
+        <name>GetShortName</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_id</declname>
+        </param>
+        <briefdescription>
+<para>provide retrival of object short name from uuid </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UUID for which to retrieve the short name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The short name as a string if found, otherwise an empty string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="183" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="120" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1ae6f78d013685c50c4e21d82135f86415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_ContainerStore::GetTypeUUID</definition>
+        <argsstring>()</argsstring>
+        <name>GetTypeUUID</name>
+        <briefdescription>
+<para>get the type uuid for a specific type (if it is supported) - if unsupported uuid will be zero </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the UUID for a given class type from the internal dictionary, given the class XClassType template parameter.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XClassType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> representing the type&apos;s UUID.</para>
+</simplesect>
+<simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> representing the type&apos;s UUID. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="94" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="396" bodyend="400"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1aad15f2eb03eea6ebdcd6fc8013435c4d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ContainerStore::IsObjectPresent</definition>
+        <argsstring>(const MHO_UUID &amp;obj_id) const</argsstring>
+        <name>IsObjectPresent</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_id</declname>
+        </param>
+        <briefdescription>
+<para>Checks if an object with a given UUID is present in the container store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XClassType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XClassType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UUID of the object to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the object is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="112" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="18" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1acb204c225f10bc2a281b695c7edca7bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ContainerStore::RenameObject</definition>
+        <argsstring>(const std::string &amp;current_shortname, const std::string &amp;new_shortname)</argsstring>
+        <name>RenameObject</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>current_shortname</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>new_shortname</declname>
+        </param>
+        <briefdescription>
+<para>provides a way in which we can replace the shortname/nickname of an object </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Renames an object in <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> by updating its short name and associated UUID.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>current_shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::string) the current shortname </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>new_shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::string) the new object shortname</para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>current_shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Current short name of the object to be renamed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>new_shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New short name for the object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="203" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="429" bodyend="438"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerStore_1a165afd02427cc03c70e3bae975fc39db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ContainerStore::SetShortName</definition>
+        <argsstring>(const MHO_UUID &amp;obj_id, const std::string &amp;shortname)</argsstring>
+        <name>SetShortName</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>obj_id</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>shortname</declname>
+        </param>
+        <briefdescription>
+<para>provide the ability to attach a nicknames to object uuids, all nicknames must be unique returns false if unsuccessful (object not present, or shortname already in use) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Object UUID to associate with the short name </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shortname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Unique short name to assign to the object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if successful, returns false if unsuccessful (object not present, or shortname already in use) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="159" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerStore.cc" bodystart="93" bodyend="105"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>holds a collection of objects all pointed to by base class MHO_Serializable* retrieval is through type/object ids</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sat Feb 12 17:54:26 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="19">
+        <label>size_t</label>
+      </node>
+      <node id="23">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="26">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="12">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>json</label>
+      </node>
+      <node id="7">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="20">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>key_pair</label>
+      </node>
+      <node id="18">
+        <label>int</label>
+      </node>
+      <node id="9">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::set&lt; std::string &gt;</label>
+        <childnode refid="6" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>uint8_t</label>
+      </node>
+      <node id="24">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::map&lt; hops::MHO_Serializable *, key_pair &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ContainerStore</label>
+        <link refid="classhops_1_1MHO__ContainerStore"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fObjectsToIds</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fShortNameSet</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fShortNameToIds</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fIdsToObjects</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fDictionary</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>std::map&lt; key_pair, hops::MHO_Serializable * &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="16">
+        <label>char</label>
+      </node>
+      <node id="6">
+        <label>std::string</label>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerStore.hh" bodystart="32" bodyend="234"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ContainerStore_1af5ad680d1a1fd5e0f21cff97da89ec79" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>AddObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a93df4c1775df05712b86dea3b7f44135" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a2712f221181fe3f0f11e4557475807f3" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>DeleteObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a172a981fef8589ed7e598af870c04994" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>DeleteObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a1cba89cd988f64128a6c562c301d7d3e" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>DumpShortNamesToIds</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a2d487d18f32a32a1d7af424ee378177b" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>fDictionary</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1ab50921c445a5fcf44cf1cb1c7ab015ca" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>fIdsToObjects</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a4209497a5f5656401b13af941f83e1e3" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>fObjectsToIds</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a208625904b4d8294c6e2aba41527fb6a" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>fShortNameSet</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a4f45abae859c12620816cdf9cc70cb6f" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>fShortNameToIds</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1ab9da68866bf1259aa65c7c22ab61e3b0" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetAllObjectInfo</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1aa6c23daa08ef67b61c8f7f7d5224049d" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetAllObjectUUIDsOfType</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a1bf5872e1b8eb1947c0d6ded1248ffad" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetAllShortNames</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a6971d6e9313b086e2d70c32d7837564a" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetAllTypeUUIDs</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1aea90e8cc518d391e85e4d84b8a18c6af" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetNObjects</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1abb5deba9d4de9f7be5e51d32c96fa86d" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetNObjects</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a5220072d0f85b45f046b9887989c082a" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a750746e89aa37ec1512c17361de19427" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a98ba66c6240f2eaae3df2e6df7d93307" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a17b1cd88623ab61ccd64f62de046fac2" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a23fd693e5669ed386f15c7a7862bdff2" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetObjectTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a9b6cb68b46ed10595a6d11ed0c14fa31" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a462ef5eb99c761de5a4bca823737b5d3" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetShortName</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1ae6f78d013685c50c4e21d82135f86415" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>GetTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1aad15f2eb03eea6ebdcd6fc8013435c4d" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>IsObjectPresent</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1ac51e64cd78a80f6d9e2049a6d902db86" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>key_pair</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a098859e8ed3f641558254b9b11d4656a" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>MHO_ContainerStore</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1acb204c225f10bc2a281b695c7edca7bd" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>RenameObject</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a165afd02427cc03c70e3bae975fc39db" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerStore</scope><name>SetShortName</name></member>
+      <member refid="classhops_1_1MHO__ContainerStore_1a49821a0ad9e08ffca430837972c14eaf" prot="public" virt="virtual"><scope>hops::MHO_ContainerStore</scope><name>~MHO_ContainerStore</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

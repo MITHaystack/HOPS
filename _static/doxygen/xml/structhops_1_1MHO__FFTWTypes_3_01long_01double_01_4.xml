@@ -1,0 +1,258 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>hops::MHO_FFTWTypes&lt; long double &gt;</compoundname>
+    <includes refid="MHO__FFTWTypes_8hh" local="no">MHO_FFTWTypes.hh</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1afde81ba59ef8ae358e3f62683fb42251" prot="public" static="no">
+        <type>std::complex&lt; long double &gt;</type>
+        <definition>using hops::MHO_FFTWTypes&lt; long double &gt;::complex_type =  std::complex&lt; long double &gt;</definition>
+        <argsstring></argsstring>
+        <name>complex_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="126" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1ad681a36c56d080fcdf6d6ef0ec7f39db" prot="public" static="no">
+        <type>std::complex&lt; long double &gt; *</type>
+        <definition>using hops::MHO_FFTWTypes&lt; long double &gt;::complex_type_ptr =  std::complex&lt; long double &gt;*</definition>
+        <argsstring></argsstring>
+        <name>complex_type_ptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="127" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a83d2c39c66f80569f245d505003f0d49" prot="public" static="no">
+        <type>fftwl_complex</type>
+        <definition>using hops::MHO_FFTWTypes&lt; long double &gt;::fftw_complex_type =  fftwl_complex</definition>
+        <argsstring></argsstring>
+        <name>fftw_complex_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="128" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a3d95eef571b3b333bb11b0da1ff4ed9e" prot="public" static="no">
+        <type>fftwl_complex *</type>
+        <definition>using hops::MHO_FFTWTypes&lt; long double &gt;::fftw_complex_type_ptr =  fftwl_complex*</definition>
+        <argsstring></argsstring>
+        <name>fftw_complex_type_ptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="129" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1ac566e6f69745bf0c9c0f8845517638e2" prot="public" static="no">
+        <type>fftwl_iodim</type>
+        <definition>using hops::MHO_FFTWTypes&lt; long double &gt;::iodim_type =  fftwl_iodim</definition>
+        <argsstring></argsstring>
+        <name>iodim_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="130" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a0cf90f5aac35809d1298b6e08eb08738" prot="public" static="no">
+        <type>fftwl_plan</type>
+        <definition>using hops::MHO_FFTWTypes&lt; long double &gt;::plan_type =  fftwl_plan</definition>
+        <argsstring></argsstring>
+        <name>plan_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="131" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a0fe6588b492a9544da03984557439dba" prot="public" static="yes" mutable="no">
+        <type>decltype(&amp;<ref refid="MHO__FFTWTypes_8hh_1a69f9e16b912d2427c8fb5d97b8e2c2c5" kindref="member">fftwl_alignment_of</ref>) const</type>
+        <definition>decltype(&amp;) fftwl_alignment_of const hops::MHO_FFTWTypes&lt; long double &gt;::alignment_of_func</definition>
+        <argsstring></argsstring>
+        <name>alignment_of_func</name>
+        <initializer>= <ref refid="MHO__FFTWTypes_8hh_1a69f9e16b912d2427c8fb5d97b8e2c2c5" kindref="member">fftwl_alignment_of</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="135" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a154cc535edb46c476c63c66737886357" prot="public" static="yes" mutable="no">
+        <type>decltype(&amp;fftwl_alloc_complex) const</type>
+        <definition>decltype(&amp;) fftwl_alloc_complex const hops::MHO_FFTWTypes&lt; long double &gt;::alloc_func</definition>
+        <argsstring></argsstring>
+        <name>alloc_func</name>
+        <initializer>= fftwl_alloc_complex</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="137" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a8709d4cb027cbcf6433a4d2c72772490" prot="public" static="yes" mutable="no">
+        <type>decltype(&amp;fftwl_destroy_plan) const</type>
+        <definition>decltype(&amp;) fftwl_destroy_plan const hops::MHO_FFTWTypes&lt; long double &gt;::destroy_plan_func</definition>
+        <argsstring></argsstring>
+        <name>destroy_plan_func</name>
+        <initializer>= fftwl_destroy_plan</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="136" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a941fb108405b7db7720e1574e54e2303" prot="public" static="yes" mutable="no">
+        <type>decltype(&amp;fftwl_execute_dft) const</type>
+        <definition>decltype(&amp;) fftwl_execute_dft const hops::MHO_FFTWTypes&lt; long double &gt;::execute_dft_func</definition>
+        <argsstring></argsstring>
+        <name>execute_dft_func</name>
+        <initializer>= fftwl_execute_dft</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="134" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a629cc61a916a0b972f45f8ef147923dc" prot="public" static="yes" mutable="no">
+        <type>decltype(&amp;fftwl_execute) const</type>
+        <definition>decltype(&amp;) fftwl_execute const hops::MHO_FFTWTypes&lt; long double &gt;::execute_func</definition>
+        <argsstring></argsstring>
+        <name>execute_func</name>
+        <initializer>= fftwl_execute</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="133" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1aa8ce93eef21f27cee3714cdd8d958d3c" prot="public" static="yes" mutable="no">
+        <type>decltype(&amp;fftwl_free) const</type>
+        <definition>decltype(&amp;) fftwl_free const hops::MHO_FFTWTypes&lt; long double &gt;::free_func</definition>
+        <argsstring></argsstring>
+        <name>free_func</name>
+        <initializer>= fftwl_free</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="138" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a3f162e3813b01f985e61cf8be607b75f" prot="public" static="yes" mutable="no">
+        <type>decltype(&amp;fftwl_plan_guru_dft) const</type>
+        <definition>decltype(&amp;) fftwl_plan_guru_dft const hops::MHO_FFTWTypes&lt; long double &gt;::plan_guru_func</definition>
+        <argsstring></argsstring>
+        <name>plan_guru_func</name>
+        <initializer>= fftwl_plan_guru_dft</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="139" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4" kindref="compound">MHO_FFTWTypes&lt;long double&gt;</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>static decltype(&amp;fftwl_destroy_plan) const</label>
+      </node>
+      <node id="4">
+        <label>static decltype(&amp;fftwl_alignment_of) const</label>
+      </node>
+      <node id="5">
+        <label>static decltype(&amp;fftwl_execute) const</label>
+      </node>
+      <node id="8">
+        <label>static decltype(&amp;fftwl_free) const</label>
+      </node>
+      <node id="7">
+        <label>static decltype(&amp;fftwl_alloc_complex) const</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_FFTWTypes&lt; long double &gt;</label>
+        <link refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>destroy_plan_func</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>execute_dft_func</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>alignment_of_func</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>execute_func</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>plan_guru_func</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>alloc_func</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>free_func</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>static decltype(&amp;fftwl_execute_dft) const</label>
+      </node>
+      <node id="6">
+        <label>static decltype(&amp;fftwl_plan_guru_dft) const</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" line="124" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_FFTWTypes.hh" bodystart="125" bodyend="148"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a0fe6588b492a9544da03984557439dba" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>alignment_of_func</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a154cc535edb46c476c63c66737886357" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>alloc_func</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1afde81ba59ef8ae358e3f62683fb42251" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>complex_type</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1ad681a36c56d080fcdf6d6ef0ec7f39db" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>complex_type_ptr</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a8709d4cb027cbcf6433a4d2c72772490" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>destroy_plan_func</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a941fb108405b7db7720e1574e54e2303" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>execute_dft_func</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a629cc61a916a0b972f45f8ef147923dc" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>execute_func</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a83d2c39c66f80569f245d505003f0d49" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>fftw_complex_type</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a3d95eef571b3b333bb11b0da1ff4ed9e" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>fftw_complex_type_ptr</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1aa8ce93eef21f27cee3714cdd8d958d3c" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>free_func</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1ac566e6f69745bf0c9c0f8845517638e2" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>iodim_type</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a3f162e3813b01f985e61cf8be607b75f" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>plan_guru_func</name></member>
+      <member refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a0cf90f5aac35809d1298b6e08eb08738" prot="public" virt="non-virtual"><scope>hops::MHO_FFTWTypes&lt; long double &gt;</scope><name>plan_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

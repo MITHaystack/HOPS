@@ -1,0 +1,548 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Tokenizer" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_Tokenizer</compoundname>
+    <includes refid="MHO__Tokenizer_8hh" local="no">MHO_Tokenizer.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1a6bc62ed2cdaffa4048839257cefbc19a" prot="protected" static="no" mutable="no">
+        <type>const std::string *</type>
+        <definition>const std::string* hops::MHO_Tokenizer::fCurrentString</definition>
+        <argsstring></argsstring>
+        <name>fCurrentString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="96" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1af7cbf73ef2338c48fa4586c212bfa936" prot="protected" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Tokenizer::fDelim</definition>
+        <argsstring></argsstring>
+        <name>fDelim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="94" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1a58b608601dfe9b9cdcbb4c82cd163835" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Tokenizer::fIncludeEmptyTokens</definition>
+        <argsstring></argsstring>
+        <name>fIncludeEmptyTokens</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="90" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1a9e4c1307c8eef94c247750384ce8b938" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Tokenizer::fMultiCharDelimiter</definition>
+        <argsstring></argsstring>
+        <name>fMultiCharDelimiter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="91" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1a27cb0ab817cec37e80295e508370331d" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Tokenizer::fPreserveQuotes</definition>
+        <argsstring></argsstring>
+        <name>fPreserveQuotes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="92" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1aec5bad907b12f7ca4342c31a77127234" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt;</type>
+        <definition>std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt; hops::MHO_Tokenizer::fQuotePairIndexes</definition>
+        <argsstring></argsstring>
+        <name>fQuotePairIndexes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="97" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1a6e049a2ec1436d7bde73ddd50c8958ef" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_Tokenizer::fRemoveLeadingTrailingWhitespace</definition>
+        <argsstring></argsstring>
+        <name>fRemoveLeadingTrailingWhitespace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="93" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Tokenizer_1a100d60d452e7014021a12314e36e85e7" prot="protected" static="no" mutable="no">
+        <type>const std::string *</type>
+        <definition>const std::string* hops::MHO_Tokenizer::fString</definition>
+        <argsstring></argsstring>
+        <name>fString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="95" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a2db8c11f9a7fcbd6d678d989bed05f27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Tokenizer::MHO_Tokenizer</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Tokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="9" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1ab355fd7d53602f59f78563fe91fde55a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Tokenizer::~MHO_Tokenizer</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Tokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a46de3362dee2b53c0451e6fe24640730" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::GetTokens</definition>
+        <argsstring>(std::vector&lt; std::string &gt; *tokens)</argsstring>
+        <name>GetTokens</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; *</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Parse the string using the tokens <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a vector of strings </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="72" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="75" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1acaa09bc7d82e81eaa5a87933c3c5a8b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetDelimiter</definition>
+        <argsstring>(const std::string &amp;aDelim)</argsstring>
+        <name>SetDelimiter</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>aDelim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Set the delimiter to be used to parse the string in SetString <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aDelim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>string a string to be used as a delimiter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="66" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="70" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a31385f3b994b43f013abc0313f0ccd8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetIncludeEmptyTokensFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetIncludeEmptyTokensFalse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Do not include empty tokens and set fincludeEmptyTokens to false <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>None</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="39" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a37a5fbb4532687b170c75b978228366c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetIncludeEmptyTokensTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetIncludeEmptyTokensTrue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Include empty tokens set fIncludeEmptyTokens to true for situations where two delimiters surround a substring which would result in an empty string <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>None</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="33" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a3b3805c8f0c11da6f763b356f7bdf10c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetPreserveQuotesFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetPreserveQuotesFalse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1ae4bceeaac368fbf809537c80471f9e09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetPreserveQuotesTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetPreserveQuotesTrue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="44" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a857a32c612ac96b19d299577d3d40afd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetRemoveLeadingTrailingWhitespaceFalse</name>
+        <briefdescription>
+<para>Setter for remove leading trailing whitespace false. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="54" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="60" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a793ef73727f0b0b56b40b1a0979e3f04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetRemoveLeadingTrailingWhitespaceTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetRemoveLeadingTrailingWhitespaceTrue</name>
+        <briefdescription>
+<para>Setter for remove leading trailing whitespace true. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="55" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a4138c473b9f7b0e7069adafa6f1be422" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetString</definition>
+        <argsstring>(const std::string *aString)</argsstring>
+        <name>SetString</name>
+        <param>
+          <type>const std::string *</type>
+          <declname>aString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Set the string to be parsed <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aString</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>None </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="60" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="65" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a0ef56a9a7daa31e1f8aebe1995c7d157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetUseMulticharacterDelimiterFalse</definition>
+        <argsstring>()</argsstring>
+        <name>SetUseMulticharacterDelimiterFalse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="42" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a9768b76414c91fbaf1b671af26a516ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SetUseMulticharacterDelimiterTrue</definition>
+        <argsstring>()</argsstring>
+        <name>SetUseMulticharacterDelimiterTrue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="41" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="35" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a6a7eef20f93b60ea8b57cad0121c77c7" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_Tokenizer::TrimLeadingAndTrailingWhitespace</definition>
+        <argsstring>(const std::string &amp;value)</argsstring>
+        <name>TrimLeadingAndTrailingWhitespace</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="74" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="278" bodyend="291"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a4eff2baefc3c811343ee7d1479ca31a1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_Tokenizer::IndexQuoteInstances</definition>
+        <argsstring>(const std::string *aString, std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt; *quotes)</argsstring>
+        <name>IndexQuoteInstances</name>
+        <param>
+          <type>const std::string *</type>
+          <declname>aString</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt; *</type>
+          <declname>quotes</declname>
+        </param>
+        <briefdescription>
+<para>Finds and indexes quote instances in a given string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>aString</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string to search for quotes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quotes</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; std::pair&lt; std::size_t, std::size_t ) * </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Number of indexed quote pairs found. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="87" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="245" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1a0ebda244cc22e34b6a9b4d21e2735a95" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::MultiCharTokenize</definition>
+        <argsstring>(std::vector&lt; std::string &gt; *tokens)</argsstring>
+        <name>MultiCharTokenize</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; *</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="77" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="151" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Tokenizer_1ace36cc0fb4c61dd008cc99351b16261e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Tokenizer::SingleCharTokenize</definition>
+        <argsstring>(std::vector&lt; std::string &gt; *tokens)</argsstring>
+        <name>SingleCharTokenize</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; *</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="78" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/src/MHO_Tokenizer.cc" bodystart="197" bodyend="243"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__Tokenizer" kindref="compound">MHO_Tokenizer</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon May 11 15:51:26 2020 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barret - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> A configurable class reponsible for parsing a string on a given delimiter (default delimiter) is a space </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; std::pair&lt; std::size_t, std::size_t &gt; &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>bool</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_Tokenizer</label>
+        <link refid="classhops_1_1MHO__Tokenizer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fQuotePairIndexes</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fCurrentString</edgelabel>
+          <edgelabel>fDelim</edgelabel>
+          <edgelabel>fString</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fIncludeEmptyTokens</edgelabel>
+          <edgelabel>fMultiCharDelimiter</edgelabel>
+          <edgelabel>fPreserveQuotes</edgelabel>
+          <edgelabel>fRemoveLeadingTrailingWhitespace</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>pair&lt; std::size_t, std::size_t &gt;</label>
+      </node>
+      <node id="4">
+        <label>std::string</label>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Tokenizer.hh" bodystart="24" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Tokenizer_1a6bc62ed2cdaffa4048839257cefbc19a" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fCurrentString</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1af7cbf73ef2338c48fa4586c212bfa936" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fDelim</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a58b608601dfe9b9cdcbb4c82cd163835" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fIncludeEmptyTokens</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a9e4c1307c8eef94c247750384ce8b938" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fMultiCharDelimiter</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a27cb0ab817cec37e80295e508370331d" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fPreserveQuotes</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1aec5bad907b12f7ca4342c31a77127234" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fQuotePairIndexes</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a6e049a2ec1436d7bde73ddd50c8958ef" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fRemoveLeadingTrailingWhitespace</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a100d60d452e7014021a12314e36e85e7" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>fString</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a46de3362dee2b53c0451e6fe24640730" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>GetTokens</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a4eff2baefc3c811343ee7d1479ca31a1" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>IndexQuoteInstances</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a2db8c11f9a7fcbd6d678d989bed05f27" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>MHO_Tokenizer</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a0ebda244cc22e34b6a9b4d21e2735a95" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>MultiCharTokenize</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1acaa09bc7d82e81eaa5a87933c3c5a8b9" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetDelimiter</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a31385f3b994b43f013abc0313f0ccd8f" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetIncludeEmptyTokensFalse</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a37a5fbb4532687b170c75b978228366c" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetIncludeEmptyTokensTrue</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a3b3805c8f0c11da6f763b356f7bdf10c" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetPreserveQuotesFalse</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1ae4bceeaac368fbf809537c80471f9e09" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetPreserveQuotesTrue</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a857a32c612ac96b19d299577d3d40afd" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetRemoveLeadingTrailingWhitespaceFalse</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a793ef73727f0b0b56b40b1a0979e3f04" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetRemoveLeadingTrailingWhitespaceTrue</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a4138c473b9f7b0e7069adafa6f1be422" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetString</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a0ef56a9a7daa31e1f8aebe1995c7d157" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetUseMulticharacterDelimiterFalse</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a9768b76414c91fbaf1b671af26a516ab" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SetUseMulticharacterDelimiterTrue</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1ace36cc0fb4c61dd008cc99351b16261e" prot="protected" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>SingleCharTokenize</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1a6a7eef20f93b60ea8b57cad0121c77c7" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>TrimLeadingAndTrailingWhitespace</name></member>
+      <member refid="classhops_1_1MHO__Tokenizer_1ab355fd7d53602f59f78563fe91fde55a" prot="public" virt="non-virtual"><scope>hops::MHO_Tokenizer</scope><name>~MHO_Tokenizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

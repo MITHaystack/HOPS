@@ -1,0 +1,454 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structscan__struct" kind="struct" language="C++" prot="public">
+    <compoundname>scan_struct</compoundname>
+    <includes refid="ovex_8h" local="no">ovex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structscan__struct_1a59d44051e6f210e47708d165eea8178b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float scan_struct::a1_tai</definition>
+        <argsstring></argsstring>
+        <name>a1_tai</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="165" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a1edc0128f4de6058519842392dbd46f2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char scan_struct::correlator[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>correlator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="160" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1ac176173746b9d9ed6225ecdf0c25c469" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int scan_struct::eop_interval</definition>
+        <argsstring></argsstring>
+        <name>eop_interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="168" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1ab344f15e4343f1e96f79c546c6d6bae7" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date scan_struct::eop_reftime</definition>
+        <argsstring></argsstring>
+        <name>eop_reftime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="166" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1ad721ec3b1e4b11aedcb33391545ac386" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char scan_struct::exper_name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>exper_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="159" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a7206b8100b7cef6d69797184f94bf73f" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short scan_struct::exper_num</definition>
+        <argsstring></argsstring>
+        <name>exper_num</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="158" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1af3de1491a0833075519630d29ca04a9b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date scan_struct::ffit_reftime</definition>
+        <argsstring></argsstring>
+        <name>ffit_reftime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="161" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a0b6d3970e4740a91df4fff9d896d8746" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char scan_struct::filename[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="157" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1aea82ed4af0bd4094a99ba37d36a20391" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int scan_struct::neop</definition>
+        <argsstring></argsstring>
+        <name>neop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="166" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a66276d0b97f433138d77f34b49ee1bb3" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short scan_struct::nst</definition>
+        <argsstring></argsstring>
+        <name>nst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="173" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1ad30889988f06af5b61c467831c22d430" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char scan_struct::scan_name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="161" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a8f32b5788a2a9453812f4d34b37e86e9" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsource__struct" kindref="compound">source_struct</ref></type>
+        <definition>struct source_struct scan_struct::src</definition>
+        <argsstring></argsstring>
+        <name>src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="171" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structstation__struct" kindref="compound">station_struct</ref> *</type>
+        <definition>struct station_struct* scan_struct::st</definition>
+        <argsstring></argsstring>
+        <name>st</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="174" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a0c97c293e48442f34ba184f2c6df3950" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdate" kindref="compound">date</ref></type>
+        <definition>struct date scan_struct::start_time</definition>
+        <argsstring></argsstring>
+        <name>start_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="161" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1ab2ff000af544a805537d6fde186f26f0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float scan_struct::tai_utc</definition>
+        <argsstring></argsstring>
+        <name>tai_utc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="164" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a5cd961ed808bbb91bdf3194fc8375085" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float scan_struct::ut1_utc[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>ut1_utc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="169" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a6253f4986dc707793c899662aa3ed07b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float scan_struct::x_wobble[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>x_wobble</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="170" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structscan__struct_1a859a470ed148abcc484bd597c3918714" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float scan_struct::y_wobble[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>y_wobble</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="171" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>scan_struct</label>
+        <link refid="structscan__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>a1_tai</edgelabel>
+          <edgelabel>tai_utc</edgelabel>
+          <edgelabel>ut1_utc</edgelabel>
+          <edgelabel>x_wobble</edgelabel>
+          <edgelabel>y_wobble</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>nst</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>correlator</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>filename</edgelabel>
+          <edgelabel>scan_name</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>src</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>eop_interval</edgelabel>
+          <edgelabel>neop</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>st</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>eop_reftime</edgelabel>
+          <edgelabel>ffit_reftime</edgelabel>
+          <edgelabel>start_time</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="11">
+        <label>chan_struct</label>
+        <link refid="structchan__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>if_total_lo</edgelabel>
+          <edgelabel>sky_frequency</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pcal_base_freq</edgelabel>
+          <edgelabel>pcal_spacing</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>bbc_no</edgelabel>
+          <edgelabel>mag_headstack</edgelabel>
+          <edgelabel>mag_tracks</edgelabel>
+          <edgelabel>pcal_detect</edgelabel>
+          <edgelabel>sign_headstack</edgelabel>
+          <edgelabel>sign_tracks</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>band_id</edgelabel>
+          <edgelabel>bbc_id</edgelabel>
+          <edgelabel>chan_id</edgelabel>
+          <edgelabel>chan_name</edgelabel>
+          <edgelabel>if_id</edgelabel>
+          <edgelabel>if_name</edgelabel>
+          <edgelabel>if_sideband</edgelabel>
+          <edgelabel>net_sideband</edgelabel>
+          <edgelabel>pcal_id</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>int</label>
+      </node>
+      <node id="6">
+        <label>sky_coord</label>
+        <link refid="structsky__coord"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>dec_secs</edgelabel>
+          <edgelabel>ra_secs</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>dec_degs</edgelabel>
+          <edgelabel>dec_mins</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ra_mins</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="5">
+        <label>source_struct</label>
+        <link refid="structsource__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>dec_rate</edgelabel>
+          <edgelabel>ra_rate</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>calibrator</edgelabel>
+          <edgelabel>position_ref_frame</edgelabel>
+          <edgelabel>source_type</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>iau_name</edgelabel>
+          <edgelabel>source_name</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>position_epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>station_struct</label>
+        <link refid="structstation__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>coordinates</edgelabel>
+          <edgelabel>samplerate</edgelabel>
+          <edgelabel>site_velocity</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mk4_site_id</edgelabel>
+          <edgelabel>occucode</edgelabel>
+          <edgelabel>pass_direction</edgelabel>
+          <edgelabel>site_id</edgelabel>
+          <edgelabel>site_name</edgelabel>
+          <edgelabel>subpass</edgelabel>
+          <edgelabel>tape_id</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>axis_offset</edgelabel>
+          <edgelabel>clock_early</edgelabel>
+          <edgelabel>clockrate</edgelabel>
+          <edgelabel>head_position</edgelabel>
+          <edgelabel>record_density</edgelabel>
+          <edgelabel>roll_period</edgelabel>
+          <edgelabel>start_tapepos</edgelabel>
+          <edgelabel>tape_length</edgelabel>
+          <edgelabel>zenith_atm</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>axis_type</edgelabel>
+          <edgelabel>bits_sample</edgelabel>
+          <edgelabel>drive_no</edgelabel>
+          <edgelabel>early_start</edgelabel>
+          <edgelabel>late_finish</edgelabel>
+          <edgelabel>modulation</edgelabel>
+          <edgelabel>multiplex_ratio</edgelabel>
+          <edgelabel>passno</edgelabel>
+          <edgelabel>rack_type</edgelabel>
+          <edgelabel>recorder_id</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>clockrate_epoch</edgelabel>
+          <edgelabel>coordinate_epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" line="155" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ovex.h" bodystart="156" bodyend="175"/>
+    <listofallmembers>
+      <member refid="structscan__struct_1a59d44051e6f210e47708d165eea8178b" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>a1_tai</name></member>
+      <member refid="structscan__struct_1a1edc0128f4de6058519842392dbd46f2" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>correlator</name></member>
+      <member refid="structscan__struct_1ac176173746b9d9ed6225ecdf0c25c469" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>eop_interval</name></member>
+      <member refid="structscan__struct_1ab344f15e4343f1e96f79c546c6d6bae7" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>eop_reftime</name></member>
+      <member refid="structscan__struct_1ad721ec3b1e4b11aedcb33391545ac386" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>exper_name</name></member>
+      <member refid="structscan__struct_1a7206b8100b7cef6d69797184f94bf73f" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>exper_num</name></member>
+      <member refid="structscan__struct_1af3de1491a0833075519630d29ca04a9b" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>ffit_reftime</name></member>
+      <member refid="structscan__struct_1a0b6d3970e4740a91df4fff9d896d8746" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>filename</name></member>
+      <member refid="structscan__struct_1aea82ed4af0bd4094a99ba37d36a20391" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>neop</name></member>
+      <member refid="structscan__struct_1a66276d0b97f433138d77f34b49ee1bb3" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>nst</name></member>
+      <member refid="structscan__struct_1ad30889988f06af5b61c467831c22d430" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>scan_name</name></member>
+      <member refid="structscan__struct_1a8f32b5788a2a9453812f4d34b37e86e9" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>src</name></member>
+      <member refid="structscan__struct_1a36c837a6871e83ad5f2bc1dce941a2df" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>st</name></member>
+      <member refid="structscan__struct_1a0c97c293e48442f34ba184f2c6df3950" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>start_time</name></member>
+      <member refid="structscan__struct_1ab2ff000af544a805537d6fde186f26f0" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>tai_utc</name></member>
+      <member refid="structscan__struct_1a5cd961ed808bbb91bdf3194fc8375085" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>ut1_utc</name></member>
+      <member refid="structscan__struct_1a6253f4986dc707793c899662aa3ed07b" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>x_wobble</name></member>
+      <member refid="structscan__struct_1a859a470ed148abcc484bd597c3918714" prot="public" virt="non-virtual"><scope>scan_struct</scope><name>y_wobble</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

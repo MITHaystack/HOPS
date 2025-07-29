@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_0057024deded2ff24003f61a80827c99" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="meta__struct_8h">meta_struct.h</innerfile>
+    <innerfile refid="plot__data__dir_8h">plot_data_dir.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffplot/include/"/>
+  </compounddef>
+</doxygen>

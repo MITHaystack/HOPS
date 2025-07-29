@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_f60fbe5dc3387f63c1e0cab0f78da170" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="append__sdata_8c">append_sdata.c</innerfile>
+    <innerfile refid="do__record__merge_8c">do_record_merge.c</innerfile>
+    <innerfile refid="gen__new__chan__id_8c">gen_new_chan_id.c</innerfile>
+    <innerfile refid="print__cdata__cmp_8c">print_cdata_cmp.c</innerfile>
+    <innerfile refid="scan__name__edit_8c">scan_name_edit.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/"/>
+  </compounddef>
+</doxygen>

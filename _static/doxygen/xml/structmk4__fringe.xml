@@ -1,0 +1,865 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmk4__fringe" kind="struct" language="C++" prot="public">
+    <compoundname>mk4_fringe</compoundname>
+    <includes refid="mk4__data_8h" local="no">mk4_data.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmk4__fringe_1ab6d4151e343a27e4af1439a9567b977a" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* mk4_fringe::allocated[MAXFREQ+16]</definition>
+        <argsstring>[MAXFREQ+16]</argsstring>
+        <name>allocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="83" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1aed80cbdd7fc97121dd82992e15351fe3" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* mk4_fringe::file_image</definition>
+        <argsstring></argsstring>
+        <name>file_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="85" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a8446c2beea735873fbc3132f810fd9d8" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__000" kindref="compound">type_000</ref> *</type>
+        <definition>struct type_000* mk4_fringe::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="86" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1add4f2cb868979fbad75607fb7dbe807e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_fringe::n212</definition>
+        <argsstring></argsstring>
+        <name>n212</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="98" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1ae7a8d6d0d290aca7c1d813f50db5f529" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_fringe::n230</definition>
+        <argsstring></argsstring>
+        <name>n230</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="103" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a9fb0b868bc39cb4354ec3560b661f8d9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_fringe::nalloc</definition>
+        <argsstring></argsstring>
+        <name>nalloc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="84" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a29896e6c714c8b296ef8f34c52cf5b03" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__200" kindref="compound">type_200</ref> *</type>
+        <definition>struct type_200* mk4_fringe::t200</definition>
+        <argsstring></argsstring>
+        <name>t200</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="87" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a9d937c3605fa4f28638820018adbdac4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__201" kindref="compound">type_201</ref> *</type>
+        <definition>struct type_201* mk4_fringe::t201</definition>
+        <argsstring></argsstring>
+        <name>t201</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="88" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__202" kindref="compound">type_202</ref> *</type>
+        <definition>struct type_202* mk4_fringe::t202</definition>
+        <argsstring></argsstring>
+        <name>t202</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="89" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a1078ec267cc33da99d889c3de219394b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__203" kindref="compound">type_203</ref> *</type>
+        <definition>struct type_203* mk4_fringe::t203</definition>
+        <argsstring></argsstring>
+        <name>t203</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="90" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a81fd9170f58a8d11ad5c7f26a9788da0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__204" kindref="compound">type_204</ref> *</type>
+        <definition>struct type_204* mk4_fringe::t204</definition>
+        <argsstring></argsstring>
+        <name>t204</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="91" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a8300085e1d4eef1b1868555b1b8547a0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__205" kindref="compound">type_205</ref> *</type>
+        <definition>struct type_205* mk4_fringe::t205</definition>
+        <argsstring></argsstring>
+        <name>t205</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="92" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1abb206b2d67b8ce8b2852e709afb5694f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__206" kindref="compound">type_206</ref> *</type>
+        <definition>struct type_206* mk4_fringe::t206</definition>
+        <argsstring></argsstring>
+        <name>t206</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="93" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1ab613ef79c8500c2372029f17335e8ea4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__207" kindref="compound">type_207</ref> *</type>
+        <definition>struct type_207* mk4_fringe::t207</definition>
+        <argsstring></argsstring>
+        <name>t207</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="94" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__208" kindref="compound">type_208</ref> *</type>
+        <definition>struct type_208* mk4_fringe::t208</definition>
+        <argsstring></argsstring>
+        <name>t208</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="95" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a7f29f8395276f10c16aba18bbcd4f596" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__210" kindref="compound">type_210</ref> *</type>
+        <definition>struct type_210* mk4_fringe::t210</definition>
+        <argsstring></argsstring>
+        <name>t210</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="96" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a09552356db6fae234c487e3e6abc4ff5" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__212" kindref="compound">type_212</ref> *</type>
+        <definition>struct type_212* mk4_fringe::t212[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>t212</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="99" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a7c55c096dca3098b68e33a4d85696bd9" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__220" kindref="compound">type_220</ref> *</type>
+        <definition>struct type_220* mk4_fringe::t220</definition>
+        <argsstring></argsstring>
+        <name>t220</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="100" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a7987f4e1f28c0854bba02658cf3b297b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__221" kindref="compound">type_221</ref> *</type>
+        <definition>struct type_221* mk4_fringe::t221</definition>
+        <argsstring></argsstring>
+        <name>t221</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="101" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1a93a5668d6040f180ef12d8c8cafe1a91" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__222" kindref="compound">type_222</ref> *</type>
+        <definition>struct type_222* mk4_fringe::t222</definition>
+        <argsstring></argsstring>
+        <name>t222</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="102" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__fringe_1ac6845d05853691e2908ffb34847c9c33" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__230" kindref="compound">type_230</ref> *</type>
+        <definition>struct type_230* mk4_fringe::t230[MAXFREQ *MAXAP]</definition>
+        <argsstring>[MAXFREQ *MAXAP]</argsstring>
+        <name>t230</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="104" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="31">
+        <label>void *</label>
+      </node>
+      <node id="22">
+        <label>sidebands</label>
+        <link refid="structsidebands"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_000</label>
+        <link refid="structtype__000"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>newphasor</label>
+        <link refid="structnewphasor"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>amp</edgelabel>
+          <edgelabel>phase</edgelabel>
+          <edgelabel>weight</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>sbandf</label>
+        <link refid="structsbandf"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>sbweights</label>
+        <link refid="structsbweights"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>mk4_fringe</label>
+        <link refid="structmk4__fringe"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>file_image</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>t200</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>t201</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>t202</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>n212</edgelabel>
+          <edgelabel>n230</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>t203</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>t204</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>t230</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>t205</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>t220</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>t206</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>t221</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>t210</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>t207</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>t222</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>t208</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>allocated</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>t212</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="10">
+        <label>sky_coord</label>
+        <link refid="structsky__coord"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>dec_secs</edgelabel>
+          <edgelabel>ra_secs</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>dec_degs</edgelabel>
+          <edgelabel>dec_mins</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ra_mins</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>polars</label>
+        <link refid="structpolars"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ampl</edgelabel>
+          <edgelabel>phase</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>double</label>
+      </node>
+      <node id="25">
+        <label>type_210</label>
+        <link refid="structtype__210"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>amp_phas</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>type_212</label>
+        <link refid="structtype__212"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>channel</edgelabel>
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>nap</edgelabel>
+          <edgelabel>sbd_chan</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>ch_struct</label>
+        <link refid="structch__struct"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+          <edgelabel>rem_freq</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>refpol</edgelabel>
+          <edgelabel>refsb</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>rempol</edgelabel>
+          <edgelabel>remsb</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>index</edgelabel>
+          <edgelabel>sample_rate</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_220</label>
+        <link refid="structtype__220"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>height</edgelabel>
+          <edgelabel>width</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fplot</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_221</label>
+        <link refid="structtype__221"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>padded</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pplot</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ps_length</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_222</label>
+        <link refid="structtype__222"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>padded</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>control_contents</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cf_length</edgelabel>
+          <edgelabel>control_hash</edgelabel>
+          <edgelabel>setstring_hash</edgelabel>
+          <edgelabel>setstring_length</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>anonymous:ffit_chan</label>
+      </node>
+      <node id="16">
+        <label>type_230</label>
+        <link refid="structtype__230"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>lsbweight</edgelabel>
+          <edgelabel>usbweight</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>nspec_pts</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>frq</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>xpower</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>type_200</label>
+        <link refid="structtype__200"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>software_rev</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>correlator</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>scan_name</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>start_offset</edgelabel>
+          <edgelabel>stop_offset</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>corr_date</edgelabel>
+          <edgelabel>fourfit_date</edgelabel>
+          <edgelabel>frt</edgelabel>
+          <edgelabel>scantime</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>type_201</label>
+        <link refid="structtype__201"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>dec_rate</edgelabel>
+          <edgelabel>dispersion</edgelabel>
+          <edgelabel>pulsar_epoch</edgelabel>
+          <edgelabel>pulsar_phase</edgelabel>
+          <edgelabel>ra_rate</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>epoch</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>coord</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>coord_date</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>type_202</label>
+        <link refid="structtype__202"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ref_xpos</edgelabel>
+          <edgelabel>ref_ypos</edgelabel>
+          <edgelabel>ref_zpos</edgelabel>
+          <edgelabel>rem_xpos</edgelabel>
+          <edgelabel>rem_ypos</edgelabel>
+          <edgelabel>rem_zpos</edgelabel>
+          <edgelabel>u</edgelabel>
+          <edgelabel>uf</edgelabel>
+          <edgelabel>v</edgelabel>
+          <edgelabel>vf</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ref_az</edgelabel>
+          <edgelabel>ref_clock</edgelabel>
+          <edgelabel>ref_clockrate</edgelabel>
+          <edgelabel>ref_elev</edgelabel>
+          <edgelabel>ref_idelay</edgelabel>
+          <edgelabel>ref_zdelay</edgelabel>
+          <edgelabel>rem_az</edgelabel>
+          <edgelabel>rem_clock</edgelabel>
+          <edgelabel>rem_clockrate</edgelabel>
+          <edgelabel>rem_elev</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>ref_intl_id</edgelabel>
+          <edgelabel>ref_name</edgelabel>
+          <edgelabel>ref_tape</edgelabel>
+          <edgelabel>rem_intl_id</edgelabel>
+          <edgelabel>rem_name</edgelabel>
+          <edgelabel>rem_tape</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_203</label>
+        <link refid="structtype__203"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_204</label>
+        <link refid="structtype__204"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ff_version</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>control_file</edgelabel>
+          <edgelabel>override</edgelabel>
+          <edgelabel>platform</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>ffcf_date</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_205</label>
+        <link refid="structtype__205"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>filter</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>search</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ffmode</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>ffit_chan</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+          <edgelabel>utc_central</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_206</label>
+        <link refid="structtype__206"/>
+        <childnode refid="22" relation="usage">
+          <edgelabel>accepted</edgelabel>
+          <edgelabel>reason1</edgelabel>
+          <edgelabel>reason2</edgelabel>
+          <edgelabel>reason3</edgelabel>
+          <edgelabel>reason4</edgelabel>
+          <edgelabel>reason5</edgelabel>
+          <edgelabel>reason6</edgelabel>
+          <edgelabel>reason7</edgelabel>
+          <edgelabel>reason8</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>accept_ratio</edgelabel>
+          <edgelabel>discard</edgelabel>
+          <edgelabel>intg_time</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>first_ap</edgelabel>
+          <edgelabel>last_ap</edgelabel>
+          <edgelabel>mbdsize</edgelabel>
+          <edgelabel>ratesize</edgelabel>
+          <edgelabel>sbdsize</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>weights</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>start</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_207</label>
+        <link refid="structtype__207"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ref_errate</edgelabel>
+          <edgelabel>ref_pcrate</edgelabel>
+          <edgelabel>rem_errate</edgelabel>
+          <edgelabel>rem_pcrate</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>pcal_mode</edgelabel>
+          <edgelabel>unused2</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>ref_pcamp</edgelabel>
+          <edgelabel>ref_pcfreq</edgelabel>
+          <edgelabel>ref_pcoffset</edgelabel>
+          <edgelabel>ref_pcphase</edgelabel>
+          <edgelabel>rem_pcamp</edgelabel>
+          <edgelabel>rem_pcfreq</edgelabel>
+          <edgelabel>rem_pcoffset</edgelabel>
+          <edgelabel>rem_pcphase</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_208</label>
+        <link refid="structtype__208"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>aaccel</edgelabel>
+          <edgelabel>adelay</edgelabel>
+          <edgelabel>arate</edgelabel>
+          <edgelabel>tot_mbd</edgelabel>
+          <edgelabel>tot_mbd_ref</edgelabel>
+          <edgelabel>tot_rate</edgelabel>
+          <edgelabel>tot_rate_ref</edgelabel>
+          <edgelabel>tot_sbd</edgelabel>
+          <edgelabel>tot_sbd_ref</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amplitude</edgelabel>
+          <edgelabel>inc_chan_ampl</edgelabel>
+          <edgelabel>inc_seg_ampl</edgelabel>
+          <edgelabel>mbd_error</edgelabel>
+          <edgelabel>prob_false</edgelabel>
+          <edgelabel>rate_error</edgelabel>
+          <edgelabel>resid_mbd</edgelabel>
+          <edgelabel>resid_rate</edgelabel>
+          <edgelabel>resid_sbd</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>tape_qcode</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>short</label>
+      </node>
+      <node id="17">
+        <label>hops_complex_tag</label>
+        <link refid="structhops__complex__tag"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="81" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="82" bodyend="105"/>
+    <listofallmembers>
+      <member refid="structmk4__fringe_1ab6d4151e343a27e4af1439a9567b977a" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>allocated</name></member>
+      <member refid="structmk4__fringe_1aed80cbdd7fc97121dd82992e15351fe3" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>file_image</name></member>
+      <member refid="structmk4__fringe_1a8446c2beea735873fbc3132f810fd9d8" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>id</name></member>
+      <member refid="structmk4__fringe_1add4f2cb868979fbad75607fb7dbe807e" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>n212</name></member>
+      <member refid="structmk4__fringe_1ae7a8d6d0d290aca7c1d813f50db5f529" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>n230</name></member>
+      <member refid="structmk4__fringe_1a9fb0b868bc39cb4354ec3560b661f8d9" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>nalloc</name></member>
+      <member refid="structmk4__fringe_1a29896e6c714c8b296ef8f34c52cf5b03" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t200</name></member>
+      <member refid="structmk4__fringe_1a9d937c3605fa4f28638820018adbdac4" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t201</name></member>
+      <member refid="structmk4__fringe_1a633c9749a98a5370a25a54bcd108d4e1" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t202</name></member>
+      <member refid="structmk4__fringe_1a1078ec267cc33da99d889c3de219394b" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t203</name></member>
+      <member refid="structmk4__fringe_1a81fd9170f58a8d11ad5c7f26a9788da0" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t204</name></member>
+      <member refid="structmk4__fringe_1a8300085e1d4eef1b1868555b1b8547a0" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t205</name></member>
+      <member refid="structmk4__fringe_1abb206b2d67b8ce8b2852e709afb5694f" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t206</name></member>
+      <member refid="structmk4__fringe_1ab613ef79c8500c2372029f17335e8ea4" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t207</name></member>
+      <member refid="structmk4__fringe_1ac4cd7f08f2a102d51f999aecf6bbe4e2" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t208</name></member>
+      <member refid="structmk4__fringe_1a7f29f8395276f10c16aba18bbcd4f596" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t210</name></member>
+      <member refid="structmk4__fringe_1a09552356db6fae234c487e3e6abc4ff5" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t212</name></member>
+      <member refid="structmk4__fringe_1a7c55c096dca3098b68e33a4d85696bd9" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t220</name></member>
+      <member refid="structmk4__fringe_1a7987f4e1f28c0854bba02658cf3b297b" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t221</name></member>
+      <member refid="structmk4__fringe_1a93a5668d6040f180ef12d8c8cafe1a91" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t222</name></member>
+      <member refid="structmk4__fringe_1ac6845d05853691e2908ffb34847c9c33" prot="public" virt="non-virtual"><scope>mk4_fringe</scope><name>t230</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

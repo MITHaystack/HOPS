@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacehops__visualization_1_1read__alist" kind="namespace" language="Python">
+    <compoundname>hops_visualization::read_alist</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacehops__visualization_1_1read__alist_1a85c74ac2bc9d582cbce213c1653435ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.read_alist.get_amp_time</definition>
+        <argsstring>(filename, baseline)</argsstring>
+        <name>get_amp_time</name>
+        <param>
+          <type>filename</type>
+          <defname>filename</defname>
+        </param>
+        <param>
+          <type><ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref></type>
+          <defname>baseline</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/read_alist.py" line="7" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/read_alist.py" bodystart="7" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/read_alist.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

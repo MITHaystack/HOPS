@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="sc__time_8c" kind="file" language="C++">
+    <compoundname>sc_time.c</compoundname>
+    <includes local="no">assert.h</includes>
+    <includes local="no">sys/time.h</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="hetetimecode_8h" local="yes">hetetimecode.h</includes>
+    <includes refid="time__float__type_8h" local="yes">time_float_type.h</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>hetetimecode.h</label>
+        <link refid="hetetimecode_8h"/>
+      </node>
+      <node id="6">
+        <label>time_float_type.h</label>
+        <link refid="time__float__type_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>assert.h</label>
+      </node>
+      <node id="1">
+        <label>sc_time.c</label>
+        <link refid="sc__time_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops_config.h</label>
+      </node>
+      <node id="4">
+        <label>math.h</label>
+      </node>
+      <node id="3">
+        <label>sys/time.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="sc__time_8c_1a49df2e89da89d1807980c9f2c9c38cc3" prot="public" static="no">
+        <name>TVP2USEC</name>
+        <param><defname>t</defname></param>
+        <initializer>((<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref>)((t)-&gt;tv_sec)*(1E6)+(<ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref>)((t)-&gt;tv_usec))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="sc__time_8c_1a711eb2b97e862da7815d98880f3698da" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short Ht_hete_epoch</definition>
+        <argsstring></argsstring>
+        <name>Ht_hete_epoch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" line="15" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/lifetime.c" bodystart="21" bodyend="-1" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" declline="15" declcolumn="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="sc__time_8c_1a740ccc0d1c04b3030b112a7cf79c0f85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int get_sc_time</definition>
+        <argsstring>(time_code *tc)</argsstring>
+        <name>get_sc_time</name>
+        <param>
+          <type><ref refid="structtime__code" kindref="compound">time_code</ref> *</type>
+          <declname>tc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" line="46" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" bodystart="46" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="sc__time_8c_1ae912e71ab7308b1b564dbfc8d20a3e00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void get_sc_time_array</definition>
+        <argsstring>(IPP_word time[4])</argsstring>
+        <name>get_sc_time_array</name>
+        <param>
+          <type><ref refid="hetetimecode_8h_1a13ba3371e20c9b196b2d58823f210371" kindref="member">IPP_word</ref></type>
+          <declname>time</declname>
+          <array>[4]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" bodystart="23" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="sc__time_8c_1a9c4800357e50c28301d3ea8970624e42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int has_this_time_passed</definition>
+        <argsstring>(time_code *time)</argsstring>
+        <name>has_this_time_passed</name>
+        <param>
+          <type><ref refid="structtime__code" kindref="compound">time_code</ref> *</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" line="92" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" bodystart="92" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="sc__time_8c_1a8b8259b2285c5b6e5aaa5d55a5443f2d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int time_cmp</definition>
+        <argsstring>(time_code *time1, time_code *time2)</argsstring>
+        <name>time_cmp</name>
+        <param>
+          <type><ref refid="structtime__code" kindref="compound">time_code</ref> *</type>
+          <declname>time1</declname>
+        </param>
+        <param>
+          <type><ref refid="structtime__code" kindref="compound">time_code</ref> *</type>
+          <declname>time2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" line="67" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c" bodystart="67" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/><sp/>$Id:<sp/>sc_time.c<sp/>80<sp/>2007-05-11<sp/>16:10:54Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/><sp/>This<sp/>file<sp/>contains<sp/>xptr<sp/>system<sp/>time<sp/>functions.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/>Copyright<sp/>(C)<sp/>1998<sp/>by<sp/>MIT.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;assert.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hetetimecode_8h" kindref="compound">hetetimecode.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="time__float__type_8h" kindref="compound">time_float_type.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><ref refid="sc__time_8c_1a711eb2b97e862da7815d98880f3698da" kindref="member">Ht_hete_epoch</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/>The<sp/>HETE-2<sp/>time<sp/>primitive.<sp/><sp/>Time<sp/>is<sp/>computed<sp/>using<sp/>the<sp/>UNIX</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/>gettimeofday(2)<sp/>primitive<sp/>and<sp/>the<sp/>UNIX<sp/>epoch.</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TVP2USEC(t)<sp/>((HTLdbl)((t)-&gt;tv_sec)*(1E6)+(HTLdbl)((t)-&gt;tv_usec))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="sc__time_8c_1ae912e71ab7308b1b564dbfc8d20a3e00" kindref="member">get_sc_time_array</ref>(<ref refid="hetetimecode_8h_1a13ba3371e20c9b196b2d58823f210371" kindref="member">IPP_word</ref><sp/>time[4])</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">timeval<sp/><sp/>now;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><sp/><sp/><sp/><sp/><sp/>us;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>only<sp/>here<sp/>if<sp/>testing<sp/>with<sp/>HETE<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(!<ref refid="hetetimecode_8h_1a774fb1e43424c7c2132e07a5958ee65a" kindref="member">THIS_IS_IBEX</ref>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>gettimeofday(&amp;now,<sp/>0);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>us<sp/>=<sp/><ref refid="sc__time_8c_1a49df2e89da89d1807980c9f2c9c38cc3" kindref="member">TVP2USEC</ref>(&amp;now);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>time[0]<sp/>=<sp/>fmod((<sp/>us<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>),<sp/>65536.0<sp/>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>time[1]<sp/>=<sp/>fmod((<sp/>us<sp/>/<sp/>65536.0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>),<sp/>65536.0<sp/>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>time[2]<sp/>=<sp/>fmod((<sp/>us<sp/>/<sp/>4294967296.0<sp/><sp/><sp/><sp/><sp/>),<sp/>65536.0<sp/>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>time[3]<sp/>=<sp/>fmod((<sp/>us<sp/>/<sp/>281474976710656.0),<sp/>65536.0<sp/>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>time[3]<sp/>|=<sp/><ref refid="hetetimecode_8h_1ad01a7d2df2913f6f52658d77c0f708e1" kindref="member">EPOCH_UNIX</ref>(0);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/><sp/>The<sp/>HETE-1<sp/>interface.<sp/><sp/>Returns<sp/>microseconds<sp/>as<sp/>an<sp/>unsigned</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/><sp/>and<sp/>it<sp/>sets<sp/>the<sp/>time_code<sp/>if<sp/>the<sp/>pointer<sp/>is<sp/>not<sp/>NULL.</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><ref refid="sc__time_8c_1a740ccc0d1c04b3030b112a7cf79c0f85" kindref="member">get_sc_time</ref>(<ref refid="structtime__code" kindref="compound">time_code</ref><sp/>*tc)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtime__code" kindref="compound">time_code</ref><sp/><sp/><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>only<sp/>here<sp/>if<sp/>testing<sp/>with<sp/>HETE<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(!<ref refid="hetetimecode_8h_1a774fb1e43424c7c2132e07a5958ee65a" kindref="member">THIS_IS_IBEX</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="sc__time_8c_1ae912e71ab7308b1b564dbfc8d20a3e00" kindref="member">get_sc_time_array</ref>(<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>.time);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tc)<sp/>*tc<sp/>=<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>(<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>.time[0])<sp/>|<sp/>(<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>.time[1]&lt;&lt;16)<sp/>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/><sp/>Returns<sp/><sp/><sp/><sp/><sp/>-N<sp/><sp/>if<sp/>time1<sp/>&lt;<sp/><sp/>time2<sp/>(time1<sp/>is<sp/>before<sp/>time2)</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/>if<sp/>time1<sp/>==<sp/>time2<sp/>(time1<sp/><sp/>equals<sp/><sp/><sp/>time2)</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>+N<sp/><sp/>if<sp/>time1<sp/>&gt;<sp/><sp/>time2<sp/>(time1<sp/>is<sp/><sp/>after<sp/>time2)</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/><sp/>where<sp/>the<sp/>times<sp/>are<sp/>the<sp/>same<sp/>through<sp/>word<sp/>N.</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/><sp/>Note:<sp/>ordering<sp/>between<sp/>EPOCHS<sp/>isn&apos;t<sp/>well<sp/>defined.</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><ref refid="sc__time_8c_1a8b8259b2285c5b6e5aaa5d55a5443f2d" kindref="member">time_cmp</ref>(<ref refid="structtime__code" kindref="compound">time_code</ref><sp/>*time1,<sp/><ref refid="structtime__code" kindref="compound">time_code</ref><sp/>*time2)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[3]<sp/>&gt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[3])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>4);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[3]<sp/>&lt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[3])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-4);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(time1-&gt;time[3]<sp/>==<sp/>time2-&gt;time[3])<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[2]<sp/>&gt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[2])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>3);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[2]<sp/>&lt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[2])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-3);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(time1-&gt;time[2]<sp/>==<sp/>time2-&gt;time[2])<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[1]<sp/>&gt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[1])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>2);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[1]<sp/>&lt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[1])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-2);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(time1-&gt;time[1]<sp/>==<sp/>time2-&gt;time[1])<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[0]<sp/>&gt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[0])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>1);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(time1-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[0]<sp/>&lt;<sp/><sp/>time2-&gt;<ref refid="structtime__code_1a87a2e2cdb4d78cfe2e59e4c3a86f9b62" kindref="member">time</ref>[0])<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(time1-&gt;time[0]<sp/>==<sp/>time2-&gt;time[0])<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*<sp/><sp/>Hand<sp/>off<sp/>to<sp/>more<sp/>general<sp/>subroutine.</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><ref refid="sc__time_8c_1a9c4800357e50c28301d3ea8970624e42" kindref="member">has_this_time_passed</ref>(<ref refid="structtime__code" kindref="compound">time_code</ref><sp/>*time)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtime__code" kindref="compound">time_code</ref><sp/><sp/><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>only<sp/>here<sp/>if<sp/>testing<sp/>with<sp/>HETE<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>assert(!<ref refid="hetetimecode_8h_1a774fb1e43424c7c2132e07a5958ee65a" kindref="member">THIS_IS_IBEX</ref>);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="sc__time_8c_1ae912e71ab7308b1b564dbfc8d20a3e00" kindref="member">get_sc_time_array</ref>(<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>.time);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>(<ref refid="sc__time_8c_1a8b8259b2285c5b6e5aaa5d55a5443f2d" kindref="member">time_cmp</ref>(time,<sp/>&amp;<ref refid="namespacehops__visualization_1_1picking__aedit_1a50488c776a6d29c2e11aab0f907f5a04" kindref="member">t</ref>)<sp/>&lt;<sp/>0)<sp/>?<sp/>1:<sp/>0);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/sc_time.c"/>
+  </compounddef>
+</doxygen>

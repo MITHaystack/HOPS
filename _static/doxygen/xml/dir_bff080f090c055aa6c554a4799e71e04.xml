@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_bff080f090c055aa6c554a4799e71e04" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="control_8h">control.h</innerfile>
+    <innerfile refid="ffcontrol_8h">ffcontrol.h</innerfile>
+    <innerfile refid="parser_8h">parser.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/"/>
+  </compounddef>
+</doxygen>

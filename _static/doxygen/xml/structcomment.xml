@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structcomment" kind="struct" language="C++" prot="public">
+    <compoundname>comment</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structcomment_1ae6908903cf3f3a8badf764cab4461deb" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* comment::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="72" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcomment_1a4c7082256ad8c9f00d3766e821d01af8" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* comment::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="71" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>comment</label>
+        <link refid="structcomment"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>end</edgelabel>
+          <edgelabel>start</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="68" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="69" bodyend="73"/>
+    <listofallmembers>
+      <member refid="structcomment_1ae6908903cf3f3a8badf764cab4461deb" prot="public" virt="non-virtual"><scope>comment</scope><name>end</name></member>
+      <member refid="structcomment_1a4c7082256ad8c9f00d3766e821d01af8" prot="public" virt="non-virtual"><scope>comment</scope><name>start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

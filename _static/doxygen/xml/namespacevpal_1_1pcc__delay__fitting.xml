@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1pcc__delay__fitting" kind="namespace" language="Python">
+    <compoundname>vpal::pcc_delay_fitting</compoundname>
+    <innerclass refid="classvpal_1_1pcc__delay__fitting_1_1BandDelayFitter" prot="public">vpal::pcc_delay_fitting::BandDelayFitter</innerclass>
+    <innerclass refid="classvpal_1_1pcc__delay__fitting_1_1BasinhoppingStep" prot="public">vpal::pcc_delay_fitting::BasinhoppingStep</innerclass>
+    <innerclass refid="classvpal_1_1pcc__delay__fitting_1_1DelayFitResults" prot="public">vpal::pcc_delay_fitting::DelayFitResults</innerclass>
+    <innerclass refid="classvpal_1_1pcc__delay__fitting_1_1PhasorFitData" prot="public">vpal::pcc_delay_fitting::PhasorFitData</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacevpal_1_1pcc__delay__fitting_1a171ca57fa57565f1891cfcd7b3f41834" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vpal::pcc_delay_fitting.EPS</definition>
+        <argsstring></argsstring>
+        <name>EPS</name>
+        <initializer>=  1e-15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1pcc__delay__fitting_1aebe998ae4b0ec8f6296ce8fe1e92af05" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal::pcc_delay_fitting.pcc_fit_logger</definition>
+        <argsstring></argsstring>
+        <name>pcc_fit_logger</name>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1pcc__delay__fitting_1af1e1a3fc7e7fb5c3e138cbe3e49649c2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vpal::pcc_delay_fitting.PICOSECOND</definition>
+        <argsstring></argsstring>
+        <name>PICOSECOND</name>
+        <initializer>=  1e-12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1pcc__delay__fitting_1a78bd17f46cf88b8bc693aa996aeec4a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.pcc_delay_fitting.calc_delay_phasor</definition>
+        <argsstring>(delay, phase_offset, reference_frequency, frequency)</argsstring>
+        <name>calc_delay_phasor</name>
+        <param>
+          <type>delay</type>
+          <defname>delay</defname>
+        </param>
+        <param>
+          <type>phase_offset</type>
+          <defname>phase_offset</defname>
+        </param>
+        <param>
+          <type>reference_frequency</type>
+          <defname>reference_frequency</defname>
+        </param>
+        <param>
+          <type>frequency</type>
+          <defname>frequency</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>compute complex number associated with a particular delay/phase_offset,frequency and reference_frequency </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="86" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" bodystart="86" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>library to handle the calculation of proxy-cable-calibration delays from phase-cal data </verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/pcc_delay_fitting.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

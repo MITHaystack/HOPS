@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_00_01XValueTypeS_8_8_8_01_4" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_01_4" prot="public" virt="non-virtual">hops::MHO_BinaryFileStreamerMultiType&lt; XValueType &gt;</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__BinaryFileStreamerMultiType" prot="public" virt="non-virtual">hops::MHO_BinaryFileStreamerMultiType&lt; XValueTypeS... &gt;</basecompoundref>
+    <includes refid="MHO__BinaryFileStreamer_8hh" local="no">MHO_BinaryFileStreamer.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>XValueTypeS</declname>
+        <defname>XValueTypeS</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_00_01XValueTypeS_8_8_8_01_4" kindref="compound">MHO_BinaryFileStreamerMultiType&lt;XValueType, XValueTypeS...&gt;</ref> sets up the typelist recursion. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_01_4"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerSingleType"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueTypeS... &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_00_01XValueTypeS_8_8_8_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_01_4"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_BinaryFileStreamerSingleType&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerSingleType"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueTypeS... &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</label>
+        <link refid="classhops_1_1MHO__BinaryFileStreamerMultiType_3_01XValueType_00_01XValueTypeS_8_8_8_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" line="281" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_BinaryFileStreamer.hh" bodystart="283" bodyend="283"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a0d7913e84a30c518a18b2fb582752dad" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</scope><name>AddBytesWritten</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a82ebbc896cf44f57009a8f333a52b23d" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</scope><name>GetNBytesWritten</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a224d2eaff3399495d422c8c83890d862" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</scope><name>GetStream</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a366485a0b1d32c4968155893eae28fb2" prot="public" virt="non-virtual"><scope>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</scope><name>MHO_BinaryFileStreamerSingleType</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a61d314667e94951ae7c4af01ee9f31e5" prot="public" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</scope><name>ResetByteCount</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1afd6ede58e3d368658b44f54812d53eb6" prot="protected" virt="pure-virtual"><scope>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</scope><name>Self</name></member>
+      <member refid="classhops_1_1MHO__BinaryFileStreamerSingleType_1a8bbcfe5084ffc3d8595d0fd4ca31015e" prot="public" virt="virtual"><scope>hops::MHO_BinaryFileStreamerMultiType&lt; XValueType, XValueTypeS... &gt;</scope><name>~MHO_BinaryFileStreamerSingleType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

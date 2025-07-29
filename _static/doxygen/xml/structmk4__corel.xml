@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmk4__corel" kind="struct" language="C++" prot="public">
+    <compoundname>mk4_corel</compoundname>
+    <includes refid="mk4__data_8h" local="no">mk4_data.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmk4__corel_1a3bfa36912c1560671f339b76fa048879" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* mk4_corel::allocated[MAXIND+4]</definition>
+        <argsstring>[MAXIND+4]</argsstring>
+        <name>allocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="72" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__corel_1af9328750b43857617b76534315e1fe97" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* mk4_corel::file_image</definition>
+        <argsstring></argsstring>
+        <name>file_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="74" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__corel_1a292cad74a4127da0fb86eded7763ba52" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__000" kindref="compound">type_000</ref> *</type>
+        <definition>struct type_000* mk4_corel::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="75" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__corel_1a6f78e597fa70c404d6aa36df5709dc90" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structindex__tag" kindref="compound">index_tag</ref> *</type>
+        <definition>struct index_tag* mk4_corel::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="78" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__corel_1a11c1248744f5d3b4efe675370b5510ac" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_corel::index_space</definition>
+        <argsstring></argsstring>
+        <name>index_space</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="77" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__corel_1a583c8cf68af181c1ecf2f64ca92473c2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_corel::nalloc</definition>
+        <argsstring></argsstring>
+        <name>nalloc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="73" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__100" kindref="compound">type_100</ref> *</type>
+        <definition>struct type_100* mk4_corel::t100</definition>
+        <argsstring></argsstring>
+        <name>t100</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="76" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="9">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>spectral</label>
+        <link refid="structspectral"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>im</edgelabel>
+          <edgelabel>re</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>void *</label>
+      </node>
+      <node id="8">
+        <label>lag_data</label>
+        <link refid="unionlag__data"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>apl</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>spec</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>ag</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>cg</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>cpl</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_000</label>
+        <link refid="structtype__000"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4_corel</label>
+        <link refid="structmk4__corel"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>file_image</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>index</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>t100</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>index_space</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>allocated</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>flag_wgt</label>
+        <link refid="unionflag__wgt"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>weight</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>float</label>
+      </node>
+      <node id="12">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>index_tag</label>
+        <link refid="structindex__tag"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ap_space</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>t101</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>t120</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>counts_global</label>
+        <link refid="structcounts__global"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>lags</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="6">
+        <label>short</label>
+      </node>
+      <node id="7">
+        <label>type_120</label>
+        <link refid="structtype__120"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>type</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>delay_rate</edgelabel>
+          <edgelabel>fr_delay</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>status</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>ld</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fw</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_100</label>
+        <link refid="structtype__100"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nblocks</edgelabel>
+          <edgelabel>nlags</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>pct_done</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>qcode</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>rootname</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ndrec</edgelabel>
+          <edgelabel>nindex</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>procdate</edgelabel>
+          <edgelabel>start</edgelabel>
+          <edgelabel>stop</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>type_101</label>
+        <link refid="structtype__101"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>corr_board</edgelabel>
+          <edgelabel>corr_slot</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>nblocks</edgelabel>
+          <edgelabel>primary</edgelabel>
+          <edgelabel>ref_chan</edgelabel>
+          <edgelabel>rem_chan</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>ref_chan_id</edgelabel>
+          <edgelabel>rem_chan_id</edgelabel>
+          <edgelabel>status</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>blocks</edgelabel>
+          <edgelabel>post_mortem</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+      <node id="14">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="70" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="71" bodyend="79"/>
+    <listofallmembers>
+      <member refid="structmk4__corel_1a3bfa36912c1560671f339b76fa048879" prot="public" virt="non-virtual"><scope>mk4_corel</scope><name>allocated</name></member>
+      <member refid="structmk4__corel_1af9328750b43857617b76534315e1fe97" prot="public" virt="non-virtual"><scope>mk4_corel</scope><name>file_image</name></member>
+      <member refid="structmk4__corel_1a292cad74a4127da0fb86eded7763ba52" prot="public" virt="non-virtual"><scope>mk4_corel</scope><name>id</name></member>
+      <member refid="structmk4__corel_1a6f78e597fa70c404d6aa36df5709dc90" prot="public" virt="non-virtual"><scope>mk4_corel</scope><name>index</name></member>
+      <member refid="structmk4__corel_1a11c1248744f5d3b4efe675370b5510ac" prot="public" virt="non-virtual"><scope>mk4_corel</scope><name>index_space</name></member>
+      <member refid="structmk4__corel_1a583c8cf68af181c1ecf2f64ca92473c2" prot="public" virt="non-virtual"><scope>mk4_corel</scope><name>nalloc</name></member>
+      <member refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" prot="public" virt="non-virtual"><scope>mk4_corel</scope><name>t100</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

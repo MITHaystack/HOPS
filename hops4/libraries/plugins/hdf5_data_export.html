@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDF5 Data Export &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="CUDA Acceleration" href="cuda_acceleration.html" />
+    <link rel="prev" title="Python Bindings" href="python_bindings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Plugins.html">Plugins</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="python_bindings.html">Python Bindings</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HDF5 Data Export</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-hdf5typecode">MHO_HDF5TypeCode()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-hdf5datasets">MHO_HDF5Datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-hdf5attributes">MHO_HDF5Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-containerhdf5converter">MHO_ContainerHDF5Converter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-hdf5containerfileinterface">MHO_HDF5ContainerFileInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-hdf5converterdictionary">MHO_HDF5ConverterDictionary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cuda_acceleration.html">CUDA Acceleration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Plugins.html">Plugins</a></li>
+      <li class="breadcrumb-item active">HDF5 Data Export</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/plugins/hdf5_data_export.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hdf5-data-export">
+<h1>HDF5 Data Export<a class="headerlink" href="#hdf5-data-export" title="Link to this heading"></a></h1>
+<p>The HDF5 plugin provides some data export capabilities for converting
+HOPS4 internal data structures to the HDF5 format. The output HDF5 file structure
+should <strong>NOT</strong> be considered stable until it has been evaluated for inter-operability
+with other tools and evaluated for long-term data archival. There is currently <em>NO</em> import
+capability (i.e. to read HDF5 data back into the HOPS4 format).</p>
+<p><strong>HDF5 Export Applications:</strong>
+The HDF5 plugin includes a command-line application for data conversion:</p>
+<dl class="simple">
+<dt><strong>hops2hdf5 Application:</strong></dt><dd><ul class="simple">
+<li><p>Converts HOPS4 files to HDF5 format</p></li>
+<li><p>Supports batch processing of multiple files</p></li>
+<li><p>Configurable output organization</p></li>
+</ul>
+</dd>
+</dl>
+<section id="mho-hdf5typecode">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a07d1b26cb2d9dd73446ce44c21ed1363">MHO_HDF5TypeCode()</a><a class="headerlink" href="#mho-hdf5typecode" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a07d1b26cb2d9dd73446ce44c21ed1363">MHO_HDF5TypeCode()</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Template Parameters</p></td>
+<td><p>XDataType (C++ data type to map)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Template class for HDF5 type code determination</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Type mapping for fundamental C++ types to HDF5 types</div>
+<div class="line">Complex number support (std::complex&lt;float/double&gt;)</div>
+<div class="line">HDF5 compound type creation for complex numbers</div>
+<div class="line">Automatic type code generation</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a07d1b26cb2d9dd73446ce44c21ed1363">MHO_HDF5TypeCode()</a> class provides template-based type mapping between
+C++ data types and their corresponding HDF5 type codes. It supports all fundamental
+types used in VLBI data processing and including handling for complex numbers.</p>
+<dl class="simple">
+<dt><strong>Supported Types:</strong></dt><dd><ul class="simple">
+<li><p>Signed integers: int8_t, int16_t, int32_t, int64_t</p></li>
+<li><p>Unsigned integers: uint8_t, uint16_t, uint32_t, uint64_t</p></li>
+<li><p>Floating-point: float, double, long double</p></li>
+<li><p>Complex numbers: std::complex&lt;float&gt;, std::complex&lt;double&gt;</p></li>
+<li><p>Boolean and character types</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="mho-hdf5datasets">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespace_3globalScope_4.html">MHO_HDF5Datasets</a><a class="headerlink" href="#mho-hdf5datasets" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>MHO_HDF5Datasets.hh</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Template functions for HDF5 dataset creation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Scalar dataset creation with automatic type mapping</div>
+<div class="line">N-dimensional array dataset creation</div>
+<div class="line">Dimension scale creation for coordinate axes</div>
+<div class="line">String dataset support with variable-length strings</div>
+<div class="line">Metadata attribute attachment from JSON objects</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The MHO_HDF5Datasets header provides a collection of template functions
+for creating various types of HDF5 datasets from HOPS4 data structures.</p>
+<dl class="simple">
+<dt><strong>Dataset Types Supported:</strong></dt><dd><ul class="simple">
+<li><p>Scalar datasets with automatic HDF5 type mapping</p></li>
+<li><p>Multi-dimensional arrays with dimension scales</p></li>
+<li><p>String datasets with variable-length encoding</p></li>
+<li><p>Coordinate axis datasets with proper labeling</p></li>
+<li><p>Metadata tagged datasets with JSON attribute conversion (to attributes or string pack)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="mho-hdf5attributes">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespace_3globalScope_4.html">MHO_HDF5Attributes</a><a class="headerlink" href="#mho-hdf5attributes" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>MHO_HDF5Attributes.hh</p></td>
+</tr>
+<tr class="row-even"><td><p>Template Parameters</p></td>
+<td><p>Various template functions with different attribute types</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Template functions for HDF5 attribute creation</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Scalar attribute creation with type mapping</div>
+<div class="line">Vector attribute creation for array metadata</div>
+<div class="line">String attribute specializations</div>
+<div class="line">JSON object to HDF5 attribute conversion</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The MHO_HDF5Attributes header provides template functions for creating HDF5
+attributes that store metadata associated with datasets and groups.</p>
+<dl class="simple">
+<dt><strong>Attribute Types:</strong></dt><dd><ul class="simple">
+<li><p>Scalar attributes for individual metadata values</p></li>
+<li><p>Vector attributes for array-based metadata</p></li>
+<li><p>String attributes with proper encoding</p></li>
+<li><p>JSON (serialized to string) for complex metadata structures</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="mho-containerhdf5converter">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerHDF5Converter.html">MHO_ContainerHDF5Converter</a><a class="headerlink" href="#mho-containerhdf5converter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerHDF5Converter.html">MHO_ContainerHDF5Converter</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Template Parameters</p></td>
+<td><p>XContainerType (container type to convert)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Converts ndarray-based containers to HDF5 representation</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">SFINAE template specialization mechanism</div>
+<div class="line">Scalar, vector, axis, and table container support</div>
+<div class="line">Automatic axis dumping with metadata preservation</div>
+<div class="line">JSON metadata to HDF5 attributes conversion</div>
+<div class="line">Export-only functionality</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerHDF5Converter.html">MHO_ContainerHDF5Converter</a> class provides the core functionality for
+converting HOPS4 container objects to HDF5 format. It uses SFINAE to handle different
+container types appropriately.</p>
+<dl class="simple">
+<dt><strong>Container Types Supported:</strong></dt><dd><ul class="simple">
+<li><p>Scalar containers (single values with metadata)</p></li>
+<li><p>Vector containers (1D arrays with coordinate axes)</p></li>
+<li><p>Axis containers (coordinate axis definitions)</p></li>
+<li><p>Table containers (multi-dimensional arrays with axes)</p></li>
+</ul>
+</dd>
+<dt><strong>Conversion Features:</strong></dt><dd><ul class="simple">
+<li><p>Automatic metadata preservation as HDF5 attributes</p></li>
+<li><p>Coordinate axis information retention</p></li>
+<li><p>Proper handling of complex number data</p></li>
+<li><p>JSON metadata conversion to HDF5 attributes or serialized strings</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="mho-hdf5containerfileinterface">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__HDF5ContainerFileInterface.html">MHO_HDF5ContainerFileInterface</a><a class="headerlink" href="#mho-hdf5containerfileinterface" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__HDF5ContainerFileInterface.html">MHO_HDF5ContainerFileInterface</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Converts complete HOPS4 files to HDF5 format</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Inherits from MHO_ContainerFileInterface</div>
+<div class="line">Inherits from MHO_HDF5ConverterDictionary</div>
+<div class="line">Complete data store to HDF5 conversion</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__HDF5ContainerFileInterface.html">MHO_HDF5ContainerFileInterface</a> class provides high-level functionality
+for converting entire HOPS4 files to HDF5 format. It orchestrates the conversion
+of all data stores and maintains proper hierarchical organization.</p>
+<dl class="simple">
+<dt><strong>File Conversion Features:</strong></dt><dd><ul class="simple">
+<li><p>Complete fringe file conversion to HDF5</p></li>
+<li><p>Preservation of all data stores (parameters, containers, scan data)</p></li>
+<li><p>Hierarchical group organization</p></li>
+<li><p>Configurable naming conventions</p></li>
+<li><p>Metadata preservation throughout conversion</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="mho-hdf5converterdictionary">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__HDF5ConverterDictionary.html">MHO_HDF5ConverterDictionary</a><a class="headerlink" href="#mho-hdf5converterdictionary" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__HDF5ConverterDictionary.html">MHO_HDF5ConverterDictionary</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Manages HDF5 converter registry and lookup</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Converter registration and management</div>
+<div class="line">Type-based converter lookup</div>
+<div class="line">Extensible converter architecture</div>
+<div class="line">Support for custom converter implementations</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__HDF5ConverterDictionary.html">MHO_HDF5ConverterDictionary</a> class manages the registry of available
+HDF5 converters and provides lookup functionality for appropriate converters
+based on data types (see the implementation of <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerJSONConverter.html">MHO_ContainerJSONConverter</a> upon which it is based).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python_bindings.html" class="btn btn-neutral float-left" title="Python Bindings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cuda_acceleration.html" class="btn btn-neutral float-right" title="CUDA Acceleration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

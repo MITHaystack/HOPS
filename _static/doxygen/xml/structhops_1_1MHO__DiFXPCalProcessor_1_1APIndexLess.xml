@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__DiFXPCalProcessor_1_1APIndexLess" kind="struct" language="C++" prot="private">
+    <compoundname>hops::MHO_DiFXPCalProcessor::APIndexLess</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhops_1_1MHO__DiFXPCalProcessor_1_1APIndexLess_1a6e81a7c59cd4a626578b82e58639cc92" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_DiFXPCalProcessor::APIndexLess::operator()</definition>
+        <argsstring>(const pcal_period &amp;a, const pcal_period &amp;b) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const pcal_period &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const pcal_period &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="143" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="143" bodyend="143"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" line="141" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/include/MHO_DiFXPCalProcessor.hh" bodystart="142" bodyend="144"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__DiFXPCalProcessor_1_1APIndexLess_1a6e81a7c59cd4a626578b82e58639cc92" prot="public" virt="non-virtual"><scope>hops::MHO_DiFXPCalProcessor::APIndexLess</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

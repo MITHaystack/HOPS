@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ComplexConjugator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ComplexConjugator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryFunctor" prot="public" virt="non-virtual">hops::MHO_UnaryFunctor&lt; XArrayType &gt;</basecompoundref>
+    <includes refid="MHO__ComplexConjugator_8hh" local="no">MHO_ComplexConjugator.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class XArrayType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__ComplexConjugator_1ac9f1e8a4fb429a7ba78145551eff5f01" prot="public" static="no">
+        <type>typename <ref refid="classhops_1_1MHO__UnaryFunctor" kindref="compound">MHO_UnaryFunctor</ref>&lt; XArrayType &gt;::<ref refid="classhops_1_1MHO__ComplexConjugator_1ac9f1e8a4fb429a7ba78145551eff5f01" kindref="member">citerator_type</ref></type>
+        <definition>using hops::MHO_ComplexConjugator&lt; XArrayType &gt;::citerator_type =  typename MHO_UnaryFunctor&lt; XArrayType &gt;::citerator_type</definition>
+        <argsstring></argsstring>
+        <name>citerator_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__ComplexConjugator_1a62d837aaa22e3c04b781f0940277e4e6" prot="public" static="no">
+        <type>typename <ref refid="classhops_1_1MHO__UnaryFunctor" kindref="compound">MHO_UnaryFunctor</ref>&lt; XArrayType &gt;::<ref refid="classhops_1_1MHO__ComplexConjugator_1a62d837aaa22e3c04b781f0940277e4e6" kindref="member">iterator_type</ref></type>
+        <definition>using hops::MHO_ComplexConjugator&lt; XArrayType &gt;::iterator_type =  typename MHO_UnaryFunctor&lt; XArrayType &gt;::iterator_type</definition>
+        <argsstring></argsstring>
+        <name>iterator_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ComplexConjugator_1acf46611102b12f713cf33a95c9b42039" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ComplexConjugator&lt; XArrayType &gt;::MHO_ComplexConjugator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ComplexConjugator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComplexConjugator_1a143fdc58fa107496ecf9ac74b378e74d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ComplexConjugator&lt; XArrayType &gt;::~MHO_ComplexConjugator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ComplexConjugator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComplexConjugator_1a4b569802ffcb6f95439f4aa4608f7f16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ComplexConjugator&lt; XArrayType &gt;::operator()</definition>
+        <argsstring>(citerator_type &amp;input, iterator_type &amp;output) override</argsstring>
+        <name>operator()</name>
+        <reimplements refid="classhops_1_1MHO__UnaryFunctor_1a5a63c563290d9d535376d7d6b4e39623">operator()</reimplements>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ComplexConjugator_1ac9f1e8a4fb429a7ba78145551eff5f01" kindref="member">citerator_type</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ComplexConjugator_1a62d837aaa22e3c04b781f0940277e4e6" kindref="member">iterator_type</ref> &amp;</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" line="34" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ComplexConjugator_1a2971bff2e99d5582fbf3235138be0dd3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ComplexConjugator&lt; XArrayType &gt;::operator()</definition>
+        <argsstring>(iterator_type &amp;input) override</argsstring>
+        <name>operator()</name>
+        <reimplements refid="classhops_1_1MHO__UnaryFunctor_1a43105e4aa99637a87046cfc93a3cdbf2">operator()</reimplements>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ComplexConjugator_1a62d837aaa22e3c04b781f0940277e4e6" kindref="member">iterator_type</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" line="32" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ComplexConjugator" kindref="compound">MHO_ComplexConjugator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>applies complex conjugation to every element of the array (XArrayType)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Aug 18 12:02:32 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_ComplexConjugator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__ComplexConjugator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryFunctor&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryFunctor"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_ComplexConjugator&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__ComplexConjugator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryFunctor&lt; XArrayType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryFunctor"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" line="23" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_ComplexConjugator.hh" bodystart="24" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ComplexConjugator_1ac9f1e8a4fb429a7ba78145551eff5f01" prot="public" virt="non-virtual"><scope>hops::MHO_ComplexConjugator</scope><name>citerator_type</name></member>
+      <member refid="classhops_1_1MHO__ComplexConjugator_1a62d837aaa22e3c04b781f0940277e4e6" prot="public" virt="non-virtual"><scope>hops::MHO_ComplexConjugator</scope><name>iterator_type</name></member>
+      <member refid="classhops_1_1MHO__ComplexConjugator_1acf46611102b12f713cf33a95c9b42039" prot="public" virt="non-virtual"><scope>hops::MHO_ComplexConjugator</scope><name>MHO_ComplexConjugator</name></member>
+      <member refid="classhops_1_1MHO__UnaryFunctor_1ab7facae9ea2d853e26756a76ccb94566" prot="public" virt="non-virtual"><scope>hops::MHO_ComplexConjugator</scope><name>MHO_UnaryFunctor</name></member>
+      <member refid="classhops_1_1MHO__ComplexConjugator_1a2971bff2e99d5582fbf3235138be0dd3" prot="public" virt="virtual"><scope>hops::MHO_ComplexConjugator</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__ComplexConjugator_1a4b569802ffcb6f95439f4aa4608f7f16" prot="public" virt="virtual"><scope>hops::MHO_ComplexConjugator</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__ComplexConjugator_1a143fdc58fa107496ecf9ac74b378e74d" prot="public" virt="virtual"><scope>hops::MHO_ComplexConjugator</scope><name>~MHO_ComplexConjugator</name></member>
+      <member refid="classhops_1_1MHO__UnaryFunctor_1a912ba03c7456167f408ba0a4251af7d5" prot="public" virt="virtual"><scope>hops::MHO_ComplexConjugator</scope><name>~MHO_UnaryFunctor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

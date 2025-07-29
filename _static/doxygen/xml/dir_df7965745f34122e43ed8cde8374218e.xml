@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_df7965745f34122e43ed8cde8374218e" kind="dir">
+    <compoundname>CorAsc2</compoundname>
+    <innerdir refid="dir_dc6216a0b8e75156bb66ed59375eba3c">include</innerdir>
+    <innerdir refid="dir_0638b5344e8c1cd750fd55541997e006">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/legacy/CorAsc2/"/>
+  </compounddef>
+</doxygen>

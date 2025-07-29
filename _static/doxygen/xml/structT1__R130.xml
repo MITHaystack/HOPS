@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structT1__R130" kind="struct" language="C++" prot="public">
+    <compoundname>T1_R130</compoundname>
+    <includes refid="T1_8h" local="no">T1.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structT1__R130_1aa301e16a7fc803815eb8ec20fb44840d" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R130::enabled</definition>
+        <argsstring></argsstring>
+        <name>enabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="43" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a4790da0bff2b82c36425ab377ad4f669" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::headTap3Carry</definition>
+        <argsstring></argsstring>
+        <name>headTap3Carry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="58" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a6f03bd3d730862e0d60e243e502d5761" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::headTapPastEnd</definition>
+        <argsstring></argsstring>
+        <name>headTapPastEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="57" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1af14637dc58c577c5dbf7511aea94d8f3" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R130::occurred</definition>
+        <argsstring></argsstring>
+        <name>occurred</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="44" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1ac552b37e1b62b28be6da3d825c7491b3" prot="public" static="no" mutable="no">
+        <type><ref refid="structT1__RecHdr" kindref="compound">T1_RecHdr</ref></type>
+        <definition>T1_RecHdr T1_R130::recHdr</definition>
+        <argsstring></argsstring>
+        <name>recHdr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="42" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a4dedc8a187344df83bbea18e34a0114d" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::tailTap3Carry</definition>
+        <argsstring></argsstring>
+        <name>tailTap3Carry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="60" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a5738c70e3ba88eac0d3c4ee0e3901ca5" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::tailTapPastEnd</definition>
+        <argsstring></argsstring>
+        <name>tailTapPastEnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="59" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1ab2bf6b0d50e763dc46921a815b3ac8ea" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::xCFNum</definition>
+        <argsstring></argsstring>
+        <name>xCFNum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="47" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a981ed808337220ac1c8940dd8c26a368" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::xChkSum</definition>
+        <argsstring></argsstring>
+        <name>xChkSum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="48" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a5e7d98f5066f042a9de0736f685d0aac" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::xChnId</definition>
+        <argsstring></argsstring>
+        <name>xChnId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="46" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1ac26bbd1fe78acaf46151aaaf34dbc295" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::xInBdLink</definition>
+        <argsstring></argsstring>
+        <name>xInBdLink</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="49" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a6cfef3081d909284f78739f325e8f717" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::xInBdSync</definition>
+        <argsstring></argsstring>
+        <name>xInBdSync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="50" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1ac2433da52d8b6748db5fb3f8880fd753" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::xSuId</definition>
+        <argsstring></argsstring>
+        <name>xSuId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="45" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1ae2d2f59b52640130494b3f15809e7375" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::yCFNum</definition>
+        <argsstring></argsstring>
+        <name>yCFNum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="53" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1adbee28ef552e681c3fb4c76dfc24c1af" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::yChkSum</definition>
+        <argsstring></argsstring>
+        <name>yChkSum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="54" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a1be4b928eb2292b44d18e96cc12ef452" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::yChnId</definition>
+        <argsstring></argsstring>
+        <name>yChnId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="52" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a59141abdfba04fe8831aeafc1818a61d" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::yInBdLink</definition>
+        <argsstring></argsstring>
+        <name>yInBdLink</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="55" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1a6fc564d5f35731201de0ba2c7807c850" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::yInBdSync</definition>
+        <argsstring></argsstring>
+        <name>yInBdSync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="56" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R130_1acaf28d2f06db242fbf31b1038673352a" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R130::ySuId</definition>
+        <argsstring></argsstring>
+        <name>ySuId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="51" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>T1_RecHdr</label>
+        <link refid="structT1__RecHdr"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cFOffset</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>recId</edgelabel>
+          <edgelabel>recVer</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>index</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>recFmt</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>int32_t</label>
+      </node>
+      <node id="3">
+        <label>uint16_t</label>
+      </node>
+      <node id="5">
+        <label>uint32_t</label>
+      </node>
+      <node id="6">
+        <label>uint8_t</label>
+      </node>
+      <node id="1">
+        <label>T1_R130</label>
+        <link refid="structT1__R130"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>recHdr</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>headTap3Carry</edgelabel>
+          <edgelabel>headTapPastEnd</edgelabel>
+          <edgelabel>tailTap3Carry</edgelabel>
+          <edgelabel>tailTapPastEnd</edgelabel>
+          <edgelabel>xCFNum</edgelabel>
+          <edgelabel>xChkSum</edgelabel>
+          <edgelabel>xChnId</edgelabel>
+          <edgelabel>xInBdLink</edgelabel>
+          <edgelabel>xInBdSync</edgelabel>
+          <edgelabel>xSuId</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>enabled</edgelabel>
+          <edgelabel>occurred</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="41" bodyend="61"/>
+    <listofallmembers>
+      <member refid="structT1__R130_1aa301e16a7fc803815eb8ec20fb44840d" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>enabled</name></member>
+      <member refid="structT1__R130_1a4790da0bff2b82c36425ab377ad4f669" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>headTap3Carry</name></member>
+      <member refid="structT1__R130_1a6f03bd3d730862e0d60e243e502d5761" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>headTapPastEnd</name></member>
+      <member refid="structT1__R130_1af14637dc58c577c5dbf7511aea94d8f3" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>occurred</name></member>
+      <member refid="structT1__R130_1ac552b37e1b62b28be6da3d825c7491b3" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>recHdr</name></member>
+      <member refid="structT1__R130_1a4dedc8a187344df83bbea18e34a0114d" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>tailTap3Carry</name></member>
+      <member refid="structT1__R130_1a5738c70e3ba88eac0d3c4ee0e3901ca5" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>tailTapPastEnd</name></member>
+      <member refid="structT1__R130_1ab2bf6b0d50e763dc46921a815b3ac8ea" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>xCFNum</name></member>
+      <member refid="structT1__R130_1a981ed808337220ac1c8940dd8c26a368" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>xChkSum</name></member>
+      <member refid="structT1__R130_1a5e7d98f5066f042a9de0736f685d0aac" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>xChnId</name></member>
+      <member refid="structT1__R130_1ac26bbd1fe78acaf46151aaaf34dbc295" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>xInBdLink</name></member>
+      <member refid="structT1__R130_1a6cfef3081d909284f78739f325e8f717" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>xInBdSync</name></member>
+      <member refid="structT1__R130_1ac2433da52d8b6748db5fb3f8880fd753" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>xSuId</name></member>
+      <member refid="structT1__R130_1ae2d2f59b52640130494b3f15809e7375" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>yCFNum</name></member>
+      <member refid="structT1__R130_1adbee28ef552e681c3fb4c76dfc24c1af" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>yChkSum</name></member>
+      <member refid="structT1__R130_1a1be4b928eb2292b44d18e96cc12ef452" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>yChnId</name></member>
+      <member refid="structT1__R130_1a59141abdfba04fe8831aeafc1818a61d" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>yInBdLink</name></member>
+      <member refid="structT1__R130_1a6fc564d5f35731201de0ba2c7807c850" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>yInBdSync</name></member>
+      <member refid="structT1__R130_1acaf28d2f06db242fbf31b1038673352a" prot="public" virt="non-virtual"><scope>T1_R130</scope><name>ySuId</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

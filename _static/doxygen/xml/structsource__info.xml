@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsource__info" kind="struct" language="C++" prot="public">
+    <compoundname>source_info</compoundname>
+    <includes refid="summary_8h" local="no">summary.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsource__info_1a3939d681fd6f13ad7b5d35ff242729e7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int source_info::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="19" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsource__info_1a4f58b775a6ecd56a0aad6a973e1d7d0e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char source_info::name[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="20" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>source_info</label>
+        <link refid="structsource__info"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>count</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="18" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="18" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structsource__info_1a3939d681fd6f13ad7b5d35ff242729e7" prot="public" virt="non-virtual"><scope>source_info</scope><name>count</name></member>
+      <member refid="structsource__info_1a4f58b775a6ecd56a0aad6a973e1d7d0e" prot="public" virt="non-virtual"><scope>source_info</scope><name>name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

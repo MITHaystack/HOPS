@@ -1,0 +1,645 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="average_8h" kind="file" language="C++">
+    <compoundname>average.h</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes refid="adata_8h" local="yes">adata.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <includedby refid="average_8c" local="yes">average.c</includedby>
+    <includedby refid="assess__data_8c" local="yes">assess_data.c</includedby>
+    <includedby refid="baseline__avg_8c" local="yes">baseline_avg.c</includedby>
+    <includedby refid="check__source_8c" local="yes">check_source.c</includedby>
+    <includedby refid="check__times_8c" local="yes">check_times.c</includedby>
+    <includedby refid="check__tribase_8c" local="yes">check_tribase.c</includedby>
+    <includedby refid="get__int__time_8c" local="yes">get_int_time.c</includedby>
+    <includedby refid="index__data_8c" local="yes">index_data.c</includedby>
+    <includedby refid="applications_2average_2src_2parse__cmdline_8c" local="yes">parse_cmdline.c</includedby>
+    <includedby refid="average_2src_2read__data_8c" local="yes">read_data.c</includedby>
+    <includedby refid="average_2src_2sort__data_8c" local="yes">sort_data.c</includedby>
+    <includedby refid="average_2src_2sorter_8c" local="yes">sorter.c</includedby>
+    <includedby refid="triangle__avg_8c" local="yes">triangle_avg.c</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>stdarg.h</label>
+      </node>
+      <node id="4">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
+      <node id="3">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="1">
+        <label>average.h</label>
+        <link refid="average_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="10">
+        <label>parse_cmdline.c</label>
+        <link refid="applications_2average_2src_2parse__cmdline_8c"/>
+      </node>
+      <node id="2">
+        <label>average.c</label>
+        <link refid="average_8c"/>
+      </node>
+      <node id="12">
+        <label>sort_data.c</label>
+        <link refid="average_2src_2sort__data_8c"/>
+      </node>
+      <node id="7">
+        <label>check_tribase.c</label>
+        <link refid="check__tribase_8c"/>
+      </node>
+      <node id="8">
+        <label>get_int_time.c</label>
+        <link refid="get__int__time_8c"/>
+      </node>
+      <node id="4">
+        <label>baseline_avg.c</label>
+        <link refid="baseline__avg_8c"/>
+      </node>
+      <node id="11">
+        <label>read_data.c</label>
+        <link refid="average_2src_2read__data_8c"/>
+      </node>
+      <node id="5">
+        <label>check_source.c</label>
+        <link refid="check__source_8c"/>
+      </node>
+      <node id="1">
+        <label>average.h</label>
+        <link refid="average_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>index_data.c</label>
+        <link refid="index__data_8c"/>
+      </node>
+      <node id="6">
+        <label>check_times.c</label>
+        <link refid="check__times_8c"/>
+      </node>
+      <node id="3">
+        <label>assess_data.c</label>
+        <link refid="assess__data_8c"/>
+      </node>
+      <node id="14">
+        <label>triangle_avg.c</label>
+        <link refid="triangle__avg_8c"/>
+      </node>
+      <node id="13">
+        <label>sorter.c</label>
+        <link refid="average_2src_2sorter_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structconfig" prot="public">config</innerclass>
+    <innerclass refid="structseg__data" prot="public">seg_data</innerclass>
+    <innerclass refid="unionseg__data_8u" prot="public">seg_data.u</innerclass>
+    <innerclass refid="structsummary" prot="public">summary</innerclass>
+    <innerclass refid="structtbsumm" prot="public">tbsumm</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="average_8h_1a1f98b8446b6c3c9f699cc2c046c49f87" prot="public" static="no">
+        <name>AVERAGE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="7" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1afa9be16f2ed2d2d929a06dacf29bcbe1" prot="public" static="no">
+        <name>ENDOFSCAN</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1aa93f0eb578d23995850d61f7d61c55c1" prot="public" static="no">
+        <name>FALSE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1a0865c22126c7d00b3318235e244ecb4a" prot="public" static="no">
+        <name>MAXID</name>
+        <initializer>560</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1a934682caeedb813cc7c92ca84ed6eb04" prot="public" static="no">
+        <name>MAXSRC</name>
+        <initializer>20000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1ae9401c0bbf62d69045a3df8b9ce7e372" prot="public" static="no">
+        <name>NO_MODE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="6" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1a598a3330b3c21701223ee0ca14316eca" prot="public" static="no">
+        <name>PI</name>
+        <initializer>3.1415926536</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1aabb34c8934b3515b1b632f8ddacdbc27" prot="public" static="no">
+        <name>SUMMARY</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="8" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1ab946e2e7f7679350627acfded8e2658b" prot="public" static="no">
+        <name>TEST</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="9" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="average_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" prot="public" static="no">
+        <name>TRUE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="average_8h_1abd6eb81586dbdf5eef6e6b8de6c6e7f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int assess_data</definition>
+        <argsstring>(seg_data *, int, struct config, summary[])</argsstring>
+        <name>assess_data</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nseg</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structconfig" kindref="compound">config</ref></type>
+          <declname>configuration</declname>
+        </param>
+        <param>
+          <type><ref refid="structsummary" kindref="compound">summary</ref></type>
+          <declname>dsumm</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="68" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/assess_data.c" bodystart="21" bodyend="51" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="68" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1a024b743c32c50d8c538efb8e35f1dd23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int baseline_avg</definition>
+        <argsstring>(seg_data *, tbsumm *, struct config, FILE *)</argsstring>
+        <name>baseline_avg</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="structtbsumm" kindref="compound">tbsumm</ref> *</type>
+          <declname>tbsum</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structconfig" kindref="compound">config</ref></type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fpout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="69" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/baseline_avg.c" bodystart="24" bodyend="240" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="69" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1ac0a782fccf9594f6ca6469bec5382026" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void check_source</definition>
+        <argsstring>(seg_data *, summary *)</argsstring>
+        <name>check_source</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="structsummary" kindref="compound">summary</ref> *</type>
+          <declname>dsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="70" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/check_source.c" bodystart="21" bodyend="97" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="70" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1a62e99d46fc36dc97e2499118e14e8fa7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void check_times</definition>
+        <argsstring>(seg_data *, summary *, int)</argsstring>
+        <name>check_times</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="structsummary" kindref="compound">summary</ref> *</type>
+          <declname>dsumm</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>int_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="71" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/check_times.c" bodystart="24" bodyend="140" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="71" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1ae049ea0169fd78056f7b18612f4f73f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void check_tribase</definition>
+        <argsstring>(seg_data *, tbsumm *)</argsstring>
+        <name>check_tribase</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="structtbsumm" kindref="compound">tbsumm</ref> *</type>
+          <declname>idsumm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="72" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/check_tribase.c" bodystart="26" bodyend="161" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="72" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1a6512095a2c271a48a87041a60169e18e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_int_time</definition>
+        <argsstring>(char *)</argsstring>
+        <name>get_int_time</name>
+        <param>
+          <type>char *</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="73" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/get_int_time.c" bodystart="20" bodyend="72" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="73" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1a85eef7f1013d5cb33f34dca997d2ca44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int index_data</definition>
+        <argsstring>(seg_data *, int, summary[])</argsstring>
+        <name>index_data</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nseg</declname>
+        </param>
+        <param>
+          <type><ref refid="structsummary" kindref="compound">summary</ref></type>
+          <declname>dsumm</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="74" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/index_data.c" bodystart="21" bodyend="90" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="74" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1abb9e3f1c2298021786826ede6f9750aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int parse_cmdline</definition>
+        <argsstring>(int, char **, FILE **, struct config *)</argsstring>
+        <name>parse_cmdline</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <param>
+          <type>FILE **</type>
+          <declname>fpout</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structconfig" kindref="compound">config</ref> *</type>
+          <declname>configuration</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="75" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/parse_cmdline.c" bodystart="25" bodyend="139" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="75" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1a1491718a5f40826fac92a53a37023055" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int read_data</definition>
+        <argsstring>(seg_data **, FILE *, struct config, int *)</argsstring>
+        <name>read_data</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> **</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fp</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structconfig" kindref="compound">config</ref></type>
+          <declname>configuration</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>nseg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="76" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/read_data.c" bodystart="27" bodyend="156" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="76" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1a92c2fea8e1cad6ba1de63cea8d2866db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int sort_data</definition>
+        <argsstring>(seg_data *, int)</argsstring>
+        <name>sort_data</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nseg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="77" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/sort_data.c" bodystart="19" bodyend="85" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="77" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1afd39186ee6e8ab625b04096b4cb87535" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void sorter</definition>
+        <argsstring>(seg_data *, int)</argsstring>
+        <name>sorter</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nseg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="78" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/sorter.c" bodystart="29" bodyend="88" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="78" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="average_8h_1a308c0fdbd904b4c03623a5fca889e22b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int triangle_avg</definition>
+        <argsstring>(seg_data *, tbsumm *, struct config, FILE *)</argsstring>
+        <name>triangle_avg</name>
+        <param>
+          <type><ref refid="structseg__data" kindref="compound">seg_data</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="structtbsumm" kindref="compound">tbsumm</ref> *</type>
+          <declname>tbsum</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structconfig" kindref="compound">config</ref></type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>FILE *</type>
+          <declname>fpout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="79" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/src/triangle_avg.c" bodystart="24" bodyend="196" declfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" declline="79" declcolumn="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>AVERAGE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AVERAGE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="average_8h_1ae9401c0bbf62d69045a3df8b9ce7e372" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NO_MODE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="average_8h_1a1f98b8446b6c3c9f699cc2c046c49f87" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AVERAGE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="average_8h_1aabb34c8934b3515b1b632f8ddacdbc27" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SUMMARY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="average_8h_1ab946e2e7f7679350627acfded8e2658b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TEST<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="average_8h_1afa9be16f2ed2d2d929a06dacf29bcbe1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENDOFSCAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="average_8h_1aa93f0eb578d23995850d61f7d61c55c1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALSE<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="average_8h_1aa8cecfc5c5c054d2875c03e77b7be15d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUE<sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="average_8h_1a598a3330b3c21701223ee0ca14316eca" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PI<sp/>3.1415926536</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="adata_8h" kindref="compound">adata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="average_8h_1a0865c22126c7d00b3318235e244ecb4a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXID<sp/>560</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="average_8h_1a934682caeedb813cc7c92ca84ed6eb04" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAXSRC<sp/>20000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="structseg__data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26" refid="structseg__data_1a0f8d9d0bb1ac50e23836dfa7f31b54af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structseg__data_1a0f8d9d0bb1ac50e23836dfa7f31b54af" kindref="member">order</ref>;</highlight></codeline>
+<codeline lineno="27" refid="structseg__data_1aedc6a11d2c3ed35f993380f174c4f7f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structseg__data_1aedc6a11d2c3ed35f993380f174c4f7f0" kindref="member">lastorder</ref>;</highlight></codeline>
+<codeline lineno="28" refid="structseg__data_1a600ffd3eecbc0f301b10072458fed358" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structseg__data_1a600ffd3eecbc0f301b10072458fed358" kindref="member">keyval</ref>;</highlight></codeline>
+<codeline lineno="29" refid="unionseg__data_8u" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">union</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structfringesum" kindref="compound">fringesum</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fdata;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtrianglesum" kindref="compound">trianglesum</ref><sp/><sp/><sp/><sp/><sp/>tdata;</highlight></codeline>
+<codeline lineno="33" refid="structseg__data_1aae3517196fc8ce1dbf2be2b0439e6f09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>u;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structseg__data" kindref="compound">seg_data</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structtbsumm" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38" refid="structtbsumm_1adb94bbcce3cd16a302971e50d4e0afd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">[5];</highlight></codeline>
+<codeline lineno="39" refid="structtbsumm_1aca31523f0586a6b16a7f74a43387be09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtbsumm_1aca31523f0586a6b16a7f74a43387be09" kindref="member">start_index</ref>;</highlight></codeline>
+<codeline lineno="40" refid="structtbsumm_1aed47ab7715e7d3732336d6d86423b220" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtbsumm_1aed47ab7715e7d3732336d6d86423b220" kindref="member">end_index</ref>;</highlight></codeline>
+<codeline lineno="41" refid="structtbsumm_1ac10567097b2cc531cb9ad125d5dc1522" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtbsumm_1ac10567097b2cc531cb9ad125d5dc1522" kindref="member">seglen</ref>;</highlight></codeline>
+<codeline lineno="42" refid="structtbsumm_1ac2489f94f336cff983a4f6b35027943e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtbsumm_1ac2489f94f336cff983a4f6b35027943e" kindref="member">valid</ref>;</highlight></codeline>
+<codeline lineno="43" refid="structtbsumm_1ade364bde4003ebe752907eff8f72c198" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structtbsumm_1ade364bde4003ebe752907eff8f72c198" kindref="member">start_time</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structtbsumm" kindref="compound">tbsumm</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="structsummary" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48" refid="structsummary_1a4b6d1bda45953cfa07ee2062333c1130" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsummary_1a4b6d1bda45953cfa07ee2062333c1130" kindref="member">start_index</ref>;</highlight></codeline>
+<codeline lineno="49" refid="structsummary_1a29dc84e193a478a21c97d4b56ee10159" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsummary_1a29dc84e193a478a21c97d4b56ee10159" kindref="member">end_index</ref>;</highlight></codeline>
+<codeline lineno="50" refid="structsummary_1a1deaa85130d928bbb3d8a35eff4387e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsummary_1a1deaa85130d928bbb3d8a35eff4387e9" kindref="member">seglen</ref>;</highlight></codeline>
+<codeline lineno="51" refid="structsummary_1a2475d68ee6f66712a06f0df3b0d675ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsummary_1a2475d68ee6f66712a06f0df3b0d675ba" kindref="member">valid</ref>;</highlight></codeline>
+<codeline lineno="52" refid="structsummary_1a79593e8db8cbf2733b8eac3f0116e4b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsummary_1a79593e8db8cbf2733b8eac3f0116e4b5" kindref="member">nid</ref>;</highlight></codeline>
+<codeline lineno="53" refid="structsummary_1a07187265c1ee3baeb10c3f098f8732a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtbsumm" kindref="compound">tbsumm</ref><sp/><sp/><sp/><sp/><sp/><sp/>tribase[<ref refid="average_8h_1a0865c22126c7d00b3318235e244ecb4a" kindref="member">MAXID</ref>];</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><ref refid="structsummary" kindref="compound">summary</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="structconfig" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structconfig" kindref="compound">config</ref></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58" refid="structconfig_1ae5afdbb49c66129c9a62d9c75cb56a1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1ae5afdbb49c66129c9a62d9c75cb56a1a" kindref="member">int_time</ref>;</highlight></codeline>
+<codeline lineno="59" refid="structconfig_1a876b3abfe84dbeb619443128f8aeee76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1a876b3abfe84dbeb619443128f8aeee76" kindref="member">coherent</ref>;</highlight></codeline>
+<codeline lineno="60" refid="structconfig_1aaaad45b7a2fedccaf2101f187dfe7b2f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1aaaad45b7a2fedccaf2101f187dfe7b2f" kindref="member">cofit_output</ref>;</highlight></codeline>
+<codeline lineno="61" refid="structconfig_1a8fbc73f31b683d3faeb4b7a393ea8ccb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1a8fbc73f31b683d3faeb4b7a393ea8ccb" kindref="member">binary_input</ref>;</highlight></codeline>
+<codeline lineno="62" refid="structconfig_1af9c609e683995e6f19b42985315aa8d7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1af9c609e683995e6f19b42985315aa8d7" kindref="member">snrfact</ref>;</highlight></codeline>
+<codeline lineno="63" refid="structconfig_1a5f48c683af53425dd91ff901e9f8b829" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1a5f48c683af53425dd91ff901e9f8b829" kindref="member">multiscan</ref>;</highlight></codeline>
+<codeline lineno="64" refid="structconfig_1add785599cb162476ee1d825afb60dffb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1add785599cb162476ee1d825afb60dffb" kindref="member">account</ref>;</highlight></codeline>
+<codeline lineno="65" refid="structconfig_1a5465f49ec366561c7c7c9226db07e4ee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structconfig_1a5465f49ec366561c7c7c9226db07e4ee" kindref="member">header</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1abd6eb81586dbdf5eef6e6b8de6c6e7f9" kindref="member">assess_data</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structconfig" kindref="compound">config</ref>,<sp/><ref refid="structsummary" kindref="compound">summary</ref><sp/>[]);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1a024b743c32c50d8c538efb8e35f1dd23" kindref="member">baseline_avg</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/><ref refid="structtbsumm" kindref="compound">tbsumm</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structconfig" kindref="compound">config</ref>,<sp/>FILE<sp/>*);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="average_8h_1ac0a782fccf9594f6ca6469bec5382026" kindref="member">check_source</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/><ref refid="structsummary" kindref="compound">summary</ref><sp/>*);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="average_8h_1a62e99d46fc36dc97e2499118e14e8fa7" kindref="member">check_times</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/><ref refid="structsummary" kindref="compound">summary</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="average_8h_1ae049ea0169fd78056f7b18612f4f73f2" kindref="member">check_tribase</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/><ref refid="structtbsumm" kindref="compound">tbsumm</ref><sp/>*);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1a6512095a2c271a48a87041a60169e18e" kindref="member">get_int_time</ref><sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1a85eef7f1013d5cb33f34dca997d2ca44" kindref="member">index_data</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/><ref refid="structsummary" kindref="compound">summary</ref><sp/>[]);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1abb9e3f1c2298021786826ede6f9750aa" kindref="member">parse_cmdline</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**,<sp/>FILE<sp/>**,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structconfig" kindref="compound">config</ref><sp/>*);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1a1491718a5f40826fac92a53a37023055" kindref="member">read_data</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>**,<sp/>FILE<sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structconfig" kindref="compound">config</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1a92c2fea8e1cad6ba1de63cea8d2866db" kindref="member">sort_data</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="average_8h_1afd39186ee6e8ab625b04096b4cb87535" kindref="member">sorter</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="average_8h_1a308c0fdbd904b4c03623a5fca889e22b" kindref="member">triangle_avg</ref><sp/>(<ref refid="structseg__data" kindref="compound">seg_data</ref><sp/>*,<sp/><ref refid="structtbsumm" kindref="compound">tbsumm</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structconfig" kindref="compound">config</ref>,<sp/>FILE<sp/>*);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h"/>
+  </compounddef>
+</doxygen>

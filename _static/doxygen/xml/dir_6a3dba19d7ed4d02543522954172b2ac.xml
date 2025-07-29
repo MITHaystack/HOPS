@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_6a3dba19d7ed4d02543522954172b2ac" kind="dir">
+    <compoundname>misc</compoundname>
+    <innerdir refid="dir_ab839bcf29014808dc46cc55b3848640">time</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/"/>
+  </compounddef>
+</doxygen>

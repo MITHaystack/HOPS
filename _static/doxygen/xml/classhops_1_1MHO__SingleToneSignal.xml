@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__SingleToneSignal" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_SingleToneSignal</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__SimulatedSignalGenerator" prot="public" virt="non-virtual">hops::MHO_SimulatedSignalGenerator</basecompoundref>
+    <includes refid="MHO__SingleToneSignal_8hh" local="no">MHO_SingleToneSignal.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__SingleToneSignal_1ac696bbca1aa2aeea927d35cd1a784862" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_SingleToneSignal::fPhaseOffset</definition>
+        <argsstring></argsstring>
+        <name>fPhaseOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="55" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__SingleToneSignal_1a84b525edb2ca8a8365a2bfc887b7db49" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_SingleToneSignal::fToneFrequency</definition>
+        <argsstring></argsstring>
+        <name>fToneFrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="56" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SingleToneSignal_1a128eb8ab63d3c1323d3eebda7e50e430" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_SingleToneSignal::MHO_SingleToneSignal</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_SingleToneSignal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_SingleToneSignal.cc" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SingleToneSignal_1a59593d143231c81c3d6a78fc20c91e78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_SingleToneSignal::~MHO_SingleToneSignal</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_SingleToneSignal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_SingleToneSignal.cc" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SingleToneSignal_1a11ba1cd4149e2d3c9cf54263c461e5dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_SingleToneSignal::Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__SimulatedSignalGenerator_1a16d5e44fc4c068568abebd337e7d7895">Initialize</reimplements>
+        <briefdescription>
+<para>Function Initialize. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="42" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SingleToneSignal_1a00506c9c755bddbdc14108bd43100182" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_SingleToneSignal::SetPhaseOffset</definition>
+        <argsstring>(double phase_offset)</argsstring>
+        <name>SetPhaseOffset</name>
+        <param>
+          <type>double</type>
+          <declname>phase_offset</declname>
+        </param>
+        <briefdescription>
+<para>Setter for phase offset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phase_offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New phase offset value to be applied </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="28" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__SingleToneSignal_1a118a3a3734ebc4e3fe18c410958889f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_SingleToneSignal::SetToneFrequency</definition>
+        <argsstring>(double tone_freq)</argsstring>
+        <name>SetToneFrequency</name>
+        <param>
+          <type>double</type>
+          <declname>tone_freq</declname>
+        </param>
+        <briefdescription>
+<para>Setter for tone frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tone_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency value in Hertz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="35" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__SingleToneSignal_1a4fca3c8f99e4b4f008a0553e931ab334" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_SingleToneSignal::GenerateSample</definition>
+        <argsstring>(const double &amp;, double &amp;sample) const override</argsstring>
+        <name>GenerateSample</name>
+        <reimplements refid="classhops_1_1MHO__SimulatedSignalGenerator_1aa8bd998b7c21562b8de01939bb894179">GenerateSample</reimplements>
+        <param>
+          <type>const double &amp;</type>
+          <defname>sample_time</defname>
+          <briefdescription><para>sample_time </para>
+</briefdescription>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>sample</declname>
+        </param>
+        <briefdescription>
+<para>Generates a sample using sine wave formula based on input time and frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!sample_time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sample</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(double&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True indicating successful generation of the sample. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="53" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/MHO_SingleToneSignal.cc" bodystart="12" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon Dec 19 16:33:05 2022 -0500 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_SingleToneSignal</label>
+        <link refid="classhops_1_1MHO__SingleToneSignal"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_SimulatedSignalGenerator</label>
+        <link refid="classhops_1_1MHO__SimulatedSignalGenerator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>hops::MHO_SingleToneSignal</label>
+        <link refid="classhops_1_1MHO__SingleToneSignal"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fPhaseOffset</edgelabel>
+          <edgelabel>fToneFrequency</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>double</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_SimulatedSignalGenerator</label>
+        <link refid="classhops_1_1MHO__SimulatedSignalGenerator"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fSamplingFrequency</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_SingleToneSignal.hh" bodystart="18" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1ac696bbca1aa2aeea927d35cd1a784862" prot="protected" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>fPhaseOffset</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a27685344cfb77a26a98d3024edea1248" prot="protected" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>fSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1a84b525edb2ca8a8365a2bfc887b7db49" prot="protected" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>fToneFrequency</name></member>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1a4fca3c8f99e4b4f008a0553e931ab334" prot="protected" virt="virtual"><scope>hops::MHO_SingleToneSignal</scope><name>GenerateSample</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a7b1760b72d76aa7ede8062e74daa8f33" prot="public" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>GetSample</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a2b883bf6d6c376a72203972707d6bb57" prot="public" virt="virtual"><scope>hops::MHO_SingleToneSignal</scope><name>GetSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1a11ba1cd4149e2d3c9cf54263c461e5dd" prot="public" virt="virtual"><scope>hops::MHO_SingleToneSignal</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1ac75073821d0b8a599a1b3e3e1011bb94" prot="public" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>MHO_SimulatedSignalGenerator</name></member>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1a128eb8ab63d3c1323d3eebda7e50e430" prot="public" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>MHO_SingleToneSignal</name></member>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1a00506c9c755bddbdc14108bd43100182" prot="public" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>SetPhaseOffset</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a988154cd80a59a18e62a6d7cc0401109" prot="public" virt="virtual"><scope>hops::MHO_SingleToneSignal</scope><name>SetSamplingFrequency</name></member>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1a118a3a3734ebc4e3fe18c410958889f3" prot="public" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>SetToneFrequency</name></member>
+      <member refid="classhops_1_1MHO__SimulatedSignalGenerator_1a4b30b516c46885e75c938e36d6667cf3" prot="public" virt="virtual"><scope>hops::MHO_SingleToneSignal</scope><name>~MHO_SimulatedSignalGenerator</name></member>
+      <member refid="classhops_1_1MHO__SingleToneSignal_1a59593d143231c81c3d6a78fc20c91e78" prot="public" virt="non-virtual"><scope>hops::MHO_SingleToneSignal</scope><name>~MHO_SingleToneSignal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

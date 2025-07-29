@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mk4__module_2afio_2____init_____8py" kind="file" language="Python">
+    <compoundname>mk4_module/afio/__init__.py</compoundname>
+    <innernamespace refid="namespaceafio">afio</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespaceafio" refkind="compound"><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/><sp/>AFIOStructureBase</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>rootsum</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>corelsum</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>fringesum</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>trianglesum</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>quadsum</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>afile_structure</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>afio_load</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>.afio<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>alist</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/__init__.py"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__TableContainerBufferBuilder" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_TableContainerBufferBuilder</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor" prot="public" virt="non-virtual">hops::MHO_ExtendedElement&lt; XExtensionType &gt;::ExtendedVisitor</basecompoundref>
+    <includes refid="MHO__TableContainerBufferBuilder_8hh" local="no">MHO_TableContainerBufferBuilder.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+      <param>
+        <type>typename <ref refid="classXAxisPackType" kindref="compound">XAxisPackType</ref></type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainerBufferBuilder_1a0a5531f20bb40f450d88b345fca6a438" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_TableContainerBufferBuilder&lt; XValueType, XAxisPackType &gt;::MHO_TableContainerBufferBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_TableContainerBufferBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_TableContainerBufferBuilder.hh" line="22" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainerBufferBuilder_1ae7d4757da9104c4f86a27bc788bc5b92" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_TableContainerBufferBuilder&lt; XValueType, XAxisPackType &gt;::~MHO_TableContainerBufferBuilder</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_TableContainerBufferBuilder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_TableContainerBufferBuilder.hh" line="23" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para></para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_ExtendedElement&lt; XExtensionType &gt;::ExtendedVisitor</label>
+        <link refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Visitor</label>
+        <link refid="classhops_1_1MHO__Visitor"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_TableContainerBufferBuilder&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainerBufferBuilder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_ExtendedElement&lt; XExtensionType &gt;::ExtendedVisitor</label>
+        <link refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Visitor</label>
+        <link refid="classhops_1_1MHO__Visitor"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_TableContainerBufferBuilder&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainerBufferBuilder"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_TableContainerBufferBuilder.hh" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Containers/include/MHO_TableContainerBufferBuilder.hh" bodystart="20" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor_1a8ac0502f01cc0ed926c54517021e14ca" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainerBufferBuilder</scope><name>ExtendedVisitor</name></member>
+      <member refid="classhops_1_1MHO__TableContainerBufferBuilder_1a0a5531f20bb40f450d88b345fca6a438" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainerBufferBuilder</scope><name>MHO_TableContainerBufferBuilder</name></member>
+      <member refid="classhops_1_1MHO__Visitor_1adcf35ee9c2f3782ce91c472e46e6f30b" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainerBufferBuilder</scope><name>MHO_Visitor</name></member>
+      <member refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor_1a9114b6b133878c008fe1cfe249ad8631" prot="public" virt="pure-virtual"><scope>hops::MHO_TableContainerBufferBuilder</scope><name>VisitExtendedElement</name></member>
+      <member refid="classhops_1_1MHO__ExtendedElement_1_1ExtendedVisitor_1a3f1b2b9961e585b92bc57e66fcede0ac" prot="public" virt="virtual"><scope>hops::MHO_TableContainerBufferBuilder</scope><name>~ExtendedVisitor</name></member>
+      <member refid="classhops_1_1MHO__TableContainerBufferBuilder_1ae7d4757da9104c4f86a27bc788bc5b92" prot="public" virt="virtual"><scope>hops::MHO_TableContainerBufferBuilder</scope><name>~MHO_TableContainerBufferBuilder</name></member>
+      <member refid="classhops_1_1MHO__Visitor_1ae0b70718d0ad025bbee5296a116f5e5e" prot="public" virt="virtual"><scope>hops::MHO_TableContainerBufferBuilder</scope><name>~MHO_Visitor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

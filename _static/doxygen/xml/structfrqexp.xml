@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfrqexp" kind="struct" language="C++" prot="public">
+    <compoundname>frqexp</compoundname>
+    <includes refid="summary_8h" local="no">summary.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfrqexp_1acb84f5579584f6a7b75a67ae2e62c615" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int frqexp::begin</definition>
+        <argsstring></argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="43" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1ae9fce39557381a5319dd314b82a3ab99" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* frqexp::btq</definition>
+        <argsstring></argsstring>
+        <name>btq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="47" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1a85d888065a0099f0ef07dd3f12be6ef3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int frqexp::btq_allocated</definition>
+        <argsstring></argsstring>
+        <name>btq_allocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="48" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1a27ca1db1f4c9e0fbed668e51186ffc08" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int frqexp::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="44" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1a8abb9514570bbd93a4d9e4a0f5f599a3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int frqexp::expt_no</definition>
+        <argsstring></argsstring>
+        <name>expt_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="42" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char frqexp::freq_code</definition>
+        <argsstring></argsstring>
+        <name>freq_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="41" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1aa4958c3030705e113a92113ac1499070" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int frqexp::nbtq</definition>
+        <argsstring></argsstring>
+        <name>nbtq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="46" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1a7b7f975321e2721b429b34aadc7ee094" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int frqexp::nsource</definition>
+        <argsstring></argsstring>
+        <name>nsource</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="49" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1ae8ed407b2d502767c84b7f6b999a9e95" prot="public" static="no" mutable="no">
+        <type><ref refid="structsrcsum" kindref="compound">srcsum</ref> *</type>
+        <definition>srcsum* frqexp::slist</definition>
+        <argsstring></argsstring>
+        <name>slist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="50" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1a391e4d5e75d06a61fcd7e9f7179d1ba1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int frqexp::slist_allocated</definition>
+        <argsstring></argsstring>
+        <name>slist_allocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="51" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfrqexp_1a2fc318002b2a506e8263f798efd37dda" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char frqexp::stations[MAXSTEXP+1]</definition>
+        <argsstring>[MAXSTEXP+1]</argsstring>
+        <name>stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="45" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>srcsum</label>
+        <link refid="structsrcsum"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>snrmax</edgelabel>
+          <edgelabel>snrmin</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>btq</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>stations</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>begin</edgelabel>
+          <edgelabel>btq_allocated</edgelabel>
+          <edgelabel>count</edgelabel>
+          <edgelabel>end</edgelabel>
+          <edgelabel>nbtq</edgelabel>
+          <edgelabel>qcodes</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>frqexp</label>
+        <link refid="structfrqexp"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>btq</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>stations</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>slist</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>begin</edgelabel>
+          <edgelabel>btq_allocated</edgelabel>
+          <edgelabel>end</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>nbtq</edgelabel>
+          <edgelabel>nsource</edgelabel>
+          <edgelabel>slist_allocated</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/summary.h" bodystart="40" bodyend="52"/>
+    <listofallmembers>
+      <member refid="structfrqexp_1acb84f5579584f6a7b75a67ae2e62c615" prot="public" virt="non-virtual"><scope>frqexp</scope><name>begin</name></member>
+      <member refid="structfrqexp_1ae9fce39557381a5319dd314b82a3ab99" prot="public" virt="non-virtual"><scope>frqexp</scope><name>btq</name></member>
+      <member refid="structfrqexp_1a85d888065a0099f0ef07dd3f12be6ef3" prot="public" virt="non-virtual"><scope>frqexp</scope><name>btq_allocated</name></member>
+      <member refid="structfrqexp_1a27ca1db1f4c9e0fbed668e51186ffc08" prot="public" virt="non-virtual"><scope>frqexp</scope><name>end</name></member>
+      <member refid="structfrqexp_1a8abb9514570bbd93a4d9e4a0f5f599a3" prot="public" virt="non-virtual"><scope>frqexp</scope><name>expt_no</name></member>
+      <member refid="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" prot="public" virt="non-virtual"><scope>frqexp</scope><name>freq_code</name></member>
+      <member refid="structfrqexp_1aa4958c3030705e113a92113ac1499070" prot="public" virt="non-virtual"><scope>frqexp</scope><name>nbtq</name></member>
+      <member refid="structfrqexp_1a7b7f975321e2721b429b34aadc7ee094" prot="public" virt="non-virtual"><scope>frqexp</scope><name>nsource</name></member>
+      <member refid="structfrqexp_1ae8ed407b2d502767c84b7f6b999a9e95" prot="public" virt="non-virtual"><scope>frqexp</scope><name>slist</name></member>
+      <member refid="structfrqexp_1a391e4d5e75d06a61fcd7e9f7179d1ba1" prot="public" virt="non-virtual"><scope>frqexp</scope><name>slist_allocated</name></member>
+      <member refid="structfrqexp_1a2fc318002b2a506e8263f798efd37dda" prot="public" virt="non-virtual"><scope>frqexp</scope><name>stations</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

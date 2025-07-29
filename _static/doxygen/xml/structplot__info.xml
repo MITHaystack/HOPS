@@ -1,0 +1,517 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structplot__info" kind="struct" language="C++" prot="public">
+    <compoundname>plot_info</compoundname>
+    <includes refid="pstruct_8h" local="no">pstruct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structplot__info_1ab4973491bbb518da4f1983553de6689b" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::ampcl</definition>
+        <argsstring>[5]</argsstring>
+        <name>ampcl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="94" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a9c38f9697339240b9d0358bd2c9397be" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::bas</definition>
+        <argsstring>[3]</argsstring>
+        <name>bas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="92" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1ae91069b8601d75a64df478d1075c15da" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::expt</definition>
+        <argsstring></argsstring>
+        <name>expt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="89" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a3a5137cf8912c536971005d621edaf26" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::frq</definition>
+        <argsstring></argsstring>
+        <name>frq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="88" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a55428556c78984a89b1bad86839e4099" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::index[MAXPLT]</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="86" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a24ed0b7a4afbfdaa3e1a3d412c27f9de" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short plot_info::index[MAXPLT]</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" line="85" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/tempo.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a6293e887c8fa9009ebd8658fa96d5fb9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::nbad</definition>
+        <argsstring></argsstring>
+        <name>nbad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="67" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a5b9d4d6be9571b559e65e8dfdf0d0f85" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::nbadscale</definition>
+        <argsstring></argsstring>
+        <name>nbadscale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="68" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a1b9cd65a27e0e53987f0f3a2854676be" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::ngood</definition>
+        <argsstring></argsstring>
+        <name>ngood</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="65" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::npts</definition>
+        <argsstring></argsstring>
+        <name>npts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="64" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1adb0e5cdb54e131060f5d5cdc0db4c743" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::nsusp</definition>
+        <argsstring></argsstring>
+        <name>nsusp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="66" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a937e3eec685c830dbdb774af460e5f49" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::onscreen</definition>
+        <argsstring></argsstring>
+        <name>onscreen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="71" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a0812913da96d2c99f8bc8c7d5772565a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::plotby</definition>
+        <argsstring></argsstring>
+        <name>plotby</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="72" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::source</definition>
+        <argsstring>[32]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="90" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a0f4405e67ac9ccb9ca25514f02322833" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::station</definition>
+        <argsstring></argsstring>
+        <name>station</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="91" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1abecd6d53d277c7a31c149bb2d19dbb9c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::symbol</definition>
+        <argsstring>[MAXPLT]</argsstring>
+        <name>symbol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="87" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a1066a7bab75004318340a6d9a6152f18" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::toffset</definition>
+        <argsstring></argsstring>
+        <name>toffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="83" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a7a6facc49a12cb5eb32b35f7823fe61d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::triangle</definition>
+        <argsstring>[4]</argsstring>
+        <name>triangle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="93" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a4d0523f44a50984939afb768729d9513" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_info::vport</definition>
+        <argsstring>[4]</argsstring>
+        <name>vport</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="84" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a15fe31a1adf2df50f43a5345c88a2893" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_info::window</definition>
+        <argsstring>[4]</argsstring>
+        <name>window</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="85" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a64d6adfbadab871479c3c923f46fe31a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::x_aux</definition>
+        <argsstring></argsstring>
+        <name>x_aux</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="74" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a02da7da8b9f54cf610673352801ab733" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::xaind</definition>
+        <argsstring></argsstring>
+        <name>xaind</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="73" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1afcb4234b4549822319ac3fb2a0d2c46f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::xebar</definition>
+        <argsstring></argsstring>
+        <name>xebar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="69" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a079933b220bc15df18578970a06440ef" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_info::xmax</definition>
+        <argsstring></argsstring>
+        <name>xmax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="79" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a02c12db36d302a36e005ab20baf1a9eb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_info::xmin</definition>
+        <argsstring></argsstring>
+        <name>xmin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="80" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a9d09e2c922b147f68c929c3305be8387" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::xtype</definition>
+        <argsstring>[30]</argsstring>
+        <name>xtype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="75" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a1555e4cd0cdcd78e4a20f30cd41a77b2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::y_aux</definition>
+        <argsstring></argsstring>
+        <name>y_aux</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="77" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1af0f344f7a4907d006117668097aa6935" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::yaind</definition>
+        <argsstring></argsstring>
+        <name>yaind</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="76" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a797dfb97eefaa98e21e1cd8ce721cd7b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_info::yebar</definition>
+        <argsstring></argsstring>
+        <name>yebar</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="70" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1aa2e20f1cc7813daff261a648a1102004" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_info::ymax</definition>
+        <argsstring></argsstring>
+        <name>ymax</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="81" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a7fff1c109412b7fb3d463d99a71bc015" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float plot_info::ymin</definition>
+        <argsstring></argsstring>
+        <name>ymin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="82" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structplot__info_1a6d7ab9adb190713d730a8d024bc3b9e2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char plot_info::ytype</definition>
+        <argsstring>[30]</argsstring>
+        <name>ytype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="78" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>plot_info</label>
+        <link refid="structplot__info"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>index</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>vport</edgelabel>
+          <edgelabel>window</edgelabel>
+          <edgelabel>xmax</edgelabel>
+          <edgelabel>xmin</edgelabel>
+          <edgelabel>ymax</edgelabel>
+          <edgelabel>ymin</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>ampcl</edgelabel>
+          <edgelabel>bas</edgelabel>
+          <edgelabel>frq</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>station</edgelabel>
+          <edgelabel>symbol</edgelabel>
+          <edgelabel>triangle</edgelabel>
+          <edgelabel>xtype</edgelabel>
+          <edgelabel>ytype</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>expt</edgelabel>
+          <edgelabel>index</edgelabel>
+          <edgelabel>nbad</edgelabel>
+          <edgelabel>nbadscale</edgelabel>
+          <edgelabel>ngood</edgelabel>
+          <edgelabel>npts</edgelabel>
+          <edgelabel>nsusp</edgelabel>
+          <edgelabel>onscreen</edgelabel>
+          <edgelabel>plotby</edgelabel>
+          <edgelabel>toffset</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" line="62" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/pstruct.h" bodystart="63" bodyend="95"/>
+    <listofallmembers>
+      <member refid="structplot__info_1ab4973491bbb518da4f1983553de6689b" prot="public" virt="non-virtual"><scope>plot_info</scope><name>ampcl</name></member>
+      <member refid="structplot__info_1a9c38f9697339240b9d0358bd2c9397be" prot="public" virt="non-virtual"><scope>plot_info</scope><name>bas</name></member>
+      <member refid="structplot__info_1ae91069b8601d75a64df478d1075c15da" prot="public" virt="non-virtual"><scope>plot_info</scope><name>expt</name></member>
+      <member refid="structplot__info_1a3a5137cf8912c536971005d621edaf26" prot="public" virt="non-virtual"><scope>plot_info</scope><name>frq</name></member>
+      <member refid="structplot__info_1a55428556c78984a89b1bad86839e4099" prot="public" virt="non-virtual"><scope>plot_info</scope><name>index</name></member>
+      <member refid="structplot__info_1a24ed0b7a4afbfdaa3e1a3d412c27f9de" prot="public" virt="non-virtual"><scope>plot_info</scope><name>index</name></member>
+      <member refid="structplot__info_1a6293e887c8fa9009ebd8658fa96d5fb9" prot="public" virt="non-virtual"><scope>plot_info</scope><name>nbad</name></member>
+      <member refid="structplot__info_1a5b9d4d6be9571b559e65e8dfdf0d0f85" prot="public" virt="non-virtual"><scope>plot_info</scope><name>nbadscale</name></member>
+      <member refid="structplot__info_1a1b9cd65a27e0e53987f0f3a2854676be" prot="public" virt="non-virtual"><scope>plot_info</scope><name>ngood</name></member>
+      <member refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" prot="public" virt="non-virtual"><scope>plot_info</scope><name>npts</name></member>
+      <member refid="structplot__info_1adb0e5cdb54e131060f5d5cdc0db4c743" prot="public" virt="non-virtual"><scope>plot_info</scope><name>nsusp</name></member>
+      <member refid="structplot__info_1a937e3eec685c830dbdb774af460e5f49" prot="public" virt="non-virtual"><scope>plot_info</scope><name>onscreen</name></member>
+      <member refid="structplot__info_1a0812913da96d2c99f8bc8c7d5772565a" prot="public" virt="non-virtual"><scope>plot_info</scope><name>plotby</name></member>
+      <member refid="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" prot="public" virt="non-virtual"><scope>plot_info</scope><name>source</name></member>
+      <member refid="structplot__info_1a0f4405e67ac9ccb9ca25514f02322833" prot="public" virt="non-virtual"><scope>plot_info</scope><name>station</name></member>
+      <member refid="structplot__info_1abecd6d53d277c7a31c149bb2d19dbb9c" prot="public" virt="non-virtual"><scope>plot_info</scope><name>symbol</name></member>
+      <member refid="structplot__info_1a1066a7bab75004318340a6d9a6152f18" prot="public" virt="non-virtual"><scope>plot_info</scope><name>toffset</name></member>
+      <member refid="structplot__info_1a7a6facc49a12cb5eb32b35f7823fe61d" prot="public" virt="non-virtual"><scope>plot_info</scope><name>triangle</name></member>
+      <member refid="structplot__info_1a4d0523f44a50984939afb768729d9513" prot="public" virt="non-virtual"><scope>plot_info</scope><name>vport</name></member>
+      <member refid="structplot__info_1a15fe31a1adf2df50f43a5345c88a2893" prot="public" virt="non-virtual"><scope>plot_info</scope><name>window</name></member>
+      <member refid="structplot__info_1a64d6adfbadab871479c3c923f46fe31a" prot="public" virt="non-virtual"><scope>plot_info</scope><name>x_aux</name></member>
+      <member refid="structplot__info_1a02da7da8b9f54cf610673352801ab733" prot="public" virt="non-virtual"><scope>plot_info</scope><name>xaind</name></member>
+      <member refid="structplot__info_1afcb4234b4549822319ac3fb2a0d2c46f" prot="public" virt="non-virtual"><scope>plot_info</scope><name>xebar</name></member>
+      <member refid="structplot__info_1a079933b220bc15df18578970a06440ef" prot="public" virt="non-virtual"><scope>plot_info</scope><name>xmax</name></member>
+      <member refid="structplot__info_1a02c12db36d302a36e005ab20baf1a9eb" prot="public" virt="non-virtual"><scope>plot_info</scope><name>xmin</name></member>
+      <member refid="structplot__info_1a9d09e2c922b147f68c929c3305be8387" prot="public" virt="non-virtual"><scope>plot_info</scope><name>xtype</name></member>
+      <member refid="structplot__info_1a1555e4cd0cdcd78e4a20f30cd41a77b2" prot="public" virt="non-virtual"><scope>plot_info</scope><name>y_aux</name></member>
+      <member refid="structplot__info_1af0f344f7a4907d006117668097aa6935" prot="public" virt="non-virtual"><scope>plot_info</scope><name>yaind</name></member>
+      <member refid="structplot__info_1a797dfb97eefaa98e21e1cd8ce721cd7b" prot="public" virt="non-virtual"><scope>plot_info</scope><name>yebar</name></member>
+      <member refid="structplot__info_1aa2e20f1cc7813daff261a648a1102004" prot="public" virt="non-virtual"><scope>plot_info</scope><name>ymax</name></member>
+      <member refid="structplot__info_1a7fff1c109412b7fb3d463d99a71bc015" prot="public" virt="non-virtual"><scope>plot_info</scope><name>ymin</name></member>
+      <member refid="structplot__info_1a6d7ab9adb190713d730a8d024bc3b9e2" prot="public" virt="non-virtual"><scope>plot_info</scope><name>ytype</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

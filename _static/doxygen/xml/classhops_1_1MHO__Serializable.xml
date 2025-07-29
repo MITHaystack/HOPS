@@ -1,0 +1,421 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__Serializable" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_Serializable</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__AxisPack" prot="public" virt="virtual">hops::MHO_AxisPack&lt; XAxisTypeS &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__Taggable" prot="public" virt="virtual">hops::MHO_Taggable</derivedcompoundref>
+    <includes refid="MHO__Serializable_8hh" local="no">MHO_Serializable.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__Serializable_1a8b15b5f94b96dc12492b5d11ae0615d5" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_Serializable::fObjectUUID</definition>
+        <argsstring></argsstring>
+        <name>fObjectUUID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="94" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__Serializable_1ab95f418c5b2d0bfac09798f6a8059a57" prot="private" static="no" mutable="yes">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_Serializable::fTypeUUID</definition>
+        <argsstring></argsstring>
+        <name>fTypeUUID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="95" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1a071ba293eca6f0eb58a8b067ef1506d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Serializable::MHO_Serializable</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_Serializable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="28" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1a29f651974e8b1cfaa7a12810a1644cbd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Serializable::MHO_Serializable</definition>
+        <argsstring>(const MHO_UUID &amp;uuid)</argsstring>
+        <name>MHO_Serializable</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1aadeecd650cb160acb8e83565ecfb8a0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_Serializable::MHO_Serializable</definition>
+        <argsstring>(std::size_t n)</argsstring>
+        <name>MHO_Serializable</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1a573b91158c3b24b67b594e6d4af0ccea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_Serializable::~MHO_Serializable</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_Serializable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1aa6f524e78beb65d026c87fc6856ba059" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_Serializable::GetObjectUUID</definition>
+        <argsstring>() const</argsstring>
+        <name>GetObjectUUID</name>
+        <briefdescription>
+<para>Getter for object uuid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>: The unique identifier (UUID) of the object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="61" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1afa23be74f2fa2f42b4ad04bda2b8729d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_Serializable::GetSerializedSize</definition>
+        <argsstring>() const =0</argsstring>
+        <name>GetSerializedSize</name>
+        <reimplementedby refid="classhops_1_1MHO__Axis_1a237c1dd1ee6515b4745979ddccdadefe">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Axis_1a237c1dd1ee6515b4745979ddccdadefe">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__AxisPack_1a149fb3951e131da85a7620f954de71cc">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ObjectTags_1a6e88afb0759c5fdff423b496028ca87e">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ScalarContainer_1a6ebd899402b949b8cd5d9be3a6411227">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Taggable_1aec049bfd4587cb63d887bab57bf08991">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__VectorContainer_1aaea274dcf1b11ad5f61f9c9cd857c361">GetSerializedSize</reimplementedby>
+        <briefdescription>
+<para>Getter for serialized size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (uint64_t) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="54" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1aab01eda2ff2ad2338899119bcd509d31" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>virtual MHO_UUID hops::MHO_Serializable::GetTypeUUID</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTypeUUID</name>
+        <briefdescription>
+<para>Getter for type uuid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> representing the type&apos;s universally unique identifier. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="76" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="76" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1a71a1fcfba885db79a6bc9914fb73786d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="namespacehops_1a79b4811cd0a8f2e7e35c6d3f85ce8b1b" kindref="member">MHO_ClassVersion</ref></type>
+        <definition>virtual MHO_ClassVersion hops::MHO_Serializable::GetVersion</definition>
+        <argsstring>() const</argsstring>
+        <name>GetVersion</name>
+        <reimplementedby refid="classhops_1_1MHO__ScalarContainer_1a0519f5b7f1c1339282acf21843299d53">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Taggable_1a7b9b9b27f97f67f6aced62b1eae719e8">GetVersion</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__VectorContainer_1a01d7dd830b5b6924ed586396e3ca2dff">GetVersion</reimplementedby>
+        <briefdescription>
+<para>Getter for version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MHO_ClassVersion version number. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="46" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1af3fc6887489606836bf32705332972f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_Serializable::SetObjectUUID</definition>
+        <argsstring>(const MHO_UUID &amp;uuid)</argsstring>
+        <name>SetObjectUUID</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+<para>Setter for object uuid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new UUID value to set for the object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="68" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="68" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__Serializable_1a80201b7f16f12c8118a8596f1db064d9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>virtual MHO_UUID hops::MHO_Serializable::DetermineTypeUUID</definition>
+        <argsstring>() const =0</argsstring>
+        <name>DetermineTypeUUID</name>
+        <reimplementedby refid="classhops_1_1MHO__Axis_1a99ee1845933642c3d03631c197f4eb11">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Axis_1a99ee1845933642c3d03631c197f4eb11">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__AxisPack_1a6e2e560cd491bbb3829c117009fbda99">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ObjectTags_1a84199f818610fc807fcdbddd008fe9c1">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__ScalarContainer_1a3523688b529f08ea9ef68bd55e2ac67f">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__Taggable_1ae5f8d8c6c32f9d9c76607f6b3b1db6ff">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__VectorContainer_1aae7a3ca2c182eaa9cab92b733abc0473">DetermineTypeUUID</reimplementedby>
+        <briefdescription>
+<para>Function DetermineTypeUUID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (<ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="92" column="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Abstract base class for all serializable objects.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Apr 21 13:40:18 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="17">
+        <label>hops::MHO_Axis&lt; double &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_dr_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_TableContainer&lt; pcal_phasor_type, multitone_pcal_axis_type &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>hops::MHO_Axis&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>hops::MHO_VectorContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__VectorContainer"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>hops::MHO_ScalarContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__ScalarContainer"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hops::MHO_ObjectTags</label>
+        <link refid="classhops_1_1MHO__ObjectTags"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_AxisPack&lt; XAxisTypeS &gt;</label>
+        <link refid="classhops_1_1MHO__AxisPack"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" line="25" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Serializable.hh" bodystart="26" bodyend="96"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__Serializable_1a80201b7f16f12c8118a8596f1db064d9" prot="private" virt="pure-virtual"><scope>hops::MHO_Serializable</scope><name>DetermineTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a8b15b5f94b96dc12492b5d11ae0615d5" prot="private" virt="non-virtual"><scope>hops::MHO_Serializable</scope><name>fObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1ab95f418c5b2d0bfac09798f6a8059a57" prot="private" virt="non-virtual"><scope>hops::MHO_Serializable</scope><name>fTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aa6f524e78beb65d026c87fc6856ba059" prot="public" virt="non-virtual"><scope>hops::MHO_Serializable</scope><name>GetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1afa23be74f2fa2f42b4ad04bda2b8729d" prot="public" virt="pure-virtual"><scope>hops::MHO_Serializable</scope><name>GetSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aab01eda2ff2ad2338899119bcd509d31" prot="public" virt="virtual"><scope>hops::MHO_Serializable</scope><name>GetTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a71a1fcfba885db79a6bc9914fb73786d" prot="public" virt="virtual"><scope>hops::MHO_Serializable</scope><name>GetVersion</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a071ba293eca6f0eb58a8b067ef1506d0" prot="public" virt="non-virtual"><scope>hops::MHO_Serializable</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a29f651974e8b1cfaa7a12810a1644cbd" prot="public" virt="non-virtual"><scope>hops::MHO_Serializable</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aadeecd650cb160acb8e83565ecfb8a0a" prot="public" virt="non-virtual"><scope>hops::MHO_Serializable</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1af3fc6887489606836bf32705332972f7" prot="public" virt="non-virtual"><scope>hops::MHO_Serializable</scope><name>SetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a573b91158c3b24b67b594e6d4af0ccea" prot="public" virt="virtual"><scope>hops::MHO_Serializable</scope><name>~MHO_Serializable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

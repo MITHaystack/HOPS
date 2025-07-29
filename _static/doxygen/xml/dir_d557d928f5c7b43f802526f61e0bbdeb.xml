@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_d557d928f5c7b43f802526f61e0bbdeb" kind="dir">
+    <compoundname>applications</compoundname>
+    <innerfile refid="hops2hdf5_8cc">hops2hdf5.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/applications/"/>
+  </compounddef>
+</doxygen>

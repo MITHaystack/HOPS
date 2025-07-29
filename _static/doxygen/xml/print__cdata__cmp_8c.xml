@@ -1,0 +1,501 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="print__cdata__cmp_8c" kind="file" language="C++">
+    <compoundname>print_cdata_cmp.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes refid="fourmer_8h" local="yes">fourmer.h</includes>
+    <incdepgraph>
+      <node id="33">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>stdarg.h</label>
+      </node>
+      <node id="10">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="37">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>sys/times.h</label>
+      </node>
+      <node id="16">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="20">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="42">
+        <label>stdint.h</label>
+      </node>
+      <node id="25">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="43">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="19">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>fourmer.h</label>
+        <link refid="fourmer_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="12">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>sys/types.h</label>
+      </node>
+      <node id="31">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="8">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="35">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>complex.h</label>
+      </node>
+      <node id="27">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="48">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>print_cdata_cmp.c</label>
+        <link refid="print__cdata__cmp_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="17">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="41">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="49">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="26">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="5">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="print__cdata__cmp_8c_1aef4d2eff4948281f154876250dd2c5c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void print_cdata_cmp</definition>
+        <argsstring>(char *AName, char *BName, struct mk4_corel *cdataAp, struct mk4_corel *cdataBp)</argsstring>
+        <name>print_cdata_cmp</name>
+        <param>
+          <type>char *</type>
+          <declname>AName</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>BName</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+          <declname>cdataAp</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__corel" kindref="compound">mk4_corel</ref> *</type>
+          <declname>cdataBp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/print_cdata_cmp.c" line="12" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/print_cdata_cmp.c" bodystart="12" bodyend="107"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>print_cdata_cmp.c<sp/>1343<sp/>2016-05-31<sp/>17:05:23Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>A<sp/>verbose<sp/>diagnostic,<sp/>if<sp/>needed</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fourmer_8h" kindref="compound">fourmer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="print__cdata__cmp_8c_1aef4d2eff4948281f154876250dd2c5c4" kindref="member">print_cdata_cmp</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*AName,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*BName,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref><sp/>*cdataAp,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__corel" kindref="compound">mk4_corel</ref><sp/>*cdataBp)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structtype__101" kindref="compound">type_101</ref><sp/>*t101a,<sp/>*t101b;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structindex__tag" kindref="compound">index_tag</ref><sp/>*idxa,<sp/>*idxb;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nDetailed<sp/>Comparison<sp/>of<sp/>A(%s)<sp/>and<sp/>B(%s)<sp/>begins:\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>AName,<sp/>BName);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nComparing<sp/>t100<sp/>records...\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1aa6e3c799e5df36cd4bc2e5b7bb57a9e9" kindref="member">record_id</ref>,<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1aa6e3c799e5df36cd4bc2e5b7bb57a9e9" kindref="member">record_id</ref>,<sp/>3))</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.record_id\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a591774d81c42cff0f7c956d84ddaaeab" kindref="member">version_no</ref>,<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a591774d81c42cff0f7c956d84ddaaeab" kindref="member">version_no</ref>,<sp/>2))</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.version_no\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1afc3335b98e790bee21c9534db5182cb6" kindref="member">unused1</ref>,<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1afc3335b98e790bee21c9534db5182cb6" kindref="member">unused1</ref>,<sp/>3))</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.unused1\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a03061f2d6976f5196e85976c2923bbbf" kindref="member">baseline</ref>,<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a03061f2d6976f5196e85976c2923bbbf" kindref="member">baseline</ref>,<sp/>2))</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.baseline\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1ad134d70ce11b35e3ac8b3d0f0c3df8e2" kindref="member">rootname</ref>,<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1ad134d70ce11b35e3ac8b3d0f0c3df8e2" kindref="member">rootname</ref>,<sp/>34))</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.rootname\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1aeb31ae7abaf406d079277b700c6369a8" kindref="member">qcode</ref>,<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1aeb31ae7abaf406d079277b700c6369a8" kindref="member">qcode</ref>,<sp/>2))</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.qcode\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a37d134541fbeb45c0d54882f24108cb0" kindref="member">unused2</ref>,<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a37d134541fbeb45c0d54882f24108cb0" kindref="member">unused2</ref>,<sp/>6))</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.unused2\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a0310a31443d7783d1f3875f74eda1482" kindref="member">pct_done</ref><sp/>!=<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a0310a31443d7783d1f3875f74eda1482" kindref="member">pct_done</ref>)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.pct_done\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a29f02500cbe7be1e13aa82f2cd3b9386" kindref="member">ndrec</ref><sp/>!=<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a29f02500cbe7be1e13aa82f2cd3b9386" kindref="member">ndrec</ref>)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.ndrec\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a01e8221e832477c1b041466608714049" kindref="member">nindex</ref><sp/>!=<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a01e8221e832477c1b041466608714049" kindref="member">nindex</ref>)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.nindex\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a4109439aa45a6826ed816f7e8900b37d" kindref="member">nlags</ref><sp/>!=<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a4109439aa45a6826ed816f7e8900b37d" kindref="member">nlags</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.nlags\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a72a742d1995a6d7a9bb0d29c54a2c7d6" kindref="member">nblocks</ref><sp/>!=<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a72a742d1995a6d7a9bb0d29c54a2c7d6" kindref="member">nblocks</ref>)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.nblocks\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;cdataAp-&gt;t100-&gt;nblocks<sp/>=<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a72a742d1995a6d7a9bb0d29c54a2c7d6" kindref="member">nblocks</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(memcmp(&amp;(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a13584881cb5da7eb67732e8787050b9f" kindref="member">procdate</ref>),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a13584881cb5da7eb67732e8787050b9f" kindref="member">procdate</ref>),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref>)))</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.procdate\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(memcmp(&amp;(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a471321a6ec301345d6d843d62eb958ec" kindref="member">start</ref>),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1a471321a6ec301345d6d843d62eb958ec" kindref="member">start</ref>),</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref>)))</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.start\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(memcmp(&amp;(cdataAp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1aea0fec478ce847e19b3fe4a4f68b6b17" kindref="member">stop</ref>),</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(cdataBp-&gt;<ref refid="structmk4__corel_1a6a83a1a88176099cfd0d193fd4d3122a" kindref="member">t100</ref>-&gt;<ref refid="structtype__100_1aea0fec478ce847e19b3fe4a4f68b6b17" kindref="member">stop</ref>),</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structdate" kindref="compound">date</ref>)))</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t100.stop\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nComparing<sp/>t101<sp/>records...\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>cdataAp-&gt;<ref refid="structmk4__corel_1a11c1248744f5d3b4efe675370b5510ac" kindref="member">index_space</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>idxa<sp/>=<sp/>cdataAp-&gt;<ref refid="structmk4__corel_1a6f78e597fa70c404d6aa36df5709dc90" kindref="member">index</ref><sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>idxb<sp/>=<sp/>cdataBp-&gt;<ref refid="structmk4__corel_1a6f78e597fa70c404d6aa36df5709dc90" kindref="member">index</ref><sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((t101a<sp/>=<sp/>idxa-&gt;<ref refid="structindex__tag_1ab500d9600f3f3579838a9a6e74e000ee" kindref="member">t101</ref>)<sp/>==<sp/>NULL)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((t101b<sp/>=<sp/>idxb-&gt;<ref refid="structindex__tag_1ab500d9600f3f3579838a9a6e74e000ee" kindref="member">t101</ref>)<sp/>==<sp/>NULL)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(t101a-&gt;<ref refid="structtype__101_1a9817a99ac93b27f43b95ce00956ff6de" kindref="member">record_id</ref>,<sp/>t101b-&gt;<ref refid="structtype__101_1a9817a99ac93b27f43b95ce00956ff6de" kindref="member">record_id</ref>,<sp/>3))</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].record_id\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strncmp(t101a-&gt;<ref refid="structtype__101_1ac2569d4141d714d4c1fa677052ad044f" kindref="member">version_no</ref>,<sp/>t101b-&gt;<ref refid="structtype__101_1ac2569d4141d714d4c1fa677052ad044f" kindref="member">version_no</ref>,<sp/>2))</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].version_no\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>if<sp/>(strncmp(t101a-&gt;ref_chan_id,<sp/>t101b-&gt;ref_chan_id,<sp/>8))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>printf(&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].ref_chan_id\n&quot;,<sp/>i);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>if<sp/>(strncmp(t101a-&gt;rem_chan_id,<sp/>t101b-&gt;rem_chan_id,<sp/>8))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>printf(&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].rem_chan_id\n&quot;,<sp/>i);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1ae4df0349b4579c4cbddbe4401c5a327e" kindref="member">status</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1ae4df0349b4579c4cbddbe4401c5a327e" kindref="member">status</ref>)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].status\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1a74a165dea3203d4f2e637a945b64ea35" kindref="member">nblocks</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1a74a165dea3203d4f2e637a945b64ea35" kindref="member">nblocks</ref>)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].nblocks\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>if<sp/>(t101a-&gt;index<sp/>!=<sp/>t101b-&gt;index)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>printf(&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].index\n&quot;,<sp/>i);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1a5af092a598da77824a91cb961f621bd0" kindref="member">primary</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1a5af092a598da77824a91cb961f621bd0" kindref="member">primary</ref>)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].primary\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1afe69bb4a903ed5d66b3f2ee0e4117c25" kindref="member">corr_board</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1afe69bb4a903ed5d66b3f2ee0e4117c25" kindref="member">corr_board</ref>)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].corr_board\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1a6d9df5405e2c903fe99b608028637ffe" kindref="member">corr_slot</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1a6d9df5405e2c903fe99b608028637ffe" kindref="member">corr_slot</ref>)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].corr_slot\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1adae12a44f4c94b0ab1de8b217a3f48f9" kindref="member">ref_chan</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1adae12a44f4c94b0ab1de8b217a3f48f9" kindref="member">ref_chan</ref>)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].ref_chan\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1a52fd61887fd57ba7a2935bc5659ef51b" kindref="member">rem_chan</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1a52fd61887fd57ba7a2935bc5659ef51b" kindref="member">rem_chan</ref>)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].rem_chan\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1aecaa81597584badaceb9dff06ef97c99" kindref="member">post_mortem</ref><sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1aecaa81597584badaceb9dff06ef97c99" kindref="member">post_mortem</ref>)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].post_mortem\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(t101a-&gt;<ref refid="structtype__101_1a63283eb306554ecdbdf5c6149a8d5830" kindref="member">blocks</ref>[0]<sp/>!=<sp/>t101b-&gt;<ref refid="structtype__101_1a63283eb306554ecdbdf5c6149a8d5830" kindref="member">blocks</ref>[0])</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Discrepancy<sp/>in<sp/>t101[%d].blocks[0]\n&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nDetailed<sp/>Comparison<sp/>of<sp/>A(%s)<sp/>and<sp/>B(%s)<sp/>concluded.\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>AName,<sp/>BName);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/print_cdata_cmp.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classffcontrol_1_1ffcontrol_1_1c__block" kind="class" language="Python" prot="public">
+    <compoundname>ffcontrol::ffcontrol::c_block</compoundname>
+    <basecompoundref refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase" prot="public" virt="non-virtual">ffcontrol.ffcontrol.FFControlStructureBase</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classffcontrol_1_1ffcontrol_1_1c__block_1a48e11bf00ba88bed8cbf661cfe2f8b16" prot="private" static="yes" mutable="no">
+        <type></type>
+        <definition>ffcontrol.ffcontrol.c_block::_fields_</definition>
+        <argsstring></argsstring>
+        <name>_fields_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="122" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ffcontrol.ffcontrol.FFControlStructureBase</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="1">
+        <label>ffcontrol.ffcontrol.c_block</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1c__block"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ffcontrol.ffcontrol.FFControlStructureBase</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="1">
+        <label>ffcontrol.ffcontrol.c_block</label>
+        <link refid="classffcontrol_1_1ffcontrol_1_1c__block"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" line="118" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/ffcontrol_module/ffcontrol/ffcontrol.py" bodystart="118" bodyend="212"/>
+    <listofallmembers>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a9d3a5f745142bd364e7c909484b2359c" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::c_block</scope><name>__eq__</name></member>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a2b7631256b24502a34f8f3b4172d57ba" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::c_block</scope><name>__ne__</name></member>
+      <member refid="classffcontrol_1_1ffcontrol_1_1c__block_1a48e11bf00ba88bed8cbf661cfe2f8b16" prot="private" virt="non-virtual"><scope>ffcontrol::ffcontrol::c_block</scope><name>_fields_</name></member>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a87c532352fb382ab60a98077b2c32b3a" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::c_block</scope><name>printarray</name></member>
+      <member refid="classffcontrol_1_1ffcontrol_1_1FFControlStructureBase_1a097479c422d8dacc00399c7c91a44e51" prot="public" virt="non-virtual"><scope>ffcontrol::ffcontrol::c_block</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

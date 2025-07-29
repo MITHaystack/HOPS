@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classMHO__HDF5ConversionHelpers" kind="class" language="C++" prot="public">
+    <compoundname>MHO_HDF5ConversionHelpers</compoundname>
+    <includes refid="MHO__HDF5ConversionHelpers_8hh" local="no">MHO_HDF5ConversionHelpers.hh</includes>
+    <briefdescription>
+<para>template functions to write various data types to HDF5 </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri May 16 10:42:52 AM EDT 2025 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConversionHelpers.hh" line="31" column="1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

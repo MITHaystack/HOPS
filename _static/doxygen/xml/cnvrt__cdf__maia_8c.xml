@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="cnvrt__cdf__maia_8c" kind="file" language="C++">
+    <compoundname>cnvrt_cdf_maia.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>cnvrt_cdf_maia.c</label>
+        <link refid="cnvrt__cdf__maia_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="cnvrt__cdf__maia_8c_1a23e85f2f4a195620db3d32f4248726a0" prot="public" static="no">
+        <name>IFMT</name>
+        <initializer>&quot;%d%d%d%lf%lf%lf&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cnvrt__cdf__maia_8c_1a8c31dac7e8a881cf14b08e49cc3d6526" prot="public" static="no">
+        <name>OFMT1</name>
+        <initializer>&quot; %4d %3s %2d =JD %7.1lf  TAI-UTC=%12.7lf S + (MJD - %#6.0lf) X %8.6lf S\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cnvrt__cdf__maia_8c_1a1f7f64d53860be30a01fdb172186e4ad" prot="public" static="no">
+        <name>OFMT2</name>
+        <initializer>&quot; %4d %3s %2d =JD %7.1lf  TAI-UTC=%12.7lf S + (MJD - %#6.0lf) X %9.7lfS\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="cnvrt__cdf__maia_8c_1a72585fbc66ab0102519cd11f69d514db" prot="public" static="no">
+        <name>OFMT3</name>
+        <initializer>&quot; %4d %3s %2d =JD %7.1lf  TAI-UTC=  %-10.1lf S + (MJD - %#5.0lf) X %-9.1lfS\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" line="39" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="cnvrt__cdf__maia_8c_1ad888780d1d462428ed1b02c0e767bafe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int convert</definition>
+        <argsstring>(char *in, char *ou)</argsstring>
+        <name>convert</name>
+        <param>
+          <type>char *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>ou</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" line="42" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" bodystart="42" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="cnvrt__cdf__maia_8c_1a4b843d5c687517cbf259df19db4f5b3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hack_jd</definition>
+        <argsstring>(int year, int imon, int dom)</argsstring>
+        <name>hack_jd</name>
+        <param>
+          <type>int</type>
+          <declname>year</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>imon</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" line="14" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" bodystart="14" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="cnvrt__cdf__maia_8c_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" line="84" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c" bodystart="84" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Simple<sp/>program<sp/>to<sp/>generate<sp/>tai-utc.dat<sp/>from<sp/>CDFLeapSeconds.txt</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>as<sp/>a<sp/>backup<sp/>to<sp/>the<sp/>NAVY<sp/>(maia)<sp/>going<sp/>offline.<sp/><sp/>It<sp/>takes<sp/>precisely</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>two<sp/>arguments<sp/>(cdf<sp/>version<sp/>and<sp/>output<sp/>to<sp/>maia<sp/>format).</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>gbc<sp/>Dec<sp/>2019</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>poor<sp/>man&apos;s<sp/>jd<sp/>calculator<sp/>just<sp/>to<sp/>keep<sp/>it<sp/>local<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>centuries<sp/>are<sp/>generally<sp/>not<sp/>leap<sp/>years,<sp/>but<sp/>2000<sp/>is<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="cnvrt__cdf__maia_8c_1a4b843d5c687517cbf259df19db4f5b3c" kindref="member">hack_jd</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>year,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>imon,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dom)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dbmn[12]<sp/>=<sp/>{<sp/>0,<sp/>31,<sp/>31+28,<sp/>31+28+31,<sp/>31+28+31+30,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>31+28+31+30+31,<sp/>31+28+31+30+31+30,<sp/>31+28+31+30+31+30+31,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>31+28+31+30+31+30+31+31,<sp/>31+28+31+30+31+30+31+31+30,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>31+28+31+30+31+30+31+31+30+31,<sp/>31+28+31+30+31+30+31+31+30+31+30<sp/>};</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dbml[12]<sp/>=<sp/>{<sp/>0,<sp/>31,<sp/>31+29,<sp/>31+29+31,<sp/>31+29+31+30,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>31+29+31+30+31,<sp/>31+29+31+30+31+30,<sp/>31+29+31+30+31+30+31,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>31+29+31+30+31+30+31+31,<sp/>31+29+31+30+31+30+31+31+30,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>31+29+31+30+31+30+31+31+30+31,<sp/>31+29+31+30+31+30+31+31+30+31+30<sp/>};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>jd<sp/>=<sp/>2437300.5;<sp/><sp/></highlight><highlight class="comment">/*<sp/>1961<sp/>JAN<sp/>1,<sp/>from<sp/>the<sp/>tai-utc.dat<sp/>table<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*dbm<sp/>=<sp/>(year<sp/>%<sp/>4<sp/>==<sp/>0)<sp/>?<sp/>dbml<sp/>:<sp/>dbmn;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>jd<sp/>+=<sp/>(double)dbm[imon]<sp/>+<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)(dom-1);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>jd<sp/>+=<sp/>365.0*(double)(year<sp/>-<sp/>1961);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>jd<sp/>+=<sp/>1.0*(double)((year<sp/>-<sp/>1961)<sp/>/<sp/>4);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>which<sp/>is<sp/>good<sp/>until<sp/>2100--not<sp/>my<sp/>problem<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(jd);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IFMT<sp/>\</highlight></codeline>
+<codeline lineno="34"><highlight class="preprocessor">&quot;%d%d%d%lf%lf%lf&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OFMT1<sp/>\</highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor">&quot;<sp/>%4d<sp/>%3s<sp/>%2d<sp/>=JD<sp/>%7.1lf<sp/><sp/>TAI-UTC=%12.7lf<sp/>S<sp/>+<sp/>(MJD<sp/>-<sp/>%#6.0lf)<sp/>X<sp/>%8.6lf<sp/>S\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OFMT2<sp/>\</highlight></codeline>
+<codeline lineno="38"><highlight class="preprocessor">&quot;<sp/>%4d<sp/>%3s<sp/>%2d<sp/>=JD<sp/>%7.1lf<sp/><sp/>TAI-UTC=%12.7lf<sp/>S<sp/>+<sp/>(MJD<sp/>-<sp/>%#6.0lf)<sp/>X<sp/>%9.7lfS\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OFMT3<sp/>\</highlight></codeline>
+<codeline lineno="40"><highlight class="preprocessor">&quot;<sp/>%4d<sp/>%3s<sp/>%2d<sp/>=JD<sp/>%7.1lf<sp/><sp/>TAI-UTC=<sp/><sp/>%-10.1lf<sp/>S<sp/>+<sp/>(MJD<sp/>-<sp/>%#5.0lf)<sp/>X<sp/>%-9.1lfS\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="cnvrt__cdf__maia_8c_1ad888780d1d462428ed1b02c0e767bafe" kindref="member">convert</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*in,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ou)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>line[200];</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>mtb[12][5]<sp/>=<sp/>{<sp/></highlight><highlight class="stringliteral">&quot;JAN&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;FEB&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MAR&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;APR&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;MAY&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;JUN&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;JUL&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;AUG&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;SEP&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;OCT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;NOV&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;DEC&quot;</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*fin,<sp/>*fou;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*fmt;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>year,<sp/>dom,<sp/>imon,<sp/>nn;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>jd,<sp/>taiutc,<sp/>mjdo,<sp/>srate;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(fin<sp/>=<sp/>fopen(in,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">)))<sp/>{<sp/>perror(</highlight><highlight class="stringliteral">&quot;opening<sp/>input<sp/>file&quot;</highlight><highlight class="normal">);<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);<sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(fou<sp/>=<sp/>fopen(ou,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">)))<sp/>{<sp/>perror(</highlight><highlight class="stringliteral">&quot;opening<sp/>output<sp/>file&quot;</highlight><highlight class="normal">);<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(2);<sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(fgets(line,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(line),<sp/>fin))<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;;&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>skip<sp/>comments<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nn<sp/>=<sp/>sscanf(line,<sp/><ref refid="cnvrt__cdf__maia_8c_1a23e85f2f4a195620db3d32f4248726a0" kindref="member">IFMT</ref>,<sp/>&amp;year,<sp/>&amp;imon,<sp/>&amp;dom,<sp/>&amp;taiutc,<sp/>&amp;mjdo,<sp/>&amp;srate);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nn<sp/>!=<sp/>6)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>verify<sp/>full<sp/>read<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;partical<sp/>scan<sp/>%d<sp/>!=<sp/>6\n&quot;</highlight><highlight class="normal">,<sp/>nn);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(12);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(imon<sp/>&gt;<sp/>12<sp/>||<sp/>imon<sp/>&lt;<sp/>1)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>check<sp/>on<sp/>month<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;illegal<sp/>month<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>imon);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(11);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>imon--;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>address<sp/>some<sp/>fortran<sp/>formatting<sp/>peculiarities<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(year<sp/>==<sp/>1960)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(year<sp/>==<sp/>1962<sp/>||<sp/>year<sp/>==<sp/>1963)<sp/>fmt<sp/>=<sp/><ref refid="cnvrt__cdf__maia_8c_1a1f7f64d53860be30a01fdb172186e4ad" kindref="member">OFMT2</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(year<sp/>&lt;<sp/>1970)<sp/>fmt<sp/>=<sp/><ref refid="cnvrt__cdf__maia_8c_1a8c31dac7e8a881cf14b08e49cc3d6526" kindref="member">OFMT1</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>fmt<sp/>=<sp/><ref refid="cnvrt__cdf__maia_8c_1a72585fbc66ab0102519cd11f69d514db" kindref="member">OFMT3</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(year<sp/>&gt;<sp/>1970)<sp/>mjdo<sp/>=<sp/>41317.;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jd<sp/>=<sp/><ref refid="cnvrt__cdf__maia_8c_1a4b843d5c687517cbf259df19db4f5b3c" kindref="member">hack_jd</ref>(year,<sp/>imon,<sp/>dom);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprintf(line,<sp/>fmt,<sp/>year,<sp/>mtb[imon],<sp/>dom,<sp/>jd,<sp/>taiutc,<sp/>mjdo,<sp/>srate);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fputs(line,<sp/>fou);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fclose(fin))<sp/>{<sp/>perror(</highlight><highlight class="stringliteral">&quot;closing<sp/>input&quot;</highlight><highlight class="normal">);<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(3);<sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fclose(fou))<sp/>{<sp/>perror(</highlight><highlight class="stringliteral">&quot;closing<sp/>output&quot;</highlight><highlight class="normal">);<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(4);<sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="cnvrt__cdf__maia_8c_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*input,<sp/>*<ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(argc<sp/>&gt;<sp/>1<sp/>&amp;&amp;<sp/>!strcmp(argv[1],<sp/></highlight><highlight class="stringliteral">&quot;--help&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Usage:<sp/>%s<sp/>cdf-file<sp/>output-file\n&quot;</highlight><highlight class="normal">,<sp/>argv[0]);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(argc<sp/>&gt;<sp/>1<sp/>&amp;&amp;<sp/>!strcmp(argv[1],<sp/></highlight><highlight class="stringliteral">&quot;--version&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;this<sp/>is<sp/>the<sp/>only<sp/>version\n&quot;</highlight><highlight class="normal">,<sp/>argv[0]);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(argc<sp/>!=<sp/>3)<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Usage:<sp/>%s<sp/>cdf-file<sp/>output-file\n&quot;</highlight><highlight class="normal">,<sp/>argv[0]);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>input<sp/>=<sp/>argv[1];</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref><sp/>=<sp/>argv[2];</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="cnvrt__cdf__maia_8c_1ad888780d1d462428ed1b02c0e767bafe" kindref="member">convert</ref>(input,<sp/><ref refid="output_8c_1af2d4b10d37ace6f45e5b22e96b944c7b" kindref="member">output</ref>));</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/cnvrt_cdf_maia.c"/>
+  </compounddef>
+</doxygen>

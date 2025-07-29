@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__AFileInfoExtractor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_AFileInfoExtractor</compoundname>
+    <includes refid="MHO__AFileInfoExtractor_8hh" local="no">MHO_AFileInfoExtractor.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1a6a7ea98a1cf5f09cc3cdd365ec03445a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_AFileInfoExtractor::MHO_AFileInfoExtractor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_AFileInfoExtractor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1ae4d87dd80358905a3877402ad60cf894" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_AFileInfoExtractor::~MHO_AFileInfoExtractor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_AFileInfoExtractor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="46" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1a0b446b872ebb15f9fb711ab6a9d6e267" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_AFileInfoExtractor::ConvertToAlistRow</definition>
+        <argsstring>(const mho_json &amp;data, int version)</argsstring>
+        <name>ConvertToAlistRow</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Converts mho_json data to alist row string for versions 5 or 6. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json data object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ALIST format version (5 or 6) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated ALIST row string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="67" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileInfoExtractor.cc" bodystart="368" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1ada0d648ec4939f05711e9f82839a9c0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_AFileInfoExtractor::GetAlistHeader</definition>
+        <argsstring>(int version, int type, char comment_char)</argsstring>
+        <name>GetAlistHeader</name>
+        <param>
+          <type>int</type>
+          <declname>version</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>comment_char</declname>
+        </param>
+        <briefdescription>
+<para>Getter for alist header (row text) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Version number for which to retrieve the header </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of header to retrieve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>comment_char</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Comment character used in the header </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Alist header as a string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="77" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileInfoExtractor.cc" bodystart="194" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1a869a3384c26d97aec38674eede21f90e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_AFileInfoExtractor::SummarizeFringeFile</definition>
+        <argsstring>(std::string filename, mho_json &amp;fsum)</argsstring>
+        <name>SummarizeFringeFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>fsum</declname>
+        </param>
+        <briefdescription>
+<para>Summarizes a fringe file and populates the json object fsum with its data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the fringe file to summarize. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fsum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the file is successfully summarized, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileInfoExtractor.cc" bodystart="199" bodyend="366"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1a4dde3a054bd0a3417c9910cfe2a2676f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>std::string hops::MHO_AFileInfoExtractor::ConvertToString</definition>
+        <argsstring>(XValueType value, const std::string &amp;pformat)</argsstring>
+        <name>ConvertToString</name>
+        <param>
+          <type>XValueType</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>pformat</declname>
+        </param>
+        <briefdescription>
+<para>Converts a value to string using specified format or default precision. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input value of type XValueType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pformat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional format string for value conversion </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String representation of the input value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="119" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" bodystart="119" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1a0a45a985157b73deb6585017d171bfb9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespacehops_1adaffca1375039985f7a1706aec619bb6" kindref="member">par_type</ref></type>
+        <definition>par_type hops::MHO_AFileInfoExtractor::DetermineParameterType</definition>
+        <argsstring>(std::string etype)</argsstring>
+        <name>DetermineParameterType</name>
+        <param>
+          <type>std::string</type>
+          <declname>etype</declname>
+        </param>
+        <briefdescription>
+<para>Determines parameter type based on input string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>etype</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string representing parameter type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>par_type enum value corresponding to the determined parameter type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="110" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileInfoExtractor.cc" bodystart="591" bodyend="614"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1a7f398fefe8b31940f76371266fbcab1d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_AFileInfoExtractor::RetrieveParameter</definition>
+        <argsstring>(mho_json &amp;obj, const std::string &amp;name, const MHO_ParameterStore &amp;paramStore, const std::string &amp;path, const std::string &amp;type)</argsstring>
+        <name>RetrieveParameter</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> &amp;</type>
+          <declname>paramStore</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a parameter from the store and populates it into a json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object where the retrieved parameter will be stored </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the parameter to retrieve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Constant reference to the <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> containing the parameters </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the parameter in the store </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="89" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileInfoExtractor.cc" bodystart="531" bodyend="589"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AFileInfoExtractor_1a94db7b1215859c17a1e7cf6215c0b419" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_AFileInfoExtractor::RetrieveParameterAsString</definition>
+        <argsstring>(const mho_json &amp;obj, const std::string &amp;name, const std::string &amp;type, const std::string &amp;pformat)</argsstring>
+        <name>RetrieveParameterAsString</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>pformat</declname>
+        </param>
+        <briefdescription>
+<para>Retrieve and convert a parameter from a json object to string based on its type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input json object containing the parameter </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the parameter to retrieve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of the parameter (int, int64, double, string, bool) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pformat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Format for converting numeric types to string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Parameter value as a string in specified format </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="101" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_AFileInfoExtractor.cc" bodystart="616" bodyend="676"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__AFileInfoExtractor" kindref="compound">MHO_AFileInfoExtractor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>extract useful inpformation from .cor, .frng. and root files for afile generation</para>
+<para><simplesect kind="author"><para>Email: </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Sep 20 16:12:23 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_AFileInfoExtractor.hh" bodystart="42" bodyend="138"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1a0b446b872ebb15f9fb711ab6a9d6e267" prot="public" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>ConvertToAlistRow</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1a4dde3a054bd0a3417c9910cfe2a2676f" prot="protected" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>ConvertToString</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1a0a45a985157b73deb6585017d171bfb9" prot="protected" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>DetermineParameterType</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1ada0d648ec4939f05711e9f82839a9c0f" prot="public" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>GetAlistHeader</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1a6a7ea98a1cf5f09cc3cdd365ec03445a" prot="public" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>MHO_AFileInfoExtractor</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1a7f398fefe8b31940f76371266fbcab1d" prot="protected" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>RetrieveParameter</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1a94db7b1215859c17a1e7cf6215c0b419" prot="protected" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>RetrieveParameterAsString</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1a869a3384c26d97aec38674eede21f90e" prot="public" virt="non-virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>SummarizeFringeFile</name></member>
+      <member refid="classhops_1_1MHO__AFileInfoExtractor_1ae4d87dd80358905a3877402ad60cf894" prot="public" virt="virtual"><scope>hops::MHO_AFileInfoExtractor</scope><name>~MHO_AFileInfoExtractor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

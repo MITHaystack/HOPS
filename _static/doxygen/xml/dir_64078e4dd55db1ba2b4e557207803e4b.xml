@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_64078e4dd55db1ba2b4e557207803e4b" kind="dir">
+    <compoundname>vex</compoundname>
+    <innerdir refid="dir_429db2d64f0c0f538d584935e0378e89">include</innerdir>
+    <innerdir refid="dir_223830feecc3d7bdec83e00adf504d80">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/"/>
+  </compounddef>
+</doxygen>

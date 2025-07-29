@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCvex__Section" kind="struct" language="C++" prot="public">
+    <compoundname>Cvex_Section</compoundname>
+    <includes refid="cvex_8h" local="no">cvex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCvex__Section_1a6b3498cc80fd905095bce539345a9184" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structCvex__SectionMode" kindref="compound">Cvex_SectionMode</ref> *</type>
+        <definition>struct Cvex_SectionMode* Cvex_Section::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="56" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Section_1a1f2a1dad7ad8fc00a66b4c49c5469518" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short Cvex_Section::phyChipNum</definition>
+        <argsstring></argsstring>
+        <name>phyChipNum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="57" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Section_1ae37a0e3b9a774d375ed6fcd8b2e5640d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Cvex_Section::refId[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>refId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="58" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCvex__Section_1a81d6ae6554cd230199229d529222d0f5" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char Cvex_Section::remId[MAX_PVALSIZE]</definition>
+        <argsstring>[MAX_PVALSIZE]</argsstring>
+        <name>remId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="59" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>Cvex_Chip</label>
+        <link refid="structCvex__Chip"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>input</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>relChipNum</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Cvex_Section</label>
+        <link refid="structCvex__Section"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>phyChipNum</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Cvex_Snake</label>
+        <link refid="structCvex__Snake"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>lenOfSnakePath</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>path</edgelabel>
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Cvex_BlockMode</label>
+        <link refid="structCvex__BlockMode"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>enableTap</edgelabel>
+          <edgelabel>headerMode</edgelabel>
+          <edgelabel>invalidateOnTapMove</edgelabel>
+          <edgelabel>lCellRotrMode</edgelabel>
+          <edgelabel>lCellXDly</edgelabel>
+          <edgelabel>lCellYDly</edgelabel>
+          <edgelabel>rCellRotrMode</edgelabel>
+          <edgelabel>rCellXDly</edgelabel>
+          <edgelabel>rCellYDly</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Cvex_ChipMode</label>
+        <link refid="structCvex__ChipMode"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>numOfBlocks</edgelabel>
+          <edgelabel>numOfSnakes</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>block</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>snake</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="7">
+        <label>Cvex_Block</label>
+        <link refid="structCvex__Block"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mux</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>blockId</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+      <node id="4">
+        <label>Cvex_SectionMode</label>
+        <link refid="structCvex__SectionMode"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>numOfChips</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>chip</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" line="55" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/cvex.h" bodystart="55" bodyend="60"/>
+    <listofallmembers>
+      <member refid="structCvex__Section_1a6b3498cc80fd905095bce539345a9184" prot="public" virt="non-virtual"><scope>Cvex_Section</scope><name>mode</name></member>
+      <member refid="structCvex__Section_1a1f2a1dad7ad8fc00a66b4c49c5469518" prot="public" virt="non-virtual"><scope>Cvex_Section</scope><name>phyChipNum</name></member>
+      <member refid="structCvex__Section_1ae37a0e3b9a774d375ed6fcd8b2e5640d" prot="public" virt="non-virtual"><scope>Cvex_Section</scope><name>refId</name></member>
+      <member refid="structCvex__Section_1a81d6ae6554cd230199229d529222d0f5" prot="public" virt="non-virtual"><scope>Cvex_Section</scope><name>remId</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

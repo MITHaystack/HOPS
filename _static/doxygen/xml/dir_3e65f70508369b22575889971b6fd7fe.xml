@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_3e65f70508369b22575889971b6fd7fe" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="accum__segs_8c">accum_segs.c</innerfile>
+    <innerfile refid="calc__seg_8c">calc_seg.c</innerfile>
+    <innerfile refid="clear__fxp_8c">clear_fxp.c</innerfile>
+    <innerfile refid="clear__loops_8c">clear_loops.c</innerfile>
+    <innerfile refid="determine__nsegs_8c">determine_nsegs.c</innerfile>
+    <innerfile refid="filelist_8c">filelist.c</innerfile>
+    <innerfile refid="fill__aline_8c">fill_aline.c</innerfile>
+    <innerfile refid="init__fxp_8c">init_fxp.c</innerfile>
+    <innerfile refid="model_8c">model.c</innerfile>
+    <innerfile refid="applications_2fringex_2src_2parse__cmdline_8c">applications/fringex/src/parse_cmdline.c</innerfile>
+    <innerfile refid="parse__dflag_8c">parse_dflag.c</innerfile>
+    <innerfile refid="parse__iflag_8c">parse_iflag.c</innerfile>
+    <innerfile refid="read__binaries_8c">read_binaries.c</innerfile>
+    <innerfile refid="realloc__segs_8c">realloc_segs.c</innerfile>
+    <innerfile refid="set__loops_8c">set_loops.c</innerfile>
+    <innerfile refid="set__reffreq_8c">set_reffreq.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fringex/src/"/>
+  </compounddef>
+</doxygen>

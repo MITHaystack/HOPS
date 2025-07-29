@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structseg__data" kind="struct" language="C++" prot="public">
+    <compoundname>seg_data</compoundname>
+    <includes refid="average_8h" local="no">average.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structseg__data_1a600ffd3eecbc0f301b10072458fed358" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int seg_data::keyval</definition>
+        <argsstring></argsstring>
+        <name>keyval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structseg__data_1aedc6a11d2c3ed35f993380f174c4f7f0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int seg_data::lastorder</definition>
+        <argsstring></argsstring>
+        <name>lastorder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structseg__data_1a0f8d9d0bb1ac50e23836dfa7f31b54af" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int seg_data::order</definition>
+        <argsstring></argsstring>
+        <name>order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structseg__data_1aae3517196fc8ce1dbf2be2b0439e6f09" prot="public" static="no" mutable="no">
+        <type>union seg_data::@2</type>
+        <definition>union seg_data::@2 seg_data::u</definition>
+        <argsstring></argsstring>
+        <name>u</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="33" column="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>seg_data</label>
+        <link refid="structseg__data"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>u</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keyval</edgelabel>
+          <edgelabel>lastorder</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>anonymous:u</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/average/include/average.h" bodystart="25" bodyend="34"/>
+    <listofallmembers>
+      <member refid="structseg__data_1a600ffd3eecbc0f301b10072458fed358" prot="public" virt="non-virtual"><scope>seg_data</scope><name>keyval</name></member>
+      <member refid="structseg__data_1aedc6a11d2c3ed35f993380f174c4f7f0" prot="public" virt="non-virtual"><scope>seg_data</scope><name>lastorder</name></member>
+      <member refid="structseg__data_1a0f8d9d0bb1ac50e23836dfa7f31b54af" prot="public" virt="non-virtual"><scope>seg_data</scope><name>order</name></member>
+      <member refid="structseg__data_1aae3517196fc8ce1dbf2be2b0439e6f09" prot="public" virt="non-virtual"><scope>seg_data</scope><name>u</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

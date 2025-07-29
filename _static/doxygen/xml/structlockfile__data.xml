@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structlockfile__data" kind="struct" language="C++" prot="public">
+    <compoundname>lockfile_data</compoundname>
+    <includes refid="write__lock__mechanism_8h" local="no">write_lock_mechanism.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlockfile__data_1ac866f53f8bdf07fae1c39f4a37c3b785" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char lockfile_data::hostname[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>hostname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="40" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlockfile__data_1ac02b05887401049ab5129eea751cc3a1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char lockfile_data::lockfile_name[MAX_LOCKNAME_LEN]</definition>
+        <argsstring>[MAX_LOCKNAME_LEN]</argsstring>
+        <name>lockfile_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="41" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlockfile__data_1ae1dce722987cda229202f916f29f509d" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int lockfile_data::pid</definition>
+        <argsstring></argsstring>
+        <name>pid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="37" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlockfile__data_1ae3d2825ce5a3bf0bdbe8a79ac424e916" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int lockfile_data::seq_number</definition>
+        <argsstring></argsstring>
+        <name>seq_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="36" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" prot="public" static="no" mutable="no">
+        <type>unsigned long int</type>
+        <definition>unsigned long int lockfile_data::time_sec</definition>
+        <argsstring></argsstring>
+        <name>time_sec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="38" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlockfile__data_1a5b2bad9be1205b74a0fb52b3dffe1177" prot="public" static="no" mutable="no">
+        <type>unsigned long int</type>
+        <definition>unsigned long int lockfile_data::time_usec</definition>
+        <argsstring></argsstring>
+        <name>time_usec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="39" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlockfile__data_1aa9376b46493bd6bd63a8a60f17910357" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int lockfile_data::validity</definition>
+        <argsstring></argsstring>
+        <name>validity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>lockfile_data</label>
+        <link refid="structlockfile__data"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>hostname</edgelabel>
+          <edgelabel>lockfile_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>pid</edgelabel>
+          <edgelabel>seq_number</edgelabel>
+          <edgelabel>time_sec</edgelabel>
+          <edgelabel>time_usec</edgelabel>
+          <edgelabel>validity</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/write_lock_mechanism.h" bodystart="34" bodyend="42"/>
+    <listofallmembers>
+      <member refid="structlockfile__data_1ac866f53f8bdf07fae1c39f4a37c3b785" prot="public" virt="non-virtual"><scope>lockfile_data</scope><name>hostname</name></member>
+      <member refid="structlockfile__data_1ac02b05887401049ab5129eea751cc3a1" prot="public" virt="non-virtual"><scope>lockfile_data</scope><name>lockfile_name</name></member>
+      <member refid="structlockfile__data_1ae1dce722987cda229202f916f29f509d" prot="public" virt="non-virtual"><scope>lockfile_data</scope><name>pid</name></member>
+      <member refid="structlockfile__data_1ae3d2825ce5a3bf0bdbe8a79ac424e916" prot="public" virt="non-virtual"><scope>lockfile_data</scope><name>seq_number</name></member>
+      <member refid="structlockfile__data_1a79c77343d7eac775fd309ef29d50532c" prot="public" virt="non-virtual"><scope>lockfile_data</scope><name>time_sec</name></member>
+      <member refid="structlockfile__data_1a5b2bad9be1205b74a0fb52b3dffe1177" prot="public" virt="non-virtual"><scope>lockfile_data</scope><name>time_usec</name></member>
+      <member refid="structlockfile__data_1aa9376b46493bd6bd63a8a60f17910357" prot="public" virt="non-virtual"><scope>lockfile_data</scope><name>validity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

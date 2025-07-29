@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structusearray" kind="struct" language="C++" prot="public">
+    <compoundname>usearray</compoundname>
+    <includes refid="usearray_8h" local="no">usearray.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structusearray_1a8375d444a40e7052bfb086cca5c9ca91" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int usearray::allocated[MAX_PARMS]</definition>
+        <argsstring>[MAX_PARMS]</argsstring>
+        <name>allocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="103" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structusearray_1afa17a6d29b5c5c7ac85c8c956495d571" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int usearray::nparms</definition>
+        <argsstring></argsstring>
+        <name>nparms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="100" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structusearray_1a89fd712f3fd078c160fb89d29638a676" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int usearray::npoints</definition>
+        <argsstring></argsstring>
+        <name>npoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="101" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structusearray_1aef33c79f66cede23d1033d6b0bd88a11" prot="public" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* usearray::parameter[MAX_PARMS]</definition>
+        <argsstring>[MAX_PARMS]</argsstring>
+        <name>parameter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="104" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structudat" kindref="compound">udat</ref></type>
+        <definition>struct udat usearray::type[MAX_PARMS]</definition>
+        <argsstring>[MAX_PARMS]</argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="101" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>usearray</label>
+        <link refid="structusearray"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>parameter</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>type</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>allocated</edgelabel>
+          <edgelabel>nparms</edgelabel>
+          <edgelabel>npoints</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+      <node id="3">
+        <label>udat</label>
+        <link refid="structudat"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>parameter_name</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>parameter_id</edgelabel>
+          <edgelabel>parameter_index</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" line="98" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/usearray.h" bodystart="99" bodyend="105"/>
+    <listofallmembers>
+      <member refid="structusearray_1a8375d444a40e7052bfb086cca5c9ca91" prot="public" virt="non-virtual"><scope>usearray</scope><name>allocated</name></member>
+      <member refid="structusearray_1afa17a6d29b5c5c7ac85c8c956495d571" prot="public" virt="non-virtual"><scope>usearray</scope><name>nparms</name></member>
+      <member refid="structusearray_1a89fd712f3fd078c160fb89d29638a676" prot="public" virt="non-virtual"><scope>usearray</scope><name>npoints</name></member>
+      <member refid="structusearray_1aef33c79f66cede23d1033d6b0bd88a11" prot="public" virt="non-virtual"><scope>usearray</scope><name>parameter</name></member>
+      <member refid="structusearray_1a3a0c36da36259b43e6c3ca8a8b3fd2cb" prot="public" virt="non-virtual"><scope>usearray</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1MHO__MK4StationInterface_1_1ChannelLess" kind="struct" language="C++" prot="private">
+    <compoundname>hops::MHO_MK4StationInterface::ChannelLess</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhops_1_1MHO__MK4StationInterface_1_1ChannelLess_1a47c0f1ebe5baffc1a4421c012cfdbe60" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_MK4StationInterface::ChannelLess::operator()</definition>
+        <argsstring>(const mho_json &amp;a, const mho_json &amp;b) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="227" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="227" bodyend="260"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" line="225" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/MK4Interface/include/MHO_MK4StationInterface.hh" bodystart="226" bodyend="261"/>
+    <listofallmembers>
+      <member refid="structhops_1_1MHO__MK4StationInterface_1_1ChannelLess_1a47c0f1ebe5baffc1a4421c012cfdbe60" prot="public" virt="non-virtual"><scope>hops::MHO_MK4StationInterface::ChannelLess</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops__visualization_1_1parse__alist_1_1ParseAlist" kind="class" language="Python" prot="public">
+    <compoundname>hops_visualization::parse_alist::ParseAlist</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a9b8c4c1af4fbbc14ddb9023d189800fd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization.parse_alist.ParseAlist::counter</definition>
+        <argsstring></argsstring>
+        <name>counter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="103" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1aeef265aa8abffcb0f36fc978a6712d96" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization.parse_alist.ParseAlist::record_color</definition>
+        <argsstring></argsstring>
+        <name>record_color</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="183" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a16e1c511c9836df2f55a6d6152a438d4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization.parse_alist.ParseAlist::record_flags</definition>
+        <argsstring></argsstring>
+        <name>record_flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="180" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a00784c26821c9f7d7dcdf2ef8450f86c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization.parse_alist.ParseAlist::records</definition>
+        <argsstring></argsstring>
+        <name>records</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="91" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1ace9a041af25c7b530fcec90fda2d1f07" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization.parse_alist.ParseAlist::start_day</definition>
+        <argsstring></argsstring>
+        <name>start_day</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="101" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a5cb052e77ed5ecba23614c8bb9d77856" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>hops_visualization.parse_alist.ParseAlist::unique_stations</definition>
+        <argsstring></argsstring>
+        <name>unique_stations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="99" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a609f9642969dfe23aaeba0f0b75f52d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.parse_alist.ParseAlist.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="89" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="89" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a6a79cef09a59986b0732b534281d45b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.parse_alist.ParseAlist.get_record_indices</definition>
+        <argsstring>(self, data_selection_dict, scan_selection_dict)</argsstring>
+        <name>get_record_indices</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>data_selection_dict</type>
+          <defname>data_selection_dict</defname>
+        </param>
+        <param>
+          <type>scan_selection_dict</type>
+          <defname>scan_selection_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="189" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="189" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a6733e4812f176477190c814a026491eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.parse_alist.ParseAlist.load_alist_data</definition>
+        <argsstring>(self, afile)</argsstring>
+        <name>load_alist_data</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>afile</type>
+          <defname>afile</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="106" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="106" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops__visualization_1_1parse__alist_1_1ParseAlist_1ab6cebd329ff34d00d8a628f8a9a99011" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def hops_visualization.parse_alist.ParseAlist.set_record_colors</definition>
+        <argsstring>(self, plot_format_dict)</argsstring>
+        <name>set_record_colors</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>plot_format_dict</type>
+          <defname>plot_format_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="234" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="234" bodyend="256"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="87" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="87" bodyend="256"/>
+    <listofallmembers>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a609f9642969dfe23aaeba0f0b75f52d3" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>__init__</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a9b8c4c1af4fbbc14ddb9023d189800fd" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>counter</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a6a79cef09a59986b0732b534281d45b8" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>get_record_indices</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a6733e4812f176477190c814a026491eb" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>load_alist_data</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1aeef265aa8abffcb0f36fc978a6712d96" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>record_color</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a16e1c511c9836df2f55a6d6152a438d4" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>record_flags</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a00784c26821c9f7d7dcdf2ef8450f86c" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>records</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1ab6cebd329ff34d00d8a628f8a9a99011" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>set_record_colors</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1ace9a041af25c7b530fcec90fda2d1f07" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>start_day</name></member>
+      <member refid="classhops__visualization_1_1parse__alist_1_1ParseAlist_1a5cb052e77ed5ecba23614c8bb9d77856" prot="public" virt="non-virtual"><scope>hops_visualization::parse_alist::ParseAlist</scope><name>unique_stations</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

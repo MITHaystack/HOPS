@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfsm__table__entry" kind="struct" language="C++" prot="public">
+    <compoundname>fsm_table_entry</compoundname>
+    <includes refid="parser_8h" local="no">parser.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfsm__table__entry_1ab40cfb8f9c36ca9662041e1edd59359d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fsm_table_entry::action</definition>
+        <argsstring></argsstring>
+        <name>action</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="10" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfsm__table__entry_1aa0a0d18251a6f977f2dfa3f6c616113b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fsm_table_entry::current_state</definition>
+        <argsstring></argsstring>
+        <name>current_state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="8" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfsm__table__entry_1a66522e0f1e102023774718e5929d8c64" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fsm_table_entry::next_state</definition>
+        <argsstring></argsstring>
+        <name>next_state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="11" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfsm__table__entry_1a6b371d4fab38b4950ab9524c3668b46a" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fsm_table_entry::token_type</definition>
+        <argsstring></argsstring>
+        <name>token_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="9" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>fsm_table_entry</label>
+        <link refid="structfsm__table__entry"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>action</edgelabel>
+          <edgelabel>current_state</edgelabel>
+          <edgelabel>next_state</edgelabel>
+          <edgelabel>token_type</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" line="6" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcontrol/include/parser.h" bodystart="7" bodyend="12"/>
+    <listofallmembers>
+      <member refid="structfsm__table__entry_1ab40cfb8f9c36ca9662041e1edd59359d" prot="public" virt="non-virtual"><scope>fsm_table_entry</scope><name>action</name></member>
+      <member refid="structfsm__table__entry_1aa0a0d18251a6f977f2dfa3f6c616113b" prot="public" virt="non-virtual"><scope>fsm_table_entry</scope><name>current_state</name></member>
+      <member refid="structfsm__table__entry_1a66522e0f1e102023774718e5929d8c64" prot="public" virt="non-virtual"><scope>fsm_table_entry</scope><name>next_state</name></member>
+      <member refid="structfsm__table__entry_1a6b371d4fab38b4950ab9524c3668b46a" prot="public" virt="non-virtual"><scope>fsm_table_entry</scope><name>token_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

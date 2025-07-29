@@ -1,0 +1,5 @@
+<map id="hops::MHO_WeightChannelizer" name="hops::MHO_WeightChannelizer">
+<area shape="rect" id="node1" title="collects unchannelized (3d) weight data and groups by channel (but all channels must be of equal size..." alt="" coords="15,184,216,211"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__TransformingOperator.html" title=" " alt="" coords="5,80,225,136"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__Operator.html" title="Class MHO_Operator." alt="" coords="43,5,187,32"/>
+</map>

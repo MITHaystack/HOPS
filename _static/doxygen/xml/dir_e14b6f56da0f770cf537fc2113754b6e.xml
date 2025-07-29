@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_e14b6f56da0f770cf537fc2113754b6e" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__DiFXBaselineProcessor_8cc">MHO_DiFXBaselineProcessor.cc</innerfile>
+    <innerfile refid="MHO__DiFXChannelNameConstructor_8cc">MHO_DiFXChannelNameConstructor.cc</innerfile>
+    <innerfile refid="MHO__DiFXInputProcessor_8cc">MHO_DiFXInputProcessor.cc</innerfile>
+    <innerfile refid="MHO__DiFXInterface_8cc">MHO_DiFXInterface.cc</innerfile>
+    <innerfile refid="MHO__DiFXPCalProcessor_8cc">MHO_DiFXPCalProcessor.cc</innerfile>
+    <innerfile refid="MHO__DiFXScanProcessor_8cc">MHO_DiFXScanProcessor.cc</innerfile>
+    <innerfile refid="MHO__DiFXVisibilityProcessor_8cc">MHO_DiFXVisibilityProcessor.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/src/"/>
+  </compounddef>
+</doxygen>

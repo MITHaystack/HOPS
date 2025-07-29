@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__FringeRotation_8hh" kind="file" language="C++">
+    <compoundname>MHO_FringeRotation.hh</compoundname>
+    <includes local="no">cmath</includes>
+    <includes local="no">complex</includes>
+    <includedby refid="MHO__InterpolateFringePeak_8hh" local="yes">MHO_InterpolateFringePeak.hh</includedby>
+    <includedby refid="MHO__InterpolateFringePeak_8cc" local="yes">MHO_InterpolateFringePeak.cc</includedby>
+    <includedby refid="MHO__ComputePlotData_8hh" local="yes">MHO_ComputePlotData.hh</includedby>
+    <includedby refid="MHO__FringeRotation_8cc" local="yes">MHO_FringeRotation.cc</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>MHO_FringeRotation.hh</label>
+        <link refid="MHO__FringeRotation_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cmath</label>
+      </node>
+      <node id="3">
+        <label>complex</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="7">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_FringeRotation.hh</label>
+        <link refid="MHO__FringeRotation_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_InterpolateFringePeak.cc</label>
+        <link refid="MHO__InterpolateFringePeak_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_ComputePlotData.hh</label>
+        <link refid="MHO__ComputePlotData_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MHO_BasicFringeUtilities.cc</label>
+        <link refid="MHO__BasicFringeUtilities_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_IonosphericFringeFitter.hh</label>
+        <link refid="MHO__IonosphericFringeFitter_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_InterpolateFringePeak.hh</label>
+        <link refid="MHO__InterpolateFringePeak_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MHO_FringeFitterFactory.cc</label>
+        <link refid="MHO__FringeFitterFactory_8cc"/>
+      </node>
+      <node id="13">
+        <label>MHO_FringeRotation.cc</label>
+        <link refid="MHO__FringeRotation_8cc"/>
+      </node>
+      <node id="4">
+        <label>MHO_BasicFringeFitter.hh</label>
+        <link refid="MHO__BasicFringeFitter_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MHO_FringePlotInfo.cc</label>
+        <link refid="MHO__FringePlotInfo_8cc"/>
+      </node>
+      <node id="11">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__FringeRotation" prot="public">hops::MHO_FringeRotation</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_FringeRotation_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_FringeRotation_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;complex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="classhops_1_1MHO__FringeRotation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__FringeRotation" kindref="compound">MHO_FringeRotation</ref></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__FringeRotation_1aad274e783ec085ad8f2942993d845a4e" kindref="member">MHO_FringeRotation</ref>();</highlight></codeline>
+<codeline lineno="25" refid="classhops_1_1MHO__FringeRotation_1a64059298b99f8af3b5fcd767b2b35d86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1a64059298b99f8af3b5fcd767b2b35d86" kindref="member">~MHO_FringeRotation</ref>(){};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//virtual<sp/>function<sp/>(can<sp/>be<sp/>pointed<sp/>to<sp/>different<sp/>implementations)</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__FringeRotation_1accca463720069cf78269bf43a25e6151" kindref="member">vrot</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time_delta,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>freq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_freq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mbd)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="classhops_1_1MHO__FringeRotation_1afe623a19529839b634537618dbea9345" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1afe623a19529839b634537618dbea9345" kindref="member">SetSBDSeparation</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbd_sep)<sp/>{<sp/>fSBDSep<sp/>=<sp/>sbd_sep;<sp/>};<sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="classhops_1_1MHO__FringeRotation_1a342ee97becabd7ac9b6615341846278b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1a342ee97becabd7ac9b6615341846278b" kindref="member">SetSBDMax</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbd_max)<sp/>{<sp/>fSBDMax<sp/>=<sp/>sbd_max;<sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classhops_1_1MHO__FringeRotation_1a43e899be0d852d7ca494962ea51e3341" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1a43e899be0d852d7ca494962ea51e3341" kindref="member">SetSBDMaxBin</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sbd_max_bin)<sp/>{<sp/>fSBDMaxBin<sp/>=<sp/>sbd_max_bin;<sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classhops_1_1MHO__FringeRotation_1a42ea3b07abf5d9b53889856f350911ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1a42ea3b07abf5d9b53889856f350911ae" kindref="member">SetNSBDBins</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_sbd_bins)<sp/>{<sp/>fNSBDBins<sp/>=<sp/>n_sbd_bins;<sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="classhops_1_1MHO__FringeRotation_1ac8788a5e9d988e2aa3aaf008cbe0aa87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1ac8788a5e9d988e2aa3aaf008cbe0aa87" kindref="member">SetSideband</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sb)<sp/>{<sp/>fSideband<sp/>=<sp/>sb;<sp/>}<sp/></highlight><highlight class="comment">//1<sp/>is<sp/>USB,<sp/>0<sp/>if<sp/>DSB,<sp/>-1<sp/>if<sp/>LSB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classhops_1_1MHO__FringeRotation_1a5fd6c18b52f91c78ffb5f17ae9465f15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1a5fd6c18b52f91c78ffb5f17ae9465f15" kindref="member">SetOptimizeClosureTrue</ref>()<sp/>{<sp/>fOptimizeClosure<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="classhops_1_1MHO__FringeRotation_1ac1afe80f9a9183493bf19f5bb597e0bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__FringeRotation_1ac1afe80f9a9183493bf19f5bb597e0bf" kindref="member">SetOptimizeClosureFalse</ref>()<sp/>{<sp/>fOptimizeClosure<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/>fImagUnit;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/>vrot_v1(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>time_delta,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>freq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_freq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mbd)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>calc_sideband_correction(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mbd)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fSideband;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fNSBDBins;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fSBDMaxBin;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fSBDMax;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fSBDSep;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fOptimizeClosure;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_FringeRotation.hh"/>
+  </compounddef>
+</doxygen>

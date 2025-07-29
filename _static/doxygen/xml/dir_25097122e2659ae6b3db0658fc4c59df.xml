@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_25097122e2659ae6b3db0658fc4c59df" kind="dir">
+    <compoundname>hops_visualization</compoundname>
+    <innerfile refid="hops__visualization_2____init_____8py">hops_visualization/__init__.py</innerfile>
+    <innerfile refid="alist__plot_8py">alist_plot.py</innerfile>
+    <innerfile refid="fourfit__plot_8py">fourfit_plot.py</innerfile>
+    <innerfile refid="parse__alist_8py">parse_alist.py</innerfile>
+    <innerfile refid="picking__aedit_8py">picking_aedit.py</innerfile>
+    <innerfile refid="read__alist_8py">read_alist.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/"/>
+  </compounddef>
+</doxygen>

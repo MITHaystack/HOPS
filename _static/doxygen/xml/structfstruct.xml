@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structfstruct" kind="struct" language="C++" prot="public">
+    <compoundname>fstruct</compoundname>
+    <includes refid="fstruct_8h" local="no">fstruct.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structfstruct_1a2ae6b80a4e75cef9a75b9e97b4c693ea" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fstruct::baseline[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>baseline</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="39" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1ade6688f9ae19fdfefb8dbfc77e1a38bd" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fstruct::done</definition>
+        <argsstring></argsstring>
+        <name>done</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="44" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a6e498795f80d849b30e80dc6aeaf4ef5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fstruct::filenum</definition>
+        <argsstring></argsstring>
+        <name>filenum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a87f87ca61b5722c2a68521aa28e5e7ec" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float fstruct::floatparm[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>floatparm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="46" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a27d07fcae29e21849c15ada683cc92d0" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fstruct::freq_code</definition>
+        <argsstring></argsstring>
+        <name>freq_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="41" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a6f47a027420f4bd19233431a81a9d497" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fstruct::intparm[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>intparm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="45" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a1230848eb75bd9545ee895dad319a45c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fstruct::nalloc</definition>
+        <argsstring></argsstring>
+        <name>nalloc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="48" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a629e521213a65490fe769b29f2e6b014" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* fstruct::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="36" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a7342dea4c48ad1856c47eb4d4a2d8575" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fstruct::order</definition>
+        <argsstring></argsstring>
+        <name>order</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a394281bfe5461adbe46c03ca2f47cc72" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fstruct::poln[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>poln</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="49" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a00739bd3f7047d7fdb826ebd2fdd03d7" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fstruct::rootcode[7]</definition>
+        <argsstring>[7]</argsstring>
+        <name>rootcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="43" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a8050fc381b6c60be77768a066406519f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fstruct::source[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="38" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a10e4b86ba2cbe25ccac56eed8d08d8dc" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char fstruct::station</definition>
+        <argsstring></argsstring>
+        <name>station</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="40" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structfstruct_1a032d53f22cc38019cd75fbe6e0cef1e4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short fstruct::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="37" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="1">
+        <label>fstruct</label>
+        <link refid="structfstruct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>floatparm</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>done</edgelabel>
+          <edgelabel>type</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>poln</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>station</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>filenum</edgelabel>
+          <edgelabel>intparm</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+          <edgelabel>order</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" line="33" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/fstruct.h" bodystart="34" bodyend="50"/>
+    <listofallmembers>
+      <member refid="structfstruct_1a2ae6b80a4e75cef9a75b9e97b4c693ea" prot="public" virt="non-virtual"><scope>fstruct</scope><name>baseline</name></member>
+      <member refid="structfstruct_1ade6688f9ae19fdfefb8dbfc77e1a38bd" prot="public" virt="non-virtual"><scope>fstruct</scope><name>done</name></member>
+      <member refid="structfstruct_1a6e498795f80d849b30e80dc6aeaf4ef5" prot="public" virt="non-virtual"><scope>fstruct</scope><name>filenum</name></member>
+      <member refid="structfstruct_1a87f87ca61b5722c2a68521aa28e5e7ec" prot="public" virt="non-virtual"><scope>fstruct</scope><name>floatparm</name></member>
+      <member refid="structfstruct_1a27d07fcae29e21849c15ada683cc92d0" prot="public" virt="non-virtual"><scope>fstruct</scope><name>freq_code</name></member>
+      <member refid="structfstruct_1a6f47a027420f4bd19233431a81a9d497" prot="public" virt="non-virtual"><scope>fstruct</scope><name>intparm</name></member>
+      <member refid="structfstruct_1a1230848eb75bd9545ee895dad319a45c" prot="public" virt="non-virtual"><scope>fstruct</scope><name>nalloc</name></member>
+      <member refid="structfstruct_1a629e521213a65490fe769b29f2e6b014" prot="public" virt="non-virtual"><scope>fstruct</scope><name>name</name></member>
+      <member refid="structfstruct_1a7342dea4c48ad1856c47eb4d4a2d8575" prot="public" virt="non-virtual"><scope>fstruct</scope><name>order</name></member>
+      <member refid="structfstruct_1a394281bfe5461adbe46c03ca2f47cc72" prot="public" virt="non-virtual"><scope>fstruct</scope><name>poln</name></member>
+      <member refid="structfstruct_1a00739bd3f7047d7fdb826ebd2fdd03d7" prot="public" virt="non-virtual"><scope>fstruct</scope><name>rootcode</name></member>
+      <member refid="structfstruct_1a8050fc381b6c60be77768a066406519f" prot="public" virt="non-virtual"><scope>fstruct</scope><name>source</name></member>
+      <member refid="structfstruct_1a10e4b86ba2cbe25ccac56eed8d08d8dc" prot="public" virt="non-virtual"><scope>fstruct</scope><name>station</name></member>
+      <member refid="structfstruct_1a032d53f22cc38019cd75fbe6e0cef1e4" prot="public" virt="non-virtual"><scope>fstruct</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

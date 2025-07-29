@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classafio_1_1afio_1_1AFIOStructureBase" kind="class" language="Python" prot="public">
+    <compoundname>afio::afio::AFIOStructureBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ctypes.Structure</basecompoundref>
+    <derivedcompoundref refid="classafio_1_1afio_1_1afile__structure" prot="public" virt="non-virtual">afio.afio.afile_structure</derivedcompoundref>
+    <derivedcompoundref refid="classafio_1_1afio_1_1corelsum" prot="public" virt="non-virtual">afio.afio.corelsum</derivedcompoundref>
+    <derivedcompoundref refid="classafio_1_1afio_1_1fringesum" prot="public" virt="non-virtual">afio.afio.fringesum</derivedcompoundref>
+    <derivedcompoundref refid="classafio_1_1afio_1_1quadsum" prot="public" virt="non-virtual">afio.afio.quadsum</derivedcompoundref>
+    <derivedcompoundref refid="classafio_1_1afio_1_1rootsum" prot="public" virt="non-virtual">afio.afio.rootsum</derivedcompoundref>
+    <derivedcompoundref refid="classafio_1_1afio_1_1trianglesum" prot="public" virt="non-virtual">afio.afio.trianglesum</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classafio_1_1afio_1_1AFIOStructureBase_1aa479315f4e51d0c54b117e940431f009" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.AFIOStructureBase.__eq__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__eq__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="16" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classafio_1_1afio_1_1AFIOStructureBase_1ac1ba246b542db0792a0544259954adc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.AFIOStructureBase.__ne__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__ne__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="27" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classafio_1_1afio_1_1AFIOStructureBase_1a2a2bb32f44156b3dcd6b7ad2dfa85503" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.AFIOStructureBase.approximately_equal</definition>
+        <argsstring>(self, other, pedantic=False, verbose=True, abs_tol=1e-14, rel_tol=1e-6)</argsstring>
+        <name>approximately_equal</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <param>
+          <type>pedantic</type>
+          <defname>pedantic</defname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>verbose</type>
+          <defname>verbose</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>abs_tol</type>
+          <defname>abs_tol</defname>
+          <defval>1e-14</defval>
+        </param>
+        <param>
+          <type>rel_tol</type>
+          <defname>rel_tol</defname>
+          <defval>1e-6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> compares two object, wary about floating point types </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="74" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="74" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classafio_1_1afio_1_1AFIOStructureBase_1a21ec9262c919b90a67a039ca50a5a17c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.AFIOStructureBase.approximately_equal_field</definition>
+        <argsstring>(self, other, field_name, pedantic=False, verbose=True, abs_tol=1e-14, rel_tol=1e-6)</argsstring>
+        <name>approximately_equal_field</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <param>
+          <type>field_name</type>
+          <defname>field_name</defname>
+        </param>
+        <param>
+          <type>pedantic</type>
+          <defname>pedantic</defname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>verbose</type>
+          <defname>verbose</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>abs_tol</type>
+          <defname>abs_tol</defname>
+          <defval>1e-14</defval>
+        </param>
+        <param>
+          <type>rel_tol</type>
+          <defname>rel_tol</defname>
+          <defval>1e-6</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> compares a single field in two object, wary about floating point types </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="110" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="110" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classafio_1_1afio_1_1AFIOStructureBase_1a86d37a5619ae22284788a803815f2d04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.AFIOStructureBase.contains_floats</definition>
+        <argsstring>(self)</argsstring>
+        <name>contains_floats</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="57" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="57" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classafio_1_1afio_1_1AFIOStructureBase_1a4c0a78ec964fc11651add113384134aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def afio.afio.AFIOStructureBase.printsummary</definition>
+        <argsstring>(self)</argsstring>
+        <name>printsummary</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>dump data in structure</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="38" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="38" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> base class which implements comparison operations eq and ne and a print-summary </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>afio.afio.afile_structure</label>
+        <link refid="classafio_1_1afio_1_1afile__structure"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>afio.afio.fringesum</label>
+        <link refid="classafio_1_1afio_1_1fringesum"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>afio.afio.quadsum</label>
+        <link refid="classafio_1_1afio_1_1quadsum"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>afio.afio.trianglesum</label>
+        <link refid="classafio_1_1afio_1_1trianglesum"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>afio.afio.corelsum</label>
+        <link refid="classafio_1_1afio_1_1corelsum"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>afio.afio.rootsum</label>
+        <link refid="classafio_1_1afio_1_1rootsum"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes::Structure</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>afio.afio.AFIOStructureBase</label>
+        <link refid="classafio_1_1afio_1_1AFIOStructureBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ctypes::Structure</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/afio/afio.py" bodystart="14" bodyend="146"/>
+    <listofallmembers>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1aa479315f4e51d0c54b117e940431f009" prot="public" virt="non-virtual"><scope>afio::afio::AFIOStructureBase</scope><name>__eq__</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1ac1ba246b542db0792a0544259954adc8" prot="public" virt="non-virtual"><scope>afio::afio::AFIOStructureBase</scope><name>__ne__</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a2a2bb32f44156b3dcd6b7ad2dfa85503" prot="public" virt="non-virtual"><scope>afio::afio::AFIOStructureBase</scope><name>approximately_equal</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a21ec9262c919b90a67a039ca50a5a17c" prot="public" virt="non-virtual"><scope>afio::afio::AFIOStructureBase</scope><name>approximately_equal_field</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a86d37a5619ae22284788a803815f2d04" prot="public" virt="non-virtual"><scope>afio::afio::AFIOStructureBase</scope><name>contains_floats</name></member>
+      <member refid="classafio_1_1afio_1_1AFIOStructureBase_1a4c0a78ec964fc11651add113384134aa" prot="public" virt="non-virtual"><scope>afio::afio::AFIOStructureBase</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

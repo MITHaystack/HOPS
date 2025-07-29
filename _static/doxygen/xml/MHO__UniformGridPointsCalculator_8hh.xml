@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__UniformGridPointsCalculator_8hh" kind="file" language="C++">
+    <compoundname>MHO_UniformGridPointsCalculator.hh</compoundname>
+    <includes local="no">cmath</includes>
+    <includes local="no">limits</includes>
+    <includes local="no">map</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="MHO__MBDelaySearch_8hh" local="yes">MHO_MBDelaySearch.hh</includedby>
+    <includedby refid="MHO__BasicFringeUtilities_8cc" local="yes">MHO_BasicFringeUtilities.cc</includedby>
+    <includedby refid="MHO__ComputePlotData_8cc" local="yes">MHO_ComputePlotData.cc</includedby>
+    <includedby refid="MHO__InitialFringeInfo_8cc" local="yes">MHO_InitialFringeInfo.cc</includedby>
+    <includedby refid="MHO__UniformGridPointsCalculator_8cc" local="yes">MHO_UniformGridPointsCalculator.cc</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>limits</label>
+      </node>
+      <node id="2">
+        <label>cmath</label>
+      </node>
+      <node id="4">
+        <label>map</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="1">
+        <label>MHO_UniformGridPointsCalculator.hh</label>
+        <link refid="MHO__UniformGridPointsCalculator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="7">
+        <label>MHO_IonosphericFringeFitter.cc</label>
+        <link refid="MHO__IonosphericFringeFitter_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_BasicFringeFitter.cc</label>
+        <link refid="MHO__BasicFringeFitter_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_BasicFringeUtilities.cc</label>
+        <link refid="MHO__BasicFringeUtilities_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_IonosphericFringeFitter.hh</label>
+        <link refid="MHO__IonosphericFringeFitter_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_MBDelaySearch.cc</label>
+        <link refid="MHO__MBDelaySearch_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_FringeFitterFactory.cc</label>
+        <link refid="MHO__FringeFitterFactory_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_MBDelaySearchCUDA.hh</label>
+        <link refid="MHO__MBDelaySearchCUDA_8hh"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_BasicFringeFitter.hh</label>
+        <link refid="MHO__BasicFringeFitter_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MHO_ComputePlotData.cc</label>
+        <link refid="MHO__ComputePlotData_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_MBDelaySearch.hh</label>
+        <link refid="MHO__MBDelaySearch_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_MBDelaySearchCUDA.cc</label>
+        <link refid="MHO__MBDelaySearchCUDA_8cc"/>
+      </node>
+      <node id="14">
+        <label>MHO_UniformGridPointsCalculator.cc</label>
+        <link refid="MHO__UniformGridPointsCalculator_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_UniformGridPointsCalculator.hh</label>
+        <link refid="MHO__UniformGridPointsCalculator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>MHO_InitialFringeInfo.cc</label>
+        <link refid="MHO__InitialFringeInfo_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__UniformGridPointsCalculator" prot="public">hops::MHO_UniformGridPointsCalculator</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_UniformGridPointsCalculator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_UniformGridPointsCalculator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="classhops_1_1MHO__UniformGridPointsCalculator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__UniformGridPointsCalculator" kindref="compound">MHO_UniformGridPointsCalculator</ref></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a39e36330525d194858468c06cf358db4" kindref="member">MHO_UniformGridPointsCalculator</ref>();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a5895e838e73727bd1cb94669de26a23a" kindref="member">~MHO_UniformGridPointsCalculator</ref>();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a461e4b4bd933efe89c451b015c10edee" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a461e4b4bd933efe89c451b015c10edee" kindref="member">SetEpsilon</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>eps)<sp/>{<sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a98930869e62814f24a84557608673910" kindref="member">fEpsilon</ref><sp/>=<sp/>std::fabs(eps);<sp/>};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a656f5de5436a91ec991a290b9e97ae5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a656f5de5436a91ec991a290b9e97ae5a" kindref="member">SetDefaultGridPoints</ref>(std::size_t<sp/>n)<sp/>{<sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1adc91e2a128c6cf90a77db6612bf80ef4" kindref="member">fDefaultGridPoints</ref><sp/>=<sp/>n;<sp/>};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a24ae957141ae8a5b32213de4bff6e7c2" kindref="member">GetUniquePoints</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;&amp;<sp/>in_pts,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>eps,<sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;&amp;<sp/>out_pts,<sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>std::size_t,<sp/>std::size_t<sp/>&gt;&amp;<sp/>index_map)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a151aed4607a4efbc020477927010cdd5" kindref="member">SetPoints</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;<sp/>double<sp/>&gt;&amp;<sp/>pts);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a151aed4607a4efbc020477927010cdd5" kindref="member">SetPoints</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>pts,<sp/>std::size_t<sp/>npts);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a621d461d1f4449e3e981ff2764581613" kindref="member">Calculate</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a14aeadd8fd6b793f2a719499d2aa5aca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a14aeadd8fd6b793f2a719499d2aa5aca" kindref="member">GetGridPoints</ref>(std::vector&lt;<sp/>double<sp/>&gt;*<sp/>grid_pts);<sp/></highlight><highlight class="comment">//fill<sp/>vector<sp/>with<sp/>grid<sp/>points</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="classhops_1_1MHO__UniformGridPointsCalculator_1ad373995fcae740ff6eb5744d8fdb35f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ad373995fcae740ff6eb5744d8fdb35f6" kindref="member">GetGridStart</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ae1f3638efce3c21390d6d170cdb79df4" kindref="member">fStart</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="classhops_1_1MHO__UniformGridPointsCalculator_1aee29df2ab7258e6b75229b792d9d5798" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1aee29df2ab7258e6b75229b792d9d5798" kindref="member">GetGridSpacing</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1abca3b17d018e2ac0ed8c5d22ae06fd93" kindref="member">fSpacing</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a28c57154ba3ce661e1b4f9f9f6c66c8f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a28c57154ba3ce661e1b4f9f9f6c66c8f" kindref="member">GetGridAverage</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ae028e99447573a6da4cb96cb394e1986" kindref="member">fAverageLocation</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a49b23ffbd8d408830121c3b0c513e2b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a49b23ffbd8d408830121c3b0c513e2b5" kindref="member">GetSpread</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a7fffbb4133050a708bdccbff7e99e521" kindref="member">fSpread</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="classhops_1_1MHO__UniformGridPointsCalculator_1ab1ca7b84725f7a77577b0fb614488126" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ab1ca7b84725f7a77577b0fb614488126" kindref="member">GetNGridPoints</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a712bfdf89e3ad9963ddb4dbedb364765" kindref="member">fNGridPoints</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="classhops_1_1MHO__UniformGridPointsCalculator_1ac14ea74c6a6d9d9ca3e69206ad40e95f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ac14ea74c6a6d9d9ca3e69206ad40e95f" kindref="member">GetSpacingErrorStatus</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a7bb4f04047e847ae4497c128d1d86bb3" kindref="member">fSpacingError</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a58a1275cd58fcd5f35d71b7e54a1ce1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>std::size_t,<sp/>std::size_t<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a58a1275cd58fcd5f35d71b7e54a1ce1e" kindref="member">GetGridIndexMap</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a06a80e16b5a349b404e13296e64548b4" kindref="member">fIndexMap</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ab029e84869ba85de4017575cc4a747f1" kindref="member">Calculate_v1</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_pts<sp/>=<sp/>8192);<sp/></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a55f2d7a3b21391e484448345bd84c1d8" kindref="member">Calculate_v2</ref>();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a39b486169c9a3eeec7064e98afa295e1" kindref="member">FindStartAndMinMaxSpacing</ref>();</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a98930869e62814f24a84557608673910" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a98930869e62814f24a84557608673910" kindref="member">fEpsilon</ref>;</highlight></codeline>
+<codeline lineno="157" refid="classhops_1_1MHO__UniformGridPointsCalculator_1ae1f3638efce3c21390d6d170cdb79df4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ae1f3638efce3c21390d6d170cdb79df4" kindref="member">fStart</ref>;</highlight></codeline>
+<codeline lineno="158" refid="classhops_1_1MHO__UniformGridPointsCalculator_1abca3b17d018e2ac0ed8c5d22ae06fd93" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1abca3b17d018e2ac0ed8c5d22ae06fd93" kindref="member">fSpacing</ref>;</highlight></codeline>
+<codeline lineno="159" refid="classhops_1_1MHO__UniformGridPointsCalculator_1afe5ed81bbc50388fc9bce1b0309ced5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1afe5ed81bbc50388fc9bce1b0309ced5d" kindref="member">fMinSpacing</ref>;</highlight></codeline>
+<codeline lineno="160" refid="classhops_1_1MHO__UniformGridPointsCalculator_1ab7cc11d611a2ae3e38e4acca04802efa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ab7cc11d611a2ae3e38e4acca04802efa" kindref="member">fMaxSpacing</ref>;</highlight></codeline>
+<codeline lineno="161" refid="classhops_1_1MHO__UniformGridPointsCalculator_1ae028e99447573a6da4cb96cb394e1986" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1ae028e99447573a6da4cb96cb394e1986" kindref="member">fAverageLocation</ref>;</highlight></codeline>
+<codeline lineno="162" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a712bfdf89e3ad9963ddb4dbedb364765" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a712bfdf89e3ad9963ddb4dbedb364765" kindref="member">fNGridPoints</ref>;</highlight></codeline>
+<codeline lineno="163" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a7fffbb4133050a708bdccbff7e99e521" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a7fffbb4133050a708bdccbff7e99e521" kindref="member">fSpread</ref>;</highlight></codeline>
+<codeline lineno="164" refid="classhops_1_1MHO__UniformGridPointsCalculator_1aeb8e79d80148d273571e017a83767a11" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>double<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1aeb8e79d80148d273571e017a83767a11" kindref="member">fPoints</ref>;</highlight></codeline>
+<codeline lineno="165" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a06a80e16b5a349b404e13296e64548b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>std::size_t,<sp/>std::size_t<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a06a80e16b5a349b404e13296e64548b4" kindref="member">fIndexMap</ref>;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="classhops_1_1MHO__UniformGridPointsCalculator_1adc91e2a128c6cf90a77db6612bf80ef4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1adc91e2a128c6cf90a77db6612bf80ef4" kindref="member">fDefaultGridPoints</ref>;</highlight></codeline>
+<codeline lineno="168" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a7bb4f04047e847ae4497c128d1d86bb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a7bb4f04047e847ae4497c128d1d86bb3" kindref="member">fSpacingError</ref>;</highlight></codeline>
+<codeline lineno="169" refid="classhops_1_1MHO__UniformGridPointsCalculator_1a5b6eae191be538bdb29f0e7933aa5d2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UniformGridPointsCalculator_1a5b6eae191be538bdb29f0e7933aa5d2a" kindref="member">fAbsEps</ref>;<sp/></highlight><highlight class="comment">//use<sp/>to<sp/>check<sp/>that<sp/>value<sp/>is<sp/>not<sp/>zero</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/include/MHO_UniformGridPointsCalculator.hh"/>
+  </compounddef>
+</doxygen>

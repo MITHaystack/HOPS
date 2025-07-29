@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_85c02f264b7a99962a0503cb6605bebc" kind="dir">
+    <compoundname>ffmath</compoundname>
+    <innerdir refid="dir_8b81c57cbb90d069cbae552045ed2ed8">include</innerdir>
+    <innerdir refid="dir_6e3e1de83065f789f23b58eecec4a494">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffmath/"/>
+  </compounddef>
+</doxygen>

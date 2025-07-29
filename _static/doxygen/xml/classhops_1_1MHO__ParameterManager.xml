@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ParameterManager" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ParameterManager</compoundname>
+    <includes refid="MHO__ParameterManager_8hh" local="no">MHO_ParameterManager.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterManager_1a7035f9a4c3098f6e6f8de7062ecc6445" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+        <definition>mho_json* hops::MHO_ParameterManager::fControl</definition>
+        <argsstring></argsstring>
+        <name>fControl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="41" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterManager_1a9da48ed5b75a992a06da207bb3cff43f" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterConfigurator" kindref="compound">MHO_ParameterConfigurator</ref></type>
+        <definition>MHO_ParameterConfigurator hops::MHO_ParameterManager::fDefaultParameterConfig</definition>
+        <argsstring></argsstring>
+        <name>fDefaultParameterConfig</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="44" column="35" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterManager_1a6bb8358bf9d8a7dc5264fa2b7058eda0" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ParameterManager::fFormat</definition>
+        <argsstring></argsstring>
+        <name>fFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="43" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterManager_1a14bd7a2b336893d1a7aa809c5aec2334" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ParameterManager::MHO_ParameterManager</definition>
+        <argsstring>(MHO_ParameterStore *pstore, const mho_json &amp;control_format)</argsstring>
+        <name>MHO_ParameterManager</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>pstore</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>control_format</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="20" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" bodystart="20" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterManager_1a2dd98a9d4292b56c24b9195eca2a6944" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ParameterManager::~MHO_ParameterManager</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ParameterManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="26" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterManager_1a1fd5c530378486f7c171504063dfb8e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterManager::ConfigureAll</definition>
+        <argsstring>()</argsstring>
+        <name>ConfigureAll</name>
+        <briefdescription>
+<para>Configures all control file set parameters by iterating through control statements and processing parameter statements. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="38" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_ParameterManager.cc" bodystart="6" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterManager_1a5006110c0bc8561a0c92b01e49ac264f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterManager::SetControlStatements</definition>
+        <argsstring>(mho_json *statements)</argsstring>
+        <name>SetControlStatements</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>statements</declname>
+        </param>
+        <briefdescription>
+<para>Setter for control statements. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>statements</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Control file statements of type mho_json </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="33" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Manager class for the <ref refid="classhops_1_1MHO__ParameterConfigurator" kindref="compound">MHO_ParameterConfigurator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon Jun 12 14:55:36 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterManager.hh" bodystart="18" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ParameterManager_1a1fd5c530378486f7c171504063dfb8e7" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterManager</scope><name>ConfigureAll</name></member>
+      <member refid="classhops_1_1MHO__ParameterManager_1a7035f9a4c3098f6e6f8de7062ecc6445" prot="private" virt="non-virtual"><scope>hops::MHO_ParameterManager</scope><name>fControl</name></member>
+      <member refid="classhops_1_1MHO__ParameterManager_1a9da48ed5b75a992a06da207bb3cff43f" prot="private" virt="non-virtual"><scope>hops::MHO_ParameterManager</scope><name>fDefaultParameterConfig</name></member>
+      <member refid="classhops_1_1MHO__ParameterManager_1a6bb8358bf9d8a7dc5264fa2b7058eda0" prot="private" virt="non-virtual"><scope>hops::MHO_ParameterManager</scope><name>fFormat</name></member>
+      <member refid="classhops_1_1MHO__ParameterManager_1a14bd7a2b336893d1a7aa809c5aec2334" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterManager</scope><name>MHO_ParameterManager</name></member>
+      <member refid="classhops_1_1MHO__ParameterManager_1a5006110c0bc8561a0c92b01e49ac264f" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterManager</scope><name>SetControlStatements</name></member>
+      <member refid="classhops_1_1MHO__ParameterManager_1a2dd98a9d4292b56c24b9195eca2a6944" prot="public" virt="virtual"><scope>hops::MHO_ParameterManager</scope><name>~MHO_ParameterManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phase and Delay Corrections &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Polarization Handling" href="polarization_processing.html" />
+    <link rel="prev" title="Data Labeling and Organization" href="data_labeling_organization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Initialization.html">Initialization</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="data_labeling_organization.html">Data Labeling and Organization</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Phase and Delay Corrections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualchanneldelaycorrectionbuilder">MHO_ManualChannelDelayCorrectionBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualchannelphasecorrectionbuilder">MHO_ManualChannelPhaseCorrectionBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualpoldelaycorrectionbuilder">MHO_ManualPolDelayCorrectionBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualpolphasecorrectionbuilder">MHO_ManualPolPhaseCorrectionBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-stationdelaycorrectionbuilder">MHO_StationDelayCorrectionBuilder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-multitonephasecorrectionbuilder">MHO_MultitonePhaseCorrectionBuilder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="polarization_processing.html">Polarization Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="frequency_domain_processing.html">Frequency Domain Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_selection_filtering.html">Data Selection and Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="system_management_configuration.html">System Management and Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Initialization.html">Initialization</a></li>
+      <li class="breadcrumb-item active">Phase and Delay Corrections</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/initialization/phase_delay_corrections.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="phase-and-delay-corrections">
+<h1>Phase and Delay Corrections<a class="headerlink" href="#phase-and-delay-corrections" title="Link to this heading"></a></h1>
+<p>The phase and delay correction components provide builders for various types of
+phase and delay correction operators used in VLBI fringe fitting to compensate
+for instrumental and propagation effects.</p>
+<section id="mho-manualchanneldelaycorrectionbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelDelayCorrectionBuilder.html">MHO_ManualChannelDelayCorrectionBuilder</a><a class="headerlink" href="#mho-manualchanneldelaycorrectionbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelDelayCorrectionBuilder.html">MHO_ManualChannelDelayCorrectionBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds a manual per-channel pc_delay operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Inherits from MHO_OperatorBuilder and MHO_ChannelQuantity</div>
+<div class="line">ParsePolFromName() method for polarization parsing</div>
+<div class="line">ExtractStationIdentifier() method for station identification</div>
+<div class="line">Handles per-channel delay corrections</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelDelayCorrectionBuilder.html">MHO_ManualChannelDelayCorrectionBuilder</a> class builds a manual per-channel
+delay correction operator for applying instrumental delay corrections on a per-channel
+basis. This is essential for compensating for different cable lengths and electronic
+delays in different frequency channels.</p>
+<p>The builder includes polarization parsing capabilities and station identification
+methods to properly apply corrections to the appropriate data selection.</p>
+</section>
+<section id="mho-manualchannelphasecorrectionbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder.html">MHO_ManualChannelPhaseCorrectionBuilder</a><a class="headerlink" href="#mho-manualchannelphasecorrectionbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder.html">MHO_ManualChannelPhaseCorrectionBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds a manual per-channel pc_phase operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Constructs MHO_ManualChannelPhaseCorrection operator</div>
+<div class="line">Inherits from MHO_OperatorBuilder and MHO_ChannelQuantity</div>
+<div class="line">ParsePolFromName() and ExtractStationIdentifier() methods</div>
+<div class="line">Handles per-channel phase corrections</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelPhaseCorrectionBuilder.html">MHO_ManualChannelPhaseCorrectionBuilder</a> class builds a manual per-channel
+phase correction operator for applying instrumental phase corrections on a per-channel
+basis. This compensates for phase offsets introduced by different electronic paths
+in the signal processing chain. The builder provides polarization parsing and station identification capabilities
+to ensure corrections are applied to the correct data selection.</p>
+</section>
+<section id="mho-manualpoldelaycorrectionbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolDelayCorrectionBuilder.html">MHO_ManualPolDelayCorrectionBuilder</a><a class="headerlink" href="#mho-manualpoldelaycorrectionbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolDelayCorrectionBuilder.html">MHO_ManualPolDelayCorrectionBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds a manual per-polarization pc_delay operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Constructs per-polarization manual delay correction operator</div>
+<div class="line">ParsePolFromName() method returns polarization (‘X’, ‘Y’, ‘R’, ‘L’)</div>
+<div class="line">ExtractStationIdentifier() method for station identification</div>
+<div class="line">Handles per-polarization delay corrections</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolDelayCorrectionBuilder.html">MHO_ManualPolDelayCorrectionBuilder</a> class builds a manual per-polarization
+delay correction operator for applying delay corrections based on polarization.
+This is important for compensating for polarization-dependent delays in the signal path
+prior to polarization summation.</p>
+<p>The builder can handle linear polarizations (‘X’, ‘Y’) and circular polarizations
+(‘R’, ‘L’) and provides station identification capabilities for data selection.</p>
+</section>
+<section id="mho-manualpolphasecorrectionbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolPhaseCorrectionBuilder.html">MHO_ManualPolPhaseCorrectionBuilder</a><a class="headerlink" href="#mho-manualpolphasecorrectionbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolPhaseCorrectionBuilder.html">MHO_ManualPolPhaseCorrectionBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds a manual per-polarization pc_phase operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Constructs MHO_ManualPolPhaseCorrection operator</div>
+<div class="line">ParsePolFromName() and ExtractStationIdentifier() methods</div>
+<div class="line">Handles per-polarization phase corrections</div>
+<div class="line">Supports linear and circular polarizations</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolPhaseCorrectionBuilder.html">MHO_ManualPolPhaseCorrectionBuilder</a> class builds a manual per-polarization
+phase correction operator for applying phase corrections based on polarization.
+This compensates for polarization-dependent phase offsets in the signal processing chain,
+which are required prior to polarization summation.</p>
+<p>The builder provides polarization parsing and station identification methods to
+ensure corrections are applied to the appropriate data selection.</p>
+</section>
+<section id="mho-stationdelaycorrectionbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__StationDelayCorrectionBuilder.html">MHO_StationDelayCorrectionBuilder</a><a class="headerlink" href="#mho-stationdelaycorrectionbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__StationDelayCorrectionBuilder.html">MHO_StationDelayCorrectionBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds a station delay correction operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Constructs and initializes MHO_StationDelayCorrection operator</div>
+<div class="line">ParsePolFromName() method for polarization parsing</div>
+<div class="line">ExtractStationIdentifier() method for station identification</div>
+<div class="line">Handles station-level delay corrections</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__StationDelayCorrectionBuilder.html">MHO_StationDelayCorrectionBuilder</a> class builds a station delay correction
+operator for applying delay corrections at the station level. This can be used to compensate
+for station-specific delays such as cable delays and local oscillator delays.</p>
+</section>
+<section id="mho-multitonephasecorrectionbuilder">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MultitonePhaseCorrectionBuilder.html">MHO_MultitonePhaseCorrectionBuilder</a><a class="headerlink" href="#mho-multitonephasecorrectionbuilder" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MultitonePhaseCorrectionBuilder.html">MHO_MultitonePhaseCorrectionBuilder</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Builds a multitone phase-cal correction operator</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Handles multitone phase calibration corrections</div>
+<div class="line">ExtractStationMk4ID() method for station identification</div>
+<div class="line">ExtractPCPeriod() method for PC period extraction</div>
+<div class="line">AttachSamplerDelays() and AttachPCToneMask() methods</div>
+<div class="line">GetSamplerDelayKey() method for sampler delay keys</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MultitonePhaseCorrectionBuilder.html">MHO_MultitonePhaseCorrectionBuilder</a> class builds a multitone phase
+calibration correction operator that handles phase calibration signals generated
+from a pulse-cal system. This is essential for correcting phase variations
+caused by instrumental effects in the signal processing chain (required for VGOS).</p>
+<p>The builder provides specialized methods for extracting station identifiers, pcal
+periods, and managing sampler delays and tone masks needed for phase calibration corrections.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_labeling_organization.html" class="btn btn-neutral float-left" title="Data Labeling and Organization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="polarization_processing.html" class="btn btn-neutral float-right" title="Polarization Handling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

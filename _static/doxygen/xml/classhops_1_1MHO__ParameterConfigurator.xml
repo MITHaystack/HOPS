@@ -1,0 +1,854 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ParameterConfigurator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ParameterConfigurator</compoundname>
+    <includes refid="MHO__ParameterConfigurator_8hh" local="no">MHO_ParameterConfigurator.hh</includes>
+      <sectiondef kind="protected-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__ParameterConfigurator_1a2416cbe10a0fe279853338e2534f5646" prot="protected" static="no">
+        <type><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" kindref="member">ParamType</ref></type>
+        <definition>typedef ParamType hops::MHO_ParameterConfigurator::param_t</definition>
+        <argsstring></argsstring>
+        <name>param_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="85" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="enum" id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" prot="protected" static="no" strong="yes">
+        <type></type>
+        <name>ParamType</name>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a2245023265ae4cf87d02c8b6ba991139" prot="protected">
+          <name>config</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a9c70933aff6b2a6d08c687a6cbb6b765" prot="protected">
+          <name>global</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4ae8ed3f2846110837f3adb8015ccad5ec" prot="protected">
+          <name>station</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4ae7e14cdcfbc59bba291688ae9cf039d6" prot="protected">
+          <name>baseline</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a1977c9daa1d67de51a4651abdb160c09" prot="protected">
+          <name>fit</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4a32fa6e1b78a9d4028953e60564a2aa4c" prot="protected">
+          <name>plot</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4aad921d60486366258809553a3db49a4a" prot="protected">
+          <name>unknown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>data </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="60" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="61" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__ParameterConfigurator_1ad1c343681643e992e86026e9e830571b" prot="protected" static="no">
+        <type><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" kindref="member">ParamValueType</ref></type>
+        <definition>typedef ParamValueType hops::MHO_ParameterConfigurator::paramv_t</definition>
+        <argsstring></argsstring>
+        <name>paramv_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="86" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="enum" id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" prot="protected" static="no" strong="yes">
+        <type></type>
+        <name>ParamValueType</name>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a06d324fffd90570dc177e7d1aabcb4dd" prot="protected">
+          <name>int_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a43ccba4dc7f24ce42ac3003b02ca5485" prot="protected">
+          <name>real_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a5c3e61d27b2bdaf4ddb98aadc356e863" prot="protected">
+          <name>bool_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a4771e2c3115bb1af6ce17d9d35a0eb48" prot="protected">
+          <name>string_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a4c1bc9677d08c74ff6427dfea5d87ce8" prot="protected">
+          <name>list_int_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a9bdb1fb1cc5307867534190841467ac7" prot="protected">
+          <name>list_real_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a74ebbf8cc9ef988596a14ab1866a897b" prot="protected">
+          <name>list_string_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a4631ddd508cacf3abbfe3b0ede391d9a" prot="protected">
+          <name>compound_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624a60e028751e7b68456e1173f872816932" prot="protected">
+          <name>logical_intersection_list_string_type</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624aad921d60486366258809553a3db49a4a" prot="protected">
+          <name>unknown</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="71" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="72" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterConfigurator_1ac3eae6989555a612ee0e8b4d3275a3a7" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ParameterConfigurator::fAttributes</definition>
+        <argsstring></argsstring>
+        <name>fAttributes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="167" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterConfigurator_1a9549b242b9337b44e3d68232e194aae5" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ParameterConfigurator::fConditions</definition>
+        <argsstring></argsstring>
+        <name>fConditions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="166" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterConfigurator_1a3757edd28fb8f878fb0e0ab90d422eca" prot="protected" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ParameterConfigurator::fFormat</definition>
+        <argsstring></argsstring>
+        <name>fFormat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="163" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+        <definition>MHO_ParameterStore* hops::MHO_ParameterConfigurator::fParameterStore</definition>
+        <argsstring></argsstring>
+        <name>fParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="162" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1a25c542dd595919cc87b643a519f54cd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ParameterConfigurator::MHO_ParameterConfigurator</definition>
+        <argsstring>(MHO_ParameterStore *pstore, mho_json control_format)</argsstring>
+        <name>MHO_ParameterConfigurator</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>pstore</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+          <declname>control_format</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="27" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1a8f6d17f1c68cff631b2a6b3b4e0f71e0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ParameterConfigurator::~MHO_ParameterConfigurator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ParameterConfigurator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1ab96ac4f2557be306d5334ce7fd0a0a2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ParameterConfigurator::Configure</definition>
+        <argsstring>()</argsstring>
+        <name>Configure</name>
+        <briefdescription>
+<para>Configures parameter value by evaluating conditions and attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success (true) or failure (false) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="56" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_ParameterConfigurator.cc" bodystart="9" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1acc88337c615f7ee1c49b905c3ca57ba3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ParameterConfigurator::SetAttributes</definition>
+        <argsstring>(const mho_json &amp;attr)</argsstring>
+        <name>SetAttributes</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>attr</declname>
+        </param>
+        <briefdescription>
+<para>Setter for (current) data attributes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>attr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input attribute object to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="48" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1aea77c88180f35c58833e1dcdd91c90af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_ParameterConfigurator::SetConditions</definition>
+        <argsstring>(const mho_json &amp;cond)</argsstring>
+        <name>SetConditions</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>cond</declname>
+        </param>
+        <briefdescription>
+<para>set conditions for this parameter (parsed from the control file) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cond</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input conditions of type mho_json </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="40" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1aeafd399aa5f9a1132706bb60302fc2c1" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" kindref="member">ParamType</ref></type>
+        <definition>MHO_ParameterConfigurator::ParamType hops::MHO_ParameterConfigurator::DetermineParamType</definition>
+        <argsstring>(const std::string &amp;par_type) const</argsstring>
+        <name>DetermineParamType</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>par_type</declname>
+        </param>
+        <briefdescription>
+<para>Determines parameter type from string input. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>par_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input parameter type as string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Parameter type enum based on input string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="94" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_ParameterConfigurator.cc" bodystart="210" bodyend="237"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1aa6e02cbb4ce959bce969f9fa75cb0094" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" kindref="member">ParamValueType</ref></type>
+        <definition>MHO_ParameterConfigurator::ParamValueType hops::MHO_ParameterConfigurator::DetermineParamValueType</definition>
+        <argsstring>(const std::string &amp;par_value_type) const</argsstring>
+        <name>DetermineParamValueType</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>par_value_type</declname>
+        </param>
+        <briefdescription>
+<para>Determines the parameter value type from a given string representation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>par_value_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string representing the parameter value type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Enum value of ParamValueType corresponding to the input string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="102" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_ParameterConfigurator.cc" bodystart="169" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1a7edcb4b2b1ed9d2251b8a7fa4ac0d962" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ParameterConfigurator::GetScalarParameter</definition>
+        <argsstring>(std::string path, XValueType &amp;value)</argsstring>
+        <name>GetScalarParameter</name>
+        <param>
+          <type>std::string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Getter for scalar parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves a scalar parameter value from the parameter store by its path.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the parameter as a std::string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the scalar parameter value of type XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void, with success indicated by modifying &apos;value&apos;</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the desired parameter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="121" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="193" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1a590f30765daa485f05a1fa001a5756af" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ParameterConfigurator::GetVectorParameter</definition>
+        <argsstring>(std::string path, std::vector&lt; XValueType &gt; &amp;values)</argsstring>
+        <name>GetVectorParameter</name>
+        <param>
+          <type>std::string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; XValueType &gt; &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+<para>Getter for vector parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves a vector parameter from the parameter store using the given path.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter (used in std::vector&lt; XValueType &gt;&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the parameter in the parameter store. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; XValueType )&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the desired parameter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::vector&lt; XValueType )&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="143" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="227" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1a9b8eab0ed7b440a1de335114d822fbbb" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ParameterConfigurator::LogicalIntersection</definition>
+        <argsstring>(std::vector&lt; std::string &gt; &amp;values1, std::vector&lt; std::string &gt; &amp;values2) const</argsstring>
+        <name>LogicalIntersection</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>values1</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>values2</declname>
+        </param>
+        <briefdescription>
+<para>Calculates logical intersection of two sorted string vectors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>values1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First vector of strings to find intersection. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second vector of strings to find intersection. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of strings representing the logical intersection. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="160" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_ParameterConfigurator.cc" bodystart="249" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1abcb6f8478c8afe7906aa7b3d9557a971" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterConfigurator::SetCompoundParameter</definition>
+        <argsstring>(std::string path, const mho_json &amp;values)</argsstring>
+        <name>SetCompoundParameter</name>
+        <param>
+          <type>std::string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+<para>Setter for compound parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the compound parameter as a std::string. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>JSON values to set for the compound parameter. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="151" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/src/MHO_ParameterConfigurator.cc" bodystart="239" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1a2b207d4dc48575d877e03b716deb23dc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ParameterConfigurator::SetScalarParameter</definition>
+        <argsstring>(std::string path, const XValueType &amp;value)</argsstring>
+        <name>SetScalarParameter</name>
+        <param>
+          <type>std::string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Setter for scalar parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a scalar parameter in the <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> using a given path and value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter path as std::string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scalar value to set, type XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the parameter as a string. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new value for the parameter of type XValueType. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="111" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="177" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterConfigurator_1a1658589ade1ebc7feb80f4dccdf1cbf8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ParameterConfigurator::SetVectorParameter</definition>
+        <argsstring>(std::string path, const std::vector&lt; XValueType &gt; &amp;values)</argsstring>
+        <name>SetVectorParameter</name>
+        <param>
+          <type>std::string</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; XValueType &gt; &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+<para>Setter for vector parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets a vector parameter at the specified path in the parameter store.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter (used in std::vector&lt; XValueType &gt;&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter path as std::string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of values to set at given path </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void</para>
+</simplesect>
+<parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to set the vector parameter at. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to the vector of XValueType values to be set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="131" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="210" bodyend="217"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>some control statements simply trigger a parameter value to be set to a certain value, this class handles this special case </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Mon Jun 12 12:51:32 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_ParameterStore</label>
+        <link refid="classhops_1_1MHO__ParameterStore"/>
+      </node>
+      <node id="2">
+        <label>json</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ParameterConfigurator</label>
+        <link refid="classhops_1_1MHO__ParameterConfigurator"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fAttributes</edgelabel>
+          <edgelabel>fConditions</edgelabel>
+          <edgelabel>fFormat</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fParameterStore</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Initialization/include/MHO_ParameterConfigurator.hh" bodystart="24" bodyend="168"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1ab96ac4f2557be306d5334ce7fd0a0a2f" prot="public" virt="virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>Configure</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1aeafd399aa5f9a1132706bb60302fc2c1" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>DetermineParamType</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1aa6e02cbb4ce959bce969f9fa75cb0094" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>DetermineParamValueType</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1ac3eae6989555a612ee0e8b4d3275a3a7" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>fAttributes</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a9549b242b9337b44e3d68232e194aae5" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>fConditions</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a3757edd28fb8f878fb0e0ab90d422eca" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>fFormat</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1af0a63f92e5a0835157daa04fd8c56510" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a7edcb4b2b1ed9d2251b8a7fa4ac0d962" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>GetScalarParameter</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a590f30765daa485f05a1fa001a5756af" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>GetVectorParameter</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a9b8eab0ed7b440a1de335114d822fbbb" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>LogicalIntersection</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a25c542dd595919cc87b643a519f54cd7" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>MHO_ParameterConfigurator</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a2416cbe10a0fe279853338e2534f5646" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>param_t</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a86b7312953a9f3e360e762367a85d6b4" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>ParamType</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1ad1c343681643e992e86026e9e830571b" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>paramv_t</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a4472b82359291b0648890e5df5ebf624" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>ParamValueType</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1acc88337c615f7ee1c49b905c3ca57ba3" prot="public" virt="virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>SetAttributes</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1abcb6f8478c8afe7906aa7b3d9557a971" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>SetCompoundParameter</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1aea77c88180f35c58833e1dcdd91c90af" prot="public" virt="virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>SetConditions</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a2b207d4dc48575d877e03b716deb23dc" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>SetScalarParameter</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a1658589ade1ebc7feb80f4dccdf1cbf8" prot="protected" virt="non-virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>SetVectorParameter</name></member>
+      <member refid="classhops_1_1MHO__ParameterConfigurator_1a8f6d17f1c68cff631b2a6b3b4e0f71e0" prot="public" virt="virtual"><scope>hops::MHO_ParameterConfigurator</scope><name>~MHO_ParameterConfigurator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

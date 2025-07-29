@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmoni__read__struct" kind="struct" language="C++" prot="public">
+    <compoundname>moni_read_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmoni__read__struct_1ad20eadb1809522de5cf893b8811b9ec4" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short moni_read_struct::equalizer[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>equalizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="64" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmoni__read__struct_1a190c59345bfffb82a1eb2e456044fe55" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short moni_read_struct::track[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>track</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="63" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>moni_read_struct</label>
+        <link refid="structmoni__read__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>equalizer</edgelabel>
+          <edgelabel>track</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>short</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="61" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="62" bodyend="65"/>
+    <listofallmembers>
+      <member refid="structmoni__read__struct_1ad20eadb1809522de5cf893b8811b9ec4" prot="public" virt="non-virtual"><scope>moni_read_struct</scope><name>equalizer</name></member>
+      <member refid="structmoni__read__struct_1a190c59345bfffb82a1eb2e456044fe55" prot="public" virt="non-virtual"><scope>moni_read_struct</scope><name>track</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

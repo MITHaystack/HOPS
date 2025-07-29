@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__InitialFringeInfo" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_InitialFringeInfo</compoundname>
+    <includes refid="MHO__InitialFringeInfo_8hh" local="no">MHO_InitialFringeInfo.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1acea5b4e82752e6a28b6e29284aafc2b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_InitialFringeInfo::MHO_InitialFringeInfo</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_InitialFringeInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1acedfbd7d5973794d19d6ecf268a38d6d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_InitialFringeInfo::~MHO_InitialFringeInfo</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_InitialFringeInfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1a685e70718e2d495e1094889d57bc644e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_InitialFringeInfo::calculate_clock_model</definition>
+        <argsstring>(MHO_ParameterStore *paramStore)</argsstring>
+        <name>calculate_clock_model</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Calculates clock model for reference and remote stations using parameters from <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> containing relevant clock parameters </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="67" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_InitialFringeInfo.cc" bodystart="54" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1ab55d543fcee4cf7571982ca488722773" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_InitialFringeInfo::calculate_freq_space</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>calculate_freq_space</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Calculates frequency space and stores fringe parameters in paramStore. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input container store for visibility data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter store to hold calculated fringe parameters </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="59" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_InitialFringeInfo.cc" bodystart="13" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1a24f2c2267e52522a62aaa0c7f8a1668b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_InitialFringeInfo::compute_total_summed_weights</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>compute_total_summed_weights</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and stores total summed weights from container store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> containing weight data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> to store result </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="85" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_InitialFringeInfo.cc" bodystart="116" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1afaaec153e695f74aa40403d89964d81b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_InitialFringeInfo::configure_reference_frequency</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>configure_reference_frequency</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Sets default reference frequency (determined from visibility data) if not already set in parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> for accessing visibility data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> for managing parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="50" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_InitialFringeInfo.cc" bodystart="353" bodyend="371"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1add6e5f79e5cca89a84e52c5308ee2083" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_InitialFringeInfo::determine_n_active_channels</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>determine_n_active_channels</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Counts and stores the number of active channels in <ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> based on weight. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input container store for weights data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output parameter store to set n_active_channels </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="94" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_InitialFringeInfo.cc" bodystart="145" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1a47756f3954f85c1299f4d232288334b6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_InitialFringeInfo::precalculate_quantities</definition>
+        <argsstring>(MHO_ContainerStore *conStore, MHO_ParameterStore *paramStore)</argsstring>
+        <name>precalculate_quantities</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ContainerStore" kindref="compound">MHO_ContainerStore</ref> *</type>
+          <declname>conStore</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Precalculates and stores relevant quantities from visibility data into parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>conStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input container store for retrieving visibility data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output parameter store for storing precalculated quantities </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="76" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_InitialFringeInfo.cc" bodystart="175" bodyend="344"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__InitialFringeInfo_1a3662544408b4c57143632cb85c0b1a8e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_InitialFringeInfo::set_default_parameters_minimal</definition>
+        <argsstring>(MHO_ParameterStore *paramStore)</argsstring>
+        <name>set_default_parameters_minimal</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Sets default <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> values for minimal configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to an <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object where defaults are set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="41" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_InitialFringeInfo.cc" bodystart="346" bodyend="351"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__InitialFringeInfo" kindref="compound">MHO_InitialFringeInfo</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>collection of helper functions to populate the parameter store with a priori information known before fringe fitting</para>
+<para><simplesect kind="author"><para>J. Barrettj - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Sep 20 16:12:23 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/include/MHO_InitialFringeInfo.hh" bodystart="28" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1a685e70718e2d495e1094889d57bc644e" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>calculate_clock_model</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1ab55d543fcee4cf7571982ca488722773" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>calculate_freq_space</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1a24f2c2267e52522a62aaa0c7f8a1668b" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>compute_total_summed_weights</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1afaaec153e695f74aa40403d89964d81b" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>configure_reference_frequency</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1add6e5f79e5cca89a84e52c5308ee2083" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>determine_n_active_channels</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1acea5b4e82752e6a28b6e29284aafc2b0" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>MHO_InitialFringeInfo</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1a47756f3954f85c1299f4d232288334b6" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>precalculate_quantities</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1a3662544408b4c57143632cb85c0b1a8e" prot="public" virt="non-virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>set_default_parameters_minimal</name></member>
+      <member refid="classhops_1_1MHO__InitialFringeInfo_1acedfbd7d5973794d19d6ecf268a38d6d" prot="public" virt="virtual"><scope>hops::MHO_InitialFringeInfo</scope><name>~MHO_InitialFringeInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

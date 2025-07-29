@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__NDFFTBluestein__kernel_8cl" kind="file" language="C++">
+    <compoundname>MHO_NDFFTBluestein_kernel.cl</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline></codeline>
+<codeline><highlight class="normal">#ifndef<sp/>MHO_NDFFTBluestein_kernel_Defined__</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>MHO_NDFFTBluestein_kernel_Defined__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;hopsocl_defines.h&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;MHO_ArrayMath.cl&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;MHO_ComplexUtils.cl&quot;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;MHO_FastFourierTransformUtilities.cl&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//compile<sp/>time<sp/>constants</highlight></codeline>
+<codeline><highlight class="normal">//FFT_NDIM</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>#ifdef<sp/>FFT_USE_CONST_MEM</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>NDFFTBluesteinStage(</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>D,<sp/>//d<sp/>=<sp/>0,<sp/>1,<sp/>...FFT_NDIM-1<sp/>specifies<sp/>the<sp/>dimension/axis<sp/>selected<sp/>to<sp/>be<sp/>transformed</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/>__global<sp/>const<sp/>unsigned<sp/>int*<sp/>dim_arr,<sp/>//sizes<sp/>of<sp/>the<sp/>array<sp/>in<sp/>each<sp/>dimension</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/>__local<sp/>CL_TYPE2*<sp/>twiddle_scratch,<sp/>//scratch<sp/>space<sp/>for<sp/>the<sp/>twiddle<sp/>factor<sp/>basis</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>data,<sp/>//<sp/>the<sp/>data<sp/>to<sp/>be<sp/>transformed</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/>__constant<sp/>CL_TYPE2*<sp/>scale,</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/>__constant<sp/>CL_TYPE2*<sp/>circulant,</highlight></codeline>
+<codeline><highlight class="normal">//<sp/><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>workspace)</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>#else</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//TODO<sp/>HOW<sp/>DO<sp/>WE<sp/>DETERMINE<sp/>THIS<sp/>FOR<sp/>OUR<sp/>DEVICE??</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>MAX_CONCURRENT_WORKGROUPS<sp/>4</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">__kernel<sp/>void</highlight></codeline>
+<codeline><highlight class="normal">NDFFTBluesteinStage(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>D,<sp/>//d<sp/>=<sp/>0,<sp/>1,<sp/>...FFT_NDIM-1<sp/>specifies<sp/>the<sp/>dimension/axis<sp/>selected<sp/>to<sp/>be<sp/>transformed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>isForward,<sp/>//0<sp/>-&gt;<sp/>is<sp/>a<sp/>backward<sp/>FFT,<sp/>1<sp/>-&gt;<sp/>is<sp/>a<sp/>forward<sp/>FFT</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global<sp/>const<sp/>unsigned<sp/>int*<sp/>dim_arr,<sp/>//sizes<sp/>of<sp/>the<sp/>array<sp/>in<sp/>each<sp/>dimension</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__local<sp/>CL_TYPE2*<sp/>twiddle_scratch,<sp/>//scratch<sp/>space<sp/>for<sp/>the<sp/>twiddle<sp/>factor<sp/>basis</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>data,<sp/>//<sp/>the<sp/>data<sp/>to<sp/>be<sp/>transformed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>scale,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>circulant,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>workspace)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//get<sp/>the<sp/>index<sp/>of<sp/>the<sp/>current<sp/>work<sp/>item<sp/>in<sp/>the<sp/>global<sp/>list</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>i_global<sp/>=<sp/>get_global_id(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>i_local<sp/>=<sp/>get_local_id(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>workgroup_size<sp/>=<sp/>get_local_size(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>i_workgroup<sp/>=<sp/>i_global;//(i_global/workgroup_size)%MAX_CONCURRENT_WORKGROUPS;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>dim[FFT_NDIM];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;i&lt;FFT_NDIM;<sp/>i++){dim[i]<sp/>=<sp/>dim_arr[i];}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//work-item<sp/>specific<sp/>space<sp/>for<sp/>the<sp/>twiddle<sp/>factor<sp/>basis</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__local<sp/>CL_TYPE2*<sp/>twiddle_basis<sp/>=<sp/>&amp;(twiddle_scratch[workgroup_size*get_local_id(0)]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>log2N<sp/>=<sp/>LogBaseTwo(dim[D]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ComputeTwiddleFactorBasis(log2N,<sp/>twiddle_basis);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>M<sp/>=<sp/>ComputeBluesteinArraySize(dim[D]);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CL_TYPE<sp/>direction<sp/>=<sp/>FFT_BACKWARD;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(isForward){direction<sp/>=<sp/>FFT_FORWARD;}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//pointer<sp/>to<sp/>the<sp/>work-item&apos;s<sp/>data<sp/>chunk</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>chunk;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//pointer<sp/>to<sp/>the<sp/>FFT<sp/>workspace</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>__global<sp/>CL_TYPE2*<sp/>work_chunk;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>work_chunk<sp/>=<sp/>&amp;(workspace[<sp/><sp/>M*(workgroup_size*i_workgroup<sp/>+<sp/>i_local)<sp/>]<sp/>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>work_chunk<sp/>=<sp/>&amp;(workspace[i_global*M]);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//workspace<sp/>for<sp/>index<sp/>calculations</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>index[FFT_NDIM];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>div_space[FFT_NDIM-1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>na_dimension_size[FFT_NDIM-1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>na_dimension_value[FFT_NDIM-1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>na_dimension_index[FFT_NDIM-1];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//figure<sp/>out<sp/>the<sp/>total<sp/>number<sp/>of<sp/>1-D<sp/>FFTs<sp/>to<sp/>perform<sp/>and<sp/>the<sp/>stride<sp/>along<sp/>this<sp/>axis</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//as<sp/>well<sp/>as<sp/>the<sp/>coordinates<sp/>of<sp/>this<sp/>work<sp/>item<sp/>in<sp/>the<sp/>non-active<sp/>dimensions</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>n_fft,<sp/>stride,<sp/>data_location;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>n_fft<sp/>=<sp/>CalculateWorkItemInfo(FFT_NDIM,<sp/>D,<sp/>dim,<sp/>na_dimension_index,<sp/>na_dimension_size);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stride<sp/>=<sp/>StrideFromRowMajorIndex(FFT_NDIM,<sp/>D,<sp/>dim);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//invert<sp/>our<sp/>location<sp/>in<sp/>work-item<sp/>list<sp/>to<sp/>obtain<sp/>indices<sp/>of<sp/>the<sp/>block<sp/>start<sp/>in<sp/>the<sp/>global<sp/>data<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>RowMajorIndexFromOffset(FFT_NDIM-1,<sp/>i_global,<sp/>na_dimension_size,<sp/>na_dimension_value,<sp/>div_space);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>index[D]<sp/>=<sp/>0;<sp/>//for<sp/>the<sp/>current<sp/>selected<sp/>dimension,<sp/>the<sp/>index<sp/>value<sp/>is<sp/>always<sp/>zero</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;FFT_NDIM-1;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//copy<sp/>the<sp/>value<sp/>of<sp/>the<sp/>non-active<sp/>dimensions<sp/>in<sp/>to<sp/>the<sp/>index<sp/>array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>index[<sp/>na_dimension_index[i]<sp/>]<sp/>=<sp/>na_dimension_value[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//calculate<sp/>the<sp/>total<sp/>memory<sp/>offset<sp/>to<sp/>the<sp/>start<sp/>of<sp/>the<sp/>work-item&apos;s<sp/>data<sp/>block</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>data_location<sp/>=<sp/>OffsetFromRowMajorIndex(FFT_NDIM,<sp/>dim,<sp/>index);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>chunk<sp/>=<sp/>&amp;(<sp/>data[data_location]<sp/>);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if(i_global<sp/>&lt;<sp/>n_fft)<sp/>//thread<sp/>id<sp/>must<sp/>be<sp/>less<sp/>than<sp/>total<sp/>number<sp/>of<sp/>1d<sp/>fft&apos;s</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FFTBluestein(dim[D],<sp/>M,<sp/>stride,<sp/>direction,<sp/>twiddle_basis,<sp/>chunk,<sp/>scale,<sp/>circulant,<sp/>work_chunk);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>MHO_NDFFTBluestein_kernel_Defined__<sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/cl/MHO_NDFFTBluestein_kernel.cl"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__OpenCLFastFourierTransformPlan" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_OpenCLFastFourierTransformPlan</compoundname>
+    <includes refid="MHO__OpenCLFastFourierTransformPlan_8hh" local="no">MHO_OpenCLFastFourierTransformPlan.hh</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="enum" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacd" prot="private" static="no" strong="no">
+        <type></type>
+        <name>fft_plan_type</name>
+        <enumvalue id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacda066ea66834877bbd0f9c8d09c167726e" prot="private">
+          <name>radix2_strided</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacdac6e6722ce97360135002e2dc812adbcd" prot="private">
+          <name>radix2_strided_const</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacda7734bb3a4367389f90e76a1d4a564f4a" prot="private">
+          <name>radix2_private</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacda1bf7b44ab2238488236c771a4d76453b" prot="private">
+          <name>radix2_private_const</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="47" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="48" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a8b03ee018cf4b50cb8860205739cb1b3" prot="private" static="no" mutable="no">
+        <type>cl::Kernel *</type>
+        <definition>cl::Kernel* hops::MHO_OpenCLFastFourierTransformPlan::fFFTKernel</definition>
+        <argsstring></argsstring>
+        <name>fFFTKernel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="43" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1ae9570f8152c6e668004c734ecdd4a118" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_OpenCLFastFourierTransformPlan::fN</definition>
+        <argsstring></argsstring>
+        <name>fN</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="39" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1af1e95c4c88c9e687680c194dbee67c66" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_OpenCLFastFourierTransformPlan::fNDim</definition>
+        <argsstring></argsstring>
+        <name>fNDim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>data </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="38" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a40e8305f8bcfd9eba7b59beedbe148cb" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_OpenCLFastFourierTransformPlan::fNLocal</definition>
+        <argsstring></argsstring>
+        <name>fNLocal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="41" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a3d6633bc43c229e53c1758f01dc5d364" prot="private" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_OpenCLFastFourierTransformPlan::fPreferredWorkgroupMultiple</definition>
+        <argsstring></argsstring>
+        <name>fPreferredWorkgroupMultiple</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="42" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a51cbac79102f00cba839fb8df0b452c1" prot="private" static="no" mutable="no">
+        <type>std::map&lt; fft_plan_type, kfile_kfunc_cflags &gt;</type>
+        <definition>std::map&lt; fft_plan_type, kfile_kfunc_cflags &gt; hops::MHO_OpenCLFastFourierTransformPlan::fSourceCodeMap</definition>
+        <argsstring></argsstring>
+        <name>fSourceCodeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="61" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a6f0456cd9fbae302ecdd93bba73916eb" prot="private" static="no" mutable="no">
+        <type>enum hops::MHO_OpenCLFastFourierTransformPlan::fft_plan_type</type>
+        <definition>enum hops::MHO_OpenCLFastFourierTransformPlan::fft_plan_type hops::MHO_OpenCLFastFourierTransformPlan::kfile_kfunc_cflags</definition>
+        <argsstring></argsstring>
+        <name>kfile_kfunc_cflags</name>
+        <initializer>= std::tuple&lt; std::string, std::string, std::string &gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="59" column="34"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a40df41150efdacf5814bdd87061a2088" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLFastFourierTransformPlan::MHO_OpenCLFastFourierTransformPlan</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_OpenCLFastFourierTransformPlan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="23" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/src/MHO_OpenCLFastFourierTransformPlan.cc" bodystart="6" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1ae10e0b6ef45536165ff2a2fff663e766" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_OpenCLFastFourierTransformPlan::~MHO_OpenCLFastFourierTransformPlan</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_OpenCLFastFourierTransformPlan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="24" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/src/MHO_OpenCLFastFourierTransformPlan.cc" bodystart="11" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1aa535d0bba64635ccd642dc2880c0a527" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLFastFourierTransformPlan::Build</definition>
+        <argsstring>(std::size_t NDIM, std::size_t N)</argsstring>
+        <name>Build</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>NDIM</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="29" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a486c67437c05db2db75f29f784ac8ba8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>cl::Kernel *</type>
+        <definition>cl::Kernel* hops::MHO_OpenCLFastFourierTransformPlan::GetKernel</definition>
+        <argsstring>()</argsstring>
+        <name>GetKernel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="31" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a6d19512d1910759b32a0c6f8f167c87d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_OpenCLFastFourierTransformPlan::GetNLocal</definition>
+        <argsstring>()</argsstring>
+        <name>GetNLocal</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="33" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="33" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a04503a01d982880ca2d05a9cc3dec5e4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLFastFourierTransformPlan::BuildCodeList</definition>
+        <argsstring>()</argsstring>
+        <name>BuildCodeList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="63" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/src/MHO_OpenCLFastFourierTransformPlan.cc" bodystart="56" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a39affb1d447fc7e8281751607bb77a43" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLFastFourierTransformPlan::Clear</definition>
+        <argsstring>()</argsstring>
+        <name>Clear</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="65" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a664db1dff2f40088bd9c39428e98b18a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_OpenCLFastFourierTransformPlan::ConstructKernel</definition>
+        <argsstring>(const std::string &amp;file_name, const std::string &amp;kernel_name, const std::string &amp;cflags)</argsstring>
+        <name>ConstructKernel</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>file_name</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>kernel_name</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>cflags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/src/MHO_OpenCLFastFourierTransformPlan.cc" bodystart="27" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/include/MHO_OpenCLFastFourierTransformPlan.hh" bodystart="20" bodyend="66"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1aa535d0bba64635ccd642dc2880c0a527" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>Build</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a04503a01d982880ca2d05a9cc3dec5e4" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>BuildCodeList</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a39affb1d447fc7e8281751607bb77a43" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a664db1dff2f40088bd9c39428e98b18a" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>ConstructKernel</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a8b03ee018cf4b50cb8860205739cb1b3" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>fFFTKernel</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacd" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>fft_plan_type</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1ae9570f8152c6e668004c734ecdd4a118" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>fN</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1af1e95c4c88c9e687680c194dbee67c66" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>fNDim</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a40e8305f8bcfd9eba7b59beedbe148cb" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>fNLocal</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a3d6633bc43c229e53c1758f01dc5d364" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>fPreferredWorkgroupMultiple</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a51cbac79102f00cba839fb8df0b452c1" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>fSourceCodeMap</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a486c67437c05db2db75f29f784ac8ba8" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>GetKernel</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a6d19512d1910759b32a0c6f8f167c87d" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>GetNLocal</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a6f0456cd9fbae302ecdd93bba73916eb" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>kfile_kfunc_cflags</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a40df41150efdacf5814bdd87061a2088" prot="public" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>MHO_OpenCLFastFourierTransformPlan</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacda7734bb3a4367389f90e76a1d4a564f4a" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>radix2_private</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacda1bf7b44ab2238488236c771a4d76453b" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>radix2_private_const</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacda066ea66834877bbd0f9c8d09c167726e" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>radix2_strided</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1a2955341914c62d28dedfbe810ba2bacdac6e6722ce97360135002e2dc812adbcd" prot="private" virt="non-virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>radix2_strided_const</name></member>
+      <member refid="classhops_1_1MHO__OpenCLFastFourierTransformPlan_1ae10e0b6ef45536165ff2a2fff663e766" prot="public" virt="virtual"><scope>hops::MHO_OpenCLFastFourierTransformPlan</scope><name>~MHO_OpenCLFastFourierTransformPlan</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

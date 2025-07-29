@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpsplot__baseline" kind="struct" language="C++" prot="public">
+    <compoundname>psplot_baseline</compoundname>
+    <includes refid="psplot_8h" local="no">psplot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpsplot__baseline_1a2cf44971a1b18862abba07fea144853f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_baseline::alloced</definition>
+        <argsstring></argsstring>
+        <name>alloced</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="75" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__baseline_1a0229cbc7caf55881015c2e5f97919e1f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char psplot_baseline::id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="74" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__baseline_1a1f588b09ec87dde57ec316efc01a7490" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structpsplot__cell" kindref="compound">psplot_cell</ref> *</type>
+        <definition>struct psplot_cell* psplot_baseline::scan</definition>
+        <argsstring></argsstring>
+        <name>scan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="77" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__baseline_1a47486dcec6ce5e70e46100251f1d888c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_baseline::tagged[MAXBANDS]</definition>
+        <argsstring>[MAXBANDS]</argsstring>
+        <name>tagged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="76" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>psplot_cell</label>
+        <link refid="structpsplot__cell"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>colour_index</edgelabel>
+          <edgelabel>data_index</edgelabel>
+          <edgelabel>flag</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>psplot_baseline</label>
+        <link refid="structpsplot__baseline"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>alloced</edgelabel>
+          <edgelabel>tagged</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>scan</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="72" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="73" bodyend="78"/>
+    <listofallmembers>
+      <member refid="structpsplot__baseline_1a2cf44971a1b18862abba07fea144853f" prot="public" virt="non-virtual"><scope>psplot_baseline</scope><name>alloced</name></member>
+      <member refid="structpsplot__baseline_1a0229cbc7caf55881015c2e5f97919e1f" prot="public" virt="non-virtual"><scope>psplot_baseline</scope><name>id</name></member>
+      <member refid="structpsplot__baseline_1a1f588b09ec87dde57ec316efc01a7490" prot="public" virt="non-virtual"><scope>psplot_baseline</scope><name>scan</name></member>
+      <member refid="structpsplot__baseline_1a47486dcec6ce5e70e46100251f1d888c" prot="public" virt="non-virtual"><scope>psplot_baseline</scope><name>tagged</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

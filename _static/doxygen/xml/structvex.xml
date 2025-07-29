@@ -1,0 +1,947 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structvex" kind="struct" language="C++" prot="public">
+    <compoundname>vex</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structvex_1ade2243831e51971c37eac38f330b33b3" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structCvex__Config" kindref="compound">Cvex_Config</ref> *</type>
+        <definition>struct Cvex_Config* vex::cvex</definition>
+        <argsstring></argsstring>
+        <name>cvex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="32" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a802ff1b274b6195e039ace28e8d6f9e8" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* vex::cvex_src</definition>
+        <argsstring></argsstring>
+        <name>cvex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="38" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a050f386dcaa835c4329f58d1ac43ad3f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structevex__struct" kindref="compound">evex_struct</ref> *</type>
+        <definition>struct evex_struct* vex::evex</definition>
+        <argsstring></argsstring>
+        <name>evex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="33" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1ac40c3c40fa55a14267d8759b8fba5afa" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* vex::evex_src</definition>
+        <argsstring></argsstring>
+        <name>evex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="39" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a9d605ee4f80a20ead825f1c56a460ddf" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char vex::filename[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="30" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a7e3ef49ddb2771e49e92ef0213fb562e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structivex__struct" kindref="compound">ivex_struct</ref> *</type>
+        <definition>struct ivex_struct* vex::ivex</definition>
+        <argsstring></argsstring>
+        <name>ivex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="34" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1aee102ba8ed5818c710161f5fb7a13790" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* vex::ivex_src</definition>
+        <argsstring></argsstring>
+        <name>ivex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="41" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a78395dff283f9c74a5d456c2872ce7b9" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structlvex__struct" kindref="compound">lvex_struct</ref> *</type>
+        <definition>struct lvex_struct* vex::lvex</definition>
+        <argsstring></argsstring>
+        <name>lvex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="36" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a207709b90ddcfdfd8538fffd30eaca16" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* vex::lvex_src</definition>
+        <argsstring></argsstring>
+        <name>lvex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="42" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a7edd147b2c001dc595c5d922acc48182" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structscan__struct" kindref="compound">scan_struct</ref> *</type>
+        <definition>struct scan_struct* vex::ovex</definition>
+        <argsstring></argsstring>
+        <name>ovex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="31" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a9c5ab778bddf2c5d30c88ed3c9ecdaf7" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* vex::ovex_src</definition>
+        <argsstring></argsstring>
+        <name>ovex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="37" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1ac94a18b1c42ac22d78395de8d9cba4b7" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsvex__struct" kindref="compound">svex_struct</ref> *</type>
+        <definition>struct svex_struct* vex::svex</definition>
+        <argsstring></argsstring>
+        <name>svex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="35" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a8530f73cc6cf0c1b73ae91bb10c3ee4d" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* vex::svex_src</definition>
+        <argsstring></argsstring>
+        <name>svex_src</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="40" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structvex_1a870cf8e0d0cfdff664db8b876b415983" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vex::vextypes</definition>
+        <argsstring></argsstring>
+        <name>vextypes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="20">
+        <label>Cvex_Chip</label>
+        <link refid="structCvex__Chip"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>input</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>relChipNum</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lvex_struct</label>
+        <link refid="structlvex__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>nstation</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>stn</edgelabel>
+        </childnode>
+      </node>
+      <node id="44">
+        <label>CUCC_port_struct</label>
+        <link refid="structCUCC__port__struct"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>crate_number</edgelabel>
+          <edgelabel>port_A_number</edgelabel>
+          <edgelabel>port_B_number</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>long long</label>
+      </node>
+      <node id="37">
+        <label>drive_init_struct</label>
+        <link refid="structdrive__init__struct"/>
+        <childnode refid="38" relation="usage">
+          <edgelabel>monitor_module</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>capstan_relative_diameter</edgelabel>
+          <edgelabel>tape_acceleration</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>computer_name</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>drive_type</edgelabel>
+          <edgelabel>nheads</edgelabel>
+        </childnode>
+        <childnode refid="39" relation="usage">
+          <edgelabel>vacuum</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mcb_addr_id</edgelabel>
+          <edgelabel>mcb_addr_start</edgelabel>
+        </childnode>
+        <childnode refid="40" relation="usage">
+          <edgelabel>headstack</edgelabel>
+        </childnode>
+        <childnode refid="41" relation="usage">
+          <edgelabel>DIM_connect</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Cvex_Mode</label>
+        <link refid="structCvex__Mode"/>
+        <childnode refid="15" relation="usage">
+          <edgelabel>xPolPair</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>numOfBoards</edgelabel>
+          <edgelabel>numOfXPolPairs</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>board</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>discinfo</label>
+        <link refid="structdiscinfo"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>disc_model_num</edgelabel>
+          <edgelabel>disc_serial_num</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>disc_size</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>station_log</label>
+        <link refid="structstation__log"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>end_footage</edgelabel>
+          <edgelabel>headpos</edgelabel>
+          <edgelabel>start_footage</edgelabel>
+          <edgelabel>start_speed</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>disc_set_ID</edgelabel>
+          <edgelabel>linked_stations</edgelabel>
+          <edgelabel>pass</edgelabel>
+          <edgelabel>source</edgelabel>
+          <edgelabel>station</edgelabel>
+          <edgelabel>vsn</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>start_byte</edgelabel>
+          <edgelabel>stop_byte</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>autopeak_interval</edgelabel>
+          <edgelabel>ndiscs</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>disc</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>discstart</edgelabel>
+          <edgelabel>discstop</edgelabel>
+          <edgelabel>tapestart</edgelabel>
+          <edgelabel>tapestop</edgelabel>
+          <edgelabel>time_on_source</edgelabel>
+        </childnode>
+      </node>
+      <node id="47">
+        <label>pcm_cfg_struct</label>
+        <link refid="structpcm__cfg__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>counter_coeff</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="48">
+        <label>SU_chan_out_struct</label>
+        <link refid="structSU__chan__out__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>freq_a</edgelabel>
+          <edgelabel>freq_b</edgelabel>
+          <edgelabel>freq_c</edgelabel>
+          <edgelabel>freq_d</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>chan_ID</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>scan_struct</label>
+        <link refid="structscan__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>a1_tai</edgelabel>
+          <edgelabel>tai_utc</edgelabel>
+          <edgelabel>ut1_utc</edgelabel>
+          <edgelabel>x_wobble</edgelabel>
+          <edgelabel>y_wobble</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>nst</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>correlator</edgelabel>
+          <edgelabel>exper_name</edgelabel>
+          <edgelabel>filename</edgelabel>
+          <edgelabel>scan_name</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>src</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>eop_interval</edgelabel>
+          <edgelabel>neop</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>st</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>eop_reftime</edgelabel>
+          <edgelabel>ffit_reftime</edgelabel>
+          <edgelabel>start_time</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Cvex_Section</label>
+        <link refid="structCvex__Section"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>phyChipNum</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Cvex_Snake</label>
+        <link refid="structCvex__Snake"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>lenOfSnakePath</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>path</edgelabel>
+          <edgelabel>refId</edgelabel>
+          <edgelabel>remId</edgelabel>
+          <edgelabel>type</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Cvex_BlockMode</label>
+        <link refid="structCvex__BlockMode"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>enableTap</edgelabel>
+          <edgelabel>headerMode</edgelabel>
+          <edgelabel>invalidateOnTapMove</edgelabel>
+          <edgelabel>lCellRotrMode</edgelabel>
+          <edgelabel>lCellXDly</edgelabel>
+          <edgelabel>lCellYDly</edgelabel>
+          <edgelabel>rCellRotrMode</edgelabel>
+          <edgelabel>rCellXDly</edgelabel>
+          <edgelabel>rCellYDly</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>float</label>
+      </node>
+      <node id="46">
+        <label>pcm_tab_struct</label>
+        <link refid="structpcm__tab__struct"/>
+        <childnode refid="29" relation="usage">
+          <edgelabel>delta_phase</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>cos_value</edgelabel>
+          <edgelabel>sin_value</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>nval</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>chan_struct</label>
+        <link refid="structchan__struct"/>
+        <childnode refid="29" relation="usage">
+          <edgelabel>bandwidth</edgelabel>
+          <edgelabel>if_total_lo</edgelabel>
+          <edgelabel>sky_frequency</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>pcal_base_freq</edgelabel>
+          <edgelabel>pcal_spacing</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>bbc_no</edgelabel>
+          <edgelabel>mag_headstack</edgelabel>
+          <edgelabel>mag_tracks</edgelabel>
+          <edgelabel>pcal_detect</edgelabel>
+          <edgelabel>sign_headstack</edgelabel>
+          <edgelabel>sign_tracks</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>band_id</edgelabel>
+          <edgelabel>bbc_id</edgelabel>
+          <edgelabel>chan_id</edgelabel>
+          <edgelabel>chan_name</edgelabel>
+          <edgelabel>if_id</edgelabel>
+          <edgelabel>if_name</edgelabel>
+          <edgelabel>if_sideband</edgelabel>
+          <edgelabel>net_sideband</edgelabel>
+          <edgelabel>pcal_id</edgelabel>
+          <edgelabel>polarization</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+      </node>
+      <node id="45">
+        <label>svex_struct</label>
+        <link refid="structsvex__struct"/>
+        <childnode refid="46" relation="usage">
+          <edgelabel>tables</edgelabel>
+        </childnode>
+        <childnode refid="47" relation="usage">
+          <edgelabel>pcm_cfg</edgelabel>
+        </childnode>
+        <childnode refid="48" relation="usage">
+          <edgelabel>SU_chan_out</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="41">
+        <label>headstack_DIM_connect_struct</label>
+        <link refid="structheadstack__DIM__connect__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>eqlzr</edgelabel>
+          <edgelabel>headstack</edgelabel>
+          <edgelabel>parity</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>sky_coord</label>
+        <link refid="structsky__coord"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>dec_secs</edgelabel>
+          <edgelabel>ra_secs</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>dec_degs</edgelabel>
+          <edgelabel>dec_mins</edgelabel>
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ra_mins</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>double</label>
+      </node>
+      <node id="13">
+        <label>Cvex_Config</label>
+        <link refid="structCvex__Config"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>auto_corr</edgelabel>
+          <edgelabel>ignoreChanNames</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>defId</edgelabel>
+          <edgelabel>rev</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Cvex_ChipMode</label>
+        <link refid="structCvex__ChipMode"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>numOfBlocks</edgelabel>
+          <edgelabel>numOfSnakes</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>block</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>snake</edgelabel>
+        </childnode>
+      </node>
+      <node id="38">
+        <label>moni_read_struct</label>
+        <link refid="structmoni__read__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>equalizer</edgelabel>
+          <edgelabel>track</edgelabel>
+        </childnode>
+      </node>
+      <node id="43">
+        <label>bad_frame_struct</label>
+        <link refid="structbad__frame__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>CRC_error</edgelabel>
+          <edgelabel>PE_limit_exceeded</edgelabel>
+          <edgelabel>lost_sync</edgelabel>
+          <edgelabel>unexpected_sync</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Cvex_XPolPair</label>
+        <link refid="structCvex__XPolPair"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>chn1Id</edgelabel>
+          <edgelabel>chn2Id</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>tim_mon_struct</label>
+        <link refid="structtim__mon__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>maximum</edgelabel>
+          <edgelabel>minimum</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>switch_pos</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>measurement_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fail_action</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>su_connect_struct</label>
+        <link refid="structsu__connect__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>corr_segment</edgelabel>
+          <edgelabel>inputbd_chan_grp</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vex</label>
+        <link refid="structvex"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lvex</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>evex</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>cvex</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>ovex</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>cvex_src</edgelabel>
+          <edgelabel>evex_src</edgelabel>
+          <edgelabel>filename</edgelabel>
+          <edgelabel>ivex_src</edgelabel>
+          <edgelabel>lvex_src</edgelabel>
+          <edgelabel>ovex_src</edgelabel>
+          <edgelabel>svex_src</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>ivex</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>vextypes</edgelabel>
+        </childnode>
+        <childnode refid="45" relation="usage">
+          <edgelabel>svex</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>short</label>
+      </node>
+      <node id="40">
+        <label>headstack_parms_struct</label>
+        <link refid="structheadstack__parms__struct"/>
+        <childnode refid="29" relation="usage">
+          <edgelabel>param</edgelabel>
+        </childnode>
+      </node>
+      <node id="35">
+        <label>SUCC_port_struct</label>
+        <link refid="structSUCC__port__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>DPU_port</edgelabel>
+          <edgelabel>console_port</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>source_struct</label>
+        <link refid="structsource__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>dec_rate</edgelabel>
+          <edgelabel>ra_rate</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>calibrator</edgelabel>
+          <edgelabel>position_ref_frame</edgelabel>
+          <edgelabel>source_type</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>iau_name</edgelabel>
+          <edgelabel>source_name</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>position</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>position_epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="39">
+        <label>vacuum_struct</label>
+        <link refid="structvacuum__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>inches_of_H2O</edgelabel>
+          <edgelabel>setting</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>station_struct</label>
+        <link refid="structstation__struct"/>
+        <childnode refid="29" relation="usage">
+          <edgelabel>coordinates</edgelabel>
+          <edgelabel>samplerate</edgelabel>
+          <edgelabel>site_velocity</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mk4_site_id</edgelabel>
+          <edgelabel>occucode</edgelabel>
+          <edgelabel>pass_direction</edgelabel>
+          <edgelabel>site_id</edgelabel>
+          <edgelabel>site_name</edgelabel>
+          <edgelabel>subpass</edgelabel>
+          <edgelabel>tape_id</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>axis_offset</edgelabel>
+          <edgelabel>clock_early</edgelabel>
+          <edgelabel>clockrate</edgelabel>
+          <edgelabel>head_position</edgelabel>
+          <edgelabel>record_density</edgelabel>
+          <edgelabel>roll_period</edgelabel>
+          <edgelabel>start_tapepos</edgelabel>
+          <edgelabel>tape_length</edgelabel>
+          <edgelabel>zenith_atm</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>axis_type</edgelabel>
+          <edgelabel>bits_sample</edgelabel>
+          <edgelabel>drive_no</edgelabel>
+          <edgelabel>early_start</edgelabel>
+          <edgelabel>late_finish</edgelabel>
+          <edgelabel>modulation</edgelabel>
+          <edgelabel>multiplex_ratio</edgelabel>
+          <edgelabel>passno</edgelabel>
+          <edgelabel>rack_type</edgelabel>
+          <edgelabel>recorder_id</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>channels</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>clockrate_epoch</edgelabel>
+          <edgelabel>coordinate_epoch</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>unsigned long</label>
+      </node>
+      <node id="42">
+        <label>TRM_config_struct</label>
+        <link refid="structTRM__config__struct"/>
+        <childnode refid="29" relation="usage">
+          <edgelabel>parity_error_limit</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>mux1_1bit</edgelabel>
+          <edgelabel>mux1_2bit</edgelabel>
+          <edgelabel>mux2_1bit</edgelabel>
+          <edgelabel>mux2_2bit</edgelabel>
+          <edgelabel>mux4_1bit</edgelabel>
+          <edgelabel>mux4_2bit</edgelabel>
+        </childnode>
+        <childnode refid="43" relation="usage">
+          <edgelabel>invalid_frame_control</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>evex_struct</label>
+        <link refid="structevex__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap_length</edgelabel>
+          <edgelabel>speedup_factor</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>corr_config_key</edgelabel>
+          <edgelabel>cvex_name</edgelabel>
+          <edgelabel>lvex_name</edgelabel>
+          <edgelabel>ovex_name</edgelabel>
+          <edgelabel>svex_name</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>su_config</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>exper_num</edgelabel>
+          <edgelabel>mirror</edgelabel>
+          <edgelabel>nst</edgelabel>
+          <edgelabel>realtime_latency</edgelabel>
+          <edgelabel>tape_mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Cvex_Block</label>
+        <link refid="structCvex__Block"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>mux</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>blockId</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>pbs_init_struct</label>
+        <link refid="structpbs__init__struct"/>
+        <childnode refid="35" relation="usage">
+          <edgelabel>succ_port</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>tape_servo_interval</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>cHost</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>SU_ID</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>timing_monitor</edgelabel>
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>su_connect</edgelabel>
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>drive</edgelabel>
+        </childnode>
+        <childnode refid="42" relation="usage">
+          <edgelabel>TRM_config</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>ivex_struct</label>
+        <link refid="structivex__struct"/>
+        <childnode refid="32" relation="usage">
+          <edgelabel>bocf_period</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>counter_envname</edgelabel>
+          <edgelabel>switch_envname</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>counter_port</edgelabel>
+          <edgelabel>header_duration</edgelabel>
+          <edgelabel>nmonitor</edgelabel>
+          <edgelabel>nplayback_systems</edgelabel>
+          <edgelabel>switch_port</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>system_tempo</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>timing_monitor</edgelabel>
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>pbs_init</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cf_edit_mask</edgelabel>
+        </childnode>
+        <childnode refid="44" relation="usage">
+          <edgelabel>cucc_ports</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Cvex_BoardParms</label>
+        <link refid="structCvex__BoardParms"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>accumRatio</edgelabel>
+          <edgelabel>bocfShsmpRatio</edgelabel>
+          <edgelabel>dataShsmpRatio</edgelabel>
+          <edgelabel>sampleCntPerLagEnable</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>char</label>
+      </node>
+      <node id="19">
+        <label>Cvex_SectionMode</label>
+        <link refid="structCvex__SectionMode"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>numOfChips</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>defId</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>chip</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Cvex_Board</label>
+        <link refid="structCvex__Board"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>numOfSections</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>segId</edgelabel>
+          <edgelabel>sliceId</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>mode</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>section</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>anonymous:su_config</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="28" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structvex_1ade2243831e51971c37eac38f330b33b3" prot="public" virt="non-virtual"><scope>vex</scope><name>cvex</name></member>
+      <member refid="structvex_1a802ff1b274b6195e039ace28e8d6f9e8" prot="public" virt="non-virtual"><scope>vex</scope><name>cvex_src</name></member>
+      <member refid="structvex_1a050f386dcaa835c4329f58d1ac43ad3f" prot="public" virt="non-virtual"><scope>vex</scope><name>evex</name></member>
+      <member refid="structvex_1ac40c3c40fa55a14267d8759b8fba5afa" prot="public" virt="non-virtual"><scope>vex</scope><name>evex_src</name></member>
+      <member refid="structvex_1a9d605ee4f80a20ead825f1c56a460ddf" prot="public" virt="non-virtual"><scope>vex</scope><name>filename</name></member>
+      <member refid="structvex_1a7e3ef49ddb2771e49e92ef0213fb562e" prot="public" virt="non-virtual"><scope>vex</scope><name>ivex</name></member>
+      <member refid="structvex_1aee102ba8ed5818c710161f5fb7a13790" prot="public" virt="non-virtual"><scope>vex</scope><name>ivex_src</name></member>
+      <member refid="structvex_1a78395dff283f9c74a5d456c2872ce7b9" prot="public" virt="non-virtual"><scope>vex</scope><name>lvex</name></member>
+      <member refid="structvex_1a207709b90ddcfdfd8538fffd30eaca16" prot="public" virt="non-virtual"><scope>vex</scope><name>lvex_src</name></member>
+      <member refid="structvex_1a7edd147b2c001dc595c5d922acc48182" prot="public" virt="non-virtual"><scope>vex</scope><name>ovex</name></member>
+      <member refid="structvex_1a9c5ab778bddf2c5d30c88ed3c9ecdaf7" prot="public" virt="non-virtual"><scope>vex</scope><name>ovex_src</name></member>
+      <member refid="structvex_1ac94a18b1c42ac22d78395de8d9cba4b7" prot="public" virt="non-virtual"><scope>vex</scope><name>svex</name></member>
+      <member refid="structvex_1a8530f73cc6cf0c1b73ae91bb10c3ee4d" prot="public" virt="non-virtual"><scope>vex</scope><name>svex_src</name></member>
+      <member refid="structvex_1a870cf8e0d0cfdff664db8b876b415983" prot="public" virt="non-virtual"><scope>vex</scope><name>vextypes</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

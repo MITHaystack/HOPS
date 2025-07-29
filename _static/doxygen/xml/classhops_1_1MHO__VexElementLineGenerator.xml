@@ -1,0 +1,652 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VexElementLineGenerator" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VexElementLineGenerator</compoundname>
+    <includes refid="MHO__VexElementLineGenerator_8hh" local="no">MHO_VexElementLineGenerator.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__VexElementLineGenerator_1a50ca0a110ea47d0a0e51acc8b6f2429f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::fSpace</definition>
+        <argsstring></argsstring>
+        <name>fSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="131" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1ad9f2d2ee96914814d01c2e237add509a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VexElementLineGenerator::MHO_VexElementLineGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_VexElementLineGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="27" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="6" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a7b6847a1a3d057cd74dab1413207af00" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_VexElementLineGenerator::~MHO_VexElementLineGenerator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_VexElementLineGenerator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="28" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1af97786a27957bc76cfe56d469632aa9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::ConstructElementLine</definition>
+        <argsstring>(std::string element_name, mho_json &amp;element, mho_json &amp;format)</argsstring>
+        <name>ConstructElementLine</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a formatted line for an element in VEX format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element as a string. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>element</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the mho_json object containing element data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the mho_json object containing formatting rules. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Formatted line for the given element as a string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="38" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="13" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a1a7c39f4d26488cb09fb3a0a16fa35a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateCompound</definition>
+        <argsstring>(std::string element_name, mho_json &amp;element, mho_json &amp;format)</argsstring>
+        <name>GenerateCompound</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <briefdescription>
+<para>Generates a compound string from an element and format using specified types. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input element name as std::string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>element</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to input mho_json object containing element data </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to input mho_json object containing format data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated compound string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="128" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="196" bodyend="271"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a73bb19001cf38d454b1b397213da7a37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateEpoch</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateEpoch</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates epoch string for given element name using provided JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to generate epoch for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to a mho_json object containing element data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated epoch string as std::string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="103" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="175" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a830c368b20943507d4e7cc17b772bafe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateInt</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateInt</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a string representation of an integer value from a JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to retrieve as a string. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String containing the integer value and spaces. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="47" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="67" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1afe1350a8404980a6b2c27474cc1c6b8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateKeyword</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateKeyword</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a keyword string from an element name and a JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input element name as a string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to a mho_json object containing the keyword value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated keyword string with appropriate spacing </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="79" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="147" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a873963a29473d1a227440b3a920b84c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateLink</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateLink</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a link string for an element using its name and associated JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to generate a link for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated link string as std::string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="119" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="189" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a0ade3cf5dea6fc0ea3fc3dcf41913614" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateListInt</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateListInt</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a string list of integers from a given JSON object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to search for in the JSON object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A string containing the list of integers separated by spaces, or an empty string if no matching elements are found. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="55" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="74" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a10f48b3ebb53dc66e94c9a44c2400003" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateListReal</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateListReal</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a formatted string from a JSON object containing real values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to generate the list for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Formatted string representing the list of real values with optional units. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="71" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="107" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1af40826b0d5663f61d375812c92644a9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateListString</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateListString</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a string list from a JSON object using given element name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to extract from the JSON object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A string containing the extracted elements separated by space and delimited by ElementDelim(). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="95" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="161" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a4c76e77054f22469574ec1a5b4bbb3be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateRaDec</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateRaDec</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates Right Ascension and Declination string for given element name from mho_json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to retrieve data from mho_json object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String containing Right Ascension and Declination values separated by space </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="111" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="182" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a9cb6e018206699d081f8cc8ed64d58a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateReal</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateReal</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a real value string from a JSON object with optional units. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input element name as std::string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>JSON object reference containing &apos;value&apos; and optionally &apos;units&apos; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated real value string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="63" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="88" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a8e2d69e8f78210b4de05ead58b813b08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexElementLineGenerator::GenerateString</definition>
+        <argsstring>(std::string element_name, mho_json &amp;obj)</argsstring>
+        <name>GenerateString</name>
+        <param>
+          <type>std::string</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Generates a string representation of an object&apos;s value with given element name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element to generate string for. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Generated string representation of the object&apos;s value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="87" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="154" bodyend="159"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexElementLineGenerator_1a39ebecb7223873a735e188228e56fc89" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_VexElementLineGenerator::IsTrailingOptionalField</definition>
+        <argsstring>(std::string field_name, mho_json &amp;fields)</argsstring>
+        <name>IsTrailingOptionalField</name>
+        <param>
+          <type>std::string</type>
+          <declname>field_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>fields</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a field is the last optional field in the given format fields. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>field_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the field to check. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fields</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(mho_json&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if it&apos;s the last optional field, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="140" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexElementLineGenerator.cc" bodystart="273" bodyend="299"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__VexElementLineGenerator" kindref="compound">MHO_VexElementLineGenerator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Constructs a formatted line for an data element in VEX format - needed to reconstruct VEX files from json representation.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri Jun 17 10:45:26 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" line="24" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexElementLineGenerator.hh" bodystart="25" bodyend="141"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1af97786a27957bc76cfe56d469632aa9f" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>ConstructElementLine</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a50ca0a110ea47d0a0e51acc8b6f2429f" prot="private" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>fSpace</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a1a7c39f4d26488cb09fb3a0a16fa35a9" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateCompound</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a73bb19001cf38d454b1b397213da7a37" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateEpoch</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a830c368b20943507d4e7cc17b772bafe" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateInt</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1afe1350a8404980a6b2c27474cc1c6b8b" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateKeyword</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a873963a29473d1a227440b3a920b84c4" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateLink</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a0ade3cf5dea6fc0ea3fc3dcf41913614" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateListInt</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a10f48b3ebb53dc66e94c9a44c2400003" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateListReal</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1af40826b0d5663f61d375812c92644a9b" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateListString</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a4c76e77054f22469574ec1a5b4bbb3be" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateRaDec</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a9cb6e018206699d081f8cc8ed64d58a1" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateReal</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a8e2d69e8f78210b4de05ead58b813b08" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>GenerateString</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a39ebecb7223873a735e188228e56fc89" prot="private" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>IsTrailingOptionalField</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1ad9f2d2ee96914814d01c2e237add509a" prot="public" virt="non-virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>MHO_VexElementLineGenerator</name></member>
+      <member refid="classhops_1_1MHO__VexElementLineGenerator_1a7b6847a1a3d057cd74dab1413207af00" prot="public" virt="virtual"><scope>hops::MHO_VexElementLineGenerator</scope><name>~MHO_VexElementLineGenerator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

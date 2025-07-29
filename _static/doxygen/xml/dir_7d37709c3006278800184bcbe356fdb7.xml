@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_7d37709c3006278800184bcbe356fdb7" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__BitReversalPermutation_8cc">MHO_BitReversalPermutation.cc</innerfile>
+    <innerfile refid="MHO__FringeRotation_8cc">MHO_FringeRotation.cc</innerfile>
+    <innerfile refid="MHO__GaussianWhiteNoiseSignal_8cc">MHO_GaussianWhiteNoiseSignal.cc</innerfile>
+    <innerfile refid="MHO__MathUtilities_8cc">MHO_MathUtilities.cc</innerfile>
+    <innerfile refid="MHO__SingleToneSignal_8cc">MHO_SingleToneSignal.cc</innerfile>
+    <innerfile refid="MHO__UniformGridPointsCalculator_8cc">MHO_UniformGridPointsCalculator.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Math/src/"/>
+  </compounddef>
+</doxygen>

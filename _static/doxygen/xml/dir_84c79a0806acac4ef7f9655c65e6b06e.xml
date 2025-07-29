@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_84c79a0806acac4ef7f9655c65e6b06e" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__FFTWTypes_8cc">MHO_FFTWTypes.cc</innerfile>
+    <innerfile refid="MHO__Operator_8cc">MHO_Operator.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/src/"/>
+  </compounddef>
+</doxygen>

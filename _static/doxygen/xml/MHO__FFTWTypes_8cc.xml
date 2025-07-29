@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__FFTWTypes_8cc" kind="file" language="C++">
+    <compoundname>MHO_FFTWTypes.cc</compoundname>
+    <includes refid="MHO__FFTWTypes_8hh" local="yes">MHO_FFTWTypes.hh</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>MHO_FFTWTypes.hh</label>
+        <link refid="MHO__FFTWTypes_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>fftw3.h</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="6">
+        <label>sstream</label>
+      </node>
+      <node id="3">
+        <label>complex</label>
+      </node>
+      <node id="7">
+        <label>algorithm</label>
+      </node>
+      <node id="1">
+        <label>MHO_FFTWTypes.cc</label>
+        <link refid="MHO__FFTWTypes_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__FFTWTypes_8hh" kindref="compound">MHO_FFTWTypes.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><ref refid="classhops_1_1MHO__FFTWTypeInfo_1af33f50d403e2576a9dadd81c3352a79a" kindref="member">MHO_FFTWTypeInfo::MHO_FFTWTypeInfo</ref>(){};</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><ref refid="classhops_1_1MHO__FFTWTypeInfo_1a6c0fcec88f39eaf03d6760fd0e626e3a" kindref="member">MHO_FFTWTypeInfo::~MHO_FFTWTypeInfo</ref>(){};</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwf_execute)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01float_01_4_1aa425ac8cdea51cd28836a40de9af92b7" kindref="member">MHO_FFTWTypes&lt; float &gt;::execute_func</ref><sp/>=<sp/>fftwf_execute;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwf_execute_dft)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01float_01_4_1a938d648b4a623b4885498afcd0dc337a" kindref="member">MHO_FFTWTypes&lt; float &gt;::execute_dft_func</ref><sp/>=<sp/>fftwf_execute_dft;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;<ref refid="MHO__FFTWTypes_8hh_1a7ea97135289815eb82da439491c0b45d" kindref="member">fftwf_alignment_of</ref>)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01float_01_4_1a7118c662c66943a78d44244550aebcf8" kindref="member">MHO_FFTWTypes&lt; float &gt;::alignment_of_func</ref><sp/>=<sp/><ref refid="MHO__FFTWTypes_8hh_1a7ea97135289815eb82da439491c0b45d" kindref="member">fftwf_alignment_of</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwf_destroy_plan)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01float_01_4_1ac6e15fc66679bd46641d933a94bf6f1a" kindref="member">MHO_FFTWTypes&lt; float &gt;::destroy_plan_func</ref><sp/>=<sp/>fftwf_destroy_plan;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwf_alloc_complex)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01float_01_4_1a95973bb0bd3652846421994518bb0192" kindref="member">MHO_FFTWTypes&lt; float &gt;::alloc_func</ref><sp/>=<sp/>fftwf_alloc_complex;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwf_free)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01float_01_4_1af4c45a37f823d8e6831dc4b0e9b0f588" kindref="member">MHO_FFTWTypes&lt; float &gt;::free_func</ref><sp/>=<sp/>fftwf_free;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwf_plan_guru_dft)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01float_01_4_1a57b8d241751cf7535b4168eb8207fda3" kindref="member">MHO_FFTWTypes&lt; float &gt;::plan_guru_func</ref><sp/>=<sp/>fftwf_plan_guru_dft;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftw_execute)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01double_01_4_1afe9fbe831723dbdf5523cf00a4f97b05" kindref="member">MHO_FFTWTypes&lt; double &gt;::execute_func</ref><sp/>=<sp/>fftw_execute;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftw_execute_dft)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01double_01_4_1af1b1bba3bf9165b8efb5730f519e75e7" kindref="member">MHO_FFTWTypes&lt; double &gt;::execute_dft_func</ref><sp/>=<sp/>fftw_execute_dft;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;<ref refid="MHO__FFTWTypes_8hh_1a55e522cd62c817b55ccb8f6232adcdc4" kindref="member">fftw_alignment_of</ref>)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01double_01_4_1a0cf83c622f4aa28a446d2a35459e9398" kindref="member">MHO_FFTWTypes&lt; double &gt;::alignment_of_func</ref><sp/>=<sp/><ref refid="MHO__FFTWTypes_8hh_1a55e522cd62c817b55ccb8f6232adcdc4" kindref="member">fftw_alignment_of</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftw_destroy_plan)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01double_01_4_1a759848876a88244393824ab8d834e8a1" kindref="member">MHO_FFTWTypes&lt; double &gt;::destroy_plan_func</ref><sp/>=<sp/>fftw_destroy_plan;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftw_alloc_complex)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01double_01_4_1ae4d862b8465892fe5e518c4eb89782f1" kindref="member">MHO_FFTWTypes&lt; double &gt;::alloc_func</ref><sp/>=<sp/>fftw_alloc_complex;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftw_free)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01double_01_4_1a0e3ef60fbf791768d4fa1e35fc326198" kindref="member">MHO_FFTWTypes&lt; double &gt;::free_func</ref><sp/>=<sp/>fftw_free;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftw_plan_guru_dft)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01double_01_4_1a7570f45e81aa469e4bbeafc22fb409e2" kindref="member">MHO_FFTWTypes&lt; double &gt;::plan_guru_func</ref><sp/>=<sp/>fftw_plan_guru_dft;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwl_execute)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a629cc61a916a0b972f45f8ef147923dc" kindref="member">MHO_FFTWTypes&lt; long double &gt;::execute_func</ref><sp/>=<sp/>fftwl_execute;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwl_execute_dft)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a941fb108405b7db7720e1574e54e2303" kindref="member">MHO_FFTWTypes&lt; long double &gt;::execute_dft_func</ref><sp/>=<sp/>fftwl_execute_dft;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;<ref refid="MHO__FFTWTypes_8hh_1a69f9e16b912d2427c8fb5d97b8e2c2c5" kindref="member">fftwl_alignment_of</ref>)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a0fe6588b492a9544da03984557439dba" kindref="member">MHO_FFTWTypes&lt; long double &gt;::alignment_of_func</ref><sp/>=<sp/><ref refid="MHO__FFTWTypes_8hh_1a69f9e16b912d2427c8fb5d97b8e2c2c5" kindref="member">fftwl_alignment_of</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwl_destroy_plan)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a8709d4cb027cbcf6433a4d2c72772490" kindref="member">MHO_FFTWTypes&lt; long double &gt;::destroy_plan_func</ref><sp/>=<sp/>fftwl_destroy_plan;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwl_alloc_complex)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a154cc535edb46c476c63c66737886357" kindref="member">MHO_FFTWTypes&lt; long double &gt;::alloc_func</ref><sp/>=<sp/>fftwl_alloc_complex;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwl_free)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1aa8ce93eef21f27cee3714cdd8d958d3c" kindref="member">MHO_FFTWTypes&lt; long double &gt;::free_func</ref><sp/>=<sp/>fftwl_free;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>decltype(&amp;fftwl_plan_guru_dft)<sp/><ref refid="structhops_1_1MHO__FFTWTypes_3_01long_01double_01_4_1a3f162e3813b01f985e61cf8be607b75f" kindref="member">MHO_FFTWTypes&lt; long double &gt;::plan_guru_func</ref><sp/>=<sp/>fftwl_plan_guru_dft;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/src/MHO_FFTWTypes.cc"/>
+  </compounddef>
+</doxygen>

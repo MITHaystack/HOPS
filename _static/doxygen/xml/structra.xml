@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structra" kind="struct" language="C++" prot="public">
+    <compoundname>ra</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structra_1a20f1b7c7a6d3d188ae9cfa3e6cba6d6b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ra::ra_hrs</definition>
+        <argsstring></argsstring>
+        <name>ra_hrs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="194" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structra_1a509267bfae2e67a1b219ed761abe4e29" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short ra::ra_mins</definition>
+        <argsstring></argsstring>
+        <name>ra_mins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="195" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structra_1ae70c74b0f907c776d09461d9a3c00694" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ra::ra_secs</definition>
+        <argsstring></argsstring>
+        <name>ra_secs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="196" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="1">
+        <label>ra</label>
+        <link refid="structra"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ra_secs</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ra_hrs</edgelabel>
+          <edgelabel>ra_mins</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="192" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="193" bodyend="197"/>
+    <listofallmembers>
+      <member refid="structra_1a20f1b7c7a6d3d188ae9cfa3e6cba6d6b" prot="public" virt="non-virtual"><scope>ra</scope><name>ra_hrs</name></member>
+      <member refid="structra_1a509267bfae2e67a1b219ed761abe4e29" prot="public" virt="non-virtual"><scope>ra</scope><name>ra_mins</name></member>
+      <member refid="structra_1ae70c74b0f907c776d09461d9a3c00694" prot="public" virt="non-virtual"><scope>ra</scope><name>ra_secs</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

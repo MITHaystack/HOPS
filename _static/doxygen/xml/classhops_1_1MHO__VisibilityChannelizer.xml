@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VisibilityChannelizer" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VisibilityChannelizer</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__TransformingOperator" prot="public" virt="non-virtual">hops::MHO_TransformingOperator&lt; uch_visibility_store_type, visibility_store_type &gt;</basecompoundref>
+    <includes refid="MHO__VisibilityChannelizer_8hh" local="no">MHO_VisibilityChannelizer.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__VisibilityChannelizer_1a0f680dc2894e0956815dd0107a91e182" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hops::MHO_VisibilityChannelizer::fInitialized</definition>
+        <argsstring></argsstring>
+        <name>fInitialized</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VisibilityChannelizer_1ae96bf5bda45f75e430afe1aa2780ebcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VisibilityChannelizer::MHO_VisibilityChannelizer</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_VisibilityChannelizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VisibilityChannelizer_1a681fd7358b388c48e538d6713165351b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_VisibilityChannelizer::~MHO_VisibilityChannelizer</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_VisibilityChannelizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="51" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VisibilityChannelizer_1aea7a0dfc60a0aae62ff4cc2dc682306f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_VisibilityChannelizer::ExecuteImpl</definition>
+        <argsstring>(const uch_visibility_store_type *in, visibility_store_type *out)</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplements refid="classhops_1_1MHO__TransformingOperator_1a06bb86fafc9bae8e037a5717b989dcf5">ExecuteImpl</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1a8408c0f774da156de840825b92005e06" kindref="member">uch_visibility_store_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Reorganizes visibility data into channelized format and updates channel labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility store data (rank = 3) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output channelized visibility store data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if execution is successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" line="47" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="152" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VisibilityChannelizer_1a39676ecad0863834c37525e5f8037c49" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_VisibilityChannelizer::InitializeImpl</definition>
+        <argsstring>(const uch_visibility_store_type *in, visibility_store_type *out)</argsstring>
+        <name>InitializeImpl</name>
+        <reimplements refid="classhops_1_1MHO__TransformingOperator_1a759d200b0d1284cdac19787900fb3bbf">InitializeImpl</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1a8408c0f774da156de840825b92005e06" kindref="member">uch_visibility_store_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1aa8731e6011eaaa14a1fbd1bb5515ea65" kindref="member">visibility_store_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Reorganizes input visibility data into output array by channel and resizes it accordingly. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility store data (rank = 3) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output visibility store data (rank = 4) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization is successful, false otherwise </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" line="38" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_VisibilityChannelizer.cc" bodystart="54" bodyend="150"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__VisibilityChannelizer" kindref="compound">MHO_VisibilityChannelizer</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>collects unchannelized (3d) visibility data and groups by channel (but all channels must be of equal size) into 4d object</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Nov 5 13:11:33 2020 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_TransformingOperator&lt; uch_visibility_store_type, visibility_store_type &gt;</label>
+        <link refid="classhops_1_1MHO__TransformingOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_VisibilityChannelizer</label>
+        <link refid="classhops_1_1MHO__VisibilityChannelizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_TransformingOperator&lt; uch_visibility_store_type, visibility_store_type &gt;</label>
+        <link refid="classhops_1_1MHO__TransformingOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_VisibilityChannelizer</label>
+        <link refid="classhops_1_1MHO__VisibilityChannelizer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" line="23" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_VisibilityChannelizer.hh" bodystart="24" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a062e29f5b17d9614fe409a9324f70b32" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__VisibilityChannelizer_1aea7a0dfc60a0aae62ff4cc2dc682306f" prot="protected" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a0c2b19fa9a44df7f78aca771e47d08a8" prot="protected" virt="non-virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>fArgs</name></member>
+      <member refid="classhops_1_1MHO__VisibilityChannelizer_1a0f680dc2894e0956815dd0107a91e182" prot="private" virt="non-virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>fInitialized</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a58d4892b457d33038976d1bb11a81528" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__VisibilityChannelizer_1a39676ecad0863834c37525e5f8037c49" prot="protected" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a59412bbdfd7eae1cab76bb040404f92a" prot="public" virt="non-virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>MHO_TransformingOperator</name></member>
+      <member refid="classhops_1_1MHO__VisibilityChannelizer_1ae96bf5bda45f75e430afe1aa2780ebcd" prot="public" virt="non-virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>MHO_VisibilityChannelizer</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1a6764f94688d04b3a52f83e13d4b301f6" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__TransformingOperator_1ad10b0deb1d8c99518443e8714305a91f" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>~MHO_TransformingOperator</name></member>
+      <member refid="classhops_1_1MHO__VisibilityChannelizer_1a681fd7358b388c48e538d6713165351b" prot="public" virt="virtual"><scope>hops::MHO_VisibilityChannelizer</scope><name>~MHO_VisibilityChannelizer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

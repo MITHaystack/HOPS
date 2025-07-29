@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__UnaryInPlaceOperator_8hh" kind="file" language="C++">
+    <compoundname>MHO_UnaryInPlaceOperator.hh</compoundname>
+    <includes refid="MHO__Operator_8hh" local="yes">MHO_Operator.hh</includes>
+    <includes local="no">tuple</includes>
+    <includedby refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh" local="yes">MHO_OpenCLFastFourierTransformRadix2Stage.hh</includedby>
+    <includedby refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh" local="yes">MHO_OpenCLMultidimensionalFastFourierTransform.hh</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>tuple</label>
+      </node>
+      <node id="1">
+        <label>MHO_UnaryInPlaceOperator.hh</label>
+        <link refid="MHO__UnaryInPlaceOperator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_Operator.hh</label>
+        <link refid="MHO__Operator_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>MHO_OpenCLFastFourierTransformRadix2Stage.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh"/>
+      </node>
+      <node id="1">
+        <label>MHO_UnaryInPlaceOperator.hh</label>
+        <link refid="MHO__UnaryInPlaceOperator_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_OpenCLMultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__UnaryInPlaceOperator" prot="public">hops::MHO_UnaryInPlaceOperator</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_UnaryInPlaceOperator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_UnaryInPlaceOperator_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Operator_8hh" kindref="compound">MHO_Operator.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tuple&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classhops_1_1MHO__UnaryInPlaceOperator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>XArgType<sp/>&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__UnaryInPlaceOperator" kindref="compound">MHO_UnaryInPlaceOperator</ref>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__Operator" kindref="compound">MHO_Operator</ref></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25" refid="classhops_1_1MHO__UnaryInPlaceOperator_1acd62d257021fccc3374ed5f62fa38cbb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1acd62d257021fccc3374ed5f62fa38cbb" kindref="member">MHO_UnaryInPlaceOperator</ref>()<sp/>{<sp/>std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" kindref="member">fInPlaceArgs</ref>)<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="classhops_1_1MHO__UnaryInPlaceOperator_1a7d44fd3c2647615b73430ebc4087b49c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1a7d44fd3c2647615b73430ebc4087b49c" kindref="member">~MHO_UnaryInPlaceOperator</ref>(){};</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classhops_1_1MHO__UnaryInPlaceOperator_1a04638776cbca0a29b92c6f11aa7e88dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1a04638776cbca0a29b92c6f11aa7e88dd" kindref="member">SetArgs</ref>(XArgType*<sp/>in)<sp/>{<sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" kindref="member">fInPlaceArgs</ref><sp/>=<sp/>std::make_tuple(in);<sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="classhops_1_1MHO__UnaryInPlaceOperator_1ad38a46404c4bad8434c8760e14dc5622" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1ad38a46404c4bad8434c8760e14dc5622" kindref="member">Initialize</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1ab9ec1228066acdee04394ed42b8abead" kindref="member">InitializeInPlace</ref>(std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" kindref="member">fInPlaceArgs</ref>));<sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classhops_1_1MHO__UnaryInPlaceOperator_1a13ad4a154060c17a2c459d0dc602043c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1a13ad4a154060c17a2c459d0dc602043c" kindref="member">Execute</ref>()</highlight><highlight class="keyword"><sp/>override<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1ad2f1d02ed5fba765073e7cdb51691ac6" kindref="member">ExecuteInPlace</ref>(std::get&lt;<sp/>0<sp/>&gt;(<ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" kindref="member">fInPlaceArgs</ref>));<sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="61" refid="classhops_1_1MHO__UnaryInPlaceOperator_1ab9ec1228066acdee04394ed42b8abead" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1ab9ec1228066acdee04394ed42b8abead" kindref="member">InitializeInPlace</ref>(XArgType*<sp/>in)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="69" refid="classhops_1_1MHO__UnaryInPlaceOperator_1ad2f1d02ed5fba765073e7cdb51691ac6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1ad2f1d02ed5fba765073e7cdb51691ac6" kindref="member">ExecuteInPlace</ref>(XArgType*<sp/>in)<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::tuple&lt;<sp/>XArgType*<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" kindref="member">fInPlaceArgs</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh"/>
+  </compounddef>
+</doxygen>

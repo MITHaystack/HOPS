@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__ArrayMath_8cl" kind="file" language="C++">
+    <compoundname>MHO_ArrayMath.cl</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#ifndef<sp/>MHO_NDArrayMath_CL_H__</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>MHO_NDArrayMath_CL_H__</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;hopsocl_defines.h&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//modulus<sp/>of<sp/>two<sp/>integers</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>unsigned<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">Modulus(unsigned<sp/>int<sp/>arg,<sp/>unsigned<sp/>int<sp/>n)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>arg<sp/>%<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>//<sp/>//returns<sp/>arg<sp/>mod<sp/>n;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>CL_TYPE<sp/>Div<sp/>=<sp/>(<sp/>(CL_TYPE)arg<sp/>)/(<sp/>(CL_TYPE)<sp/>n);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>return<sp/>(unsigned<sp/>int)(fabs(<sp/>(CL_TYPE)arg<sp/>-<sp/>floor(Div)*((CL_TYPE)n)<sp/>)<sp/>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//for<sp/>a<sp/>multidimensional<sp/>array<sp/>(using<sp/>row<sp/>major<sp/>indexing)<sp/>which<sp/>has<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">//dimensions<sp/>specified<sp/>in<sp/>DimSize,<sp/>this<sp/>function<sp/>computes<sp/>the<sp/>offset<sp/>from</highlight></codeline>
+<codeline><highlight class="normal">//the<sp/>first<sp/>element<sp/>given<sp/>the<sp/>indices<sp/>in<sp/>the<sp/>array<sp/>Index</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>unsigned<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">OffsetFromRowMajorIndex(unsigned<sp/>int<sp/>ndim,<sp/>const<sp/>unsigned<sp/>int*<sp/>DimSize,<sp/>const<sp/>unsigned<sp/>int*<sp/>Index)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>val<sp/>=<sp/>Index[0];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=1;<sp/>i&lt;ndim;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>val<sp/>*=<sp/>DimSize[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>val<sp/>+=<sp/>Index[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>val;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//for<sp/>a<sp/>multidimensional<sp/>array<sp/>(using<sp/>row<sp/>major<sp/>indexing)<sp/>which<sp/>has<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">//dimensions<sp/>specified<sp/>in<sp/>DimSize,<sp/>this<sp/>function<sp/>computes<sp/>the<sp/>stride<sp/>between</highlight></codeline>
+<codeline><highlight class="normal">//consecutive<sp/>elements<sp/>in<sp/>the<sp/>selected<sp/>dimension<sp/>given<sp/>that<sp/>the<sp/>other<sp/>indices<sp/>are<sp/>fixed</highlight></codeline>
+<codeline><highlight class="normal">//the<sp/>first<sp/>element<sp/>given<sp/>the<sp/>indices<sp/>in<sp/>the<sp/>array<sp/>Index</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>unsigned<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">StrideFromRowMajorIndex(unsigned<sp/>int<sp/>ndim,<sp/>unsigned<sp/>int<sp/>selected_dim,<sp/>const<sp/>unsigned<sp/>int*<sp/>DimSize)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>val<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=0;<sp/>i&lt;ndim;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(i<sp/>&gt;<sp/>selected_dim){val<sp/>*=<sp/>DimSize[i];};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>val;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//for<sp/>a<sp/>multidimensional<sp/>array<sp/>(using<sp/>row<sp/>major<sp/>indexing)<sp/>which<sp/>has<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">//dimensions<sp/>specified<sp/>in<sp/>DimSize,<sp/>this<sp/>function<sp/>computes<sp/>the<sp/>indices<sp/>of</highlight></codeline>
+<codeline><highlight class="normal">//the<sp/>elements<sp/>which<sp/>has<sp/>the<sp/>given<sp/>offset<sp/>from<sp/>the<sp/>first<sp/>element</highlight></codeline>
+<codeline><highlight class="normal">//must<sp/>provide<sp/>a<sp/>workspace<sp/>Div[ndim]</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>void</highlight></codeline>
+<codeline><highlight class="normal">RowMajorIndexFromOffset(unsigned<sp/>int<sp/>ndim,<sp/>const<sp/>unsigned<sp/>int<sp/>offset,<sp/>const<sp/>unsigned<sp/>int*<sp/>DimSize,<sp/>unsigned<sp/>int*<sp/>Index,<sp/>unsigned<sp/>int*<sp/>Div)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//in<sp/>row<sp/>major<sp/>format<sp/>the<sp/>last<sp/>index<sp/>varies<sp/>the<sp/>fastest</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>i;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>d=0;<sp/>d<sp/>&lt;<sp/>ndim;<sp/>d++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>ndim<sp/>-<sp/>d<sp/>-<sp/>1;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if(d<sp/>==<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Index[i]<sp/>=<sp/>Modulus(offset,<sp/>DimSize[i]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Div[i]<sp/>=<sp/>(offset<sp/>-<sp/>Index[i])/DimSize[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Index[i]<sp/>=<sp/>Modulus(Div[i+1],<sp/>DimSize[i]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Div[i]<sp/>=<sp/>(Div[i+1]<sp/>-<sp/>Index[i])/DimSize[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//given<sp/>the<sp/>dimensions<sp/>of<sp/>an<sp/>array,<sp/>computes<sp/>its<sp/>total<sp/>size,<sp/>assuming<sp/>all<sp/>dimensions<sp/>are<sp/>non-zero</highlight></codeline>
+<codeline><highlight class="normal">inline<sp/>unsigned<sp/>int</highlight></codeline>
+<codeline><highlight class="normal">TotalArraySize(unsigned<sp/>int<sp/>ndim,<sp/>const<sp/>unsigned<sp/>int*<sp/>DimSize)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unsigned<sp/>int<sp/>val<sp/>=<sp/>DimSize[0];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(unsigned<sp/>int<sp/>i=1;<sp/>i&lt;ndim;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>val<sp/>*=<sp/>DimSize[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>val;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#endif<sp/>/*<sp/>MHO_NDArrayMath_CL_H__<sp/>*/</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Math/cl/MHO_ArrayMath.cl"/>
+  </compounddef>
+</doxygen>

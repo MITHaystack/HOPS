@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__VexTokenProcessor" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_VexTokenProcessor</compoundname>
+    <includes refid="MHO__VexTokenProcessor_8hh" local="no">MHO_VexTokenProcessor.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__VexTokenProcessor_1a93dd412a1615dd9bc82ee93bbeb68370" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Tokenizer" kindref="compound">MHO_Tokenizer</ref></type>
+        <definition>MHO_Tokenizer hops::MHO_VexTokenProcessor::fTokenizer</definition>
+        <argsstring></argsstring>
+        <name>fTokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="92" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__VexTokenProcessor_1a13de0cce303416959781eea1c374f280" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_VexTokenProcessor::fWhitespaceDelim</definition>
+        <argsstring></argsstring>
+        <name>fWhitespaceDelim</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="91" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1a5fe146f373d42d2ca824f1a9c8e1da18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_VexTokenProcessor::MHO_VexTokenProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_VexTokenProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="6" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1afcde928bf6f8b68b8fc336336f65d10f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_VexTokenProcessor::~MHO_VexTokenProcessor</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_VexTokenProcessor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1a79d39b96bde044a95a2ea01620d27004" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_VexTokenProcessor::ContainsWhitespace</definition>
+        <argsstring>(std::string value)</argsstring>
+        <name>ContainsWhitespace</name>
+        <param>
+          <type>std::string</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a given string contains whitespace characters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string to be checked for whitespace. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if string contains whitespace, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="88" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="120" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1a012eceaa4c450d4c021a0ef6ff8eeb3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_VexTokenProcessor::ProcessInt</definition>
+        <argsstring>(const std::string &amp;element_name, mho_json &amp;format, std::vector&lt; std::string &gt; &amp;tokens)</argsstring>
+        <name>ProcessInt</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Converts first token to integer and returns as mho_json. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element being processed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the format object (not used in this function) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of strings containing tokens for processing </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>First token converted to integer as mho_json </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="40" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="13" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1a05cbb9882941663452a44c251331d7b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_VexTokenProcessor::ProcessListInt</definition>
+        <argsstring>(const std::string &amp;element_name, mho_json &amp;format, std::vector&lt; std::string &gt; &amp;tokens)</argsstring>
+        <name>ProcessListInt</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Converts a list of string tokens into integers and stores them in an mho_json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element being processed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object for formatting purposes (not used) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of strings containing integer values to be converted </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing the converted integers as a vector of ints </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="50" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="20" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1ac42c3aec5fa3ce7ae547f15f3d4e6ffd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_VexTokenProcessor::ProcessListReal</definition>
+        <argsstring>(const std::string &amp;element_name, mho_json &amp;format, std::vector&lt; std::string &gt; &amp;tokens)</argsstring>
+        <name>ProcessListReal</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Processes a list of real numbers as strings and converts them into a JSON object with values and optional units. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the element being processed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An mho_json reference used internally for formatting. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of string tokens representing numerical values or value-unit pairs. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An mho_json object containing &apos;values&apos; (a vector of doubles) and optionally &apos;units&apos;. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="80" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="81" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1a522fd11568d21790d3bbbfc065a06662" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_VexTokenProcessor::ProcessListString</definition>
+        <argsstring>(const std::string &amp;element_name, mho_json &amp;format, std::vector&lt; std::string &gt; &amp;tokens)</argsstring>
+        <name>ProcessListString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Processes a list string into a JSON object and stores tokens. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the element to process. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object for formatting. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to a vector of strings containing tokens. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A JSON object containing the processed list string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="60" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="33" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__VexTokenProcessor_1a6ce3d09d4fe396535bae5d3e07733cfb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_VexTokenProcessor::ProcessReal</definition>
+        <argsstring>(const std::string &amp;element_name, mho_json &amp;format, std::vector&lt; std::string &gt; &amp;tokens)</argsstring>
+        <name>ProcessReal</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>element_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>tokens</declname>
+        </param>
+        <briefdescription>
+<para>Processes a real number value from tokens and returns it as an mho_json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>element_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the element being processed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the format object for processing </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tokens</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of strings containing token values </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>mho_json object containing &apos;value&apos; and optionally &apos;units&apos; </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="70" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/src/MHO_VexTokenProcessor.cc" bodystart="46" bodyend="79"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__VexTokenProcessor" kindref="compound">MHO_VexTokenProcessor</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Converts vex tokens (strings) into values of a specific type.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Jun 13 22:27:21 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexTokenProcessor.hh" bodystart="27" bodyend="93"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a79d39b96bde044a95a2ea01620d27004" prot="public" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>ContainsWhitespace</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a93dd412a1615dd9bc82ee93bbeb68370" prot="private" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>fTokenizer</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a13de0cce303416959781eea1c374f280" prot="private" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>fWhitespaceDelim</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a5fe146f373d42d2ca824f1a9c8e1da18" prot="public" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>MHO_VexTokenProcessor</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a012eceaa4c450d4c021a0ef6ff8eeb3a" prot="public" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>ProcessInt</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a05cbb9882941663452a44c251331d7b9" prot="public" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>ProcessListInt</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1ac42c3aec5fa3ce7ae547f15f3d4e6ffd" prot="public" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>ProcessListReal</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a522fd11568d21790d3bbbfc065a06662" prot="public" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>ProcessListString</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1a6ce3d09d4fe396535bae5d3e07733cfb" prot="public" virt="non-virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>ProcessReal</name></member>
+      <member refid="classhops_1_1MHO__VexTokenProcessor_1afcde928bf6f8b68b8fc336336f65d10f" prot="public" virt="virtual"><scope>hops::MHO_VexTokenProcessor</scope><name>~MHO_VexTokenProcessor</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

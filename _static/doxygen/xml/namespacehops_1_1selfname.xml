@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacehops_1_1selfname" kind="namespace" language="C++">
+    <compoundname>hops::selfname</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacehops_1_1selfname_1a7349e6c374784eeb941e65d6f979215a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr const char *</type>
+        <definition>constexpr const char* hops::selfname::file_basename</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>file_basename</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Returns the base name (file name without path) from a given string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string containing file path and name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>constexpr char* representing the base name of the input string. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" line="54" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops_1_1selfname_1a4b727f3b94f924cec2c986e4d8bd58c3" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr const char *</type>
+        <definition>constexpr const char* hops::selfname::r_slash</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>r_slash</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a string starts with &apos;/&apos;, recursively. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if string starts with &apos;/&apos;, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" line="43" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" bodystart="43" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops_1_1selfname_1a3e4c3b136de3b8499ee63f8c8a57a2a3" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr const char *</type>
+        <definition>constexpr const char* hops::selfname::str_end</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>str_end</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" line="21" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehops_1_1selfname_1a8c0d550f499dc2b87c3ca478a6606587" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool hops::selfname::str_slash</definition>
+        <argsstring>(const char *str)</argsstring>
+        <name>str_slash</name>
+        <param>
+          <type>const char *</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a string starts with &apos;/&apos;. Used for stripping path prefix from <bold>FILE</bold>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input string to check </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if string starts with &apos;/&apos;, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" line="32" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" bodystart="32" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Message/include/MHO_SelfName.hh" line="11" column="1"/>
+  </compounddef>
+</doxygen>

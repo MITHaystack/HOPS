@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacehops__visualization_1_1parse__alist" kind="namespace" language="Python">
+    <compoundname>hops_visualization::parse_alist</compoundname>
+    <innerclass refid="classhops__visualization_1_1parse__alist_1_1AfileData" prot="public">hops_visualization::parse_alist::AfileData</innerclass>
+    <innerclass refid="classhops__visualization_1_1parse__alist_1_1ParseAlist" prot="public">hops_visualization::parse_alist::ParseAlist</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacehops__visualization_1_1parse__alist_1aaf97bfcd7f12a7f3b3428423884a436b" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list hops_visualization::parse_alist.alist_fields</definition>
+        <argsstring></argsstring>
+        <name>alist_fields</name>
+        <initializer>=  [&apos;index&apos;, # unique <ref refid="fourmer_8c_1a783f7a36014ceb59b473085926d009e0" kindref="member">field</ref> to keep track of record
+                &apos;experiment&apos;, # four-digit experiment label?
+                &apos;source&apos;, # phonebook name for the source observed
+                &apos;<ref refid="structscan" kindref="compound">scan</ref>&apos;, # <ref refid="structscan" kindref="compound">scan</ref> name, eg 105-0347 or 210-1800a (DOY-HHMM[a,b,c])
+                &apos;<ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>&apos;, # two-letter <ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref> for each record
+                &apos;<ref refid="structstations" kindref="compound">stations</ref>&apos;, # two-element list of single-letter station identifiers
+                &apos;scan_DOY&apos;, # <ref refid="structscan" kindref="compound">scan</ref> day of year
+                #&apos;scan_year&apos;,
+                #&apos;proc_date&apos;,
+                &apos;frequency_band&apos;, # band and number of channels?
+                &apos;scan_timetag&apos;, # time tag of <ref refid="structscan" kindref="compound">scan</ref> (unparsed string)
+                &apos;scan_time&apos;, # <ref refid="structscan" kindref="compound">scan</ref> time in fractional DOY format (DOY.1234)
+                &apos;scan_length&apos;, # <ref refid="structscan" kindref="compound">scan</ref> length in seconds (different from DUR column)
+                &apos;pols&apos;, # two-letter description of polarization combination for this <ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref> (eg XX, RR, XY, YR, etc)
+                &apos;qcode&apos;, # <ref refid="structscan" kindref="compound">scan</ref> quality code (0-9, A-H)
+                &apos;amplitude&apos;, # amplitude in units of 1e-4
+                &apos;snr&apos;,
+                &apos;phase&apos;,
+                &apos;sbd&apos;, # single-band delay
+                &apos;mbd&apos;, # multi-band delay
+                &apos;<ref refid="delay__rate_8c_1ad7216df844a6a92d5e563cee371d745e" kindref="member">delay_rate</ref>&apos;,
+                &apos;ambiguity&apos;]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="12" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1parse__alist_1a2253e14ef389f5181dd98859e007fc4e" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list hops_visualization::parse_alist.plot_fields</definition>
+        <argsstring></argsstring>
+        <name>plot_fields</name>
+        <initializer>=  [&apos;scan_time&apos;, &apos;amplitude&apos;, &apos;snr&apos;, &apos;phase&apos;, &apos;sbd&apos;, &apos;mbd&apos;, &apos;<ref refid="delay__rate_8c_1ad7216df844a6a92d5e563cee371d745e" kindref="member">delay_rate</ref>&apos;,&apos;ambiguity&apos;]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="37" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1parse__alist_1a6a53c2a194e201f7ff69e108b21ef45a" prot="public" static="no" mutable="no">
+        <type>dictionary</type>
+        <definition>dictionary hops_visualization::parse_alist.plot_label_convert</definition>
+        <argsstring></argsstring>
+        <name>plot_label_convert</name>
+        <initializer>=  {&apos;Source&apos;:&apos;source&apos;,
+                      &apos;Station&apos;:&apos;<ref refid="structstations" kindref="compound">stations</ref>&apos;,
+                      &apos;QCode&apos;:&apos;qcode&apos;,
+                      &apos;Polarization&apos;:&apos;pols&apos;,
+                      &apos;Baseline&apos;:&apos;<ref refid="fourfit3_8c_1ac49ccefb4c1a75c25992328edc954f98" kindref="member">baseline</ref>&apos;,
+                      &apos;Phase&apos;:&apos;phase&apos;,
+                      &apos;Scan time&apos;:&apos;scan_time&apos;,
+                      &apos;Amplitude&apos;:&apos;amplitude&apos;,
+                      &apos;<ref refid="usearray_8h_1aef2f5c7bce117abced23a19c721843b0" kindref="member">SNR</ref>&apos;:&apos;snr&apos;,
+                      &apos;Single-band delay&apos;:&apos;sbd&apos;,
+                      &apos;Multi-band delay&apos;:&apos;mbd&apos;,
+                      &apos;Delay rate&apos;:&apos;<ref refid="delay__rate_8c_1ad7216df844a6a92d5e563cee371d745e" kindref="member">delay_rate</ref>&apos;,
+                      &apos;Ambiguity&apos;:&apos;ambiguity&apos;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacehops__visualization_1_1parse__alist_1a6ff76cafbe36002a95f33411819985eb" prot="public" static="no" mutable="no">
+        <type>dictionary</type>
+        <definition>dictionary hops_visualization::parse_alist.plot_labels</definition>
+        <argsstring></argsstring>
+        <name>plot_labels</name>
+        <initializer>=  {&apos;scan_time&apos;:{&apos;label&apos;:&apos;Scan time&apos;,&apos;unit&apos;:&apos;(DOY)&apos;},
+               &apos;amplitude&apos;:{&apos;label&apos;:&apos;Amplitude&apos;,&apos;unit&apos;:&apos;(x10^4)&apos;},
+               &apos;snr&apos;:{&apos;label&apos;:&apos;<ref refid="usearray_8h_1aef2f5c7bce117abced23a19c721843b0" kindref="member">SNR</ref>&apos;,&apos;unit&apos;:&apos;&apos;},
+               &apos;phase&apos;:{&apos;label&apos;:&apos;Phase&apos;,&apos;unit&apos;:&apos;(deg)&apos;},
+               &apos;sbd&apos;:{&apos;label&apos;:&apos;Single-band delay&apos;,&apos;unit&apos;:&apos;(usec)&apos;},
+               &apos;mbd&apos;:{&apos;label&apos;:&apos;Multi-band delay&apos;,&apos;unit&apos;:&apos;(usec)&apos;},
+               &apos;<ref refid="delay__rate_8c_1ad7216df844a6a92d5e563cee371d745e" kindref="member">delay_rate</ref>&apos;:{&apos;label&apos;:&apos;Delay rate&apos;,&apos;unit&apos;:&apos;ps/s&apos;},
+               &apos;ambiguity&apos;:{&apos;label&apos;:&apos;Ambiguity&apos;,&apos;unit&apos;:&apos;usec&apos;}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/hops_visualization/parse_alist.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

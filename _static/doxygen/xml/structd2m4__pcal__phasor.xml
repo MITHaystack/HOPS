@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structd2m4__pcal__phasor" kind="struct" language="C++" prot="public">
+    <compoundname>d2m4_pcal_phasor</compoundname>
+    <includes refid="d2m4__pcal__record_8h" local="no">d2m4_pcal_record.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int d2m4_pcal_phasor::dstr</definition>
+        <argsstring></argsstring>
+        <name>dstr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int d2m4_pcal_phasor::frequency</definition>
+        <argsstring></argsstring>
+        <name>frequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double d2m4_pcal_phasor::imag</definition>
+        <argsstring></argsstring>
+        <name>imag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="20" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char d2m4_pcal_phasor::polarization</definition>
+        <argsstring></argsstring>
+        <name>polarization</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="16" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double d2m4_pcal_phasor::real</definition>
+        <argsstring></argsstring>
+        <name>real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="19" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>d2m4_pcal_phasor</label>
+        <link refid="structd2m4__pcal__phasor"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>polarization</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>dstr</edgelabel>
+          <edgelabel>frequency</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="15" bodyend="21"/>
+    <listofallmembers>
+      <member refid="structd2m4__pcal__phasor_1a597deaf1ee6331986bd0c489e8446b87" prot="public" virt="non-virtual"><scope>d2m4_pcal_phasor</scope><name>dstr</name></member>
+      <member refid="structd2m4__pcal__phasor_1a711d5d07dd4ff2a1f7a471013d0af175" prot="public" virt="non-virtual"><scope>d2m4_pcal_phasor</scope><name>frequency</name></member>
+      <member refid="structd2m4__pcal__phasor_1a4455089629cd842677895e9f7b442820" prot="public" virt="non-virtual"><scope>d2m4_pcal_phasor</scope><name>imag</name></member>
+      <member refid="structd2m4__pcal__phasor_1a58282a3b3a9e45a5861ef094afb7ad21" prot="public" virt="non-virtual"><scope>d2m4_pcal_phasor</scope><name>polarization</name></member>
+      <member refid="structd2m4__pcal__phasor_1a9243878cc722bcf3e2d04c4410151262" prot="public" virt="non-virtual"><scope>d2m4_pcal_phasor</scope><name>real</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calibration Operators &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Selection Operators" href="selection.html" />
+    <link rel="prev" title="Flagging Operators" href="flagging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Calibration.html">Calibration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="labeling.html">Labeling Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flagging.html">Flagging Operators</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Calibration Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mho-lsboffset">MHO_LSBOffset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-lineardparcorrection">MHO_LinearDParCorrection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualchanneldelaycorrection">MHO_ManualChannelDelayCorrection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualchannelphasecorrection">MHO_ManualChannelPhaseCorrection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualpoldelaycorrection">MHO_ManualPolDelayCorrection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-manualpolphasecorrection">MHO_ManualPolPhaseCorrection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-mixedpolyshift">MHO_MixedPolYShift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-multitonephasecorrection">MHO_MultitonePhaseCorrection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-polproductsummation">MHO_PolProductSummation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-stationdelaycorrection">MHO_StationDelayCorrection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html">Selection Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finalize.html">Finalize Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="non_configurable.html">Non-configurable Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="non_operator.html">Non-Operator Utility Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Calibration.html">Calibration</a></li>
+      <li class="breadcrumb-item active">Calibration Operators</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/calibration/calibration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="calibration-operators">
+<h1>Calibration Operators<a class="headerlink" href="#calibration-operators" title="Link to this heading"></a></h1>
+<section id="mho-lsboffset">
+<h2>MHO_LSBOffset<a class="headerlink" href="#mho-lsboffset" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LSBOffset.html">MHO_LSBOffset</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.4</p></td>
+</tr>
+<tr class="row-even"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lsb_offset</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies LSB phase offset to (the LSB half of) double-sideband channels for specified stations.</p>
+</section>
+<section id="mho-lineardparcorrection">
+<h2>MHO_LinearDParCorrection<a class="headerlink" href="#mho-lineardparcorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LinearDParCorrection.html">MHO_LinearDParCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.99</p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies linear delta-parallactic angle correction to visibility data
+for polarization products.</p>
+</section>
+<section id="mho-manualchanneldelaycorrection">
+<h2>MHO_ManualChannelDelayCorrection<a class="headerlink" href="#mho-manualchanneldelaycorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelDelayCorrection.html">MHO_ManualChannelDelayCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">delay_offs_l</span></code>, <code class="docutils literal notranslate"><span class="pre">delay_offs_r</span></code>, <code class="docutils literal notranslate"><span class="pre">delay_offs_x</span></code>, <code class="docutils literal notranslate"><span class="pre">delay_offs_y</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies manual channel delay corrections to visibility data for specific
+stations and polarizations.</p>
+</section>
+<section id="mho-manualchannelphasecorrection">
+<h2>MHO_ManualChannelPhaseCorrection<a class="headerlink" href="#mho-manualchannelphasecorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualChannelPhaseCorrection.html">MHO_ManualChannelPhaseCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pc_phases_l</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_phases_r</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_phases_x</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_phases_y</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies manual channel phase corrections to visibility data for specific
+stations and polarizations.</p>
+</section>
+<section id="mho-manualpoldelaycorrection">
+<h2>MHO_ManualPolDelayCorrection<a class="headerlink" href="#mho-manualpoldelaycorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolDelayCorrection.html">MHO_ManualPolDelayCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pc_delay_l</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_delay_r</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_delay_x</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_delay_y</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies manual polarization delay corrections to visibility data for specific
+stations and polarizations.</p>
+</section>
+<section id="mho-manualpolphasecorrection">
+<h2>MHO_ManualPolPhaseCorrection<a class="headerlink" href="#mho-manualpolphasecorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ManualPolPhaseCorrection.html">MHO_ManualPolPhaseCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pc_phase_offset_l</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_phase_offset_r</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_phase_offset_x</span></code>, <code class="docutils literal notranslate"><span class="pre">pc_phase_offset_y</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies manual polarization phase corrections to visibility data for specific
+stations and polarizations.</p>
+</section>
+<section id="mho-mixedpolyshift">
+<h2>MHO_MixedPolYShift<a class="headerlink" href="#mho-mixedpolyshift" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MixedPolYShift.html">MHO_MixedPolYShift</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mixed_pol_y_shift</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies a 90 degree phase offset to the Y-polarization of each station which the
+linear polarization member of a mixed linear-circular polarization baseline.
+Intended for use in mixed S/X-VGOS geodetic experiments.</p>
+</section>
+<section id="mho-multitonephasecorrection">
+<h2>MHO_MultitonePhaseCorrection<a class="headerlink" href="#mho-multitonephasecorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__MultitonePhaseCorrection.html">MHO_MultitonePhaseCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Required Input</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#a635984d730aadef0172598ca5fbfe135">multitone_pcal_type</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Priority Value</p></td>
+<td><p>3.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pc_mode</span> <span class="pre">multitone</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Applies multi-tone phase calibration to visibility data for specific stations
+with configurable averaging periods.</p>
+</section>
+<section id="mho-polproductsummation">
+<h2>MHO_PolProductSummation<a class="headerlink" href="#mho-polproductsummation" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__PolProductSummation.html">MHO_PolProductSummation</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.99</p></td>
+</tr>
+</tbody>
+</table>
+<p>Performs polarization product summation with support for parallactic angle
+corrections for both reference and remote stations to form the
+pseudo Stokes-I polarization product (VGOS geodesy). Triggered by the command line
+syntax <code class="docutils literal notranslate"><span class="pre">-P</span> <span class="pre">I</span></code>.</p>
+</section>
+<section id="mho-stationdelaycorrection">
+<h2>MHO_StationDelayCorrection<a class="headerlink" href="#mho-stationdelaycorrection" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__StationDelayCorrection.html">MHO_StationDelayCorrection</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Operator Type</p></td>
+<td><p>Unary</p></td>
+</tr>
+<tr class="row-odd"><td><p>Operator Category</p></td>
+<td><p>calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>Argument Data Type</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html#afcc97dd4e78b9092817b1dbb0c561e78">visibility_type</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Priority Value</p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-even"><td><p>Control File Keyword</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">station_delay</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Operator to apply a station delay (uniform single delay) to the visibility data
+of all channels for a specified reference or remote station.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="flagging.html" class="btn btn-neutral float-left" title="Flagging Operators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="selection.html" class="btn btn-neutral float-right" title="Selection Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

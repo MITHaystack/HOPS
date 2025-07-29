@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1ffres2pcp__lib" kind="namespace" language="Python">
+    <compoundname>vpal::ffres2pcp_lib</compoundname>
+    <innerclass refid="classvpal_1_1ffres2pcp__lib_1_1Configuration" prot="public">vpal::ffres2pcp_lib::Configuration</innerclass>
+    <innerclass refid="classvpal_1_1ffres2pcp__lib_1_1DefaultChannelDefines" prot="public">vpal::ffres2pcp_lib::DefaultChannelDefines</innerclass>
+    <innerclass refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData" prot="public">vpal::ffres2pcp_lib::ExperimentReportData</innerclass>
+    <innerclass refid="classvpal_1_1ffres2pcp__lib_1_1SingleStationPCPhases" prot="public">vpal::ffres2pcp_lib::SingleStationPCPhases</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacevpal_1_1ffres2pcp__lib_1aac5853445494e13cfbb95a6b80da5a26" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal::ffres2pcp_lib.ffres2pcp_logger</definition>
+        <argsstring></argsstring>
+        <name>ffres2pcp_logger</name>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="15" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a7a733f4bb7af241fad3856b166640e52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.channel_sort_key</definition>
+        <argsstring>(ch_val_pair)</argsstring>
+        <name>channel_sort_key</name>
+        <param>
+          <type>ch_val_pair</type>
+          <defname>ch_val_pair</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>sort channel value pairs in channel order</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="776" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="776" bodyend="782"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a45476d98f4404467c934a051e9a86e47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.compute_final_pcphases</definition>
+        <argsstring>(apriori_pc_phases, generated_pc_phases)</argsstring>
+        <name>compute_final_pcphases</name>
+        <param>
+          <type>apriori_pc_phases</type>
+          <defname>apriori_pc_phases</defname>
+        </param>
+        <param>
+          <type>generated_pc_phases</type>
+          <defname>generated_pc_phases</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>given both the a-priori and generated SingleStationPCPhases, sum and round their values
+to obtain the corrections necessary for the control file output</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="787" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="787" bodyend="808"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a27fbb3356d00d2797310d0ca0e8647d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.compute_vgos_network_reference_station_pc_phases</definition>
+        <argsstring>(single_baseline_pp_collection_obj, network_reference_station, discard_tolerance=15.0, complete_discard_count=5)</argsstring>
+        <name>compute_vgos_network_reference_station_pc_phases</name>
+        <param>
+          <type>single_baseline_pp_collection_obj</type>
+          <defname>single_baseline_pp_collection_obj</defname>
+        </param>
+        <param>
+          <type>network_reference_station</type>
+          <defname>network_reference_station</defname>
+        </param>
+        <param>
+          <type>discard_tolerance</type>
+          <defname>discard_tolerance</defname>
+          <defval>15.0</defval>
+        </param>
+        <param>
+          <type>complete_discard_count</type>
+          <defname>complete_discard_count</defname>
+          <defval>5</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> compute the (Y-pol) pc_phases corrections for the station being used as the network reference station </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="273" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="273" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a78de69d567ade8910fc0336696303d5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.construct_control_file_lines</definition>
+        <argsstring>(apriori_pc_phases, generated_pc_phases, frequency_group=&apos;X&apos;, mode=&apos;VGOS&apos;)</argsstring>
+        <name>construct_control_file_lines</name>
+        <param>
+          <type>apriori_pc_phases</type>
+          <defname>apriori_pc_phases</defname>
+        </param>
+        <param>
+          <type>generated_pc_phases</type>
+          <defname>generated_pc_phases</defname>
+        </param>
+        <param>
+          <type>frequency_group</type>
+          <defname>frequency_group</defname>
+          <defval>&apos;X&apos;</defval>
+        </param>
+        <param>
+          <type>mode</type>
+          <defname>mode</defname>
+          <defval>&apos;VGOS&apos;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>given both the a-priori and generated SingleStationPCPhases, sum and round their values
+to obtain the corrections necessary for the control file output, then output formatted lines </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="814" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="814" bodyend="863"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a48ff7228c7cbb76971a30659d53ccdca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.generate_ffres2pcp_control_file</definition>
+        <argsstring>(config_obj, output_control_filename)</argsstring>
+        <name>generate_ffres2pcp_control_file</name>
+        <param>
+          <type>config_obj</type>
+          <defname>config_obj</defname>
+        </param>
+        <param>
+          <type>output_control_filename</type>
+          <defname>output_control_filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>create the control file with the necessary pc_phases correction lines </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="868" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="868" bodyend="897"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a9f03081a02f1a4b4887a1337925d2469" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.generate_pc_phases</definition>
+        <argsstring>(config_obj, report_data_obj=None)</argsstring>
+        <name>generate_pc_phases</name>
+        <param>
+          <type>config_obj</type>
+          <defname>config_obj</defname>
+        </param>
+        <param>
+          <type>report_data_obj</type>
+          <defname>report_data_obj</defname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> main function for ffres2pcp to generate the pc_phase corrections for each station-pol (not including the apriori pc_phases)
+this function does:
+#(1) batch fourfits all of the available scans/baselines
+#(2) combines the generated fringe files into collections
+#(3) applies some selection critera to the collections to generate a list of scan collections for each station
+#(4) extracts the pc_phases for each individual station from the selected scans
+#(5) merges the reference station pc_phases (from all baselines/stations)
+#(6) applies sigma cut to phase correction data
+#(7) returns a dictionary of SingleStationPCPhases indexed by (station,pol) tuples </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="466" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="466" bodyend="580"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a3b780e99a0cea6d46d4fb9a92c49fa50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.generate_station_phase_corrections</definition>
+        <argsstring>(SingleBaselinePolarizationProductCollection_list, target_station, network_reference_station, dtec_tolerance=1.0, network_reference_station_pol=&apos;X&apos;, discard_tolerance=15, nchannel_discard_threshold=5)</argsstring>
+        <name>generate_station_phase_corrections</name>
+        <param>
+          <type>SingleBaselinePolarizationProductCollection_list</type>
+          <defname>SingleBaselinePolarizationProductCollection_list</defname>
+        </param>
+        <param>
+          <type>target_station</type>
+          <defname>target_station</defname>
+        </param>
+        <param>
+          <type>network_reference_station</type>
+          <defname>network_reference_station</defname>
+        </param>
+        <param>
+          <type>dtec_tolerance</type>
+          <defname>dtec_tolerance</defname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>network_reference_station_pol</type>
+          <defname>network_reference_station_pol</defname>
+          <defval>&apos;X&apos;</defval>
+        </param>
+        <param>
+          <type>discard_tolerance</type>
+          <defname>discard_tolerance</defname>
+          <defval>15</defval>
+        </param>
+        <param>
+          <type>nchannel_discard_threshold</type>
+          <defname>nchannel_discard_threshold</defname>
+          <defval>5</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> function to generate pc_phases for station in an experiment
+from a list of selected scans (gathered into SingleScanBaselineCollection) </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="328" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="330" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a2914c2633e3fa6c99ca4a07b5fa9ac9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.get_apriori_pc_phases</definition>
+        <argsstring>(ffres2pcp_config)</argsstring>
+        <name>get_apriori_pc_phases</name>
+        <param>
+          <type>ffres2pcp_config</type>
+          <defname>ffres2pcp_config</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> parse the control file and get the (a-priori) pc_phases which are already present </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="586" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="586" bodyend="746"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1afe33d9aa7177c071d1dd27f7ee26a18f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.select_collection_subset</definition>
+        <argsstring>(SingleBaselinePolarizationProductCollection_list, target_station, network_reference_station, dtec_nom=0.1, max_number_to_select=0)</argsstring>
+        <name>select_collection_subset</name>
+        <param>
+          <type>SingleBaselinePolarizationProductCollection_list</type>
+          <defname>SingleBaselinePolarizationProductCollection_list</defname>
+        </param>
+        <param>
+          <type>target_station</type>
+          <defname>target_station</defname>
+        </param>
+        <param>
+          <type>network_reference_station</type>
+          <defname>network_reference_station</defname>
+        </param>
+        <param>
+          <type>dtec_nom</type>
+          <defname>dtec_nom</defname>
+          <defval>0.1</defval>
+        </param>
+        <param>
+          <type>max_number_to_select</type>
+          <defname>max_number_to_select</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>this function selects single scan baseline pol-product collections for a particular target/reference station based on empirical method
+this assumes cuts in min_snr, dtec deviation, etc. have already been made</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="419" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="419" bodyend="459"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1ffres2pcp__lib_1a49b5f4e95debec18598caadaf3d52c33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.sum_mean_pc_phases</definition>
+        <argsstring>(pcp_obj_a, pcp_obj_b)</argsstring>
+        <name>sum_mean_pc_phases</name>
+        <param>
+          <type>pcp_obj_a</type>
+          <defname>pcp_obj_a</defname>
+        </param>
+        <param>
+          <type>pcp_obj_b</type>
+          <defname>pcp_obj_b</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>sums the mean phases of the two SingleStationPCPhases objects and
+returns a channel indexed dictionary of the summed values </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="750" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="750" bodyend="772"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>module to determine the appropriate manual p-cal phases offsets for each
+station during an experiment w.r.t to a network reference station</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

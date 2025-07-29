@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="fourfit__signal__handler_8h" kind="file" language="C++">
+    <compoundname>fourfit_signal_handler.h</compoundname>
+    <includes local="no">signal.h</includes>
+    <includedby refid="fourfit3_8c" local="yes">fourfit3.c</includedby>
+    <includedby refid="fourfit__signal__handler_8c" local="yes">fourfit_signal_handler.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>fourfit_signal_handler.h</label>
+        <link refid="fourfit__signal__handler_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>signal.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>fourfit_signal_handler.h</label>
+        <link refid="fourfit__signal__handler_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>fourfit_signal_handler.c</label>
+        <link refid="fourfit__signal__handler_8c"/>
+      </node>
+      <node id="2">
+        <label>fourfit3.c</label>
+        <link refid="fourfit3_8c"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="fourfit__signal__handler_8h_1a36aba757af9042d52e1ce5ecad15e8d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fourfit_register_signal_handler</definition>
+        <argsstring>(struct sigaction *handler_action)</argsstring>
+        <name>fourfit_register_signal_handler</name>
+        <param>
+          <type>struct sigaction *</type>
+          <declname>handler_action</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/fourfit_signal_handler.h" line="10" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/fourfit_signal_handler.c" bodystart="73" bodyend="116" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/fourfit_signal_handler.h" declline="10" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="fourfit__signal__handler_8h_1a544af395fd3430d17a36cfe592fbb0d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fourfit_signal_handler</definition>
+        <argsstring>(int signal_value)</argsstring>
+        <name>fourfit_signal_handler</name>
+        <param>
+          <type>int</type>
+          <declname>signal_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/fourfit_signal_handler.h" line="7" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/src/fourfit_signal_handler.c" bodystart="25" bodyend="70" declfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/fourfit_signal_handler.h" declline="7" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>FF_SIGNAL_HANDLER_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FF_SIGNAL_HANDLER_H__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;signal.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><ref refid="fourfit__signal__handler_8h_1a544af395fd3430d17a36cfe592fbb0d3" kindref="member">fourfit_signal_handler</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>signal_value);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><ref refid="fourfit__signal__handler_8h_1a36aba757af9042d52e1ce5ecad15e8d5" kindref="member">fourfit_register_signal_handler</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/>sigaction<sp/>*handler_action);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>include<sp/>guard:<sp/>FF_SIGNAL_HANDLER_H__<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffcore/include/fourfit_signal_handler.h"/>
+  </compounddef>
+</doxygen>

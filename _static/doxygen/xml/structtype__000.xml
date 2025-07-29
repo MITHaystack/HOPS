@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__000" kind="struct" language="C++" prot="public">
+    <compoundname>type_000</compoundname>
+    <includes refid="type__000_8h" local="no">type_000.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__000_1a904f3c8d3989201656ec902b8d953f39" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_000::date[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" line="9" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__000_1ad72582c5ecc43295545965a66df606af" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_000::name[40]</definition>
+        <argsstring>[40]</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" line="10" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__000_1a40e6839be1290901fffdd23421b0a756" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_000::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" line="6" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__000_1a65b381cda77ae1931d3aa63f433cb69f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_000::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" line="8" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__000_1aed6690d535bf459927ab5ae2d2b2f182" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_000::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" line="7" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>type_000</label>
+        <link refid="structtype__000"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" line="4" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_000.h" bodystart="5" bodyend="11"/>
+    <listofallmembers>
+      <member refid="structtype__000_1a904f3c8d3989201656ec902b8d953f39" prot="public" virt="non-virtual"><scope>type_000</scope><name>date</name></member>
+      <member refid="structtype__000_1ad72582c5ecc43295545965a66df606af" prot="public" virt="non-virtual"><scope>type_000</scope><name>name</name></member>
+      <member refid="structtype__000_1a40e6839be1290901fffdd23421b0a756" prot="public" virt="non-virtual"><scope>type_000</scope><name>record_id</name></member>
+      <member refid="structtype__000_1a65b381cda77ae1931d3aa63f433cb69f" prot="public" virt="non-virtual"><scope>type_000</scope><name>unused1</name></member>
+      <member refid="structtype__000_1aed6690d535bf459927ab5ae2d2b2f182" prot="public" virt="non-virtual"><scope>type_000</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

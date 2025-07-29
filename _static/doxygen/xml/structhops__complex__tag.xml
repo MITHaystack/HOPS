@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops__complex__tag" kind="struct" language="C++" prot="public">
+    <compoundname>hops_complex_tag</compoundname>
+    <includes refid="hops__complex_8h" local="no">hops_complex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops__complex__tag_1a86f81f668c6ea55af06a808a1ba2f7da" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops_complex_tag::imag</definition>
+        <argsstring></argsstring>
+        <name>imag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/hops_complex.h" line="19" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/hops_complex.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops__complex__tag_1a949b6b28b93c40ce862ffc02a2e64863" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops_complex_tag::real</definition>
+        <argsstring></argsstring>
+        <name>real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/hops_complex.h" line="18" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/hops_complex.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>hops_complex_tag</label>
+        <link refid="structhops__complex__tag"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/hops_complex.h" line="16" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/mk4util/include/hops_complex.h" bodystart="17" bodyend="20"/>
+    <listofallmembers>
+      <member refid="structhops__complex__tag_1a86f81f668c6ea55af06a808a1ba2f7da" prot="public" virt="non-virtual"><scope>hops_complex_tag</scope><name>imag</name></member>
+      <member refid="structhops__complex__tag_1a949b6b28b93c40ce862ffc02a2e64863" prot="public" virt="non-virtual"><scope>hops_complex_tag</scope><name>real</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

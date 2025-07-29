@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="unionlag__data" kind="union" language="C++" prot="public">
+    <compoundname>lag_data</compoundname>
+    <includes refid="type__120_8h" local="no">type_120.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionlag__data_1a8e92e99a2121cdc3fe5157cd05d84346" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structauto__global" kindref="compound">auto_global</ref></type>
+        <definition>struct auto_global lag_data::ag</definition>
+        <argsstring></argsstring>
+        <name>ag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="61" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionlag__data_1a0cc96383be25341cd32164f389bf18e3" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structauto__per__lag" kindref="compound">auto_per_lag</ref></type>
+        <definition>struct auto_per_lag lag_data::apl[1]</definition>
+        <argsstring>[1]</argsstring>
+        <name>apl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="61" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionlag__data_1ad6577e9c3b548c897e9d0f9113e4c057" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structcounts__global" kindref="compound">counts_global</ref></type>
+        <definition>struct counts_global lag_data::cg</definition>
+        <argsstring></argsstring>
+        <name>cg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="61" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionlag__data_1a302f83ed4175a95c4d2721d31f7681f5" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structcounts__per__lag" kindref="compound">counts_per_lag</ref></type>
+        <definition>struct counts_per_lag lag_data::cpl[1]</definition>
+        <argsstring>[1]</argsstring>
+        <name>cpl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="61" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionlag__data_1a4c1d9d22f083b322e7df1e185a48038b" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structspectral" kindref="compound">spectral</ref></type>
+        <definition>struct spectral lag_data::spec[1]</definition>
+        <argsstring>[1]</argsstring>
+        <name>spec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="61" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>auto_per_lag</label>
+        <link refid="structauto__per__lag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>spectral</label>
+        <link refid="structspectral"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>im</edgelabel>
+          <edgelabel>re</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>lag_data</label>
+        <link refid="unionlag__data"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>apl</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>spec</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>ag</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>cg</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>cpl</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>counts_per_lag</label>
+        <link refid="structcounts__per__lag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>float</label>
+      </node>
+      <node id="6">
+        <label>auto_global</label>
+        <link refid="structauto__global"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>unused</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>coscor</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>counts_global</label>
+        <link refid="structcounts__global"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>lags</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cosbits</edgelabel>
+          <edgelabel>sinbits</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="7">
+        <label>char</label>
+      </node>
+      <node id="9">
+        <label>lag_tag</label>
+        <link refid="structlag__tag"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>coscor</edgelabel>
+          <edgelabel>sincor</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" line="64" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_120.h" bodystart="65" bodyend="71"/>
+    <listofallmembers>
+      <member refid="unionlag__data_1a8e92e99a2121cdc3fe5157cd05d84346" prot="public" virt="non-virtual"><scope>lag_data</scope><name>ag</name></member>
+      <member refid="unionlag__data_1a0cc96383be25341cd32164f389bf18e3" prot="public" virt="non-virtual"><scope>lag_data</scope><name>apl</name></member>
+      <member refid="unionlag__data_1ad6577e9c3b548c897e9d0f9113e4c057" prot="public" virt="non-virtual"><scope>lag_data</scope><name>cg</name></member>
+      <member refid="unionlag__data_1a302f83ed4175a95c4d2721d31f7681f5" prot="public" virt="non-virtual"><scope>lag_data</scope><name>cpl</name></member>
+      <member refid="unionlag__data_1a4c1d9d22f083b322e7df1e185a48038b" prot="public" virt="non-virtual"><scope>lag_data</scope><name>spec</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

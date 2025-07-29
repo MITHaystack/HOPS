@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdata__value" kind="struct" language="C++" prot="public">
+    <compoundname>data_value</compoundname>
+    <includes refid="vex_8h" local="no">vex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdata__value_1a598076cec51d6a543a4948a11a34b345" prot="public" static="no" mutable="no">
+        <type>union data_value::@22</type>
+        <definition>union data_value::@22 data_value::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="219" column="14"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__value_1af89dd34e7e8a56cfc5269467d112acf3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int data_value::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="208" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdata__value_1a474f52ad20e9ec210d41a279e08d3aa1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int data_value::units</definition>
+        <argsstring></argsstring>
+        <name>units</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="209" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>anonymous:data</label>
+      </node>
+      <node id="1">
+        <label>data_value</label>
+        <link refid="structdata__value"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>data</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>type</edgelabel>
+          <edgelabel>units</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" line="206" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/vex.h" bodystart="207" bodyend="220"/>
+    <listofallmembers>
+      <member refid="structdata__value_1a598076cec51d6a543a4948a11a34b345" prot="public" virt="non-virtual"><scope>data_value</scope><name>data</name></member>
+      <member refid="structdata__value_1af89dd34e7e8a56cfc5269467d112acf3" prot="public" virt="non-virtual"><scope>data_value</scope><name>type</name></member>
+      <member refid="structdata__value_1a474f52ad20e9ec210d41a279e08d3aa1" prot="public" virt="non-virtual"><scope>data_value</scope><name>units</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

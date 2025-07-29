@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_7b90604c2bb76efaeb493a4bf97a39f0" kind="dir">
+    <compoundname>src</compoundname>
+    <innerfile refid="MHO__AFileDefinitions_8cc">MHO_AFileDefinitions.cc</innerfile>
+    <innerfile refid="MHO__AFileInfoExtractor_8cc">MHO_AFileInfoExtractor.cc</innerfile>
+    <innerfile refid="MHO__BasicFringeDataConfiguration_8cc">MHO_BasicFringeDataConfiguration.cc</innerfile>
+    <innerfile refid="MHO__BasicFringeFitter_8cc">MHO_BasicFringeFitter.cc</innerfile>
+    <innerfile refid="MHO__BasicFringeInfo_8cc">MHO_BasicFringeInfo.cc</innerfile>
+    <innerfile refid="MHO__BasicFringeUtilities_8cc">MHO_BasicFringeUtilities.cc</innerfile>
+    <innerfile refid="MHO__ComputePlotData_8cc">MHO_ComputePlotData.cc</innerfile>
+    <innerfile refid="MHO__DefaultPythonPlotVisitor_8cc">MHO_DefaultPythonPlotVisitor.cc</innerfile>
+    <innerfile refid="MHO__FringeControlInitialization_8cc">MHO_FringeControlInitialization.cc</innerfile>
+    <innerfile refid="MHO__FringeFitterFactory_8cc">MHO_FringeFitterFactory.cc</innerfile>
+    <innerfile refid="MHO__FringePlotInfo_8cc">MHO_FringePlotInfo.cc</innerfile>
+    <innerfile refid="MHO__InitialFringeInfo_8cc">MHO_InitialFringeInfo.cc</innerfile>
+    <innerfile refid="MHO__IonosphericFringeFitter_8cc">MHO_IonosphericFringeFitter.cc</innerfile>
+    <innerfile refid="MHO__VexInfoExtractor_8cc">MHO_VexInfoExtractor.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/"/>
+  </compounddef>
+</doxygen>

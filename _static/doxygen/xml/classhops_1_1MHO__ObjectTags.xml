@@ -1,0 +1,846 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ObjectTags" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ObjectTags</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__Taggable" prot="public" virt="non-virtual">hops::MHO_Taggable</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__ExtensibleElement" prot="public" virt="non-virtual">hops::MHO_ExtensibleElement</basecompoundref>
+    <includes refid="MHO__ObjectTags_8hh" local="no">MHO_ObjectTags.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ObjectTags_1a1cdce1501352d1b0ca37f056343782c5" prot="protected" static="no" mutable="no">
+        <type>std::set&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt;</type>
+        <definition>std::set&lt; MHO_UUID &gt; hops::MHO_ObjectTags::fObjectUUIDSet</definition>
+        <argsstring></argsstring>
+        <name>fObjectUUIDSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="261" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="261" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a927faab64047c3fe3a75dabcef2714ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ObjectTags::MHO_ObjectTags</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ObjectTags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a983f8346e3cb0c8ef2f420926dbfbf18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ObjectTags::~MHO_ObjectTags</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ObjectTags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="32" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a4b3d3c8836093bef51af82d202b193b3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ObjectTags::AddObjectUUID</definition>
+        <argsstring>(const MHO_UUID &amp;uuid)</argsstring>
+        <name>AddObjectUUID</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+<para>Inserts a UUID into the object UUID set for association with this tag collection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>UUID of the object to be associated with the tag collection </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="56" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a97970586ed7fcfd2bad2daa8eda9bc25" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ObjectTags::DumpTags</definition>
+        <argsstring>(std::vector&lt; std::string &gt; &amp;tag_names) const</argsstring>
+        <name>DumpTags</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>tag_names</declname>
+        </param>
+        <briefdescription>
+<para>collect all of the present tag names, and fill the passed reference </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_names</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to std::vector&lt;std::string&gt; that will be cleared and populated with current tag names </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="246" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="246" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a80007d41dfe1a901d851d9119cc475a3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt;</type>
+        <definition>std::vector&lt; MHO_UUID &gt; hops::MHO_ObjectTags::GetAllObjectUUIDs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAllObjectUUIDs</name>
+        <briefdescription>
+<para>Getter for all object uuids at once. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Vector of <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> representing all object UUIDs. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="84" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="84" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a24b70793f3321e7a5d6163df471f5e1a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_ObjectTags::GetNObjectUUIDs</definition>
+        <argsstring>() const</argsstring>
+        <name>GetNObjectUUIDs</name>
+        <briefdescription>
+<para>Getter for the number of object uuids. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Number of object UUIDs as std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="77" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="77" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a6e88afb0759c5fdff423b496028ca87e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_ObjectTags::GetSerializedSize</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetSerializedSize</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1aec049bfd4587cb63d887bab57bf08991">GetSerializedSize</reimplements>
+        <briefdescription>
+<para>Getter for serialized size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Total serialized size as uint64_t </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="270" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="270" bodyend="278"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1aef84af2e40362c15e904a9733366779e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::set&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt;</type>
+        <definition>std::set&lt; MHO_UUID &gt; hops::MHO_ObjectTags::GetTaggedObjectUUIDSet</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTaggedObjectUUIDSet</name>
+        <briefdescription>
+<para>Getter for tagged object uuid set. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current tagged object UUID set. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="257" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="257" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1acc598ea88639ad29f4bbdf09130fbb8b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_ObjectTags::GetTagValue</definition>
+        <argsstring>(const char *tag_name, XValueType &amp;tag_value)</argsstring>
+        <name>GetTagValue</name>
+        <param>
+          <type>const char *</type>
+          <declname>tag_name</declname>
+        </param>
+        <param>
+          <type>XValueType &amp;</type>
+          <declname>tag_value</declname>
+        </param>
+        <briefdescription>
+<para>Getter for a tag&apos;s value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the tag to retrieve. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tag_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="146" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="146" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1aa329130eba03ac893aae9494eb10d903" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_ObjectTags::GetTagValue</definition>
+        <argsstring>(const std::string &amp;tag_name, XValueType &amp;tag_value)</argsstring>
+        <name>GetTagValue</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>tag_name</declname>
+        </param>
+        <param>
+          <type>XValueType &amp;</type>
+          <declname>tag_value</declname>
+        </param>
+        <briefdescription>
+<para>retrieve the value of a given tag </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the tag to retrieve the value for </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tag_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the retrieved value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the tag is found and its value is successfully stored, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="159" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="159" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a63e6cacbabfc40a42bd986abbc6ebd93" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ObjectTags::GetTagValueAsString</definition>
+        <argsstring>(const std::string &amp;tag_name) const</argsstring>
+        <name>GetTagValueAsString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>tag_name</declname>
+        </param>
+        <briefdescription>
+<para>Getter for a tag&apos;s value, with forced conversion to a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (std::string) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="170" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="170" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a46f771ec7faf850f9808ba430ad1f229" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ObjectTags::IsObjectUUIDPresent</definition>
+        <argsstring>(const MHO_UUID &amp;uuid) const</argsstring>
+        <name>IsObjectUUIDPresent</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a UUID is present in the object collection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UUID to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the UUID is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="41" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="41" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a1f5c38e09405a4e477a7aaddf24f2b97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ObjectTags::IsTagPresent</definition>
+        <argsstring>(const char *tag_name) const</argsstring>
+        <name>IsTagPresent</name>
+        <param>
+          <type>const char *</type>
+          <declname>tag_name</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a tag (key) is present in the container. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the tag to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the tag is present, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="108" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="108" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a45d101b92664e36daede024c3d787f97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ObjectTags::IsTagPresent</definition>
+        <argsstring>(const std::string &amp;tag_name) const</argsstring>
+        <name>IsTagPresent</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>tag_name</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a tag with the given name (key) is present in the container. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the tag to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the tag is present, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="100" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a2787d95614efc26e243aee44d7e9542c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ObjectTags::RemoveObjectUUID</definition>
+        <argsstring>(const MHO_UUID &amp;uuid)</argsstring>
+        <name>RemoveObjectUUID</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+<para>Removes an object UUID from the set if it exists. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UUID of the object to remove. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="63" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="63" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1aa0dabe1e4c0eb701aad10be953d2f41a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ObjectTags::SetTagValue</definition>
+        <argsstring>(const char *tag_name, const XValueType &amp;tag_value)</argsstring>
+        <name>SetTagValue</name>
+        <param>
+          <type>const char *</type>
+          <declname>tag_name</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>tag_value</declname>
+        </param>
+        <briefdescription>
+<para>Setter for tag/value (key:value pair) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of the tag as C-style string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tag_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to set for the tag </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="121" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="121" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1acefa00638e9b9e2e7c824c93aa713c16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ObjectTags::SetTagValue</definition>
+        <argsstring>(const std::string &amp;tag_name, const XValueType &amp;tag_value)</argsstring>
+        <name>SetTagValue</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>tag_name</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>tag_value</declname>
+        </param>
+        <briefdescription>
+<para>Setter for tag/value (key:value pair) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tag_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tag name as std::string string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tag_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to set for the given tag </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="134" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="134" bodyend="137"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhops_1_1MHO__ObjectTags_1acfd90d27477237e7936c6cce148ea83e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&lt;&lt;</definition>
+        <argsstring>(XStream &amp;s, const MHO_ObjectTags &amp;aData)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="297" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="297" bodyend="310"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhops_1_1MHO__ObjectTags_1afb35c8342b81c696df76dddcd138986a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&gt;&gt;</definition>
+        <argsstring>(XStream &amp;s, MHO_ObjectTags &amp;aData)</argsstring>
+        <name>operator&gt;&gt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="280" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="280" bodyend="295"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a84199f818610fc807fcdbddd008fe9c1" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>virtual MHO_UUID hops::MHO_ObjectTags::DetermineTypeUUID</definition>
+        <argsstring>() const override</argsstring>
+        <name>DetermineTypeUUID</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1ae5f8d8c6c32f9d9c76607f6b3b1db6ff">DetermineTypeUUID</reimplements>
+        <briefdescription>
+<para>Function DetermineTypeUUID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (<ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="355" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="355" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1a42ca4e38dbff616308bb7377d8a48b87" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ObjectTags::StreamInData_V0</definition>
+        <argsstring>(XStream &amp;s)</argsstring>
+        <name>StreamInData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Reads and processes object UUIDs from a stream and adds them to the current tag collection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input stream of object data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="319" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="319" bodyend="333"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ObjectTags_1ae71fe65d0aee47c58514203517cc7aef" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ObjectTags::StreamOutData_V0</definition>
+        <argsstring>(XStream &amp;s) const</argsstring>
+        <name>StreamOutData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Serializes object UUIDs and taggable element to an output stream. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output stream of type XStream&amp;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="341" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="341" bodyend="353"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ObjectTags" kindref="compound">MHO_ObjectTags</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>A container object which is intended to associate key/value meta-data with other objects via a list of their UUIDs.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu May 13 10:44:24 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+      </node>
+      <node id="6">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ObjectTags</label>
+        <link refid="classhops_1_1MHO__ObjectTags"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>std::set&lt; hops::MHO_UUID &gt;</label>
+        <childnode refid="10" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>json</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>uint8_t</label>
+      </node>
+      <node id="8">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ObjectTags</label>
+        <link refid="classhops_1_1MHO__ObjectTags"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fObjectUUIDSet</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ObjectTags.hh" bodystart="28" bodyend="364"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a6196efd2aa51a40c710979222c924a7a" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a4b3d3c8836093bef51af82d202b193b3" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>AddObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a19a425cc45fb610c718c5d2b0dbb667b" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>AsExtension</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aec4e83a60d4b3f6197a3c7b14625d5ab" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ad9ccfa6ce55bd4ea9e37f2bfbdf08684" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>ClearTags</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a01162d836ddbaf45d51e6b8df2dd0fa3" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>ContainsKey</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a74eedf9337ead51aa34a07b3703db8bf" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>CopyFrom</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a9ff0c9e91598da64f382e40e790641e6" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>CopyTags</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1aba9ec7771e32aca2115875eed2867c01" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>CopyTo</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a84199f818610fc807fcdbddd008fe9c1" prot="private" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>DetermineTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a0be2488f1dfd3f3781e246d97cb201eb" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>DumpKeys</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab32a351cb204524f09f839ae6ec6cea0" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>DumpMap</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a97970586ed7fcfd2bad2daa8eda9bc25" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>DumpTags</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1ac7053fbca67e03532f14b4f47e0a6b49" prot="protected" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>fExtensions</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa7de95913b4113fc50143b2c73ddbfa" prot="protected" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>fObject</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a1cdce1501352d1b0ca37f056343782c5" prot="protected" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>fObjectUUIDSet</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a80007d41dfe1a901d851d9119cc475a3" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetAllObjectUUIDs</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a29cc193d05cc849ef5556765a46a30af" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a24b70793f3321e7a5d6163df471f5e1a" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetNObjectUUIDs</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aa6f524e78beb65d026c87fc6856ba059" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a6e88afb0759c5fdff423b496028ca87e" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>GetSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1aef84af2e40362c15e904a9733366779e" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetTaggedObjectUUIDSet</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1acc598ea88639ad29f4bbdf09130fbb8b" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetTagValue</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1aa329130eba03ac893aae9494eb10d903" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetTagValue</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a63e6cacbabfc40a42bd986abbc6ebd93" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>GetTagValueAsString</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aab01eda2ff2ad2338899119bcd509d31" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>GetTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a7b9b9b27f97f67f6aced62b1eae719e8" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>GetVersion</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a838927fa3c01474e519efe61e4edf6ca" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>HasExtension</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa48fbe7ed6faf902d661eba225931b4" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ad838788924b9a12b62b9df9f263ee4a1" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af94f990de2ea21d48b6b969ff257631b" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>Insert</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a46f771ec7faf850f9808ba430ad1f229" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>IsObjectUUIDPresent</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a45d101b92664e36daede024c3d787f97" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>IsTagPresent</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a1f5c38e09405a4e477a7aaddf24f2b97" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>IsTagPresent</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1afe17d8f32b77738b06ff188eea23aeac" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MakeExtension</name></member>
+      <member refid="classhops_1_1MHO__Element_1a8457a2bfa206699701a2163585b6cc5f" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a08e0ac36b7baa0b3d4f5d3390d636816" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a24eaabfac649dfcc5418d47cb5a1e4b2" prot="protected" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a95533d35215bcb6a4feb133a58615e81" prot="protected" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a927faab64047c3fe3a75dabcef2714ce" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_ObjectTags</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a071ba293eca6f0eb58a8b067ef1506d0" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a29f651974e8b1cfaa7a12810a1644cbd" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aadeecd650cb160acb8e83565ecfb8a0a" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a0b10cce72b8eb35c4cc42071faef7724" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a34a692357c9b64ff0c83bb947df46c24" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1acfd90d27477237e7936c6cce148ea83e" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a37bbc5f6aa854321af3faeeb653e113e" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af56aebf9c39bf7e6a527d899ebab328b" prot="public" virt="non-virtual" ambiguityscope="hops::MHO_JSONWrapper::"><scope>hops::MHO_ObjectTags</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1afb35c8342b81c696df76dddcd138986a" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>operator&gt;&gt;</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a2787d95614efc26e243aee44d7e9542c" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>RemoveObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a8af109cd5401bbce3e2d380c32111e35" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aeb880d8fcf4405994704f7334f7fcecd" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a701d23cd53b153b2e2038e262b1a4299" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>SetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab9fa54b72be7e5859f46e19865e8ab5b" prot="protected" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>SetObject</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1af3fc6887489606836bf32705332972f7" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>SetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1aa0dabe1e4c0eb701aad10be953d2f41a" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>SetTagValue</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1acefa00638e9b9e2e7c824c93aa713c16" prot="public" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>SetTagValue</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a42ca4e38dbff616308bb7377d8a48b87" prot="private" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>StreamInData_V0</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1ae71fe65d0aee47c58514203517cc7aef" prot="private" virt="non-virtual"><scope>hops::MHO_ObjectTags</scope><name>StreamOutData_V0</name></member>
+      <member refid="classhops_1_1MHO__Element_1aea329679a16385ae6ac6986128360887" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>~MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a3ebd5b1b0bf0726ac545354cab4d3dff" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>~MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a047860e11d91310d6b11b5acae0a9bf4" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>~MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__ObjectTags_1a983f8346e3cb0c8ef2f420926dbfbf18" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>~MHO_ObjectTags</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a573b91158c3b24b67b594e6d4af0ccea" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>~MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ae33d3be9c20ced6dce3db305e34d2551" prot="public" virt="virtual"><scope>hops::MHO_ObjectTags</scope><name>~MHO_Taggable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

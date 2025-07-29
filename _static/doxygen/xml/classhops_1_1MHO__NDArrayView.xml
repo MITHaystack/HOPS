@@ -1,0 +1,1091 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__NDArrayView" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_NDArrayView</compoundname>
+    <includes refid="MHO__NDArrayView_8hh" local="no">MHO_NDArrayView.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+      <param>
+        <type>std::size_t</type>
+        <declname>RANK</declname>
+        <defname>RANK</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__NDArrayView_1ac19bd2f6226d1c526c14f1eddde2045e" prot="public" static="no">
+        <type><ref refid="classhops_1_1MHO__BidirectionalIndexedIterator" kindref="compound">MHO_BidirectionalIndexedIterator</ref>&lt; XValueType, RANK &gt;</type>
+        <definition>using hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::const_iterator =  MHO_BidirectionalIndexedIterator&lt; XValueType, RANK &gt;</definition>
+        <argsstring></argsstring>
+        <name>const_iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="474" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="474" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" prot="public" static="no">
+        <type>std::array&lt; std::size_t, RANK &gt;</type>
+        <definition>using hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::index_type =  std::array&lt; std::size_t, RANK &gt;</definition>
+        <argsstring></argsstring>
+        <name>index_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="36" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__NDArrayView_1a53d000d09edee388dd9a8e2f07be9a70" prot="public" static="no">
+        <type><ref refid="classhops_1_1MHO__BidirectionalIndexedIterator" kindref="compound">MHO_BidirectionalIndexedIterator</ref>&lt; XValueType, RANK &gt;</type>
+        <definition>using hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::iterator =  MHO_BidirectionalIndexedIterator&lt; XValueType, RANK &gt;</definition>
+        <argsstring></argsstring>
+        <name>iterator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="473" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="473" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__NDArrayView_1af357d0685eac608232444c9dd48f5a02" prot="public" static="no">
+        <type>std::integral_constant&lt; std::size_t, RANK &gt;</type>
+        <definition>typedef std::integral_constant&lt; std::size_t, RANK &gt; hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::rank</definition>
+        <argsstring></argsstring>
+        <name>rank</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="37" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__NDArrayView_1ac6d75add4788ad40f13139f0ee634f62" prot="public" static="no">
+        <type>XValueType</type>
+        <definition>using hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::value_type =  XValueType</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__NDArrayView_1a1fc6e41ea41491f85fcd699c94b3039f" prot="protected" static="no" mutable="no">
+        <type>XValueType *</type>
+        <definition>XValueType* hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::fDataPtr</definition>
+        <argsstring></argsstring>
+        <name>fDataPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="436" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="436" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__NDArrayView_1a7e3e08f189b95d10f2d7540e8a767123" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref></type>
+        <definition>index_type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::fDims</definition>
+        <argsstring></argsstring>
+        <name>fDims</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="437" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="437" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__NDArrayView_1ac9c6baa926cf3dd1210d6b6fda2b2158" prot="protected" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::fSize</definition>
+        <argsstring></argsstring>
+        <name>fSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="439" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="439" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__NDArrayView_1afd2b7f71b7f8ac33c74aec97995b383a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref></type>
+        <definition>index_type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::fStrides</definition>
+        <argsstring></argsstring>
+        <name>fStrides</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="438" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="438" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__NDArrayView_1a27eb5f20a722704b8ad5ac2b355757f9" prot="protected" static="no" mutable="yes">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref></type>
+        <definition>index_type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::fTmp</definition>
+        <argsstring></argsstring>
+        <name>fTmp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="440" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="440" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1ae79fab09d22531898a53303ee760a407" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::MHO_NDArrayView</definition>
+        <argsstring>(const MHO_NDArrayView &amp;obj)</argsstring>
+        <name>MHO_NDArrayView</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="42" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a21796a00f9ed01c52458f42e383978a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::MHO_NDArrayView</definition>
+        <argsstring>(XValueType *ptr, const std::size_t *dim, const std::size_t *strides)</argsstring>
+        <name>MHO_NDArrayView</name>
+        <param>
+          <type>XValueType *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>strides</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1ae5bde1843d580cff1d09e1efb6a98a84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::~MHO_NDArrayView</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_NDArrayView</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="45" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a9bd80066ad82e9c8ec1a3fe3d4cf1826" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>XIndexTypeS</declname>
+            <defname>XIndexTypeS</defname>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(sizeof...(XIndexTypeS)==RANK), XValueType &amp; &gt;::type</type>
+        <definition>std::enable_if&lt; (sizeof...(XIndexTypeS) == RANK), XValueType&amp; &gt;::type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::at</definition>
+        <argsstring>(XIndexTypeS... idx)</argsstring>
+        <name>at</name>
+        <param>
+          <type>XIndexTypeS...</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classhops_1_1MHO__NDArrayView_1a9bd80066ad82e9c8ec1a3fe3d4cf1826" kindref="member">at()</ref>: same as operator(...) but with bounds checking with bounds checking </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>varargs The variable arguments (integers) representing the data element indexes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the element at the specified indexes,throws exception if it doesn&apos;t exist </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="207" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="207" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a2c8095e46675895db874774a293f3e18" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>XIndexTypeS</declname>
+            <defname>XIndexTypeS</defname>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(sizeof...(XIndexTypeS)==RANK), const XValueType &amp; &gt;::type</type>
+        <definition>std::enable_if&lt; (sizeof...(XIndexTypeS) == RANK), const XValueType&amp; &gt;::type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::at</definition>
+        <argsstring>(XIndexTypeS... idx) const</argsstring>
+        <name>at</name>
+        <param>
+          <type>XIndexTypeS...</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para><ref refid="classhops_1_1MHO__NDArrayView_1a9bd80066ad82e9c8ec1a3fe3d4cf1826" kindref="member">at()</ref>: same as const operator(...) but with bounds checking with bounds checking </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>varargs The variable arguments (integers) representing the data element indexes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a const reference to element at the specified indexes, throws exception if it doesn&apos;t exist </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="228" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="228" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a69caf4ce7e37bd6bf0a750af92768660" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a53d000d09edee388dd9a8e2f07be9a70" kindref="member">iterator</ref></type>
+        <definition>iterator hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="476" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="476" bodyend="476"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1af6a1461524c3f8f4ff932002f0209a7a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1ac19bd2f6226d1c526c14f1eddde2045e" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="485" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="485" bodyend="485"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1abe145c839a89fa3f63212a08640ca42e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1ac19bd2f6226d1c526c14f1eddde2045e" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="487" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="487" bodyend="487"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1aa1c2bac861e9d877c2af825d517c211d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::CheckIndexValidity</definition>
+        <argsstring>(const index_type &amp;idx) const</argsstring>
+        <name>CheckIndexValidity</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref> &amp;</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="420" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="420" bodyend="423"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1aaab5223cd051e957f38ba9db8c43cd8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1ac19bd2f6226d1c526c14f1eddde2045e" kindref="member">const_iterator</ref></type>
+        <definition>const_iterator hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::citerator_at</definition>
+        <argsstring>(std::size_t offset) const</argsstring>
+        <name>citerator_at</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="489" column="24" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="489" bodyend="492"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a59a3a80d9b758dc055e8d9898efa7d58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> *</type>
+        <definition>MHO_NDArrayView* hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::Clone</definition>
+        <argsstring>()</argsstring>
+        <name>Clone</name>
+        <briefdescription>
+<para>clone functionality - Creates a deep copy of this <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>A new <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> instance containing the same data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="52" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a58121afef92f2266baf131ae058fc8c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::Copy</definition>
+        <argsstring>(const MHO_NDArrayView &amp;rhs)</argsstring>
+        <name>Copy</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>copy functionality, calling array view must have same shape as rhs </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref>&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="59" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1aa684d87560712586626a09a3d45063f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a53d000d09edee388dd9a8e2f07be9a70" kindref="member">iterator</ref></type>
+        <definition>iterator hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="478" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="478" bodyend="478"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a97f074d50ef687d891cf87b499d33bb0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetDimension</definition>
+        <argsstring>(std::size_t idx) const</argsstring>
+        <name>GetDimension</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Getter for a single dimension dimension. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>value of the specified (idx) dimension </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1abe220bb1aa56d516c13200d38abdb3da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref></type>
+        <definition>index_type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetDimensionArray</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDimensionArray</name>
+        <briefdescription>
+<para>get the dimensions/shape of the array as std::array </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>index_type&amp;: Reference to the dimension array </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="127" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a924398dfbae0771c7c04b37fb2a46a70" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t *</type>
+        <definition>const std::size_t* hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetDimensions</definition>
+        <argsstring>() const</argsstring>
+        <name>GetDimensions</name>
+        <briefdescription>
+<para>get the dimensions/shape of the array </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to an array of std::size_t representing the dimensions </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="107" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a8d13a00fe66086e216edf34af0cafd1b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetDimensions</definition>
+        <argsstring>(std::size_t *dim) const</argsstring>
+        <name>GetDimensions</name>
+        <param>
+          <type>std::size_t *</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+<para>get the dimensions/shape of the array </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to std::size_t array </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="114" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="114" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a11f433c844b3bd5efcad1fcdf55c8c56" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref></type>
+        <definition>index_type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetIndicesForOffset</definition>
+        <argsstring>(std::size_t offset)</argsstring>
+        <name>GetIndicesForOffset</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+<para>invert (memory) offset into array to indexes of the associated element </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="289" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="289" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a6417f7cbb2aba63def0cda75aa7dae19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetOffsetForIndices</definition>
+        <argsstring>(const std::size_t *index)</argsstring>
+        <name>GetOffsetForIndices</name>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>compute (memory) offset into array from a set of indexes </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="281" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="281" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1afea3a2cbb09d579b7a26d0d5c4d408c5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetRank</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRank</name>
+        <briefdescription>
+<para>Getter for rank of the array view. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::size_t representing the rank (total size) of the array </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="93" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="93" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1aed8484172c0afe8b3b82c7b900f64282" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetSize</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSize</name>
+        <briefdescription>
+<para>get the total size of the array view </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current size as std::size_t. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="100" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1abd5c859bb4670bb8efc64b83b7b97147" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetStride</definition>
+        <argsstring>(std::size_t idx) const</argsstring>
+        <name>GetStride</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>Getter for stride at index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>stride of the dimensions specified by idx. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="170" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="170" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a1eed43ec3f63e9ee7d4c1fe18eac895c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref></type>
+        <definition>index_type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetStrideArray</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStrideArray</name>
+        <briefdescription>
+<para>Getter for stride array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>index_type: the stride array </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="162" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="162" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a01625d2c550a2627ae4ea553bc5a2773" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const std::size_t *</type>
+        <definition>const std::size_t* hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetStrides</definition>
+        <argsstring>() const</argsstring>
+        <name>GetStrides</name>
+        <briefdescription>
+<para>get element strides </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>get the array of strides for the array </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="142" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="142" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1af1bd7d6d9eb5142f056203c0249c4400" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::GetStrides</definition>
+        <argsstring>(std::size_t *strd) const</argsstring>
+        <name>GetStrides</name>
+        <param>
+          <type>std::size_t *</type>
+          <declname>strd</declname>
+        </param>
+        <briefdescription>
+<para>Getter for strides array (fills passed array) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>strd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t*) pointer to an array of size RANK </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="149" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="149" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1ad14c82b3d2268f6a6036851d03da0ed7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView_1a53d000d09edee388dd9a8e2f07be9a70" kindref="member">iterator</ref></type>
+        <definition>iterator hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::iterator_at</definition>
+        <argsstring>(std::size_t offset)</argsstring>
+        <name>iterator_at</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="480" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="480" bodyend="483"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a2b264cd69790319171cb1443304d039f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>XIndexTypeS</declname>
+            <defname>XIndexTypeS</defname>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(sizeof...(XIndexTypeS)==RANK), XValueType &amp; &gt;::type</type>
+        <definition>std::enable_if&lt; (sizeof...(XIndexTypeS) == RANK), XValueType&amp; &gt;::type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator()</definition>
+        <argsstring>(XIndexTypeS... idx)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>XIndexTypeS...</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>access operator, accepts multiple indices (,,...,) but does no bounds checking </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>varargs The variable arguments (integers) representing the data element indexes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the element at the specified indexes </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="180" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="180" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1aecb009a04e444716026e6b0d4f6c46b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>XIndexTypeS</declname>
+            <defname>XIndexTypeS</defname>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(sizeof...(XIndexTypeS)==RANK), const XValueType &amp; &gt;::type</type>
+        <definition>std::enable_if&lt; (sizeof...(XIndexTypeS) == RANK), const XValueType&amp; &gt;::type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator()</definition>
+        <argsstring>(XIndexTypeS... idx) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>XIndexTypeS...</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+<para>const reference access operator, accepts multiple indices (,,...,) but does no bounds checking </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>uses std::enable_if to do a compile-time check that the number of arguments is the same as the rank of the array <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>varargs The variable arguments (integers) representing the data element indexes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a const reference to element at the specified indexes </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="194" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="194" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a1021f5f68c77db855393bc85ccb0c19e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+        <definition>MHO_NDArrayView&amp; hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator*=</definition>
+        <argsstring>(const MHO_NDArrayView &amp;anArray)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+          <declname>anArray</declname>
+        </param>
+        <briefdescription>
+<para>operator*= in place point-wise multiplication by another array </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="357" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="357" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a264bbec8539d5d2a8ed55610f41745ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_same&lt; XValueType, T &gt;::<ref refid="structvalue" kindref="compound">value</ref> or std::is_integral&lt; T &gt;::<ref refid="structvalue" kindref="compound">value</ref> or std::is_floating_point&lt; T &gt;::<ref refid="structvalue" kindref="compound">value</ref>, <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp; &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_same&lt; XValueType, T &gt;::value or std::is_integral&lt; T &gt;::value or std::is_floating_point&lt; T &gt;::value, MHO_NDArrayView&amp; &gt;::type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator*=</definition>
+        <argsstring>(T aScalar)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>T</type>
+          <declname>aScalar</declname>
+        </param>
+        <briefdescription>
+<para>operator*= in place multiplication by a scalar factor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="307" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="307" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1aaf7fed5e7ef20ea3138a3efb0264d0a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+        <definition>MHO_NDArrayView&amp; hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator+=</definition>
+        <argsstring>(const MHO_NDArrayView &amp;anArray)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+          <declname>anArray</declname>
+        </param>
+        <briefdescription>
+<para>operator+= in place point-wise addition by another array </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="379" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="379" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a50210e1d85ec10ed52753df85f9a14ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_same&lt; XValueType, T &gt;::<ref refid="structvalue" kindref="compound">value</ref> or std::is_integral&lt; T &gt;::<ref refid="structvalue" kindref="compound">value</ref> or std::is_floating_point&lt; T &gt;::<ref refid="structvalue" kindref="compound">value</ref>, <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp; &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_same&lt; XValueType, T &gt;::value or std::is_integral&lt; T &gt;::value or std::is_floating_point&lt; T &gt;::value, MHO_NDArrayView&amp; &gt;::type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator+=</definition>
+        <argsstring>(T aScalar)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>T</type>
+          <declname>aScalar</declname>
+        </param>
+        <briefdescription>
+<para>operator+= in place addition by a scalar amount </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="325" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="325" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1ad3f2ab803d66478935f19162fad0be3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+        <definition>MHO_NDArrayView&amp; hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator-=</definition>
+        <argsstring>(const MHO_NDArrayView &amp;anArray)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+          <declname>anArray</declname>
+        </param>
+        <briefdescription>
+<para>operator-= in place point-wise subtraction by another array </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="401" column="32" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="401" bodyend="418"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a2320bcef22bf95b34b1b113907475a59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt; std::is_same&lt; XValueType, T &gt;::<ref refid="structvalue" kindref="compound">value</ref> or std::is_integral&lt; T &gt;::<ref refid="structvalue" kindref="compound">value</ref> or std::is_floating_point&lt; T &gt;::<ref refid="structvalue" kindref="compound">value</ref>, <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp; &gt;::type</type>
+        <definition>std::enable_if&lt; std::is_same&lt; XValueType, T &gt;::value or std::is_integral&lt; T &gt;::value or std::is_floating_point&lt; T &gt;::value, MHO_NDArrayView&amp; &gt;::type hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator-=</definition>
+        <argsstring>(T aScalar)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>T</type>
+          <declname>aScalar</declname>
+        </param>
+        <briefdescription>
+<para>operator-= in place subtraction by a scalar amount </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="343" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="343" bodyend="352"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a194f37e9ee5ae992107f5de8dc355a87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+        <definition>MHO_NDArrayView&amp; hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::operator=</definition>
+        <argsstring>(const MHO_NDArrayView &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="243" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="243" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a88cd480b47bf9b96a47913b04549ab37" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::SetArray</definition>
+        <argsstring>(const XValueType &amp;obj)</argsstring>
+        <name>SetArray</name>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>set all elements in the array to a certain value </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="255" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="255" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1ab2e0aa69815e4bcf72df6f86903dff71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>XValueType &amp;</type>
+        <definition>XValueType&amp; hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::ValueAt</definition>
+        <argsstring>(const index_type &amp;idx)</argsstring>
+        <name>ValueAt</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref> &amp;</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="425" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="425" bodyend="428"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a3cf7bffdacd985817e4e594b9cbca121" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const XValueType &amp;</type>
+        <definition>const XValueType&amp; hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::ValueAt</definition>
+        <argsstring>(const index_type &amp;idx) const</argsstring>
+        <name>ValueAt</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" kindref="member">index_type</ref> &amp;</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="430" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="430" bodyend="433"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a775e272157870b9b8e97f83482151604" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::ZeroArray</definition>
+        <argsstring>()</argsstring>
+        <name>ZeroArray</name>
+        <briefdescription>
+<para>set all elements in the array to zero </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="268" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="268" bodyend="276"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayView_1a677d7680e38fff053d2dffeb818be183" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayView&lt; XValueType, RANK &gt;::Construct</definition>
+        <argsstring>(XValueType *ptr, const std::size_t *dim, const std::size_t *strides)</argsstring>
+        <name>Construct</name>
+        <param>
+          <type>XValueType *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>strides</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="445" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="445" bodyend="469"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classhops_1_1MHO__NDArrayView" kindref="compound">MHO_NDArrayView</ref> is a class to represent a view (slice) of a n-dimensional array Thu 13 Aug 2020 02:53:11 PM EDT. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Mar 28 10:47:46 2022 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>size_t</label>
+      </node>
+      <node id="2">
+        <label>std::array&lt; std::size_t, RANK &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_NDArrayView&lt; XValueType, RANK &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayView"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fDims</edgelabel>
+          <edgelabel>fStrides</edgelabel>
+          <edgelabel>fTmp</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fSize</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fDataPtr</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>uint64_t</label>
+      </node>
+      <node id="5">
+        <label>XValueType *</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" line="32" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayView.hh" bodystart="33" bodyend="493"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__NDArrayView_1a9bd80066ad82e9c8ec1a3fe3d4cf1826" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a2c8095e46675895db874774a293f3e18" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a69caf4ce7e37bd6bf0a750af92768660" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>begin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1af6a1461524c3f8f4ff932002f0209a7a" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>cbegin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1abe145c839a89fa3f63212a08640ca42e" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>cend</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1aa1c2bac861e9d877c2af825d517c211d" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>CheckIndexValidity</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1aaab5223cd051e957f38ba9db8c43cd8b" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>citerator_at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a59a3a80d9b758dc055e8d9898efa7d58" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>Clone</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ac19bd2f6226d1c526c14f1eddde2045e" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>const_iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a677d7680e38fff053d2dffeb818be183" prot="private" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>Construct</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a58121afef92f2266baf131ae058fc8c7" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>Copy</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1aa684d87560712586626a09a3d45063f5" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>end</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a1fc6e41ea41491f85fcd699c94b3039f" prot="protected" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>fDataPtr</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a7e3e08f189b95d10f2d7540e8a767123" prot="protected" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>fDims</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ac9c6baa926cf3dd1210d6b6fda2b2158" prot="protected" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>fSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1afd2b7f71b7f8ac33c74aec97995b383a" prot="protected" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>fStrides</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a27eb5f20a722704b8ad5ac2b355757f9" prot="protected" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>fTmp</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a97f074d50ef687d891cf87b499d33bb0" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetDimension</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1abe220bb1aa56d516c13200d38abdb3da" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetDimensionArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a924398dfbae0771c7c04b37fb2a46a70" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetDimensions</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a8d13a00fe66086e216edf34af0cafd1b" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetDimensions</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a11f433c844b3bd5efcad1fcdf55c8c56" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetIndicesForOffset</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a6417f7cbb2aba63def0cda75aa7dae19" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetOffsetForIndices</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1afea3a2cbb09d579b7a26d0d5c4d408c5" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetRank</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1aed8484172c0afe8b3b82c7b900f64282" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1abd5c859bb4670bb8efc64b83b7b97147" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetStride</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a1eed43ec3f63e9ee7d4c1fe18eac895c" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetStrideArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a01625d2c550a2627ae4ea553bc5a2773" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetStrides</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1af1bd7d6d9eb5142f056203c0249c4400" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>GetStrides</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a959f679e26b95743e2f0b19519eaa834" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>index_type</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a53d000d09edee388dd9a8e2f07be9a70" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ad14c82b3d2268f6a6036851d03da0ed7" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>iterator_at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a21796a00f9ed01c52458f42e383978a0" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>MHO_NDArrayView</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ae79fab09d22531898a53303ee760a407" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>MHO_NDArrayView</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a2b264cd69790319171cb1443304d039f" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1aecb009a04e444716026e6b0d4f6c46b4" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a264bbec8539d5d2a8ed55610f41745ca" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator*=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a1021f5f68c77db855393bc85ccb0c19e" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator*=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a50210e1d85ec10ed52753df85f9a14ab" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator+=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1aaf7fed5e7ef20ea3138a3efb0264d0a8" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator+=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a2320bcef22bf95b34b1b113907475a59" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator-=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ad3f2ab803d66478935f19162fad0be3b" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator-=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a194f37e9ee5ae992107f5de8dc355a87" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1af357d0685eac608232444c9dd48f5a02" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>rank</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a88cd480b47bf9b96a47913b04549ab37" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>SetArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ac6d75add4788ad40f13139f0ee634f62" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>value_type</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ab2e0aa69815e4bcf72df6f86903dff71" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>ValueAt</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a3cf7bffdacd985817e4e594b9cbca121" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>ValueAt</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1a775e272157870b9b8e97f83482151604" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayView</scope><name>ZeroArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayView_1ae5bde1843d580cff1d09e1efb6a98a84" prot="public" virt="virtual"><scope>hops::MHO_NDArrayView</scope><name>~MHO_NDArrayView</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

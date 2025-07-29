@@ -1,0 +1,858 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__EstimatePCManual" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_EstimatePCManual</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__InspectingOperator" prot="public" virt="non-virtual">hops::MHO_InspectingOperator&lt; visibility_type &gt;</basecompoundref>
+    <includes refid="MHO__EstimatePCManual_8hh" local="no">MHO_EstimatePCManual.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1abd925954b2de4d94bae9892fefc94b5a" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>std::map&lt; std::string, int &gt; hops::MHO_EstimatePCManual::fChannelLabel2Index</definition>
+        <argsstring></argsstring>
+        <name>fChannelLabel2Index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="170" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1ae060c4c3ae77ebc74577a8f9d791bc6a" prot="private" static="no" mutable="no">
+        <type>std::map&lt; int, std::string &gt;</type>
+        <definition>std::map&lt; int, std::string &gt; hops::MHO_EstimatePCManual::fIndex2ChannelLabel</definition>
+        <argsstring></argsstring>
+        <name>fIndex2ChannelLabel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="171" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1a7d4927cfe3c052df670d22b114058449" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+        <definition>MHO_ParameterStore* hops::MHO_EstimatePCManual::fParameterStore</definition>
+        <argsstring></argsstring>
+        <name>fParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="106" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1a4b9448b149fe388412971432730a4f36" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehops_1ae84ae133e425a9e97ee17c8fa9f57a49" kindref="member">phasor_type</ref> *</type>
+        <definition>phasor_type* hops::MHO_EstimatePCManual::fPhasors</definition>
+        <argsstring></argsstring>
+        <name>fPhasors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="107" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1aa9f0e7d64c89b0162bc2cb572cd7a7f1" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref></type>
+        <definition>MHO_ParameterStore hops::MHO_EstimatePCManual::fPlotData</definition>
+        <argsstring></argsstring>
+        <name>fPlotData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="105" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1abb3bc3e4333f630cde1d7345b42d3912" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_EstimatePCManual::fRefStationMk4ID</definition>
+        <argsstring></argsstring>
+        <name>fRefStationMk4ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="163" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1a2e05c2e2f039e1158fc0a6e5249d36bc" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_EstimatePCManual::fRefStationPol</definition>
+        <argsstring></argsstring>
+        <name>fRefStationPol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="165" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1a022a0c138ff12df66fb975b8fc635b5c" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_EstimatePCManual::fRemStationMk4ID</definition>
+        <argsstring></argsstring>
+        <name>fRemStationMk4ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="162" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1a337e14441ba81879b9ca46b1a9c19588" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_EstimatePCManual::fRemStationPol</definition>
+        <argsstring></argsstring>
+        <name>fRemStationPol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="164" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1ae40773bd4b929d33463560c8e650230a" prot="private" static="no" mutable="no">
+        <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+        <definition>const visibility_type* hops::MHO_EstimatePCManual::fVisibilities</definition>
+        <argsstring></argsstring>
+        <name>fVisibilities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="109" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__EstimatePCManual_1a2388d222ecabb34b1febe3bd9747b56e" prot="private" static="no" mutable="no">
+        <type>const <ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref> *</type>
+        <definition>const weight_type* hops::MHO_EstimatePCManual::fWeights</definition>
+        <argsstring></argsstring>
+        <name>fWeights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="108" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a880b14e9dbb07fb058202fecb275b1d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_EstimatePCManual::MHO_EstimatePCManual</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_EstimatePCManual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="35" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a661e6553666e3a16eb8d3c9397daf955" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_EstimatePCManual::~MHO_EstimatePCManual</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_EstimatePCManual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="36" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a551dd3db69a1ae20c3d0279f4127a40d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::SetParameterStore</definition>
+        <argsstring>(MHO_ParameterStore *paramStore)</argsstring>
+        <name>SetParameterStore</name>
+        <param>
+          <type><ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> *</type>
+          <declname>paramStore</declname>
+        </param>
+        <briefdescription>
+<para>Setter for parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paramStore</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="57" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a74dc5b7b2d3f15be72b2c0e584cd4ca3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::SetPhasors</definition>
+        <argsstring>(phasor_type *phasors)</argsstring>
+        <name>SetPhasors</name>
+        <param>
+          <type><ref refid="namespacehops_1ae84ae133e425a9e97ee17c8fa9f57a49" kindref="member">phasor_type</ref> *</type>
+          <declname>phasors</declname>
+        </param>
+        <briefdescription>
+<para>Setter for visibility channel phasors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>phasors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input phasors of type phasor_type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="50" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a5c79d7be33b06680054a4ada1d934cbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::SetPlotData</definition>
+        <argsstring>(mho_json &amp;plot_data)</argsstring>
+        <name>SetPlotData</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>plot_data</declname>
+        </param>
+        <briefdescription>
+<para>Setter for plot data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>plot_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to an mho_json object containing plot data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="64" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1ae4aacd07a6a87cb1fbb1b38391166108" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::SetWeights</definition>
+        <argsstring>(const weight_type *weights)</argsstring>
+        <name>SetWeights</name>
+        <param>
+          <type>const <ref refid="namespacehops_1a74fe9c8c1d011d62f4fd08db2f915d01" kindref="member">weight_type</ref> *</type>
+          <declname>weights</declname>
+        </param>
+        <briefdescription>
+<para>Setter for weights. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input weights of type const weight_type* </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="43" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="43" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a7d5ca32e5151601b6ad36c41bfcd5e57" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_EstimatePCManual::ExecuteImpl</definition>
+        <argsstring>(const visibility_type *in) override</argsstring>
+        <name>ExecuteImpl</name>
+        <reimplements refid="classhops_1_1MHO__InspectingOperator_1ae00b4e9b7c1fb8897e0ddf5e87867acc">ExecuteImpl</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Executes manual PC estimation using input visibility data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer containing visibility data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Always returns true. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="83" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="69" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a9b47c443f5fb182cad453b5b6099bd5e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_EstimatePCManual::InitializeImpl</definition>
+        <argsstring>(const visibility_type *in) override</argsstring>
+        <name>InitializeImpl</name>
+        <reimplements refid="classhops_1_1MHO__InspectingOperator_1aded8287bb457abddd135814ea95c417d">InitializeImpl</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes implementation using input visibility type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer for initialization </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="74" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="74" bodyend="74"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a1e24f564237948e1e1e0ef39b6e76839" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::adj_delays</definition>
+        <argsstring>(double sbd_max, double *sbd, double *esd, double delta_delay, int first, int final, int is_ref, int how)</argsstring>
+        <name>adj_delays</name>
+        <param>
+          <type>double</type>
+          <declname>sbd_max</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>sbd</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>esd</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>delta_delay</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>final</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>is_ref</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>how</declname>
+        </param>
+        <briefdescription>
+<para>Adjusts delays for Single Band Delay (SBD) and Effective Single Band Delay (ESBD) arrays based on given parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sbd_max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum delay value for SBD </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sbd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of Single Band Delay values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>esd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of Effective Single Band Delay values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>delta_delay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Delay adjustment factor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>first</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting index for delay adjustment </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>final</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ending index for delay adjustment </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>is_ref</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(station) reference flag for delay adjustment </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>how</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Method flag for delay adjustment @detail This routine adjusts delays according to the method specified in &apos;how&apos;: 0x02: use median channel SBD 0x04: average channel SBD 0x08: use total SBD channel 0x10: use original SBD values 0x20: use heuristics to discard outliers </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="143" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="503" bodyend="597"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a1e4fe779e5a60aa92e71df4066235d93" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::est_delays</definition>
+        <argsstring>(int is_ref, int how)</argsstring>
+        <name>est_delays</name>
+        <param>
+          <type>int</type>
+          <declname>is_ref</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>how</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and adjusts delays for fringe estimation based on reference station and delay modes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>is_ref</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether to use reference station (true) or remote station (false). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>how</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bitmask specifying delay calculation method (see adj_delays() ) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="151" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="605" bodyend="744"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a74cb13654831b0e8b3d28cd19f1c58ea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::est_offset</definition>
+        <argsstring>(int is_ref)</argsstring>
+        <name>est_offset</name>
+        <param>
+          <type>int</type>
+          <declname>is_ref</declname>
+        </param>
+        <briefdescription>
+<para>Calculates export overall phase offset (pc_phase_offset_?) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>is_ref</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether to use reference or remote station. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="157" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="748" bodyend="810"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1aebefedbda4a53ce27b293dd7c8854b42" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::est_pc_manual</definition>
+        <argsstring>(int mode)</argsstring>
+        <name>est_pc_manual</name>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>executes estimation of manual phase (and/or delay) corrections </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Mode dictating estimation method </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="116" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="78" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a0e20312f2e1aa4c25dd3a0f79f545b89" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::est_phases</definition>
+        <argsstring>(int is_ref, int keep)</argsstring>
+        <name>est_phases</name>
+        <param>
+          <type>int</type>
+          <declname>is_ref</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>keep</declname>
+        </param>
+        <briefdescription>
+<para>Estimates phases for reference or remote station with optional phase bias and displays messages. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>is_ref</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether to estimate phases on reference (true) or remote station (false) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>keep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether to keep phase bias </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="123" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="275" bodyend="493"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a4b4bdb03106709522aedb4ad0b54fc3e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::fill_sbd</definition>
+        <argsstring>(std::vector&lt; std::string &gt; &amp;ch_labels, std::vector&lt; double &gt; &amp;sbd)</argsstring>
+        <name>fill_sbd</name>
+        <param>
+          <type>std::vector&lt; std::string &gt; &amp;</type>
+          <declname>ch_labels</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>sbd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="160" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="244" bodyend="270"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a64141cad57d05d71ac4c6b09c037215e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_EstimatePCManual::get_manual_delayoff</definition>
+        <argsstring>(int is_remote, int channel_idx, std::string pol)</argsstring>
+        <name>get_manual_delayoff</name>
+        <param>
+          <type>int</type>
+          <declname>is_remote</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channel_idx</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns manual delay offset for a given channel and polarization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>is_remote</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether the current station is the remote station (true) or reference station (false). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>channel_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the channel for which to calculate the phase calibration. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Polarization string (&apos;L&apos; or &apos;R&apos;, &apos;X&apos; or &apos;Y&apos;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Calculated manual delay offset as a double. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="103" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="208" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a776d518d99afdc090a0b4e4ad2847301" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double hops::MHO_EstimatePCManual::get_manual_phasecal</definition>
+        <argsstring>(int is_remote, int channel_idx, std::string pol)</argsstring>
+        <name>get_manual_phasecal</name>
+        <param>
+          <type>int</type>
+          <declname>is_remote</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>channel_idx</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+<para>Calculates and returns manual phase calibration for a given channel and polarization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>is_remote</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether the current station is the remote station (true) or reference station (false). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>channel_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the channel for which to calculate the phase calibration. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Polarization string (&apos;L&apos; or &apos;R&apos;, &apos;X&apos; or &apos;Y&apos;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Calculated manual phase calibration in degrees. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="94" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="173" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__EstimatePCManual_1a201a3e208132cb3f9d9ec0921d3d217b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_EstimatePCManual::masthead</definition>
+        <argsstring>(int mode, std::string root_file, int first_ch, int final_ch)</argsstring>
+        <name>masthead</name>
+        <param>
+          <type>int</type>
+          <declname>mode</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>root_file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>first_ch</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>final_ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="158" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_EstimatePCManual.cc" bodystart="813" bodyend="847"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__EstimatePCManual" kindref="compound">MHO_EstimatePCManual</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed May 29 03:40:50 PM EDT 2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_InspectingOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__InspectingOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_EstimatePCManual</label>
+        <link refid="classhops_1_1MHO__EstimatePCManual"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_InspectingOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__InspectingOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_EstimatePCManual</label>
+        <link refid="classhops_1_1MHO__EstimatePCManual"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_EstimatePCManual.hh" bodystart="33" bodyend="172"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a1e24f564237948e1e1e0ef39b6e76839" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>adj_delays</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a1e4fe779e5a60aa92e71df4066235d93" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>est_delays</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a74cb13654831b0e8b3d28cd19f1c58ea" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>est_offset</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1aebefedbda4a53ce27b293dd7c8854b42" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>est_pc_manual</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a0e20312f2e1aa4c25dd3a0f79f545b89" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>est_phases</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a2b4643b0fa8840e2cd9c563ff94b7b09" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a7d5ca32e5151601b6ad36c41bfcd5e57" prot="protected" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>ExecuteImpl</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a5f6eb3f05738ed013a1ae555399caa07" prot="protected" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fArg</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1abd925954b2de4d94bae9892fefc94b5a" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fChannelLabel2Index</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a4b4bdb03106709522aedb4ad0b54fc3e" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fill_sbd</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1ae060c4c3ae77ebc74577a8f9d791bc6a" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fIndex2ChannelLabel</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a7d4927cfe3c052df670d22b114058449" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fParameterStore</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a4b9448b149fe388412971432730a4f36" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fPhasors</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1aa9f0e7d64c89b0162bc2cb572cd7a7f1" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fPlotData</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1abb3bc3e4333f630cde1d7345b42d3912" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fRefStationMk4ID</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a2e05c2e2f039e1158fc0a6e5249d36bc" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fRefStationPol</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a022a0c138ff12df66fb975b8fc635b5c" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fRemStationMk4ID</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a337e14441ba81879b9ca46b1a9c19588" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fRemStationPol</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1ae40773bd4b929d33463560c8e650230a" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fVisibilities</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a2388d222ecabb34b1febe3bd9747b56e" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>fWeights</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a64141cad57d05d71ac4c6b09c037215e" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>get_manual_delayoff</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a776d518d99afdc090a0b4e4ad2847301" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>get_manual_phasecal</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1aee87234b1bfcec770ca95db0d527b6ab" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a9b47c443f5fb182cad453b5b6099bd5e" prot="protected" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>InitializeImpl</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a201a3e208132cb3f9d9ec0921d3d217b" prot="private" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>masthead</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a880b14e9dbb07fb058202fecb275b1d0" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>MHO_EstimatePCManual</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1ade9ff5dfb10fd46f60d4b05e388f52e6" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>MHO_InspectingOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a3cea8e96348fc6b912aaf73a39dc0812" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a551dd3db69a1ae20c3d0279f4127a40d" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>SetParameterStore</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a74dc5b7b2d3f15be72b2c0e584cd4ca3" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>SetPhasors</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a5c79d7be33b06680054a4ada1d934cbb" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>SetPlotData</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1ae4aacd07a6a87cb1fbb1b38391166108" prot="public" virt="non-virtual"><scope>hops::MHO_EstimatePCManual</scope><name>SetWeights</name></member>
+      <member refid="classhops_1_1MHO__EstimatePCManual_1a661e6553666e3a16eb8d3c9397daf955" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>~MHO_EstimatePCManual</name></member>
+      <member refid="classhops_1_1MHO__InspectingOperator_1a02d0f0c0080c0465abafb7594aa2d12c" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>~MHO_InspectingOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_EstimatePCManual</scope><name>~MHO_Operator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

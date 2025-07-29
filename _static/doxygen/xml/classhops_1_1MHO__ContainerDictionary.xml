@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ContainerDictionary" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ContainerDictionary</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__ClassIdentityMap" prot="public" virt="non-virtual">hops::MHO_ClassIdentityMap</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ContainerFileInterface" prot="public" virt="non-virtual">hops::MHO_ContainerFileInterface</derivedcompoundref>
+    <includes refid="MHO__ContainerDictionary_8hh" local="no">MHO_ContainerDictionary.hh</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerDictionary_1a7e895874e73e23d01a719010684b6110" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ContainerDictionary::MHO_ContainerDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ContainerDictionary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerDictionary.hh" line="30" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/src/MHO_ContainerDictionary.cc" bodystart="35" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ContainerDictionary_1a58644b41c40da33bb07a4d4c42508711" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ContainerDictionary::~MHO_ContainerDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ContainerDictionary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerDictionary.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerDictionary.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ContainerDictionary" kindref="compound">MHO_ContainerDictionary</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Apr 29 12:30:28 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__ContainerFileInterface"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_HDF5ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__HDF5ContainerFileInterface"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="12">
+        <label>size_t</label>
+      </node>
+      <node id="16">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="19">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>json</label>
+      </node>
+      <node id="11">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="13">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>int</label>
+      </node>
+      <node id="4">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>uint8_t</label>
+      </node>
+      <node id="17">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="6">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>char</label>
+      </node>
+      <node id="10">
+        <label>std::string</label>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerDictionary.hh" line="27" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ContainerDictionary.hh" bodystart="28" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1aacb4044308825b39e1f5267ba5b60464" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>AddClassType</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a0103c4975042d0957488ac71c9807d29" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>AddClassType</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a9ce28a29369978d3a129718baf7a910c" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>AddToMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1aa9593b215788c588c77f6781609b2465" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>fClassName2UUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a7c19c181ba151d9f18cadf93723061f3" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>fFactoryMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1dff8aca0d05dd0aff93a23c3952b6ce" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>fJSONConverterMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a4a3b31a0eaac82497f553cb73c05e3d3" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>fMD5Generator</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a2de36e66bf0a4e9d56b4729a56b55269" prot="protected" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>fUUID2ClassName</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ae11557634aed6caa84c4650da0f35a0d" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>GenerateContainerFromUUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a18722990995da99e0bfedbbae39ef67c" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>GetClassNameFromObject</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ab5fab332ff20bda9ff5cb2058af53933" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>GetClassNameFromUUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>GetUUIDFor</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1e04611ffbc80e9cce0fcaf26b3d9880" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>GetUUIDFromClassName</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1adb7d3b4cfa2b147704b58f8ad55d7d6a" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>IsTypePresent</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1adeb4c0465fb1605b42912194894bd1ec" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>MHO_ClassIdentityMap</name></member>
+      <member refid="classhops_1_1MHO__ContainerDictionary_1a7e895874e73e23d01a719010684b6110" prot="public" virt="non-virtual"><scope>hops::MHO_ContainerDictionary</scope><name>MHO_ContainerDictionary</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ac7bc672558d8f417c3ca2b709ea323b2" prot="public" virt="virtual"><scope>hops::MHO_ContainerDictionary</scope><name>~MHO_ClassIdentityMap</name></member>
+      <member refid="classhops_1_1MHO__ContainerDictionary_1a58644b41c40da33bb07a4d4c42508711" prot="public" virt="virtual"><scope>hops::MHO_ContainerDictionary</scope><name>~MHO_ContainerDictionary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

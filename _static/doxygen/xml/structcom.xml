@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structcom" kind="struct" language="C++" prot="public">
+    <compoundname>com</compoundname>
+    <includes refid="aedit_8h" local="no">aedit.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structcom_1a702a1ad03e4f75f47503299b9b4f139c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char com::arg1[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>arg1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="8" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcom_1ab26a9e067fc1a364792cef1187e867ab" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char com::arg2[256]</definition>
+        <argsstring>[256]</argsstring>
+        <name>arg2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="9" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcom_1ae4c9b7ae795b24e0f4e52218722a6dd4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char com::cmnd[50]</definition>
+        <argsstring>[50]</argsstring>
+        <name>cmnd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="7" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcom_1a202f9eb7c03638d4e3112712c4a6f6dc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short com::narg</definition>
+        <argsstring></argsstring>
+        <name>narg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="11" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structcom_1a8fb15ff2b0794a7c96c13cff2c1a33e3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char com::remarg[512]</definition>
+        <argsstring>[512]</argsstring>
+        <name>remarg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="10" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+      <node id="1">
+        <label>com</label>
+        <link refid="structcom"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>narg</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>arg1</edgelabel>
+          <edgelabel>arg2</edgelabel>
+          <edgelabel>cmnd</edgelabel>
+          <edgelabel>remarg</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" line="6" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/aedit.h" bodystart="6" bodyend="12"/>
+    <listofallmembers>
+      <member refid="structcom_1a702a1ad03e4f75f47503299b9b4f139c" prot="public" virt="non-virtual"><scope>com</scope><name>arg1</name></member>
+      <member refid="structcom_1ab26a9e067fc1a364792cef1187e867ab" prot="public" virt="non-virtual"><scope>com</scope><name>arg2</name></member>
+      <member refid="structcom_1ae4c9b7ae795b24e0f4e52218722a6dd4" prot="public" virt="non-virtual"><scope>com</scope><name>cmnd</name></member>
+      <member refid="structcom_1a202f9eb7c03638d4e3112712c4a6f6dc" prot="public" virt="non-virtual"><scope>com</scope><name>narg</name></member>
+      <member refid="structcom_1a8fb15ff2b0794a7c96c13cff2c1a33e3" prot="public" virt="non-virtual"><scope>com</scope><name>remarg</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_3236850d8b037e8ab5bc50d67a449e07" kind="dir">
+    <compoundname>difx2mark4</compoundname>
+    <innerdir refid="dir_0215534aa34c97be1cfe9bf0e2410bee">include</innerdir>
+    <innerdir refid="dir_52326d5a1d122211127cb51a03913880">src</innerdir>
+    <innerfile refid="difx2mark4_8c">difx2mark4.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="example3_8py" kind="file" language="Python">
+    <compoundname>example3.py</compoundname>
+    <innernamespace refid="namespaceexample3">example3</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespaceexample3" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>pyMHO_Containers</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>numpy<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>np</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>scipy.stats</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>vpal<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>utility</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespaceexample3_1a2ad9372584a44b1b77099623d1476365" kindref="member">generate_pcphases</ref>(fringe_data_interface):</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#keep<sp/>in<sp/>mind<sp/>that<sp/>&apos;plot_data&apos;<sp/>is<sp/>only<sp/>available<sp/>in<sp/>the<sp/>&apos;finalize&apos;<sp/>step<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#so<sp/>this<sp/>function<sp/>must<sp/>be<sp/>called<sp/>as<sp/>a<sp/>&apos;python_finalize&apos;<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>plot_data<sp/>=<sp/>fringe_data_interface.get_plot_data()</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>param_interface_obj<sp/>=<sp/>fringe_data_interface.get_parameter_store()</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#get<sp/>the<sp/>reference<sp/>station<sp/>mk4id<sp/>(this<sp/>function<sp/>always<sp/>generates<sp/>pc_phases)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#as<sp/>if<sp/>they<sp/>were<sp/>for<sp/>the<sp/>reference_station</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>ref_station_id<sp/>=<sp/>param_interface_obj.get_by_path(</highlight><highlight class="stringliteral">&quot;/ref_station/mk4id&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#get<sp/>channel<sp/>label<sp/>and<sp/>phase</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>ch_labels<sp/>=<sp/>plot_data[</highlight><highlight class="stringliteral">&quot;PLOT_INFO&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;#Ch&quot;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>ch_phase<sp/>=<sp/>plot_data[</highlight><highlight class="stringliteral">&quot;PLOT_INFO&quot;</highlight><highlight class="normal">][</highlight><highlight class="stringliteral">&quot;Phase&quot;</highlight><highlight class="normal">]</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>print(&quot;ch_labels&quot;,<sp/>ch_labels)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>print(&quot;ch_phase&quot;,<sp/>ch_phase)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>nchan<sp/>=<sp/>len(ch_labels)<sp/>-<sp/>1</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#actually<sp/>stored<sp/>in<sp/>the<sp/>type<sp/>210&apos;s<sp/>and<sp/>what<sp/>their<sp/>fourfit<sp/>names<sp/>are</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>phase_residuals<sp/>=<sp/>dict()</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>i<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>list(range(0,<sp/>nchan)):<sp/></highlight><highlight class="comment">#64<sp/>is<sp/>the<sp/>max<sp/>number<sp/>of<sp/>supported<sp/>channels<sp/>in<sp/>fourfit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chan_id<sp/>=<sp/>ch_labels[i]</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase_residuals[<sp/>chan_id<sp/>]<sp/>=<sp/>ch_phase[i]<sp/></highlight><highlight class="comment">#in<sp/>degrees</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#now<sp/>compute<sp/>the<sp/>phase<sp/>corrections</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>phase_corrections<sp/>=<sp/>phase_residuals.copy()</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>phase_list_proxy<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>channel_list<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>ch,<sp/>ch_phase<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>list(phase_corrections.items()):</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>channel_list.append(<sp/>ch<sp/>)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase_list_proxy.append(<sp/>-1.0*ch_phase<sp/>)<sp/></highlight><highlight class="comment">#invert<sp/>to<sp/>get<sp/>corrections<sp/>from<sp/>residuals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#invert,<sp/>unwrap<sp/>and<sp/>remove<sp/>mean<sp/>phase</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#TODO<sp/>FIXME<sp/>--<sp/>the<sp/>next<sp/>3<sp/>lines<sp/>effectively<sp/>do<sp/>nothing,<sp/>we<sp/>have<sp/>no<sp/>need<sp/>to<sp/>unwrap</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>mean_phase<sp/>=<sp/>scipy.stats.circmean(<sp/>np.asarray(phase_list_proxy),<sp/>high=180.0,<sp/>low=-180.0)<sp/></highlight><highlight class="comment">#compute<sp/>circular<sp/>mean<sp/>phase</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#subtract<sp/>off<sp/>the<sp/>mean<sp/>and<sp/>limit<sp/>to<sp/>[-180,180)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>phase_list_proxy<sp/>=<sp/>[<sp/>utility.limit_periodic_quantity_to_range(<sp/>(x<sp/>-<sp/>mean_phase),<sp/>-180.0,<sp/>180.0<sp/>)<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>x<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>phase_list_proxy]</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#assign<sp/>the<sp/>corrections</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>i<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>list(range(0,<sp/>len(phase_list_proxy))):</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase_corrections[<sp/>channel_list[i]<sp/>]<sp/>=<sp/>phase_list_proxy[i]</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>chan_names<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>phase_list_str<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>elem<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>elem<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>channel_list:</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chan_names<sp/>+=<sp/>elem</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>phase_list_str<sp/>+=<sp/>str(round(phase_corrections[elem],2)<sp/>)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;if<sp/>station&quot;</highlight><highlight class="normal">,<sp/>ref_station_id,<sp/></highlight><highlight class="stringliteral">&quot;<sp/>pc_phases<sp/>&quot;</highlight><highlight class="normal">,<sp/>chan_names,<sp/>phase_list_str)</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/plugins/example3.py"/>
+  </compounddef>
+</doxygen>

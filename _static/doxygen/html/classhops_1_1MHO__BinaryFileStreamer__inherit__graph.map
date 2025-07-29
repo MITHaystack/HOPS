@@ -1,0 +1,5 @@
+<map id="hops::MHO_BinaryFileStreamer" name="hops::MHO_BinaryFileStreamer">
+<area shape="rect" id="node1" title="Class MHO_BinaryFileStreamer declare the concrete class which does the work for file streams." alt="" coords="91,95,295,121"/>
+<area shape="rect" id="node2" href="$classhops_1_1MHO__FileStreamer.html" title="Class MHO_FileStreamer." alt="" coords="5,13,173,39"/>
+<area shape="rect" id="node3" href="$classhops_1_1MHO__BinaryFileStreamerMultiType.html" title="Class MHO_BinaryFileStreamerMultiType declares a multi&#45;type streamer with a variadic template paramet..." alt="" coords="197,5,400,47"/>
+</map>

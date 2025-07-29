@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_db22b67ef289fa976c0b6e3af50d2f49" kind="dir">
+    <compoundname>vpal_module</compoundname>
+    <innerdir refid="dir_b9a3a34d44c76b66b342881f56b565b3">vpal</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/"/>
+  </compounddef>
+</doxygen>

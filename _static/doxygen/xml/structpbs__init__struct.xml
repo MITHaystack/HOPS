@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpbs__init__struct" kind="struct" language="C++" prot="public">
+    <compoundname>pbs_init_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpbs__init__struct_1abb11798b238fcb884b56ea13c209b395" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char pbs_init_struct::cHost[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>cHost</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="121" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpbs__init__struct_1afc5c0a8e4fe65e9ca87ba7e61c5c4b8d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdrive__init__struct" kindref="compound">drive_init_struct</ref></type>
+        <definition>struct drive_init_struct pbs_init_struct::drive</definition>
+        <argsstring></argsstring>
+        <name>drive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="122" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpbs__init__struct_1a1712009db33f93858b3547998fd0f38a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structsu__connect__struct" kindref="compound">su_connect_struct</ref></type>
+        <definition>struct su_connect_struct pbs_init_struct::su_connect</definition>
+        <argsstring></argsstring>
+        <name>su_connect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="122" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpbs__init__struct_1ac33c1bd54463df71350555ac64ec3c29" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short pbs_init_struct::SU_ID</definition>
+        <argsstring></argsstring>
+        <name>SU_ID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="120" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpbs__init__struct_1a1f6aca66e06b05feac59d30fed70b52d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structSUCC__port__struct" kindref="compound">SUCC_port_struct</ref></type>
+        <definition>struct SUCC_port_struct pbs_init_struct::succ_port</definition>
+        <argsstring></argsstring>
+        <name>succ_port</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="122" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpbs__init__struct_1a12dc956fe5752f2707c759d217ea33b1" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float pbs_init_struct::tape_servo_interval</definition>
+        <argsstring></argsstring>
+        <name>tape_servo_interval</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="122" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpbs__init__struct_1a253c0e70090e696ac12376d5b238d35c" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtim__mon__struct" kindref="compound">tim_mon_struct</ref></type>
+        <definition>struct tim_mon_struct pbs_init_struct::timing_monitor</definition>
+        <argsstring></argsstring>
+        <name>timing_monitor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="122" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpbs__init__struct_1a8711640eea9be5d38690ae2866e46c32" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structTRM__config__struct" kindref="compound">TRM_config_struct</ref></type>
+        <definition>struct TRM_config_struct pbs_init_struct::TRM_config</definition>
+        <argsstring></argsstring>
+        <name>TRM_config</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="122" column="41" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="9">
+        <label>drive_init_struct</label>
+        <link refid="structdrive__init__struct"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>monitor_module</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>capstan_relative_diameter</edgelabel>
+          <edgelabel>tape_acceleration</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>computer_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>drive_type</edgelabel>
+          <edgelabel>nheads</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>vacuum</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mcb_addr_id</edgelabel>
+          <edgelabel>mcb_addr_start</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>headstack</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>DIM_connect</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="14">
+        <label>headstack_DIM_connect_struct</label>
+        <link refid="structheadstack__DIM__connect__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>eqlzr</edgelabel>
+          <edgelabel>headstack</edgelabel>
+          <edgelabel>parity</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>double</label>
+      </node>
+      <node id="10">
+        <label>moni_read_struct</label>
+        <link refid="structmoni__read__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>equalizer</edgelabel>
+          <edgelabel>track</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>bad_frame_struct</label>
+        <link refid="structbad__frame__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>CRC_error</edgelabel>
+          <edgelabel>PE_limit_exceeded</edgelabel>
+          <edgelabel>lost_sync</edgelabel>
+          <edgelabel>unexpected_sync</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>tim_mon_struct</label>
+        <link refid="structtim__mon__struct"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>maximum</edgelabel>
+          <edgelabel>minimum</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>switch_pos</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>measurement_name</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fail_action</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>su_connect_struct</label>
+        <link refid="structsu__connect__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>corr_segment</edgelabel>
+          <edgelabel>inputbd_chan_grp</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="12">
+        <label>headstack_parms_struct</label>
+        <link refid="structheadstack__parms__struct"/>
+        <childnode refid="13" relation="usage">
+          <edgelabel>param</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>SUCC_port_struct</label>
+        <link refid="structSUCC__port__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>DPU_port</edgelabel>
+          <edgelabel>console_port</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>server_envname</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>vacuum_struct</label>
+        <link refid="structvacuum__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>inches_of_H2O</edgelabel>
+          <edgelabel>setting</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRM_config_struct</label>
+        <link refid="structTRM__config__struct"/>
+        <childnode refid="13" relation="usage">
+          <edgelabel>parity_error_limit</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>mux1_1bit</edgelabel>
+          <edgelabel>mux1_2bit</edgelabel>
+          <edgelabel>mux2_1bit</edgelabel>
+          <edgelabel>mux2_2bit</edgelabel>
+          <edgelabel>mux4_1bit</edgelabel>
+          <edgelabel>mux4_2bit</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>invalid_frame_control</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>pbs_init_struct</label>
+        <link refid="structpbs__init__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>succ_port</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>tape_servo_interval</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>cHost</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>SU_ID</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>timing_monitor</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>su_connect</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>drive</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>TRM_config</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="118" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="119" bodyend="128"/>
+    <listofallmembers>
+      <member refid="structpbs__init__struct_1abb11798b238fcb884b56ea13c209b395" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>cHost</name></member>
+      <member refid="structpbs__init__struct_1afc5c0a8e4fe65e9ca87ba7e61c5c4b8d" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>drive</name></member>
+      <member refid="structpbs__init__struct_1a1712009db33f93858b3547998fd0f38a" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>su_connect</name></member>
+      <member refid="structpbs__init__struct_1ac33c1bd54463df71350555ac64ec3c29" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>SU_ID</name></member>
+      <member refid="structpbs__init__struct_1a1f6aca66e06b05feac59d30fed70b52d" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>succ_port</name></member>
+      <member refid="structpbs__init__struct_1a12dc956fe5752f2707c759d217ea33b1" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>tape_servo_interval</name></member>
+      <member refid="structpbs__init__struct_1a253c0e70090e696ac12376d5b238d35c" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>timing_monitor</name></member>
+      <member refid="structpbs__init__struct_1a8711640eea9be5d38690ae2866e46c32" prot="public" virt="non-virtual"><scope>pbs_init_struct</scope><name>TRM_config</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structd2m4__pcal__record" kind="struct" language="C++" prot="public">
+    <compoundname>d2m4_pcal_record</compoundname>
+    <includes refid="d2m4__pcal__record_8h" local="no">d2m4_pcal_record.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char d2m4_pcal_record::antenna[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>antenna</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="28" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double d2m4_pcal_record::mjd</definition>
+        <argsstring></argsstring>
+        <name>mjd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="29" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int d2m4_pcal_record::nchannels</definition>
+        <argsstring></argsstring>
+        <name>nchannels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="31" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int d2m4_pcal_record::ntones</definition>
+        <argsstring></argsstring>
+        <name>ntones</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structd2m4__pcal__phasor" kindref="compound">d2m4_pcal_phasor</ref> *</type>
+        <definition>struct d2m4_pcal_phasor* d2m4_pcal_record::phasors</definition>
+        <argsstring></argsstring>
+        <name>phasors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="33" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double d2m4_pcal_record::tint</definition>
+        <argsstring></argsstring>
+        <name>tint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="30" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>d2m4_pcal_record</label>
+        <link refid="structd2m4__pcal__record"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mjd</edgelabel>
+          <edgelabel>tint</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>antenna</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>phasors</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>nchannels</edgelabel>
+          <edgelabel>ntones</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>d2m4_pcal_phasor</label>
+        <link refid="structd2m4__pcal__phasor"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>polarization</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>dstr</edgelabel>
+          <edgelabel>frequency</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" line="26" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/include/d2m4_pcal_record.h" bodystart="27" bodyend="34"/>
+    <listofallmembers>
+      <member refid="structd2m4__pcal__record_1a43a4b1cea5ef3694a5ff8b4ac9418000" prot="public" virt="non-virtual"><scope>d2m4_pcal_record</scope><name>antenna</name></member>
+      <member refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" prot="public" virt="non-virtual"><scope>d2m4_pcal_record</scope><name>mjd</name></member>
+      <member refid="structd2m4__pcal__record_1a8c762a6b362025637a5a36363bfc1ee7" prot="public" virt="non-virtual"><scope>d2m4_pcal_record</scope><name>nchannels</name></member>
+      <member refid="structd2m4__pcal__record_1a502d44473b5e7b8575cab451bc919b47" prot="public" virt="non-virtual"><scope>d2m4_pcal_record</scope><name>ntones</name></member>
+      <member refid="structd2m4__pcal__record_1a2a3a607d265815e20c879f128ee88fef" prot="public" virt="non-virtual"><scope>d2m4_pcal_record</scope><name>phasors</name></member>
+      <member refid="structd2m4__pcal__record_1ae35254c72136098a769cc454d5733b36" prot="public" virt="non-virtual"><scope>d2m4_pcal_record</scope><name>tint</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Object: object_tags &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Operators" href="../operators/Operators.html" />
+    <link rel="prev" title="Data Object: pcal" href="PcalData.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../utilities/Utilities.html">Utilities</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Containers.html">Containers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Objects.html">Data Object Specification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VisibilityData.html">Data Object: <cite>visibilities</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="WeightData.html">Data Object: <cite>weights</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="StationData.html">Data Object: <cite>station_data</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="PcalData.html">Data Object: <cite>pcal</cite></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Object: <cite>object_tags</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-information">General Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tags">Tags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Containers.html">Containers</a></li>
+      <li class="breadcrumb-item active">Data Object: <cite>object_tags</cite></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/containers/ObjectTags.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-object-object-tags">
+<h1>Data Object: <cite>object_tags</cite><a class="headerlink" href="#data-object-object-tags" title="Link to this heading"></a></h1>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a> class is used as a means to attach arbitrary information to a separate object or collection of objects.
+The object collection associated with a particular object tag object is specified by a list of object unique identifiers (UUIDs) stored as strings.
+The objects with the associated UUIDs are generally contained in the same file, or if in memory, in the same <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>.
+The underlying type of the <code class="docutils literal notranslate"><span class="pre">MHO_ObjectTags</span></code> class is a <code class="docutils literal notranslate"><span class="pre">json</span></code> object provided by the external <code class="docutils literal notranslate"><span class="pre">nlohmann::json</span></code> library.</p>
+<section id="general-information">
+<h2>General Information<a class="headerlink" href="#general-information" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Class</strong>: <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ObjectTags.html">hops::MHO_ObjectTags</a></p></li>
+<li><p><strong>Class UUID</strong>: 330c5f9889eaa350f8955c6e709a536c</p></li>
+</ul>
+</section>
+<section id="tags">
+<h2>Tags<a class="headerlink" href="#tags" title="Link to this heading"></a></h2>
+<p>The object collection is referenced by a list of 128 bit object UUIDs. The object UUIDs are stored as hex-strings (e.g. “c159826f284e416985db47c926080274”)
+under a list object called <code class="docutils literal notranslate"><span class="pre">object_uuids</span></code>. The UUIDs stored here are also present in the object
+file keys (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__FileKey.html">hops::MHO_FileKey</a>) that precede the binary data of each respective object in a file. In memory objects
+can also be retrieved from the container store (<a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__ContainerStore.html">hops::MHO_ContainerStore</a>) using the same unique object UUID as a key.</p>
+<p>The meta-data tags (key:value pairs) that are associated with the object collection, can take on any
+nested structure that is available to the <code class="docutils literal notranslate"><span class="pre">json</span></code> format. However, the top level object which contains
+all such information is called <code class="docutils literal notranslate"><span class="pre">tags</span></code>. For example, in the <code class="docutils literal notranslate"><span class="pre">fourfit4</span></code> fringe output,
+much of the fringe-fitting parameters, and plotting data are stored in an <code class="docutils literal notranslate"><span class="pre">MHO_ObjectTags</span></code> object, under “/tags/parameters” and “/tags/plot_data”.
+A example portion of which looks like:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;class_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MHO_ObjectTags&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;class_uuid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;330c5f9889eaa350f8955c6e709a536c&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;object_uuids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;c159826f284e416985db47c926080274&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;cmdline&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;accounting&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;ap_per_seg&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="s2">&quot;fourfit4&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;-c&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;../../cf_3686_GEHSVY_pstokes&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;-P&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;XX&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;-b&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;GE&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;-m&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;-1&quot;</span><span class="p">,</span>
+<span class="w">                    </span><span class="s2">&quot;./&quot;</span>
+<span class="w">                </span><span class="p">],</span>
+<span class="w">                </span><span class="nt">&quot;baseline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GE&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;control_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../../cf_3686_GEHSVY_pstokes&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;disk_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;exclude_autos&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;first_plot_channel&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;frequency_group&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;?&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;message_level&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;polprod&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XX&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="err">...</span>
+<span class="w">                </span><span class="err">...</span>
+<span class="w">                </span><span class="err">...</span>
+<span class="w">        </span><span class="nt">&quot;plot_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;AP(sec)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;Amp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">4.555523059968371</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;AprioriAccel(us/s/s)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-2.351127226975069e-06</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;AprioriClock(usec)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">96.58727777</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;AprioriClockrate(us/s)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.238e-06</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;AprioriDelay(usec)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-426.7657403524763</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;AprioriRate(us/s)&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01546835364977025</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;BuildTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025:154:194416&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;ChannelsPlotted&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;a&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;b&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;c&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="err">...</span>
+<span class="w">                </span><span class="err">...</span>
+<span class="w">                </span><span class="err">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PcalData.html" class="btn btn-neutral float-left" title="Data Object: pcal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../operators/Operators.html" class="btn btn-neutral float-right" title="Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

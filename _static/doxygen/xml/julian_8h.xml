@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="julian_8h" kind="file" language="C++">
+    <compoundname>julian.h</compoundname>
+    <includes refid="time__float__type_8h" local="yes">time_float_type.h</includes>
+    <includedby refid="julian_8c" local="yes">julian.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>time_float_type.h</label>
+        <link refid="time__float__type_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>julian.h</label>
+        <link refid="julian_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops_config.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>julian.c</label>
+        <link refid="julian_8c"/>
+      </node>
+      <node id="1">
+        <label>julian.h</label>
+        <link refid="julian_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="julian_8h_1a306ba8e4c8ee6f935f573a118de824e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref></type>
+        <definition>HTLdbl atomin</definition>
+        <argsstring>()</argsstring>
+        <name>atomin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" line="11" column="15" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" declline="11" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="julian_8h_1a61fd6446f072d69af215be5f94a03992" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char **</type>
+        <definition>char** degdms</definition>
+        <argsstring>()</argsstring>
+        <name>degdms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" line="14" column="13" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" declline="14" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="julian_8h_1abcd47981b73e3dcb65ae75307671a98f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* jdstr</definition>
+        <argsstring>()</argsstring>
+        <name>jdstr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" line="17" column="13" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" declline="17" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="julian_8h_1ae09533a38bd5875e7fc74ddddb0119a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long int</type>
+        <definition>long int julday</definition>
+        <argsstring>(int y, int m, int d)</argsstring>
+        <name>julday</name>
+        <param>
+          <type>int</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" line="20" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" bodystart="396" bodyend="416" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" declline="20" declcolumn="17"/>
+      </memberdef>
+      <memberdef kind="function" id="julian_8h_1a54b61925cebef47da0c5805a90c8d5ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* stoup</definition>
+        <argsstring>()</argsstring>
+        <name>stoup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" line="23" column="13" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" declline="23" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="julian_8h_1ac7abb3e54a8ee2e25beecfbb6a056e7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>char* timstr</definition>
+        <argsstring>()</argsstring>
+        <name>timstr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" line="26" column="13" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" declline="26" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="julian_8h_1acdb19a7f41485aa533ba824e252ab9a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int year_of_jd</definition>
+        <argsstring>(long int jd)</argsstring>
+        <name>year_of_jd</name>
+        <param>
+          <type>long int</type>
+          <declname>jd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" line="29" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" bodystart="268" bodyend="289" declfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h" declline="29" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>julian.h<sp/>47<sp/>2007-03-31<sp/>00:49:45Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Cribbed<sp/>from<sp/>seesat5<sp/>10/1/99<sp/>jpd<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="time__float__type_8h" kindref="compound">time_float_type.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>JULIAN_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>JULIAN_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="julian_8h_1a306ba8e4c8ee6f935f573a118de824e7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="time__float__type_8h_1af21c891154c6537609687b864f8e9949" kindref="member">HTLdbl</ref><sp/><ref refid="julian_8h_1a306ba8e4c8ee6f935f573a118de824e7" kindref="member">atomin</ref>();</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>convert<sp/>string<sp/>to<sp/>minutes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="julian_8h_1a61fd6446f072d69af215be5f94a03992" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**<ref refid="julian_8h_1a61fd6446f072d69af215be5f94a03992" kindref="member">degdms</ref>();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>convert<sp/>HTLdbl<sp/>to<sp/>deg,<sp/>minutes,<sp/>seconds<sp/>strings<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="julian_8h_1abcd47981b73e3dcb65ae75307671a98f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="julian_8h_1abcd47981b73e3dcb65ae75307671a98f" kindref="member">jdstr</ref>();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>converts<sp/>jd<sp/>to<sp/>year,<sp/>month,<sp/>day<sp/>in<sp/>string<sp/>form<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="julian_8h_1ae09533a38bd5875e7fc74ddddb0119a9" kindref="member">julday</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>y,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>d);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>returns<sp/>JD<sp/>(unit<sp/>=<sp/>days)<sp/>of<sp/>given<sp/>year,<sp/>month,<sp/>day<sp/>@<sp/>12h<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="julian_8h_1a54b61925cebef47da0c5805a90c8d5ad" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="julian_8h_1a54b61925cebef47da0c5805a90c8d5ad" kindref="member">stoup</ref>();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>converts<sp/>sting<sp/>to<sp/>all<sp/>upper<sp/>case<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="julian_8h_1ac7abb3e54a8ee2e25beecfbb6a056e7f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="julian_8h_1ac7abb3e54a8ee2e25beecfbb6a056e7f" kindref="member">timstr</ref>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>converts<sp/>minutes<sp/>to<sp/>string<sp/>of<sp/>&quot;hhmm:ss&quot;<sp/>format<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="julian_8h_1acdb19a7f41485aa533ba824e252ab9a1" kindref="member">year_of_jd</ref>(<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jd);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>ndef<sp/>JULIAN_H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.h"/>
+  </compounddef>
+</doxygen>

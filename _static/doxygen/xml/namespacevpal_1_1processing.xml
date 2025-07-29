@@ -1,0 +1,700 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1processing" kind="namespace" language="Python">
+    <compoundname>vpal::processing</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacevpal_1_1processing_1a57ac38c776fbc387b74e7c4aaa47b4bf" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal::processing.processing_logger</definition>
+        <argsstring></argsstring>
+        <name>processing_logger</name>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="12" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1processing_1a392b4bae4c5b82d214e6acf131260fbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.apply_fringe_file_cuts</definition>
+        <argsstring>(ff_list, control_file_hash, min_snr=0.0, max_snr=1e30, valid_quality_code_list=None, start_scan_limit=&quot;000-0000&quot;, stop_scan_limit=&quot;999-9999&quot;)</argsstring>
+        <name>apply_fringe_file_cuts</name>
+        <param>
+          <type>ff_list</type>
+          <defname>ff_list</defname>
+        </param>
+        <param>
+          <type>control_file_hash</type>
+          <defname>control_file_hash</defname>
+        </param>
+        <param>
+          <type>min_snr</type>
+          <defname>min_snr</defname>
+          <defval>0.0</defval>
+        </param>
+        <param>
+          <type>max_snr</type>
+          <defname>max_snr</defname>
+          <defval>1e30</defval>
+        </param>
+        <param>
+          <type>valid_quality_code_list</type>
+          <defname>valid_quality_code_list</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>start_scan_limit</type>
+          <defname>start_scan_limit</defname>
+          <defval>&quot;000-0000&quot;</defval>
+        </param>
+        <param>
+          <type>stop_scan_limit</type>
+          <defname>stop_scan_limit</defname>
+          <defval>&quot;999-9999&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>convenience function for a set of commonly used filters on fringe files,
+default values for this function, are such that it essentially only filters on the control file hash </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="412" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="414" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1a4c5105e04b3d2344ce0061688122fc96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.construct_valid_baseline_list</definition>
+        <argsstring>(directory, network_reference_station, remote_stations, network_reference_baselines_only=False, include_autos=False)</argsstring>
+        <name>construct_valid_baseline_list</name>
+        <param>
+          <type>directory</type>
+          <defname>directory</defname>
+        </param>
+        <param>
+          <type>network_reference_station</type>
+          <defname>network_reference_station</defname>
+        </param>
+        <param>
+          <type>remote_stations</type>
+          <defname>remote_stations</defname>
+        </param>
+        <param>
+          <type>network_reference_baselines_only</type>
+          <defname>network_reference_baselines_only</defname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>include_autos</type>
+          <defname>include_autos</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>construct a list of all the valid baselines in this experiment </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="278" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="278" bodyend="336"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1a2e24e42ab9cf7f8f3b24c8ae194b4b9c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.construct_valid_mixedmode_baseline_polproduct_dict</definition>
+        <argsstring>(directory, legacy_stations, vgos_stations)</argsstring>
+        <name>construct_valid_mixedmode_baseline_polproduct_dict</name>
+        <param>
+          <type>directory</type>
+          <defname>directory</defname>
+        </param>
+        <param>
+          <type>legacy_stations</type>
+          <defname>legacy_stations</defname>
+        </param>
+        <param>
+          <type>vgos_stations</type>
+          <defname>vgos_stations</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>construct a dictionary of all the valid legacy-vgos baselines in this experiment, along with their valid pol-products </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="339" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="339" bodyend="411"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1aed018211a8141a2d69dc904a5d6a7236" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.gather_fringe_files</definition>
+        <argsstring>(base_directory, control_file, blines, pol_products=[&apos;I&apos;], include_autos=False, exclude_list=None, max_depth=2)</argsstring>
+        <name>gather_fringe_files</name>
+        <param>
+          <type>base_directory</type>
+          <defname>base_directory</defname>
+        </param>
+        <param>
+          <type>control_file</type>
+          <defname>control_file</defname>
+        </param>
+        <param>
+          <type>blines</type>
+          <defname>blines</defname>
+        </param>
+        <param>
+          <type>pol_products</type>
+          <defname>pol_products</defname>
+          <defval>[&apos;I&apos;]</defval>
+        </param>
+        <param>
+          <type>include_autos</type>
+          <defname>include_autos</defname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>exclude_list</type>
+          <defname>exclude_list</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>max_depth</type>
+          <defname>max_depth</defname>
+          <defval>2</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Returns a list of all the fringe (type2) files found in any directory up to max_depth under the base_directory
+In a typical VGOS experiment directory, the fringe files are two levels below the base_directory (the first
+level below the base directory is the scan name).
+
+The exp_dir is expecting an absolute path to a HOPS experiment number directory (four-digit number)
+The control file is an absolute path
+
+Assumes fringe files have a six-digit extension with three &apos;.&apos; in the filename.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="76" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="76" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1af3ee367e959258d81a27400186996182" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.get_max_nblines_in_all_collections</definition>
+        <argsstring>(bl_collection_list)</argsstring>
+        <name>get_max_nblines_in_all_collections</name>
+        <param>
+          <type>bl_collection_list</type>
+          <defname>bl_collection_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> get the maximum number of baselines in any single observation/scan </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="226" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="226" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1afc2188703b82af1f2ab7716f8192fa1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.group_baseline_collections_by_scan</definition>
+        <argsstring>(bl_collection_list)</argsstring>
+        <name>group_baseline_collections_by_scan</name>
+        <param>
+          <type>bl_collection_list</type>
+          <defname>bl_collection_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> group the data of associated with each baseline by scan </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="211" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="211" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1a026e42cd5498617ea286acac3b4667d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.join_fringes_into_baseline_collection</definition>
+        <argsstring>(exp_directory, fringe_object_list, station_list, include_autos=False, required_polprod_list=None, only_complete=True)</argsstring>
+        <name>join_fringes_into_baseline_collection</name>
+        <param>
+          <type>exp_directory</type>
+          <defname>exp_directory</defname>
+        </param>
+        <param>
+          <type>fringe_object_list</type>
+          <defname>fringe_object_list</defname>
+        </param>
+        <param>
+          <type>station_list</type>
+          <defname>station_list</defname>
+        </param>
+        <param>
+          <type>include_autos</type>
+          <defname>include_autos</defname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>required_polprod_list</type>
+          <defname>required_polprod_list</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>only_complete</type>
+          <defname>only_complete</defname>
+          <defval>True</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>this function takes individual fringe files (for each scan, baseline, and polarization product)
+and assembles the polarization product files together by baseline for each scan </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="153" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="153" bodyend="190"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1ab006df80d00443606bbaf56014e7c432" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.launch_fourfit_processes_in_parallel</definition>
+        <argsstring>(full_arg_list, max_num_processes=1, use_progress_ticker=True, log_processes=False)</argsstring>
+        <name>launch_fourfit_processes_in_parallel</name>
+        <param>
+          <type>full_arg_list</type>
+          <defname>full_arg_list</defname>
+        </param>
+        <param>
+          <type>max_num_processes</type>
+          <defname>max_num_processes</defname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>use_progress_ticker</type>
+          <defname>use_progress_ticker</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>log_processes</type>
+          <defname>log_processes</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> launch several fourfit processes in parallel to process all the jobs specified by the &apos;full_arg_list&apos; </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="237" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="237" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1ad4787708eb1a49aa4f4e39391bc7a531" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.load_and_batch_fourfit</definition>
+        <argsstring>(exp_directory, network_reference_station, remote_stations, control_file_path, set_commands, network_reference_baselines_only=True, num_processes=1, start_scan_limit=None, stop_scan_limit=None, pol_products=None, frequency_group=None, use_progress_ticker=True, log_fourfit_processes=False, use_ionex_file=None, force_run=False)</argsstring>
+        <name>load_and_batch_fourfit</name>
+        <param>
+          <type>exp_directory</type>
+          <defname>exp_directory</defname>
+        </param>
+        <param>
+          <type>network_reference_station</type>
+          <defname>network_reference_station</defname>
+        </param>
+        <param>
+          <type>remote_stations</type>
+          <defname>remote_stations</defname>
+        </param>
+        <param>
+          <type>control_file_path</type>
+          <defname>control_file_path</defname>
+        </param>
+        <param>
+          <type>set_commands</type>
+          <defname>set_commands</defname>
+        </param>
+        <param>
+          <type>network_reference_baselines_only</type>
+          <defname>network_reference_baselines_only</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>num_processes</type>
+          <defname>num_processes</defname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>start_scan_limit</type>
+          <defname>start_scan_limit</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>stop_scan_limit</type>
+          <defname>stop_scan_limit</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>pol_products</type>
+          <defname>pol_products</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>frequency_group</type>
+          <defname>frequency_group</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>use_progress_ticker</type>
+          <defname>use_progress_ticker</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>log_fourfit_processes</type>
+          <defname>log_fourfit_processes</defname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>use_ionex_file</type>
+          <defname>use_ionex_file</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>force_run</type>
+          <defname>force_run</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>loads any pre-existing fringe files which match the criteria and batch fourfits
+any missing items, then returns a list of the fringe-files</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="583" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="588" bodyend="764"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1ab413db94171adce7b59f6122cc52f7b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.load_and_batch_fourfit_mixedmode</definition>
+        <argsstring>(exp_directory, legacy_stations, vgos_stations, control_file_path, set_commands, num_processes=1, start_scan_limit=&quot;000-0000&quot;, stop_scan_limit=&quot;999-9999&quot;, pol_products=None, frequency_group=None, use_progress_ticker=True, log_fourfit_processes=False)</argsstring>
+        <name>load_and_batch_fourfit_mixedmode</name>
+        <param>
+          <type>exp_directory</type>
+          <defname>exp_directory</defname>
+        </param>
+        <param>
+          <type>legacy_stations</type>
+          <defname>legacy_stations</defname>
+        </param>
+        <param>
+          <type>vgos_stations</type>
+          <defname>vgos_stations</defname>
+        </param>
+        <param>
+          <type>control_file_path</type>
+          <defname>control_file_path</defname>
+        </param>
+        <param>
+          <type>set_commands</type>
+          <defname>set_commands</defname>
+        </param>
+        <param>
+          <type>num_processes</type>
+          <defname>num_processes</defname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>start_scan_limit</type>
+          <defname>start_scan_limit</defname>
+          <defval>&quot;000-0000&quot;</defval>
+        </param>
+        <param>
+          <type>stop_scan_limit</type>
+          <defname>stop_scan_limit</defname>
+          <defval>&quot;999-9999&quot;</defval>
+        </param>
+        <param>
+          <type>pol_products</type>
+          <defname>pol_products</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>frequency_group</type>
+          <defname>frequency_group</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>use_progress_ticker</type>
+          <defname>use_progress_ticker</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>log_fourfit_processes</type>
+          <defname>log_fourfit_processes</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>loads any pre-existing fringe files which match the criteria and batch fourfits
+any missing items, then returns a list of the fringe-files</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="434" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="438" bodyend="580"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1ac90ecfbc5461b2108a7b263b94b96e34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.load_batch_cut_and_sort</definition>
+        <argsstring>(exp_directory, network_reference_station, remote_stations, control_file_path, set_commands, min_snr=0, max_snr=1e5, valid_quality_code_list=None, network_reference_baselines_only=True, num_processes=1, start_scan_limit=None, stop_scan_limit=None, only_complete=True, pol_products=None, frequency_group=None, use_progress_ticker=True, log_fourfit_processes=False)</argsstring>
+        <name>load_batch_cut_and_sort</name>
+        <param>
+          <type>exp_directory</type>
+          <defname>exp_directory</defname>
+        </param>
+        <param>
+          <type>network_reference_station</type>
+          <defname>network_reference_station</defname>
+        </param>
+        <param>
+          <type>remote_stations</type>
+          <defname>remote_stations</defname>
+        </param>
+        <param>
+          <type>control_file_path</type>
+          <defname>control_file_path</defname>
+        </param>
+        <param>
+          <type>set_commands</type>
+          <defname>set_commands</defname>
+        </param>
+        <param>
+          <type>min_snr</type>
+          <defname>min_snr</defname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>max_snr</type>
+          <defname>max_snr</defname>
+          <defval>1e5</defval>
+        </param>
+        <param>
+          <type>valid_quality_code_list</type>
+          <defname>valid_quality_code_list</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>network_reference_baselines_only</type>
+          <defname>network_reference_baselines_only</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>num_processes</type>
+          <defname>num_processes</defname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>start_scan_limit</type>
+          <defname>start_scan_limit</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>stop_scan_limit</type>
+          <defname>stop_scan_limit</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>only_complete</type>
+          <defname>only_complete</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>pol_products</type>
+          <defname>pol_products</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>frequency_group</type>
+          <defname>frequency_group</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>use_progress_ticker</type>
+          <defname>use_progress_ticker</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>log_fourfit_processes</type>
+          <defname>log_fourfit_processes</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> convenience function to do a load-and-batch fourfit, followed by some filters,
+then join fringe files associated with a single scan-baseline into collections </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="767" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="773" bodyend="824"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1ac145c2376fde309d522e19b9f63a0584" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.load_batch_cut_and_sort_mixedmode</definition>
+        <argsstring>(exp_directory, network_reference_station, remote_stations, control_file_path, set_commands, min_snr=30, max_snr=500, valid_quality_code_list=None, network_reference_baselines_only=True, num_processes=1, start_scan_limit=&quot;000-0000&quot;, stop_scan_limit=&quot;999-9999&quot;, only_complete=True, pol_products=None, frequency_group=None, use_progress_ticker=True, log_fourfit_processes=False)</argsstring>
+        <name>load_batch_cut_and_sort_mixedmode</name>
+        <param>
+          <type>exp_directory</type>
+          <defname>exp_directory</defname>
+        </param>
+        <param>
+          <type>network_reference_station</type>
+          <defname>network_reference_station</defname>
+        </param>
+        <param>
+          <type>remote_stations</type>
+          <defname>remote_stations</defname>
+        </param>
+        <param>
+          <type>control_file_path</type>
+          <defname>control_file_path</defname>
+        </param>
+        <param>
+          <type>set_commands</type>
+          <defname>set_commands</defname>
+        </param>
+        <param>
+          <type>min_snr</type>
+          <defname>min_snr</defname>
+          <defval>30</defval>
+        </param>
+        <param>
+          <type>max_snr</type>
+          <defname>max_snr</defname>
+          <defval>500</defval>
+        </param>
+        <param>
+          <type>valid_quality_code_list</type>
+          <defname>valid_quality_code_list</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>network_reference_baselines_only</type>
+          <defname>network_reference_baselines_only</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>num_processes</type>
+          <defname>num_processes</defname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>start_scan_limit</type>
+          <defname>start_scan_limit</defname>
+          <defval>&quot;000-0000&quot;</defval>
+        </param>
+        <param>
+          <type>stop_scan_limit</type>
+          <defname>stop_scan_limit</defname>
+          <defval>&quot;999-9999&quot;</defval>
+        </param>
+        <param>
+          <type>only_complete</type>
+          <defname>only_complete</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>pol_products</type>
+          <defname>pol_products</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>frequency_group</type>
+          <defname>frequency_group</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>use_progress_ticker</type>
+          <defname>use_progress_ticker</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>log_fourfit_processes</type>
+          <defname>log_fourfit_processes</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> convenience function to do a load-and-batch fourfit, followed by some filters,
+then join fringe files associated with a single scan-baseline into collections </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="827" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="833" bodyend="879"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1a46e57b1c711b9a94d6fb684b663cee48" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.load_directory_fringe_files</definition>
+        <argsstring>(dir_name, baselines_list, frequency_group=None, include_autos=False)</argsstring>
+        <name>load_directory_fringe_files</name>
+        <param>
+          <type>dir_name</type>
+          <defname>dir_name</defname>
+        </param>
+        <param>
+          <type>baselines_list</type>
+          <defname>baselines_list</defname>
+        </param>
+        <param>
+          <type>frequency_group</type>
+          <defname>frequency_group</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>include_autos</type>
+          <defname>include_autos</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>find and load all fringe files in a directory </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="30" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="30" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1processing_1ade2902f76a40f5028132a3d3a6ed8f62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.processing.sort_collections_by_baseline</definition>
+        <argsstring>(baseline_collection_list)</argsstring>
+        <name>sort_collections_by_baseline</name>
+        <param>
+          <type>baseline_collection_list</type>
+          <defname>baseline_collection_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> returns a dict of lists, each dict value contains a list of the collections corresponding to a single baseline </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="192" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" bodystart="192" bodyend="209"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> some useful utility functions for data processing with fourfit </verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/processing.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

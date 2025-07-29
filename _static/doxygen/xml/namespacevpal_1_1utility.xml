@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1utility" kind="namespace" language="Python">
+    <compoundname>vpal::utility</compoundname>
+    <innerclass refid="classvpal_1_1utility_1_1Bar" prot="public">vpal::utility::Bar</innerclass>
+    <innerclass refid="classvpal_1_1utility_1_1ContinuousQuantityFilter" prot="public">vpal::utility::ContinuousQuantityFilter</innerclass>
+    <innerclass refid="classvpal_1_1utility_1_1DiscreteQuantityFilter" prot="public">vpal::utility::DiscreteQuantityFilter</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a1921ca6fab6ed3fbdfa70bef123fbae1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.collect_object_value_pairs</definition>
+        <argsstring>(obj_list, value_name1, value_name2, sort_items=False)</argsstring>
+        <name>collect_object_value_pairs</name>
+        <param>
+          <type>obj_list</type>
+          <defname>obj_list</defname>
+        </param>
+        <param>
+          <type>value_name1</type>
+          <defname>value_name1</defname>
+        </param>
+        <param>
+          <type>value_name2</type>
+          <defname>value_name2</defname>
+        </param>
+        <param>
+          <type>sort_items</type>
+          <defname>sort_items</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>collect set of value pairs from a list of objects
+(if sort_items=True, we sort them on the first value) </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="157" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="157" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a6afb7feafef0ca9683af2d71566629e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.collect_object_values</definition>
+        <argsstring>(obj_list, value_name)</argsstring>
+        <name>collect_object_values</name>
+        <param>
+          <type>obj_list</type>
+          <defname>obj_list</defname>
+        </param>
+        <param>
+          <type>value_name</type>
+          <defname>value_name</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>collect a value from a list of objects</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="150" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="150" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a208c5d5b5ce5c061fd01aa86f31fdda3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.combined_filter</definition>
+        <argsstring>(object_list, filter_list)</argsstring>
+        <name>combined_filter</name>
+        <param>
+          <type>object_list</type>
+          <defname>object_list</defname>
+        </param>
+        <param>
+          <type>filter_list</type>
+          <defname>filter_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>takes a list of objects, and a list of filters (may be a
+combination of discrete or continuous value filters)
+and returns a list of objects files which pass all of the filters</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="136" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="136" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a86249ba53c4b8a4ddb0d447ddbaceada" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.compute_2d_pareto_front</definition>
+        <argsstring>(obj_list, par1, par2, maximize1=True, maximize2=True)</argsstring>
+        <name>compute_2d_pareto_front</name>
+        <param>
+          <type>obj_list</type>
+          <defname>obj_list</defname>
+        </param>
+        <param>
+          <type>par1</type>
+          <defname>par1</defname>
+        </param>
+        <param>
+          <type>par2</type>
+          <defname>par2</defname>
+        </param>
+        <param>
+          <type>maximize1</type>
+          <defname>maximize1</defname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>maximize2</type>
+          <defname>maximize2</defname>
+          <defval>True</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>returns a list of objects on the pareto front of par1 and par2
+if maximize1 or maximize2 is false, then the objective for that variable will
+be minimization rather than maximization</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="205" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="205" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a5b68bc9d46993bb3ca373ed1aa16455a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.compute_weighted_mean</definition>
+        <argsstring>(value_list, weight_list)</argsstring>
+        <name>compute_weighted_mean</name>
+        <param>
+          <type>value_list</type>
+          <defname>value_list</defname>
+        </param>
+        <param>
+          <type>weight_list</type>
+          <defname>weight_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>return the weighted mean of a list of values</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="181" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="181" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a6b9ab8ef7435ed16f682f19d841910ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.int_to_time</definition>
+        <argsstring>(t)</argsstring>
+        <name>int_to_time</name>
+        <param>
+          <type>t</type>
+          <defname>t</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>ported from int_to_time.c</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="58" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="58" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1ab0471e7d0171966218109dc498039040" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.limit_periodic_quantity_to_range</definition>
+        <argsstring>(value_to_limit, low_value=-180.0, high_value=180.0)</argsstring>
+        <name>limit_periodic_quantity_to_range</name>
+        <param>
+          <type>value_to_limit</type>
+          <defname>value_to_limit</defname>
+        </param>
+        <param>
+          <type>low_value</type>
+          <defname>low_value</defname>
+          <defval>-180.0</defval>
+        </param>
+        <param>
+          <type>high_value</type>
+          <defname>high_value</defname>
+          <defval>180.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>clamp periodic variable to range [low_value,high_value)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="14" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="14" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a94cfe0afe8214e533e9b16d3c6e29b4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.mad</definition>
+        <argsstring>(value_list)</argsstring>
+        <name>mad</name>
+        <param>
+          <type>value_list</type>
+          <defname>value_list</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>computes the median absolute deviation of a list of numbers
+see: Anomaly Detection by Robust Statistics, P. Rousseeuw &amp; M. Hubert</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="193" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="193" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a6e3fe15a7b56e13bc0b65dbcc4f8d331" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.minimum_angular_difference</definition>
+        <argsstring>(angle1, angle2, low_value=-180.0, high_value=180.0)</argsstring>
+        <name>minimum_angular_difference</name>
+        <param>
+          <type>angle1</type>
+          <defname>angle1</defname>
+        </param>
+        <param>
+          <type>angle2</type>
+          <defname>angle2</defname>
+        </param>
+        <param>
+          <type>low_value</type>
+          <defname>low_value</defname>
+          <defval>-180.0</defval>
+        </param>
+        <param>
+          <type>high_value</type>
+          <defname>high_value</defname>
+          <defval>180.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>compute smallest value of (angle1-angle2) taking branch cuts into account</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="25" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="25" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a461b1355980cff62196be7bc0fb434d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.print_table</definition>
+        <argsstring>(table, n_digits=9)</argsstring>
+        <name>print_table</name>
+        <param>
+          <type>table</type>
+          <defname>table</defname>
+        </param>
+        <param>
+          <type>n_digits</type>
+          <defname>n_digits</defname>
+          <defval>9</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>simple formatted print out of a table</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="320" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="320" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a1faccc291e9c42a667920401d0361e87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.sort_objects_by_quantity</definition>
+        <argsstring>(object_list, quantity_name, reverse_boolean=False)</argsstring>
+        <name>sort_objects_by_quantity</name>
+        <param>
+          <type>object_list</type>
+          <defname>object_list</defname>
+        </param>
+        <param>
+          <type>quantity_name</type>
+          <defname>quantity_name</defname>
+        </param>
+        <param>
+          <type>reverse_boolean</type>
+          <defname>reverse_boolean</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>#sorts low to high (if reverse is True, then high to low)</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="146" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="146" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a35a5bb65b84806282e90a45a2007140d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.tabulate</definition>
+        <argsstring>(table, headers=None, n_digits=9, padding=3)</argsstring>
+        <name>tabulate</name>
+        <param>
+          <type>table</type>
+          <defname>table</defname>
+        </param>
+        <param>
+          <type>headers</type>
+          <defname>headers</defname>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>n_digits</type>
+          <defname>n_digits</defname>
+          <defval>9</defval>
+        </param>
+        <param>
+          <type>padding</type>
+          <defname>padding</defname>
+          <defval>3</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>simple formatted chunk of text representing a table, replacement for tabulate module</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="342" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="342" bodyend="393"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacevpal_1_1utility_1a03d3cf190b7f5aaad87113ee5281eeb3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.time_to_int</definition>
+        <argsstring>(year, day, hour, minute, sec)</argsstring>
+        <name>time_to_int</name>
+        <param>
+          <type>year</type>
+          <defname>year</defname>
+        </param>
+        <param>
+          <type>day</type>
+          <defname>day</defname>
+        </param>
+        <param>
+          <type>hour</type>
+          <defname>hour</defname>
+        </param>
+        <param>
+          <type>minute</type>
+          <defname>minute</defname>
+        </param>
+        <param>
+          <type>sec</type>
+          <defname>sec</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>ported from time_to_int.c in hops/sub/util</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="43" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>utility function module</verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

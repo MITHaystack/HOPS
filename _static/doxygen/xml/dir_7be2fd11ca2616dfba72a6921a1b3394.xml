@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_7be2fd11ca2616dfba72a6921a1b3394" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__ChannelLabeler_8hh">MHO_ChannelLabeler.hh</innerfile>
+    <innerfile refid="MHO__CircularFieldRotationCorrection_8hh">MHO_CircularFieldRotationCorrection.hh</innerfile>
+    <innerfile refid="MHO__DCBlock_8hh">MHO_DCBlock.hh</innerfile>
+    <innerfile refid="MHO__DelayModel_8hh">MHO_DelayModel.hh</innerfile>
+    <innerfile refid="MHO__DelayRate_8hh">MHO_DelayRate.hh</innerfile>
+    <innerfile refid="MHO__DoubleSidebandChannelLabeler_8hh">MHO_DoubleSidebandChannelLabeler.hh</innerfile>
+    <innerfile refid="MHO__EstimatePCManual_8hh">MHO_EstimatePCManual.hh</innerfile>
+    <innerfile refid="MHO__InterpolateFringePeak_8hh">MHO_InterpolateFringePeak.hh</innerfile>
+    <innerfile refid="MHO__IonosphericPhaseCorrection_8hh">MHO_IonosphericPhaseCorrection.hh</innerfile>
+    <innerfile refid="MHO__LinearDParCorrection_8hh">MHO_LinearDParCorrection.hh</innerfile>
+    <innerfile refid="MHO__LSBOffset_8hh">MHO_LSBOffset.hh</innerfile>
+    <innerfile refid="MHO__ManualChannelDelayCorrection_8hh">MHO_ManualChannelDelayCorrection.hh</innerfile>
+    <innerfile refid="MHO__ManualChannelPhaseCorrection_8hh">MHO_ManualChannelPhaseCorrection.hh</innerfile>
+    <innerfile refid="MHO__ManualPolDelayCorrection_8hh">MHO_ManualPolDelayCorrection.hh</innerfile>
+    <innerfile refid="MHO__ManualPolPhaseCorrection_8hh">MHO_ManualPolPhaseCorrection.hh</innerfile>
+    <innerfile refid="MHO__MBDelaySearch_8hh">MHO_MBDelaySearch.hh</innerfile>
+    <innerfile refid="MHO__MinWeight_8hh">MHO_MinWeight.hh</innerfile>
+    <innerfile refid="MHO__MixedPolYShift_8hh">MHO_MixedPolYShift.hh</innerfile>
+    <innerfile refid="MHO__MixedSidebandNormFX_8hh">MHO_MixedSidebandNormFX.hh</innerfile>
+    <innerfile refid="MHO__MultitonePhaseCorrection_8hh">MHO_MultitonePhaseCorrection.hh</innerfile>
+    <innerfile refid="MHO__NormFX_8hh">MHO_NormFX.hh</innerfile>
+    <innerfile refid="MHO__Notches_8hh">MHO_Notches.hh</innerfile>
+    <innerfile refid="MHO__Passband_8hh">MHO_Passband.hh</innerfile>
+    <innerfile refid="MHO__PhaseCalibrationTrim_8hh">MHO_PhaseCalibrationTrim.hh</innerfile>
+    <innerfile refid="MHO__PolProductSummation_8hh">MHO_PolProductSummation.hh</innerfile>
+    <innerfile refid="MHO__SamplerLabeler_8hh">MHO_SamplerLabeler.hh</innerfile>
+    <innerfile refid="MHO__SBDTableGenerator_8hh">MHO_SBDTableGenerator.hh</innerfile>
+    <innerfile refid="MHO__SingleSidebandNormFX_8hh">MHO_SingleSidebandNormFX.hh</innerfile>
+    <innerfile refid="MHO__StationDelayCorrection_8hh">MHO_StationDelayCorrection.hh</innerfile>
+    <innerfile refid="MHO__StationModel_8hh">MHO_StationModel.hh</innerfile>
+    <innerfile refid="MHO__VisibilityChannelizer_8hh">MHO_VisibilityChannelizer.hh</innerfile>
+    <innerfile refid="MHO__WeightChannelizer_8hh">MHO_WeightChannelizer.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/"/>
+  </compounddef>
+</doxygen>

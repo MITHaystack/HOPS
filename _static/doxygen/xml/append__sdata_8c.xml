@@ -1,0 +1,696 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="append__sdata_8c" kind="file" language="C++">
+    <compoundname>append_sdata.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes refid="fourmer_8h" local="yes">fourmer.h</includes>
+    <incdepgraph>
+      <node id="32">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>stdarg.h</label>
+      </node>
+      <node id="9">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="36">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>sys/times.h</label>
+      </node>
+      <node id="15">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="19">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="41">
+        <label>stdint.h</label>
+      </node>
+      <node id="24">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="42">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="18">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>fourmer.h</label>
+        <link refid="fourmer_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="11">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>sys/types.h</label>
+      </node>
+      <node id="30">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="7">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+      <node id="34">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>complex.h</label>
+      </node>
+      <node id="26">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="48">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="16">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="40">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>append_sdata.c</label>
+        <link refid="append__sdata_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>stdio.h</label>
+      </node>
+      <node id="49">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="25">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="4">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" prot="public" static="no">
+        <name>revise_cid</name>
+        <param><defname>CID</defname></param>
+        <param><defname>ISA</defname></param>
+        <param><defname>ISR</defname></param>
+        <initializer>    strncpy(CID, <ref refid="gen__new__chan__id_8c_1a2ceee5895b9978cd0cf92347dc3d4157" kindref="member">gen_new_chan_id</ref>(CID,ISA,ISR), 8)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="11" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="append__sdata_8c_1a3a12b0b14cfc2b481580f9a742a8865b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void append_model</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_model</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="17" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="17" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="append__sdata_8c_1a283459038e4aa0c6729e72187f6a7d88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void append_sdata</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_sdata</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="141" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="141" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="append__sdata_8c_1a77a9c00d4db653c48e3d2b98cf68e08b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void append_t304</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_t304</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="51" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="51" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="append__sdata_8c_1af4d43d3c09c30ebfb741c59132fa4ea3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void append_t305</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_t305</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="64" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="64" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="append__sdata_8c_1ae12c7343775a619675ec626cd91c5397" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void append_t306</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_t306</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="76" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="76" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="append__sdata_8c_1a0676db897c61b44b3f0b8a5441324472" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void append_t307</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_t307</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="92" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="92" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="append__sdata_8c_1aab19676ef11b21e4d9e1329e0af6871e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void append_t308</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_t308</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="104" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="104" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="append__sdata_8c_1aceeff52cdb3cef9d1448d42faadea51a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void append_t309</definition>
+        <argsstring>(struct mk4_sdata *sdataC, struct mk4_sdata *sdataB)</argsstring>
+        <name>append_t309</name>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataC</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref> *</type>
+          <declname>sdataB</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" line="122" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c" bodystart="122" bodyend="136"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>append_sdata.c<sp/>1197<sp/>2015-09-10<sp/>12:38:41Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Append<sp/>sdataB<sp/>to<sp/>sdataC<sp/>and<sp/>edit<sp/>channel<sp/>names<sp/>in<sp/>the<sp/>process.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fourmer_8h" kindref="compound">fourmer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>revise_cid(CID,ISA,ISR)<sp/>\</highlight></codeline>
+<codeline lineno="12"><highlight class="preprocessor"><sp/><sp/><sp/><sp/>strncpy(CID,<sp/>gen_new_chan_id(CID,ISA,ISR),<sp/>8)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>append<sp/>B&apos;s<sp/>data<sp/>to<sp/>C<sp/>for<sp/>type_301<sp/>and<sp/>type_302</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>append_model(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>nA,<sp/>nC,<sp/>sp,<sp/>isA;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/><ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].chan_id[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>nA<sp/>=<sp/>n;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/><ref refid="mk4__sizes_8h_1a585952389eeb27a7228d9f797ba8a227" kindref="member">MAX_CHAN</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdataB-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].chan_id[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[nA<sp/>+<sp/>n]),</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;(sdataB-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n]),<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(sdataB-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n]));</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>nC<sp/>=<sp/>nA<sp/>+<sp/>n;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>nC;<sp/>n++)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>isA<sp/>=<sp/>(n<sp/>&lt;<sp/>nA<sp/>?<sp/>1<sp/>:<sp/>0);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" kindref="member">revise_cid</ref>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].chan_id,<sp/>isA,<sp/>0);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(sp<sp/>=<sp/>0;<sp/>sp<sp/>&lt;<sp/><ref refid="mk4__data_8h_1a591323bb7add08c9004bd130374e3278" kindref="member">MAXSPLINES</ref>;<sp/>sp++)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].t301[sp])</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" kindref="member">revise_cid</ref>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].t301[sp]-&gt;chan_id,<sp/>isA,<sp/>0);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].t302[sp])</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" kindref="member">revise_cid</ref>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].t302[sp]-&gt;chan_id,<sp/>isA,<sp/>0);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].t303[sp])</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" kindref="member">revise_cid</ref>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" kindref="member">model</ref>[n].t303[sp]-&gt;chan_id,<sp/>isA,<sp/>0);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;fixed<sp/>%d<sp/>(%d<sp/>+<sp/>%d)<sp/>model<sp/>records&quot;</highlight><highlight class="normal">,<sp/>1,<sp/>nC,<sp/>nA,<sp/>nC<sp/>-<sp/>nA);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>append<sp/>B&apos;s<sp/>data<sp/>to<sp/>C<sp/>for<sp/>type_304<sp/>--<sp/>NO<sp/>chan<sp/>id<sp/>renaming<sp/>required</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>append_t304(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>nA<sp/>=<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" kindref="member">n304</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" kindref="member">n304</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a7ccc5ad077450b1f2109aaffd8cbc2e2" kindref="member">t304</ref>[nA<sp/>+<sp/>n]<sp/>=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a7ccc5ad077450b1f2109aaffd8cbc2e2" kindref="member">t304</ref>[n];</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" kindref="member">n304</ref><sp/>+=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" kindref="member">n304</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;joined<sp/>%d<sp/>(%d<sp/>+<sp/>%d)<sp/>304<sp/>records&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" kindref="member">n304</ref>,<sp/>nA,<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" kindref="member">n304</ref>);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>append<sp/>B&apos;s<sp/>data<sp/>to<sp/>C<sp/>for<sp/>type_305<sp/>--<sp/>NO<sp/>chan<sp/>id<sp/>renaming<sp/>required</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>append_t305(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>nA<sp/>=<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" kindref="member">n305</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" kindref="member">n305</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a2e8219c9732f990ff9dcf110d8b5f617" kindref="member">t305</ref>[nA<sp/>+<sp/>n]<sp/>=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a2e8219c9732f990ff9dcf110d8b5f617" kindref="member">t305</ref>[n];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" kindref="member">n305</ref><sp/>+=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" kindref="member">n305</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;joined<sp/>%d<sp/>(%d<sp/>+<sp/>%d)<sp/>305<sp/>records&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" kindref="member">n305</ref>,<sp/>nA,<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" kindref="member">n305</ref>);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>append<sp/>B&apos;s<sp/>data<sp/>to<sp/>C<sp/>for<sp/>type_306<sp/>--<sp/>chan<sp/>id<sp/>renaming<sp/>IS<sp/>required</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>append_t306(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>nA<sp/>=<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref>,<sp/>sc;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a266868cb7c53781545547a04063b24f2" kindref="member">t306</ref>[nA<sp/>+<sp/>n]<sp/>=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a266868cb7c53781545547a04063b24f2" kindref="member">t306</ref>[n];</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref><sp/>+=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(sc<sp/>=<sp/>0;<sp/>sc<sp/>&lt;<sp/>16;<sp/>sc++)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" kindref="member">revise_cid</ref>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a266868cb7c53781545547a04063b24f2" kindref="member">t306</ref>[n]-&gt;<ref refid="structtype__306_1a21a847f1f74f2f9d3ccfaef3ba7ea12d" kindref="member">stcount</ref>[sc].chan_id,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(n<sp/>&lt;<sp/>nA<sp/>?<sp/>1<sp/>:<sp/>0),<sp/>0);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;fixed<sp/>%d<sp/>(%d<sp/>+<sp/>%d)<sp/>306<sp/>records&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref>,<sp/>nA,<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref>);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>append<sp/>B&apos;s<sp/>data<sp/>to<sp/>C<sp/>for<sp/>type_307<sp/>--<sp/>NO<sp/>chan<sp/>id<sp/>renaming<sp/>required</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>append_t307(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>nA<sp/>=<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" kindref="member">n307</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" kindref="member">n307</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a0a52783dd8be0e87c8963a0ad5b32e30" kindref="member">t307</ref>[nA<sp/>+<sp/>n]<sp/>=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a0a52783dd8be0e87c8963a0ad5b32e30" kindref="member">t307</ref>[n];</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" kindref="member">n307</ref><sp/>+=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" kindref="member">n307</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;joined<sp/>%d<sp/>(%d<sp/>+<sp/>%d)<sp/>307<sp/>records&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" kindref="member">n307</ref>,<sp/>nA,<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" kindref="member">n307</ref>);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>append<sp/>B&apos;s<sp/>data<sp/>to<sp/>C<sp/>for<sp/>type_308<sp/>--<sp/>chan<sp/>id<sp/>renaming<sp/>IS<sp/>required</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>append_t308(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>nA<sp/>=<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref>,<sp/>pc;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a5d5e9a646a07ff54ce02c720868bbc94" kindref="member">t308</ref>[nA<sp/>+<sp/>n]<sp/>=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a5d5e9a646a07ff54ce02c720868bbc94" kindref="member">t308</ref>[n];</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref><sp/>+=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(pc<sp/>=<sp/>0;<sp/>pc<sp/>&lt;<sp/>32;<sp/>pc++)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" kindref="member">revise_cid</ref>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a5d5e9a646a07ff54ce02c720868bbc94" kindref="member">t308</ref>[n]-&gt;<ref refid="structtype__308_1ab8d6f40f6a845f20bda9543f7484bcbc" kindref="member">pcal</ref>[pc].chan_id,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(n<sp/>&lt;<sp/>nA<sp/>?<sp/>1<sp/>:<sp/>0),<sp/>0);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;fixed<sp/>%d<sp/>(%d<sp/>+<sp/>%d)<sp/>308<sp/>records&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref>,<sp/>nA,<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref>);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="118"><highlight class="comment"><sp/>*<sp/>append<sp/>B&apos;s<sp/>data<sp/>to<sp/>C<sp/>for<sp/>type_309<sp/>--<sp/>chan<sp/>id<sp/>renaming<sp/>IS<sp/>required</highlight></codeline>
+<codeline lineno="119"><highlight class="comment"><sp/>*<sp/>v0:<sp/>16<sp/>chans</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/>*<sp/>v1:<sp/>64<sp/>chans</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>append_t309(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,<sp/>nA<sp/>=<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref>,<sp/>pc,<sp/>pcn;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a3a18b09863318e7bc503a7238977c05c" kindref="member">t309</ref>[nA<sp/>+<sp/>n]<sp/>=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1a3a18b09863318e7bc503a7238977c05c" kindref="member">t309</ref>[n];</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref><sp/>+=<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref>;<sp/>n++)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>pcn<sp/>=<sp/>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a3a18b09863318e7bc503a7238977c05c" kindref="member">t309</ref>[n]-&gt;<ref refid="structtype__309_1aef4a53b37c14db88f4068aa6484cdff7" kindref="member">version_no</ref>[0]<sp/>==<sp/>0)<sp/>?<sp/>16<sp/>:<sp/>64;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(pc<sp/>=<sp/>0;<sp/>pc<sp/>&lt;<sp/>64;<sp/>pc++)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="append__sdata_8c_1a985992472d3bc34900eb3459fa8c4e95" kindref="member">revise_cid</ref>(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1a3a18b09863318e7bc503a7238977c05c" kindref="member">t309</ref>[n]-&gt;<ref refid="structtype__309_1a5af50dfa33a8cd6328c3b1e25cf717d9" kindref="member">chan</ref>[pc].<ref refid="structtype__309_1_1ch1__tag_1ac11836f6b396dd7decdf00cf55101a75" kindref="member">chan_name</ref>,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(n<sp/>&lt;<sp/>nA<sp/>?<sp/>1<sp/>:<sp/>0),<sp/>0);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;fixed<sp/>%d<sp/>(%d<sp/>+<sp/>%d)<sp/>309<sp/>records&quot;</highlight><highlight class="normal">,<sp/>1,<sp/><ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref>,<sp/>nA,<sp/>sdataB-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref>);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/>*<sp/>Handle<sp/>all<sp/>the<sp/>types<sp/>of<sp/>30x<sp/>records<sp/>in<sp/>the<sp/>sdata<sp/>structure</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="append__sdata_8c_1a283459038e4aa0c6729e72187f6a7d88" kindref="member">append_sdata</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structmk4__sdata" kindref="compound">mk4_sdata</ref><sp/>*sdataB)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>append_model(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/>sdataB);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdataB-&gt;<ref refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" kindref="member">n304</ref><sp/>&gt;<sp/>0)<sp/>append_t304(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/>sdataB);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdataB-&gt;<ref refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" kindref="member">n305</ref><sp/>&gt;<sp/>0)<sp/>append_t305(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/>sdataB);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdataB-&gt;<ref refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" kindref="member">n306</ref><sp/>&gt;<sp/>0)<sp/>append_t306(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/>sdataB);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdataB-&gt;<ref refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" kindref="member">n307</ref><sp/>&gt;<sp/>0)<sp/>append_t307(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/>sdataB);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdataB-&gt;<ref refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" kindref="member">n308</ref><sp/>&gt;<sp/>0)<sp/>append_t308(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/>sdataB);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sdataB-&gt;<ref refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" kindref="member">n309</ref><sp/>&gt;<sp/>0)<sp/>append_t309(<ref refid="do__record__merge_8c_1a4be9615732c2e619ee0cc0ea84ec0993" kindref="member">sdataC</ref>,<sp/>sdataB);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="153"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="154"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/fourmer/src/append_sdata.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_ab839bcf29014808dc46cc55b3848640" kind="dir">
+    <compoundname>time</compoundname>
+    <innerfile refid="cnvrt__cdf__maia_8c">cnvrt_cdf_maia.c</innerfile>
+    <innerfile refid="difx2mark4-make__id_8c">difx2mark4-make_id.c</innerfile>
+    <innerfile refid="difx2mark4-root__id_8c">difx2mark4-root_id.c</innerfile>
+    <innerfile refid="eph__time_8c">eph_time.c</innerfile>
+    <innerfile refid="hetetimecode_8h">hetetimecode.h</innerfile>
+    <innerfile refid="hops__time_8c">hops_time.c</innerfile>
+    <innerfile refid="hops__time_8h">hops_time.h</innerfile>
+    <innerfile refid="ht__parser_8c">ht_parser.c</innerfile>
+    <innerfile refid="ht__timeis_8c">ht_timeis.c</innerfile>
+    <innerfile refid="htime_8c">htime.c</innerfile>
+    <innerfile refid="htime_8h">htime.h</innerfile>
+    <innerfile refid="isoclog_8h">isoclog.h</innerfile>
+    <innerfile refid="julian_8c">julian.c</innerfile>
+    <innerfile refid="julian_8h">julian.h</innerfile>
+    <innerfile refid="leapsec_8c">leapsec.c</innerfile>
+    <innerfile refid="lifetime_8c">lifetime.c</innerfile>
+    <innerfile refid="rtype_8c">rtype.c</innerfile>
+    <innerfile refid="sc__time_8c">sc_time.c</innerfile>
+    <innerfile refid="sub-util-root__id_8c">sub-util-root_id.c</innerfile>
+    <innerfile refid="time__float__type_8h">time_float_type.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/"/>
+  </compounddef>
+</doxygen>

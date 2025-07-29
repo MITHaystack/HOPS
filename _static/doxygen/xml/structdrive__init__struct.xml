@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structdrive__init__struct" kind="struct" language="C++" prot="public">
+    <compoundname>drive_init_struct</compoundname>
+    <includes refid="ivex_8h" local="no">ivex.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structdrive__init__struct_1a7d92c5f336bcae60c67dd4008ffc3536" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float drive_init_struct::capstan_relative_diameter</definition>
+        <argsstring></argsstring>
+        <name>capstan_relative_diameter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="79" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1abb5ba196de35e774c41cc52f1bb5f3ae" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char drive_init_struct::computer_name[MAX_NAMESIZE]</definition>
+        <argsstring>[MAX_NAMESIZE]</argsstring>
+        <name>computer_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="76" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1ac373ce924d3bd2e84b80f7b658fdf7d2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structheadstack__DIM__connect__struct" kindref="compound">headstack_DIM_connect_struct</ref></type>
+        <definition>struct headstack_DIM_connect_struct drive_init_struct::DIM_connect[MAX_HSC]</definition>
+        <argsstring>[MAX_HSC]</argsstring>
+        <name>DIM_connect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="81" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1a5dc4a44af45ea5046f01cc8de1ef2d4d" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short drive_init_struct::drive_type</definition>
+        <argsstring></argsstring>
+        <name>drive_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="75" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1a3f856248a95c80b1733adbb633c79056" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structheadstack__parms__struct" kindref="compound">headstack_parms_struct</ref></type>
+        <definition>struct headstack_parms_struct drive_init_struct::headstack[MAXHEADS+1]</definition>
+        <argsstring>[MAXHEADS+1]</argsstring>
+        <name>headstack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="83" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1a1a32761c3acca4dac79dbc21dce8b816" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int drive_init_struct::mcb_addr_id</definition>
+        <argsstring></argsstring>
+        <name>mcb_addr_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="78" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1a0d7a1e84bc20854a03987ccb31c465c0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int drive_init_struct::mcb_addr_start</definition>
+        <argsstring></argsstring>
+        <name>mcb_addr_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="77" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1a8efbde66f95731c4d9c0f4c4a7859f68" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structmoni__read__struct" kindref="compound">moni_read_struct</ref></type>
+        <definition>struct moni_read_struct drive_init_struct::monitor_module[MAXHEADS+1]</definition>
+        <argsstring>[MAXHEADS+1]</argsstring>
+        <name>monitor_module</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="83" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1a1b3911ab6c4cbde088434224f08703b9" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short drive_init_struct::nheads</definition>
+        <argsstring></argsstring>
+        <name>nheads</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="83" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1a374893f5476453bc2fccb93786f9527f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float drive_init_struct::tape_acceleration</definition>
+        <argsstring></argsstring>
+        <name>tape_acceleration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="81" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structdrive__init__struct_1ab086e06d971a5ab485a4cb566e1328f0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structvacuum__struct" kindref="compound">vacuum_struct</ref></type>
+        <definition>struct vacuum_struct drive_init_struct::vacuum[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>vacuum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="79" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>drive_init_struct</label>
+        <link refid="structdrive__init__struct"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>monitor_module</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>capstan_relative_diameter</edgelabel>
+          <edgelabel>tape_acceleration</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>computer_name</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>drive_type</edgelabel>
+          <edgelabel>nheads</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>vacuum</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mcb_addr_id</edgelabel>
+          <edgelabel>mcb_addr_start</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>headstack</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>DIM_connect</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>float</label>
+      </node>
+      <node id="7">
+        <label>int</label>
+      </node>
+      <node id="10">
+        <label>headstack_DIM_connect_struct</label>
+        <link refid="structheadstack__DIM__connect__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>eqlzr</edgelabel>
+          <edgelabel>headstack</edgelabel>
+          <edgelabel>parity</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>double</label>
+      </node>
+      <node id="2">
+        <label>moni_read_struct</label>
+        <link refid="structmoni__read__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>equalizer</edgelabel>
+          <edgelabel>track</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>short</label>
+      </node>
+      <node id="8">
+        <label>headstack_parms_struct</label>
+        <link refid="structheadstack__parms__struct"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>param</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>vacuum_struct</label>
+        <link refid="structvacuum__struct"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>inches_of_H2O</edgelabel>
+          <edgelabel>setting</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" line="73" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/vex/include/ivex.h" bodystart="74" bodyend="86"/>
+    <listofallmembers>
+      <member refid="structdrive__init__struct_1a7d92c5f336bcae60c67dd4008ffc3536" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>capstan_relative_diameter</name></member>
+      <member refid="structdrive__init__struct_1abb5ba196de35e774c41cc52f1bb5f3ae" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>computer_name</name></member>
+      <member refid="structdrive__init__struct_1ac373ce924d3bd2e84b80f7b658fdf7d2" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>DIM_connect</name></member>
+      <member refid="structdrive__init__struct_1a5dc4a44af45ea5046f01cc8de1ef2d4d" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>drive_type</name></member>
+      <member refid="structdrive__init__struct_1a3f856248a95c80b1733adbb633c79056" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>headstack</name></member>
+      <member refid="structdrive__init__struct_1a1a32761c3acca4dac79dbc21dce8b816" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>mcb_addr_id</name></member>
+      <member refid="structdrive__init__struct_1a0d7a1e84bc20854a03987ccb31c465c0" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>mcb_addr_start</name></member>
+      <member refid="structdrive__init__struct_1a8efbde66f95731c4d9c0f4c4a7859f68" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>monitor_module</name></member>
+      <member refid="structdrive__init__struct_1a1b3911ab6c4cbde088434224f08703b9" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>nheads</name></member>
+      <member refid="structdrive__init__struct_1a374893f5476453bc2fccb93786f9527f" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>tape_acceleration</name></member>
+      <member refid="structdrive__init__struct_1ab086e06d971a5ab485a4cb566e1328f0" prot="public" virt="non-virtual"><scope>drive_init_struct</scope><name>vacuum</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

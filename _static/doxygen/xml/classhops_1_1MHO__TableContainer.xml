@@ -1,0 +1,614 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__TableContainer" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_TableContainer</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__TableContainerBase" prot="public" virt="non-virtual">hops::MHO_TableContainerBase</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__NDArrayWrapper" prot="public" virt="non-virtual">hops::MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;</basecompoundref>
+    <basecompoundref refid="classXAxisPackType" prot="public" virt="non-virtual">XAxisPackType</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__Taggable" prot="public" virt="non-virtual">hops::MHO_Taggable</basecompoundref>
+    <includes refid="MHO__TableContainer_8hh" local="no">MHO_TableContainer.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+      <param>
+        <type>typename <ref refid="classXAxisPackType" kindref="compound">XAxisPackType</ref></type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a4be820531f7c287c2d08fa38f17e5cb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::MHO_TableContainer</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_TableContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="38" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a014d74eca63000429c09c7625425a3e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::MHO_TableContainer</definition>
+        <argsstring>(const MHO_TableContainer &amp;obj)</argsstring>
+        <name>MHO_TableContainer</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="44" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="44" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a253d0fc65bfd7a7643901d7c243ba4a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::MHO_TableContainer</definition>
+        <argsstring>(const std::size_t *dim)</argsstring>
+        <name>MHO_TableContainer</name>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="40" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="40" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a451df54023a8ec5894aea9c41d8699b9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::~MHO_TableContainer</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_TableContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="61" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a95d6d83bf99d5f5a1fc62f7359571f2e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> *</type>
+        <definition>MHO_TableContainer* hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::Clone</definition>
+        <argsstring>()</argsstring>
+        <name>Clone</name>
+        <briefdescription>
+<para>Clones entire table including contents and axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to cloned <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> object. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="52" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a9a2d028e41ca133fdbfdaa67b2215b6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> *</type>
+        <definition>MHO_TableContainer* hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::CloneEmpty</definition>
+        <argsstring>()</argsstring>
+        <name>CloneEmpty</name>
+        <briefdescription>
+<para>Clones table container shape with empty contents and axes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>New <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> instance with cloned dimensions. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="59" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a9f2c2f7df98f9f9f0cf25dad213ebd5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::Copy</definition>
+        <argsstring>(const MHO_TableContainer &amp;rhs)</argsstring>
+        <name>Copy</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="136" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="136" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a7b3751e8cc9742d08a789a60aac1e097" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classXAxisPackType" kindref="compound">XAxisPackType</ref> *</type>
+        <definition>XAxisPackType* hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::GetAxisPack</definition>
+        <argsstring>()</argsstring>
+        <name>GetAxisPack</name>
+        <briefdescription>
+<para>access to axis pack type alone </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Pointer to <ref refid="classXAxisPackType" kindref="compound">XAxisPackType</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="108" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1af96b5518d98bf0b70e3be1802c359803" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classXAxisPackType" kindref="compound">XAxisPackType</ref> *</type>
+        <definition>const XAxisPackType* hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::GetAxisPack</definition>
+        <argsstring>() const</argsstring>
+        <name>GetAxisPack</name>
+        <briefdescription>
+<para>Getter for axis pack. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current instance of <ref refid="classXAxisPackType" kindref="compound">XAxisPackType</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="115" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::GetSerializedSize</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetSerializedSize</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1aec049bfd4587cb63d887bab57bf08991">GetSerializedSize</reimplements>
+        <briefdescription>
+<para>Getter for serialized size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Total serialized size as uint64_t </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="77" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="77" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="namespacehops_1a79b4811cd0a8f2e7e35c6d3f85ce8b1b" kindref="member">MHO_ClassVersion</ref></type>
+        <definition>virtual MHO_ClassVersion hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::GetVersion</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetVersion</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1a7b9b9b27f97f67f6aced62b1eae719e8">GetVersion</reimplements>
+        <briefdescription>
+<para>Getter for the class version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>MHO_ClassVersion version number. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="69" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="69" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a296d158a9afa689ada830cc24759e86f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::Resize</definition>
+        <argsstring>(const std::size_t *dim) override</argsstring>
+        <name>Resize</name>
+        <reimplements refid="classhops_1_1MHO__NDArrayWrapper_1a94df84a1c5370b0f73404e8f1e0da570">Resize</reimplements>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+<para>Resize the multidimensional array and axes according to given dimensions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to a size_t array representing new dimensions. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="97" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="97" bodyend="101"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhops_1_1MHO__TableContainer_1a8dcde4d708a3dc8f0281b5302e8ca5ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&lt;&lt;</definition>
+        <argsstring>(XStream &amp;s, const MHO_TableContainer &amp;aData)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="168" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="168" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhops_1_1MHO__TableContainer_1aabb8d24a2ca2e6f1771d0ef7bc1596f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&gt;&gt;</definition>
+        <argsstring>(XStream &amp;s, MHO_TableContainer &amp;aData)</argsstring>
+        <name>operator&gt;&gt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="150" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="150" bodyend="166"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>virtual MHO_UUID hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::DetermineTypeUUID</definition>
+        <argsstring>() const override</argsstring>
+        <name>DetermineTypeUUID</name>
+        <reimplements refid="classhops_1_1MHO__Taggable_1ae5f8d8c6c32f9d9c76607f6b3b1db6ff">DetermineTypeUUID</reimplements>
+        <briefdescription>
+<para>Function DetermineTypeUUID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return value (<ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>) </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="242" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="242" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a3deff796986575e4aac049c2fe67d7fe" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::StreamInData_V0</definition>
+        <argsstring>(XStream &amp;s)</argsstring>
+        <name>StreamInData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="205" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="205" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__TableContainer_1a37774c01884234dfe5d7c3fc6125613d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;::StreamOutData_V0</definition>
+        <argsstring>(XStream &amp;s) const</argsstring>
+        <name>StreamOutData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="184" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="184" bodyend="203"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classhops_1_1MHO__TableContainer" kindref="compound">MHO_TableContainer</ref> - basis for large majority of data objects in HOPS4, it is an N-dimensional array object associated with coordinate axes. Additional key:value tags can be attached to this object as well as the coordinate axies.</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Sun Jan 24 14:03:03 2021 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_TableContainerBase</label>
+        <link refid="classhops_1_1MHO__TableContainerBase"/>
+      </node>
+      <node id="7">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>XAxisPackType</label>
+        <link refid="classXAxisPackType"/>
+      </node>
+      <node id="9">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_TableContainerBase</label>
+        <link refid="classhops_1_1MHO__TableContainerBase"/>
+      </node>
+      <node id="10">
+        <label>json</label>
+      </node>
+      <node id="8">
+        <label>hops::MHO_Taggable</label>
+        <link refid="classhops_1_1MHO__Taggable"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_JSONWrapper</label>
+        <link refid="classhops_1_1MHO__JSONWrapper"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fObject</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_TableContainer&lt; XValueType, XAxisPackType &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>XAxisPackType</label>
+        <link refid="classXAxisPackType"/>
+      </node>
+      <node id="11">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" line="32" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_TableContainer.hh" bodystart="36" bodyend="251"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a6196efd2aa51a40c710979222c924a7a" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a19a425cc45fb610c718c5d2b0dbb667b" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>AsExtension</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a86345bc1efef3142303161022e00a492" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ad4127abd78c85338cfe57b89c955e255" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a25a966b995be2638bb9efbdf469ce463" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>begin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a7ab32f2b9da4b4c686195f37371b322a" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>cbegin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ab7cce5b792a946e3318873b8c6e4505d" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>cend</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a169c2e70750de3e520aeedf8c12567af" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>CheckIndexValidity</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ac2305ae95b3df2288e7ff313670e918b" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>citerator_at</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aec4e83a60d4b3f6197a3c7b14625d5ab" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>Clear</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ad9ccfa6ce55bd4ea9e37f2bfbdf08684" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>ClearTags</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a95d6d83bf99d5f5a1fc62f7359571f2e" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>Clone</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a9a2d028e41ca133fdbfdaa67b2215b6c" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>CloneEmpty</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a0bbcb7c60ab86b7f58cdd376954005c9" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>const_iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1abcdb068ba89ba14eb6251b77f03ea67f" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>const_stride_iterator</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a01162d836ddbaf45d51e6b8df2dd0fa3" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>ContainsKey</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a9f2c2f7df98f9f9f0cf25dad213ebd5e" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>Copy</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ae07fb3f8a2f4b3e36cfdb8bbbed064ee" prot="public" virt="virtual" ambiguityscope="MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;::"><scope>hops::MHO_TableContainer</scope><name>Copy</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aa977a1dc4a490d4cd49583de27d06353" prot="public" virt="virtual" ambiguityscope="MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;::"><scope>hops::MHO_TableContainer</scope><name>Copy</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a74eedf9337ead51aa34a07b3703db8bf" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>CopyFrom</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a9ff0c9e91598da64f382e40e790641e6" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>CopyTags</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1aba9ec7771e32aca2115875eed2867c01" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>CopyTo</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a0165a498f23f924ad95725f5e997e55f" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>cstride_begin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a5c58d89c845a173e2426b0bb4b1c7c4d" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>cstride_end</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a8f57bdd0110d192b55d3a6672e62b237" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>cstride_iterator_at</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc" prot="private" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>DetermineTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a0be2488f1dfd3f3781e246d97cb201eb" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>DumpKeys</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab32a351cb204524f09f839ae6ec6cea0" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>DumpMap</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1afa1b4f2d5198f6bce6da0a0d143e7642" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>end</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1ac7053fbca67e03532f14b4f47e0a6b49" prot="protected" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>fExtensions</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa7de95913b4113fc50143b2c73ddbfa" prot="protected" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>fObject</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a7b3751e8cc9742d08a789a60aac1e097" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetAxisPack</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1af96b5518d98bf0b70e3be1802c359803" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetAxisPack</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a39b2e463d5abc04ca39a1497ca85f06d" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetData</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a58b9a574093a7850e1cbf776947a66e3" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetData</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1acc4ae2c057a3483b89df4cdc7b3ec877" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetDimension</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ada0ccecfc1c12a4d94ce3abcb2114912" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetDimensionArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a62cfcd1745753c8ad8f910727e7355d6" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetDimensions</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a345838021c44594b3774f9c3190a0361" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetDimensions</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ae2bc7c227bd2de2ae6edc3e3d1c6bf29" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetIndicesForOffset</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a29cc193d05cc849ef5556765a46a30af" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aa6f524e78beb65d026c87fc6856ba059" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ae37f0c04e981b6bd7f361252d3fc6917" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetOffsetForIndices</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a026be1a2ce52d4a80ff04ed96aa19991" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetRank</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>GetSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a0074f7e71474cd03305a7201b02c98e1" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetSize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1adf798630798e2a060eef0bd8388a612c" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetStride</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a2648fbe1709d5cf3c589094ed16f570f" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetStrideArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a98c9989309fb32106c8aa2dd08ecce3c" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetStrides</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a126c37428e5c7ba6d99e4f4672cc974d" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>GetStrides</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aab01eda2ff2ad2338899119bcd509d31" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>GetTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a58ca2b5a3d1acd06c07c07a2cc4f652b" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>GetVersion</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a838927fa3c01474e519efe61e4edf6ca" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>HasExtension</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1afa48fbe7ed6faf902d661eba225931b4" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ad838788924b9a12b62b9df9f263ee4a1" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>HasKey</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1affefe47ce5c642526603332ab58c5f69" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>index_type</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af94f990de2ea21d48b6b969ff257631b" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>Insert</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1abb1638428d710f93ff8e0f64e3f6fa0b" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a532158cedcaba648043e892771ef6f89" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>iterator_at</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1afe17d8f32b77738b06ff188eea23aeac" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MakeExtension</name></member>
+      <member refid="classhops_1_1MHO__Element_1a8457a2bfa206699701a2163585b6cc5f" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a08e0ac36b7baa0b3d4f5d3390d636816" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a24eaabfac649dfcc5418d47cb5a1e4b2" prot="protected" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a95533d35215bcb6a4feb133a58615e81" prot="protected" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a10c4d9ae788a0da022e078bcc5131655" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ae09476aea6805570b9cbe77119b680e1" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ab2158a0b07c120c2b59e6fc0948264c4" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a9722a0044a9e00d23cc8b3b605788ac8" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a071ba293eca6f0eb58a8b067ef1506d0" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a29f651974e8b1cfaa7a12810a1644cbd" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aadeecd650cb160acb8e83565ecfb8a0a" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a4be820531f7c287c2d08fa38f17e5cb2" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_TableContainer</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a253d0fc65bfd7a7643901d7c243ba4a8" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_TableContainer</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a014d74eca63000429c09c7625425a3e4" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_TableContainer</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a0b10cce72b8eb35c4cc42071faef7724" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a34a692357c9b64ff0c83bb947df46c24" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>MHO_Taggable</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a1214865d6bfa04ed3ff53a1cafc2c26d" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aab97957bf2e3d5ebd8c3d12ac8924710" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator()</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ac97397a9b7bf11058fab28db8997ae73" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator*=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ac2a845d7480eaf996823c1736327f1d4" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator*=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a3182af011c55228158b30f259c018143" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator+=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1acd0add8ffe16229e22988cb2d9fa18e0" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator+=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a6f43188195639734e28613ce42a0d615" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator-=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a55d921915d40d2944a94b3932259b084" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator-=</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a8dcde4d708a3dc8f0281b5302e8ca5ca" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a4a5403ca4bcf160b1cf26829b098258c" prot="public" virt="non-virtual" ambiguityscope="MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::"><scope>hops::MHO_TableContainer</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a37bbc5f6aa854321af3faeeb653e113e" prot="public" virt="non-virtual" ambiguityscope="hops::MHO_Taggable::"><scope>hops::MHO_TableContainer</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1af56aebf9c39bf7e6a527d899ebab328b" prot="public" virt="non-virtual" ambiguityscope="hops::MHO_JSONWrapper::"><scope>hops::MHO_TableContainer</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1aabb8d24a2ca2e6f1771d0ef7bc1596f4" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator&gt;&gt;</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ae08ecbd9e766174fbbf64f6816754a17" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator[]</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ae7743032f686b99d2036dec6023a1316" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>operator[]</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a141382b44659721f53439ab6f5f090b7" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>rank</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a296d158a9afa689ada830cc24759e86f" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>Resize</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aa8d20352642f23564ae9c5e2c0fa6ce0" prot="public" virt="non-virtual" ambiguityscope="MHO_NDArrayWrapper&lt; XValueType, XAxisPackType::NAXES::value &gt;::"><scope>hops::MHO_TableContainer</scope><name>Resize</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a8af109cd5401bbce3e2d380c32111e35" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1aeb880d8fcf4405994704f7334f7fcecd" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>Retrieve</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a9c221f6c4b64086be626754eb2913d88" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>SetArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1af6af1398e46295e3b5df58d03b6eea24" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>SetExternalData</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1a701d23cd53b153b2e2038e262b1a4299" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>SetMetaDataAsJSON</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1ab9fa54b72be7e5859f46e19865e8ab5b" prot="protected" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>SetObject</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1af3fc6887489606836bf32705332972f7" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>SetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1acef2af404b1e035a34f100ea2fbd542d" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>SliceView</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a3deff796986575e4aac049c2fe67d7fe" prot="private" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>StreamInData_V0</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a37774c01884234dfe5d7c3fc6125613d" prot="private" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>StreamOutData_V0</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aaf1d901b144e261cd9c7ab83d337d625" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>stride_begin</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ad36853c2a7f4c224e8eef6fe2bf8fff2" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>stride_end</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a7923f97d7660ae966a2a6a1a8347bc92" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>stride_iterator</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aacdd7954156fc6e121fd9d929c74c9ec" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>stride_iterator_at</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aed809d9fc71513abea9394d3d2bedcfb" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>SubView</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a56edb371b3b550d1ed4ac66f350d0570" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>value_type</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1a96759a6fc3a3fb947fbadf05891bb5ce" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>ValueAt</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1ab253fae68f9dc32b00828842e0a2b37b" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>ValueAt</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aa8c5dd06d0440052d4cbc8ceada33ef0" prot="public" virt="non-virtual"><scope>hops::MHO_TableContainer</scope><name>ZeroArray</name></member>
+      <member refid="classhops_1_1MHO__Element_1aea329679a16385ae6ac6986128360887" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>~MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a3ebd5b1b0bf0726ac545354cab4d3dff" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>~MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__JSONWrapper_1a047860e11d91310d6b11b5acae0a9bf4" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>~MHO_JSONWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_1aee9301fd354a61b9ee7e0397b123e8d6" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>~MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a573b91158c3b24b67b594e6d4af0ccea" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>~MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__TableContainer_1a451df54023a8ec5894aea9c41d8699b9" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>~MHO_TableContainer</name></member>
+      <member refid="classhops_1_1MHO__Taggable_1ae33d3be9c20ced6dce3db305e34d2551" prot="public" virt="virtual"><scope>hops::MHO_TableContainer</scope><name>~MHO_Taggable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,719 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="aedit_2src_2read__data_8c" kind="file" language="C++">
+    <compoundname>aedit/src/read_data.c</compoundname>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">sys/types.h</includes>
+    <includes local="no">sys/stat.h</includes>
+    <includes local="no">errno.h</includes>
+    <includes local="no">ctype.h</includes>
+    <includes refid="mk4__afio_8h" local="yes">mk4_afio.h</includes>
+    <includes refid="aedata_8h" local="yes">aedata.h</includes>
+    <includes refid="aedit_8h" local="yes">aedit.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>sys/stat.h</label>
+      </node>
+      <node id="11">
+        <label>aedata.h</label>
+        <link refid="aedata_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>stdarg.h</label>
+      </node>
+      <node id="20">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="55">
+        <label>usearray.h</label>
+        <link refid="usearray_8h"/>
+      </node>
+      <node id="47">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>sys/times.h</label>
+      </node>
+      <node id="26">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="30">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="12">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>stdint.h</label>
+      </node>
+      <node id="14">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdlib.h</label>
+      </node>
+      <node id="35">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="56">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>errno.h</label>
+      </node>
+      <node id="42">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="29">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>psplot.h</label>
+        <link refid="psplot_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="22">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>sys/types.h</label>
+      </node>
+      <node id="41">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="18">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="45">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="24">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>mk4_afio.h</label>
+        <link refid="mk4__afio_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>sizelimits.h</label>
+        <link refid="sizelimits_8h"/>
+      </node>
+      <node id="21">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>complex.h</label>
+      </node>
+      <node id="37">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="61">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ctype.h</label>
+      </node>
+      <node id="44">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="27">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="50">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>pstruct.h</label>
+        <link refid="pstruct_8h"/>
+      </node>
+      <node id="1">
+        <label>read_data.c</label>
+        <link refid="aedit_2src_2read__data_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="54">
+        <label>summary.h</label>
+        <link refid="summary_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="36">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="15">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="aedit_2src_2read__data_8c_1afdef56a4fa5a5d34969eb30aa2bfef47" prot="public" static="no">
+        <name>QUICK</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/read_data.c" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/read_data.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="aedit_2src_2read__data_8c_1a5da43425fff36347c69fc3c090e42c6c" prot="public" static="no">
+        <name>SLOW</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/read_data.c" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/read_data.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="aedit_2src_2read__data_8c_1a691eb7fef9566555cf896a7ad07dadcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int read_data</definition>
+        <argsstring>(esum *data, char *filename)</argsstring>
+        <name>read_data</name>
+        <param>
+          <type><ref refid="structesum" kindref="compound">esum</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/read_data.c" line="36" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/read_data.c" bodystart="36" bodyend="218"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>routine<sp/>is<sp/>responsible<sp/>for<sp/>reading<sp/>data<sp/>into<sp/>the<sp/>internal<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>memory<sp/>of<sp/>aedit.<sp/><sp/>It<sp/>takes<sp/>a<sp/>filename<sp/>and<sp/>reads<sp/>through<sp/>it,<sp/>storing<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>only<sp/>those<sp/>lines<sp/>which<sp/>are<sp/>consistent<sp/>with<sp/>the<sp/>current<sp/>input<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>settings.<sp/><sp/>This<sp/>filtering<sp/>is<sp/>done<sp/>in<sp/>as<sp/>efficient<sp/>a<sp/>manner<sp/>as<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>possible,<sp/>by<sp/>checking<sp/>only<sp/>those<sp/>inputs<sp/>which<sp/>are<sp/>not<sp/>in<sp/>their<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>default<sp/>&quot;pass<sp/>anything&quot;<sp/>state,<sp/>and<sp/>by<sp/>breaking<sp/>out<sp/>of<sp/>the<sp/>checking<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>operation<sp/>at<sp/>the<sp/>first<sp/>mismatch.<sp/><sp/>The<sp/>routine<sp/>also<sp/>takes<sp/>care<sp/>of<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>automatically<sp/>expanding<sp/>the<sp/>data<sp/>array<sp/>if<sp/>it<sp/>gets<sp/>full,<sp/>using<sp/>a<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>standard<sp/>UNIX<sp/>memory<sp/>allocation<sp/>package<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/>data<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Data<sp/>array<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>filename<sp/><sp/><sp/><sp/>Name<sp/>of<sp/>file<sp/>to<sp/>read<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/>return<sp/>value<sp/><sp/><sp/><sp/>0<sp/>for<sp/>success,<sp/>-1<sp/>for<sp/>failure<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>April<sp/>9<sp/>1989<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Modified<sp/>February<sp/>1<sp/>1993<sp/>by<sp/>CJL<sp/>--<sp/>Use<sp/>AFIO<sp/>library<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/types.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/stat.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;errno.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctype.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__afio_8h" kindref="compound">mk4_afio.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedata_8h" kindref="compound">aedata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedit_8h" kindref="compound">aedit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>QUICK<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SLOW<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_2src_2read__data_8c_1a691eb7fef9566555cf896a7ad07dadcf" kindref="member">read_data</ref><sp/>(<ref refid="structesum" kindref="compound">esum</ref><sp/>*data,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*filename)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structinputs" kindref="compound">inputs</ref><sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref>,<sp/><ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref>,<sp/><ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>,<sp/><ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>,<sp/><ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref>,<sp/><ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref>,<sp/><ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref>,<sp/><ref refid="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" kindref="member">tspace</ref>,<sp/><ref refid="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" kindref="member">qspace</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a3e3b628171376543f5ac7642fff82ac3" kindref="member">up_to_date</ref>,<sp/><ref refid="aedit_8c_1a5ecbdd60d8ed41819099496a87f186bb" kindref="member">fsortstat</ref>[],<sp/><ref refid="aedit_8c_1a4701a575d7993b0edfa057b319e330df" kindref="member">csortstat</ref>[],<sp/><ref refid="aedit_8c_1a0597ac9a5fe21b22160969b3097b0942" kindref="member">rsortstat</ref>[],</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1aa197c7a76a2fa21bf3735cf1d70b860d" kindref="member">tsortstat</ref>[],<sp/><ref refid="aedit_8c_1a6fa4a4c7b8d0d721383b51363933c49d" kindref="member">qsortstat</ref>[];</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*fp;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">stat<sp/>statbuf;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/><ref refid="active__filter_8c_1a727a89a8dcfb337fb3ad40a97dc7f4b1" kindref="member">nfilt</ref>,<sp/>bad,<sp/>nkbr,<sp/>nkbc,<sp/>nkbf,<sp/>nkbt,<sp/>nkbq,<sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>year_ok,<sp/>pret,<sp/>frac,<sp/>ck[12];</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nadded[5],<sp/>expand,<sp/>type;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>line[512];</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>year_ok<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(stat(filename,&amp;statbuf)<sp/>!=<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(errno<sp/>==<sp/>ENOENT)<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;File<sp/>&apos;%s&apos;<sp/>does<sp/>not<sp/>exist&quot;</highlight><highlight class="normal">,2,filename);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Problem<sp/>accessing<sp/>file<sp/>&apos;%s&apos;&quot;</highlight><highlight class="normal">,2,filename);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((fp=fopen(filename,</highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">))<sp/>==<sp/>NULL)<sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Problem<sp/>opening<sp/>&apos;%s&apos;&quot;</highlight><highlight class="normal">,2,filename);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a16af2e7e6a47200c2d29cda1f8696812" kindref="member">active_filter</ref>();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Reading<sp/>data<sp/>from<sp/>file<sp/>&apos;%s&apos;<sp/>...&quot;</highlight><highlight class="normal">,2,filename);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;5;<sp/>i++)<sp/>nadded[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(fgets(line,511,fp)<sp/>!=<sp/>NULL)<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mk4__afio_8h_1aaec2234b8234d5a757da31af768d9c13" kindref="member">afile_comment</ref>(line))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;<sp/><sp/></highlight><highlight class="comment">/*<sp/>Ignore<sp/>comment<sp/>lines<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>What<sp/>type<sp/>of<sp/>line<sp/>is<sp/>this?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(isdigit<sp/>(line[0]))<sp/>sscanf<sp/>(line,<sp/></highlight><highlight class="stringliteral">&quot;%*d<sp/>%*s<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>&amp;type);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>sscanf<sp/>(line,<sp/></highlight><highlight class="stringliteral">&quot;%*s<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>&amp;type);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>type<sp/>%=<sp/>50;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>In<sp/>case<sp/>of<sp/>old<sp/>format<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((type<sp/>&lt;<sp/>0)<sp/>||<sp/>(type<sp/>&gt;<sp/>4))<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Better<sp/>be<sp/>0,<sp/>1,<sp/>2,<sp/>3<sp/>or<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Found<sp/>line<sp/>with<sp/>incomprehensible<sp/>format,<sp/>stopping.&quot;</highlight><highlight class="normal">,2);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>call<sp/>proper<sp/>parser<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Remember<sp/>to<sp/>clear<sp/>elements<sp/>of<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>aedit<sp/>array<sp/>structures<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(type)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pret<sp/>=<sp/><ref refid="mk4__afio_8h_1a19e89b0ca8c0365631df9f3b0332c981" kindref="member">parse_rsumm</ref><sp/>(line,<sp/>&amp;((data-&gt;<ref refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" kindref="member">rdata</ref>)[<ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref>].data));</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1ae20e37e5c693d849bfaca6f397d430ae" kindref="member">aeclr_root</ref><sp/>(&amp;(data-&gt;<ref refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" kindref="member">rdata</ref>[<ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref>]));</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pret<sp/>=<sp/><ref refid="mk4__afio_8h_1afeda3ada925025b9f2adde5df64e5341" kindref="member">parse_csumm</ref><sp/>(line,<sp/>&amp;((data-&gt;<ref refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" kindref="member">cdata</ref>)[<ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref>].data));</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1aef7e85e7f5db785201759c1faa7ffaf9" kindref="member">aeclr_corel</ref><sp/>(&amp;(data-&gt;<ref refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" kindref="member">cdata</ref>[<ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref>]));</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pret<sp/>=<sp/><ref refid="mk4__afio_8h_1aa647994375af5775afad398cd4632f05" kindref="member">parse_fsumm</ref><sp/>(line,<sp/>&amp;((data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>)[<ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>].data));</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a9675a60585bd19d736ba9faa444ddb71" kindref="member">aeclr_fringe</ref><sp/>(&amp;(data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>[<ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>]));</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pret<sp/>=<sp/><ref refid="mk4__afio_8h_1abe65b75096237c1d1faeead164386c8b" kindref="member">parse_tsumm</ref><sp/>(line,<sp/>&amp;((data-&gt;<ref refid="structesum_1a5b7351638813f38c179e463262d66615" kindref="member">tdata</ref>)[<ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>].data));</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a49033285ae6e2b763d1579bb7982386f" kindref="member">aeclr_triangle</ref><sp/>(&amp;(data-&gt;<ref refid="structesum_1a5b7351638813f38c179e463262d66615" kindref="member">tdata</ref>[<ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>]));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>pret<sp/>=<sp/>parse_qsumm<sp/>(line,<sp/>&amp;((data-&gt;qdata)[qscan].data));<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1ac0e9f7b4e7b92653e95b9797bf2132ed" kindref="member">aeclr_quad</ref><sp/>(&amp;(data-&gt;<ref refid="structesum_1a5f86a9569e39d8c8821d584565f3124e" kindref="member">qdata</ref>[<ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>]));</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>bad<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pret<sp/>&gt;=<sp/>0)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Line<sp/>checks<sp/>out<sp/>this<sp/>far<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pret<sp/>==<sp/>1)<sp/>year_ok<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/><sp/></highlight><highlight class="comment">/*<sp/>Some<sp/>bad<sp/>scan<sp/>year<sp/>data<sp/>in<sp/>here<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Filter<sp/>the<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>0)<sp/>bad<sp/>|=<sp/><ref refid="aedit__proto_8h_1a86a989b264a81c82c26ed1b09f571695" kindref="member">rfilter</ref>(&amp;((data-&gt;<ref refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" kindref="member">rdata</ref>)[<ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref>]),<ref refid="aedit_2src_2read__data_8c_1afdef56a4fa5a5d34969eb30aa2bfef47" kindref="member">QUICK</ref>);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>1)<sp/>bad<sp/>|=<sp/><ref refid="aedit__proto_8h_1aded840c3ab5e4d3fdfa20f1c5b697164" kindref="member">cfilter</ref>(&amp;((data-&gt;<ref refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" kindref="member">cdata</ref>)[<ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref>]),<ref refid="aedit_2src_2read__data_8c_1afdef56a4fa5a5d34969eb30aa2bfef47" kindref="member">QUICK</ref>);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>2)<sp/>bad<sp/>|=<sp/><ref refid="aedit__proto_8h_1a3c883fb968b14d63e303c7c61a1f080f" kindref="member">ffilter</ref>(&amp;((data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>)[<ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>]),<ref refid="aedit_2src_2read__data_8c_1afdef56a4fa5a5d34969eb30aa2bfef47" kindref="member">QUICK</ref>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>3)<sp/>bad<sp/>|=<sp/><ref refid="aedit__proto_8h_1a23dced85a80da3fab5576d2a3f57125d" kindref="member">tfilter</ref>(&amp;((data-&gt;<ref refid="structesum_1a5b7351638813f38c179e463262d66615" kindref="member">tdata</ref>)[<ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>]),<ref refid="aedit_2src_2read__data_8c_1afdef56a4fa5a5d34969eb30aa2bfef47" kindref="member">QUICK</ref>);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>4)<sp/>bad<sp/>|=<sp/><ref refid="aedit__proto_8h_1af530a7bc74cd3ea2743af05b4ff7f250" kindref="member">qfilter</ref>(&amp;((data-&gt;<ref refid="structesum_1a5f86a9569e39d8c8821d584565f3124e" kindref="member">qdata</ref>)[<ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>]),<ref refid="aedit_2src_2read__data_8c_1afdef56a4fa5a5d34969eb30aa2bfef47" kindref="member">QUICK</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<sp/>bad)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>OK,<sp/>this<sp/>ends<sp/>up<sp/>in<sp/>memory<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nadded[type]++;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>0)<sp/><ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref>++;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>1)<sp/><ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref>++;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>2)<sp/><ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>++;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>These<sp/>do<sp/>memory<sp/>allocation<sp/>internally<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>3)<sp/><ref refid="aedit__proto_8h_1a7a5513a490a11aa3a712ee45bc055480" kindref="member">tarray_index</ref><sp/>(data);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(type<sp/>==<sp/>4)<sp/><ref refid="aedit__proto_8h_1ab1e712cd6e0e8bb9c70696873bdc9fc2" kindref="member">qarray_index</ref><sp/>(data);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>expand<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Expand<sp/>memory<sp/>as<sp/>necessary<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref><sp/>==<sp/><ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref>)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expand<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref><sp/>+=<sp/>100;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" kindref="member">rdata</ref><sp/>=<sp/></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="structrootarray" kindref="compound">rootarray</ref><sp/>*)<sp/>realloc(data-&gt;<ref refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" kindref="member">rdata</ref>,<sp/><ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structrootarray" kindref="compound">rootarray</ref>));</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref><sp/>==<sp/><ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref>)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expand<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref><sp/>+=<sp/>100;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" kindref="member">cdata</ref><sp/>=<sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="structcorelarray" kindref="compound">corelarray</ref><sp/>*)<sp/>realloc(data-&gt;<ref refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" kindref="member">cdata</ref>,<sp/><ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structcorelarray" kindref="compound">corelarray</ref>));</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref><sp/>==<sp/><ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref>)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expand<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref><sp/>+=<sp/>100;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref><sp/>=<sp/></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="structfringearray" kindref="compound">fringearray</ref><sp/>*)<sp/>realloc(data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>,<sp/><ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structfringearray" kindref="compound">fringearray</ref>));</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(expand)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>for<sp/>error<sp/>and<sp/>notify<sp/>user<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((data-&gt;<ref refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" kindref="member">rdata</ref><sp/>==<sp/>NULL)<sp/>||<sp/>(data-&gt;<ref refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" kindref="member">cdata</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref><sp/>==<sp/>NULL))</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>perror(</highlight><highlight class="stringliteral">&quot;realloc&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Fatal<sp/>error<sp/>allocating<sp/>memory<sp/>for<sp/>data<sp/>-<sp/>Abort!&quot;</highlight><highlight class="normal">,3);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nkbr<sp/>=<sp/>(<ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structrootarray" kindref="compound">rootarray</ref>))/1024;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nkbc<sp/>=<sp/>(<ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structcorelarray" kindref="compound">corelarray</ref>))/1024;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nkbf<sp/>=<sp/>(<ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structfringearray" kindref="compound">fringearray</ref>))/1024;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nkbt<sp/>=<sp/>(<ref refid="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" kindref="member">tspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structtrianglearray" kindref="compound">trianglearray</ref>))/1024;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nkbq<sp/>=<sp/>(<ref refid="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" kindref="member">qspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structquadarray" kindref="compound">quadarray</ref>))/1024;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;Expanded<sp/>array<sp/>memory<sp/>to<sp/>%d<sp/>Kb<sp/>...\r&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nkbr<sp/>+<sp/>nkbc<sp/>+<sp/>nkbf<sp/>+<sp/>nkbt<sp/>+<sp/>nkbq);<sp/>fflush<sp/>(stdout);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>End<sp/>of<sp/>main<sp/>read<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(nadded[0]<sp/>+<sp/>nadded[1]<sp/>+<sp/>nadded[2]<sp/>+<sp/>nadded[3]<sp/>+<sp/>nadded[4]<sp/>&gt;<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a3e3b628171376543f5ac7642fff82ac3" kindref="member">up_to_date</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>data<sp/>summary<sp/>use<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>nkbr<sp/>=<sp/>(<ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structrootarray" kindref="compound">rootarray</ref>))/1024;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>nkbc<sp/>=<sp/>(<ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structcorelarray" kindref="compound">corelarray</ref>))/1024;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>nkbf<sp/>=<sp/>(<ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structfringearray" kindref="compound">fringearray</ref>))/1024;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>nkbt<sp/>=<sp/>(<ref refid="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" kindref="member">tspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structtrianglearray" kindref="compound">trianglearray</ref>))/1024;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>nkbq<sp/>=<sp/>(<ref refid="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" kindref="member">qspace</ref>*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structquadarray" kindref="compound">quadarray</ref>))/1024;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Total<sp/>space<sp/>now<sp/>occupied<sp/>by<sp/>data<sp/>=<sp/>%d<sp/>Kb&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nkbr<sp/>+<sp/>nkbc<sp/>+<sp/>nkbf<sp/>+<sp/>nkbt<sp/>+<sp/>nkbq);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Throw<sp/>away<sp/>sorting<sp/>explicitly<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a0597ac9a5fe21b22160969b3097b0942" kindref="member">rsortstat</ref>[0]<sp/>=<sp/><ref refid="aedit_8c_1a4701a575d7993b0edfa057b319e330df" kindref="member">csortstat</ref>[0]<sp/>=<sp/><ref refid="aedit_8c_1a5ecbdd60d8ed41819099496a87f186bb" kindref="member">fsortstat</ref>[0]<sp/>=<sp/></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1aa197c7a76a2fa21bf3735cf1d70b860d" kindref="member">tsortstat</ref>[0]<sp/>=<sp/><ref refid="aedit_8c_1a6fa4a4c7b8d0d721383b51363933c49d" kindref="member">qsortstat</ref>[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nadded[0]<sp/>&gt;<sp/>0)<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Report<sp/>any<sp/>new<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Read<sp/>%d<sp/><sp/>root<sp/>records<sp/>from<sp/>%s,<sp/>total<sp/>now<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nadded[0],<sp/>filename,<sp/><ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref>);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nadded[1]<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Read<sp/>%d<sp/>corel<sp/>records<sp/>from<sp/>%s,<sp/>total<sp/>now<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nadded[1],<sp/>filename,<sp/><ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref>);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nadded[2]<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Read<sp/>%d<sp/>fringe<sp/>records<sp/>from<sp/>%s,<sp/>total<sp/>now<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nadded[2],<sp/>filename,<sp/><ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nadded[3]<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Read<sp/>%d<sp/>closure<sp/>triangle<sp/>records<sp/>from<sp/>%s,<sp/>total<sp/>now<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nadded[3],<sp/>filename,<sp/><ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nadded[4]<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Read<sp/>%d<sp/>closure<sp/>quad<sp/>records<sp/>from<sp/>%s,<sp/>total<sp/>now<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nadded[4],<sp/>filename,<sp/><ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<sp/>year_ok)<sp/></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;WARNING:<sp/>file<sp/>contained<sp/>scans<sp/>with<sp/>missing<sp/>scan<sp/>year<sp/>information&quot;</highlight><highlight class="normal">,2);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Use<sp/>&apos;SETYEAR&apos;<sp/>command<sp/>on<sp/>subset(s)<sp/>of<sp/>data<sp/>to<sp/>restore&quot;</highlight><highlight class="normal">,2);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(fp);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/read_data.c"/>
+  </compounddef>
+</doxygen>

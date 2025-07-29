@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvexpy_1_1vexpy_1_1VexStructureBase" kind="class" language="Python" prot="public">
+    <compoundname>vexpy::vexpy::VexStructureBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ctypes.Structure</basecompoundref>
+    <derivedcompoundref refid="classvexpy_1_1vexpy_1_1chan__struct" prot="public" virt="non-virtual">vexpy.vexpy.chan_struct</derivedcompoundref>
+    <derivedcompoundref refid="classvexpy_1_1vexpy_1_1scan__struct" prot="public" virt="non-virtual">vexpy.vexpy.scan_struct</derivedcompoundref>
+    <derivedcompoundref refid="classvexpy_1_1vexpy_1_1source__struct" prot="public" virt="non-virtual">vexpy.vexpy.source_struct</derivedcompoundref>
+    <derivedcompoundref refid="classvexpy_1_1vexpy_1_1station__struct" prot="public" virt="non-virtual">vexpy.vexpy.station_struct</derivedcompoundref>
+    <derivedcompoundref refid="classvexpy_1_1vexpy_1_1vex" prot="public" virt="non-virtual">vexpy.vexpy.vex</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvexpy_1_1vexpy_1_1VexStructureBase_1a977b385c197df406231e1b04697ebe0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vexpy.vexpy.VexStructureBase.__eq__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__eq__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="66" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="66" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classvexpy_1_1vexpy_1_1VexStructureBase_1a11038ebcd0191035b2a7e6620ddd58b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vexpy.vexpy.VexStructureBase.__ne__</definition>
+        <argsstring>(self, other)</argsstring>
+        <name>__ne__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>other</type>
+          <defname>other</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="77" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="77" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classvexpy_1_1vexpy_1_1VexStructureBase_1a110929a2baeb94c6b38d42e056b0c1af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vexpy.vexpy.VexStructureBase.printarray</definition>
+        <argsstring>(self, a)</argsstring>
+        <name>printarray</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>a</type>
+          <defname>a</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="106" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="106" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classvexpy_1_1vexpy_1_1VexStructureBase_1af155ab0d05c4c75c206558a0208a5841" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vexpy.vexpy.VexStructureBase.printsummary</definition>
+        <argsstring>(self)</argsstring>
+        <name>printsummary</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> dump parsed data </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="88" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="88" bodyend="105"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>general records and utils </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim> vexpy base class which implements comparison operations eq and ne and a print summary </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="7">
+        <label>vexpy.vexpy.vex</label>
+        <link refid="classvexpy_1_1vexpy_1_1vex"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>vexpy.vexpy.station_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1station__struct"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vexpy.vexpy.VexStructureBase</label>
+        <link refid="classvexpy_1_1vexpy_1_1VexStructureBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vexpy.vexpy.scan_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1scan__struct"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>vexpy.vexpy.source_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1source__struct"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vexpy.vexpy.chan_struct</label>
+        <link refid="classvexpy_1_1vexpy_1_1chan__struct"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ctypes.Structure</label>
+      </node>
+      <node id="1">
+        <label>vexpy.vexpy.VexStructureBase</label>
+        <link refid="classvexpy_1_1vexpy_1_1VexStructureBase"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" line="64" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/vexpy/vexpy.py" bodystart="64" bodyend="122"/>
+    <listofallmembers>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a977b385c197df406231e1b04697ebe0d" prot="public" virt="non-virtual"><scope>vexpy::vexpy::VexStructureBase</scope><name>__eq__</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a11038ebcd0191035b2a7e6620ddd58b1" prot="public" virt="non-virtual"><scope>vexpy::vexpy::VexStructureBase</scope><name>__ne__</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1a110929a2baeb94c6b38d42e056b0c1af" prot="public" virt="non-virtual"><scope>vexpy::vexpy::VexStructureBase</scope><name>printarray</name></member>
+      <member refid="classvexpy_1_1vexpy_1_1VexStructureBase_1af155ab0d05c4c75c206558a0208a5841" prot="public" virt="non-virtual"><scope>vexpy::vexpy::VexStructureBase</scope><name>printsummary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

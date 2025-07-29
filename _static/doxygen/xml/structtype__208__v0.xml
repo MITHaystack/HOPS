@@ -1,0 +1,469 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structtype__208__v0" kind="struct" language="C++" prot="public">
+    <compoundname>type_208_v0</compoundname>
+    <includes refid="type__208_8h" local="no">type_208.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtype__208__v0_1a97c763f1b38525e7791130208be22888" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::aaccel</definition>
+        <argsstring></argsstring>
+        <name>aaccel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="19" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1ab3ffdf98fd7dc50181990681bb3fa0d1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::adelay</definition>
+        <argsstring></argsstring>
+        <name>adelay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="17" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a5031122e506343f70c264946452f29db" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::ambiguity</definition>
+        <argsstring></argsstring>
+        <name>ambiguity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="32" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a42c08358e894e5150a3538518e6cb181" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::amplitude</definition>
+        <argsstring></argsstring>
+        <name>amplitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="33" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a748c0a468e5ccb103140086b459c955f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::arate</definition>
+        <argsstring></argsstring>
+        <name>arate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="18" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a53f2348b015c14dfd892e02bfc62b184" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_208_v0::errcode</definition>
+        <argsstring></argsstring>
+        <name>errcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="15" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a340446235b767cb10c2edbde883dafe9" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::inc_chan_ampl</definition>
+        <argsstring></argsstring>
+        <name>inc_chan_ampl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="35" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1acef792f8e76ada804985414510375226" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::inc_seg_ampl</definition>
+        <argsstring></argsstring>
+        <name>inc_seg_ampl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="34" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a00442e107040ea3752d39bf1f1636a0e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::mbd_error</definition>
+        <argsstring></argsstring>
+        <name>mbd_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="29" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a686f638ed785c37efed20b5fc83a9c03" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::prob_false</definition>
+        <argsstring></argsstring>
+        <name>prob_false</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="37" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1ae0700faac6884599153b059d016316c1" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_208_v0::quality</definition>
+        <argsstring></argsstring>
+        <name>quality</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="14" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1af0f1c85ddc4718839a38c02653d6cfbf" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::rate_error</definition>
+        <argsstring></argsstring>
+        <name>rate_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="31" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a54a9f25e6bd24aecd2803d26dc7becdf" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_208_v0::record_id[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>record_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="11" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a7a7b71ae4562d4c0177a4232d4f4f8fe" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::resid_mbd</definition>
+        <argsstring></argsstring>
+        <name>resid_mbd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="26" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a9892882976319cd4442648978573d540" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::resid_rate</definition>
+        <argsstring></argsstring>
+        <name>resid_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="28" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a43a5498c9373482c5c15eff349be6d9d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::resid_sbd</definition>
+        <argsstring></argsstring>
+        <name>resid_sbd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="27" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a89da430e9ecb1b6e0c51ef7f82c1a674" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::resphase</definition>
+        <argsstring></argsstring>
+        <name>resphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="39" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a94c350e4ef3880aa424a7e8b7a1f4b95" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::sbd_error</definition>
+        <argsstring></argsstring>
+        <name>sbd_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="30" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a66e89ffa48d257bdd7e4b986ab8cda60" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::snr</definition>
+        <argsstring></argsstring>
+        <name>snr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="36" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1aac845e6f0933adcd17c1aed2d5415e4d" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_208_v0::tape_qcode[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>tape_qcode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="16" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a05a50b84562a1bda55dc2723bb6c69e5" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::tot_mbd</definition>
+        <argsstring></argsstring>
+        <name>tot_mbd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="20" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1ac11448da8dc25c4fe12a323273f7c8dc" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::tot_mbd_ref</definition>
+        <argsstring></argsstring>
+        <name>tot_mbd_ref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="23" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1ae23051ed23353ac992b0123b572b9947" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::tot_rate</definition>
+        <argsstring></argsstring>
+        <name>tot_rate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="22" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1ab8982e06bfa6057504bd8c6b784e1e1c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::tot_rate_ref</definition>
+        <argsstring></argsstring>
+        <name>tot_rate_ref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="25" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1aabb7f648b6d36ccaf9df08c4a77c3b3f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::tot_sbd</definition>
+        <argsstring></argsstring>
+        <name>tot_sbd</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="21" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a03bed4adea20bfc86be553005f0b0e6a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double type_208_v0::tot_sbd_ref</definition>
+        <argsstring></argsstring>
+        <name>tot_sbd_ref</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="24" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a452661729da93350bb889c856d3e8570" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float type_208_v0::totphase</definition>
+        <argsstring></argsstring>
+        <name>totphase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="38" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1ab6e27a1e7a1d01349b086219cf6e9c0e" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_208_v0::unused1[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>unused1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="13" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtype__208__v0_1a2f7c1fd8c22659257f7e0b43cca382a3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char type_208_v0::version_no[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>version_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="12" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="1">
+        <label>type_208_v0</label>
+        <link refid="structtype__208__v0"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>aaccel</edgelabel>
+          <edgelabel>adelay</edgelabel>
+          <edgelabel>arate</edgelabel>
+          <edgelabel>tot_mbd</edgelabel>
+          <edgelabel>tot_mbd_ref</edgelabel>
+          <edgelabel>tot_rate</edgelabel>
+          <edgelabel>tot_rate_ref</edgelabel>
+          <edgelabel>tot_sbd</edgelabel>
+          <edgelabel>tot_sbd_ref</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ambiguity</edgelabel>
+          <edgelabel>amplitude</edgelabel>
+          <edgelabel>inc_chan_ampl</edgelabel>
+          <edgelabel>inc_seg_ampl</edgelabel>
+          <edgelabel>mbd_error</edgelabel>
+          <edgelabel>prob_false</edgelabel>
+          <edgelabel>rate_error</edgelabel>
+          <edgelabel>resid_mbd</edgelabel>
+          <edgelabel>resid_rate</edgelabel>
+          <edgelabel>resid_sbd</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>errcode</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>tape_qcode</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" line="9" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_208.h" bodystart="10" bodyend="40"/>
+    <listofallmembers>
+      <member refid="structtype__208__v0_1a97c763f1b38525e7791130208be22888" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>aaccel</name></member>
+      <member refid="structtype__208__v0_1ab3ffdf98fd7dc50181990681bb3fa0d1" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>adelay</name></member>
+      <member refid="structtype__208__v0_1a5031122e506343f70c264946452f29db" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>ambiguity</name></member>
+      <member refid="structtype__208__v0_1a42c08358e894e5150a3538518e6cb181" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>amplitude</name></member>
+      <member refid="structtype__208__v0_1a748c0a468e5ccb103140086b459c955f" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>arate</name></member>
+      <member refid="structtype__208__v0_1a53f2348b015c14dfd892e02bfc62b184" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>errcode</name></member>
+      <member refid="structtype__208__v0_1a340446235b767cb10c2edbde883dafe9" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>inc_chan_ampl</name></member>
+      <member refid="structtype__208__v0_1acef792f8e76ada804985414510375226" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>inc_seg_ampl</name></member>
+      <member refid="structtype__208__v0_1a00442e107040ea3752d39bf1f1636a0e" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>mbd_error</name></member>
+      <member refid="structtype__208__v0_1a686f638ed785c37efed20b5fc83a9c03" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>prob_false</name></member>
+      <member refid="structtype__208__v0_1ae0700faac6884599153b059d016316c1" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>quality</name></member>
+      <member refid="structtype__208__v0_1af0f1c85ddc4718839a38c02653d6cfbf" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>rate_error</name></member>
+      <member refid="structtype__208__v0_1a54a9f25e6bd24aecd2803d26dc7becdf" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>record_id</name></member>
+      <member refid="structtype__208__v0_1a7a7b71ae4562d4c0177a4232d4f4f8fe" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>resid_mbd</name></member>
+      <member refid="structtype__208__v0_1a9892882976319cd4442648978573d540" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>resid_rate</name></member>
+      <member refid="structtype__208__v0_1a43a5498c9373482c5c15eff349be6d9d" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>resid_sbd</name></member>
+      <member refid="structtype__208__v0_1a89da430e9ecb1b6e0c51ef7f82c1a674" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>resphase</name></member>
+      <member refid="structtype__208__v0_1a94c350e4ef3880aa424a7e8b7a1f4b95" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>sbd_error</name></member>
+      <member refid="structtype__208__v0_1a66e89ffa48d257bdd7e4b986ab8cda60" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>snr</name></member>
+      <member refid="structtype__208__v0_1aac845e6f0933adcd17c1aed2d5415e4d" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>tape_qcode</name></member>
+      <member refid="structtype__208__v0_1a05a50b84562a1bda55dc2723bb6c69e5" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>tot_mbd</name></member>
+      <member refid="structtype__208__v0_1ac11448da8dc25c4fe12a323273f7c8dc" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>tot_mbd_ref</name></member>
+      <member refid="structtype__208__v0_1ae23051ed23353ac992b0123b572b9947" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>tot_rate</name></member>
+      <member refid="structtype__208__v0_1ab8982e06bfa6057504bd8c6b784e1e1c" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>tot_rate_ref</name></member>
+      <member refid="structtype__208__v0_1aabb7f648b6d36ccaf9df08c4a77c3b3f" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>tot_sbd</name></member>
+      <member refid="structtype__208__v0_1a03bed4adea20bfc86be553005f0b0e6a" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>tot_sbd_ref</name></member>
+      <member refid="structtype__208__v0_1a452661729da93350bb889c856d3e8570" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>totphase</name></member>
+      <member refid="structtype__208__v0_1ab6e27a1e7a1d01349b086219cf6e9c0e" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>unused1</name></member>
+      <member refid="structtype__208__v0_1a2f7c1fd8c22659257f7e0b43cca382a3" prot="public" virt="non-virtual"><scope>type_208_v0</scope><name>version_no</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_d14d15cadc30134a390deae00e4dfae9" kind="dir">
+    <compoundname>Fringe</compoundname>
+    <innerdir refid="dir_99cb44effd617a0e3e19608eb3eacd49">include</innerdir>
+    <innerdir refid="dir_7b90604c2bb76efaeb493a4bf97a39f0">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/"/>
+  </compounddef>
+</doxygen>

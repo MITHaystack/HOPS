@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_91ae3e556fa9cad9030b784323206cc7" kind="dir">
+    <compoundname>Calibration</compoundname>
+    <innerdir refid="dir_7be2fd11ca2616dfba72a6921a1b3394">include</innerdir>
+    <innerdir refid="dir_4babaf99262da0ba626adfb482a31f7a">src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/"/>
+  </compounddef>
+</doxygen>

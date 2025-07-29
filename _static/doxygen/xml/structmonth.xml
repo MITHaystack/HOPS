@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmonth" kind="struct" language="C++" prot="public">
+    <compoundname>month</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmonth_1a0a8b7f017920a1ddf84b4c9c6dfd4293" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int month::difm</definition>
+        <argsstring></argsstring>
+        <name>difm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" line="50" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmonth_1a5810c62ffeae2a3a63b97cf0e5573db3" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* month::mname</definition>
+        <argsstring></argsstring>
+        <name>mname</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" line="49" column="6" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>month</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mname</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>difm</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" line="48" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/misc/time/julian.c" bodystart="48" bodyend="51"/>
+    <listofallmembers>
+      <member refid="structmonth_1a0a8b7f017920a1ddf84b4c9c6dfd4293" prot="public" virt="non-virtual"><scope>month</scope><name>difm</name></member>
+      <member refid="structmonth_1a5810c62ffeae2a3a63b97cf0e5573db3" prot="public" virt="non-virtual"><scope>month</scope><name>mname</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

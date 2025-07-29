@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespacevpal_1_1proxy__cable__cal" kind="namespace" language="Python">
+    <compoundname>vpal::proxy_cable_cal</compoundname>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1ChannelToBandMap" prot="public">vpal::proxy_cable_cal::ChannelToBandMap</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1ComplexReImCovarianceMatrix" prot="public">vpal::proxy_cable_cal::ComplexReImCovarianceMatrix</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager" prot="public">vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1ExperimentPccBandDelay" prot="public">vpal::proxy_cable_cal::ExperimentPccBandDelay</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1NumericalInterval" prot="public">vpal::proxy_cable_cal::NumericalInterval</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1PccConfiguration" prot="public">vpal::proxy_cable_cal::PccConfiguration</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1PccDate" prot="public">vpal::proxy_cable_cal::PccDate</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1ScanPccBandDelay" prot="public">vpal::proxy_cable_cal::ScanPccBandDelay</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1SingleChannelPhasorCollection" prot="public">vpal::proxy_cable_cal::SingleChannelPhasorCollection</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1StationExperimentPhasorCollection" prot="public">vpal::proxy_cable_cal::StationExperimentPhasorCollection</innerclass>
+    <innerclass refid="classvpal_1_1proxy__cable__cal_1_1StationScanPhaseCalibrationData" prot="public">vpal::proxy_cable_cal::StationScanPhaseCalibrationData</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacevpal_1_1proxy__cable__cal_1aad959a2e063ee7be4e5afa796695f13e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vpal::proxy_cable_cal.DISCARD_OFFSET</definition>
+        <argsstring></argsstring>
+        <name>DISCARD_OFFSET</name>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="52" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1proxy__cable__cal_1a0ffc78af07cfc61e6501f656be0f947c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vpal::proxy_cable_cal.MAX_CHAN</definition>
+        <argsstring></argsstring>
+        <name>MAX_CHAN</name>
+        <initializer>=  128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="40" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1proxy__cable__cal_1a3a91e83cb84dc4af00213b5829714cc0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal::proxy_cable_cal.pcc_logger</definition>
+        <argsstring></argsstring>
+        <name>pcc_logger</name>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="19" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1proxy__cable__cal_1a3fd0247f3b76973b9f4cadbc9a9919f2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vpal::proxy_cable_cal.T309_NACC</definition>
+        <argsstring></argsstring>
+        <name>T309_NACC</name>
+        <initializer>=  64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="43" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1proxy__cable__cal_1a7774b24b31310a6d92c79aab00e967da" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int vpal::proxy_cable_cal.T309_NCHAN</definition>
+        <argsstring></argsstring>
+        <name>T309_NCHAN</name>
+        <initializer>=  64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="42" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1proxy__cable__cal_1acbaa906280b1cb8011e7f7de0fa5d836" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float vpal::proxy_cable_cal.TWO31</definition>
+        <argsstring></argsstring>
+        <name>TWO31</name>
+        <initializer>=  2147483648.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="46" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacevpal_1_1proxy__cable__cal_1adaa729b301cee4b10a259ea6945980e8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float vpal::proxy_cable_cal.TWO32</definition>
+        <argsstring></argsstring>
+        <name>TWO32</name>
+        <initializer>=  4294967296.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="47" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacevpal_1_1proxy__cable__cal_1a598602a871aee2e4b6b72e5c5296d8f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.process_experiment</definition>
+        <argsstring>(pcc_config)</argsstring>
+        <name>process_experiment</name>
+        <param>
+          <type>pcc_config</type>
+          <defname>pcc_config</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1142" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1142" bodyend="1167"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>library to handle the calculation of proxy-cable-calibration delays from phase-cal data </verbatim> </para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

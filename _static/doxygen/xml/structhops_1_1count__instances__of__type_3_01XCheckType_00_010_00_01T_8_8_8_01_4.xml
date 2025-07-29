@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>hops::count_instances_of_type&lt; XCheckType, 0, T... &gt;</compoundname>
+    <includes refid="MHO__Meta_8hh" local="no">MHO_Meta.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XCheckType</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4_1adbce08cb91f91463f71b3609e7ec883c" prot="public" static="no">
+        <type>typename std::tuple_element&lt; 0, std::tuple&lt; T... &gt; &gt;::type</type>
+        <definition>using hops::count_instances_of_type&lt; XCheckType, 0, T... &gt;::current_type =  typename std::tuple_element&lt; 0, std::tuple&lt; T... &gt; &gt;::type</definition>
+        <argsstring></argsstring>
+        <name>current_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="89" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4_1a6b5985df1385f4c2996eb708f564c389" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr static std::size_t</type>
+        <definition>constexpr static std::size_t hops::count_instances_of_type&lt; XCheckType, 0, T... &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>= <ref refid="structhops_1_1is__same__count" kindref="compound">is_same_count</ref>&lt; XCheckType, <ref refid="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4_1adbce08cb91f91463f71b3609e7ec883c" kindref="member">current_type</ref> &gt;::<ref refid="structvalue" kindref="compound">value</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="90" column="38" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4" kindref="compound">count_instances_of_type&lt;XCheckType, 0, T...&gt;</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XCheckType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XCheckType </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter N </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter T </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>size_t</label>
+      </node>
+      <node id="1">
+        <label>hops::count_instances_of_type&lt; XCheckType, 0, T... &gt;</label>
+        <link refid="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" line="87" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Meta.hh" bodystart="88" bodyend="91"/>
+    <listofallmembers>
+      <member refid="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4_1adbce08cb91f91463f71b3609e7ec883c" prot="public" virt="non-virtual"><scope>hops::count_instances_of_type&lt; XCheckType, 0, T... &gt;</scope><name>current_type</name></member>
+      <member refid="structhops_1_1count__instances__of__type_3_01XCheckType_00_010_00_01T_8_8_8_01_4_1a6b5985df1385f4c2996eb708f564c389" prot="public" virt="non-virtual"><scope>hops::count_instances_of_type&lt; XCheckType, 0, T... &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

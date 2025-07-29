@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structsbandf" kind="struct" language="C++" prot="public">
+    <compoundname>sbandf</compoundname>
+    <includes refid="type__207_8h" local="no">type_207.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float sbandf::lsb</definition>
+        <argsstring></argsstring>
+        <name>lsb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="11" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float sbandf::usb</definition>
+        <argsstring></argsstring>
+        <name>usb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="12" column="25" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>sbandf</label>
+        <link refid="structsbandf"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lsb</edgelabel>
+          <edgelabel>usb</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" line="9" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/type_207.h" bodystart="10" bodyend="13"/>
+    <listofallmembers>
+      <member refid="structsbandf_1ad129e748bcfd0310bb4b8ce224594469" prot="public" virt="non-virtual"><scope>sbandf</scope><name>lsb</name></member>
+      <member refid="structsbandf_1a70b0457f34f9cd32458b3a2c5b49b2b0" prot="public" virt="non-virtual"><scope>sbandf</scope><name>usb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

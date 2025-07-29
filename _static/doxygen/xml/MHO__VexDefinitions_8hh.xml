@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__VexDefinitions_8hh" kind="file" language="C++">
+    <compoundname>MHO_VexDefinitions.hh</compoundname>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">regex</includes>
+    <includedby refid="MHO__VexBlockParser_8hh" local="yes">MHO_VexBlockParser.hh</includedby>
+    <includedby refid="MHO__VexElementLineGenerator_8hh" local="yes">MHO_VexElementLineGenerator.hh</includedby>
+    <includedby refid="MHO__VexGenerator_8hh" local="yes">MHO_VexGenerator.hh</includedby>
+    <includedby refid="MHO__VexParser_8hh" local="yes">MHO_VexParser.hh</includedby>
+    <includedby refid="MHO__VexTokenProcessor_8hh" local="yes">MHO_VexTokenProcessor.hh</includedby>
+    <includedby refid="MHO__VexDefinitions_8cc" local="yes">MHO_VexDefinitions.cc</includedby>
+    <incdepgraph>
+      <node id="13">
+        <label>atomic</label>
+      </node>
+      <node id="4">
+        <label>cstdint</label>
+      </node>
+      <node id="16">
+        <label>stdexcept</label>
+      </node>
+      <node id="17">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>string</label>
+      </node>
+      <node id="22">
+        <label>regex</label>
+      </node>
+      <node id="2">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ostream</label>
+      </node>
+      <node id="15">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_VexDefinitions.hh</label>
+        <link refid="MHO__VexDefinitions_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>ctime</label>
+      </node>
+      <node id="20">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>vector</label>
+      </node>
+      <node id="9">
+        <label>sstream</label>
+      </node>
+      <node id="12">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cstdlib</label>
+      </node>
+      <node id="5">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>mutex</label>
+      </node>
+      <node id="14">
+        <label>thread</label>
+      </node>
+      <node id="8">
+        <label>set</label>
+      </node>
+      <node id="10">
+        <label>stdio.h</label>
+      </node>
+      <node id="18">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="19">
+        <label>MHO_VexElementLineGenerator.cc</label>
+        <link refid="MHO__VexElementLineGenerator_8cc"/>
+      </node>
+      <node id="20">
+        <label>MHO_VexTokenProcessor.hh</label>
+        <link refid="MHO__VexTokenProcessor_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MHO_MK4StationInterface.cc</label>
+        <link refid="MHO__MK4StationInterface_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_MK4VexInterface.hh</label>
+        <link refid="MHO__MK4VexInterface_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_MK4StationInterface.hh</label>
+        <link refid="MHO__MK4StationInterface_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_VexParser.hh</label>
+        <link refid="MHO__VexParser_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_DiFXScanProcessor.cc</label>
+        <link refid="MHO__DiFXScanProcessor_8cc"/>
+      </node>
+      <node id="13">
+        <label>MHO_MK4VexInterface.cc</label>
+        <link refid="MHO__MK4VexInterface_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_MK4CorelInterface.hh</label>
+        <link refid="MHO__MK4CorelInterface_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>MHO_VexParser.cc</label>
+        <link refid="MHO__VexParser_8cc"/>
+      </node>
+      <node id="8">
+        <label>mark42hops.cc</label>
+        <link refid="mark42hops_8cc"/>
+      </node>
+      <node id="9">
+        <label>MHO_MK4ScanConverter.cc</label>
+        <link refid="MHO__MK4ScanConverter_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_VexDefinitions.hh</label>
+        <link refid="MHO__VexDefinitions_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MHO_VexTokenProcessor.cc</label>
+        <link refid="MHO__VexTokenProcessor_8cc"/>
+      </node>
+      <node id="10">
+        <label>MHO_MK4CorelInterface.cc</label>
+        <link refid="MHO__MK4CorelInterface_8cc"/>
+      </node>
+      <node id="17">
+        <label>MHO_VexGenerator.hh</label>
+        <link refid="MHO__VexGenerator_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>MHO_VexGenerator.cc</label>
+        <link refid="MHO__VexGenerator_8cc"/>
+      </node>
+      <node id="15">
+        <label>MHO_VexBlockParser.cc</label>
+        <link refid="MHO__VexBlockParser_8cc"/>
+      </node>
+      <node id="16">
+        <label>MHO_VexElementLineGenerator.hh</label>
+        <link refid="MHO__VexElementLineGenerator_8hh"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>MHO_VexDefinitions.cc</label>
+        <link refid="MHO__VexDefinitions_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_VexBlockParser.hh</label>
+        <link refid="MHO__VexBlockParser_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_MK4ScanConverter.hh</label>
+        <link refid="MHO__MK4ScanConverter_8hh"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__VexDefinitions" prot="public">hops::MHO_VexDefinitions</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_VexDefinitions_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_VexDefinitions_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;regex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="namespacehops_1a1e71a86ea2ae687c3fd4dbadc275357a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="namespacehops_1a1e71a86ea2ae687c3fd4dbadc275357a" kindref="member">string_pattern_replace</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="structvalue" kindref="compound">value</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>pattern,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>replacement)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//original<sp/>implementation<sp/>is<sp/>via<sp/>std::regex,<sp/>however,<sp/>std::regex<sp/>is<sp/>not<sp/>implemented<sp/>for<sp/>&lt;GCC<sp/>4.9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//return<sp/>std::regex_replace(value,<sp/>std::regex(pattern),<sp/>replacement);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pattern<sp/>==<sp/>replacement){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structvalue" kindref="compound">value</ref>;}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>tmp<sp/>=<sp/><ref refid="structvalue" kindref="compound">value</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>std::size_t<sp/>loc<sp/>=<sp/>std::string::npos;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loc<sp/>=<sp/>tmp.find(pattern);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(loc<sp/>!=<sp/>std::string::npos)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp.replace(loc,<sp/>pattern.length(),<sp/>replacement);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(loc<sp/>!=<sp/>std::string::npos);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tmp;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="namespacehops_1acb837f491449da0138d5e2824a60760a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760a" kindref="member">vex_element_type</ref></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49" refid="namespacehops_1acb837f491449da0138d5e2824a60760aac51c9baf9c47d4b0c50e8a637e50b7f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aac51c9baf9c47d4b0c50e8a637e50b7f4" kindref="member">vex_int_type</ref>,</highlight></codeline>
+<codeline lineno="50" refid="namespacehops_1acb837f491449da0138d5e2824a60760aaae5cecd7aa53843fed68d063dddd009a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aaae5cecd7aa53843fed68d063dddd009a" kindref="member">vex_list_int_type</ref>,</highlight></codeline>
+<codeline lineno="51" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa08be1fcfb93fce0a2ae46b2840788a95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa08be1fcfb93fce0a2ae46b2840788a95" kindref="member">vex_real_type</ref>,</highlight></codeline>
+<codeline lineno="52" refid="namespacehops_1acb837f491449da0138d5e2824a60760aaa8715bf579a77a060c6a0bab3d41d072" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aaa8715bf579a77a060c6a0bab3d41d072" kindref="member">vex_string_type</ref>,</highlight></codeline>
+<codeline lineno="53" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa16a0b25e56cce0a592e0f5314cd288b7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa16a0b25e56cce0a592e0f5314cd288b7" kindref="member">vex_list_string_type</ref>,</highlight></codeline>
+<codeline lineno="54" refid="namespacehops_1acb837f491449da0138d5e2824a60760aae21aa99e1c7848da862771095c2b99b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aae21aa99e1c7848da862771095c2b99b1" kindref="member">vex_epoch_type</ref>,</highlight></codeline>
+<codeline lineno="55" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa219bfc7cfcbae1c196af8771c45b8a69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa219bfc7cfcbae1c196af8771c45b8a69" kindref="member">vex_radec_type</ref>,</highlight></codeline>
+<codeline lineno="56" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa391ab20c6d67618c22b50be81d8db27d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa391ab20c6d67618c22b50be81d8db27d" kindref="member">vex_list_real_type</ref>,</highlight></codeline>
+<codeline lineno="57" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa3b2bcab43b04d456a48bd80780f10a14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa3b2bcab43b04d456a48bd80780f10a14" kindref="member">vex_compound_type</ref>,</highlight></codeline>
+<codeline lineno="58" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa96f8de8c5563756abbe89815ee1ba4bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa96f8de8c5563756abbe89815ee1ba4bc" kindref="member">vex_list_compound_type</ref>,</highlight></codeline>
+<codeline lineno="59" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa5a7a45837ce65df82b78a71f86906ccc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa5a7a45837ce65df82b78a71f86906ccc" kindref="member">vex_link_type</ref>,</highlight></codeline>
+<codeline lineno="60" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa4416dda430610d29122c3506b8c7175b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa4416dda430610d29122c3506b8c7175b" kindref="member">vex_keyword_type</ref>,</highlight></codeline>
+<codeline lineno="61" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa10d263604a9ee4c7051e9fd73f96d070" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa10d263604a9ee4c7051e9fd73f96d070" kindref="member">vex_reference_type</ref>,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760aa2933bbeb5cf31a4727a5196cd342f21a" kindref="member">vex_unknown_type</ref></highlight></codeline>
+<codeline lineno="63" refid="namespacehops_1acb837f491449da0138d5e2824a60760aa2933bbeb5cf31a4727a5196cd342f21a" refkind="member"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="classhops_1_1MHO__VexDefinitions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__VexDefinitions" kindref="compound">MHO_VexDefinitions</ref></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__VexDefinitions_1ad8537aa67bfa9c6601e8158c45a7f9c8" kindref="member">MHO_VexDefinitions</ref>();</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__VexDefinitions_1ae7b3bf81fcf1a693cea89ce59c562b4d" kindref="member">~MHO_VexDefinitions</ref>();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a937d9de734ef6165074aff4815a080fa" kindref="member">SetVexVersion</ref>(std::string<sp/><ref refid="difx2mark4_8c_1ac91cf940e10a61b95cabc3258a06186b" kindref="member">version</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1ab7b350b40381f31e807bb2f6fd9492fe" kindref="member">GetFormatDirectory</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classhops_1_1MHO__VexDefinitions_1afcd180205743281ec338a6dac3fc2fe0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1afcd180205743281ec338a6dac3fc2fe0" kindref="member">GetBlockNames</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>fBlockNames;<sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a84bff47f2c95552e4b5f18d0fe2148f2" kindref="member">DetermineFileVersion</ref>(std::string<sp/>filename);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="classhops_1_1MHO__VexDefinitions_1a582c4de9ef37ed55edc65126e154b7f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a582c4de9ef37ed55edc65126e154b7f8" kindref="member">BlockStartFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;$&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classhops_1_1MHO__VexDefinitions_1a7640707cb99ceb68a2d7e2d9216336a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a7640707cb99ceb68a2d7e2d9216336a7" kindref="member">RefTag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;ref&quot;</highlight><highlight class="normal">);<sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="classhops_1_1MHO__VexDefinitions_1a948718db5c5bff74ed92bb7d29242939" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a948718db5c5bff74ed92bb7d29242939" kindref="member">WhitespaceDelim</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;<sp/>\t\r\n&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="classhops_1_1MHO__VexDefinitions_1ad38c4e79c0e0c700df50be3e98d89451" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1ad38c4e79c0e0c700df50be3e98d89451" kindref="member">AssignmentOp</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;=&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="classhops_1_1MHO__VexDefinitions_1ab65774e96f078bad7b886c3de03584b3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1ab65774e96f078bad7b886c3de03584b3" kindref="member">AssignmentDelim</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;=;&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="classhops_1_1MHO__VexDefinitions_1a48e45a02366aaff5007e84419adf95f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a48e45a02366aaff5007e84419adf95f0" kindref="member">StartTagDelim</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;<sp/>\t\r\n;&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="classhops_1_1MHO__VexDefinitions_1abda8d27db8e618b113219776c14d18e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1abda8d27db8e618b113219776c14d18e7" kindref="member">ElementDelim</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="classhops_1_1MHO__VexDefinitions_1ade816e24601ec05a9228fc2dde5d07cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1ade816e24601ec05a9228fc2dde5d07cd" kindref="member">VexRevisionFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;VEX_rev&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175" refid="classhops_1_1MHO__VexDefinitions_1a9c837366efe3fe54c25e40dc3d9f6fe4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a9c837366efe3fe54c25e40dc3d9f6fe4" kindref="member">OVexRevisionFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;$OVEX_REV&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="classhops_1_1MHO__VexDefinitions_1a6e83b3418e1c5688d60211db4f222d6b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a6e83b3418e1c5688d60211db4f222d6b" kindref="member">StartLiteralFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;start_literal&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="classhops_1_1MHO__VexDefinitions_1acff5fe4da1f007619516eeb1751ea68b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1acff5fe4da1f007619516eeb1751ea68b" kindref="member">EndLiteralFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;end_literal&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="classhops_1_1MHO__VexDefinitions_1aeccf94959a9948e07a0206ca0342c28a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1aeccf94959a9948e07a0206ca0342c28a" kindref="member">CommentFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;*&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207" refid="classhops_1_1MHO__VexDefinitions_1a9978b06ecd0328298e88c898c96b20be" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a9978b06ecd0328298e88c898c96b20be" kindref="member">StatementEndFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;;&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216" refid="classhops_1_1MHO__VexDefinitions_1ad8a79bdf24d7796afe44d7004b375da1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1ad8a79bdf24d7796afe44d7004b375da1" kindref="member">StatementLineEnd</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;;\n&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218" refid="classhops_1_1MHO__VexDefinitions_1a901cf6cc76e8864d3a4756434389204b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a901cf6cc76e8864d3a4756434389204b" kindref="member">OptionalFlag</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::string(</highlight><highlight class="stringliteral">&quot;!&quot;</highlight><highlight class="normal">);<sp/>};</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1acb837f491449da0138d5e2824a60760a" kindref="member">vex_element_type</ref><sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a9d3b0c85701ad60ece979b8e324ddef0" kindref="member">DetermineType</ref>(std::string<sp/>etype);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__VexDefinitions_1a65fea74d477aa23634c686a68fdb17b9" kindref="member">IsOptionalField</ref>(std::string&amp;<sp/>field_name);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fFormatDirectory;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fVexVersion;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>std::string<sp/>&gt;<sp/>fBlockNames;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Vex2JSON/include/MHO_VexDefinitions.hh"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,598 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__OpenCLInterface_8hh" kind="file" language="C++">
+    <compoundname>MHO_OpenCLInterface.hh</compoundname>
+    <includes local="yes">MHO_OpenCLConfig.hh</includes>
+    <includes refid="MHO__Message_8hh" local="yes">MHO_Message.hh</includes>
+    <includes refid="MHO__TemplateTypenameDeduction_8hh" local="yes">MHO_TemplateTypenameDeduction.hh</includes>
+    <includes refid="MHO__OpenCLHeaderWrapper_8hh" local="yes">MHO_OpenCLHeaderWrapper.hh</includes>
+    <includes local="no">complex</includes>
+    <includes local="no">map</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">iostream</includes>
+    <includedby refid="MHO__OpenCLNDArrayBuffer_8hh" local="yes">MHO_OpenCLNDArrayBuffer.hh</includedby>
+    <includedby refid="MHO__OpenCLKernelBuilder_8hh" local="yes">MHO_OpenCLKernelBuilder.hh</includedby>
+    <includedby refid="MHO__OpenCLInterface_8cc" local="yes">MHO_OpenCLInterface.cc</includedby>
+    <includedby refid="MHO__ComplexPointwiseMultiply_8hh" local="yes">MHO_ComplexPointwiseMultiply.hh</includedby>
+    <includedby refid="MHO__OpenCLBatchedMultidimensionalFastFourierTransform_8hh" local="yes">MHO_OpenCLBatchedMultidimensionalFastFourierTransform.hh</includedby>
+    <includedby refid="MHO__OpenCLFastFourierTransformPlan_8hh" local="yes">MHO_OpenCLFastFourierTransformPlan.hh</includedby>
+    <includedby refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh" local="yes">MHO_OpenCLFastFourierTransformRadix2Stage.hh</includedby>
+    <includedby refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh" local="yes">MHO_OpenCLMultidimensionalFastFourierTransform.hh</includedby>
+    <includedby refid="MHO__OpenCLScalarMultiply_8hh" local="yes">MHO_OpenCLScalarMultiply.hh</includedby>
+    <incdepgraph>
+      <node id="14">
+        <label>atomic</label>
+      </node>
+      <node id="5">
+        <label>cstdint</label>
+      </node>
+      <node id="17">
+        <label>stdexcept</label>
+      </node>
+      <node id="18">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>CL/cl.hpp</label>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+      <node id="29">
+        <label>map</label>
+      </node>
+      <node id="3">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ostream</label>
+      </node>
+      <node id="16">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MHO_OpenCLConfig.hh</label>
+      </node>
+      <node id="24">
+        <label>tuple</label>
+      </node>
+      <node id="22">
+        <label>ctime</label>
+      </node>
+      <node id="21">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>vector</label>
+      </node>
+      <node id="1">
+        <label>MHO_OpenCLInterface.hh</label>
+        <link refid="MHO__OpenCLInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>sstream</label>
+      </node>
+      <node id="13">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>cstdlib</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="23">
+        <label>MHO_TemplateTypenameDeduction.hh</label>
+        <link refid="MHO__TemplateTypenameDeduction_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mutex</label>
+      </node>
+      <node id="15">
+        <label>thread</label>
+      </node>
+      <node id="9">
+        <label>set</label>
+      </node>
+      <node id="28">
+        <label>complex</label>
+      </node>
+      <node id="26">
+        <label>MHO_OpenCLHeaderWrapper.hh</label>
+        <link refid="MHO__OpenCLHeaderWrapper_8hh"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>algorithm</label>
+      </node>
+      <node id="11">
+        <label>stdio.h</label>
+      </node>
+      <node id="19">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="10">
+        <label>MHO_OpenCLFastFourierTransformPlan.cc</label>
+        <link refid="MHO__OpenCLFastFourierTransformPlan_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_OpenCLBatchedMultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__OpenCLBatchedMultidimensionalFastFourierTransform_8hh"/>
+      </node>
+      <node id="4">
+        <label>MHO_OpenCLScalarMultiply.hh</label>
+        <link refid="MHO__OpenCLScalarMultiply_8hh"/>
+      </node>
+      <node id="3">
+        <label>MHO_OpenCLFastFourierTransformRadix2Stage.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformRadix2Stage_8hh"/>
+      </node>
+      <node id="12">
+        <label>MHO_OpenCLInterface.cc</label>
+        <link refid="MHO__OpenCLInterface_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_OpenCLKernelBuilder.cc</label>
+        <link refid="MHO__OpenCLKernelBuilder_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_OpenCLKernelBuilder.hh</label>
+        <link refid="MHO__OpenCLKernelBuilder_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_OpenCLInterface.hh</label>
+        <link refid="MHO__OpenCLInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MHO_OpenCLFastFourierTransformPlan.hh</label>
+        <link refid="MHO__OpenCLFastFourierTransformPlan_8hh"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_ComplexPointwiseMultiply.hh</label>
+        <link refid="MHO__ComplexPointwiseMultiply_8hh"/>
+      </node>
+      <node id="2">
+        <label>MHO_OpenCLNDArrayBuffer.hh</label>
+        <link refid="MHO__OpenCLNDArrayBuffer_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>MHO_OpenCLMultidimensionalFastFourierTransform.hh</label>
+        <link refid="MHO__OpenCLMultidimensionalFastFourierTransform_8hh"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classhops_1_1MHO__OpenCLInterface" prot="public">hops::MHO_OpenCLInterface</innerclass>
+    <innerclass refid="structMHO__OpenCLTypeMap" prot="public">MHO_OpenCLTypeMap</innerclass>
+    <innerclass refid="structMHO__OpenCLTypeMap_3_01float_01_4" prot="public">MHO_OpenCLTypeMap&lt; float &gt;</innerclass>
+    <innerclass refid="structMHO__OpenCLTypeMap_3_01std_1_1complex_3_01float_01_4_01_4" prot="public">MHO_OpenCLTypeMap&lt; std::complex&lt; float &gt; &gt;</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1af1b68fb4ba71d72d397f46a730f03f2f" prot="public" static="no">
+        <name>__CL_ENABLE_EXCEPTIONS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1a3a05039be307b6ffdac8a16a93801001" prot="public" static="no">
+        <name>CL_ERROR_CATCH</name>
+        <initializer>        }                                                                                                                      \
+        catch(cl::Error error)                                                                                                 \
+        {                                                                                                                      \
+            std::cout &lt;&lt; &quot;OpenCL Exception caught: &quot; &lt;&lt; std::endl;                                                             \
+            std::cout &lt;&lt; __FILE__ &lt;&lt; &quot;:&quot; &lt;&lt; __LINE__ &lt;&lt; std::endl;                                                             \
+            std::cout &lt;&lt; error.what() &lt;&lt; &quot;(&quot; &lt;&lt; error.err()                                                                    \
+                      &lt;&lt; &quot;) = &quot; &lt;&lt; MHO_OpenCLInterface::GetInstance()-&gt;GetErrorMessage(error.err()) &lt;&lt; std::endl;              \
+            std::exit(1);                                                                                                      \
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="93" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1afb1e7b05efe6d7d7601c352b65756889" prot="public" static="no">
+        <name>CL_ERROR_TRY</name>
+        <initializer>        try                                                                                                                    \
+        {</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="85" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1a68c58b11b36e022127c036b466eb4d98" prot="public" static="no">
+        <name>CL_TYPE</name>
+        <initializer>cl_float</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="53" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1af404787a48f7b54668d96a4ad4007e65" prot="public" static="no">
+        <name>CL_TYPE16</name>
+        <initializer>cl_float16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="57" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1ac7b4cbecf9466a99c1c1bb6a5a0bb83a" prot="public" static="no">
+        <name>CL_TYPE2</name>
+        <initializer>cl_float2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="54" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1a791b5c75a9d3bf8fd8564c028eb2686b" prot="public" static="no">
+        <name>CL_TYPE4</name>
+        <initializer>cl_float4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="55" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1aea29cd042fe96345dfc84c8182d45e71" prot="public" static="no">
+        <name>CL_TYPE8</name>
+        <initializer>cl_float8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="56" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1a7b6800b76997b2a8704db160c0d4799c" prot="public" static="no">
+        <name>CL_VECTOR_TYPE</name>
+        <initializer>std::vector</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="10" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1a3f453bc873fafeb0af34e26ed5b29930" prot="public" static="no">
+        <name>ENFORCE_CL_FINISH</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="73" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__OpenCLInterface_8hh_1a45d9331192cc026742985b68d8bc0898" prot="public" static="no">
+        <name>USE_CL_ERROR_TRY_CATCH</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" line="81" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>HOPS_OPENCLINTERFACE_DEF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HOPS_OPENCLINTERFACE_DEF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;MHO_OpenCLConfig.hh&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>HOPS_USE_CL_VECTOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>__NO_STD_VECTOR<sp/></highlight><highlight class="comment">//<sp/>Use<sp/>cl::vector<sp/>instead<sp/>of<sp/>STL<sp/>version</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_VECTOR_TYPE<sp/>cl::vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="MHO__OpenCLInterface_8hh_1a7b6800b76997b2a8704db160c0d4799c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_VECTOR_TYPE<sp/>std::vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="MHO__OpenCLInterface_8hh_1af1b68fb4ba71d72d397f46a730f03f2f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__CL_ENABLE_EXCEPTIONS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Message_8hh" kindref="compound">MHO_Message.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__TemplateTypenameDeduction_8hh" kindref="compound">MHO_TemplateTypenameDeduction.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//shut<sp/>up<sp/>the<sp/>annoying<sp/>unused<sp/>variable<sp/>warnings<sp/>in<sp/>cl.hpp<sp/>for<sp/>clang/gcc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//by<sp/>using<sp/>a<sp/>system-header<sp/>wrapper<sp/>for<sp/>the<sp/>opencl<sp/>headers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__OpenCLHeaderWrapper_8hh" kindref="compound">MHO_OpenCLHeaderWrapper.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;complex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structMHO__OpenCLTypeMap" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XValueType<sp/>&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structMHO__OpenCLTypeMap" kindref="compound">MHO_OpenCLTypeMap</ref></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28" refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">mapped_type</ref><sp/>=<sp/>XValueType;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>HOPS_USE_DOUBLE_PRECISION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE<sp/>cl_double</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE2<sp/>cl_double2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE4<sp/>cl_double4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE8<sp/>cl_double8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE16<sp/>cl_double16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//we<sp/>map<sp/>doubles<sp/>to<sp/>CL_TYPE<sp/>and<sp/>complex<sp/>doubles<sp/>on<sp/>to<sp/>cl_double2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structMHO__OpenCLTypeMap" kindref="compound">MHO_OpenCLTypeMap</ref>&lt;<sp/>double<sp/>&gt;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">mapped_type</ref><sp/>=<sp/><ref refid="MHO__OpenCLInterface_8hh_1a68c58b11b36e022127c036b466eb4d98" kindref="member">CL_TYPE</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structMHO__OpenCLTypeMap" kindref="compound">MHO_OpenCLTypeMap</ref>&lt;<sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_1a31f62a31d3b52e88e164ed9588d1e818" kindref="member">mapped_type</ref><sp/>=<sp/><ref refid="MHO__OpenCLInterface_8hh_1ac7b4cbecf9466a99c1c1bb6a5a0bb83a" kindref="member">CL_TYPE2</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><ref refid="MHO__Message_8hh_1aecaae848aae9625eafba624faf0a17ab" kindref="member">TODO_FIXME_MSG</ref>(</highlight><highlight class="stringliteral">&quot;Warning<sp/>:<sp/>MHO_OpenCLPlugin<sp/>is<sp/>being<sp/>built<sp/>with<sp/>float<sp/>precision!&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="53" refid="MHO__OpenCLInterface_8hh_1a68c58b11b36e022127c036b466eb4d98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor">#define<sp/>CL_TYPE<sp/>cl_float</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="MHO__OpenCLInterface_8hh_1ac7b4cbecf9466a99c1c1bb6a5a0bb83a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE2<sp/>cl_float2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="MHO__OpenCLInterface_8hh_1a791b5c75a9d3bf8fd8564c028eb2686b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE4<sp/>cl_float4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="MHO__OpenCLInterface_8hh_1aea29cd042fe96345dfc84c8182d45e71" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE8<sp/>cl_float8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="MHO__OpenCLInterface_8hh_1af404787a48f7b54668d96a4ad4007e65" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_TYPE16<sp/>cl_float16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//we<sp/>map<sp/>floats<sp/>to<sp/>CL_TYPE<sp/>and<sp/>complex<sp/>floats<sp/>on<sp/>to<sp/>cl_float2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="structMHO__OpenCLTypeMap_3_01float_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structMHO__OpenCLTypeMap" kindref="compound">MHO_OpenCLTypeMap</ref>&lt;<sp/>float<sp/>&gt;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62" refid="structMHO__OpenCLTypeMap_3_01float_01_4_1a32546ff3e4723403e44dd6cb0a4ec5b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_3_01float_01_4_1a32546ff3e4723403e44dd6cb0a4ec5b5" kindref="member">mapped_type</ref><sp/>=<sp/><ref refid="MHO__OpenCLInterface_8hh_1a68c58b11b36e022127c036b466eb4d98" kindref="member">CL_TYPE</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="structMHO__OpenCLTypeMap_3_01std_1_1complex_3_01float_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structMHO__OpenCLTypeMap" kindref="compound">MHO_OpenCLTypeMap</ref>&lt;<sp/>std::complex&lt;<sp/>float<sp/>&gt;<sp/>&gt;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67" refid="structMHO__OpenCLTypeMap_3_01std_1_1complex_3_01float_01_4_01_4_1a60daf04332adf978b36cc4910934731a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="structMHO__OpenCLTypeMap_3_01std_1_1complex_3_01float_01_4_01_4_1a60daf04332adf978b36cc4910934731a" kindref="member">mapped_type</ref><sp/>=<sp/><ref refid="MHO__OpenCLInterface_8hh_1ac7b4cbecf9466a99c1c1bb6a5a0bb83a" kindref="member">CL_TYPE2</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//this<sp/>is<sp/>necessary<sp/>on<sp/>some<sp/>intel<sp/>devices</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="MHO__OpenCLInterface_8hh_1a3f453bc873fafeb0af34e26ed5b29930" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENFORCE_CL_FINISH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//the<sp/>following<sp/>are<sp/>optional<sp/>defines<sp/>for<sp/>debugging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//adds<sp/>verbose<sp/>output<sp/>of<sp/>kernel<sp/>build<sp/>logs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//#define<sp/>DEBUG_OPENCL_COMPILER_OUTPUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//add<sp/>try-catch<sp/>for<sp/>opencl<sp/>exceptions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="MHO__OpenCLInterface_8hh_1a45d9331192cc026742985b68d8bc0898" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>USE_CL_ERROR_TRY_CATCH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>USE_CL_ERROR_TRY_CATCH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="MHO__OpenCLInterface_8hh_1afb1e7b05efe6d7d7601c352b65756889" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_ERROR_TRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="86"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>try<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="87"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_ERROR_TRY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>USE_CL_ERROR_TRY_CATCH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="MHO__OpenCLInterface_8hh_1a3a05039be307b6ffdac8a16a93801001" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_ERROR_CATCH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="94"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="95"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>catch(cl::Error<sp/>error)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="96"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="97"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;OpenCL<sp/>Exception<sp/>caught:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>__FILE__<sp/>&lt;&lt;<sp/>&quot;:&quot;<sp/>&lt;&lt;<sp/>__LINE__<sp/>&lt;&lt;<sp/>std::endl;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>error.what()<sp/>&lt;&lt;<sp/>&quot;(&quot;<sp/>&lt;&lt;<sp/>error.err()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>&quot;)<sp/>=<sp/>&quot;<sp/>&lt;&lt;<sp/>MHO_OpenCLInterface::GetInstance()-&gt;GetErrorMessage(error.err())<sp/>&lt;&lt;<sp/>std::endl;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::exit(1);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>CL_ERROR_CATCH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="classhops_1_1MHO__OpenCLInterface" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__OpenCLInterface" kindref="compound">MHO_OpenCLInterface</ref></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface" kindref="compound">MHO_OpenCLInterface</ref>*<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1acb6a8bc68eb8cb016689567f9f3fca12" kindref="member">GetInstance</ref>();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="classhops_1_1MHO__OpenCLInterface_1adf641e6d0d3172159a6f042ba6a92f23" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::Context<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1adf641e6d0d3172159a6f042ba6a92f23" kindref="member">GetContext</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" kindref="member">fContext</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="classhops_1_1MHO__OpenCLInterface_1a302e84553592c060fa38336a0bd6a296" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_VECTOR_TYPE&lt;<sp/>cl::Device<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a302e84553592c060fa38336a0bd6a296" kindref="member">GetDevices</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::Device<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab238ac9a9891244b7efdd9228963fdb3" kindref="member">GetDevice</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>[<ref refid="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" kindref="member">fCLDeviceID</ref>];<sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::CommandQueue&amp;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1abed33fffd4344aba2fb76077ef4b7d5b" kindref="member">GetQueue</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>-1)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="classhops_1_1MHO__OpenCLInterface_1a0b45f242c0b5d078ad010d867e554f54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a0b45f242c0b5d078ad010d867e554f54" kindref="member">GetNumberOfDevices</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="124"><highlight class="keyword"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_VECTOR_TYPE&lt;<sp/>cl::Device<sp/>&gt;<sp/>availableDevices<sp/>=<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" kindref="member">fContext</ref>-&gt;getInfo&lt;<sp/>CL_CONTEXT_DEVICES<sp/>&gt;();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>availableDevices.size();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1afe586f89d7b0a76237cdb11a6fb9140b" kindref="member">SetGPU</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="classhops_1_1MHO__OpenCLInterface_1a25236f6ec6c16099afc40b7bdc2142ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a25236f6ec6c16099afc40b7bdc2142ad" kindref="member">SetKernelPath</ref>(std::string<sp/>s)<sp/>{<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a301ce39850f60c94d0fc0fe5cd61ff2a" kindref="member">fKernelPath</ref><sp/>=<sp/>s;<sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133" refid="classhops_1_1MHO__OpenCLInterface_1a9b785d90222ea57f8dcd4c631f7f3ebc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a9b785d90222ea57f8dcd4c631f7f3ebc" kindref="member">GetKernelPath</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a301ce39850f60c94d0fc0fe5cd61ff2a" kindref="member">fKernelPath</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="classhops_1_1MHO__OpenCLInterface_1aec19c8ecee43376c6998e9cd8c85ddb1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1aec19c8ecee43376c6998e9cd8c85ddb1" kindref="member">GetErrorMessage</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>code)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a0b17bd9c198832c80e10c6e14e135d01" kindref="member">fOpenCLCode2ErrorMap</ref>[code];<sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a9784736fb34d8345c2f803413075a90e" kindref="member">MHO_OpenCLInterface</ref>();</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ac05bd85d85fd5e0c7a2142dd1b5170a2" kindref="member">~MHO_OpenCLInterface</ref>();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab5035c4ae5c0abe52f5a5017a0723894" kindref="member">InitializeOpenCL</ref>();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad207290e81615d9f9196b76b8a453490" kindref="member">FillErrorCodeMaps</ref>();</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface" kindref="compound">MHO_OpenCLInterface</ref>*<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ae15d518b050ac537bfbbcd4e9d5ed24b" kindref="member">fOpenCLInterface</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="classhops_1_1MHO__OpenCLInterface_1a301ce39850f60c94d0fc0fe5cd61ff2a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a301ce39850f60c94d0fc0fe5cd61ff2a" kindref="member">fKernelPath</ref>;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="classhops_1_1MHO__OpenCLInterface_1a5926a29191ab38dc06a41ce46b4af4f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_VECTOR_TYPE&lt;<sp/>cl::Platform<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a5926a29191ab38dc06a41ce46b4af4f7" kindref="member">fPlatforms</ref>;</highlight></codeline>
+<codeline lineno="149" refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CL_VECTOR_TYPE&lt;<sp/>cl::Device<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a1f043e181395cbee35f49b1fa1f8959a" kindref="member">fDevices</ref>;</highlight></codeline>
+<codeline lineno="150" refid="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a85bef703b8ff7291b898df7bef1c77d8" kindref="member">fCLDeviceID</ref>;</highlight></codeline>
+<codeline lineno="151" refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cl::Context*<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ab347dd32eb9310b0c483a46dd4178578" kindref="member">fContext</ref>;</highlight></codeline>
+<codeline lineno="152" refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">mutable</highlight><highlight class="normal"><sp/>std::vector&lt;<sp/>cl::CommandQueue*<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1ad316334fe078dbb0a86f00eb2372f14b" kindref="member">fQueues</ref>;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154" refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>std::string,<sp/>int<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a95fcfe267d803527d7533e92f70aa1b9" kindref="member">fOpenCLError2CodeMap</ref>;</highlight></codeline>
+<codeline lineno="155" refid="classhops_1_1MHO__OpenCLInterface_1a0b17bd9c198832c80e10c6e14e135d01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::map&lt;<sp/>int,<sp/>std::string<sp/>&gt;<sp/><ref refid="classhops_1_1MHO__OpenCLInterface_1a0b17bd9c198832c80e10c6e14e135d01" kindref="member">fOpenCLCode2ErrorMap</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Core/include/MHO_OpenCLInterface.hh"/>
+  </compounddef>
+</doxygen>

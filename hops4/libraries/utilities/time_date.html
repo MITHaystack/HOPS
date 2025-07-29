@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time and Date Utilities &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="File Operation Utilities" href="file_operations.html" />
+    <link rel="prev" title="Utilities" href="Utilities.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hops4.html">HOPS4</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fourfit4.html">fourfit4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/alist4.html">alist4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/fplot4.html">fplot4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/mark42hops.html">mark42hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2mark4.html">hops2mark4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2json.html">hops2json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2flat.html">hops2flat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/difx2hops.html">difx2hops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/hops2hdf5.html">hops2hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/Math.html">Math</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="Utilities.html">Utilities</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Time and Date Utilities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hops-clock">hops_clock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-timestampconverter">MHO_TimeStampConverter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mho-legacydateconverter">MHO_LegacyDateConverter</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="file_operations.html">File Operation Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="meta_programming.html">Meta-Programming Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="legacy_compatibility.html">Legacy Compatibility Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="miscellaneous.html">Miscellaneous Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="miscellaneous.html#additional-utility-classes">Additional Utility Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../containers/Containers.html">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operators/Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calibration/Calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../initialization/Initialization.html">Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fringe/Fringe.html">Fringe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins/Plugins.html">Plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../hops4.html">HOPS4 Applications and Libraries</a></li>
+          <li class="breadcrumb-item"><a href="Utilities.html">Utilities</a></li>
+      <li class="breadcrumb-item active">Time and Date Utilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/utilities/time_date.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="time-and-date-utilities">
+<h1>Time and Date Utilities<a class="headerlink" href="#time-and-date-utilities" title="Link to this heading"></a></h1>
+<p>The utilities library provides time and date handling capabilities via the
+<em>date</em> library (developed by H. Hinnant, see &lt;hops_src&gt;/extern/date). This date
+library has been adopted into the CXX20 STL standard, so it is expected that
+eventually the captured copy of this library will be eliminated in favor of the
+compiler implementation. The internal time point representation of the <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1hops__clock.html">hops_clock</a> class is
+a 64-bit integer (<code class="docutils literal notranslate"><span class="pre">int64_t</span></code>) count of the number of UTC nanoseconds since
+the J2000 epoch (January 1, 2000, 11:58:55.816 UTC). This provides nanosecond
+accurate precision for scan-epoch time stamps until 2292. For in-memory
+manipulation of time and dates, time points are represented by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="p">::</span><span class="n">chrono</span><span class="p">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">hops_clock</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>When a time point is stored as a object tag (either in memory, or on disk) for
+a data container, the time point class will be converted to a string
+representation (see below for supported types), generally speaking this will be
+a VEX style time stamp.</p>
+<section id="hops-clock">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1hops__clock.html">hops_clock</a><a class="headerlink" href="#hops-clock" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1hops__clock.html">hops_clock</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Time and Date Utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>Duration-based template parameters for time_point operations</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Custom clock based on J2000 epoch (UTC nanoseconds since J2000)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Conversion between UTC, TAI, GPS, system, and local time</div>
+<div class="line">Support for ISO8601, VEX, VDIF, MJD, and legacy HOPS formats</div>
+<div class="line">Leap second handling and timezone support</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1hops__clock.html">hops_clock</a> class provides a specialized clock implementation that
+measures time in UTC nanoseconds since the J2000 epoch. It offers conversion
+capabilities between different time systems and formats. It is the basis for
+most time-related operations in HOPS4. The available time_point conversion
+routines (betwen clock types) are implemented by the functions below:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">to_utc</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">hops_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">from_utc</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">date</span><span class="o">::</span><span class="n">utc_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">to_tai</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">hops_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">from_tai</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">date</span><span class="o">::</span><span class="n">tai_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">to_gps</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">hops_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">from_gps</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">date</span><span class="o">::</span><span class="n">gps_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">to_sys</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">hops_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">from_sys</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">system_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">to_local</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">hops_clock</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+<span class="n">from_local</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="w"> </span><span class="n">date</span><span class="o">::</span><span class="n">local_t</span><span class="p">,</span><span class="w"> </span><span class="n">Duration</span><span class="w"> </span><span class="o">&gt;&amp;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Additional routines are available that handle the conversion of
+hops_clock time_point objects to/from time stamps with the following formats:</p>
+<ol class="arabic simple">
+<li><p>ISO8601</p></li>
+<li><p>VEX</p></li>
+<li><p>MJD</p></li>
+<li><p>(year,floating-point-day)</p></li>
+<li><p>legacy HOPS3 date struct</p></li>
+</ol>
+<p>The conversion routines are implemented by the associated functions listed below:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="n">time_point</span><span class="w"> </span><span class="nf">from_iso8601_format</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamp</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">to_iso8601_format</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tp</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">time_point</span><span class="w"> </span><span class="nf">from_hops_format</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamp</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">to_hops_format</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tp</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">time_point</span><span class="w"> </span><span class="nf">from_legacy_hops_date</span><span class="p">(</span><span class="n">legacy_hops_date</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ldate</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">legacy_hops_date</span><span class="w"> </span><span class="nf">to_legacy_hops_date</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tp</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">time_point</span><span class="w"> </span><span class="nf">from_vdif_format</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vdif_epoch</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vdif_seconds</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">to_vdif_format</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tp</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vdif_epoch</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">vdif_second</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">time_point</span><span class="w"> </span><span class="nf">from_mjd</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mjd_epoch</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch_offset</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mjd</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">to_mjd</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">mjd_epoch</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">epoch_offset</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tp</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">time_point</span><span class="w"> </span><span class="nf">from_vex_format</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">timestamp</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">to_vex_format</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">time_point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tp</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">truncate_to_nearest_second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<span class="k">static</span><span class="w"> </span><span class="n">time_point</span><span class="w"> </span><span class="nf">from_year_fpday</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">floating_point_days</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="mho-timestampconverter">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TimeStampConverter.html">MHO_TimeStampConverter</a><a class="headerlink" href="#mho-timestampconverter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TimeStampConverter.html">MHO_TimeStampConverter</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Time and Date Utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Converts between Unix epoch and human-readable timestamps</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Unix epoch to ISO8601 format conversion</div>
+<div class="line">Nanosecond precision handling</div>
+<div class="line">Bidirectional conversion support</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__TimeStampConverter.html">MHO_TimeStampConverter</a> class handles conversion between
+Unix epoch seconds (with fractional parts) and human-readable ISO8601 formatted
+date strings. This utility is only used by the MHO_DirectoryInterface for
+reading/converting file modification times.</p>
+</section>
+<section id="mho-legacydateconverter">
+<h2><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LegacyDateConverter.html">MHO_LegacyDateConverter</a><a class="headerlink" href="#mho-legacydateconverter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Class</p></td>
+<td><p><a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LegacyDateConverter.html">MHO_LegacyDateConverter</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Time and Date Utilities</p></td>
+</tr>
+<tr class="row-odd"><td><p>Template Parameters</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p>Configuration Parameters</p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary Functionality</p></td>
+<td><p>Converts between legacy HOPS3 date formats and modern formats</p></td>
+</tr>
+<tr class="row-even"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Legacy HOPS3 date struct conversion</div>
+<div class="line">ISO8601 and VEX format support</div>
+<div class="line">Current time and epoch retrieval</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/classhops_1_1MHO__LegacyDateConverter.html">MHO_LegacyDateConverter</a> class provides conversion utilities for
+the legacy HOPS3 <code class="docutils literal notranslate"><span class="pre">date</span></code> struct:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">struct</span> <span class="n">date</span>
+<span class="p">{</span>
+    <span class="n">short</span>   <span class="n">year</span><span class="p">;</span>
+    <span class="n">short</span>   <span class="n">day</span><span class="p">;</span>
+    <span class="n">short</span>   <span class="n">hour</span><span class="p">;</span>
+    <span class="n">short</span>   <span class="n">minute</span><span class="p">;</span>
+    <span class="nb">float</span>   <span class="n">second</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">date_struct</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Conversion is done indirectly through the <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/namespacehops.html">legacy_hops_date</a> struct in
+order to prevent a name collision with the external <em>date</em> library.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Utilities.html" class="btn btn-neutral float-left" title="Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="file_operations.html" class="btn btn-neutral float-right" title="File Operation Utilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

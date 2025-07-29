@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__ExtensibleElement" prot="public" virt="non-virtual">hops::MHO_ExtensibleElement</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__ScalarContainer" prot="public" virt="non-virtual">hops::MHO_ScalarContainer&lt; XValueType &gt;</derivedcompoundref>
+    <includes refid="MHO__NDArrayWrapper__0_8hh" local="no">MHO_NDArrayWrapper_0.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename XValueType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ac74fb59d9c31fd9823ec2a37bf79c5fb" prot="public" static="no">
+        <type>std::integral_constant&lt; std::size_t, 0 &gt;</type>
+        <definition>typedef std::integral_constant&lt; std::size_t, 0 &gt; hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::rank</definition>
+        <argsstring></argsstring>
+        <name>rank</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="22" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a8f44c7a387dd7f0e9476ca31ad7c1de9" prot="public" static="no">
+        <type>XValueType</type>
+        <definition>using hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::value_type =  XValueType</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="21" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a0d56ae9b62d3b74b4ccf2c8b03f16d61" prot="protected" static="no" mutable="no">
+        <type>XValueType</type>
+        <definition>XValueType hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::fData</definition>
+        <argsstring></argsstring>
+        <name>fData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="83" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ac365eb58d132e525ccaa1dae735f18f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::MHO_NDArrayWrapper</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_NDArrayWrapper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a3e28ebe0a502478c0b901063aab8139c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::MHO_NDArrayWrapper</definition>
+        <argsstring>(const MHO_NDArrayWrapper &amp;obj)</argsstring>
+        <name>MHO_NDArrayWrapper</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayWrapper" kindref="compound">MHO_NDArrayWrapper</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="28" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a2fc7a87b25f10793c7c44f223e8b80fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::MHO_NDArrayWrapper</definition>
+        <argsstring>(const XValueType &amp;data)</argsstring>
+        <name>MHO_NDArrayWrapper</name>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a9fca9e904ca2b4e7fcd4fe4ae8eb0a8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::~MHO_NDArrayWrapper</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_NDArrayWrapper</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="30" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a91bccec05187b3201a9e0bb7e9e016d3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>XValueType</type>
+        <definition>XValueType hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::GetData</definition>
+        <argsstring>()</argsstring>
+        <name>GetData</name>
+        <briefdescription>
+<para>Getter for data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current value of type XValueType </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="45" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a69c6080be859a5d130094d348c7ede49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::GetRank</definition>
+        <argsstring>() const</argsstring>
+        <name>GetRank</name>
+        <briefdescription>
+<para>Getter for rank. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Current rank as std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="52" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ab76964e9018fc1a258b6266b3b4a843c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::GetSize</definition>
+        <argsstring>() const</argsstring>
+        <name>GetSize</name>
+        <briefdescription>
+<para>Getter for size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Size as std::size_t </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="59" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1aad376efca93853cf9ae99b173760d0ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__NDArrayWrapper" kindref="compound">MHO_NDArrayWrapper</ref> &amp;</type>
+        <definition>MHO_NDArrayWrapper&amp; hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::operator=</definition>
+        <argsstring>(const MHO_NDArrayWrapper &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__NDArrayWrapper" kindref="compound">MHO_NDArrayWrapper</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="61" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="61" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a4e05eabd340296472805dfa61e4402d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::SetArray</definition>
+        <argsstring>(const XValueType &amp;obj)</argsstring>
+        <name>SetArray</name>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Setter for array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to a constant XValueType object used to update internal data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="75" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a148af3ae494b7073a6909a00f4f97048" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::SetData</definition>
+        <argsstring>(const XValueType &amp;value)</argsstring>
+        <name>SetData</name>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Setter for data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New value to set as const XValueType&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="38" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ae85ea538e816f7d41dd48fd2eeb78595" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;::ZeroArray</definition>
+        <argsstring>()</argsstring>
+        <name>ZeroArray</name>
+        <briefdescription>
+<para>Sets all elements in the array to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="80" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="80" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4" kindref="compound">MHO_NDArrayWrapper&lt;XValueType, 0&gt;</ref> specialization for a RANK-0 (i.e. a scalar) </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_ScalarContainer&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__ScalarContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>XValueType</label>
+      </node>
+      <node id="2">
+        <label>hops::MHO_ExtensibleElement</label>
+        <link refid="classhops_1_1MHO__ExtensibleElement"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fExtensions</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; hops::MHO_Element * &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Element</label>
+        <link refid="classhops_1_1MHO__Element"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</label>
+        <link refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>fData</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" line="17" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_NDArrayWrapper_0.hh" bodystart="19" bodyend="84"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a6196efd2aa51a40c710979222c924a7a" prot="public" virt="virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>Accept</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a19a425cc45fb610c718c5d2b0dbb667b" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>AsExtension</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a0d56ae9b62d3b74b4ccf2c8b03f16d61" prot="protected" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>fData</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1ac7053fbca67e03532f14b4f47e0a6b49" prot="protected" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>fExtensions</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a91bccec05187b3201a9e0bb7e9e016d3" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>GetData</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a69c6080be859a5d130094d348c7ede49" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>GetRank</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ab76964e9018fc1a258b6266b3b4a843c" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>GetSize</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a838927fa3c01474e519efe61e4edf6ca" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>HasExtension</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1afe17d8f32b77738b06ff188eea23aeac" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>MakeExtension</name></member>
+      <member refid="classhops_1_1MHO__Element_1a8457a2bfa206699701a2163585b6cc5f" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a08e0ac36b7baa0b3d4f5d3390d636816" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ac365eb58d132e525ccaa1dae735f18f2" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a2fc7a87b25f10793c7c44f223e8b80fa" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a3e28ebe0a502478c0b901063aab8139c" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>MHO_NDArrayWrapper</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1aad376efca93853cf9ae99b173760d0ff" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ac74fb59d9c31fd9823ec2a37bf79c5fb" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>rank</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a4e05eabd340296472805dfa61e4402d5" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>SetArray</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a148af3ae494b7073a6909a00f4f97048" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>SetData</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a8f44c7a387dd7f0e9476ca31ad7c1de9" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>value_type</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1ae85ea538e816f7d41dd48fd2eeb78595" prot="public" virt="non-virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>ZeroArray</name></member>
+      <member refid="classhops_1_1MHO__Element_1aea329679a16385ae6ac6986128360887" prot="public" virt="virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>~MHO_Element</name></member>
+      <member refid="classhops_1_1MHO__ExtensibleElement_1a3ebd5b1b0bf0726ac545354cab4d3dff" prot="public" virt="virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>~MHO_ExtensibleElement</name></member>
+      <member refid="classhops_1_1MHO__NDArrayWrapper_3_01XValueType_00_010_01_4_1a9fca9e904ca2b4e7fcd4fe4ae8eb0a8e" prot="public" virt="virtual"><scope>hops::MHO_NDArrayWrapper&lt; XValueType, 0 &gt;</scope><name>~MHO_NDArrayWrapper</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

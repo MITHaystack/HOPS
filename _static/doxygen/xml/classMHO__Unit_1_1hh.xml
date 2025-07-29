@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classMHO__Unit_1_1hh" kind="class" language="C++" prot="public">
+    <compoundname>MHO_Unit::hh</compoundname>
+    <includes refid="MHO__Unit_8hh" local="no">MHO_Unit.hh</includes>
+    <briefdescription>
+<para>a unit class </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Wed Feb 8 15:28:42 2023 -0500 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_Unit.hh" line="9" column="1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,520 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structmk4__sdata" kind="struct" language="C++" prot="public">
+    <compoundname>mk4_sdata</compoundname>
+    <includes refid="mk4__data_8h" local="no">mk4_data.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmk4__sdata_1a769db3710e3e76edee7d1c513555556a" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* mk4_sdata::allocated[2 *MAXSPLINES *MAXFREQ+7 *MAXSTATPER+3]</definition>
+        <argsstring>[2 *MAXSPLINES *MAXFREQ+7 *MAXSTATPER+3]</argsstring>
+        <name>allocated</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="109" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a4086c22216d3080fc8151848d157da16" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* mk4_sdata::file_image</definition>
+        <argsstring></argsstring>
+        <name>file_image</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="111" column="10" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1aa6d3d7ff5c6ebd003edd7ba95ced7825" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__000" kindref="compound">type_000</ref> *</type>
+        <definition>struct type_000* mk4_sdata::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="112" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" prot="public" static="no" mutable="no">
+        <type>struct mk4_sdata::@6</type>
+        <definition>struct mk4_sdata::@6 mk4_sdata::model[MAXFREQ]</definition>
+        <argsstring>[MAXFREQ]</argsstring>
+        <name>model</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="120" column="24"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_sdata::n304</definition>
+        <argsstring></argsstring>
+        <name>n304</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="121" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_sdata::n305</definition>
+        <argsstring></argsstring>
+        <name>n305</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="122" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_sdata::n306</definition>
+        <argsstring></argsstring>
+        <name>n306</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="123" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_sdata::n307</definition>
+        <argsstring></argsstring>
+        <name>n307</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="124" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_sdata::n308</definition>
+        <argsstring></argsstring>
+        <name>n308</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="125" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_sdata::n309</definition>
+        <argsstring></argsstring>
+        <name>n309</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="126" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a0060099be8b7506b31c886b0e471ea7d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mk4_sdata::nalloc</definition>
+        <argsstring></argsstring>
+        <name>nalloc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="110" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a740f033ffb027b5d8c1fddab2bb4084e" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__300" kindref="compound">type_300</ref> *</type>
+        <definition>struct type_300* mk4_sdata::t300</definition>
+        <argsstring></argsstring>
+        <name>t300</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="113" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a7ccc5ad077450b1f2109aaffd8cbc2e2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__304" kindref="compound">type_304</ref> *</type>
+        <definition>struct type_304* mk4_sdata::t304[MAXSTATPER]</definition>
+        <argsstring>[MAXSTATPER]</argsstring>
+        <name>t304</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="127" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a2e8219c9732f990ff9dcf110d8b5f617" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__305" kindref="compound">type_305</ref> *</type>
+        <definition>struct type_305* mk4_sdata::t305[MAXSTATPER]</definition>
+        <argsstring>[MAXSTATPER]</argsstring>
+        <name>t305</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="128" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a266868cb7c53781545547a04063b24f2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__306" kindref="compound">type_306</ref> *</type>
+        <definition>struct type_306* mk4_sdata::t306[MAXSTATPER]</definition>
+        <argsstring>[MAXSTATPER]</argsstring>
+        <name>t306</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="129" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a0a52783dd8be0e87c8963a0ad5b32e30" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__307" kindref="compound">type_307</ref> *</type>
+        <definition>struct type_307* mk4_sdata::t307[MAXSTATPER]</definition>
+        <argsstring>[MAXSTATPER]</argsstring>
+        <name>t307</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="130" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a5d5e9a646a07ff54ce02c720868bbc94" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__308" kindref="compound">type_308</ref> *</type>
+        <definition>struct type_308* mk4_sdata::t308[MAXSTATPER]</definition>
+        <argsstring>[MAXSTATPER]</argsstring>
+        <name>t308</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="131" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmk4__sdata_1a3a18b09863318e7bc503a7238977c05c" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structtype__309" kindref="compound">type_309</ref> *</type>
+        <definition>struct type_309* mk4_sdata::t309[MAXSTATPER]</definition>
+        <argsstring>[MAXSTATPER]</argsstring>
+        <name>t309</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="132" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="22">
+        <label>void *</label>
+      </node>
+      <node id="2">
+        <label>anonymous:model</label>
+      </node>
+      <node id="8">
+        <label>type_000</label>
+        <link refid="structtype__000"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>date</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>mk4_sdata</label>
+        <link refid="structmk4__sdata"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>model</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>file_image</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>t300</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>n304</edgelabel>
+          <edgelabel>n305</edgelabel>
+          <edgelabel>n306</edgelabel>
+          <edgelabel>n307</edgelabel>
+          <edgelabel>n308</edgelabel>
+          <edgelabel>n309</edgelabel>
+          <edgelabel>nalloc</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>t304</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>t305</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>t306</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>t307</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>t308</edgelabel>
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>t309</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>allocated</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>anonymous:trackstats</label>
+      </node>
+      <node id="6">
+        <label>float</label>
+      </node>
+      <node id="21">
+        <label>type_309::ch1_tag</label>
+        <link refid="structtype__309_1_1ch1__tag"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>chan_name</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>acc</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>anonymous:pcal</label>
+      </node>
+      <node id="4">
+        <label>type_300</label>
+        <link refid="structtype__300"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>nsplines</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>model_interval</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>SU_number</edgelabel>
+          <edgelabel>id</edgelabel>
+          <edgelabel>intl_id</edgelabel>
+          <edgelabel>name</edgelabel>
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>model_start</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>type_304</label>
+        <link refid="structtype__304"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>trackstats</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_305</label>
+        <link refid="structtype__305"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_306</label>
+        <link refid="structtype__306"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>stcount</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_307</label>
+        <link refid="structtype__307"/>
+        <childnode refid="16" relation="usage">
+          <edgelabel>accum_period</edgelabel>
+          <edgelabel>rot</edgelabel>
+          <edgelabel>tot</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>unused2</edgelabel>
+          <edgelabel>unused3</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>frame_count</edgelabel>
+          <edgelabel>su</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>counts</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_308</label>
+        <link refid="structtype__308"/>
+        <childnode refid="19" relation="usage">
+          <edgelabel>pcal</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>duration</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_309</label>
+        <link refid="structtype__309"/>
+        <childnode refid="21" relation="usage">
+          <edgelabel>chan</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>acc_period</edgelabel>
+          <edgelabel>rot</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>record_id</edgelabel>
+          <edgelabel>unused1</edgelabel>
+          <edgelabel>version_no</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>ntones</edgelabel>
+          <edgelabel>su</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>date</label>
+        <link refid="structdate"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>second</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>day</edgelabel>
+          <edgelabel>hour</edgelabel>
+          <edgelabel>minute</edgelabel>
+          <edgelabel>year</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>int</label>
+      </node>
+      <node id="16">
+        <label>double</label>
+      </node>
+      <node id="17">
+        <label>ChanCount</label>
+        <link refid="structChanCount"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>count</edgelabel>
+          <edgelabel>val_count</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>anonymous:stcount</label>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="3">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" line="107" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/mk4_data.h" bodystart="108" bodyend="133"/>
+    <listofallmembers>
+      <member refid="structmk4__sdata_1a769db3710e3e76edee7d1c513555556a" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>allocated</name></member>
+      <member refid="structmk4__sdata_1a4086c22216d3080fc8151848d157da16" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>file_image</name></member>
+      <member refid="structmk4__sdata_1aa6d3d7ff5c6ebd003edd7ba95ced7825" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>id</name></member>
+      <member refid="structmk4__sdata_1a22b38b336d823762f595fb069de69ca1" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>model</name></member>
+      <member refid="structmk4__sdata_1a2fc0e0f0a940aa726c5c1f6ad1de6e47" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>n304</name></member>
+      <member refid="structmk4__sdata_1ae6a1990a6f52bd86825d25cb4fa706b5" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>n305</name></member>
+      <member refid="structmk4__sdata_1a34d9b77b1d15f8a4dc661d038e7dee4a" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>n306</name></member>
+      <member refid="structmk4__sdata_1aa6bb7780cbab7a1dfc569cdf63425fbd" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>n307</name></member>
+      <member refid="structmk4__sdata_1a1d8c9d71abde9c0ac328114e235cb327" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>n308</name></member>
+      <member refid="structmk4__sdata_1af670a71371ff2fc27d91de1ab5626cdf" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>n309</name></member>
+      <member refid="structmk4__sdata_1a0060099be8b7506b31c886b0e471ea7d" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>nalloc</name></member>
+      <member refid="structmk4__sdata_1a740f033ffb027b5d8c1fddab2bb4084e" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>t300</name></member>
+      <member refid="structmk4__sdata_1a7ccc5ad077450b1f2109aaffd8cbc2e2" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>t304</name></member>
+      <member refid="structmk4__sdata_1a2e8219c9732f990ff9dcf110d8b5f617" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>t305</name></member>
+      <member refid="structmk4__sdata_1a266868cb7c53781545547a04063b24f2" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>t306</name></member>
+      <member refid="structmk4__sdata_1a0a52783dd8be0e87c8963a0ad5b32e30" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>t307</name></member>
+      <member refid="structmk4__sdata_1a5d5e9a646a07ff54ce02c720868bbc94" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>t308</name></member>
+      <member refid="structmk4__sdata_1a3a18b09863318e7bc503a7238977c05c" prot="public" virt="non-virtual"><scope>mk4_sdata</scope><name>t309</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

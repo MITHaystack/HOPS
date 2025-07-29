@@ -1,0 +1,643 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__IntervalLabelInterface" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_IntervalLabelInterface</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__Axis" prot="public" virt="non-virtual">hops::MHO_Axis&lt; double &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__Axis" prot="public" virt="non-virtual">hops::MHO_Axis&lt; XValueType &gt;</derivedcompoundref>
+    <includes refid="MHO__IntervalLabelInterface_8hh" local="no">MHO_IntervalLabelInterface.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__IntervalLabelInterface_1acfb535a76d52091bf380a11b83de41c3" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_IntervalLabelInterface::fDummy</definition>
+        <argsstring></argsstring>
+        <name>fDummy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="266" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="266" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IntervalLabelInterface_1a1c170a0742d5e1a229bcd6862a4aa306" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+        <definition>mho_json* hops::MHO_IntervalLabelInterface::fIntervalLabelObjectPtr</definition>
+        <argsstring></argsstring>
+        <name>fIntervalLabelObjectPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="265" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="265" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1aef45cabb7a108b2bd2e7a4bd59ebafeb" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_IntervalLabelInterface::MHO_IntervalLabelInterface</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_IntervalLabelInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="25" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a6b9468a13034a3da25c626fccd3d1a5f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_IntervalLabelInterface::MHO_IntervalLabelInterface</definition>
+        <argsstring>(const MHO_IntervalLabelInterface &amp;copy)</argsstring>
+        <name>MHO_IntervalLabelInterface</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__IntervalLabelInterface" kindref="compound">MHO_IntervalLabelInterface</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="32" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a6949bea93ae61dd651917d5c054d177e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_IntervalLabelInterface::SetIntervalLabelObject</definition>
+        <argsstring>(mho_json *obj)</argsstring>
+        <name>SetIntervalLabelObject</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> *</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Setter for interval label object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input mho_json object to set as interval label object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="45" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="45" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1ab420eeaa66d9c7cae9b7f20ae96f142e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_IntervalLabelInterface::~MHO_IntervalLabelInterface</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_IntervalLabelInterface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="48" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a0fd8bfe031c7c488c92570c2fb24f75b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_IntervalLabelInterface::ClearIntervalLabels</definition>
+        <argsstring>()</argsstring>
+        <name>ClearIntervalLabels</name>
+        <briefdescription>
+<para>Clears interval labels by setting *fIntervalLabelObjectPtr to an empty json object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="53" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1ad082fd5b966f0c0018b0f4a4ff9080f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_IntervalLabelInterface::ExtractIndexesFromKey</definition>
+        <argsstring>(const std::string &amp;key, std::size_t &amp;lower_index, std::size_t &amp;upper_index)</argsstring>
+        <name>ExtractIndexesFromKey</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>lower_index</declname>
+        </param>
+        <param>
+          <type>std::size_t &amp;</type>
+          <declname>upper_index</declname>
+        </param>
+        <briefdescription>
+<para>Extracts lower and upper indexes from a key string separated by comma. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input key string containing two indexes separated by comma. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lower_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::size_t&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if extraction is successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="217" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="217" bodyend="234"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a94d0d45eef4d8d97bf4742b8a5f17380" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XLabelValueType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_IntervalLabelInterface::GetFirstIntervalWithKeyValue</definition>
+        <argsstring>(std::string key, const XLabelValueType &amp;value) const</argsstring>
+        <name>GetFirstIntervalWithKeyValue</name>
+        <param>
+          <type>std::string</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const XLabelValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Getter for first interval with key value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XLabelValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XLabelValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key to search for in interval labels </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value associated with the key to match </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>First matching mho_json object or empty if none found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="169" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="169" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1ac73ee79e5efcc0013a4a8e55b0eb3528" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+        <definition>mho_json&amp; hops::MHO_IntervalLabelInterface::GetIntervalLabelObject</definition>
+        <argsstring>(std::size_t lower_index, std::size_t upper_index)</argsstring>
+        <name>GetIntervalLabelObject</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>lower_index</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>upper_index</declname>
+        </param>
+        <briefdescription>
+<para>Get a reference to the dictionary object associated with this index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower index for interval </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper index for interval </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Reference to mho_json object if exists, else dummy object </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="111" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="111" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a545bdc59e211927f60094a0b440554af" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &gt;</type>
+        <definition>std::vector&lt; mho_json &gt; hops::MHO_IntervalLabelInterface::GetMatchingIntervalLabels</definition>
+        <argsstring>(std::string key) const</argsstring>
+        <name>GetMatchingIntervalLabels</name>
+        <param>
+          <type>std::string</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>get a vector of interval labels which contain a key with the same name </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key to search for within interval labels </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector of matching mho_json objects </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="147" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="147" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1ade6305df126cde6b059e1b5f06831043" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_IntervalLabelInterface::InsertIntervalLabelKeyValue</definition>
+        <argsstring>(std::size_t lower_index, std::size_t upper_index, const std::string &amp;key, const XValueType &amp;value)</argsstring>
+        <name>InsertIntervalLabelKeyValue</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>lower_index</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>upper_index</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Inserts an interval label key-value pair into a map referenced by fIntervalLabelObjectPtr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound index for the interval </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound index for the interval </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key string for the value to be inserted </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value associated with the given key </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="65" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="65" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a5de01e8eb924e0b96fae83e2c916edd9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_IntervalLabelInterface::RetrieveIntervalLabelKeyValue</definition>
+        <argsstring>(std::size_t lower_index, std::size_t upper_index, const std::string &amp;key, const XValueType &amp;value) const</argsstring>
+        <name>RetrieveIntervalLabelKeyValue</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>lower_index</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>upper_index</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a value associated with a key within an interval range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound index for the interval. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound index for the interval. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Key to search for in the interval&apos;s label object. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the retrieved value. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if retrieval was successful, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="85" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="85" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a50c85058f428c4537b38208245a21c2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_IntervalLabelInterface::SetIntervalLabelObject</definition>
+        <argsstring>(mho_json &amp;obj, std::size_t lower_index, std::size_t upper_index)</argsstring>
+        <name>SetIntervalLabelObject</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>lower_index</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>upper_index</declname>
+        </param>
+        <briefdescription>
+<para>Setter for interval label object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to mho_json object containing metadata </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lower_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower index of interval </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper index of interval </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="132" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="132" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a868b27ebb6a95aae5a71331fa0498fc5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>static std::string hops::MHO_IntervalLabelInterface::ConstructKey</definition>
+        <argsstring>(std::size_t lower_index, std::size_t upper_index)</argsstring>
+        <name>ConstructKey</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>lower_index</declname>
+        </param>
+        <param>
+          <type>std::size_t</type>
+          <declname>upper_index</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a key string from lower and upper indices, ensuring lower_index &lt;= upper_index. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lower_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower index value (must be less than or equal to upper_index) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper index value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String representation of the sorted pair of indices separated by a comma </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="196" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="196" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IntervalLabelInterface_1a6f89cc760b193859608854d8e8f2365f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::pair&lt; std::size_t, std::size_t &gt;</type>
+        <definition>static std::pair&lt; std::size_t, std::size_t &gt; hops::MHO_IntervalLabelInterface::ExtractIndexesFromKey</definition>
+        <argsstring>(const std::string &amp;key)</argsstring>
+        <name>ExtractIndexesFromKey</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>Extracts lower and upper indexes from a key string separated by comma. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>key</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input key string containing two indexes separated by comma. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if extraction is successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a static function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="243" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="243" bodyend="262"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__IntervalLabelInterface" kindref="compound">MHO_IntervalLabelInterface</ref> - adds intervals with associated key:value pairs (used by <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref>) constructor is protected this class is only intended to provide an interface that derived classes may inherit this interface is to enforce a specific access pattern associated with modifying meta data attached to a vector/axis like object that is in the form of a mho_json::array_t. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="date"><para>Sun Feb 4 17:21:38 2024 -0500 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Axis&lt; double &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Axis&lt; XValueType &gt;</label>
+        <link refid="classhops_1_1MHO__Axis"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_IntervalLabelInterface</label>
+        <link refid="classhops_1_1MHO__IntervalLabelInterface"/>
+      </node>
+    </inheritancegraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" line="22" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_IntervalLabelInterface.hh" bodystart="23" bodyend="267"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a0fd8bfe031c7c488c92570c2fb24f75b" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>ClearIntervalLabels</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a868b27ebb6a95aae5a71331fa0498fc5" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>ConstructKey</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ad082fd5b966f0c0018b0f4a4ff9080f6" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>ExtractIndexesFromKey</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a6f89cc760b193859608854d8e8f2365f" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>ExtractIndexesFromKey</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1acfb535a76d52091bf380a11b83de41c3" prot="private" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>fDummy</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a1c170a0742d5e1a229bcd6862a4aa306" prot="private" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>fIntervalLabelObjectPtr</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a94d0d45eef4d8d97bf4742b8a5f17380" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>GetFirstIntervalWithKeyValue</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ac73ee79e5efcc0013a4a8e55b0eb3528" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>GetIntervalLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a545bdc59e211927f60094a0b440554af" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>GetMatchingIntervalLabels</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ade6305df126cde6b059e1b5f06831043" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>InsertIntervalLabelKeyValue</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1aef45cabb7a108b2bd2e7a4bd59ebafeb" prot="protected" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>MHO_IntervalLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a6b9468a13034a3da25c626fccd3d1a5f" prot="protected" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>MHO_IntervalLabelInterface</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a5de01e8eb924e0b96fae83e2c916edd9" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>RetrieveIntervalLabelKeyValue</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a6949bea93ae61dd651917d5c054d177e" prot="protected" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>SetIntervalLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1a50c85058f428c4537b38208245a21c2b" prot="public" virt="non-virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>SetIntervalLabelObject</name></member>
+      <member refid="classhops_1_1MHO__IntervalLabelInterface_1ab420eeaa66d9c7cae9b7f20ae96f142e" prot="public" virt="virtual"><scope>hops::MHO_IntervalLabelInterface</scope><name>~MHO_IntervalLabelInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

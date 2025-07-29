@@ -1,0 +1,714 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ManualPolDelayCorrection" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ManualPolDelayCorrection</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; visibility_type &gt;</basecompoundref>
+    <includes refid="MHO__ManualPolDelayCorrection_8hh" local="no">MHO_ManualPolDelayCorrection.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1ac32ce65587ed9f24234f8eb765f6129c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ManualPolDelayCorrection::fDelayOffset</definition>
+        <argsstring></argsstring>
+        <name>fDelayOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="139" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a0d25b74f3d1ed05253403c1344b8392f" prot="private" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_ManualPolDelayCorrection::fImagUnit</definition>
+        <argsstring></argsstring>
+        <name>fImagUnit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="128" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a530e56c0a0d51240095c35d84d9ad4fd" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fLowerSideband</definition>
+        <argsstring></argsstring>
+        <name>fLowerSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="149" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a4964753243112a5a1de37821a111d0ef" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ManualPolDelayCorrection::fMHzToHz</definition>
+        <argsstring></argsstring>
+        <name>fMHzToHz</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="130" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1afa1e0ed50c8f6d5c9aa6a34f220ba5c6" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ManualPolDelayCorrection::fNanoSecToSecond</definition>
+        <argsstring></argsstring>
+        <name>fNanoSecToSecond</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="129" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a59dddd435969cab0481c8916eee18517" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ManualPolDelayCorrection::fPi</definition>
+        <argsstring></argsstring>
+        <name>fPi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="131" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1ac78879056d33d350aa82953b37a5d508" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fPol</definition>
+        <argsstring></argsstring>
+        <name>fPol</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a87232cdff8234ea6c1c599b254dd7acc" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_ManualPolDelayCorrection::fRefFreq</definition>
+        <argsstring></argsstring>
+        <name>fRefFreq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="138" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a154d23d4df58324121e2d5d27f1f0b0f" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fRefStationKey</definition>
+        <argsstring></argsstring>
+        <name>fRefStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="144" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a99120cac63243a29f27fc6b39bdd5aa6" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fRefStationMk4IDKey</definition>
+        <argsstring></argsstring>
+        <name>fRefStationMk4IDKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="146" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a4cbe3b9ee88c1132636d0238e750ca04" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fRemStationKey</definition>
+        <argsstring></argsstring>
+        <name>fRemStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="143" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1ae3f6e6bba43f32523be4de26873a60db" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fRemStationMk4IDKey</definition>
+        <argsstring></argsstring>
+        <name>fRemStationMk4IDKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="145" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a3511f24200cef1c5ca2eaedb06b5f3b3" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fSidebandLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fSidebandLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="148" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1a8ebc2287713dfd3cd93a10c94c263092" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fStationIdentity</definition>
+        <argsstring></argsstring>
+        <name>fStationIdentity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="134" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1ade6204757d6e97f0798e5a7a8886aac1" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fStationKey</definition>
+        <argsstring></argsstring>
+        <name>fStationKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="142" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ManualPolDelayCorrection_1ab9b799a2ca0bf2d3d3bafbf09d174a5a" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ManualPolDelayCorrection::fUpperSideband</definition>
+        <argsstring></argsstring>
+        <name>fUpperSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="150" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1ae5bbe438c4752cff8e8a44388c7f3769" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ManualPolDelayCorrection::MHO_ManualPolDelayCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ManualPolDelayCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="6" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a35f420e479028bb6b8366b6f4ebb557e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ManualPolDelayCorrection::~MHO_ManualPolDelayCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ManualPolDelayCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a9d787cd189af18738b72b83bdc2c5fc6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolDelayCorrection::SetPCDelayOffset</definition>
+        <argsstring>(const double &amp;pc_delay_offset)</argsstring>
+        <name>SetPCDelayOffset</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>pc_delay_offset</declname>
+        </param>
+        <briefdescription>
+<para>Setter for pcdelay offset. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pc_delay_offset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time offset to be applied to associated polarization </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="70" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a7750ed5954b1df73e202bb6787c8bc92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolDelayCorrection::SetPolarization</definition>
+        <argsstring>(const std::string &amp;pol)</argsstring>
+        <name>SetPolarization</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>pol</declname>
+        </param>
+        <briefdescription>
+<para>Setter for polarization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input polarization string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="59" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="59" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1ad599dc67d02b2bb0d62bba0c76c53a72" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolDelayCorrection::SetReferenceFrequency</definition>
+        <argsstring>(double ref_freq)</argsstring>
+        <name>SetReferenceFrequency</name>
+        <param>
+          <type>double</type>
+          <declname>ref_freq</declname>
+        </param>
+        <briefdescription>
+<para>Setter for reference frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ref_freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New reference frequency value in MHz </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="42" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a8682e897343f3f27168447605ba5e9c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolDelayCorrection::SetStationIdentifier</definition>
+        <argsstring>(std::string station_id)</argsstring>
+        <name>SetStationIdentifier</name>
+        <param>
+          <type>std::string</type>
+          <declname>station_id</declname>
+        </param>
+        <briefdescription>
+<para>Setter for station identifier. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mk4 id of type std::string</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+station_id is treated as follows: 1-char =&gt; mk4 id 2-char =&gt; 2char station code </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="52" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="52" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a520831369e6c31dbb597a570fb6dabbe" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolDelayCorrection::ExecuteInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Applies manual delay offset and calculates phase correction factors for each channel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility data of type visibility_type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="98" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="30" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a501932b01cda5b12b3a07fafd7f05bd9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolDelayCorrection::ExecuteOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input visibility data and executes in-place processing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const pointer to input visibility_type data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(visibility_type*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean result of ExecuteInPlace operation on copied output. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="107" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="105" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a18ef120d318c569419ccb42e2acab068" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolDelayCorrection::InitializeInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place visibility_type pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to visibility_type for initialization </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if successful </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="80" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="162" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1abb4824560daf256e926eee4c44319152" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolDelayCorrection::InitializeOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes out-of-place visibility data from input pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const pointer to input visibility_type data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(visibility_type*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating successful initialization. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="89" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="167" bodyend="170"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1afd4a511e934a6d97a8ccf9cd158f4843" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolDelayCorrection::IsApplicable</definition>
+        <argsstring>(std::size_t st_idx, const visibility_type *in)</argsstring>
+        <name>IsApplicable</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>st_idx</declname>
+        </param>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Checks if manual polarization-specific delay correction is applicable for a given station index and visibility type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>st_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Station index of type std::size_t </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to visibility_type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating whether the correction should be applied </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="117" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="111" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1ae50c6e954597967a4fa5d56b24bb1e59" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ManualPolDelayCorrection::make_upper</definition>
+        <argsstring>(std::string &amp;s)</argsstring>
+        <name>make_upper</name>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="153" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="153" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ManualPolDelayCorrection_1a3d397eecad59deaaaad872f97e5d1c36" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ManualPolDelayCorrection::PolMatch</definition>
+        <argsstring>(std::size_t station_idx, std::string &amp;polprod)</argsstring>
+        <name>PolMatch</name>
+        <param>
+          <type>std::size_t</type>
+          <declname>station_idx</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>polprod</declname>
+        </param>
+        <briefdescription>
+<para>Checks if the correction polarization matches the polarization product at the given station index [0 = ref, 1 = rem]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>station_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the station for which to check the polarization product. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>polprod</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if polarization product matches fPol at given station index, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="125" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_ManualPolDelayCorrection.cc" bodystart="156" bodyend="160"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ManualPolDelayCorrection" kindref="compound">MHO_ManualPolDelayCorrection</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Jan 27 10:36:00 2022 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ManualPolDelayCorrection</label>
+        <link refid="classhops_1_1MHO__ManualPolDelayCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ManualPolDelayCorrection</label>
+        <link refid="classhops_1_1MHO__ManualPolDelayCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_ManualPolDelayCorrection.hh" bodystart="32" bodyend="160"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a520831369e6c31dbb597a570fb6dabbe" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a501932b01cda5b12b3a07fafd7f05bd9" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ac32ce65587ed9f24234f8eb765f6129c" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fDelayOffset</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a0d25b74f3d1ed05253403c1344b8392f" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fImagUnit</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a530e56c0a0d51240095c35d84d9ad4fd" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fLowerSideband</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a4964753243112a5a1de37821a111d0ef" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fMHzToHz</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1afa1e0ed50c8f6d5c9aa6a34f220ba5c6" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fNanoSecToSecond</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a59dddd435969cab0481c8916eee18517" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fPi</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ac78879056d33d350aa82953b37a5d508" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fPol</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a87232cdff8234ea6c1c599b254dd7acc" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fRefFreq</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a154d23d4df58324121e2d5d27f1f0b0f" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fRefStationKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a99120cac63243a29f27fc6b39bdd5aa6" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fRefStationMk4IDKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a4cbe3b9ee88c1132636d0238e750ca04" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fRemStationKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ae3f6e6bba43f32523be4de26873a60db" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fRemStationMk4IDKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a3511f24200cef1c5ca2eaedb06b5f3b3" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fSidebandLabelKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a8ebc2287713dfd3cd93a10c94c263092" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fStationIdentity</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ade6204757d6e97f0798e5a7a8886aac1" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fStationKey</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ab9b799a2ca0bf2d3d3bafbf09d174a5a" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>fUpperSideband</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a18ef120d318c569419ccb42e2acab068" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1abb4824560daf256e926eee4c44319152" prot="protected" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1afd4a511e934a6d97a8ccf9cd158f4843" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>IsApplicable</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ae50c6e954597967a4fa5d56b24bb1e59" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>make_upper</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ae5bbe438c4752cff8e8a44388c7f3769" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>MHO_ManualPolDelayCorrection</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a3d397eecad59deaaaad872f97e5d1c36" prot="private" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>PolMatch</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a9d787cd189af18738b72b83bdc2c5fc6" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetPCDelayOffset</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a7750ed5954b1df73e202bb6787c8bc92" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetPolarization</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1ad599dc67d02b2bb0d62bba0c76c53a72" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetReferenceFrequency</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a8682e897343f3f27168447605ba5e9c0" prot="public" virt="non-virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>SetStationIdentifier</name></member>
+      <member refid="classhops_1_1MHO__ManualPolDelayCorrection_1a35f420e479028bb6b8366b6f4ebb557e" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>~MHO_ManualPolDelayCorrection</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_ManualPolDelayCorrection</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

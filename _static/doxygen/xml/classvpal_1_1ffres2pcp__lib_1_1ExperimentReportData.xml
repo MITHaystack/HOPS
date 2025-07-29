@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData" kind="class" language="Python" prot="public">
+    <compoundname>vpal::ffres2pcp_lib::ExperimentReportData</compoundname>
+    <basecompoundref refid="classvpal_1_1report__lib_1_1JsonSerializableObject" prot="public" virt="non-virtual">vpal.report_lib.JsonSerializableObject</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a0c3e7b4115e75e15288964df81fc5534" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.ExperimentReportData::all_blc</definition>
+        <argsstring></argsstring>
+        <name>all_blc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="208" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a4ac3d25cb476aa26b56d2ddfdeb0f028" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.ExperimentReportData::apriori_sspcp</definition>
+        <argsstring></argsstring>
+        <name>apriori_sspcp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="210" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a2dff28065215164acf39a679f72c71ec" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.ExperimentReportData::channel_freqs</definition>
+        <argsstring></argsstring>
+        <name>channel_freqs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="211" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a4bb2fd7b9dbcb60ea4a7756fe195ed36" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.ExperimentReportData::config_obj</definition>
+        <argsstring></argsstring>
+        <name>config_obj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="207" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a3b6ee6caa70add9f345e5bbaa9439c40" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.ffres2pcp_lib.ExperimentReportData::generated_sspcp</definition>
+        <argsstring></argsstring>
+        <name>generated_sspcp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="209" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a12752c1d1b5375749553365c71349ec4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.ExperimentReportData.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="206" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="206" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a4011972a1afb05934bb504d2790ac08e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.ExperimentReportData.create_report</definition>
+        <argsstring>(self, report_filename)</argsstring>
+        <name>create_report</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>report_filename</type>
+          <defname>report_filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>dump this object to a json report file</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="253" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="253" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a0955eba7c07c328aae4fa1805f21c831" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.ExperimentReportData.export_json</definition>
+        <argsstring>(self)</argsstring>
+        <name>export_json</name>
+        <reimplements refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1a5c3ae4ed6d06099f454ead9b988b691c">export_json</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> dump to a dict for json export </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="213" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="213" bodyend="231"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a1eecf5e9dc903538a53fecd6dc557a1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.ExperimentReportData.import_json</definition>
+        <argsstring>(self, json_dict)</argsstring>
+        <name>import_json</name>
+        <reimplements refid="classvpal_1_1report__lib_1_1JsonSerializableObject_1aa016c5f55c3299e6e7525fb4b31a3377">import_json</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>json_dict</type>
+          <defname>json_dict</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim> reconstruct from dict object </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="232" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="232" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a2e2d10ec283b4d03bc681164f78c2e6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.ffres2pcp_lib.ExperimentReportData.load_report</definition>
+        <argsstring>(self, report_filename)</argsstring>
+        <name>load_report</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>report_filename</type>
+          <defname>report_filename</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>load data from a report file </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="260" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="260" bodyend="268"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>object to gather all station data for a particular experiment </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.ExperimentReportData</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>vpal.report_lib.JsonSerializableObject</label>
+        <link refid="classvpal_1_1report__lib_1_1JsonSerializableObject"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vpal.ffres2pcp_lib.ExperimentReportData</label>
+        <link refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" line="204" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/ffres2pcp_lib.py" bodystart="204" bodyend="273"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a12752c1d1b5375749553365c71349ec4" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a0c3e7b4115e75e15288964df81fc5534" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>all_blc</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a4ac3d25cb476aa26b56d2ddfdeb0f028" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>apriori_sspcp</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a2dff28065215164acf39a679f72c71ec" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>channel_freqs</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a4bb2fd7b9dbcb60ea4a7756fe195ed36" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>config_obj</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a4011972a1afb05934bb504d2790ac08e" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>create_report</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a0955eba7c07c328aae4fa1805f21c831" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>export_json</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a3b6ee6caa70add9f345e5bbaa9439c40" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>generated_sspcp</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a1eecf5e9dc903538a53fecd6dc557a1a" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>import_json</name></member>
+      <member refid="classvpal_1_1ffres2pcp__lib_1_1ExperimentReportData_1a2e2d10ec283b4d03bc681164f78c2e6b" prot="public" virt="non-virtual"><scope>vpal::ffres2pcp_lib::ExperimentReportData</scope><name>load_report</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

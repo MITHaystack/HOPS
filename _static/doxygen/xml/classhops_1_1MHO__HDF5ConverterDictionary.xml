@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__HDF5ConverterDictionary" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_HDF5ConverterDictionary</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__HDF5ContainerFileInterface" prot="public" virt="non-virtual">hops::MHO_HDF5ContainerFileInterface</derivedcompoundref>
+    <includes refid="MHO__HDF5ConverterDictionary_8hh" local="no">MHO_HDF5ConverterDictionary.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__HDF5ConverterDictionary_1adb414e1b05d92bf8667031e260c3c8bc" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>, <ref refid="classhops_1_1MHO__HDF5Converter" kindref="compound">MHO_HDF5Converter</ref> * &gt;</type>
+        <definition>std::map&lt; MHO_UUID, MHO_HDF5Converter* &gt; hops::MHO_HDF5ConverterDictionary::fHDF5ConverterMap</definition>
+        <argsstring></argsstring>
+        <name>fHDF5ConverterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" line="60" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__HDF5ConverterDictionary_1a80011b99835aab7db27561133f22a084" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref></type>
+        <definition>MHO_MD5HashGenerator hops::MHO_HDF5ConverterDictionary::fMD5Generator</definition>
+        <argsstring></argsstring>
+        <name>fMD5Generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" line="59" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__HDF5ConverterDictionary_1a02edaaff06f3b66186d3daa489886c4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_HDF5ConverterDictionary::MHO_HDF5ConverterDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_HDF5ConverterDictionary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" line="33" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/src/MHO_HDF5ConverterDictionary.cc" bodystart="35" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__HDF5ConverterDictionary_1a1d1c083d766c01b840d04e658633cb14" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_HDF5ConverterDictionary::~MHO_HDF5ConverterDictionary</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_HDF5ConverterDictionary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" bodystart="34" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__HDF5ConverterDictionary_1ab53dab1548bebd64468779d2623abd7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_HDF5ConverterDictionary::AddHDF5ClassType</definition>
+        <argsstring>()</argsstring>
+        <name>AddHDF5ClassType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" line="42" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" bodystart="42" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Dictionary of objects which do the conversion to HDF5 for each type. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Fri May 16 10:42:52 AM EDT 2025 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hops::MHO_HDF5ConverterDictionary</label>
+        <link refid="classhops_1_1MHO__HDF5ConverterDictionary"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_HDF5ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__HDF5ContainerFileInterface"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="3">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="4">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>json</label>
+      </node>
+      <node id="8">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_HDF5Converter * &gt;</label>
+        <childnode refid="9" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_HDF5Converter</label>
+        <link refid="classhops_1_1MHO__HDF5Converter"/>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fMetaData</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>uint8_t</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_HDF5ConverterDictionary</label>
+        <link refid="classhops_1_1MHO__HDF5ConverterDictionary"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fHDF5ConverterMap</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5ConverterDictionary.hh" bodystart="30" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__HDF5ConverterDictionary_1ab53dab1548bebd64468779d2623abd7a" prot="public" virt="non-virtual"><scope>hops::MHO_HDF5ConverterDictionary</scope><name>AddHDF5ClassType</name></member>
+      <member refid="classhops_1_1MHO__HDF5ConverterDictionary_1adb414e1b05d92bf8667031e260c3c8bc" prot="protected" virt="non-virtual"><scope>hops::MHO_HDF5ConverterDictionary</scope><name>fHDF5ConverterMap</name></member>
+      <member refid="classhops_1_1MHO__HDF5ConverterDictionary_1a80011b99835aab7db27561133f22a084" prot="protected" virt="non-virtual"><scope>hops::MHO_HDF5ConverterDictionary</scope><name>fMD5Generator</name></member>
+      <member refid="classhops_1_1MHO__HDF5ConverterDictionary_1a02edaaff06f3b66186d3daa489886c4d" prot="public" virt="non-virtual"><scope>hops::MHO_HDF5ConverterDictionary</scope><name>MHO_HDF5ConverterDictionary</name></member>
+      <member refid="classhops_1_1MHO__HDF5ConverterDictionary_1a1d1c083d766c01b840d04e658633cb14" prot="public" virt="virtual"><scope>hops::MHO_HDF5ConverterDictionary</scope><name>~MHO_HDF5ConverterDictionary</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

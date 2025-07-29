@@ -1,0 +1,752 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="get__plot__data_8c" kind="file" language="C++">
+    <compoundname>get_plot_data.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="aedata_8h" local="yes">aedata.h</includes>
+    <includes refid="aedit_8h" local="yes">aedit.h</includes>
+    <includes refid="pstruct_8h" local="yes">pstruct.h</includes>
+    <includes refid="flags_8h" local="yes">flags.h</includes>
+    <includes refid="summary_8h" local="yes">summary.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>aedata.h</label>
+        <link refid="aedata_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>stdarg.h</label>
+      </node>
+      <node id="14">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="50">
+        <label>usearray.h</label>
+        <link refid="usearray_8h"/>
+      </node>
+      <node id="41">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>flags.h</label>
+        <link refid="flags_8h"/>
+      </node>
+      <node id="53">
+        <label>sys/times.h</label>
+      </node>
+      <node id="20">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="24">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="6">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="51">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="23">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>psplot.h</label>
+        <link refid="psplot_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="1">
+        <label>get_plot_data.c</label>
+        <link refid="get__plot__data_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>sys/types.h</label>
+      </node>
+      <node id="35">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="12">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+      <node id="39">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="18">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>sizelimits.h</label>
+        <link refid="sizelimits_8h"/>
+      </node>
+      <node id="15">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>complex.h</label>
+      </node>
+      <node id="31">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="56">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="21">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="45">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>pstruct.h</label>
+        <link refid="pstruct_8h"/>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="49">
+        <label>summary.h</label>
+        <link refid="summary_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="30">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="9">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="get__plot__data_8c_1a8d0c21a85089e5ad877d98c5627d7a91" prot="public" static="no">
+        <name>NOSPLIT</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_plot_data.c" line="37" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_plot_data.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="get__plot__data_8c_1ab9b059654b97e4d2d1ec92692e49dace" prot="public" static="no">
+        <name>SPLIT</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_plot_data.c" line="38" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_plot_data.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="get__plot__data_8c_1a28665a6090427927e687b185bee3da5f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_plot_data</definition>
+        <argsstring>(esum *data, struct plot_info *pd, struct frqexp fqex, srcsum *sptr, char *plot_id, struct plot_points *pp, int symbol[3])</argsstring>
+        <name>get_plot_data</name>
+        <param>
+          <type><ref refid="structesum" kindref="compound">esum</ref> *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structplot__info" kindref="compound">plot_info</ref> *</type>
+          <declname>pd</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structfrqexp" kindref="compound">frqexp</ref></type>
+          <declname>fqex</declname>
+        </param>
+        <param>
+          <type><ref refid="structsrcsum" kindref="compound">srcsum</ref> *</type>
+          <declname>sptr</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>plot_id</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structplot__points" kindref="compound">plot_points</ref> *</type>
+          <declname>pp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>symbol</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_plot_data.c" line="40" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_plot_data.c" bodystart="40" bodyend="253"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>routine<sp/>extracts<sp/>plottable<sp/>information<sp/>from<sp/>the<sp/>main<sp/>data<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>for<sp/>a<sp/>single<sp/>frequency/experiment/source/baseline,<sp/>as<sp/>specified<sp/>in<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>the<sp/>input<sp/>arguments<sp/>fqex,<sp/>sptr<sp/>and<sp/>bas.<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>It<sp/>fills<sp/>the<sp/>pp<sp/>data<sp/>arrays<sp/>for<sp/>later<sp/>passage<sp/>to<sp/>pgplot<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>routines,<sp/>and<sp/>maintains<sp/>a<sp/>semi-permanent<sp/>record<sp/>of<sp/>which<sp/>data<sp/>is<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>plotted<sp/>where<sp/>(the<sp/>index<sp/>array<sp/>in<sp/>the<sp/>pdata<sp/>structure).<sp/><sp/>Where<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>appropriate,<sp/>it<sp/>also<sp/>calculates<sp/>error<sp/>bars<sp/>sizes<sp/>based<sp/>on<sp/>the<sp/>snr.<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>It<sp/>also<sp/>determines<sp/>various<sp/>quantities<sp/>used<sp/>in<sp/>the<sp/>actual<sp/>plotting.<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>The<sp/>end<sp/>product<sp/>is<sp/>a<sp/>filled<sp/>plot_info<sp/>structure<sp/>(see<sp/>pstruct.h)<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>ready<sp/>for<sp/>setup_plot()<sp/>and<sp/>the<sp/>PGPLOT<sp/>routines<sp/>pg_point()<sp/>etc.<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Inputs:<sp/><sp/><sp/><sp/><sp/>data<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>main<sp/>data<sp/>structure<sp/>pointer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pd<sp/><sp/><sp/><sp/><sp/><sp/>Plot<sp/>information<sp/>structure<sp/>ptr<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fqex<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>freq/expt<sp/>summary<sp/>structure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sptr<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>srcsum<sp/>struct<sp/>in<sp/>fqex*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bas<sp/><sp/><sp/><sp/><sp/>Baseline<sp/>specification<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>Output:<sp/><sp/><sp/><sp/><sp/>pp<sp/><sp/><sp/><sp/><sp/><sp/>Pointer<sp/>to<sp/>plot<sp/>data<sp/>arrays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>17<sp/>April<sp/>1989<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Completely<sp/>redesigned<sp/>and<sp/>overhauled<sp/>25<sp/>February<sp/>1992<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Modified<sp/>to<sp/>support<sp/>improved<sp/>y<sp/>axis<sp/>selection<sp/>mechanism<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>7<sp/>September<sp/>1993<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Added<sp/>full<sp/>closure<sp/>support,<sp/>30<sp/>August<sp/>1994<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedata_8h" kindref="compound">aedata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedit_8h" kindref="compound">aedit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pstruct_8h" kindref="compound">pstruct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="flags_8h" kindref="compound">flags.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="summary_8h" kindref="compound">summary.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NOSPLIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SPLIT<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="get__plot__data_8c_1a28665a6090427927e687b185bee3da5f" kindref="member">get_plot_data</ref><sp/>(<ref refid="structesum" kindref="compound">esum</ref><sp/>*data,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structplot__info" kindref="compound">plot_info</ref><sp/>*pd,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structfrqexp" kindref="compound">frqexp</ref><sp/>fqex,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsrcsum" kindref="compound">srcsum</ref><sp/>*sptr,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*plot_id,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structplot__points" kindref="compound">plot_points</ref><sp/>*pp,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>symbol[3])</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structinputs" kindref="compound">inputs</ref><sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__info" kindref="compound">plot_info</ref><sp/><ref refid="plot__fqex_8c_1aa6c845d5827aec8afb44e681b174ab45" kindref="member">pdata</ref>[];</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>,<sp/><ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>,<sp/><ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structplot__ptqual" kindref="compound">plot_ptqual</ref><sp/>*pt;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>xhigh,<sp/>xlow,<sp/>yhigh,<sp/>ylow;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>offset,<sp/>nbadmbd,<sp/>nloop,<sp/>discard;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*npt;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structfringesum" kindref="compound">fringesum</ref><sp/>*fdatum;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structtrianglesum" kindref="compound">trianglesum</ref><sp/>*tdatum;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structquadsum" kindref="compound">quadsum</ref><sp/>*qdatum;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>sym;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Can<sp/>errors<sp/>be<sp/>calculated?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a807741285291a2158202b49824e86b97" kindref="member">xaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a43da4ecc269084a8cc0738629769197f" kindref="member">AX_SNR</ref>)<sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a807741285291a2158202b49824e86b97" kindref="member">xaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a5914319d5b1088581e873c3bf970b354" kindref="member">AX_AMPLITUDE</ref>)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a807741285291a2158202b49824e86b97" kindref="member">xaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a1edb9b223382998ac999f5d56238b84f" kindref="member">AX_PHASE</ref>)<sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a807741285291a2158202b49824e86b97" kindref="member">xaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a67cac0a02b8a8bdaddd347a0fec6731b" kindref="member">AX_CPHASE</ref>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a807741285291a2158202b49824e86b97" kindref="member">xaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1ae3f32089ab1e014f37be638131127944" kindref="member">AX_CAMP</ref>))<sp/>pd-&gt;<ref refid="structplot__info_1afcb4234b4549822319ac3fb2a0d2c46f" kindref="member">xebar</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" kindref="member">yaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a43da4ecc269084a8cc0738629769197f" kindref="member">AX_SNR</ref>)<sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" kindref="member">yaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a5914319d5b1088581e873c3bf970b354" kindref="member">AX_AMPLITUDE</ref>)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" kindref="member">yaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a1edb9b223382998ac999f5d56238b84f" kindref="member">AX_PHASE</ref>)<sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" kindref="member">yaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a67cac0a02b8a8bdaddd347a0fec6731b" kindref="member">AX_CPHASE</ref>)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" kindref="member">yaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1ae3f32089ab1e014f37be638131127944" kindref="member">AX_CAMP</ref>))<sp/>pd-&gt;<ref refid="structplot__info_1a797dfb97eefaa98e21e1cd8ce721cd7b" kindref="member">yebar</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Note<sp/>that<sp/>initialization<sp/>of<sp/>pd<sp/>is<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>handled<sp/>by<sp/>calling<sp/>routine<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>(plot_fqex()<sp/>or<sp/>plot_source())<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pd-&gt;<ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref><sp/>!=<sp/>(pd-&gt;<ref refid="structplot__info_1a1b9cd65a27e0e53987f0f3a2854676be" kindref="member">ngood</ref><sp/>+<sp/>pd-&gt;<ref refid="structplot__info_1adb0e5cdb54e131060f5d5cdc0db4c743" kindref="member">nsusp</ref><sp/>+<sp/>pd-&gt;<ref refid="structplot__info_1a6293e887c8fa9009ebd8658fa96d5fb9" kindref="member">nbad</ref>))<sp/></highlight><highlight class="comment">/*<sp/>Current<sp/>location<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Error<sp/>in<sp/>get_plot_data<sp/>...<sp/>counters<sp/>out<sp/>of<sp/>step!&quot;</highlight><highlight class="normal">,2);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(-1);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Need<sp/>to<sp/>loop<sp/>over<sp/>all<sp/>data,<sp/>whether<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>for<sp/>stations/baselines/all<sp/>(fringe<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>array)<sp/>or<sp/>triangles/quads<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>)<sp/>nloop<sp/>=<sp/><ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1addd3200f648cbefaab99bfe55a3f0615" kindref="member">QUAD_PLOT</ref>)<sp/>nloop<sp/>=<sp/><ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>nloop<sp/>=<sp/><ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>For<sp/>station-based<sp/>plots,<sp/>need<sp/>to<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>reduce<sp/>to<sp/>one<sp/>datum<sp/>per<sp/>time<sp/>tag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>to<sp/>avoid<sp/>plot<sp/>overflows<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref>)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1aa4b77dba1a2f232aecda09f19ef7fd74" kindref="member">station_reduce</ref><sp/>(data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>,<sp/>plot_id[0],<sp/>sptr-&gt;<ref refid="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" kindref="member">name</ref>,<sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fqex.<ref refid="structfrqexp_1a8abb9514570bbd93a4d9e4a0f5f599a3" kindref="member">expt_no</ref>,<sp/>fqex.<ref refid="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" kindref="member">freq_code</ref>);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Loop<sp/>over<sp/>all<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>nbadmbd<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;nloop;<sp/>i++)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Point<sp/>to<sp/>data<sp/>for<sp/>this<sp/>point<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>fdatum<sp/>=<sp/>&amp;(data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>[i].<ref refid="structfringearray_1ab8773d84a1ebdbea00bb4411cfaffe97" kindref="member">data</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>tdatum<sp/>=<sp/>&amp;(data-&gt;<ref refid="structesum_1a5b7351638813f38c179e463262d66615" kindref="member">tdata</ref>[i].<ref refid="structtrianglearray_1a310e27178b9849b8847f9c107487e72b" kindref="member">data</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>qdatum<sp/>=<sp/>&amp;(data-&gt;<ref refid="structesum_1a5f86a9569e39d8c8821d584565f3124e" kindref="member">qdata</ref>[i].<ref refid="structquadarray_1aef7557be1185d4c12e833a7b6ae7cc58" kindref="member">data</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Skip<sp/>over<sp/>non-matching<sp/>data<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref>)<sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1ae577083c340e3eeb8e470db7e9a26b30" kindref="member">ALL_PLOT</ref>))</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>[i].<ref refid="structfringearray_1acc4decf94aed84a73a7402b53ba0aa3b" kindref="member">flag</ref><sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Skip<sp/>if<sp/>source/freq/exp<sp/>are<sp/>wrong<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp<sp/>(fdatum-&gt;<ref refid="structfringesum_1a2befa10cc96391eb577eaab0e748d6d1" kindref="member">source</ref>,<sp/>sptr-&gt;<ref refid="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" kindref="member">name</ref>)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fdatum-&gt;<ref refid="structfringesum_1aa2625e32469e1f53df7df0559110208b" kindref="member">expt_no</ref><sp/>!=<sp/>fqex.<ref refid="structfrqexp_1a8abb9514570bbd93a4d9e4a0f5f599a3" kindref="member">expt_no</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fdatum-&gt;<ref refid="structfringesum_1acdc1fe42315e722d8f16a491ac0b7419" kindref="member">freq_code</ref><sp/>!=<sp/>fqex.<ref refid="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" kindref="member">freq_code</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data-&gt;<ref refid="structesum_1a5b7351638813f38c179e463262d66615" kindref="member">tdata</ref>[i].<ref refid="structtrianglearray_1ac04d4892f2a5c9376bdbe1a75b47d06f" kindref="member">flag</ref><sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Skip<sp/>if<sp/>source/freq/exp<sp/>are<sp/>wrong<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp<sp/>(tdatum-&gt;<ref refid="structtrianglesum_1a2aa1ca9776c80a24704432cb3d739b0a" kindref="member">source</ref>,<sp/>sptr-&gt;<ref refid="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" kindref="member">name</ref>)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tdatum-&gt;<ref refid="structtrianglesum_1a336e07103c70df7bd72fb69e6920d124" kindref="member">expt_no</ref><sp/>!=<sp/>fqex.<ref refid="structfrqexp_1a8abb9514570bbd93a4d9e4a0f5f599a3" kindref="member">expt_no</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tdatum-&gt;<ref refid="structtrianglesum_1ac494ea2b5ed5f3e3cc2994d3edfdc0c7" kindref="member">freq_code</ref><sp/>!=<sp/>fqex.<ref refid="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" kindref="member">freq_code</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1addd3200f648cbefaab99bfe55a3f0615" kindref="member">QUAD_PLOT</ref>)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data-&gt;<ref refid="structesum_1a5f86a9569e39d8c8821d584565f3124e" kindref="member">qdata</ref>[i].<ref refid="structquadarray_1a0a85fc5d4d111a69e4f55dfad621f728" kindref="member">flag</ref><sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Skip<sp/>if<sp/>source/freq/exp<sp/>are<sp/>wrong<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp<sp/>(qdatum-&gt;<ref refid="structquadsum_1a00739f50f29ca97c4dee054d73588ea2" kindref="member">source</ref>,<sp/>sptr-&gt;<ref refid="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" kindref="member">name</ref>)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qdatum-&gt;<ref refid="structquadsum_1a4f64c6c8564cc9b37e9734cbc9a179fd" kindref="member">expt_no</ref><sp/>!=<sp/>fqex.<ref refid="structfrqexp_1a8abb9514570bbd93a4d9e4a0f5f599a3" kindref="member">expt_no</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(qdatum-&gt;<ref refid="structquadsum_1a6fc9eeae3b8f4f9b195b2436e8c498d4" kindref="member">freq_code</ref><sp/>!=<sp/>fqex.<ref refid="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" kindref="member">freq_code</ref>)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Is<sp/>this<sp/>datum<sp/>destined<sp/>for<sp/>this<sp/>plot?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>discard<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref>)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref>:</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strchr<sp/>(fdatum-&gt;<ref refid="structfringesum_1a6c663909d1c1c840a7ae58812f77863e" kindref="member">baseline</ref>,<sp/>plot_id[0])<sp/>!=<sp/>NULL)<sp/>discard<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>:</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp<sp/>(fdatum-&gt;<ref refid="structfringesum_1a6c663909d1c1c840a7ae58812f77863e" kindref="member">baseline</ref>,<sp/>plot_id)<sp/>==<sp/>0)<sp/>discard<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>:</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp<sp/>(tdatum-&gt;<ref refid="structtrianglesum_1a1830d5f0565caac7ce8341ebb5377d09" kindref="member">triangle</ref>,<sp/>plot_id)<sp/>==<sp/>0)<sp/>discard<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1addd3200f648cbefaab99bfe55a3f0615" kindref="member">QUAD_PLOT</ref>:</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp<sp/>(qdatum-&gt;<ref refid="structquadsum_1ab41b8ecb800a971154dd6219c3bb8c8f" kindref="member">quad</ref>,<sp/>plot_id)<sp/>==<sp/>0)<sp/>discard<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>discard<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(discard)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Ignore<sp/>single<sp/>channel<sp/>points<sp/>for<sp/>mbdelay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Also,<sp/>if<sp/>ambiguity<sp/>unknown,<sp/>should<sp/>skip<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" kindref="member">yaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a9458971f1ca0cbaabe7d5912e27b84e3" kindref="member">AX_MBDELAY</ref>)<sp/>||<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a807741285291a2158202b49824e86b97" kindref="member">xaind</ref><sp/>==<sp/><ref refid="pstruct_8h_1a9458971f1ca0cbaabe7d5912e27b84e3" kindref="member">AX_MBDELAY</ref>))</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((fdatum-&gt;<ref refid="structfringesum_1aa1b18a3482b6449f55a031c5b05efc25" kindref="member">no_freq</ref><sp/>==<sp/>1)<sp/>||<sp/>(fdatum-&gt;<ref refid="structfringesum_1a210f8ecbfd5c93ee1df8d3403f4e737a" kindref="member">ambiguity</ref><sp/>==<sp/>0.0))</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nbadmbd++;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Overflow<sp/>...<sp/>just<sp/>jump<sp/>out<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pd-&gt;<ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref><sp/>&gt;=<sp/><ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Plot<sp/>id<sp/>%s,<sp/>freq<sp/>%c<sp/>...<sp/>too<sp/>many&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>plot_id,<sp/>fqex.<ref refid="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" kindref="member">freq_code</ref>);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;data<sp/>points<sp/>to<sp/>plot<sp/>...<sp/>truncate<sp/>at<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>2,<sp/><ref refid="pstruct_8h_1ad4e81dc193f022145921478b20fee1f7" kindref="member">MAXPLT</ref>);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Establish<sp/>general<sp/>quality<sp/>level<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>and<sp/>point<sp/>to<sp/>corresponding<sp/>part<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>of<sp/>plot<sp/>data<sp/>structures<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="aedit__proto_8h_1a8aa1e38f7a91fb17a7bb6d4021df70fe" kindref="member">plot_quality</ref><sp/>(fdatum,<sp/>tdatum))</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1aba428f09d48079e50fa27ef70ef7be2b" kindref="member">PQ_BAD</ref>:</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pt<sp/>=<sp/>&amp;(pp-&gt;<ref refid="structplot__points_1a2b00109c9dca46517847379204b08a08" kindref="member">bad</ref>);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>npt<sp/>=<sp/>&amp;(pd-&gt;<ref refid="structplot__info_1a6293e887c8fa9009ebd8658fa96d5fb9" kindref="member">nbad</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sym<sp/>=<sp/>symbol[2];</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1a204632786b6b92c3fa630c46fed7b123" kindref="member">PQ_SUSPECT</ref>:</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pt<sp/>=<sp/>&amp;(pp-&gt;<ref refid="structplot__points_1a1e49d58c98601ee0480b77a234f29671" kindref="member">suspect</ref>);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>npt<sp/>=<sp/>&amp;(pd-&gt;<ref refid="structplot__info_1adb0e5cdb54e131060f5d5cdc0db4c743" kindref="member">nsusp</ref>);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sym<sp/>=<sp/>symbol[1];</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="pstruct_8h_1aa601bd24419a49e82aefff66697b97e0" kindref="member">PQ_GOOD</ref>:</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pt<sp/>=<sp/>&amp;(pp-&gt;<ref refid="structplot__points_1a8cfeb8aa34c372621211e143ed5f748a" kindref="member">good</ref>);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>npt<sp/>=<sp/>&amp;(pd-&gt;<ref refid="structplot__info_1a1b9cd65a27e0e53987f0f3a2854676be" kindref="member">ngood</ref>);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sym<sp/>=<sp/>symbol[0];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>get_plot_datum()<sp/>fills<sp/>in<sp/>the<sp/>next<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>element<sp/>in<sp/>the<sp/>pt<sp/>plot<sp/>data<sp/>arrays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>It<sp/>must<sp/>be<sp/>fed<sp/>both<sp/>closure<sp/>and<sp/>normal<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>datum<sp/>information<sp/>to<sp/>do<sp/>its<sp/>job<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>so<sp/>we<sp/>need<sp/>main<sp/>data<sp/>array<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a341291cc87714d05f29eb368a32d023b" kindref="member">get_plot_datum</ref><sp/>(plot_id,<sp/>data,<sp/>sptr,<sp/>i,<sp/>*npt,<sp/>pd-&gt;<ref refid="structplot__info_1a1066a7bab75004318340a6d9a6152f18" kindref="member">toffset</ref>,<sp/>pt);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Outside<sp/>user<sp/>limits,<sp/>don&apos;t<sp/>plot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((pt-&gt;<ref refid="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" kindref="member">x</ref>[*npt]<sp/>&lt;<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ad3acbb53adf723aa0c71300bb085b251" kindref="member">xscale</ref>[0]<sp/>||<sp/>pt-&gt;<ref refid="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" kindref="member">x</ref>[*npt]<sp/>&gt;<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ad3acbb53adf723aa0c71300bb085b251" kindref="member">xscale</ref>[1])<sp/></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ad3acbb53adf723aa0c71300bb085b251" kindref="member">xscale</ref>[0]<sp/>!=<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ad3acbb53adf723aa0c71300bb085b251" kindref="member">xscale</ref>[1]))<sp/>pd-&gt;<ref refid="structplot__info_1a5b9d4d6be9571b559e65e8dfdf0d0f85" kindref="member">nbadscale</ref>++;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((pt-&gt;<ref refid="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" kindref="member">y</ref>[*npt]<sp/>&lt;<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ae7596a70556e2e8e298d8405ce4c0427" kindref="member">yscale</ref>[0]<sp/>||<sp/>pt-&gt;<ref refid="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" kindref="member">y</ref>[*npt]<sp/>&gt;<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ae7596a70556e2e8e298d8405ce4c0427" kindref="member">yscale</ref>[1])<sp/></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ae7596a70556e2e8e298d8405ce4c0427" kindref="member">yscale</ref>[0]<sp/>!=<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ae7596a70556e2e8e298d8405ce4c0427" kindref="member">yscale</ref>[1]))<sp/>pd-&gt;<ref refid="structplot__info_1a5b9d4d6be9571b559e65e8dfdf0d0f85" kindref="member">nbadscale</ref>++;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Record<sp/>index,<sp/>and<sp/>plot<sp/>symbol<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a55428556c78984a89b1bad86839e4099" kindref="member">index</ref>[pd-&gt;<ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref>]<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1abecd6d53d277c7a31c149bb2d19dbb9c" kindref="member">symbol</ref>[pd-&gt;<ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref>]<sp/>=<sp/>sym;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Axis<sp/>extrema<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>error<sp/>bars<sp/>present,<sp/>make<sp/>sure<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>plot<sp/>big<sp/>enough<sp/>to<sp/>accommodate<sp/>them<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pd-&gt;<ref refid="structplot__info_1afcb4234b4549822319ac3fb2a0d2c46f" kindref="member">xebar</ref>)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xhigh<sp/>=<sp/>pt-&gt;<ref refid="structplot__ptqual_1a8289e785f6640239954fbd0631a0b084" kindref="member">xerrh</ref>[*npt];</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xlow<sp/>=<sp/>pt-&gt;<ref refid="structplot__ptqual_1a819239cda796ed87dcc60b366402e967" kindref="member">xerrl</ref>[*npt];</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>xhigh<sp/>=<sp/>xlow<sp/>=<sp/>pt-&gt;<ref refid="structplot__ptqual_1a976a95dd26561ee70b4afb21e235fb0f" kindref="member">x</ref>[*npt];</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pd-&gt;<ref refid="structplot__info_1a797dfb97eefaa98e21e1cd8ce721cd7b" kindref="member">yebar</ref>)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yhigh<sp/>=<sp/>pt-&gt;<ref refid="structplot__ptqual_1a470abf2064fc98fd10d564244a1ebc5f" kindref="member">yerrh</ref>[*npt];</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ylow<sp/>=<sp/>pt-&gt;<ref refid="structplot__ptqual_1a29dc3d52ea77833b4cfc029ae738dcf7" kindref="member">yerrl</ref>[*npt];</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>yhigh<sp/>=<sp/>ylow<sp/>=<sp/>pt-&gt;<ref refid="structplot__ptqual_1a2e4cb2319bc0b3c1757afb1411703513" kindref="member">y</ref>[*npt];</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Init<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pd-&gt;<ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref><sp/>==<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a079933b220bc15df18578970a06440ef" kindref="member">xmax</ref><sp/>=<sp/>xhigh;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a02c12db36d302a36e005ab20baf1a9eb" kindref="member">xmin</ref><sp/>=<sp/>xlow;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1aa2e20f1cc7813daff261a648a1102004" kindref="member">ymax</ref><sp/>=<sp/>yhigh;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a7fff1c109412b7fb3d463d99a71bc015" kindref="member">ymin</ref><sp/>=<sp/>ylow;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(xhigh<sp/>&gt;<sp/>pd-&gt;<ref refid="structplot__info_1a079933b220bc15df18578970a06440ef" kindref="member">xmax</ref>)<sp/>pd-&gt;<ref refid="structplot__info_1a079933b220bc15df18578970a06440ef" kindref="member">xmax</ref><sp/>=<sp/>xhigh;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(xlow<sp/>&lt;<sp/>pd-&gt;xmin)<sp/>pd-&gt;<ref refid="structplot__info_1a02c12db36d302a36e005ab20baf1a9eb" kindref="member">xmin</ref><sp/>=<sp/>xlow;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(yhigh<sp/>&gt;<sp/>pd-&gt;<ref refid="structplot__info_1aa2e20f1cc7813daff261a648a1102004" kindref="member">ymax</ref>)<sp/>pd-&gt;<ref refid="structplot__info_1aa2e20f1cc7813daff261a648a1102004" kindref="member">ymax</ref><sp/>=<sp/>yhigh;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ylow<sp/>&lt;<sp/>pd-&gt;ymin)<sp/>pd-&gt;<ref refid="structplot__info_1a7fff1c109412b7fb3d463d99a71bc015" kindref="member">ymin</ref><sp/>=<sp/>ylow;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*npt<sp/>+=<sp/>1;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Update<sp/>point<sp/>count<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(pd-&gt;<ref refid="structplot__info_1ac7962432e37a011f42f9f06a5bbab61d" kindref="member">npts</ref>)++;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Total<sp/>point<sp/>count<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>End<sp/>of<sp/>main<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Undo<sp/>station-based<sp/>trimming<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>done<sp/>in<sp/>station_reduce()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref>)</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;<ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>;<sp/>i++)<sp/>data-&gt;<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref>[i].<ref refid="structfringearray_1acc4decf94aed84a73a7402b53ba0aa3b" kindref="member">flag</ref><sp/>&amp;=<sp/>~(<ref refid="flags_8h_1a46f44492635db360059cee12eae104b5" kindref="member">TAGGED</ref>);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Fill<sp/>in<sp/>pdata<sp/>stuff<sp/>now<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a3a5137cf8912c536971005d621edaf26" kindref="member">frq</ref><sp/>=<sp/>fqex.<ref refid="structfrqexp_1af5acfa85620499882bec17b40f89b9c3" kindref="member">freq_code</ref>;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a02da7da8b9f54cf610673352801ab733" kindref="member">xaind</ref><sp/>=<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a807741285291a2158202b49824e86b97" kindref="member">xaind</ref>;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a64d6adfbadab871479c3c923f46fe31a" kindref="member">x_aux</ref><sp/>=<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a3903af4a99b8ab145c90c6d76a873265" kindref="member">x_aux</ref>;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strlen<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a08a26a2dd9005b9ab72ffc788995e0a4" kindref="member">x_units</ref>)<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf<sp/>(pd-&gt;<ref refid="structplot__info_1a9d09e2c922b147f68c929c3305be8387" kindref="member">xtype</ref>,<sp/></highlight><highlight class="stringliteral">&quot;%s<sp/>(%s)&quot;</highlight><highlight class="normal">,<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ab0b194ce7b3a5ebd59cb74a4e04cebf5" kindref="member">x_axis</ref>,<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a08a26a2dd9005b9ab72ffc788995e0a4" kindref="member">x_units</ref>);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>strcpy<sp/>(pd-&gt;<ref refid="structplot__info_1a9d09e2c922b147f68c929c3305be8387" kindref="member">xtype</ref>,<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ab0b194ce7b3a5ebd59cb74a4e04cebf5" kindref="member">x_axis</ref>);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1af0f344f7a4907d006117668097aa6935" kindref="member">yaind</ref><sp/>=<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1afe81735c749a3b1391b78bdde5fd9105" kindref="member">yaind</ref>;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a1555e4cd0cdcd78e4a20f30cd41a77b2" kindref="member">y_aux</ref><sp/>=<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a8a35b962c223ce7e634ef917305edf86" kindref="member">y_aux</ref>;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strlen<sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ae783b38de1e925ecdfd77dea6e16e62b" kindref="member">y_units</ref>)<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>sprintf<sp/>(pd-&gt;<ref refid="structplot__info_1a6d7ab9adb190713d730a8d024bc3b9e2" kindref="member">ytype</ref>,<sp/></highlight><highlight class="stringliteral">&quot;%s<sp/>(%s)&quot;</highlight><highlight class="normal">,<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a768b199fcdf84cb0721ba52ba52f65a4" kindref="member">y_axis</ref>,<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ae783b38de1e925ecdfd77dea6e16e62b" kindref="member">y_units</ref>);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>strcpy<sp/>(pd-&gt;<ref refid="structplot__info_1a6d7ab9adb190713d730a8d024bc3b9e2" kindref="member">ytype</ref>,<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1a768b199fcdf84cb0721ba52ba52f65a4" kindref="member">y_axis</ref>);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>pd-&gt;<ref refid="structplot__info_1a0812913da96d2c99f8bc8c7d5772565a" kindref="member">plotby</ref><sp/>=<sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref>;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1adb2b4ddf9bdb685de66db8178552f875" kindref="member">STATION_PLOT</ref>)<sp/>pd-&gt;<ref refid="structplot__info_1a0f4405e67ac9ccb9ca25514f02322833" kindref="member">station</ref><sp/>=<sp/>plot_id[0];</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1ab8ed3b316b65f7283ecee60f92c97cd2" kindref="member">BASELINE_PLOT</ref>)<sp/>strcpy<sp/>(pd-&gt;<ref refid="structplot__info_1a9c38f9697339240b9d0358bd2c9397be" kindref="member">bas</ref>,<sp/>plot_id);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1afc1b383eb87887d8c5de0fe4ecb9104c" kindref="member">TRIANGLE_PLOT</ref>)<sp/>strcpy<sp/>(pd-&gt;<ref refid="structplot__info_1a7a6facc49a12cb5eb32b35f7823fe61d" kindref="member">triangle</ref>,<sp/>plot_id);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>.<ref refid="structinputs_1ac8df9cd21a0c9afcad428e87bd8bacb2" kindref="member">plotby</ref><sp/>==<sp/><ref refid="pstruct_8h_1addd3200f648cbefaab99bfe55a3f0615" kindref="member">QUAD_PLOT</ref>)<sp/>strcpy<sp/>(pd-&gt;<ref refid="structplot__info_1ab4973491bbb518da4f1983553de6689b" kindref="member">ampcl</ref>,<sp/>plot_id);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strlen<sp/>(pd-&gt;<ref refid="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" kindref="member">source</ref>)<sp/>==<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy<sp/>(pd-&gt;<ref refid="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" kindref="member">source</ref>,<sp/>sptr-&gt;<ref refid="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>strcpy<sp/>(pd-&gt;<ref refid="structplot__info_1adc9c3f9ea102d968300167cc6af625c8" kindref="member">source</ref>,<sp/></highlight><highlight class="stringliteral">&quot;all<sp/>sources&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Must<sp/>be<sp/>NOSPLIT<sp/>mode<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Report<sp/>mbdelay<sp/>problems,<sp/>if<sp/>any<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nbadmbd<sp/>&gt;<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Ignored<sp/>%d<sp/>1-channel/unknown<sp/>ambig.<sp/>pts<sp/>in<sp/>mbd<sp/>plot<sp/>%s,<sp/>%c-band,<sp/>source<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nbadmbd,<sp/>plot_id,<sp/>pd-&gt;<ref refid="structplot__info_1a3a5137cf8912c536971005d621edaf26" kindref="member">frq</ref>,<sp/>sptr-&gt;<ref refid="structsrcsum_1a803964269333e55b1d4f4cea6c83305e" kindref="member">name</ref>);</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/src/get_plot_data.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structquadsum" kind="struct" language="C++" prot="public">
+    <compoundname>quadsum</compoundname>
+    <includes refid="adata_8h" local="no">adata.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structquadsum_1a5869f06c256ad8034ec7dffa87163dfd" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float quadsum::azimuth[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>azimuth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="210" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1aa425fe00db0bd9e5eed666cfc6625c3f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float quadsum::cl_amp</definition>
+        <argsstring></argsstring>
+        <name>cl_amp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="208" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a61bac9c3417d5edad11433213b88fa4f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::datatype[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>datatype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="218" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a80befe9176dc75dc9ec44e536cf38c4b" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="216" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1abd7256d3a1dd60bba292b1451814e87f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float quadsum::elevation[4]</definition>
+        <argsstring>[4]</argsstring>
+        <name>elevation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="209" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a481bb4556064ee6730d7d1a9e1b60bf7" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::epoch[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>epoch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="211" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1ab997b7f73821989d78b440d907169791" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadsum::esdesp</definition>
+        <argsstring></argsstring>
+        <name>esdesp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="207" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a4f64c6c8564cc9b37e9734cbc9a179fd" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::expt_no</definition>
+        <argsstring></argsstring>
+        <name>expt_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="197" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1ad0c2f4880bc57427290aa4df155f0034" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::extent_no[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>extent_no</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="204" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a6fc9eeae3b8f4f9b195b2436e8c498d4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::freq_code</definition>
+        <argsstring></argsstring>
+        <name>freq_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="200" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="200" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1abde1cd2927216a47c0f6cd26750f7752" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadsum::lags</definition>
+        <argsstring></argsstring>
+        <name>lags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="223" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a352865a4b31b3dc37a20bee97a769ade" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::length[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="205" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1aaa3cef2dcdb0090e9dad6ef40ddf592c" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="201" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a5706d7e371ce0f202b4879013fc427fb" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::offset</definition>
+        <argsstring></argsstring>
+        <name>offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="217" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1ab41b8ecb800a971154dd6219c3bb8c8f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::quad[5]</definition>
+        <argsstring>[5]</argsstring>
+        <name>quad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="202" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="202" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1af8970ddd16fa0c98699c1c59e6c757f6" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::quality</definition>
+        <argsstring></argsstring>
+        <name>quality</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="206" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1aafa1cd119b344cde058131d7fce7ae23" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double quadsum::ref_freq</definition>
+        <argsstring></argsstring>
+        <name>ref_freq</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="212" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="212" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1abb6c51b684cb3113d80f254e0e7969e9" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::root_id[42]</definition>
+        <argsstring>[42]</argsstring>
+        <name>root_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="203" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a649f93c5b7656f2c7c0d7279a6e38101" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::scan_id[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>scan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="227" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="227" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1abbe0d2568bad9811c11147c90a8d59bc" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::scan_offset</definition>
+        <argsstring></argsstring>
+        <name>scan_offset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="222" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a00739f50f29ca97c4dee054d73588ea2" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char quadsum::source[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>source</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="199" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a0a25ef22cd7f8d3ba50c711b77754e6b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int quadsum::time_tag</definition>
+        <argsstring></argsstring>
+        <name>time_tag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="198" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structquadsum_1a175d1b882b9dc85e3f1630913ad8d91a" prot="public" static="no" mutable="no">
+        <type>short</type>
+        <definition>short quadsum::version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="196" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="196" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>quadsum</label>
+        <link refid="structquadsum"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>ref_freq</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>azimuth</edgelabel>
+          <edgelabel>cl_amp</edgelabel>
+          <edgelabel>elevation</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>datatype</edgelabel>
+          <edgelabel>freq_code</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>quad</edgelabel>
+          <edgelabel>quality</edgelabel>
+          <edgelabel>root_id</edgelabel>
+          <edgelabel>scan_id</edgelabel>
+          <edgelabel>source</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>duration</edgelabel>
+          <edgelabel>epoch</edgelabel>
+          <edgelabel>expt_no</edgelabel>
+          <edgelabel>extent_no</edgelabel>
+          <edgelabel>length</edgelabel>
+          <edgelabel>offset</edgelabel>
+          <edgelabel>scan_offset</edgelabel>
+          <edgelabel>version</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>esdesp</edgelabel>
+          <edgelabel>lags</edgelabel>
+          <edgelabel>time_tag</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>float</label>
+      </node>
+      <node id="6">
+        <label>int</label>
+      </node>
+      <node id="2">
+        <label>double</label>
+      </node>
+      <node id="5">
+        <label>short</label>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" line="195" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/afio/include/adata.h" bodystart="195" bodyend="228"/>
+    <listofallmembers>
+      <member refid="structquadsum_1a5869f06c256ad8034ec7dffa87163dfd" prot="public" virt="non-virtual"><scope>quadsum</scope><name>azimuth</name></member>
+      <member refid="structquadsum_1aa425fe00db0bd9e5eed666cfc6625c3f" prot="public" virt="non-virtual"><scope>quadsum</scope><name>cl_amp</name></member>
+      <member refid="structquadsum_1a61bac9c3417d5edad11433213b88fa4f" prot="public" virt="non-virtual"><scope>quadsum</scope><name>datatype</name></member>
+      <member refid="structquadsum_1a80befe9176dc75dc9ec44e536cf38c4b" prot="public" virt="non-virtual"><scope>quadsum</scope><name>duration</name></member>
+      <member refid="structquadsum_1abd7256d3a1dd60bba292b1451814e87f" prot="public" virt="non-virtual"><scope>quadsum</scope><name>elevation</name></member>
+      <member refid="structquadsum_1a481bb4556064ee6730d7d1a9e1b60bf7" prot="public" virt="non-virtual"><scope>quadsum</scope><name>epoch</name></member>
+      <member refid="structquadsum_1ab997b7f73821989d78b440d907169791" prot="public" virt="non-virtual"><scope>quadsum</scope><name>esdesp</name></member>
+      <member refid="structquadsum_1a4f64c6c8564cc9b37e9734cbc9a179fd" prot="public" virt="non-virtual"><scope>quadsum</scope><name>expt_no</name></member>
+      <member refid="structquadsum_1ad0c2f4880bc57427290aa4df155f0034" prot="public" virt="non-virtual"><scope>quadsum</scope><name>extent_no</name></member>
+      <member refid="structquadsum_1a6fc9eeae3b8f4f9b195b2436e8c498d4" prot="public" virt="non-virtual"><scope>quadsum</scope><name>freq_code</name></member>
+      <member refid="structquadsum_1abde1cd2927216a47c0f6cd26750f7752" prot="public" virt="non-virtual"><scope>quadsum</scope><name>lags</name></member>
+      <member refid="structquadsum_1a352865a4b31b3dc37a20bee97a769ade" prot="public" virt="non-virtual"><scope>quadsum</scope><name>length</name></member>
+      <member refid="structquadsum_1aaa3cef2dcdb0090e9dad6ef40ddf592c" prot="public" virt="non-virtual"><scope>quadsum</scope><name>mode</name></member>
+      <member refid="structquadsum_1a5706d7e371ce0f202b4879013fc427fb" prot="public" virt="non-virtual"><scope>quadsum</scope><name>offset</name></member>
+      <member refid="structquadsum_1ab41b8ecb800a971154dd6219c3bb8c8f" prot="public" virt="non-virtual"><scope>quadsum</scope><name>quad</name></member>
+      <member refid="structquadsum_1af8970ddd16fa0c98699c1c59e6c757f6" prot="public" virt="non-virtual"><scope>quadsum</scope><name>quality</name></member>
+      <member refid="structquadsum_1aafa1cd119b344cde058131d7fce7ae23" prot="public" virt="non-virtual"><scope>quadsum</scope><name>ref_freq</name></member>
+      <member refid="structquadsum_1abb6c51b684cb3113d80f254e0e7969e9" prot="public" virt="non-virtual"><scope>quadsum</scope><name>root_id</name></member>
+      <member refid="structquadsum_1a649f93c5b7656f2c7c0d7279a6e38101" prot="public" virt="non-virtual"><scope>quadsum</scope><name>scan_id</name></member>
+      <member refid="structquadsum_1abbe0d2568bad9811c11147c90a8d59bc" prot="public" virt="non-virtual"><scope>quadsum</scope><name>scan_offset</name></member>
+      <member refid="structquadsum_1a00739f50f29ca97c4dee054d73588ea2" prot="public" virt="non-virtual"><scope>quadsum</scope><name>source</name></member>
+      <member refid="structquadsum_1a0a25ef22cd7f8d3ba50c711b77754e6b" prot="public" virt="non-virtual"><scope>quadsum</scope><name>time_tag</name></member>
+      <member refid="structquadsum_1a175d1b882b9dc85e3f1630913ad8d91a" prot="public" virt="non-virtual"><scope>quadsum</scope><name>version</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

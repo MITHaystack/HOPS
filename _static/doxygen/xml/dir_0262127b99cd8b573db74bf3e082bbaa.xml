@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_0262127b99cd8b573db74bf3e082bbaa" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__PyFringeFitterInstance_8hh">MHO_PyFringeFitterInstance.hh</innerfile>
+    <innerfile refid="MHO__PyGenericOperator_8hh">MHO_PyGenericOperator.hh</innerfile>
+    <innerfile refid="MHO__PyOperator_8hh">MHO_PyOperator.hh</innerfile>
+    <innerfile refid="MHO__PythonOperatorBuilder_8hh">MHO_PythonOperatorBuilder.hh</innerfile>
+    <innerfile refid="MHO__PyUnaryOperator_8hh">MHO_PyUnaryOperator.hh</innerfile>
+    <innerfile refid="MHO__PyUnaryTableOperator_8hh">MHO_PyUnaryTableOperator.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Operators/include/"/>
+  </compounddef>
+</doxygen>

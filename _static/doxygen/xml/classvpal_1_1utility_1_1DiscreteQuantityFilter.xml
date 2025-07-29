@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1utility_1_1DiscreteQuantityFilter" kind="class" language="Python" prot="public">
+    <compoundname>vpal::utility::DiscreteQuantityFilter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1DiscreteQuantityFilter_1a87c94415a2b9f4db672e11afcb393062" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.DiscreteQuantityFilter::invert</definition>
+        <argsstring></argsstring>
+        <name>invert</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="94" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1DiscreteQuantityFilter_1af02313be67ce44e9cb8057e5c9d1e9fc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.DiscreteQuantityFilter::quantity_name</definition>
+        <argsstring></argsstring>
+        <name>quantity_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="92" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1utility_1_1DiscreteQuantityFilter_1abbfabdf82af0c295b8829426d154737c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.utility.DiscreteQuantityFilter::quantity_value_list</definition>
+        <argsstring></argsstring>
+        <name>quantity_value_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="93" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1utility_1_1DiscreteQuantityFilter_1a325cc48d10ef84bdd29bf453c1356bff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.DiscreteQuantityFilter.__init__</definition>
+        <argsstring>(self, quantity_name, quantity_value_list, invert_selection=False)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1utility_1_1DiscreteQuantityFilter_1af02313be67ce44e9cb8057e5c9d1e9fc" kindref="member">quantity_name</ref></type>
+          <defname>quantity_name</defname>
+        </param>
+        <param>
+          <type><ref refid="classvpal_1_1utility_1_1DiscreteQuantityFilter_1abbfabdf82af0c295b8829426d154737c" kindref="member">quantity_value_list</ref></type>
+          <defname>quantity_value_list</defname>
+        </param>
+        <param>
+          <type>invert_selection</type>
+          <defname>invert_selection</defname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="91" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="91" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1utility_1_1DiscreteQuantityFilter_1a8c2351839f58edf581a6d7715c017bba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.utility.DiscreteQuantityFilter.does_object_pass_filter</definition>
+        <argsstring>(self, obj)</argsstring>
+        <name>does_object_pass_filter</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>obj</type>
+          <defname>obj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="96" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="96" bodyend="108"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>representation of a filter which passes objects that have
+a named quantity present in a discrete list.
+filter may be inverted to pass the opposite selection</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.utility.DiscreteQuantityFilter</label>
+        <link refid="classvpal_1_1utility_1_1DiscreteQuantityFilter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.utility.DiscreteQuantityFilter</label>
+        <link refid="classvpal_1_1utility_1_1DiscreteQuantityFilter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" line="86" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/utility.py" bodystart="86" bodyend="109"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1utility_1_1DiscreteQuantityFilter_1a325cc48d10ef84bdd29bf453c1356bff" prot="public" virt="non-virtual"><scope>vpal::utility::DiscreteQuantityFilter</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1utility_1_1DiscreteQuantityFilter_1a8c2351839f58edf581a6d7715c017bba" prot="public" virt="non-virtual"><scope>vpal::utility::DiscreteQuantityFilter</scope><name>does_object_pass_filter</name></member>
+      <member refid="classvpal_1_1utility_1_1DiscreteQuantityFilter_1a87c94415a2b9f4db672e11afcb393062" prot="public" virt="non-virtual"><scope>vpal::utility::DiscreteQuantityFilter</scope><name>invert</name></member>
+      <member refid="classvpal_1_1utility_1_1DiscreteQuantityFilter_1af02313be67ce44e9cb8057e5c9d1e9fc" prot="public" virt="non-virtual"><scope>vpal::utility::DiscreteQuantityFilter</scope><name>quantity_name</name></member>
+      <member refid="classvpal_1_1utility_1_1DiscreteQuantityFilter_1abbfabdf82af0c295b8829426d154737c" prot="public" virt="non-virtual"><scope>vpal::utility::DiscreteQuantityFilter</scope><name>quantity_value_list</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

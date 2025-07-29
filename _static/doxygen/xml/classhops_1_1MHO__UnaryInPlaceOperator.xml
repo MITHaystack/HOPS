@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__UnaryInPlaceOperator" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>hops::MHO_UnaryInPlaceOperator</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__Operator" prot="public" virt="non-virtual">hops::MHO_Operator</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__OpenCLFastFourierTransformRadix2Stage" prot="public" virt="non-virtual">hops::MHO_OpenCLFastFourierTransformRadix2Stage&lt; XArgType &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__OpenCLMultidimensionalFastFourierTransform" prot="public" virt="non-virtual">hops::MHO_OpenCLMultidimensionalFastFourierTransform&lt; XArgType &gt;</derivedcompoundref>
+    <includes refid="MHO__UnaryInPlaceOperator_8hh" local="no">MHO_UnaryInPlaceOperator.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>class XArgType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" prot="protected" static="no" mutable="no">
+        <type>std::tuple&lt; XArgType * &gt;</type>
+        <definition>std::tuple&lt; XArgType* &gt; hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::fInPlaceArgs</definition>
+        <argsstring></argsstring>
+        <name>fInPlaceArgs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="71" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryInPlaceOperator_1acd62d257021fccc3374ed5f62fa38cbb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::MHO_UnaryInPlaceOperator</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_UnaryInPlaceOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="25" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryInPlaceOperator_1a7d44fd3c2647615b73430ebc4087b49c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::~MHO_UnaryInPlaceOperator</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_UnaryInPlaceOperator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="27" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryInPlaceOperator_1a13ad4a154060c17a2c459d0dc602043c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::Execute</definition>
+        <argsstring>() override</argsstring>
+        <name>Execute</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1aef614b32feed8813b6eefe7bd09a98d7">Execute</reimplements>
+        <briefdescription>
+<para>Executes operation in place using provided argument. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success of execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="51" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryInPlaceOperator_1ad38a46404c4bad8434c8760e14dc5622" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::Initialize</definition>
+        <argsstring>() override</argsstring>
+        <name>Initialize</name>
+        <reimplements refid="classhops_1_1MHO__Operator_1a959f3b1cf9e6dfbc687c4ea63c441171">Initialize</reimplements>
+        <briefdescription>
+<para>Initializes the system by calling InitializeInPlace with the first argument from fInPlaceArgs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>bool indicating success/failure of initialization </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="43" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryInPlaceOperator_1a04638776cbca0a29b92c6f11aa7e88dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::SetArgs</definition>
+        <argsstring>(XArgType *in)</argsstring>
+        <name>SetArgs</name>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Setter for args. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input pointer to XArgType array </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="35" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryInPlaceOperator_1ad2f1d02ed5fba765073e7cdb51691ac6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::ExecuteInPlace</definition>
+        <argsstring>(XArgType *in)=0</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLFastFourierTransformRadix2Stage_1a74a97c7696adada6746e2e6519962d3e">ExecuteInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLMultidimensionalFastFourierTransform_1a32690e1a7445b71f76b1b9bd1c2c4882">ExecuteInPlace</reimplementedby>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Executes an operation in-place using input argument. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument for executing operation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if execution is successful, false otherwise. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="69" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__UnaryInPlaceOperator_1ab9ec1228066acdee04394ed42b8abead" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;::InitializeInPlace</definition>
+        <argsstring>(XArgType *in)=0</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLFastFourierTransformRadix2Stage_1a3755d83de6db5eb3458fc1dae2a0166d">InitializeInPlace</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__OpenCLMultidimensionalFastFourierTransform_1ada4e50b0e0d1a49539596991e4b171ec">InitializeInPlace</reimplementedby>
+        <param>
+          <type>XArgType *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place operation using input argument. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input argument of type XArgType* for initialization. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating success of initialization. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="61" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__UnaryInPlaceOperator" kindref="compound">MHO_UnaryInPlaceOperator</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>operator which only operates on a single array, input = ouput, but does the work in place without copying</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Jul 31 14:54:52 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="4">
+        <label>hops::MHO_OpenCLMultidimensionalFastFourierTransform&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__OpenCLMultidimensionalFastFourierTransform"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_OpenCLFastFourierTransformRadix2Stage&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__OpenCLFastFourierTransformRadix2Stage"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryInPlaceOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="3">
+        <label>tuple&lt; XArgType * &gt;</label>
+      </node>
+      <node id="1">
+        <label>hops::MHO_UnaryInPlaceOperator&lt; XArgType &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryInPlaceOperator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>fInPlaceArgs</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" line="22" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Operators/include/MHO_UnaryInPlaceOperator.hh" bodystart="23" bodyend="72"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1a13ad4a154060c17a2c459d0dc602043c" prot="public" virt="virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1ad2f1d02ed5fba765073e7cdb51691ac6" prot="protected" virt="pure-virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1aa584291176a0540fe26c4bfb66e297d8" prot="protected" virt="non-virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1ad38a46404c4bad8434c8760e14dc5622" prot="public" virt="virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1ab9ec1228066acdee04394ed42b8abead" prot="protected" virt="pure-virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__Operator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1acd62d257021fccc3374ed5f62fa38cbb" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>MHO_UnaryInPlaceOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1a04638776cbca0a29b92c6f11aa7e88dd" prot="public" virt="virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryInPlaceOperator_1a7d44fd3c2647615b73430ebc4087b49c" prot="public" virt="virtual"><scope>hops::MHO_UnaryInPlaceOperator</scope><name>~MHO_UnaryInPlaceOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

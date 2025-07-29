@@ -1,0 +1,736 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__AxisPack" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_AxisPack</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::tuple&lt; XAxisTypeS... &gt;</basecompoundref>
+    <basecompoundref refid="classhops_1_1MHO__Serializable" prot="public" virt="virtual">hops::MHO_Serializable</basecompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; visibility_element_type, mbd_dr_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; pcal_phasor_type, multitone_pcal_axis_type &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classhops_1_1MHO__TableContainer" prot="public" virt="non-virtual">hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</derivedcompoundref>
+    <includes refid="MHO__AxisPack_8hh" local="no">MHO_AxisPack.hh</includes>
+    <templateparamlist>
+      <param>
+        <type>typename...</type>
+        <declname>XAxisTypeS</declname>
+        <defname>XAxisTypeS</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__AxisPack_1a762c26c2a3aa75bf3b7310911602025d" prot="public" static="no">
+        <type>std::tuple&lt; XAxisTypeS... &gt;</type>
+        <definition>typedef std::tuple&lt; XAxisTypeS... &gt; hops::MHO_AxisPack&lt; XAxisTypeS &gt;::axis_pack_tuple_type</definition>
+        <argsstring></argsstring>
+        <name>axis_pack_tuple_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="35" column="28" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classhops_1_1MHO__AxisPack_1a19fdf49503f75f200cdf845946b9387f" prot="public" static="no">
+        <type>std::integral_constant&lt; std::size_t, sizeof...(XAxisTypeS) &gt;</type>
+        <definition>typedef std::integral_constant&lt; std::size_t, sizeof...(XAxisTypeS) &gt; hops::MHO_AxisPack&lt; XAxisTypeS &gt;::NAXES</definition>
+        <argsstring></argsstring>
+        <name>NAXES</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="34" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a97d3191f9d78587a59463c964f1741f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_AxisPack&lt; XAxisTypeS &gt;::MHO_AxisPack</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_AxisPack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="24" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a11075da44e02fa84077451969e96e160" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_AxisPack&lt; XAxisTypeS &gt;::MHO_AxisPack</definition>
+        <argsstring>(const MHO_AxisPack &amp;obj)</argsstring>
+        <name>MHO_AxisPack</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref> &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="29" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a7af5ff29cd6491992c7a55affcbbdfb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_AxisPack&lt; XAxisTypeS &gt;::MHO_AxisPack</definition>
+        <argsstring>(const std::size_t *dim)</argsstring>
+        <name>MHO_AxisPack</name>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="26" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a772204f02d5f364068244a0171fd136a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_AxisPack&lt; XAxisTypeS &gt;::~MHO_AxisPack</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_AxisPack</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="31" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a149fb3951e131da85a7620f954de71cc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>uint64_t</type>
+        <definition>virtual uint64_t hops::MHO_AxisPack&lt; XAxisTypeS &gt;::GetSerializedSize</definition>
+        <argsstring>() const override</argsstring>
+        <name>GetSerializedSize</name>
+        <reimplements refid="classhops_1_1MHO__Serializable_1afa23be74f2fa2f42b4ad04bda2b8729d">GetSerializedSize</reimplements>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1ab1b4ff261355ea20d5197269fdc1485f">GetSerializedSize</reimplementedby>
+        <briefdescription>
+<para>Getter for serialized size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Total serialized size as uint64_t. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="43" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="43" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a1b21532f4cf15fb98d251078cf490f25" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref> &amp;</type>
+        <definition>virtual MHO_AxisPack&amp; hops::MHO_AxisPack&lt; XAxisTypeS &gt;::operator=</definition>
+        <argsstring>(const MHO_AxisPack &amp;rhs)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="55" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="55" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a12fca3fc077761f690e3b6107616d4dc" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>0</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(N==sizeof...(XAxisTypeS)), void &gt;::type</type>
+        <definition>std::enable_if&lt; (N == sizeof...(XAxisTypeS)), void &gt;::type hops::MHO_AxisPack&lt; XAxisTypeS &gt;::compute_total_size</definition>
+        <argsstring>(uint64_t &amp;) const</argsstring>
+        <name>compute_total_size</name>
+        <param>
+          <type>uint64_t &amp;</type>
+        </param>
+        <briefdescription>
+<para>Inductively computes and adds total serialized size of tuple elements to uint64_t&amp; (needed for streaming). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter (size of the axis pack) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!total_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="97" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1ad96e3b8b8631f0f09bd8d316ae608b7a" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>0</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(N&lt; sizeof...(XAxisTypeS)), void &gt;::type</type>
+        <definition>std::enable_if&lt; (N &lt; sizeof...(XAxisTypeS)), void &gt;::type hops::MHO_AxisPack&lt; XAxisTypeS &gt;::compute_total_size</definition>
+        <argsstring>(uint64_t &amp;total_size) const</argsstring>
+        <name>compute_total_size</name>
+        <param>
+          <type>uint64_t &amp;</type>
+          <declname>total_size</declname>
+        </param>
+        <briefdescription>
+<para>Recursively computes and adds serialized size of Nth XAxisTypeS element to total_size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter N </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>total_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to uint64_t accumulating total serialized size </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="107" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="107" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a09f74e81fb7a5006f1b081d20152533a" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>0</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(N==sizeof...(XAxisTypeS)), void &gt;::type</type>
+        <definition>std::enable_if&lt; (N == sizeof...(XAxisTypeS)), void &gt;::type hops::MHO_AxisPack&lt; XAxisTypeS &gt;::copy</definition>
+        <argsstring>(const MHO_AxisPack &amp;) const</argsstring>
+        <name>copy</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>used for copying the full tuple from one axis pack to another </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter N </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>MHO_AxisPack&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="123" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1ad8294143b2252cfe83df77ffc10f8b42" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>0</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(N&lt; sizeof...(XAxisTypeS)), void &gt;::type</type>
+        <definition>std::enable_if&lt; (N &lt; sizeof...(XAxisTypeS)), void &gt;::type hops::MHO_AxisPack&lt; XAxisTypeS &gt;::copy</definition>
+        <argsstring>(const MHO_AxisPack &amp;rhs)</argsstring>
+        <name>copy</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Copies an axis pack recursively using template meta-programming. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter N </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The source axis pack to copy from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void (not explicitly returned) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="133" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="133" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a6427a57d65bd292a8ed22ac5493b1120" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>0</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(N==sizeof...(XAxisTypeS)), void &gt;::type</type>
+        <definition>std::enable_if&lt; (N == sizeof...(XAxisTypeS)), void &gt;::type hops::MHO_AxisPack&lt; XAxisTypeS &gt;::resize_axis_pack</definition>
+        <argsstring>(const std::size_t *)</argsstring>
+        <name>resize_axis_pack</name>
+        <param>
+          <type>const std::size_t *</type>
+        </param>
+        <briefdescription>
+<para>inductive access to all elements of the tuple, so we can re-size them from an array </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter (size of the axis pack) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>!dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameter description </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="71" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a9fa7ca7a8a187f132bbbd0926fa8fecd" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>0</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if&lt;(N&lt; sizeof...(XAxisTypeS)), void &gt;::type</type>
+        <definition>std::enable_if&lt; (N &lt; sizeof...(XAxisTypeS)), void &gt;::type hops::MHO_AxisPack&lt; XAxisTypeS &gt;::resize_axis_pack</definition>
+        <argsstring>(const std::size_t *dim)</argsstring>
+        <name>resize_axis_pack</name>
+        <param>
+          <type>const std::size_t *</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+<para>Resize each element of the axis pack using the dimensions specified in dim. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter (size of the axis pack) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dim</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input dimension sizes for resizing. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="80" column="40" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="80" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhops_1_1MHO__AxisPack_1a4a6f38e71ec46f2144f0dc3fcf83f3d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&lt;&lt;</definition>
+        <argsstring>(XStream &amp;s, const MHO_AxisPack &amp;aData)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="140" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="140" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="friend" id="classhops_1_1MHO__AxisPack_1ad5e1ce3ea28ef19cba6d3bd5232a56c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>XStream &amp;</type>
+        <definition>XStream&amp; operator&gt;&gt;</definition>
+        <argsstring>(XStream &amp;s, MHO_AxisPack &amp;aData)</argsstring>
+        <name>operator&gt;&gt;</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type><ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref> &amp;</type>
+          <declname>aData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="155" column="37" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="155" bodyend="170"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1a6e2e560cd491bbb3829c117009fbda99" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>virtual MHO_UUID hops::MHO_AxisPack&lt; XAxisTypeS &gt;::DetermineTypeUUID</definition>
+        <argsstring>() const override</argsstring>
+        <name>DetermineTypeUUID</name>
+        <reimplements refid="classhops_1_1MHO__Serializable_1a80201b7f16f12c8118a8596f1db064d9">DetermineTypeUUID</reimplements>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <reimplementedby refid="classhops_1_1MHO__TableContainer_1a7e993b7bc68fd9332f200f5bfdf5e5cc">DetermineTypeUUID</reimplementedby>
+        <briefdescription>
+<para>Calculates and returns a UUID representing the type of the object using its class name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XStream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XStream </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> representing the object&apos;s type. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="198" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="198" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1aa3e31eb54262730b19ca344363d72f50" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_AxisPack&lt; XAxisTypeS &gt;::StreamInData_V0</definition>
+        <argsstring>(XStream &amp;s)</argsstring>
+        <name>StreamInData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Reads data from input stream and stores it in the object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input stream of type XStream&amp;. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="179" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="179" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__AxisPack_1adbc52263e0e652e56f9a20f3f52d969d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XStream</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_AxisPack&lt; XAxisTypeS &gt;::StreamOutData_V0</definition>
+        <argsstring>(XStream &amp;s) const</argsstring>
+        <name>StreamOutData_V0</name>
+        <param>
+          <type>XStream &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Writes data to an output stream using tuple serialization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XStream</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XStream </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output stream of type XStream&amp; </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No return value (void) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="189" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="189" bodyend="189"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__AxisPack" kindref="compound">MHO_AxisPack</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>a packaged set of axes (XAxisTypeS are expected to inherit from <ref refid="classhops_1_1MHO__Axis" kindref="compound">MHO_Axis</ref>)</para>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Mon Aug 17 12:42:31 2020 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hops::MHO_TableContainer&lt; weight_element_type, baseline_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_dr_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hops::MHO_TableContainer&lt; pcal_phasor_type, multitone_pcal_axis_type &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hops::MHO_TableContainer&lt; double, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hops::MHO_TableContainer&lt; visibility_element_type, mbd_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::tuple&lt; XAxisTypeS... &gt;</label>
+      </node>
+      <node id="11">
+        <label>hops::MHO_TableContainer&lt; std::complex&lt; double &gt;, pcal_axis_pack &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_TableContainer&lt; double, MHO_AxisPack&lt; MHO_Axis&lt; double &gt; &gt; &gt;</label>
+        <link refid="classhops_1_1MHO__TableContainer"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_AxisPack&lt; XAxisTypeS &gt;</label>
+        <link refid="classhops_1_1MHO__AxisPack"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::tuple&lt; XAxisTypeS... &gt;</label>
+      </node>
+      <node id="3">
+        <label>hops::MHO_Serializable</label>
+        <link refid="classhops_1_1MHO__Serializable"/>
+      </node>
+      <node id="1">
+        <label>hops::MHO_AxisPack&lt; XAxisTypeS &gt;</label>
+        <link refid="classhops_1_1MHO__AxisPack"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" line="21" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_AxisPack.hh" bodystart="22" bodyend="207"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__AxisPack_1a762c26c2a3aa75bf3b7310911602025d" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>axis_pack_tuple_type</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a12fca3fc077761f690e3b6107616d4dc" prot="protected" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>compute_total_size</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1ad96e3b8b8631f0f09bd8d316ae608b7a" prot="protected" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>compute_total_size</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a09f74e81fb7a5006f1b081d20152533a" prot="protected" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>copy</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1ad8294143b2252cfe83df77ffc10f8b42" prot="protected" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>copy</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a6e2e560cd491bbb3829c117009fbda99" prot="private" virt="virtual"><scope>hops::MHO_AxisPack</scope><name>DetermineTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aa6f524e78beb65d026c87fc6856ba059" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>GetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a149fb3951e131da85a7620f954de71cc" prot="public" virt="virtual"><scope>hops::MHO_AxisPack</scope><name>GetSerializedSize</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aab01eda2ff2ad2338899119bcd509d31" prot="public" virt="virtual"><scope>hops::MHO_AxisPack</scope><name>GetTypeUUID</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a71a1fcfba885db79a6bc9914fb73786d" prot="public" virt="virtual"><scope>hops::MHO_AxisPack</scope><name>GetVersion</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a97d3191f9d78587a59463c964f1741f2" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>MHO_AxisPack</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a7af5ff29cd6491992c7a55affcbbdfb7" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>MHO_AxisPack</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a11075da44e02fa84077451969e96e160" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>MHO_AxisPack</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a071ba293eca6f0eb58a8b067ef1506d0" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a29f651974e8b1cfaa7a12810a1644cbd" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1aadeecd650cb160acb8e83565ecfb8a0a" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>MHO_Serializable</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a19fdf49503f75f200cdf845946b9387f" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>NAXES</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a4a6f38e71ec46f2144f0dc3fcf83f3d0" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a1b21532f4cf15fb98d251078cf490f25" prot="public" virt="virtual"><scope>hops::MHO_AxisPack</scope><name>operator=</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1ad5e1ce3ea28ef19cba6d3bd5232a56c9" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>operator&gt;&gt;</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a6427a57d65bd292a8ed22ac5493b1120" prot="protected" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>resize_axis_pack</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a9fa7ca7a8a187f132bbbd0926fa8fecd" prot="protected" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>resize_axis_pack</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1af3fc6887489606836bf32705332972f7" prot="public" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>SetObjectUUID</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1aa3e31eb54262730b19ca344363d72f50" prot="private" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>StreamInData_V0</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1adbc52263e0e652e56f9a20f3f52d969d" prot="private" virt="non-virtual"><scope>hops::MHO_AxisPack</scope><name>StreamOutData_V0</name></member>
+      <member refid="classhops_1_1MHO__AxisPack_1a772204f02d5f364068244a0171fd136a" prot="public" virt="virtual"><scope>hops::MHO_AxisPack</scope><name>~MHO_AxisPack</name></member>
+      <member refid="classhops_1_1MHO__Serializable_1a573b91158c3b24b67b594e6d4af0ccea" prot="public" virt="virtual"><scope>hops::MHO_AxisPack</scope><name>~MHO_Serializable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

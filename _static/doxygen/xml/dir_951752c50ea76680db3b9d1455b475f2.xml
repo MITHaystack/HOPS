@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_951752c50ea76680db3b9d1455b475f2" kind="dir">
+    <compoundname>aedit</compoundname>
+    <innerdir refid="dir_fb738a07a661f1b5bb3ba111f0d8789d">include</innerdir>
+    <innerdir refid="dir_1b75fd834cf94c531fa8adfe16e003e9">src</innerdir>
+    <innerfile refid="aedit_8c">aedit.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/"/>
+  </compounddef>
+</doxygen>

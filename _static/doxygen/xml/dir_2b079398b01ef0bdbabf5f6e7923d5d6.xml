@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_2b079398b01ef0bdbabf5f6e7923d5d6" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="legacy__hops__date_8hh">legacy_hops_date.hh</innerfile>
+    <innerfile refid="MHO__BidirectionalIterator_8hh">MHO_BidirectionalIterator.hh</innerfile>
+    <innerfile refid="MHO__BidirectionalStrideIterator_8hh">MHO_BidirectionalStrideIterator.hh</innerfile>
+    <innerfile refid="MHO__BinaryFileInterface_8hh">MHO_BinaryFileInterface.hh</innerfile>
+    <innerfile refid="MHO__BinaryFileStreamer_8hh">MHO_BinaryFileStreamer.hh</innerfile>
+    <innerfile refid="MHO__ClassIdentity_8hh">MHO_ClassIdentity.hh</innerfile>
+    <innerfile refid="MHO__Clock_8hh">MHO_Clock.hh</innerfile>
+    <innerfile refid="MHO__Constants_8hh">MHO_Constants.hh</innerfile>
+    <innerfile refid="MHO__DirectoryInterface_8hh">MHO_DirectoryInterface.hh</innerfile>
+    <innerfile refid="MHO__EncodeDecodeValue_8hh">MHO_EncodeDecodeValue.hh</innerfile>
+    <innerfile refid="MHO__ExtensibleElement_8hh">MHO_ExtensibleElement.hh</innerfile>
+    <innerfile refid="MHO__FileKey_8hh">MHO_FileKey.hh</innerfile>
+    <innerfile refid="MHO__FileStreamer_8hh">MHO_FileStreamer.hh</innerfile>
+    <innerfile refid="MHO__IndexLabelInterface_8hh">MHO_IndexLabelInterface.hh</innerfile>
+    <innerfile refid="MHO__Interval_8hh">MHO_Interval.hh</innerfile>
+    <innerfile refid="MHO__IntervalLabelInterface_8hh">MHO_IntervalLabelInterface.hh</innerfile>
+    <innerfile refid="MHO__JSONHeaderWrapper_8hh">MHO_JSONHeaderWrapper.hh</innerfile>
+    <innerfile refid="MHO__LegacyDateConverter_8hh">MHO_LegacyDateConverter.hh</innerfile>
+    <innerfile refid="MHO__LegacyRootCodeGenerator_8hh">MHO_LegacyRootCodeGenerator.hh</innerfile>
+    <innerfile refid="MHO__LockFileHandler_8hh">MHO_LockFileHandler.hh</innerfile>
+    <innerfile refid="MHO__MD5HashGenerator_8hh">MHO_MD5HashGenerator.hh</innerfile>
+    <innerfile refid="MHO__Meta_8hh">MHO_Meta.hh</innerfile>
+    <innerfile refid="MHO__MPIInterface_8hh">MHO_MPIInterface.hh</innerfile>
+    <innerfile refid="MHO__MPIInterfaceWrapper_8hh">MHO_MPIInterfaceWrapper.hh</innerfile>
+    <innerfile refid="MHO__NumpyTypeCode_8hh">MHO_NumpyTypeCode.hh</innerfile>
+    <innerfile refid="MHO__ParameterStore_8hh">MHO_ParameterStore.hh</innerfile>
+    <innerfile refid="MHO__Serializable_8hh">MHO_Serializable.hh</innerfile>
+    <innerfile refid="MHO__StationCodeMap_8hh">MHO_StationCodeMap.hh</innerfile>
+    <innerfile refid="MHO__TemplateTypenameDeduction_8hh">MHO_TemplateTypenameDeduction.hh</innerfile>
+    <innerfile refid="MHO__TimeStampConverter_8hh">MHO_TimeStampConverter.hh</innerfile>
+    <innerfile refid="MHO__Tokenizer_8hh">MHO_Tokenizer.hh</innerfile>
+    <innerfile refid="MHO__Types_8hh">MHO_Types.hh</innerfile>
+    <innerfile refid="MHO__Unit_8hh">MHO_Unit.hh</innerfile>
+    <innerfile refid="MHO__UUID_8hh">MHO_UUID.hh</innerfile>
+    <innerfile refid="MHO__UUIDGenerator_8hh">MHO_UUIDGenerator.hh</innerfile>
+    <innerfile refid="picohash_8h">picohash.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,443 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__IonosphericPhaseCorrection" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_IonosphericPhaseCorrection</compoundname>
+    <basecompoundref refid="classhops_1_1MHO__UnaryOperator" prot="public" virt="non-virtual">hops::MHO_UnaryOperator&lt; visibility_type &gt;</basecompoundref>
+    <includes refid="MHO__IonosphericPhaseCorrection_8hh" local="no">MHO_IonosphericPhaseCorrection.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a6f9cff6e9a0641c0905007d813bf76cd" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_IonosphericPhaseCorrection::fBandwidthKey</definition>
+        <argsstring></argsstring>
+        <name>fBandwidthKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="92" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a53a18dd8a07a831f27a8d1c31d70125d" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_IonosphericPhaseCorrection::fChannelLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fChannelLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="90" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1afafd74ed283907e091f3d5eb79050a0d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_IonosphericPhaseCorrection::fDegToRad</definition>
+        <argsstring></argsstring>
+        <name>fDegToRad</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="87" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a78411531c58e0b6d2803e0dd3fb89f1c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_IonosphericPhaseCorrection::fdTEC</definition>
+        <argsstring></argsstring>
+        <name>fdTEC</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="82" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a94a221d73c0c770a3f4250d7308fd3ea" prot="private" static="no" mutable="no">
+        <type>std::complex&lt; double &gt;</type>
+        <definition>std::complex&lt; double &gt; hops::MHO_IonosphericPhaseCorrection::fImagUnit</definition>
+        <argsstring></argsstring>
+        <name>fImagUnit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="86" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a2c95f745e152e05e848864b1a10c01a1" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double hops::MHO_IonosphericPhaseCorrection::fIonoK</definition>
+        <argsstring></argsstring>
+        <name>fIonoK</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="85" column="16" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1af0d6246647411aa23020e0d55f1bdbff" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_IonosphericPhaseCorrection::fLowerSideband</definition>
+        <argsstring></argsstring>
+        <name>fLowerSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="93" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1af2d71148578c7c2e424385798c624857" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_IonosphericPhaseCorrection::fSidebandLabelKey</definition>
+        <argsstring></argsstring>
+        <name>fSidebandLabelKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="91" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__IonosphericPhaseCorrection_1af28de8f7ec23814c06457e6d33a2407c" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_IonosphericPhaseCorrection::fUpperSideband</definition>
+        <argsstring></argsstring>
+        <name>fUpperSideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="94" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a2cf9e154009f707cb1f7021a3a3eef3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_IonosphericPhaseCorrection::MHO_IonosphericPhaseCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_IonosphericPhaseCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_IonosphericPhaseCorrection.cc" bodystart="8" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1af1d9aa2c13e51139bd20fb029ac002d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_IonosphericPhaseCorrection::~MHO_IonosphericPhaseCorrection</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_IonosphericPhaseCorrection</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_IonosphericPhaseCorrection.cc" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a44cc2ca26e650fa732ba1a1d5326287d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_IonosphericPhaseCorrection::SetDifferentialTEC</definition>
+        <argsstring>(double dTEC)</argsstring>
+        <name>SetDifferentialTEC</name>
+        <param>
+          <type>double</type>
+          <declname>dTEC</declname>
+        </param>
+        <briefdescription>
+<para>Setter for differential TEC (controls phase dispersion) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dTEC</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input differential TEC value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="42" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a5a9906e4a9f5593c0697b01ed1192dbd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_IonosphericPhaseCorrection::ExecuteInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>ExecuteInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a198308dde4b15a2b103e615db44804f3">ExecuteInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Applies differential ionospheric phase correction to visibility data in-place. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type* containing pol-products and channels. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool indicating successful execution. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="70" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_IonosphericPhaseCorrection.cc" bodystart="24" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a043a13a15b1edee5ed0cdda1ea7d88b6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_IonosphericPhaseCorrection::ExecuteOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>ExecuteOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a4c07658f7e43763056e4e116d845a6bf">ExecuteOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Copies input visibility data and executes in-place correction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const reference to input visibility_type data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(visibility_type*) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean result of ExecuteInPlace operation on copied output data. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="79" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_IonosphericPhaseCorrection.cc" bodystart="75" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1ae1031d79698aa830c5cf8774edfecdbd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_IonosphericPhaseCorrection::InitializeInPlace</definition>
+        <argsstring>(visibility_type *in) override</argsstring>
+        <name>InitializeInPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a02cd45309143ea2ba35a1ce42b86ad20">InitializeInPlace</reimplements>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <briefdescription>
+<para>Initializes in-place visibility_type pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input visibility_type pointer to initialize. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if initialization is successful. </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="52" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_IonosphericPhaseCorrection.cc" bodystart="81" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a3069a60b674db84485f0aaf3d3ae435d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_IonosphericPhaseCorrection::InitializeOutOfPlace</definition>
+        <argsstring>(const visibility_type *in, visibility_type *out) override</argsstring>
+        <name>InitializeOutOfPlace</name>
+        <reimplements refid="classhops_1_1MHO__UnaryOperator_1a8ddd25cb2e815e6e3f5acbf5d0b61058">InitializeOutOfPlace</reimplements>
+        <param>
+          <type>const <ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>in</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehops_1afcc97dd4e78b9092817b1dbb0c561e78" kindref="member">visibility_type</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+<para>Initializes OutOfPlace using input visibility_type pointer and output visibility_type pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Const input visibility_type pointer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output visibility_type pointer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Boolean indicating initialization success </para>
+</simplesect>
+<simplesect kind="note"><para>This is a virtual function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="61" column="22" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/src/MHO_IonosphericPhaseCorrection.cc" bodystart="86" bodyend="89"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__IonosphericPhaseCorrection_1a7e622b555f290b781fed0cc424f4c81b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_IonosphericPhaseCorrection::make_upper</definition>
+        <argsstring>(std::string &amp;s)</argsstring>
+        <name>make_upper</name>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="97" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="97" bodyend="103"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__IonosphericPhaseCorrection" kindref="compound">MHO_IonosphericPhaseCorrection</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Wed Jan 17 15:31:52 2024 -0500 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_IonosphericPhaseCorrection</label>
+        <link refid="classhops_1_1MHO__IonosphericPhaseCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hops::MHO_Operator</label>
+        <link refid="classhops_1_1MHO__Operator"/>
+      </node>
+      <node id="2">
+        <label>hops::MHO_UnaryOperator&lt; visibility_type &gt;</label>
+        <link refid="classhops_1_1MHO__UnaryOperator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_IonosphericPhaseCorrection</label>
+        <link refid="classhops_1_1MHO__IonosphericPhaseCorrection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Calibration/include/MHO_IonosphericPhaseCorrection.hh" bodystart="32" bodyend="104"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a704c4cb4154241356da3eb744ebfea74" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a7e4f90ac93ffc15a3a120e49d3d3a37b" prot="public" virt="pure-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>Execute</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a5a9906e4a9f5593c0697b01ed1192dbd" prot="protected" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>ExecuteInPlace</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a043a13a15b1edee5ed0cdda1ea7d88b6" prot="protected" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>ExecuteOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a6f9cff6e9a0641c0905007d813bf76cd" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fBandwidthKey</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a53a18dd8a07a831f27a8d1c31d70125d" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fChannelLabelKey</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1afafd74ed283907e091f3d5eb79050a0d" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fDegToRad</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a78411531c58e0b6d2803e0dd3fb89f1c" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fdTEC</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a94a221d73c0c770a3f4250d7308fd3ea" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fImagUnit</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aeebfd2ffd335365a3c03182cc7c9521c" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fInPlace</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aea3536242de828361a2f10b879c50388" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fInPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a2c95f745e152e05e848864b1a10c01a1" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fIonoK</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1af0d6246647411aa23020e0d55f1bdbff" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fLowerSideband</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a487fb22e2a815461fe05048439ec6c20" prot="protected" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fOutOfPlaceArgs</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1af2d71148578c7c2e424385798c624857" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fSidebandLabelKey</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1af28de8f7ec23814c06457e6d33a2407c" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>fUpperSideband</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae944174d27ebc2a0978b3bad9e97cfca" prot="public" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>GetName</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1aa7dbd018a8e2ab56ee718f703cd8df0e" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1ac4e4bb8c8e69204cf7b9dd8989f4e17a" prot="public" virt="pure-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>Initialize</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1ae1031d79698aa830c5cf8774edfecdbd" prot="protected" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>InitializeInPlace</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a3069a60b674db84485f0aaf3d3ae435d" prot="protected" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>InitializeOutOfPlace</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a7e622b555f290b781fed0cc424f4c81b" prot="private" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>make_upper</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a2cf9e154009f707cb1f7021a3a3eef3a" prot="public" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>MHO_IonosphericPhaseCorrection</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1af6ccdf30e87b4a31347593d22dab2f99" prot="public" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a56a30a66a2fab5e8f005a3aa3f8ff796" prot="public" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>MHO_UnaryOperator</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a42a5df950d1464de705cf1f8a98957a9" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>Priority</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a272c2bda0dfa7a7a8c4de4a063fa124b" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6acead8f2593c70c45f89201bc503d39" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>SetArgs</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1a44cc2ca26e650fa732ba1a1d5326287d" prot="public" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>SetDifferentialTEC</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a258fbfb617f811155923b477066fed85" prot="public" virt="non-virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>SetName</name></member>
+      <member refid="classhops_1_1MHO__Operator_1ae336e78d21bfcdcb355bc9c057411859" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>SetPriority</name></member>
+      <member refid="classhops_1_1MHO__IonosphericPhaseCorrection_1af1d9aa2c13e51139bd20fb029ac002d0" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>~MHO_IonosphericPhaseCorrection</name></member>
+      <member refid="classhops_1_1MHO__Operator_1a22d862ce42973f29cb9ec79619fe6242" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>~MHO_Operator</name></member>
+      <member refid="classhops_1_1MHO__UnaryOperator_1a6a16ae57bd76c4934860582d175f4e7f" prot="public" virt="virtual"><scope>hops::MHO_IonosphericPhaseCorrection</scope><name>~MHO_UnaryOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

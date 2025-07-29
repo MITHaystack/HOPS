@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_54c8feb2db02075297606147e04d4d04" kind="dir">
+    <compoundname>applications</compoundname>
+    <innerfile refid="difx2hops_8cc">difx2hops.cc</innerfile>
+    <innerfile refid="TestVexStripper_8cc">TestVexStripper.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/DiFXInterface/applications/"/>
+  </compounddef>
+</doxygen>

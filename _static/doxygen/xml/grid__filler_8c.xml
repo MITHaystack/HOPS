@@ -1,0 +1,469 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="grid__filler_8c" kind="file" language="C++">
+    <compoundname>grid_filler.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="search_8h" local="yes">search.h</includes>
+    <incdepgraph>
+      <node id="16">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="8">
+        <label>stdarg.h</label>
+      </node>
+      <node id="9">
+        <label>sys/times.h</label>
+      </node>
+      <node id="15">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="1">
+        <label>grid_filler.c</label>
+        <link refid="grid__filler_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdlib.h</label>
+      </node>
+      <node id="5">
+        <label>search.h</label>
+        <link refid="search_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>string.h</label>
+      </node>
+      <node id="6">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="17">
+        <label>mk4_afio.h</label>
+        <link refid="mk4__afio_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>math.h</label>
+      </node>
+      <node id="12">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="14">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="grid__filler_8c_1aed3a3eb58de5a56db675a308bc390e6a" prot="public" static="no">
+        <name>REMLIMIT</name>
+        <initializer>0.10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="grid__filler_8c_1ad8512644399ac6ec00af8f727bb4fac6" prot="public" static="no">
+        <name>VERY_BIG</name>
+        <initializer>1.0e99</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="grid__filler_8c_1a6ece1de269ee8f1a6d87fe5abce2108c" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double remlimit</definition>
+        <argsstring></argsstring>
+        <name>remlimit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="15" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="grid__filler_8c_1aa750454675c8cb33aa41c3bdf7b099ba" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int fill_grid_ss</definition>
+        <argsstring>(struct srchsummary *sb)</argsstring>
+        <name>fill_grid_ss</name>
+        <param>
+          <type>struct <ref refid="structsrchsummary" kindref="compound">srchsummary</ref> *</type>
+          <declname>sb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="108" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="108" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="grid__filler_8c_1abfa1c94eed1fd16c440ced6fee4c69f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int fill_grids</definition>
+        <argsstring>(struct srchsummary *srchdata)</argsstring>
+        <name>fill_grids</name>
+        <param>
+          <type>struct <ref refid="structsrchsummary" kindref="compound">srchsummary</ref> *</type>
+          <declname>srchdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="175" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="175" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="grid__filler_8c_1a4182596c7d4f24cb9d200fe5773d4437" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int get_rd_extrema</definition>
+        <argsstring>(struct srchsummary *sb, int ismbd)</argsstring>
+        <name>get_rd_extrema</name>
+        <param>
+          <type>struct <ref refid="structsrchsummary" kindref="compound">srchsummary</ref> *</type>
+          <declname>sb</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ismbd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="51" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="51" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="grid__filler_8c_1a0c568102c3dbbc51c09d857eb1b22730" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int grid_filler</definition>
+        <argsstring>(struct srchsummary *srchdata)</argsstring>
+        <name>grid_filler</name>
+        <param>
+          <type>struct <ref refid="structsrchsummary" kindref="compound">srchsummary</ref> *</type>
+          <declname>srchdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="162" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="162" bodyend="170"/>
+      </memberdef>
+      <memberdef kind="function" id="grid__filler_8c_1afd111846f3df878c339f77bc52895dda" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int less_than</definition>
+        <argsstring>(const void *p1, const void *p2)</argsstring>
+        <name>less_than</name>
+        <param>
+          <type>const void *</type>
+          <declname>p1</declname>
+        </param>
+        <param>
+          <type>const void *</type>
+          <declname>p2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="43" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="43" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="grid__filler_8c_1acfa60d3c9d9a7073d5ca62e00284df28" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void rep_deltas</definition>
+        <argsstring>(double *v, int nn, int after, int ismbd)</argsstring>
+        <name>rep_deltas</name>
+        <param>
+          <type>double *</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nn</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>after</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ismbd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" line="20" column="13" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c" bodystart="20" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>$Id:<sp/>grid_filler.c<sp/>439<sp/>2011-08-29<sp/>18:11:51Z<sp/>gbc<sp/>$</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>Modified<sp/>version<sp/>of<sp/>fill_grids.c<sp/>which<sp/>inserts<sp/>the<sp/>rate/delay</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>data<sp/>into<sp/>the<sp/>cells<sp/>of<sp/>the<sp/>matrix<sp/>for<sp/>pgplot<sp/>to<sp/>plot.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="search_8h" kindref="compound">search.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VERY_BIG<sp/>1.0e99</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REMLIMIT<sp/>0.10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/>remlimit;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>Diagnostic--print<sp/>out<sp/>values</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>rep_deltas(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*v,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nn,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>after,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ismbd)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jj;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Array<sp/>of<sp/>%d<sp/>%s<sp/>values,<sp/>%s<sp/>sort\n&quot;</highlight><highlight class="normal">,<sp/>nn,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>ismbd<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;delay&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;rate&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>after<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;<sp/>after&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;before&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(jj<sp/>=<sp/>0;<sp/>jj<sp/>&lt;<sp/>nn;<sp/>jj++)<sp/>printf<sp/>(</highlight><highlight class="stringliteral">&quot;<sp/>%d:%g&quot;</highlight><highlight class="normal">,<sp/>jj,<sp/>v[jj]);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>Find<sp/>the<sp/>extrema<sp/>of<sp/>the<sp/>data,<sp/>and<sp/>figure<sp/>out<sp/>what<sp/>the<sp/>step<sp/>size<sp/>was.</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>If<sp/>we<sp/>can<sp/>find<sp/>a<sp/>way<sp/>past<sp/>the<sp/>input<sp/>stage,<sp/>we<sp/>don&apos;t<sp/>need<sp/>to<sp/>do<sp/>this.</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>In<sp/>any<sp/>case,<sp/>the<sp/>data<sp/>is<sp/>sorted<sp/>at<sp/>this<sp/>stage<sp/>so<sp/>we<sp/>look<sp/>at<sp/>deltas.</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>The<sp/>median/mode<sp/>of<sp/>the<sp/>distribution<sp/>of<sp/>deltas<sp/>should<sp/>be<sp/>a<sp/>good<sp/>hint.</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>If<sp/>we<sp/>are<sp/>pushing<sp/>the<sp/>limits<sp/>of<sp/>precision,<sp/>then<sp/>substantial<sp/>numbers<sp/>of</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>shoulders<sp/>on<sp/>the<sp/>mode<sp/>should<sp/>allow<sp/>us<sp/>to<sp/>reconstruct<sp/>the<sp/>actual<sp/>step.</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>The<sp/>same<sp/>code<sp/>can<sp/>be<sp/>used<sp/>for<sp/>rate<sp/>and<sp/>delay<sp/>after<sp/>setup.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>The<sp/>tests<sp/>for<sp/>MAX_*<sp/>are<sp/>probably<sp/>formal.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>less_than(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*p1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*p2)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d1<sp/>=<sp/>*(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)p1;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>d2<sp/>=<sp/>*(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*)p2;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(d1<sp/>&lt;<sp/>d2)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(-1);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(d1<sp/>&gt;<sp/>d2)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<sp/>1);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>get_rd_extrema(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsrchsummary" kindref="compound">srchsummary</ref><sp/>*sb,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ismbd)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rd_vals[<ref refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" kindref="member">MAX_NRATE</ref><sp/>*<sp/><ref refid="search_8h_1ab298232e165ac57138d4266f1ddee759" kindref="member">MAX_NDELAY</ref>];</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rd_dels[<ref refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" kindref="member">MAX_NRATE</ref><sp/>*<sp/><ref refid="search_8h_1ab298232e165ac57138d4266f1ddee759" kindref="member">MAX_NDELAY</ref>];</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rd_min,<sp/>rd_max,<sp/>rd_del,<sp/>*rdp;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jj,<sp/>j1,<sp/>nn;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sb-&gt;<ref refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" kindref="member">nd</ref><sp/>&gt;<sp/><ref refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" kindref="member">MAX_NRATE</ref><sp/>*<sp/><ref refid="search_8h_1ab298232e165ac57138d4266f1ddee759" kindref="member">MAX_NDELAY</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Too<sp/>much<sp/>data<sp/>%d<sp/>&gt;<sp/>(%d*%d)&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>sb-&gt;<ref refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" kindref="member">nd</ref>,<sp/><ref refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" kindref="member">MAX_NRATE</ref>,<sp/><ref refid="search_8h_1ab298232e165ac57138d4266f1ddee759" kindref="member">MAX_NDELAY</ref>);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(jj=0,<sp/>rdp<sp/>=<sp/>rd_vals;<sp/>jj&lt;sb-&gt;<ref refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" kindref="member">nd</ref>;<sp/>jj++,<sp/>rdp++)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>*rdp<sp/>=<sp/>(ismbd)<sp/>?<sp/>sb-&gt;<ref refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" kindref="member">darray</ref>[jj]-&gt;<ref refid="structfringesum_1a905741ddb2d293073177724326442ea4" kindref="member">mbdelay</ref><sp/>:<sp/>sb-&gt;<ref refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" kindref="member">darray</ref>[jj]-&gt;<ref refid="structfringesum_1aa503a9350fb4e10ed59a4b2c210fd8eb" kindref="member">delay_rate</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(*rdp<sp/>&lt;<sp/>rd_min<sp/>||<sp/>jj<sp/>==<sp/>0)<sp/>rd_min<sp/>=<sp/>*rdp;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(*rdp<sp/>&gt;<sp/>rd_max<sp/>||<sp/>jj<sp/>==<sp/>0)<sp/>rd_max<sp/>=<sp/>*rdp;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(jj=0,<sp/>j1=1,<sp/>nn<sp/>=<sp/>0;<sp/>j1&lt;sb-&gt;<ref refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" kindref="member">nd</ref>;<sp/>jj++,<sp/>j1++)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>rd_dels[nn]<sp/>=<sp/>rd_vals[j1]<sp/>-<sp/>rd_vals[jj];</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rd_dels[nn]<sp/>&gt;<sp/>0)<sp/>nn++;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nn<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;No<sp/>positive<sp/>%s<sp/>deltas&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>ismbd<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;delay&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;rate&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(4);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourmer_8h_1ac4693c7c31653d6304e6b816726f4482" kindref="member">msglev</ref><sp/>&lt;<sp/>0)<sp/>rep_deltas(rd_dels,<sp/>nn,<sp/>0,<sp/>ismbd);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(getenv(</highlight><highlight class="stringliteral">&quot;HOPS_SEARCH_INCR&quot;</highlight><highlight class="normal">))<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>qsort(rd_dels,<sp/>nn,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">),<sp/>less_than);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>rd_del<sp/>=<sp/>rd_dels[nn/2];<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>median<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(jj=0,<sp/>rd_del<sp/>=<sp/>0.0;<sp/>jj<sp/>&lt;<sp/>nn;<sp/>jj++)<sp/>rd_del<sp/>+=<sp/>rd_dels[jj];</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>rd_del<sp/>/=<sp/>(double)nn;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourmer_8h_1ac4693c7c31653d6304e6b816726f4482" kindref="member">msglev</ref><sp/>&lt;<sp/>1)<sp/>rep_deltas(rd_dels,<sp/>nn,<sp/>1,<sp/>ismbd);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ismbd)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>jj<sp/>=<sp/>sb-&gt;<ref refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" kindref="member">ndelay</ref><sp/>=<sp/>1.0<sp/>+<sp/>rint((rd_max<sp/>-<sp/>rd_min)/rd_del);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sb-&gt;<ref refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" kindref="member">ndelay</ref><sp/>&gt;<sp/><ref refid="search_8h_1ab298232e165ac57138d4266f1ddee759" kindref="member">MAX_NDELAY</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(2);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>sb-&gt;<ref refid="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" kindref="member">min_delay</ref><sp/>=<sp/>rd_min;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>sb-&gt;<ref refid="structsrchsummary_1a0992946168b275c99305711179d0207a" kindref="member">max_delay</ref><sp/>=<sp/>rd_max;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>jj<sp/>=<sp/>sb-&gt;<ref refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" kindref="member">nrate</ref><sp/>=<sp/>1.0<sp/>+<sp/>rint((rd_max<sp/>-<sp/>rd_min)/rd_del);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sb-&gt;<ref refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" kindref="member">nrate</ref><sp/>&gt;<sp/><ref refid="search_8h_1a18279ec0c5f0616352bcfaab2269d526" kindref="member">MAX_NRATE</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(3);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>sb-&gt;<ref refid="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" kindref="member">min_rate</ref><sp/>=<sp/>rd_min;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>sb-&gt;<ref refid="structsrchsummary_1a2ff434e5adbfb77d3760d97082224a2a" kindref="member">max_rate</ref><sp/>=<sp/>rd_max;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;%s<sp/>with<sp/>%d<sp/>values<sp/>from<sp/>%g<sp/>..<sp/>%g,<sp/>stepsize<sp/>%g&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>(ismbd)<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;Delay<sp/>rate&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;Multiband<sp/>delay&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>jj,<sp/>rd_min,<sp/>rd_max,<sp/>rd_del);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>Fill<sp/>one<sp/>grid<sp/>only.</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fill_grid_ss(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsrchsummary" kindref="compound">srchsummary</ref><sp/>*sb)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fp_rcell,<sp/>fp_dcell,<sp/>rinc,<sp/>dinc,<sp/>rem;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rem_rmin<sp/>=<sp/><ref refid="grid__filler_8c_1ad8512644399ac6ec00af8f727bb4fac6" kindref="member">VERY_BIG</ref>,<sp/>rem_rmax<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>rem_dmin<sp/>=<sp/><ref refid="grid__filler_8c_1ad8512644399ac6ec00af8f727bb4fac6" kindref="member">VERY_BIG</ref>,<sp/>rem_dmax<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jj,<sp/>rcell,<sp/>dcell;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((jj<sp/>=<sp/>get_rd_extrema(sb,<sp/>0)))<sp/>{<sp/></highlight><highlight class="comment">/*<sp/>dLyrate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Too<sp/>many<sp/>(delay)<sp/>rate<sp/>cells<sp/>[%d],<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>sb-&gt;<ref refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" kindref="member">nrate</ref>,<sp/>jj);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>rinc<sp/>=<sp/>(sb-&gt;<ref refid="structsrchsummary_1a2ff434e5adbfb77d3760d97082224a2a" kindref="member">max_rate</ref><sp/>-<sp/>sb-&gt;<ref refid="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" kindref="member">min_rate</ref>)<sp/>/<sp/>((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)sb-&gt;<ref refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" kindref="member">nrate</ref><sp/>-<sp/>1.0);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Rate<sp/>from<sp/>%g<sp/>..<sp/>%g<sp/>in<sp/>%d<sp/>steps<sp/>delta<sp/>%g&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>sb-&gt;<ref refid="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" kindref="member">min_rate</ref>,<sp/>sb-&gt;<ref refid="structsrchsummary_1a2ff434e5adbfb77d3760d97082224a2a" kindref="member">max_rate</ref>,<sp/>sb-&gt;<ref refid="structsrchsummary_1af83f43cf3b77c15508d70fc8a1a8e0e9" kindref="member">nrate</ref>,<sp/>rinc);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((jj<sp/>=<sp/>get_rd_extrema(sb,<sp/>1)))<sp/>{<sp/></highlight><highlight class="comment">/*<sp/>mbdelay<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Too<sp/>many<sp/>(multiband)<sp/>delay<sp/>cells<sp/>[%d],<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>sb-&gt;<ref refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" kindref="member">ndelay</ref>,<sp/>jj);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>dinc<sp/>=<sp/>(sb-&gt;<ref refid="structsrchsummary_1a0992946168b275c99305711179d0207a" kindref="member">max_delay</ref><sp/>-<sp/>sb-&gt;<ref refid="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" kindref="member">min_delay</ref>)<sp/>/<sp/>((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)sb-&gt;<ref refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" kindref="member">ndelay</ref><sp/>-<sp/>1.0);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Delay<sp/>from<sp/>%g<sp/>..<sp/>%g<sp/>in<sp/>%d<sp/>steps<sp/>delta<sp/>%g&quot;</highlight><highlight class="normal">,<sp/>2,</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>sb-&gt;<ref refid="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" kindref="member">min_delay</ref>,<sp/>sb-&gt;<ref refid="structsrchsummary_1a0992946168b275c99305711179d0207a" kindref="member">max_delay</ref>,<sp/>sb-&gt;<ref refid="structsrchsummary_1a9cccffc3455fe6367543f25103175f8a" kindref="member">ndelay</ref>,<sp/>dinc);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(jj=0;<sp/>jj&lt;sb-&gt;<ref refid="structsrchsummary_1ade45f7807a10cf2bd0321143c520e9c6" kindref="member">nd</ref>;<sp/>jj++)<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>fp_rcell<sp/>=<sp/>(sb-&gt;<ref refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" kindref="member">darray</ref>[jj]-&gt;<ref refid="structfringesum_1aa503a9350fb4e10ed59a4b2c210fd8eb" kindref="member">delay_rate</ref><sp/>-<sp/>sb-&gt;<ref refid="structsrchsummary_1aed6aa91265e0f93e9cb7d33f17322622" kindref="member">min_rate</ref>)<sp/>/<sp/>rinc;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>rcell<sp/>=<sp/>(int)(fp_rcell+0.5);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>rem<sp/>=<sp/>fabs(fp_rcell<sp/>-<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)rcell);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem<sp/>&lt;<sp/>rem_rmin)<sp/>rem_rmin<sp/>=<sp/>rem;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem<sp/>&gt;<sp/>rem_rmax)<sp/>rem_rmax<sp/>=<sp/>rem;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem<sp/>&gt;<sp/>remlimit)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>fp_dcell<sp/>=<sp/>(sb-&gt;<ref refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" kindref="member">darray</ref>[jj]-&gt;<ref refid="structfringesum_1a905741ddb2d293073177724326442ea4" kindref="member">mbdelay</ref><sp/>-<sp/>sb-&gt;<ref refid="structsrchsummary_1afe07e73445959c4ef3b900e8db88799d" kindref="member">min_delay</ref>)<sp/>/<sp/>dinc;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>dcell<sp/>=<sp/>(int)(fp_dcell+0.5);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>rem<sp/>=<sp/>fabs(fp_dcell<sp/>-<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)dcell);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem<sp/>&lt;<sp/>rem_dmin)<sp/>rem_dmin<sp/>=<sp/>rem;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem<sp/>&gt;<sp/>rem_dmax)<sp/>rem_dmax<sp/>=<sp/>rem;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rem<sp/>&gt;<sp/>remlimit)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>sb-&gt;<ref refid="structsrchsummary_1a6685d1f4dc6239603177fa6d05a12ea7" kindref="member">snr</ref>[rcell][dcell]<sp/>=<sp/>sb-&gt;<ref refid="structsrchsummary_1a7e3d0ca8f9e3dca7cd5883b198d1bf28" kindref="member">darray</ref>[jj]-&gt;<ref refid="structfringesum_1a770a4bc89d6fce07c812e9e3eac5813a" kindref="member">snr</ref>;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Delay<sp/>rate<sp/>remainders<sp/>from<sp/>%g<sp/>..<sp/>%g&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>rem_rmin,<sp/>rem_rmax);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;MBand<sp/>delay<sp/>remainders<sp/>from<sp/>%g<sp/>..<sp/>%g&quot;</highlight><highlight class="normal">,<sp/>2,<sp/>rem_dmin,<sp/>rem_dmax);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(jj<sp/>&lt;<sp/>sb-&gt;nd)<sp/>{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>did<sp/>we<sp/>bail<sp/>early?<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Uneven<sp/>delay<sp/>distribution&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;If<sp/>desparate,<sp/>set<sp/>HOPS_SEARCH_REMLIMIT<sp/>&gt;<sp/>%g&quot;</highlight><highlight class="normal">,<sp/>3,<sp/>remlimit);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(1);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="160"><highlight class="comment"><sp/>*<sp/>Main<sp/>entry;<sp/>returns<sp/>nonzero<sp/>if<sp/>resource<sp/>limits<sp/>were<sp/>exceeded.</highlight></codeline>
+<codeline lineno="161"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>grid_filler(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsrchsummary" kindref="compound">srchsummary</ref><sp/>*srchdata)</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ii,<sp/>xx;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*rlp<sp/>=<sp/>getenv(</highlight><highlight class="stringliteral">&quot;HOPS_SEARCH_REMLIMIT&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>remlimit<sp/>=<sp/>rlp<sp/>?<sp/>atof(rlp)<sp/>:<sp/><ref refid="grid__filler_8c_1aed3a3eb58de5a56db675a308bc390e6a" kindref="member">REMLIMIT</ref>;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ii<sp/>=<sp/>0;<sp/>ii<sp/>&lt;<sp/><ref refid="search_8h_1a7a13b3753030b4cb66afe362fb37d847" kindref="member">MAX_BNO</ref><sp/>&amp;&amp;<sp/>srchdata[ii].<ref refid="structsrchsummary_1ae09f4a35e6cdb9e41172e9c611cf71b9" kindref="member">datum</ref>;<sp/>ii++)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((xx<sp/>=<sp/>fill_grid_ss(srchdata<sp/>+<sp/>ii)))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(xx);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(0);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/>*<sp/>Switch<sp/>into<sp/>the<sp/>two<sp/>options</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="grid__filler_8c_1abfa1c94eed1fd16c440ced6fee4c69f1" kindref="member">fill_grids</ref><sp/>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structsrchsummary" kindref="compound">srchsummary</ref><sp/>*srchdata)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(getenv(</highlight><highlight class="stringliteral">&quot;HOPS_SEARCH_OLDWAY&quot;</highlight><highlight class="normal">))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(<ref refid="search_8h_1a09e0643b77b12ac11ad80219225902b1" kindref="member">fill_grids_orig</ref>(srchdata));</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(grid_filler(srchdata));</highlight></codeline>
+<codeline lineno="179"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="182"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="183"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/search/src/grid_filler.c"/>
+  </compounddef>
+</doxygen>

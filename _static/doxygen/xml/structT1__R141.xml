@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structT1__R141" kind="struct" language="C++" prot="public">
+    <compoundname>T1_R141</compoundname>
+    <includes refid="T1_8h" local="no">T1.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structT1__R141_1a30ec54064af34797ba355f778f71f714" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R141::cFNum</definition>
+        <argsstring></argsstring>
+        <name>cFNum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="76" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a6455c286c1e806c9e2818161a6036bb9" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R141::chkSum</definition>
+        <argsstring></argsstring>
+        <name>chkSum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="86" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1ae047f456861171d76addd6dcc20ff8ac" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R141::chnId</definition>
+        <argsstring></argsstring>
+        <name>chnId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="75" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a5703eaf1c6417d6becb7fc0910c82ac4" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::dlyErr</definition>
+        <argsstring></argsstring>
+        <name>dlyErr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="77" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a1cd0d32c0b4b854f1cd5ff63b5c830ba" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::dlyErrRate</definition>
+        <argsstring></argsstring>
+        <name>dlyErrRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="78" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1abd6d3fe573ed5d46896bb1dce0319bc1" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R141::flags</definition>
+        <argsstring></argsstring>
+        <name>flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="87" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a57250884ef64738c1ea9ff4503643ba9" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::oversamplingFactor</definition>
+        <argsstring></argsstring>
+        <name>oversamplingFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="85" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a3eba4ce9975d594fdc866feebf45a64c" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::phase</definition>
+        <argsstring></argsstring>
+        <name>phase</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="79" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a8424471a9baa0ec14002d1a6b176f275" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::phaseAcc</definition>
+        <argsstring></argsstring>
+        <name>phaseAcc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="81" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1acde67cb74bcc0930a11889a7c7251c4e" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::phaseKAccSegLen</definition>
+        <argsstring></argsstring>
+        <name>phaseKAccSegLen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="83" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a0d7230ac010dc051d6d97c0f9f266511" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::phaseLogIncPeriod</definition>
+        <argsstring></argsstring>
+        <name>phaseLogIncPeriod</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="82" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1a6fdd7beb9d74d00539513ce813e67d46" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::phaseRate</definition>
+        <argsstring></argsstring>
+        <name>phaseRate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="80" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1aa1438db0870fa3cc10b0633c978285ba" prot="public" static="no" mutable="no">
+        <type><ref refid="structT1__RecHdr" kindref="compound">T1_RecHdr</ref></type>
+        <definition>T1_RecHdr T1_R141::recHdr</definition>
+        <argsstring></argsstring>
+        <name>recHdr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="73" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1aff9689e16d9ee339b5aa9f93930bd698" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t T1_R141::sideband</definition>
+        <argsstring></argsstring>
+        <name>sideband</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="84" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structT1__R141_1af9caf6863c5abc14e687f8f6d885f605" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t T1_R141::suId</definition>
+        <argsstring></argsstring>
+        <name>suId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="74" column="15" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>T1_RecHdr</label>
+        <link refid="structT1__RecHdr"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>cFOffset</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>baseline</edgelabel>
+          <edgelabel>recId</edgelabel>
+          <edgelabel>recVer</edgelabel>
+          <edgelabel>rootcode</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ap</edgelabel>
+          <edgelabel>index</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>recFmt</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>int32_t</label>
+      </node>
+      <node id="3">
+        <label>uint16_t</label>
+      </node>
+      <node id="5">
+        <label>uint32_t</label>
+      </node>
+      <node id="6">
+        <label>uint8_t</label>
+      </node>
+      <node id="1">
+        <label>T1_R141</label>
+        <link refid="structT1__R141"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>recHdr</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>dlyErr</edgelabel>
+          <edgelabel>dlyErrRate</edgelabel>
+          <edgelabel>oversamplingFactor</edgelabel>
+          <edgelabel>phase</edgelabel>
+          <edgelabel>phaseAcc</edgelabel>
+          <edgelabel>phaseKAccSegLen</edgelabel>
+          <edgelabel>phaseLogIncPeriod</edgelabel>
+          <edgelabel>phaseRate</edgelabel>
+          <edgelabel>sideband</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>cFNum</edgelabel>
+          <edgelabel>chkSum</edgelabel>
+          <edgelabel>chnId</edgelabel>
+          <edgelabel>flags</edgelabel>
+          <edgelabel>suId</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>char</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" line="72" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/dfio/include/T1.h" bodystart="72" bodyend="88"/>
+    <listofallmembers>
+      <member refid="structT1__R141_1a30ec54064af34797ba355f778f71f714" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>cFNum</name></member>
+      <member refid="structT1__R141_1a6455c286c1e806c9e2818161a6036bb9" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>chkSum</name></member>
+      <member refid="structT1__R141_1ae047f456861171d76addd6dcc20ff8ac" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>chnId</name></member>
+      <member refid="structT1__R141_1a5703eaf1c6417d6becb7fc0910c82ac4" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>dlyErr</name></member>
+      <member refid="structT1__R141_1a1cd0d32c0b4b854f1cd5ff63b5c830ba" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>dlyErrRate</name></member>
+      <member refid="structT1__R141_1abd6d3fe573ed5d46896bb1dce0319bc1" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>flags</name></member>
+      <member refid="structT1__R141_1a57250884ef64738c1ea9ff4503643ba9" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>oversamplingFactor</name></member>
+      <member refid="structT1__R141_1a3eba4ce9975d594fdc866feebf45a64c" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>phase</name></member>
+      <member refid="structT1__R141_1a8424471a9baa0ec14002d1a6b176f275" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>phaseAcc</name></member>
+      <member refid="structT1__R141_1acde67cb74bcc0930a11889a7c7251c4e" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>phaseKAccSegLen</name></member>
+      <member refid="structT1__R141_1a0d7230ac010dc051d6d97c0f9f266511" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>phaseLogIncPeriod</name></member>
+      <member refid="structT1__R141_1a6fdd7beb9d74d00539513ce813e67d46" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>phaseRate</name></member>
+      <member refid="structT1__R141_1aa1438db0870fa3cc10b0633c978285ba" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>recHdr</name></member>
+      <member refid="structT1__R141_1aff9689e16d9ee339b5aa9f93930bd698" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>sideband</name></member>
+      <member refid="structT1__R141_1af9caf6863c5abc14e687f8f6d885f605" prot="public" virt="non-virtual"><scope>T1_R141</scope><name>suId</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

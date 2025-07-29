@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_cd0f5cddee6236cbb9b8f69ea5da5bdc" kind="dir">
+    <compoundname>cl</compoundname>
+    <innerfile refid="MHO__NDFFTBluestein__kernel_8cl">MHO_NDFFTBluestein_kernel.cl</innerfile>
+    <innerfile refid="MHO__NDFFTRadix2Stage__kernel_8cl">MHO_NDFFTRadix2Stage_kernel.cl</innerfile>
+    <innerfile refid="MHO__VectorScale__kernel_8cl">MHO_VectorScale_kernel.cl</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/OpenCL/Operators/cl/"/>
+  </compounddef>
+</doxygen>

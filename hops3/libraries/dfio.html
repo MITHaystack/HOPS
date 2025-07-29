@@ -1,0 +1,2921 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dfio - Mark4 Correlator I/O types &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="mk4util" href="mk4util.html" />
+    <link rel="prev" title="afio" href="afio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hops4/hops4.html">HOPS4</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../hops3.html">HOPS3</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../applications/fourfit.html">fourfit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/alist.html">alist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../applications/aedit.html">aedit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="afio.html">afio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">dfio - Mark4 Correlator I/O types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mk4-file-format-definitions">Mk4 File Format Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filesets-and-file-types">FILESETS AND FILE TYPES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mkiii-system">1. MkIII system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mk4-modifications-and-extensions">2. Mk4 modifications and extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vex-root-files">3. VEX root files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-file-types">BINARY FILE TYPES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-record-considerations">GENERAL RECORD CONSIDERATIONS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#record-identification">1. Record identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#record-types">1.1 Record types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#format-version-number">1.2 Format version number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuation-number-vs-variable-record-lengths">2. Continuation number vs. variable record lengths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#file-identification">3. File identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-alignment">4. Data alignment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-1-corel-file-record-formats">Type-1 (corel) file record formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-2-fringe-file-record-formats">Type-2 (fringe) file record formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-3-station-unit-data-file-record-formats">Type 3 (Station unit data) file record formats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mk4util.html">mk4util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msg.html">msg</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../hops3.html">HOPS3 Applications and Libraries</a></li>
+      <li class="breadcrumb-item active">dfio - Mark4 Correlator I/O types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/hops3/libraries/dfio.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dfio-mark4-correlator-i-o-types">
+<span id="dfio"></span><h1>dfio - Mark4 Correlator I/O types<a class="headerlink" href="#dfio-mark4-correlator-i-o-types" title="Link to this heading"></a></h1>
+<section id="mk4-file-format-definitions">
+<h2>Mk4 File Format Definitions<a class="headerlink" href="#mk4-file-format-definitions" title="Link to this heading"></a></h2>
+<dl>
+<dt>History:</dt><dd><div class="line-block">
+<div class="line">CJL, May 13 1999 - First version</div>
+<div class="line">JPB, June 9, 2025 - Updated struct descriptions to match code</div>
+</div>
+</dd>
+</dl>
+<p>This document defines the detailed file and record formats to be used for the
+Mk4 correlator system.  It also provides background information on the Mk4 data
+files and software system.</p>
+</section>
+<section id="filesets-and-file-types">
+<h2>FILESETS AND FILE TYPES<a class="headerlink" href="#filesets-and-file-types" title="Link to this heading"></a></h2>
+</section>
+<section id="mkiii-system">
+<h2>1. MkIII system<a class="headerlink" href="#mkiii-system" title="Link to this heading"></a></h2>
+<p>The MkIII system uses three file types, numbered 0, 1 and 2, and referred to
+respectively as root, corel and fringe files, all of which are binary format.  A
+fileset consists of a single root file, and multiple type-1 and type-2 files all
+of which “belong” to a type-0 root file.  The root files contain global
+information about the scan, while the type-1 (corel) and type-2 (fringe) files
+contain respectively the raw correlation counts plus minimal identification
+information, and the results of a fringe-fitting operation.  There is at least
+one type-1 per baseline correlated, and one type-2 file per baseline
+fringe-fitted.  In general, there may be many type-1 files per baseline, due to
+multiple correlations using the same root, and there may be many type-2 files
+per type-1 file, due to multiple passes of the fringe-fitting software, and
+multiple subsets of data (such as frequency bands) within a single type-1 file.</p>
+<p>A naming convention was devised to handle MkIII files in a Unix setting.
+Filesets are bound together by a common “root code” filename extension,
+indicating to which root the type-1 and type-2 files belong.  This root code is
+a time-tag expressed as a 6-digit base-26 number, encoded in lower-case
+alphabetic characters, and corresponds to the root creation time in units of 4
+seconds.  While somewhat obscure, this 6-character string is concise, unique
+under normal circumstances, and has an acceptably long rollover period of about
+40 years.</p>
+<p>The root file name consists of the source name and the root code, separated by a
+single period (period characters in a source name are mapped to underscores).
+Corel files consist of the 2-character baseline ID, a fileset sequence number,
+and the rootcode, all three fields separated by periods.  Fringe file names
+consist of the baseline ID, a single-character frequency group ID, a fileset
+sequence number, and the rootcode, all four fields being separated by periods.
+The fileset sequence numbers are necessary in order to uniquely identify
+multiple instances of type-1 and type-2 files for the same baseline.  Those
+familiar with MkIII will recognize the fileset sequence number as the HP-1000
+file extent number, carried over into the Unix world.</p>
+<p>Below is an example of a MkIII fileset.  Note the multiple type-1 files for the
+AB baseline, indicating multiple correlations under the same root.  There are
+also multiple runs of fourfit for the AB baseline at S-band.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>root file</p></th>
+<th class="head"><p>type-1 files</p></th>
+<th class="head"><p>type-2 files</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>3C345.ngsbdc</p></td>
+<td><p>AB.1.ngsbdc</p>
+<p>AC.2.ngsbdc</p>
+<p>BC.3.ngsbdc</p>
+<p>AB.4.ngsbdc</p>
+</td>
+<td><p>AB.S.5.ngsbdc</p>
+<p>AB.X.6.ngsbdc</p>
+<p>AB.S.7.ngsbdc</p>
+<p>AC.S.8.ngsbdc</p>
+<p>BC.S.9.ngsbdc</p>
+<p>BC.X.10.ngsbdc</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mk4-modifications-and-extensions">
+<h2>2. Mk4 modifications and extensions<a class="headerlink" href="#mk4-modifications-and-extensions" title="Link to this heading"></a></h2>
+<p>The Mk4 system is modeled after MkIII to a degree.  The concept of root, corel
+and fringe files persists, but two additional file types have been added.  These
+are the type-3 (station data) files, and the type-4 (log) file.  The type-3
+files, one per station, contain model spline coefficients, phasecal data, state
+count information, and tape error statistics (in MkIII, some of this information
+was embedded in the type-1 file records).  The type 4 file, one per root,
+contains generalized ascii log information both from the field system and from the
+correlator, specific to the fileset.  In addition to the new file types, the
+provision for multiple correlations under the same root file has been removed.</p>
+<p>New filenaming conventions have been devised to deal with Mk4 data files.  The
+intent is to modify conventions as little as possible, to maximize the utility
+of existing postprocessing code, while eliminating redundant or useless
+information in the filenames.  The naming conventions for root files and type-2
+(fringe) files are unchanged.  Type-1 files no longer need a fileset sequence
+number, so it has been removed leaving the baseline ID, two periods, and the
+root code.  The double period distinguishes type-1 files from root files with
+2-character source names.  Type-3 files have the single-character station ID, a
+double period, and the root code.  Type 4 files have the string “log”, a period,
+and the root code.  An example MK4 fileset is shown below.  Three stations were
+correlated in a geodetic S/X experiment, A, B and C.  Baselines AB and BC were
+fringe-fitted at both S and X band, and baseline AC only at S-band.  Baseline
+AB was refringed at S-band, resulting in file AB.S.3.ngsbdc with a fileset
+sequence number of 3.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>root file</p></th>
+<th class="head"><p>type-1 files</p></th>
+<th class="head"><p>type-2 files</p></th>
+<th class="head"><p>type-3 files</p></th>
+<th class="head"><p>type-4 file</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>3C345.ngsbdc</p></td>
+<td><p>AB..ngsbdc</p>
+<p>AC..ngsbdc</p>
+<p>BC..ngsbdc</p>
+</td>
+<td><p>AB.S.1.ngsbdc</p>
+<p>AB.X.2.ngsbdc</p>
+<p>AB.S.3.ngsbdc</p>
+<p>AC.S.4.ngsbdc</p>
+<p>BC.S.5.ngsbdc</p>
+<p>BC.X.6.ngsbdc</p>
+</td>
+<td><p>A..ngsbdc</p>
+<p>B..ngsbdc</p>
+<p>C..ngsbdc</p>
+</td>
+<td><p>log.ngsbdc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vex-root-files">
+<h2>3. VEX root files<a class="headerlink" href="#vex-root-files" title="Link to this heading"></a></h2>
+<p>In a major departure from MkIII, root files in the Mk4 system are ascii files in
+the VEX format.  VEX is known to the global VLBI community as the language used
+to describe how a VLBI experiment will be observed, and which is generated by
+scheduling programs.  This public definition of VEX does not include a variety
+of parameters needed to run a correlator.  The Mk4 correlator software system
+therefore includes definitions for several new flavors of VEX, designed to
+configure and run the various subsystems of the Mk4 correlator.  These flavors,
+described in detail elsewhere, have been labelled OVEX, IVEX, EVEX, SVEX, CVEX
+and LVEX.  The public flavor used for observing is OVEX.  The Mk4 root file is
+defined to be the concatenation of all relevant portions of these six flavors of
+VEX, which then constitutes a complete description of how the information in the
+data files originated, from observation right through the correlator system,
+with details specified down to the insides of each correlator chip in the
+system.  Much of this information is of diagnostic interest only, but the format
+is relatively compact, and a typical root file consumes less than 50 kilobytes.
+Root files are read using a VEX parsing and utility library.  Any software
+seeking to use Mk4 data will likely need a copy of this VEX library, which is
+written in standard C.</p>
+</section>
+<section id="binary-file-types">
+<h2>BINARY FILE TYPES<a class="headerlink" href="#binary-file-types" title="Link to this heading"></a></h2>
+<p>Only type-1, type-2 and type-3 files are binary.  These files are comprised of a
+series of binary records, which with few restrictions may occur in arbitrary
+order.  Because of architectural differences between the MkIII and Mk4
+correlators, these binary record formats have been developed from scratch, and
+bear no relation to MkIII record formats.  Any software which reads Mk4
+correlator data files will need a new IO interface at the minimum.  An IO
+library has been written which transparently deals with multiple format revision
+levels (see below), and which should ease the task of reading and writing Mk4
+data files.  The library is written in standard C.</p>
+<p>Before defining record formats in detail, we first describe features common to
+all binary records and files in the Mk4 system.</p>
+</section>
+<section id="general-record-considerations">
+<h2>GENERAL RECORD CONSIDERATIONS<a class="headerlink" href="#general-record-considerations" title="Link to this heading"></a></h2>
+</section>
+<section id="record-identification">
+<h2>1. Record identification<a class="headerlink" href="#record-identification" title="Link to this heading"></a></h2>
+<p>In order to facilitate the reading and decoding of Mk4 binary files, all data
+records are “typed”.  This is done, with one notable exception, in the Mk3
+system.  For Mk4, we have devised a typing scheme that allows format evolution,
+and which is distinct from the Mk3 system to avoid possible confusion.  Each
+record has, in the first 8 bytes, ascii characters which uniquely identify the
+record type, and which tell the IO software exactly how to handle it.  The use
+of ascii information rather than binary integers allows pure ascii records to be
+typed in a uniform manner, yet carries no penalty.  This 8-byte header contains
+2 fields.  The first 3 bytes contain the record type number, which in Mk4 cannot
+exceed 999.  The next 2 bytes contain a format version number, up to 99.  These
+two numbers are formatted with leading zeros.  The remaining 3 bytes are
+reserved for future use, and are normally blank filled.  However, in a few cases
+of binary variable length records, binary information needed to calculate the
+record length is stored there.</p>
+</section>
+<section id="record-types">
+<h2>1.1 Record types<a class="headerlink" href="#record-types" title="Link to this heading"></a></h2>
+<p>For simplicity, and to make it easier for programmers to remember what file type
+they are dealing with, the record type numbers are equal to the binary file type
+number x 100 (currently 1 through 3) plus some offset.  Thus a record type 120
+is immediately recognizable as belonging to a type-1 (corel) file.  The only
+exception to this rule is the type-000 record, which is the first record of
+every binary file regardless of file type.  The offsets are organized into
+logical groupings.  Where it makes sense, all records dealing with a particular
+aspect of the data are sequentially numbered.  When a new aspect of the data is
+encountered, the record type jumps to the next multiple of 10.  Permissible
+record type numbers are therefore:</p>
+<p>Type-1 (corel) files:   100 to 199
+Type-2 (fringe) files:  200 to 299
+Type-3 (sdata) files:   300 to 399</p>
+<p>This scheme allows ample expansion for both record and file types, is sharply
+distinct from the Mk3 convention to avoid confusion, and is reasonably obvious
+and logical to the programmer.</p>
+</section>
+<section id="format-version-number">
+<h2>1.2 Format version number<a class="headerlink" href="#format-version-number" title="Link to this heading"></a></h2>
+<p>The 2-digit format version number allows a mechanism for evolution of the file
+format in response to unforeseen needs with minimal modifications to previously
+written software.  The IO software picks up this number, and copies the record
+into the memory structure appropriate to the record type and version.  Most of
+the structure elements will have unchanged names from previous versions, so
+software downstream of the IO library will in general not care what the version
+number was.  To implement a new format version, all that must be done is to
+update the header file containing the structure definitions, and write code to
+process the newly-introduced fields.  Applications must include a structure
+definition that incorporates a superset of all fields from all version numbers,
+and the IO library must fill the fields appropriately.  In general, this
+prevents the use of simple HOPS Mk3-style memory overlays into structures for
+version numbers greater than 0, but the CPU overhead of explicitly filling
+structure elements is minimal.  While updating the IO library for a new version
+number may be non-trivial, it needs to be done in only one place, not in each
+application.</p>
+<p>The ease with which this can be done at the application level (where most of the
+complexity lies) should encourage elegant and complete solutions to file-format
+related difficulties, rather than counterintuitive and complicating workarounds.</p>
+<p>The rationale for carrying a format version number with records instead of files
+is that you don’t want to increment a file version number for each small
+modification to some obscure record.  Record version control also increases
+flexibility, allowing one to transparently mix record version numbers in files,
+though in practise this will seldom occur.</p>
+</section>
+<section id="continuation-number-vs-variable-record-lengths">
+<h2>2. Continuation number vs. variable record lengths<a class="headerlink" href="#continuation-number-vs-variable-record-lengths" title="Link to this heading"></a></h2>
+<p>Certain types of information have variable space requirements.  There are two
+ways this might be handled.  The Mk3 system uses fixed-length 256-byte records,
+and stacks records using record continuation numbers.  Under UNIX, we have the
+freedom to use variable-length records with little penalty in code complexity.
+After some deliberation, the decision was made to move away from continuation
+numbers and toward variable-length records for Mk4.  The majority of records
+nevertheless remain fixed-length simply because the amount of information needed
+is invariant.</p>
+</section>
+<section id="file-identification">
+<h2>3. File identification<a class="headerlink" href="#file-identification" title="Link to this heading"></a></h2>
+<p><strong>type_000</strong></p>
+<p>In order to facilitate consistency checks of data files, and to ease
+programmatic manipulations for filesets, it has been decided to place a special
+file identification record at the beginning of each file.  This record is typed
+in the same way as all other Mk4 records.  The record type is 000, and the
+record length is fixed at 64 bytes.  For various reasons, it is desirable for
+this record to be entirely ascii, not least because then it is trivial to
+generate a greppable and user-comprehensible summary of many data files.  The
+format of the type 000 record is as follows.  All fields are ascii.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>date</p></td>
+<td><p>char[16]</p></td>
+<td><p>16</p></td>
+<td><p>Creation date <cite>“ yyyyddd-hhmmss “</cite></p></td>
+</tr>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>char[40]</p></td>
+<td><p>40</p></td>
+<td><p>exp/scan/name, null-terminated</p></td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__000_8h.html">type_000</a> for more information.</p>
+</section>
+<section id="data-alignment">
+<h2>4. Data alignment<a class="headerlink" href="#data-alignment" title="Link to this heading"></a></h2>
+<p>In the record definitions below, care has been taken to ensure that variables
+are properly aligned.  This means that if a variable occupies n bytes, the
+location of the variable within the record is an integral number times n bytes
+from the start of the record.  In a few places, padding is used.  This practise,
+which causes some rearrangement of variables from the order in which they might
+otherwise have been stored, ensures that it will always be possible to map a
+copy of the record format on disk directly onto a C structure.  In addition,
+record lengths are kept to a multiple 8 bytes, to ensure that each record starts
+on a suitable boundary.</p>
+</section>
+<section id="type-1-corel-file-record-formats">
+<h2>Type-1 (corel) file record formats<a class="headerlink" href="#type-1-corel-file-record-formats" title="Link to this heading"></a></h2>
+<p>Similar to Mk3, each correlator output record corresponds to a single AP for a
+single channel, with multiple lags.  The records are variable-length, with the
+length determined by the number of lags present.  Each type-1 file has, as the
+first record after the type 000 record, a record which contains pertinent
+file-wide information, and eliminates the current “orphan” potential of the
+current Mk3 system.  Mk4 correlator files are dependent on the root file for the
+correct interpretation of their contents, but not for the mere identification of
+the data.  The general organization of a type-1 file is as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Record Type</p></th>
+<th class="head"><p>Code</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type 000 record</p></td>
+<td><p>000</p></td>
+<td><p>Standard for all binary Mk4 files</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type 100 record</p></td>
+<td><p>100</p></td>
+<td><p>Identifies data by baseline, parent root, correlation time, etc.
+Specifies how many data records are present.</p></td>
+</tr>
+<tr class="row-even"><td><p>Type 101 records</p></td>
+<td><p>101</p></td>
+<td><p>Track-specific correlator hardware configuration information similar to the Mk3
+type-2000 record and cross-reference table.
+There is one type-101 record for each index number.
+Needed for correct interpretation of the type 120 records.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type 120 records</p></td>
+<td><p>120</p></td>
+<td><p>Correlation lag data records for various modes.
+The different modes may involve inclusion or exclusion of bitcounts by lag,
+autocorrelations, and so on. There is only one mode per file.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Because of the presence of variable length records, the type 100 record must
+precede all type 101 and 120 records.  For simplicity, the number of lags (and
+correlator blocks) must be constant in any given type-1 file.  There is one type
+100 record, multiple type 101 records, and multiple type 120 records per type
+101 record.  Some of the information in the type 100 record may not be available
+until the rest of the file is written, necessitating re-writing of that record.</p>
+<p><strong>type_100</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_100</span></code> is a general data description record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__100_8h.html">type_100</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>procdate</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Correlation time</p></td>
+</tr>
+<tr class="row-even"><td><p>baseline</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard baseline id</p></td>
+</tr>
+<tr class="row-odd"><td><p>rootname</p></td>
+<td><p>char[34]</p></td>
+<td><p>34</p></td>
+<td><p>Root filename, null-terminated</p></td>
+</tr>
+<tr class="row-even"><td><p>qcode</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Quality code of correlation</p></td>
+</tr>
+<tr class="row-odd"><td><p>unused2</p></td>
+<td><p>char[6]</p></td>
+<td><p>6</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-even"><td><p>pct_done</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>0–100% of scheduled data processed</p></td>
+</tr>
+<tr class="row-odd"><td><p>start</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Time of first AP</p></td>
+</tr>
+<tr class="row-even"><td><p>stop</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Time of last AP</p></td>
+</tr>
+<tr class="row-odd"><td><p>ndrec</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Number of data records</p></td>
+</tr>
+<tr class="row-even"><td><p>nindex</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Number of index numbers present</p></td>
+</tr>
+<tr class="row-odd"><td><p>nlags</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of lags in a type_120 record</p></td>
+</tr>
+<tr class="row-even"><td><p>nblocks</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of blocks per index number</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.  This record can be thought of as a
+“consistency control” record, which should be examined to make sure that
+the data are what you think they should be.  The IO library should do
+most of this checking, and raise the alarm to the application programmer
+when discrepancies are found.  Global hardware configuration information
+is also stored here.</p>
+<p><strong>type_101</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_101</span></code> is a record format for the index number description. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__101_8h.html">type_101</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>bytes</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>ascii</p></td>
+<td><p>3</p></td>
+<td><p>101</p></td>
+</tr>
+<tr class="row-odd"><td><p>Version</p></td>
+<td><p>ascii</p></td>
+<td><p>2</p></td>
+<td><p>0-99</p></td>
+</tr>
+<tr class="row-even"><td><p>Status</p></td>
+<td><p>ascii</p></td>
+<td><p>1</p></td>
+<td><p>Currently unused, set to null</p></td>
+</tr>
+<tr class="row-odd"><td><p>nblocks</p></td>
+<td><p>i*2</p></td>
+<td><p>2</p></td>
+<td><p>Number of block table entries</p></td>
+</tr>
+<tr class="row-even"><td><p>Index</p></td>
+<td><p>i*2</p></td>
+<td><p>2</p></td>
+<td><p>Index number</p></td>
+</tr>
+<tr class="row-odd"><td><p>Primary</p></td>
+<td><p>i*2</p></td>
+<td><p>2</p></td>
+<td><p>Index number of primary 101</p></td>
+</tr>
+<tr class="row-even"><td><p>Ref_chan_id</p></td>
+<td><p>ascii</p></td>
+<td><p>8</p></td>
+<td><p>from vex, e.g. X1R</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rem_chan_id</p></td>
+<td><p>ascii</p></td>
+<td><p>8</p></td>
+<td><p>from vex, e.g. X1L</p></td>
+</tr>
+<tr class="row-even"><td><p>Corr. board</p></td>
+<td><p>i*2</p></td>
+<td><p>2</p></td>
+<td><p>Correlator board serial #</p></td>
+</tr>
+<tr class="row-odd"><td><p>Corr. slot</p></td>
+<td><p>i*2</p></td>
+<td><p>2</p></td>
+<td><p>Correlator board slot</p></td>
+</tr>
+<tr class="row-even"><td><p>Ref channel</p></td>
+<td><p>i*2</p></td>
+<td><p>2</p></td>
+<td><p>SU output channel numbers</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rem channel</p></td>
+<td><p>i*2</p></td>
+<td><p>2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Post mortem</p></td>
+<td><p>i*4</p></td>
+<td><p>4</p></td>
+<td><p>Up to 32 1-bit flags</p></td>
+</tr>
+<tr class="row-odd"><td><p>Block table</p></td>
+<td><p>i*4</p></td>
+<td><p>4*nblocks</p></td>
+<td><p>One entry per block in snake</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is variable at 40+(4*nblocks), but with a wrinkle.  In order to
+maintain the record length as a multiple of 8 bytes, if nblocks is an odd
+number, the block table will be padded as if nblocks were equal to the next even
+number. There are i records, where i is given by (high index - low index + 1).
+This record describes channel-by-channel hardware configuration information for
+this correlation.  Each ‘Block table’ entry consists of 3 bytes of static
+configuration information followed by the block number on the correlator board;
+order of entries is from head of snake to tail of snake.</p>
+<p>Some information in the type 101 records is analogous to that in the
+type-2000 records of the Mk3 system.  The Mk4 scheme helps isolate
+baseline-dependent information in the baseline-dependent type-1 files.
+Type-1 files are not intended to be made standalone by this change.</p>
+<p><strong>type_120</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_120</span></code> is the sorted lag data record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__120_8h.html">type_120</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Data type (enumerated elsewhere)</p></td>
+</tr>
+<tr class="row-odd"><td><p>nlags</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of lags</p></td>
+</tr>
+<tr class="row-even"><td><p>baseline</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard baseline ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>rootcode</p></td>
+<td><p>char[6]</p></td>
+<td><p>6</p></td>
+<td><p>Root suffix</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Index number for corresponding type 101 record</p></td>
+</tr>
+<tr class="row-odd"><td><p>ap</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Accumulation period number</p></td>
+</tr>
+<tr class="row-even"><td><p>fw</p></td>
+<td><p>union flag_wgt</p></td>
+<td><p>4</p></td>
+<td><p>Flag or weight for lag/spectral data</p></td>
+</tr>
+<tr class="row-odd"><td><p>status</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Up to 32 status bits</p></td>
+</tr>
+<tr class="row-even"><td><p>fr_delay</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Mid-AP fractional delay (bits * 2^32)</p></td>
+</tr>
+<tr class="row-odd"><td><p>delay_rate</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Mid-AP delay rate (bits/sysclk * 2^32)</p></td>
+</tr>
+<tr class="row-even"><td><p>ld</p></td>
+<td><p>union lag_data</p></td>
+<td><p>variable</p></td>
+<td><p>Correlation counts (depends on data type)</p></td>
+</tr>
+</tbody>
+</table>
+<p>where lagdata can have any one of five possible structures (COUNTS_PER_LAG, COUNTS_GLOBAL, AUTO_PER_LAG, AUTO_GLOBAL, or SPECTRAL).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cpl[1]</p></td>
+<td><p>struct counts_per_lag[1]</p></td>
+<td><p>variable</p></td>
+<td><p>Counts per lag</p></td>
+</tr>
+<tr class="row-odd"><td><p>cg</p></td>
+<td><p>struct counts_global</p></td>
+<td><p>variable</p></td>
+<td><p>Global lag count data</p></td>
+</tr>
+<tr class="row-even"><td><p>apl[1]</p></td>
+<td><p>struct auto_per_lag[1]</p></td>
+<td><p>variable</p></td>
+<td><p>Auto-correlation per lag</p></td>
+</tr>
+<tr class="row-odd"><td><p>ag</p></td>
+<td><p>struct auto_global</p></td>
+<td><p>variable</p></td>
+<td><p>Auto-correlation global data</p></td>
+</tr>
+<tr class="row-even"><td><p>spec[1]</p></td>
+<td><p>struct spectral[1]</p></td>
+<td><p>8</p></td>
+<td><p>Spectral data (complex number)</p></td>
+</tr>
+</tbody>
+</table>
+<p>However first four types are <strong>DEPRECATED</strong>. The only form which is currently in use (when importing from DiFX) is the ‘SPECTRAL’ type,
+which has the form:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>re</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Real component</p></td>
+</tr>
+<tr class="row-odd"><td><p>im</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Imaginary component</p></td>
+</tr>
+</tbody>
+</table>
+<p>for each element. The weight type for spectral data is effectively a single float, as the union has the structure:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>flag</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Up to 32 correlation flags</p></td>
+</tr>
+<tr class="row-odd"><td><p>weight</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Spectral mode AP weight (range 0.0 – 1.0)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is variable, depending on the number of lags and the mode.
+Only one mode, and therefore one lag_data format, is present in any given file.</p>
+</section>
+<section id="type-2-fringe-file-record-formats">
+<h2>Type-2 (fringe) file record formats<a class="headerlink" href="#type-2-fringe-file-record-formats" title="Link to this heading"></a></h2>
+<p>Type 2 files consist of three logically distinct sections.  The first describes
+the history of the data to this point, up to and including the fringe search
+numerical results.  The second contains representations of the data, rotated to
+the solution parameters.  The third contains the postscript fringe plot, and
+other useful graphical data.</p>
+<p>The basic pattern is for type 200 through type 208 records to contain
+information progressively less generic, and progressively more specific
+to the fringe fit process that generated the type-2 file.  The progression
+goes from baseline-independent information from the root in the type 200
+record to the final fringe-fit solution values in the type 208 record.  Various
+processed versions of the input data records are stored in record types 210 to
+212, and user-oriented graphical output information is stored in records 220 and
+higher.</p>
+<p><strong>type_200</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_200</span></code> is a general information record. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__200_8h.html">type_200</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>software_rev</p></td>
+<td><p>short[10]</p></td>
+<td><p>20</p></td>
+<td><p>Revision levels for online programs</p></td>
+</tr>
+<tr class="row-even"><td><p>expt_no</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Experiment number</p></td>
+</tr>
+<tr class="row-odd"><td><p>exper_name</p></td>
+<td><p>char[32]</p></td>
+<td><p>32</p></td>
+<td><p>Observing program name</p></td>
+</tr>
+<tr class="row-even"><td><p>scan_name</p></td>
+<td><p>char[32]</p></td>
+<td><p>32</p></td>
+<td><p>Scan label from OVEX</p></td>
+</tr>
+<tr class="row-odd"><td><p>correlator</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Correlator identification</p></td>
+</tr>
+<tr class="row-even"><td><p>scantime</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Scan time to 1 second</p></td>
+</tr>
+<tr class="row-odd"><td><p>start_offset</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Nominal baseline start relative to scantime (seconds)</p></td>
+</tr>
+<tr class="row-even"><td><p>stop_offset</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Nominal baseline stop relative to scantime (seconds)</p></td>
+</tr>
+<tr class="row-odd"><td><p>corr_date</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Time of correlation</p></td>
+</tr>
+<tr class="row-even"><td><p>fourfit_date</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Time of fourfit processing</p></td>
+</tr>
+<tr class="row-odd"><td><p>frt</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Fourfit reference time</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.</p>
+<p><strong>type_201</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_201</span></code> is the source information record. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__201_8h.html">type_201</a> for more information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The dispersion measure in this structure is used for storing the ionospheric differential TEC for the associated baseline for geodetic scans.</p>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>source</p></td>
+<td><p>char[32]</p></td>
+<td><p>32</p></td>
+<td><p>Source name from OVEX</p></td>
+</tr>
+<tr class="row-even"><td><p>coord</p></td>
+<td><p>struct sky_coord</p></td>
+<td><p>16</p></td>
+<td><p>Source coordinates</p></td>
+</tr>
+<tr class="row-odd"><td><p>epoch</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Coordinate epoch (e.g., 1950 or 2000)</p></td>
+</tr>
+<tr class="row-even"><td><p>unused2</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-odd"><td><p>coord_date</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Date of coordinate measurement</p></td>
+</tr>
+<tr class="row-even"><td><p>ra_rate</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Proper motion in right ascension (rad/sec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>dec_rate</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Proper motion in declination (rad/sec)</p></td>
+</tr>
+<tr class="row-even"><td><p>pulsar_phase</p></td>
+<td><p>double[4]</p></td>
+<td><p>32</p></td>
+<td><p>Polynomial coefficients for pulsar timing</p></td>
+</tr>
+<tr class="row-odd"><td><p>pulsar_epoch</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Reference time for pulsar timing polynomial</p></td>
+</tr>
+<tr class="row-even"><td><p>dispersion</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>dispersion</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.  This record contains source-specific information.</p>
+<p><strong>type_202</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_202</span></code> is the baseline information record. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__202_8h.html">type_202</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>baseline</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>2-char baseline ID</p></td>
+</tr>
+<tr class="row-even"><td><p>ref_intl_id</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Reference station international ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>rem_intl_id</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Remote station international ID</p></td>
+</tr>
+<tr class="row-even"><td><p>ref_name</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Reference station name</p></td>
+</tr>
+<tr class="row-odd"><td><p>rem_name</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Remote station name</p></td>
+</tr>
+<tr class="row-even"><td><p>ref_tape</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Reference station tape VSN</p></td>
+</tr>
+<tr class="row-odd"><td><p>rem_tape</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Remote station tape VSN</p></td>
+</tr>
+<tr class="row-even"><td><p>nlags</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of lags used for correlation</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_xpos</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Reference station X coordinate (meters)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_xpos</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Remote station X coordinate (meters)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_ypos</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Reference station Y coordinate (meters)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_ypos</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Remote station Y coordinate (meters)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_zpos</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Reference station Z coordinate (meters)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_zpos</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Remote station Z coordinate (meters)</p></td>
+</tr>
+<tr class="row-odd"><td><p>u</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Fringes/arcsec E-W at 1 GHz</p></td>
+</tr>
+<tr class="row-even"><td><p>v</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Fringes/arcsec N-S at 1 GHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>uf</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>mHz/arcsec/GHz in Right Ascension</p></td>
+</tr>
+<tr class="row-even"><td><p>vf</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>mHz/arcsec/GHz in Declination</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_clock</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Reference station clock (μsec)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_clock</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Remote station clock (μsec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_clockrate</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Reference station clock rate (sec/sec)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_clockrate</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Remote station clock rate (sec/sec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_idelay</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Reference station instrumental delay (μsec)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_idelay</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Remote station instrumental delay (μsec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_zdelay</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Reference station zenith atmospheric delay (μsec)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_zdelay</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Remote station zenith atmospheric delay (μsec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_elev</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Elevation at reference antenna (degrees)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_elev</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Elevation at remote antenna (degrees)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_az</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Azimuth at reference antenna (degrees)</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_az</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Azimuth at remote antenna (degrees)</p></td>
+</tr>
+</tbody>
+</table>
+<p>This record contains baseline specific information, independent of fourfit parameters except FRT.</p>
+<p><strong>type_203</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_203</span></code> is the channel information record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__203_8h.html">type_203</a> for more information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The value of MAXFREQ is 64.</p>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>channels</p></td>
+<td><p>ch_struct[8*MAXFREQ]</p></td>
+<td></td>
+<td><p>Array of 512 channel info structs (8 per frequency × 64)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Details of <cite>struct ch_struct</cite>:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Index from type-1 file (t101)</p></td>
+</tr>
+<tr class="row-odd"><td><p>sample_rate</p></td>
+<td><p>unsigned short int</p></td>
+<td><p>2</p></td>
+<td><p>Sample rate in Ksamp/sec (max 65.536 MSamp/s)</p></td>
+</tr>
+<tr class="row-even"><td><p>refsb</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Reference antenna sideband (‘U’ or ‘L’)</p></td>
+</tr>
+<tr class="row-odd"><td><p>remsb</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Remote antenna sideband (‘U’ or ‘L’)</p></td>
+</tr>
+<tr class="row-even"><td><p>refpol</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Reference antenna polarization (‘R’ or ‘L’)</p></td>
+</tr>
+<tr class="row-odd"><td><p>rempol</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Remote antenna polarization (‘R’ or ‘L’)</p></td>
+</tr>
+<tr class="row-even"><td><p>ref_freq</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Sky frequency at reference station (MHz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>rem_freq</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Sky frequency at remote station (MHz)</p></td>
+</tr>
+<tr class="row-even"><td><p>ref_chan_id</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Reference station channel ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>rem_chan_id</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Remote station channel ID</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed. This is a copy of the information in all
+the (non-mirrored) type 101 records in the type-1 file, regardless of whether
+the channels are used in the current fringe-fit.  A “channel” described by a
+single entry in the array corresponds to the cross-correlation of a single pair
+of channel IDs as described in the $FREQ section of the ovex portion of the root
+file.  Note that a fourfit frequency channel may consist of multiple such
+“channels”, depending on whether this is dual-sideband data, or possibly even
+dual polarization data in which RR and LL correlations have been combined before
+the fringe fit.</p>
+<p><strong>type_204</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_204</span></code> is the <em>fourfit</em> execution record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__204_8h.html">type_204</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>ff_version</p></td>
+<td><p>short[2]</p></td>
+<td><p>4</p></td>
+<td><p>Fourfit revision level</p></td>
+</tr>
+<tr class="row-even"><td><p>platform</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Platform string (e.g., hppa, linux, alpha)</p></td>
+</tr>
+<tr class="row-odd"><td><p>control_file</p></td>
+<td><p>char[96]</p></td>
+<td><p>96</p></td>
+<td><p>Full pathname of the control file</p></td>
+</tr>
+<tr class="row-even"><td><p>ffcf_date</p></td>
+<td><p>struct date</p></td>
+<td><p>varies</p></td>
+<td><p>Control file modification date</p></td>
+</tr>
+<tr class="row-odd"><td><p>override</p></td>
+<td><p>char[128]</p></td>
+<td><p>128</p></td>
+<td><p>Command-line override string</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed. The strings are null-terminated.  If
+they overflow, the strings are set to null.  This record is just a tracer
+of the execution parameters for possible subsequent human intervention.</p>
+<p><strong>type_205</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_205</span></code> is the fourfit setup record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__205_8h.html">type_205</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>utc_central</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Central time of scan</p></td>
+</tr>
+<tr class="row-even"><td><p>offset</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Offset of FRT from scan center (seconds)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ffmode</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Fourfit execution modes</p></td>
+</tr>
+<tr class="row-even"><td><p>search</p></td>
+<td><p>float[6]</p></td>
+<td><p>24</p></td>
+<td><p>SBD, MBD, rate search windows (usec, usec, usec/sec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>filter</p></td>
+<td><p>float[8]</p></td>
+<td><p>32</p></td>
+<td><p>Various filter thresholds</p></td>
+</tr>
+<tr class="row-even"><td><p>start</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Start of requested data span</p></td>
+</tr>
+<tr class="row-odd"><td><p>stop</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>End of requested data span</p></td>
+</tr>
+<tr class="row-even"><td><p>ref_freq</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Fourfit reference frequency (Hz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ffit_chan</p></td>
+<td><p>struct ffit_chan[64]</p></td>
+<td></td>
+<td><p>Array of Fourfit channel ID info structs</p></td>
+</tr>
+</tbody>
+</table>
+<p>The ffit_chan structures have the following form:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ffit_chan_id</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Fourfit channel letter ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>unused</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Alignment padding</p></td>
+</tr>
+<tr class="row-even"><td><p>channels</p></td>
+<td><p>short[4]</p></td>
+<td><p>8</p></td>
+<td><p>Indices into <cite>type_203</cite> channel array</p></td>
+</tr>
+</tbody>
+</table>
+<p>This record describes the setup of the fourfit execution, independent of the AP data.</p>
+<p><strong>type_206</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_206</span></code> is the data filtering record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__206_8h.html">type_206</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version number</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>start</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Time at start of AP zero</p></td>
+</tr>
+<tr class="row-even"><td><p>first_ap</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of first valid accumulation period</p></td>
+</tr>
+<tr class="row-odd"><td><p>last_ap</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of last valid accumulation period</p></td>
+</tr>
+<tr class="row-even"><td><p>accepted</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs accepted by channel/sideband</p></td>
+</tr>
+<tr class="row-odd"><td><p>weights</p></td>
+<td><p>struct sbweights[64]</p></td>
+<td><p>1024</p></td>
+<td><p>Samples per channel/sideband</p></td>
+</tr>
+<tr class="row-even"><td><p>intg_time</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Effective integration time in seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>accept_ratio</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Percentage ratio of min/max data accepted</p></td>
+</tr>
+<tr class="row-even"><td><p>discard</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Percentage of data discarded</p></td>
+</tr>
+<tr class="row-odd"><td><p>reason1</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 1 per chan/sband</p></td>
+</tr>
+<tr class="row-even"><td><p>reason2</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 2 per chan/sband</p></td>
+</tr>
+<tr class="row-odd"><td><p>reason3</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 3 per chan/sband</p></td>
+</tr>
+<tr class="row-even"><td><p>reason4</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 4 per chan/sband</p></td>
+</tr>
+<tr class="row-odd"><td><p>reason5</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 5 per chan/sband</p></td>
+</tr>
+<tr class="row-even"><td><p>reason6</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 6 per chan/sband</p></td>
+</tr>
+<tr class="row-odd"><td><p>reason7</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 7 per chan/sband</p></td>
+</tr>
+<tr class="row-even"><td><p>reason8</p></td>
+<td><p>struct sidebands[64]</p></td>
+<td><p>256</p></td>
+<td><p>APs filtered out by reason 8 per chan/sband</p></td>
+</tr>
+<tr class="row-odd"><td><p>ratesize</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Size of fringe rate transform</p></td>
+</tr>
+<tr class="row-even"><td><p>mbdsize</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Size of multi-band delay (MBD) transform</p></td>
+</tr>
+<tr class="row-odd"><td><p>sbdsize</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Size of single-band delay (SBD) transform</p></td>
+</tr>
+<tr class="row-even"><td><p>unused2</p></td>
+<td><p>char[6]</p></td>
+<td><p>6</p></td>
+<td><p>Reserved/padding space</p></td>
+</tr>
+</tbody>
+</table>
+<p>The sideband struct has the form:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lsb</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Lower sideband value</p></td>
+</tr>
+<tr class="row-odd"><td><p>usb</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Upper sideband value</p></td>
+</tr>
+</tbody>
+</table>
+<p>while the sbweights struct has the form:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lsb</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Lower sideband sample weight</p></td>
+</tr>
+<tr class="row-odd"><td><p>usb</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Upper sideband sample weight</p></td>
+</tr>
+</tbody>
+</table>
+<p>This record describes the data filtering action taken by fourfit in detail.
+The AP flagging criteria for Mk4 will undoubtedly be different, but this is a start.  Info is
+much more detailed than Mk3, since records are kept by channel/sband.
+The record also describes the array sizes that fourfit decided to use.</p>
+<p><strong>type_207</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_207</span></code> is the phasecal and error rate record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__207_8h.html">type_207</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version number</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>pcal_mode</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>10 × ant1 + ant2; meaning defined in <cite>control.h</cite></p></td>
+</tr>
+<tr class="row-even"><td><p>unused2</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_pcamp</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal amplitude for reference station</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_pcamp</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal amplitude for remote station</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_pcphase</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal phase for reference station</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_pcphase</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal phase for remote station</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_pcoffset</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal offset for reference station</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_pcoffset</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal offset for remote station</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_pcfreq</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal frequency for reference station</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_pcfreq</p></td>
+<td><p>sbandf[64]</p></td>
+<td><p>512</p></td>
+<td><p>Phasecal frequency for remote station</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_pcrate</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Phasecal rate for reference station</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_pcrate</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Phasecal rate for remote station</p></td>
+</tr>
+<tr class="row-odd"><td><p>ref_errate</p></td>
+<td><p>float[64]</p></td>
+<td><p>256</p></td>
+<td><p>Mean error rate per tone for reference station</p></td>
+</tr>
+<tr class="row-even"><td><p>rem_errate</p></td>
+<td><p>float[64]</p></td>
+<td><p>256</p></td>
+<td><p>Mean error rate per tone for remote station</p></td>
+</tr>
+</tbody>
+</table>
+<p>the sbandf structure has the form:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lsb</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Value for lower sideband</p></td>
+</tr>
+<tr class="row-odd"><td><p>usb</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Value for upper sideband</p></td>
+</tr>
+</tbody>
+</table>
+<p>The phasecal and error rate numbers are as used by fourfit after extraction from the type-3 files,
+and interpretation in terms of the fourfit input parameters.  Error rates
+are by channel, translated from track error rates by arithmetic average
+of all contributing tracks.</p>
+<p><strong>type_208</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_208</span></code> is the  fringe solution parameter record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__208_8h.html">type_208</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>quality</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Fringe quality 0 to 9</p></td>
+</tr>
+<tr class="row-even"><td><p>errcode</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>A to F, maybe others</p></td>
+</tr>
+<tr class="row-odd"><td><p>tape_qcode</p></td>
+<td><p>char[6]</p></td>
+<td><p>6</p></td>
+<td><p>For A-file backward compat.</p></td>
+</tr>
+<tr class="row-even"><td><p>adelay</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Apriori delay at FRT (usec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>arate</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Apriori rate at FRT (usec/sec)</p></td>
+</tr>
+<tr class="row-even"><td><p>aaccel</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Apriori accel at FRT (usec/sec²)</p></td>
+</tr>
+<tr class="row-odd"><td><p>tot_mbd</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Total observed MBD (usec)</p></td>
+</tr>
+<tr class="row-even"><td><p>tot_sbd</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Total observed SBD (usec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>tot_rate</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Total observed rate (usec/sec)</p></td>
+</tr>
+<tr class="row-even"><td><p>tot_mbd_ref</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Total observed MBD (usec) at ref stn epoch</p></td>
+</tr>
+<tr class="row-odd"><td><p>tot_sbd_ref</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Total observed SBD (usec) at ref stn epoch</p></td>
+</tr>
+<tr class="row-even"><td><p>tot_rate_ref</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Total observed rate (usec/sec) at ref stn epoch</p></td>
+</tr>
+<tr class="row-odd"><td><p>resid_mbd</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>MBD residual to model (usec)</p></td>
+</tr>
+<tr class="row-even"><td><p>resid_sbd</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>SBD residual to model (usec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>resid_rate</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Rate residual to model (usec/sec)</p></td>
+</tr>
+<tr class="row-even"><td><p>mbd_error</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>MBD error calculated from data (usec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>sbd_error</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>SBD error calculated from data (usec)</p></td>
+</tr>
+<tr class="row-even"><td><p>rate_error</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Rate error calculated from data (usec/sec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ambiguity</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>MBD ambiguity (usec)</p></td>
+</tr>
+<tr class="row-even"><td><p>amplitude</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Coherent amplitude (correlation coefficient)</p></td>
+</tr>
+<tr class="row-odd"><td><p>inc_seg_ampl</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Incoherent segment addition amplitude</p></td>
+</tr>
+<tr class="row-even"><td><p>inc_chan_ampl</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Incoherent channel addition amplitude</p></td>
+</tr>
+<tr class="row-odd"><td><p>snr</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>SNR in sigmas</p></td>
+</tr>
+<tr class="row-even"><td><p>prob_false</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Probability of false detection</p></td>
+</tr>
+<tr class="row-odd"><td><p>totphase</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Total observed fringe phase (deg)</p></td>
+</tr>
+<tr class="row-even"><td><p>totphase_ref</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Total phase at ref station epoch</p></td>
+</tr>
+<tr class="row-odd"><td><p>resphase</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Residual earth-centered phase (deg)</p></td>
+</tr>
+<tr class="row-even"><td><p>tec_error</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Std dev of TEC estimate (TEC units)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed. This record contains the essentials of the fringe fit solution.</p>
+<p><strong>type_210</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_210</span></code> is the channel data record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__210_8h.html">type_210</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>amp_phas</p></td>
+<td><p>struct polars[64]</p></td>
+<td><p>variable</p></td>
+<td><p>Residual fringe amp/phase</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed. The entries are equivalent to the entries
+in the Mk3 type-4500 record.</p>
+<p><strong>type_212</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_212</span></code> is the AP data record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__212_8h.html">type_212</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td><p>nap</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Needed by IO library</p></td>
+</tr>
+<tr class="row-even"><td><p>first_ap</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of first ap in record</p></td>
+</tr>
+<tr class="row-odd"><td><p>channel</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>fourfit channel number</p></td>
+</tr>
+<tr class="row-even"><td><p>sbd_chan</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Singleband delay channel</p></td>
+</tr>
+<tr class="row-odd"><td><p>unused2</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Unused</p></td>
+</tr>
+<tr class="row-even"><td><p>data</p></td>
+<td><p>struct newphasor*</p></td>
+<td><p>variable</p></td>
+<td><p>Data values, variable length array</p></td>
+</tr>
+</tbody>
+</table>
+<p>The number a is the number of APs in the processed data span.  Record length
+is variable.  There are multiple type-212 records.
+The data are rotated to the fourfit solution, unless additional SBD channels
+are dumped in which case those records are rotated to the center of the SBD
+channel in question.</p>
+<p><strong>type_220</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_220</span></code> is a fringe plot record format. This type is <strong>DEPRECATED</strong>.
+See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__220_8h.html">type_220</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>bytes</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>ascii</p></td>
+<td><p>3</p></td>
+<td><p>220</p></td>
+</tr>
+<tr class="row-odd"><td><p>Version</p></td>
+<td><p>ascii</p></td>
+<td><p>2</p></td>
+<td><p>0-99</p></td>
+</tr>
+<tr class="row-even"><td><p>Unused</p></td>
+<td><p>ascii</p></td>
+<td><p>3</p></td>
+<td><p>Spaces</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fringe plot</p></td>
+<td><p>ascii</p></td>
+<td><p>15360</p></td>
+<td><p>Standard fringe plot image</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>type_221</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_221</span></code> is the postscript plot record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__221_8h.html">type_221</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version number</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p>unused1    | char</p></td>
+<td><p>1</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>padded</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Flag for padding to 8-byte boundary</p></td>
+</tr>
+<tr class="row-even"><td><p>ps_length</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Size of postscript plot in characters</p></td>
+</tr>
+<tr class="row-odd"><td><p>pplot</p></td>
+<td><p>char[1]</p></td>
+<td><p>ps_length</p></td>
+<td><p>Postscript data (variable length)</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>type_222</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_222</span></code> record stores the parsed control file. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__222_8h.html">type_222</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version number</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>padded</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Flag for padding to 8-byte boundary</p></td>
+</tr>
+<tr class="row-even"><td><p>setstring_hash</p></td>
+<td><p>unsigned int</p></td>
+<td><p>4</p></td>
+<td><p>Hash of setstring contents</p></td>
+</tr>
+<tr class="row-odd"><td><p>control_hash</p></td>
+<td><p>unsigned int</p></td>
+<td><p>4</p></td>
+<td><p>Hash of control file contents</p></td>
+</tr>
+<tr class="row-even"><td><p>setstring_length</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Size of set string in characters</p></td>
+</tr>
+<tr class="row-odd"><td><p>cf_length</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Size of control file in characters</p></td>
+</tr>
+<tr class="row-even"><td><p>control_contents</p></td>
+<td><p>char[8]</p></td>
+<td><p>varies</p></td>
+<td><p>Variable length array containing set string and
+control file contents, padded to multiple of 8 bytes</p></td>
+</tr>
+</tbody>
+</table>
+<p>The set-string and control file hash are computed as a simple Adler-32 checksum of the parsed byte stream.</p>
+<p><strong>type_230</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_230</span></code> is useful for the export of the raw fringe fit visibility data to other downstream software. It is
+an optional record which is only inserted if the <code class="docutils literal notranslate"><span class="pre">'-X'</span></code> option is passed to <code class="docutils literal notranslate"><span class="pre">fourfit</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version number</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>nspec_pts</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of spectral points (needed by IO)</p></td>
+</tr>
+<tr class="row-even"><td><p>frq</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Index into type 205</p></td>
+</tr>
+<tr class="row-odd"><td><p>ap</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>AP number (reference to type 206)</p></td>
+</tr>
+<tr class="row-even"><td><p>lsbweight</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Fraction of AP represented in LSB</p></td>
+</tr>
+<tr class="row-odd"><td><p>usbweight</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Fraction of AP represented in USB</p></td>
+</tr>
+<tr class="row-even"><td><p>xpower</p></td>
+<td><p>hops_scomplex*</p></td>
+<td><p>varies</p></td>
+<td><p>Array of spectrum values</p></td>
+</tr>
+</tbody>
+</table>
+<p>The struct hops_scomplex has the form:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>real</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>real value</p></td>
+</tr>
+<tr class="row-odd"><td><p>imag</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>imaginary value</p></td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__230_8h.html">type_230</a> for more information.</p>
+</section>
+<section id="type-3-station-unit-data-file-record-formats">
+<h2>Type 3 (Station unit data) file record formats<a class="headerlink" href="#type-3-station-unit-data-file-record-formats" title="Link to this heading"></a></h2>
+<p>The type 3 files contain station-specific information for each of the
+stations involved in the scan.  They are initially created by genaroot, which
+writes the type 300 and 301/2 records.  These contain the delay and phase spline
+polynomials which describe the correlator model, and which drive the station
+unit in its delay compensation and frame header construction.  The files are
+appended to by the station unit manager software during or after the
+correlation, with information on track error rates, state counts, and extracted
+phasecal values in type 304, 306 and 308 records respectively.</p>
+<p><strong>type_300</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_300</span></code> is the station ID and model parameter record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__300_8h.html">type_300</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>SU_number</p></td>
+<td><p>U8</p></td>
+<td><p>1</p></td>
+<td><p>Station unit, filled by suman</p></td>
+</tr>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>1-char VEX letter code</p></td>
+</tr>
+<tr class="row-odd"><td><p>intl_id</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>2-char international id code</p></td>
+</tr>
+<tr class="row-even"><td><p>name</p></td>
+<td><p>char[32]</p></td>
+<td><p>32</p></td>
+<td><p>Full station name, null-terminated</p></td>
+</tr>
+<tr class="row-odd"><td><p>unused2</p></td>
+<td><p>char</p></td>
+<td><p>1</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-even"><td><p>model_start</p></td>
+<td><p>struct date</p></td>
+<td><p>12</p></td>
+<td><p>Start time for 1st spline</p></td>
+</tr>
+<tr class="row-odd"><td><p>model_interval</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Spline interval in seconds (record time)</p></td>
+</tr>
+<tr class="row-even"><td><p>nsplines</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Number of splines in scan</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.</p>
+<p><strong>type_301</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_301</span></code> is the delay polynomial coefficient record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__301_8h.html">type_301</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>interval</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Sequential model interval number</p></td>
+</tr>
+<tr class="row-even"><td><p>chan_id</p></td>
+<td><p>char[32]</p></td>
+<td><p>32</p></td>
+<td><p>Frequency channel identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p>unused2</p></td>
+<td><p>char[6]</p></td>
+<td><p>6</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-even"><td><p>delay_spline</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td><p>Delay spline coefficients</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.</p>
+<p><strong>type_302</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_302</span></code> is the phase polynomial coefficient record format. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__302_8h.html">type_302</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>interval</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Sequential model interval number</p></td>
+</tr>
+<tr class="row-even"><td><p>chan_id</p></td>
+<td><p>char[32]</p></td>
+<td><p>32</p></td>
+<td><p>Frequency channel identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p>unused2</p></td>
+<td><p>char[6]</p></td>
+<td><p>6</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-even"><td><p>phase_spline</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td><p>Phase spline coefficients</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.</p>
+<p><strong>type_303</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_303</span></code> struct contains the spline coefficients of the a priori model for each channel of the respective station
+for the following coordinate quantities:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>azimuth</p></li>
+<li><p>elevation</p></li>
+<li><p>parallactic_angle</p></li>
+<li><p>u coordinate</p></li>
+<li><p>v coordinate</p></li>
+<li><p>w coordinate</p></li>
+</ul>
+</div></blockquote>
+<p>A polynomial spline module with up to 6 coefficients is supported. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__303_8h.html">type_303</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>interval</p></td>
+<td><p>short</p></td>
+<td><p>2</p></td>
+<td><p>Sequential model interval number</p></td>
+</tr>
+<tr class="row-even"><td><p>chan_id</p></td>
+<td><p>char[32]</p></td>
+<td><p>32</p></td>
+<td><p>Frequency channel identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p>unused2</p></td>
+<td><p>char[6]</p></td>
+<td><p>6</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-even"><td><p>azimuth</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td><p>Azimuth (deg) coefficients</p></td>
+</tr>
+<tr class="row-odd"><td><p>elevation</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td><p>Elevation (deg) coefficients</p></td>
+</tr>
+<tr class="row-even"><td><p>parallactic_angle</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td><p>Parallactic angle (deg CCW el line from RA line)</p></td>
+</tr>
+<tr class="row-odd"><td><p>u</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td><p>Baseline projections toward source (m)</p></td>
+</tr>
+<tr class="row-even"><td><p>v</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>w</p></td>
+<td><p>double[6]</p></td>
+<td><p>48</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>type_304</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_304</span></code> contains “cooked” track error statistics for the Mk4 correlator. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__304_8h.html">type_304</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>date</p></td>
+<td><p>12</p></td>
+<td><p>Start time for this span of data</p></td>
+</tr>
+<tr class="row-even"><td><p>duration</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Duration of this data span (sec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>trackstats</p></td>
+<td><p>trackstat*</p></td>
+<td></td>
+<td><p>Array of track statistics per track</p></td>
+</tr>
+</tbody>
+</table>
+<p>The trackstat struct is as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>error_count</p></td>
+<td><p>int</p></td>
+<td><p>Parity error count</p></td>
+</tr>
+<tr class="row-odd"><td><p>frames</p></td>
+<td><p>int</p></td>
+<td><p>Count of frames</p></td>
+</tr>
+<tr class="row-even"><td><p>bad_frames</p></td>
+<td><p>int</p></td>
+<td><p>Count of bad frames</p></td>
+</tr>
+<tr class="row-odd"><td><p>slip_sync</p></td>
+<td><p>int</p></td>
+<td><p>Count of slip syncs</p></td>
+</tr>
+<tr class="row-even"><td><p>missing_sync</p></td>
+<td><p>int</p></td>
+<td><p>Count of missing syncs</p></td>
+</tr>
+<tr class="row-odd"><td><p>crc_error</p></td>
+<td><p>int</p></td>
+<td><p>Count of CRC errors</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.</p>
+<p><strong>type_305</strong></p>
+<p>The type_305 record is unused and <strong>DEPRECATED</strong>. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__305_8h.html">type_305</a> for more information.</p>
+<p><strong>type_306</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_306</span></code> contains “cooked” state count for the Mark4 correlator. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__306_8h.html">type_306</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>date</p></td>
+<td><p>12</p></td>
+<td><p>Start time for this span of data</p></td>
+</tr>
+<tr class="row-even"><td><p>duration</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Duration of this data span (sec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>stcount</p></td>
+<td><p>stcount[16]</p></td>
+<td></td>
+<td><p>Signal state counts per channel</p></td>
+</tr>
+</tbody>
+</table>
+<p>The stcount struct is as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>chan_id</p></td>
+<td><p>char[32]</p></td>
+<td><p>Channel identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p>bigpos</p></td>
+<td><p>int</p></td>
+<td><p>State counts by voltage bin</p></td>
+</tr>
+<tr class="row-even"><td><p>pos</p></td>
+<td><p>int</p></td>
+<td><p>Count of positive 1-bit samples</p></td>
+</tr>
+<tr class="row-odd"><td><p>neg</p></td>
+<td><p>int</p></td>
+<td><p>Count of negative 1-bit samples</p></td>
+</tr>
+<tr class="row-even"><td><p>bigneg</p></td>
+<td><p>int</p></td>
+<td><p>High-magnitude negative count</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.</p>
+<p><strong>type_307</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_307</span></code> contians “raw” phase cal values, and is <strong>DEPRECATED</strong>. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__307_8h.html">type_307</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>su</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Station Unit (SU) identifier</p></td>
+</tr>
+<tr class="row-even"><td><p>unused2</p></td>
+<td><p>char[4]</p></td>
+<td><p>4</p></td>
+<td><p>Padding</p></td>
+</tr>
+<tr class="row-odd"><td><p>tot</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Total Observing Time (TOT)</p></td>
+</tr>
+<tr class="row-even"><td><p>rot</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Reference Observing Time (ROT)</p></td>
+</tr>
+<tr class="row-odd"><td><p>accum_period</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Accumulation period in SYSCLKs</p></td>
+</tr>
+<tr class="row-even"><td><p>frame_count</p></td>
+<td><p>U32</p></td>
+<td><p>4</p></td>
+<td><p>Number of data frames processed</p></td>
+</tr>
+<tr class="row-odd"><td><p>counts</p></td>
+<td><p>ChanCounts[16]</p></td>
+<td></td>
+<td><p>Signal strength and count metrics</p></td>
+</tr>
+<tr class="row-even"><td><p>unused3</p></td>
+<td><p>char[4]</p></td>
+<td><p>4</p></td>
+<td><p>Padding</p></td>
+</tr>
+</tbody>
+</table>
+<p>The ChanCount struct contains:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>count</p></td>
+<td><p>U32[8]</p></td>
+<td><p>LSB-first counts from table RAM</p></td>
+</tr>
+<tr class="row-odd"><td><p>val_count</p></td>
+<td><p>U32</p></td>
+<td><p>Number of valid samples</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>type_308</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_308</span></code> contains “cooked” phase cal values and is <strong>DEPRECATED</strong>. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__308_8h.html">type_308</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Reserved space</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>date</p></td>
+<td><p>12</p></td>
+<td><p>Start time for this span of data</p></td>
+</tr>
+<tr class="row-even"><td><p>duration</p></td>
+<td><p>float</p></td>
+<td><p>4</p></td>
+<td><p>Duration of this data span (sec)</p></td>
+</tr>
+<tr class="row-odd"><td><p>pcal</p></td>
+<td><p>pcal[32]</p></td>
+<td></td>
+<td><p>Detected phasecal information per channel</p></td>
+</tr>
+</tbody>
+</table>
+<p>The pcal struct has the following content:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>chan_id</p></td>
+<td><p>char[8]</p></td>
+<td><p>Channel identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p>frequency</p></td>
+<td><p>float</p></td>
+<td><p>Frequency offset (Hz relative to channel)</p></td>
+</tr>
+<tr class="row-even"><td><p>real</p></td>
+<td><p>float</p></td>
+<td><p>Real component of detected signal</p></td>
+</tr>
+<tr class="row-odd"><td><p>imaginary</p></td>
+<td><p>float</p></td>
+<td><p>Imaginary component of detected signal</p></td>
+</tr>
+</tbody>
+</table>
+<p>Record length is fixed.</p>
+<p><strong>type_309</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">type_309</span></code> struct is used for the storage of multi-tone phase calibration data. See <a class="reference external" href="https://github.com/pages/MITHaystack/HOPS/_static/doxygen/html/type__309_8h.html">type_309</a> for more information.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>record_id</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Standard 3-digit id</p></td>
+</tr>
+<tr class="row-odd"><td><p>version_no</p></td>
+<td><p>char[2]</p></td>
+<td><p>2</p></td>
+<td><p>Standard 2-digit version #</p></td>
+</tr>
+<tr class="row-even"><td><p>unused1</p></td>
+<td><p>char[3]</p></td>
+<td><p>3</p></td>
+<td><p>Unused</p></td>
+</tr>
+<tr class="row-odd"><td><p>su</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>SU</p></td>
+</tr>
+<tr class="row-even"><td><p>ntones</p></td>
+<td><p>int</p></td>
+<td><p>4</p></td>
+<td><p>Number of tones [0..64]</p></td>
+</tr>
+<tr class="row-odd"><td><p>rot</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>ROT at start of AP</p></td>
+</tr>
+<tr class="row-even"><td><p>acc_period</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Accumulation period (in seconds)</p></td>
+</tr>
+<tr class="row-odd"><td><p>chan[64]</p></td>
+<td><p>struct ch1_tag[64]</p></td>
+<td></td>
+<td><p>Array of tone/channel data</p></td>
+</tr>
+</tbody>
+</table>
+<p>Details of struct <cite>ch1_tag</cite> (used in chan[64]):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Size (bytes)</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>chan_name</p></td>
+<td><p>char[8]</p></td>
+<td><p>8</p></td>
+<td><p>Channel name</p></td>
+</tr>
+<tr class="row-odd"><td><p>freq</p></td>
+<td><p>double</p></td>
+<td><p>8</p></td>
+<td><p>Tone frequency in Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>acc[64][2]</p></td>
+<td><p>U32</p></td>
+<td><p>4096</p></td>
+<td><p>Accumulators: 64 freqs × 2 quads (C, S)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="afio.html" class="btn btn-neutral float-left" title="afio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mk4util.html" class="btn btn-neutral float-right" title="mk4util" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,521 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="adjust__snr_8c" kind="file" language="C++">
+    <compoundname>adjust_snr.c</compoundname>
+    <includes local="no">math.h</includes>
+    <includes refid="msg_8h" local="yes">msg.h</includes>
+    <includes refid="mk4__data_8h" local="yes">mk4_data.h</includes>
+    <includes refid="param__struct_8h" local="yes">param_struct.h</includes>
+    <includes refid="pass__struct_8h" local="yes">pass_struct.h</includes>
+    <includes refid="apply__funcs_8h" local="yes">apply_funcs.h</includes>
+    <incdepgraph>
+      <node id="35">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="6">
+        <label>stdarg.h</label>
+      </node>
+      <node id="39">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>plot_struct.h</label>
+        <link refid="plot__struct_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="22">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="44">
+        <label>stdint.h</label>
+      </node>
+      <node id="27">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="34">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="21">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>param_struct.h</label>
+        <link refid="param__struct_8h"/>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>control.h</label>
+        <link refid="control_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="14">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>sys/types.h</label>
+      </node>
+      <node id="33">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="10">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="37">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>adjust_snr.c</label>
+        <link refid="adjust__snr_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>complex.h</label>
+      </node>
+      <node id="29">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>pass_struct.h</label>
+        <link refid="pass__struct_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="9">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>math.h</label>
+      </node>
+      <node id="32">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="43">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>apply_funcs.h</label>
+        <link refid="apply__funcs_8h"/>
+      </node>
+      <node id="5">
+        <label>stdio.h</label>
+      </node>
+      <node id="28">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="7">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="adjust__snr_8c_1aaad099793a78ad5c73d55386bda975f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double adjust_snr</definition>
+        <argsstring>(struct type_pass *pass, struct type_status *status)</argsstring>
+        <name>adjust_snr</name>
+        <param>
+          <type>struct <ref refid="structtype__pass" kindref="compound">type_pass</ref> *</type>
+          <declname>pass</declname>
+        </param>
+        <param>
+          <type>struct <ref refid="structtype__status" kindref="compound">type_status</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/adjust_snr.c" line="96" column="8" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/adjust_snr.c" bodystart="96" bodyend="128"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Make<sp/>adjustments<sp/>to<sp/>the<sp/>SNR,<sp/>Cf.<sp/>TMS3rdEd<sp/>Eq<sp/>8.14,<sp/>8.32-35,<sp/>8.50-52</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>The<sp/>caller,<sp/>make_plotdata(struct<sp/>type_pass<sp/>*pass)<sp/>will<sp/>have<sp/>made<sp/>most</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>of<sp/>the<sp/>calculations<sp/>necessary<sp/>to<sp/>make<sp/>the<sp/>plot.<sp/><sp/>A<sp/>few<sp/>more<sp/>are<sp/>made</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>in<sp/>make_postplot()<sp/>and<sp/>even<sp/>in<sp/>generate_text().<sp/><sp/>And<sp/>the<sp/>caller<sp/>will</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>have<sp/>estimated<sp/>the<sp/>SNR<sp/>of<sp/>the<sp/>fringe<sp/>based<sp/>on<sp/>theoretical<sp/>factors.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>status.snr<sp/>=<sp/>status.delres_max<sp/>*<sp/>param.inv_sigma</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>sqrt((double)status.total_ap_frac<sp/>*<sp/>eff_npol)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>/<sp/>(1.0E4<sp/>*<sp/>status.amp_corr_fact);</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>SNR<sp/>=<sp/>(status.delres_max/1.0E4)<sp/><sp/>#<sp/>AMP<sp/>without<sp/>Whitney<sp/>multiplier</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>*<sp/>param.inv_sigma<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>sqrt(samples<sp/>/<sp/>channel)</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>*<sp/>sqrt(num-AP<sp/>pol<sp/>channels)<sp/><sp/>#<sp/>multiplier<sp/>on<sp/>inv_sigma</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>The<sp/>visibilities<sp/>calculated<sp/>by<sp/>DiFX<sp/>are<sp/>multiplied<sp/>by<sp/>SCALE<sp/>(10000)</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>SCALE<sp/>10000.0<sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>amplitude<sp/>factor<sp/>to<sp/>normalize<sp/>for<sp/>fourfit<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>in<sp/>difx2mark4<sp/>and<sp/>in<sp/>the<sp/>same<sp/>place<sp/>(new_type1.c),<sp/>the<sp/>Van<sp/>Vleck<sp/>factors</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>are<sp/>applied<sp/>via<sp/>a<sp/>sqrt()<sp/>of<sp/>the<sp/>normal<sp/>factor<sp/>on<sp/>a<sp/>per<sp/>station<sp/>basis</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>double<sp/>factor[2]<sp/>=<sp/>{1.25331,<sp/>1.06448};<sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>Thus<sp/>1v1<sp/>and<sp/>2v2<sp/>end<sp/>up<sp/>with<sp/>1.5707859561<sp/>(1/0.6366239755),<sp/>and</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>1.1331176704<sp/>(1/0.8825208768)<sp/>and<sp/>1v2<sp/>is<sp/>1.3341234288<sp/>(1/0.7495558345)</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>which<sp/>explains<sp/>the<sp/>puzzling<sp/>numbers<sp/>in<sp/>fill_param.c,<sp/>which<sp/>are<sp/>only</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>correct<sp/>at<sp/>the<sp/>sub-percent<sp/>level.<sp/><sp/>Thus<sp/>inv_sigma<sp/>has<sp/>factors<sp/>to<sp/>undo</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>what<sp/>difx2mark4<sp/>did<sp/>when<sp/>computing<sp/>the<sp/>SNR.<sp/><sp/>Note<sp/>that<sp/>inv_sigma<sp/>is</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>calculated<sp/>where<sp/>it<sp/>is<sp/>to<sp/>allow<sp/>ionospheric<sp/>search<sp/>windows<sp/>to<sp/>branch</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>on<sp/>snr_approx<sp/>(computed<sp/>from<sp/>inv_sigma,<sp/>which<sp/>is<sp/>not<sp/>otherwise<sp/>used</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>until<sp/>this<sp/>point).</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>For<sp/>backward<sp/>compatibility<sp/>with<sp/>hardware<sp/>correlation<sp/>(fill_param.c):</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>case<sp/>2:<sp/>fact2<sp/>=<sp/>(param-&gt;corr_type==DIFX)<sp/>?<sp/>0.6366239755<sp/>:<sp/>0.637;</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>case<sp/>3:<sp/>fact2<sp/>=<sp/>(param-&gt;corr_type==DIFX)<sp/>?<sp/>0.7495558345<sp/>:<sp/>0.749;</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>case<sp/>4:<sp/>fact2<sp/>=<sp/>(param-&gt;corr_type==DIFX)<sp/>?<sp/>0.8825208768<sp/>:<sp/>0.881;</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>the<sp/>point<sp/>being<sp/>that<sp/>there<sp/>ARE<sp/>issues<sp/>at<sp/>the<sp/>0.1%<sp/>level<sp/>certainly,</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>but<sp/>all<sp/>that<sp/>is<sp/>really<sp/>happening<sp/>here<sp/>is<sp/>undo-ing<sp/>the<sp/>spectral<sp/>function</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>multiplier<sp/>that<sp/>was<sp/>applied<sp/>in<sp/>difx2mark4.<sp/><sp/>Being<sp/>more<sp/>specific,<sp/>Fig<sp/>8.6</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>of<sp/>TMS<sp/>shows<sp/>that<sp/>these<sp/>factors<sp/>are<sp/>dependent<sp/>on<sp/>v0<sp/>(the<sp/>threshold<sp/>for<sp/>bit</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>state<sp/>definition,<sp/>which<sp/>is<sp/>at<sp/>best<sp/>only<sp/>approximately<sp/>set<sp/>and<sp/>possibly</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>variable<sp/>due<sp/>to<sp/>changes<sp/>in<sp/>the<sp/>receiver<sp/>or<sp/>atmospheric<sp/>background,<sp/>&amp;c.)</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>The<sp/>discussion<sp/>after<sp/>TMS<sp/>Eq<sp/>8.53<sp/>(also<sp/>Table<sp/>8.2)<sp/>is<sp/>the<sp/>source<sp/>of<sp/>the<sp/>0.881.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>DiFX<sp/>itself<sp/>uses<sp/>OPTIMAL_2BIT_HIGH<sp/>=<sp/>3.3359<sp/>(defined<sp/>in<sp/>mark5_stream.h<sp/>of</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>the<sp/>mark5access<sp/>library,<sp/>appearing<sp/>in<sp/>format_codif.c<sp/>format_vdif.c,</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>mark5_format_d2k.c,<sp/>mark5_format_kvn5b.c,<sp/>mark5_format_mark4.c</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>mark5_format_mark5b.c,<sp/>mark5_format_vlba.c,<sp/><sp/>mark5_format_vlba_nomod.c</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>and<sp/>mark5_stream.c....<sp/><sp/>The<sp/>calculus<sp/>for<sp/>\eta_4<sp/>corresponding<sp/>to<sp/>8.53</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>is<sp/>coded<sp/>in<sp/>misc/bits/b4thresh<sp/>(worked<sp/>out<sp/>2011<sp/>-<sp/>2012<sp/>to<sp/>understand</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>all<sp/>of<sp/>this<sp/>for<sp/>the<sp/>ALMA<sp/>situation);<sp/>./b4thresh</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>eta4(3.33590000,0.98160000)<sp/>=<sp/>0.88251815<sp/>phi(0.98160000/sqrt(2))<sp/>=<sp/>0.67370305</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>(RJC<sp/>may<sp/>have<sp/>worked<sp/>this<sp/>out<sp/>independently<sp/>when<sp/>difx2mark4<sp/>was<sp/>written;</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>the<sp/>code<sp/>was<sp/>refactored<sp/>by<sp/>May<sp/>2012<sp/>and<sp/>new_type1.c<sp/>appears<sp/>at<sp/>that<sp/>time.</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>GBC<sp/>recalls<sp/>discussions<sp/>about<sp/>all<sp/>of<sp/>this<sp/>and<sp/>the<sp/>&quot;more<sp/>precise&quot;<sp/>value<sp/>may</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>have<sp/>been<sp/>adopted<sp/>in<sp/>the<sp/>process<sp/>of<sp/>efforts<sp/>to<sp/>validate<sp/>Mark4<sp/>correlation</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*<sp/>against<sp/>correlation<sp/>with<sp/>DiFX.).</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>Note<sp/>that<sp/>apply_video_bp()<sp/>and<sp/>apply_cmplxbp()<sp/>should<sp/>be<sp/>(at<sp/>least</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>approximately)<sp/>SNR<sp/>neutral,<sp/>but<sp/>notches<sp/>and<sp/>passband<sp/>are<sp/>more<sp/>likely</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>to<sp/>break<sp/>things<sp/>(if<sp/>the<sp/>bandwidth<sp/>discarded<sp/>is<sp/>large).</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>However,<sp/>the<sp/>&quot;apply_functions&quot;<sp/>break<sp/>those<sp/>assumptions<sp/>and<sp/>thus<sp/>the</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>true<sp/>SNR<sp/>may<sp/>be<sp/>wildly<sp/>different<sp/>from<sp/>the<sp/>theoretical<sp/>value.<sp/><sp/>E.g.<sp/>if</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>half<sp/>of<sp/>the<sp/>bandwidth<sp/>is<sp/>discarded,<sp/>one<sp/>will<sp/>have<sp/>a<sp/>narrower<sp/>channel,</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>fewer<sp/>samples<sp/>and<sp/>lower<sp/>SNR.<sp/><sp/>This<sp/>function<sp/>adjusts<sp/>the<sp/>theoretical</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>value<sp/>based<sp/>on<sp/>the<sp/>information<sp/>stored<sp/>in<sp/>the<sp/>status<sp/>structure<sp/>at<sp/>the</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>time<sp/>the<sp/>adjustments<sp/>are<sp/>made.<sp/><sp/>Temporary<sp/>adjustments<sp/>will<sp/>have<sp/>been</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>stored<sp/>in<sp/>MAXFREQ<sp/>+0<sp/>(passband)<sp/>or<sp/>+1<sp/>(notches)<sp/>and<sp/>later<sp/>incremented<sp/>to</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>status-&gt;sb_bw_fracs<sp/>(0<sp/>or<sp/>[fractional<sp/>correction])<sp/>and</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>status-&gt;sb_bw_origs<sp/>(the<sp/>value<sp/>of<sp/>datum-&gt;?sb_frac<sp/>prior<sp/>to<sp/>adjustment).</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>(That<sp/>is,<sp/>an<sp/>addition<sp/>to<sp/>sb_bw_fracs<sp/>and<sp/>sb_bw_count<sp/>has<sp/>been<sp/>made<sp/>for</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>every<sp/>ap/sb/fr<sp/>datum<sp/>that<sp/>survived<sp/>any<sp/>data<sp/>selection.)<sp/><sp/>The<sp/>counter</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>status-&gt;sb_bw_apcnt<sp/>counts<sp/>the<sp/>number<sp/>of<sp/>APs<sp/>that<sp/>have<sp/>been<sp/>accumulated</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>into<sp/>sb_bw_fracs<sp/>and<sp/>sb_bw_origs<sp/>so<sp/>that<sp/>we<sp/>can<sp/>try<sp/>to<sp/>make<sp/>adjustments.</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>Now<sp/>a<sp/>problem<sp/>is<sp/>that<sp/>passband<sp/>corrections<sp/>may<sp/>remove<sp/>frac<sp/>AP<sp/>increments</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>and<sp/>the<sp/>integration<sp/>timing<sp/>calculation<sp/>uses<sp/>the<sp/>number<sp/>of<sp/>channels<sp/>whether</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>any<sp/>data<sp/>survives<sp/>from<sp/>them<sp/>or<sp/>not.<sp/><sp/>sb_bw_aperr<sp/>accumulates<sp/>the<sp/>error.</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>This<sp/>results<sp/>in<sp/>corrections<sp/>to<sp/>fill_206()<sp/>and<sp/>in<sp/>search()<sp/>once<sp/>norm_fx</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>has<sp/>completed.</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/>norm_xf<sp/>was<sp/>missing<sp/>the<sp/>logic<sp/>to<sp/>skip<sp/>things<sp/>after<sp/>the<sp/>apply_*<sp/>edits</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>to<sp/>the<sp/>passband<sp/>(or<sp/>notches)<sp/>and<sp/>the<sp/>corrections<sp/>are<sp/>indicated,<sp/>but<sp/>not</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>made.</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/>So<sp/>in<sp/>summary:<sp/>param.inv_sigma<sp/>carries<sp/>the<sp/>number<sp/>of<sp/>bits<sp/>which<sp/>is<sp/>then</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*<sp/>multiplied<sp/>by<sp/>the<sp/>sqrt(the<sp/>number<sp/>of<sp/>channels<sp/>and<sp/>perhaps<sp/>pols<sp/>co-added).</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*<sp/>When<sp/>the<sp/>effective<sp/>bandwidth<sp/>has<sp/>been<sp/>reduced,<sp/>the<sp/>SNR<sp/>must<sp/>be<sp/>as<sp/>well.</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="msg_8h" kindref="compound">msg.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mk4__data_8h" kindref="compound">mk4_data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="param__struct_8h" kindref="compound">param_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pass__struct_8h" kindref="compound">pass_struct.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="apply__funcs_8h" kindref="compound">apply_funcs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//#include<sp/>&quot;ff_misc_if.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="adjust__snr_8c_1aaad099793a78ad5c73d55386bda975f8" kindref="member">adjust_snr</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__pass" kindref="compound">type_pass</ref><sp/>*pass,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structtype__status" kindref="compound">type_status</ref><sp/>*<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>theoretical_snr<sp/>=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a006d490f6eec25c4350ad1b69cefff87" kindref="member">snr</ref>,<sp/>corrected_snr;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bw_corr,<sp/>frac_bw,<sp/>ap_bw;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sb,<sp/>fr,<sp/>chcnt;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>first<sp/>consider<sp/>if<sp/>a<sp/>bandwidth<sp/>correction<sp/>needs<sp/>to<sp/>be<sp/>made<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(sb<sp/>=<sp/>0,<sp/>chcnt<sp/>=<sp/>0,<sp/>frac_bw<sp/>=<sp/>0,<sp/>ap_bw<sp/>=<sp/>0;<sp/>sb<sp/>&lt;<sp/>2;<sp/>sb++)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>pass-&gt;<ref refid="structtype__pass_1a71a061fd5d52e31234ca49f32870c209" kindref="member">nfreq</ref>;<sp/>fr++)<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ignore<sp/>channels<sp/>that<sp/>were<sp/>not<sp/>part<sp/>of<sp/>the<sp/>accumulation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1aea68572a4e806fdb7db1e4777f8c633e" kindref="member">sb_bw_apcnt</ref>[fr][sb]<sp/>&lt;=<sp/>0.0)<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>chcnt<sp/>++;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>this<sp/>fr/sb<sp/>was<sp/>included<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frac_bw<sp/>+=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1afcb9cb5a699aa15d176e58d8e86721d9" kindref="member">sb_bw_fracs</ref>[fr][sb];</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ap_bw<sp/>+=<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1aea68572a4e806fdb7db1e4777f8c633e" kindref="member">sb_bw_apcnt</ref>[fr][sb];</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;adjust_snr<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;sb<sp/>%d<sp/>fr<sp/>%d<sp/>chcnt<sp/>%d<sp/>frac_bw<sp/>%lf<sp/>ap_bw<sp/>%lf<sp/>[%lf<sp/>%lf<sp/>%lf]&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1,<sp/>sb,<sp/>fr,<sp/>chcnt,<sp/>frac_bw,<sp/>ap_bw,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1afcb9cb5a699aa15d176e58d8e86721d9" kindref="member">sb_bw_fracs</ref>[fr][sb],</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a2d78c7b5875ba7b354e37f3cf3cdec11" kindref="member">sb_bw_origs</ref>[fr][sb],<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1aea68572a4e806fdb7db1e4777f8c633e" kindref="member">sb_bw_apcnt</ref>[fr][sb]);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>if<sp/>chcnt<sp/>is<sp/>0<sp/>we<sp/>have<sp/>no<sp/>bw_corr<sp/>to<sp/>make<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>bw_corr<sp/>=<sp/>(chcnt<sp/>&gt;<sp/>0)<sp/>?<sp/>sqrt(frac_bw<sp/>/<sp/>ap_bw)<sp/>:<sp/>1.0;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>corrected_snr<sp/>=<sp/>bw_corr<sp/>*<sp/>theoretical_snr;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>for<sp/>now,<sp/>always<sp/>report<sp/>if<sp/>SNR<sp/>was<sp/>diddled<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bw_corr<sp/>!=<sp/>1.0)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;adjust_snr<sp/>%lf<sp/>-&gt;<sp/>%lf<sp/>(%lf;<sp/>%lf<sp/>%lf)&quot;</highlight><highlight class="normal">,<sp/>1,</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>theoretical_snr,<sp/>corrected_snr,<sp/>bw_corr,</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a01f74ea2c91b4212e27661ee0594dc12" kindref="member">total_ap_frac</ref>,<sp/><ref refid="fourfit3_8c_1a4accbc719f15b3ee9e12175b99ffe53b" kindref="member">status</ref>-&gt;<ref refid="structtype__status_1a0493d7ebf613e067e58be01a67fcb958" kindref="member">tot_sb_bw_aperr</ref>);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(corrected_snr);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/>*<sp/>eof</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/fourfit_libs/ffsearch/src/adjust_snr.c"/>
+  </compounddef>
+</doxygen>

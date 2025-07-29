@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__HDF5TypeCode_8hh" kind="file" language="C++">
+    <compoundname>MHO_HDF5TypeCode.hh</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">string</includes>
+    <includes local="no">complex</includes>
+    <includes refid="MHO__Types_8hh" local="yes">MHO_Types.hh</includes>
+    <includes local="yes">hdf5.h</includes>
+    <includedby refid="hops2hdf5_8cc" local="yes">hops2hdf5.cc</includedby>
+    <includedby refid="MHO__ContainerHDF5Converter_8hh" local="yes">MHO_ContainerHDF5Converter.hh</includedby>
+    <includedby refid="MHO__HDF5Attributes_8hh" local="yes">MHO_HDF5Attributes.hh</includedby>
+    <includedby refid="MHO__HDF5ConversionHelpers_8hh" local="yes">MHO_HDF5ConversionHelpers.hh</includedby>
+    <includedby refid="MHO__HDF5Datasets_8hh" local="yes">MHO_HDF5Datasets.hh</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>MHO_HDF5TypeCode.hh</label>
+        <link refid="MHO__HDF5TypeCode_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>cstdint</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="7">
+        <label>hdf5.h</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>MHO_Types.hh</label>
+        <link refid="MHO__Types_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>complex</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>MHO_HDF5TypeCode.hh</label>
+        <link refid="MHO__HDF5TypeCode_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hops2hdf5.cc</label>
+        <link refid="hops2hdf5_8cc"/>
+      </node>
+      <node id="8">
+        <label>MHO_HDF5Attributes.hh</label>
+        <link refid="MHO__HDF5Attributes_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MHO_HDF5Datasets.hh</label>
+        <link refid="MHO__HDF5Datasets_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MHO_ContainerHDF5Converter.hh</label>
+        <link refid="MHO__ContainerHDF5Converter_8hh"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MHO_HDF5ConverterDictionary.cc</label>
+        <link refid="MHO__HDF5ConverterDictionary_8cc"/>
+      </node>
+      <node id="6">
+        <label>MHO_HDF5ContainerFileInterface.cc</label>
+        <link refid="MHO__HDF5ContainerFileInterface_8cc"/>
+      </node>
+      <node id="5">
+        <label>MHO_HDF5ContainerFileInterface.hh</label>
+        <link refid="MHO__HDF5ContainerFileInterface_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_HDF5ConverterDictionary.hh</label>
+        <link refid="MHO__HDF5ConverterDictionary_8hh"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MHO_HDF5ConversionHelpers.hh</label>
+        <link refid="MHO__HDF5ConversionHelpers_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structhops_1_1h5helper__complex__double" prot="public">hops::h5helper_complex_double</innerclass>
+    <innerclass refid="structhops_1_1h5helper__complex__float" prot="public">hops::h5helper_complex_float</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;complex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Types_8hh" kindref="compound">MHO_Types.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;hdf5.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MHO_HDF5TypeCode_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_HDF5TypeCode_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Datatype<sp/><sp/><sp/><sp/><sp/>Description<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_CHAR<sp/><sp/>C-style<sp/>char<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_SCHAR<sp/><sp/><sp/><sp/><sp/>C-style<sp/>signed<sp/>char<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_UCHAR<sp/><sp/><sp/><sp/><sp/>C-style<sp/>unsigned<sp/>signed<sp/>char<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_SHORT<sp/><sp/><sp/><sp/><sp/>C-style<sp/>short<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_USHORT<sp/><sp/><sp/><sp/>C-style<sp/>unsigned<sp/>short<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_INT<sp/><sp/><sp/>C-style<sp/>int<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_UINT<sp/><sp/>C-style<sp/>unsigned<sp/>int<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_LONG<sp/><sp/>C-style<sp/>long<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_ULONG<sp/><sp/><sp/><sp/><sp/>C-style<sp/>unsigned<sp/>long<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_LLONG<sp/><sp/><sp/><sp/><sp/>C-style<sp/>long<sp/>long<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_ULLONG<sp/><sp/><sp/><sp/>C-style<sp/>unsigned<sp/>long<sp/>long<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_FLOAT16<sp/><sp/><sp/>C-style<sp/>_Float16<sp/>(May<sp/>be<sp/>H5I_INVALID_HID<sp/>if<sp/>platform<sp/>doesn&apos;t<sp/>support<sp/>_Float16<sp/>type)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_FLOAT<sp/><sp/><sp/><sp/><sp/>C-style<sp/>float<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/>H5T_NATIVE_DOUBLE<sp/><sp/><sp/><sp/>C-style<sp/>double<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//helper<sp/>structs<sp/>and<sp/>functions<sp/>needed<sp/>for<sp/>complex<sp/>numbers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="structhops_1_1h5helper__complex__float" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1h5helper__complex__float" kindref="compound">h5helper_complex_float</ref><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="43" refid="structhops_1_1h5helper__complex__float_1abc64f0e2013092873533f7bd110e7e16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1h5helper__complex__float_1abc64f0e2013092873533f7bd110e7e16" kindref="member">real</ref>;</highlight></codeline>
+<codeline lineno="44" refid="structhops_1_1h5helper__complex__float_1a69b200e99f346adfb00c44af7ef92a7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1h5helper__complex__float_1a69b200e99f346adfb00c44af7ef92a7b" kindref="member">imag</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46" refid="namespacehops_1a70e95959da2b39bc66eb98400afbb2da" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a70e95959da2b39bc66eb98400afbb2da" kindref="member">h5helper_complex_float</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structhops_1_1h5helper__complex__double" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1h5helper__complex__double" kindref="compound">h5helper_complex_double</ref><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="51" refid="structhops_1_1h5helper__complex__double_1a550dc10b5ace1c29e05a727ecccb84aa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1h5helper__complex__double_1a550dc10b5ace1c29e05a727ecccb84aa" kindref="member">real</ref>;</highlight></codeline>
+<codeline lineno="52" refid="structhops_1_1h5helper__complex__double_1acef40dca4882e0851467056b8a243f28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1h5helper__complex__double_1acef40dca4882e0851467056b8a243f28" kindref="member">imag</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54" refid="namespacehops_1a5860a53ed4d3448019e6c1c1e09cdeba" refkind="member"><highlight class="normal"><ref refid="namespacehops_1a5860a53ed4d3448019e6c1c1e09cdeba" kindref="member">h5helper_complex_double</ref>;<sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">hid_t<sp/></highlight></codeline>
+<codeline lineno="57" refid="namespacehops_1adf2f1a224a76181a28251dd23cda734b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1adf2f1a224a76181a28251dd23cda734b" kindref="member">create_complex_dtype_float</ref>()<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>hid_t<sp/>complex_dtype<sp/>=<sp/>H5Tcreate(H5T_COMPOUND,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structhops_1_1h5helper__complex__float" kindref="compound">h5helper_complex_float</ref>));</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>H5Tinsert(complex_dtype,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">,<sp/>HOFFSET(<ref refid="structhops_1_1h5helper__complex__float" kindref="compound">h5helper_complex_float</ref>,<sp/>real),<sp/>H5T_NATIVE_FLOAT);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>H5Tinsert(complex_dtype,<sp/></highlight><highlight class="stringliteral">&quot;i&quot;</highlight><highlight class="normal">,<sp/>HOFFSET(<ref refid="structhops_1_1h5helper__complex__float" kindref="compound">h5helper_complex_float</ref>,<sp/>imag),<sp/>H5T_NATIVE_FLOAT);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>complex_dtype;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">//needed<sp/>for<sp/>std::complex&lt;double&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">hid_t<sp/></highlight></codeline>
+<codeline lineno="67" refid="namespacehops_1a06bede74dd75a66d1f4af82b207c9a0d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1a06bede74dd75a66d1f4af82b207c9a0d" kindref="member">create_complex_dtype_double</ref>()<sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>hid_t<sp/>complex_dtype<sp/>=<sp/>H5Tcreate(H5T_COMPOUND,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structhops_1_1h5helper__complex__double" kindref="compound">h5helper_complex_double</ref>));</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>H5Tinsert(complex_dtype,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">,<sp/>HOFFSET(<ref refid="structhops_1_1h5helper__complex__double" kindref="compound">h5helper_complex_double</ref>,<sp/>real),<sp/>H5T_NATIVE_DOUBLE);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>H5Tinsert(complex_dtype,<sp/></highlight><highlight class="stringliteral">&quot;i&quot;</highlight><highlight class="normal">,<sp/>HOFFSET(<ref refid="structhops_1_1h5helper__complex__double" kindref="compound">h5helper_complex_double</ref>,<sp/>imag),<sp/>H5T_NATIVE_DOUBLE);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>complex_dtype;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">//generic<sp/>returns<sp/>invalid</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="namespacehops_1a07d1b26cb2d9dd73446ce44c21ed1363" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>XType<sp/>&gt;<sp/>hid_t<sp/><ref refid="namespacehops_1a07d1b26cb2d9dd73446ce44c21ed1363" kindref="member">MHO_HDF5TypeCode</ref>()</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5I_INVALID_HID;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//only<sp/>the<sp/>below<sp/>specializations<sp/>are<sp/>supported,<sp/>everything<sp/>else<sp/>will<sp/>return<sp/>empty<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="namespacehops_1a5d90d8725b748d261d577760d960f11f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1a5d90d8725b748d261d577760d960f11f" kindref="member">MHO_HDF5TypeCode&lt; int8_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_CHAR;<sp/>}</highlight></codeline>
+<codeline lineno="83" refid="namespacehops_1adbbeb510d14c4df1ec10ad28f66ff594" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1adbbeb510d14c4df1ec10ad28f66ff594" kindref="member">MHO_HDF5TypeCode&lt; uint8_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_UCHAR;<sp/>}</highlight></codeline>
+<codeline lineno="84" refid="namespacehops_1a7eddf47c9fec858deccfdb6c9e06c696" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1a7eddf47c9fec858deccfdb6c9e06c696" kindref="member">MHO_HDF5TypeCode&lt; int16_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_SHORT;<sp/>}</highlight></codeline>
+<codeline lineno="85" refid="namespacehops_1add513e78f4c5f94322c1b59c081dc462" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1add513e78f4c5f94322c1b59c081dc462" kindref="member">MHO_HDF5TypeCode&lt; uint16_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_USHORT;<sp/>}</highlight></codeline>
+<codeline lineno="86" refid="namespacehops_1a58651101c65f4ee5ac9ed5504352dc13" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1a58651101c65f4ee5ac9ed5504352dc13" kindref="member">MHO_HDF5TypeCode&lt; int32_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_INT;<sp/>}</highlight></codeline>
+<codeline lineno="87" refid="namespacehops_1a9fd2ad491108d4d99c17025f0d77e2e2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1a9fd2ad491108d4d99c17025f0d77e2e2" kindref="member">MHO_HDF5TypeCode&lt; uint32_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_UINT;<sp/>}</highlight></codeline>
+<codeline lineno="88" refid="namespacehops_1a87b145ec0f5f43d5d8e8a8dd53d9aa5f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1a87b145ec0f5f43d5d8e8a8dd53d9aa5f" kindref="member">MHO_HDF5TypeCode&lt; int64_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_LLONG;<sp/>}</highlight></codeline>
+<codeline lineno="89" refid="namespacehops_1a03dcd8163b006fd80d59c8d825faae9d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1a03dcd8163b006fd80d59c8d825faae9d" kindref="member">MHO_HDF5TypeCode&lt; uint64_t &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_ULLONG;<sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="namespacehops_1abf9b76138f0b60402ccd520e938d13a7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1abf9b76138f0b60402ccd520e938d13a7" kindref="member">MHO_HDF5TypeCode&lt; float &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_FLOAT;<sp/>}</highlight></codeline>
+<codeline lineno="92" refid="namespacehops_1ac4e09a6809fad69a32e530b2cd61aa37" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/><ref refid="namespacehops_1ac4e09a6809fad69a32e530b2cd61aa37" kindref="member">MHO_HDF5TypeCode&lt; double &gt;</ref>(){<sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>H5T_NATIVE_DOUBLE;<sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="namespacehops_1ab4ca57cf28e33d433cf1ed4e43b5f296" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/>MHO_HDF5TypeCode&lt;<sp/>std::complex&lt;float&gt;<sp/>&gt;()</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1adf2f1a224a76181a28251dd23cda734b" kindref="member">create_complex_dtype_float</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="namespacehops_1a9c89df1262c0e55d85462266b6668fcf" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>hid_t<sp/>MHO_HDF5TypeCode&lt;<sp/>std::complex&lt;double&gt;<sp/>&gt;()</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespacehops_1a06bede74dd75a66d1f4af82b207c9a0d" kindref="member">create_complex_dtype_double</ref>();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight><highlight class="comment">//end<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh"/>
+  </compounddef>
+</doxygen>

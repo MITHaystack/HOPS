@@ -1,0 +1,500 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ParameterStore" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ParameterStore</compoundname>
+    <includes refid="MHO__ParameterStore_8hh" local="no">MHO_ParameterStore.hh</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterStore_1aeea7069e62dd394ea066439e3e6c3c5b" prot="private" static="no" mutable="yes">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ParameterStore::fPath</definition>
+        <argsstring></argsstring>
+        <name>fPath</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="180" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterStore_1a82335645e8973688cebbfb92138cc4b4" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ParameterStore::fStore</definition>
+        <argsstring></argsstring>
+        <name>fStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="183" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ParameterStore_1a3377626fa9b5a0d2d70cf7dae68c4e1b" prot="private" static="no" mutable="yes">
+        <type><ref refid="classhops_1_1MHO__Tokenizer" kindref="compound">MHO_Tokenizer</ref></type>
+        <definition>MHO_Tokenizer hops::MHO_ParameterStore::fTokenizer</definition>
+        <argsstring></argsstring>
+        <name>fTokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="179" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a780820b38ddf59d44f48fcccdbacc1b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ParameterStore::MHO_ParameterStore</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="54" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="54" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a26085ffeb9a7bbc2ec5aff48092217eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ParameterStore::~MHO_ParameterStore</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ParameterStore</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="61" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a6b39759af2d406de1d73a5d2902dfd7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterStore::ClearData</definition>
+        <argsstring>()</argsstring>
+        <name>ClearData</name>
+        <briefdescription>
+<para>Clears all data from fStore. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="92" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1ad1b0769877903755e494c75eac4fd08e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterStore::CopyFrom</definition>
+        <argsstring>(const MHO_ParameterStore &amp;copy)</argsstring>
+        <name>CopyFrom</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> &amp;</type>
+          <declname>copy</declname>
+        </param>
+        <briefdescription>
+<para>Copies the parameter store from a given source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>copy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref> object to copy from. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="73" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a26523e4e1396a590b775a21875d9eefa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterStore::Dump</definition>
+        <argsstring>()</argsstring>
+        <name>Dump</name>
+        <briefdescription>
+<para>Dumps the store JSON data to std:cout (for debugging) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="66" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a9aa6140c8656a557b70d75b4532ffb04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterStore::DumpData</definition>
+        <argsstring>(mho_json &amp;data)</argsstring>
+        <name>DumpData</name>
+        <param>
+          <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Copies data from internal storage to provided json object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output parameter to store copied json data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="80" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="80" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a6b92ec49eaaa003809ef4355cf77d3e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ParameterStore::FillData</definition>
+        <argsstring>(const mho_json &amp;data)</argsstring>
+        <name>FillData</name>
+        <param>
+          <type>const <ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Stores input json data for later use. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input json data to be stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="87" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a9ffebac9548aa8a8a8ee500d32bb7041" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_ParameterStore::Get</definition>
+        <argsstring>(const std::string &amp;value_path, XValueType &amp;value) const</argsstring>
+        <name>Get</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <param>
+          <type>XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a value by path and returns it as XValueType, using default constructor if not found. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves a value from the parameter store by path and returns it as XValueType.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the value to retrieve </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>XValueType value or default constructed value if not found</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the value in the parameter store </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if retrieval was successful, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="113" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="238" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a9b2fcb5606801e9a3580417245e8ec82" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>XValueType</type>
+        <definition>XValueType hops::MHO_ParameterStore::GetAs</definition>
+        <argsstring>(const std::string &amp;value_path) const</argsstring>
+        <name>GetAs</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <briefdescription>
+<para>Function IsPresent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves and returns a value as specified type from the parameter store using the given path.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (bool)</para>
+</simplesect>
+Getter for as</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>XValueType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template parameter XValueType </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to retrieve value from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Value of type XValueType retrieved from path or default if not found</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the desired value in the parameter store </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Value retrieved as specified template type or default value if retrieval fails </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="130" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="275" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1aad7e1625ba8f112d175e47fd950ccb79" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ParameterStore::IsPresent</definition>
+        <argsstring>(const std::string &amp;value_path) const</argsstring>
+        <name>IsPresent</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="132" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="132" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a262ea17291fe890c7c593f188dc13c1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XValueType</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool hops::MHO_ParameterStore::Set</definition>
+        <argsstring>(const std::string &amp;value_path, const XValueType &amp;value)</argsstring>
+        <name>Set</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <param>
+          <type>const XValueType &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Setter for value at specified path in the parameter store. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function <ref refid="classhops_1_1MHO__ParameterStore_1a262ea17291fe890c7c593f188dc13c1f" kindref="member">MHO_ParameterStore::Set</ref>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Path to the value as a string reference. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to set at the given path. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if value was successfully set, false otherwise.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const std::string&amp;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XValueType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (template&lt; typename XValueType &gt; bool) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="102" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="193" bodyend="229"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ParameterStore_1a648e1193a4e762bf6807af57383ea19e" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ParameterStore::SanitizePath</definition>
+        <argsstring>(const std::string &amp;value_path) const</argsstring>
+        <name>SanitizePath</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>value_path</declname>
+        </param>
+        <briefdescription>
+<para>Removes leading/trailing whitespace and trailing &apos;/&apos; from input path string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value_path</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input path string to sanitize </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Sanitized path string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="168" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="168" bodyend="176"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ParameterStore" kindref="compound">MHO_ParameterStore</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>class to store parameters (typically from control file) for later retrieval There are some deficiencies with this json-based approach, for example everything except terminal values must be named objects (no lists allowed), though maybe we don&apos;t really need that functionality TODO <ndash/> allow for variable keys in the value path. Sometimes the name of an item is found within the value of another item, so it would be useful to extract that name, and substitute it into the value path for the item of interest. For example consider the following structure: {</para>
+<para><simplesect kind="date"><para>Wed Jun 7 23:42:31 2023 -0400 </para>
+</simplesect>
+<simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> <verbatim>&quot;item0&quot;:
+{
+    &quot;key1&quot;: &quot;kvalue1&quot;,
+    &quot;key2&quot;: &quot;kvalue2&quot;
+};
+&quot;item1&quot;:
+{
+    &quot;kvalue1&quot;: &quot;value3&quot;,
+    &quot;kvalue2&quot;:
+     {
+         &quot;key3&quot;: &quot;value4&quot;,
+         &quot;key5&quot;: &quot;value5&quot;
+     }
+}
+</verbatim> } Let&apos;s say we wanted to access &apos;value4&apos;, but didn&apos;t know the name of the key &quot;kvalue2&quot;, (only item1 and key3) but knew it could be located under item1 via a key specified by the value associated with &quot;item0/key2&quot; Then a useful construction to retrieve this would be something like the following (with the variable key&apos;s location within braces): std::string vpath = &quot;/item1/{/item0/key2}/key3&quot; --&gt; this gets translated into &quot;/item1/kvalue2/key3&quot; before retrieval auto value = params.Get&lt;std::string&gt;(vpath); </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" line="51" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_ParameterStore.hh" bodystart="52" bodyend="184"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ParameterStore_1a6b39759af2d406de1d73a5d2902dfd7f" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>ClearData</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1ad1b0769877903755e494c75eac4fd08e" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>CopyFrom</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a26523e4e1396a590b775a21875d9eefa" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>Dump</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a9aa6140c8656a557b70d75b4532ffb04" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>DumpData</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a6b92ec49eaaa003809ef4355cf77d3e3" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>FillData</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1aeea7069e62dd394ea066439e3e6c3c5b" prot="private" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>fPath</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a82335645e8973688cebbfb92138cc4b4" prot="private" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>fStore</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a3377626fa9b5a0d2d70cf7dae68c4e1b" prot="private" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>fTokenizer</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a9ffebac9548aa8a8a8ee500d32bb7041" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>Get</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a9b2fcb5606801e9a3580417245e8ec82" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>GetAs</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1aad7e1625ba8f112d175e47fd950ccb79" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>IsPresent</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a780820b38ddf59d44f48fcccdbacc1b2" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>MHO_ParameterStore</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a648e1193a4e762bf6807af57383ea19e" prot="private" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>SanitizePath</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a262ea17291fe890c7c593f188dc13c1f" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>Set</name></member>
+      <member refid="classhops_1_1MHO__ParameterStore_1a26085ffeb9a7bbc2ec5aff48092217eb" prot="public" virt="non-virtual"><scope>hops::MHO_ParameterStore</scope><name>~MHO_ParameterStore</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

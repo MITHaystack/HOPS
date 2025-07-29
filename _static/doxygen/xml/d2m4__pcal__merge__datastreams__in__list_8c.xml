@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d2m4__pcal__merge__datastreams__in__list_8c" kind="file" language="C++">
+    <compoundname>d2m4_pcal_merge_datastreams_in_list.c</compoundname>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes refid="d2m4__pcal__record_8h" local="yes">d2m4_pcal_record.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>d2m4_pcal_record.h</label>
+        <link refid="d2m4__pcal__record_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>stdlib.h</label>
+      </node>
+      <node id="1">
+        <label>d2m4_pcal_merge_datastreams_in_list.c</label>
+        <link refid="d2m4__pcal__merge__datastreams__in__list_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="d2m4__pcal__merge__datastreams__in__list_8c_1a3d9eb1f2821a1edf33652ff8d53df870" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+        <definition>struct d2m4_pcal_list_node* d2m4_pcal_merge_datastreams_in_list</definition>
+        <argsstring>(struct d2m4_pcal_list_node *input_pcal_list)</argsstring>
+        <name>d2m4_pcal_merge_datastreams_in_list</name>
+        <param>
+          <type>struct <ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref> *</type>
+          <declname>input_pcal_list</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_datastreams_in_list.c" line="6" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_datastreams_in_list.c" bodystart="6" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2m4__pcal__record_8h" kindref="compound">d2m4_pcal_record.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/><ref refid="d2m4__pcal__merge__datastreams__in__list_8c_1a3d9eb1f2821a1edf33652ff8d53df870" kindref="member">d2m4_pcal_merge_datastreams_in_list</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/>input_pcal_list)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>in_count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>out_count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//need<sp/>a<sp/>pointer<sp/>to<sp/>the<sp/>head<sp/>and<sp/>tail<sp/>node<sp/>on<sp/>input<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/>input_tail<sp/>=<sp/>input_pcal_list;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//need<sp/>a<sp/>pointer<sp/>to<sp/>the<sp/>head<sp/>and<sp/>tail<sp/>node<sp/>on<sp/>output<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/>output_tail<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*<sp/>output_head<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//temporary<sp/>pointer<sp/>to<sp/>the<sp/>merged<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref>*<sp/>merged_record<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//intialize<sp/>the<sp/>output<sp/>linked<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>output_head<sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*)<sp/>malloc(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>output_tail<sp/>=<sp/>output_head;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref><sp/>=<sp/>NULL;<sp/></highlight><highlight class="comment">//nothing<sp/>here<sp/>yet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1acd0458ef349bc5573acd37ce21dc93e7" kindref="member">previous</ref><sp/>=<sp/>NULL;<sp/></highlight><highlight class="comment">//head<sp/>has<sp/>no<sp/>previous<sp/>node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//initialize<sp/>the<sp/>first<sp/>output<sp/>tail<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref><sp/>=<sp/>malloc(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref><sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d2m4__pcal__record_8h_1a2e74f227dc44adde0ac32d2911b4469d" kindref="member">d2m4_pcal_init_record</ref>(output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d2m4__pcal__record_8h_1afd65af24f7aa3d483a5beb9a7553cb62" kindref="member">d2m4_pcal_copy_record</ref>(output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>,<sp/>input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//iterate<sp/>the<sp/>input<sp/>tail</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>input_tail<sp/>=<sp/>input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;begin<sp/>ptr<sp/>to<sp/>output_pcal_list<sp/>%p\n&quot;,<sp/>output_pcal_list);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//we<sp/>are<sp/>asumming<sp/>that<sp/>the<sp/>records<sp/>in<sp/>the<sp/>list<sp/>are<sp/>in<sp/>time-order</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref><sp/>!=<sp/>NULL<sp/>&amp;&amp;<sp/>input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;ptr<sp/>to<sp/>input_tail<sp/>%p\n&quot;,<sp/>input_tail);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/><ref refid="d2m4__pcal__record_8h_1a2861b09a6bb90e1b7e6e804db223af3e" kindref="member">d2m4_pcal_can_merge_records</ref>(output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>,<sp/>input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>)<sp/>)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merged_record<sp/>=<sp/><ref refid="d2m4__pcal__record_8h_1acfcdecde4de4a84f3dca7cef59a87445" kindref="member">d2m4_pcal_merge_record</ref>(<sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>,<sp/>input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref><sp/>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(merged_record<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#ifdef<sp/>D2M4_PCAL_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;successfully<sp/>merged<sp/>pcal<sp/>records<sp/>from<sp/>same<sp/>APs<sp/>%lf,<sp/>%lf\n&quot;</highlight><highlight class="normal">,<sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>,<sp/>merged_record-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2m4__pcal__record_8h_1a7308f606708f1ec09c0cb98033be03c2" kindref="member">d2m4_pcal_free_record</ref>(output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref><sp/>=<sp/>merged_record;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ERROR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Error:<sp/>d2m4_pcal_merge_datastreams_in_list<sp/>could<sp/>not<sp/>merge<sp/>pcal<sp/>records!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//can&apos;t<sp/>merge<sp/>records,<sp/>so<sp/>just<sp/>bump<sp/>the<sp/>output<sp/>tail<sp/>and<sp/>copy<sp/>in<sp/>the<sp/>input_tail&apos;s<sp/>record</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//create<sp/>the<sp/>next<sp/>node<sp/>in<sp/>the<sp/>linked<sp/>output<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref><sp/>=<sp/>(</highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>*)<sp/>malloc(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__list__node" kindref="compound">d2m4_pcal_list_node</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//output_tail-&gt;next-&gt;previous<sp/>=<sp/>output_tail;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_tail<sp/>=<sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref><sp/>=<sp/>malloc(<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structd2m4__pcal__record" kindref="compound">d2m4_pcal_record</ref><sp/>)<sp/>);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2m4__pcal__record_8h_1a2e74f227dc44adde0ac32d2911b4469d" kindref="member">d2m4_pcal_init_record</ref>(output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2m4__pcal__record_8h_1afd65af24f7aa3d483a5beb9a7553cb62" kindref="member">d2m4_pcal_copy_record</ref>(output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>,<sp/>input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#ifdef<sp/>D2M4_PCAL_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;copying<sp/>pcal<sp/>record<sp/>from<sp/>next<sp/>AP<sp/>%lf<sp/>\n&quot;</highlight><highlight class="normal">,<sp/>output_tail-&gt;<ref refid="structd2m4__pcal__list__node_1aac377d3067e35c0e694ab21b581d5dc3" kindref="member">pcal_record</ref>-&gt;<ref refid="structd2m4__pcal__record_1a6a757977bcff1e05c84d13793339cc51" kindref="member">mjd</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out_count++;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Now<sp/>we<sp/>move<sp/>to<sp/>the<sp/>next<sp/>input<sp/>node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_tail<sp/>=<sp/>input_tail-&gt;<ref refid="structd2m4__pcal__list__node_1a1e00fadd59f815760e35791784918e32" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>in_count++;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//now<sp/>make<sp/>sure<sp/>the<sp/>output<sp/>linked<sp/>list<sp/>is<sp/>terminated</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//output_tail-&gt;next<sp/>=<sp/>NULL;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#ifdef<sp/>D2M4_PCAL_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;d2m4_pcal_merge_datastreams_in_list:<sp/>merged<sp/>list<sp/>of<sp/>length<sp/>%d<sp/>into<sp/>list<sp/>of<sp/>length<sp/>%d\n&quot;</highlight><highlight class="normal">,<sp/>in_count,<sp/>out_count);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output_head;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/difx2mark4/src/d2m4_pcal_merge_datastreams_in_list.c"/>
+  </compounddef>
+</doxygen>

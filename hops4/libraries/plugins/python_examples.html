@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python Examples &mdash; HOPS 4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5bd962b8" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=9f5556dd"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            HOPS
+              <img src="../../../_static/hops_logo_b_small-scaled.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../compiling.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hops4.html">HOPS4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../hops3/hops3.html">HOPS3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../authors.html">Authors</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">HOPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Python Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/hops4/libraries/plugins/python_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-examples">
+<h1>Python Examples<a class="headerlink" href="#python-examples" title="Link to this heading"></a></h1>
+<p>The Python examples demonstrate a couple practical applications of the Python bindings
+for solving real-world VLBI data processing problems. These examples show how
+to use the Python API for custom calibration, data correction, and analysis tasks.</p>
+<section id="noema-phase-jump-correction-example2-py">
+<h2>NOEMA Phase Jump Correction (example2.py)<a class="headerlink" href="#noema-phase-jump-correction-example2-py" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>example2.py</p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Python Examples</p></td>
+</tr>
+<tr class="row-odd"><td><p>Function</p></td>
+<td><p>fix_noema_jumps(fringe_data_interface)</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Corrects known phase jumps in NOEMA telescope data</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Channel-specific phase corrections</div>
+<div class="line">Polarization-dependent adjustments</div>
+<div class="line">Frequency-based jump detection</div>
+<div class="line">Direct manipulation of visibility arrays</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The NOEMA phase jump correction example demonstrates how to use the Python API
+to correct known instrumental phase jumps in visibility data involving the NOEMA telescope array.</p>
+<p><strong>Implementation Details:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fix_noema_jumps</span><span class="p">(</span><span class="n">fringe_data_interface</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Corrects phase jumps in NOEMA telescope data based on known</span>
+<span class="sd">    instrumental characteristics and frequency-dependent effects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Access visibility data through the fringe data interface</span>
+    <span class="n">visibility_data</span> <span class="o">=</span> <span class="n">fringe_data_interface</span><span class="o">.</span><span class="n">get_visibility_data</span><span class="p">()</span>
+
+    <span class="c1"># Apply channel-specific phase corrections</span>
+    <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">visibility_data</span><span class="o">.</span><span class="n">get_num_channels</span><span class="p">()):</span>
+        <span class="c1"># Identify phase jumps based on frequency</span>
+        <span class="k">if</span> <span class="n">is_phase_jump_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">):</span>
+            <span class="c1"># Apply correction to both polarizations</span>
+            <span class="n">apply_phase_correction</span><span class="p">(</span><span class="n">visibility_data</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Key Features:</strong>
+- <strong>Direct Data Access</strong>: Uses fringe_data_interface to access visibility arrays
+- <strong>Channel-wise Processing</strong>: Applies corrections on a per-channel basis
+- <strong>Polarization Handling</strong>: Manages corrections for different polarization products
+- <strong>Frequency Analysis</strong>: Uses frequency information to identify problematic channels</p>
+<p><strong>Applications:</strong>
+- Correcting known instrumental phase jumps in NOEMA data
+- Preprocessing data before fringe fitting
+- Improving data quality for challenging observational conditions</p>
+</section>
+<section id="phase-calibration-generation-example3-py">
+<h2>Phase Calibration Generation (example3.py)<a class="headerlink" href="#phase-calibration-generation-example3-py" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>File</p></td>
+<td><p>example3.py</p></td>
+</tr>
+<tr class="row-even"><td><p>Category</p></td>
+<td><p>Python Examples</p></td>
+</tr>
+<tr class="row-odd"><td><p>Function</p></td>
+<td><p>generate_pcphases(fringe_data_interface)</p></td>
+</tr>
+<tr class="row-even"><td><p>Primary Functionality</p></td>
+<td><p>Generates phase calibration corrections from fringe fit results</p></td>
+</tr>
+<tr class="row-odd"><td><p>Key Features</p></td>
+<td><div class="line-block">
+<div class="line">Plot data analysis for phase residuals</div>
+<div class="line">Channel-based phase residual computation</div>
+<div class="line">Circular mean phase calculation</div>
+<div class="line">Fourfit-compatible output format generation</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The phase calibration generation example shows how to extract phase calibration
+corrections from fringe fitting results and generate output compatible with
+the fourfit control file format.</p>
+<p><strong>Implementation Details:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_pcphases</span><span class="p">(</span><span class="n">fringe_data_interface</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates phase calibration corrections from fringe fit results</span>
+<span class="sd">    by analyzing phase residuals across frequency channels.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Access plot data from the fringe fitting results</span>
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="n">fringe_data_interface</span><span class="o">.</span><span class="n">get_plot_data</span><span class="p">()</span>
+
+    <span class="c1"># Extract phase residuals for each channel</span>
+    <span class="n">phase_residuals</span> <span class="o">=</span> <span class="n">extract_phase_residuals</span><span class="p">(</span><span class="n">plot_data</span><span class="p">)</span>
+
+    <span class="c1"># Calculate circular mean phases</span>
+    <span class="n">pc_phases</span> <span class="o">=</span> <span class="n">calculate_circular_mean_phases</span><span class="p">(</span><span class="n">phase_residuals</span><span class="p">)</span>
+
+    <span class="c1"># Generate fourfit-compatible output</span>
+    <span class="n">generate_fourfit_output</span><span class="p">(</span><span class="n">pc_phases</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Key Processing Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Data Extraction</strong>: Retrieves fringe fitting results and plot data</p></li>
+<li><p><strong>Phase Analysis</strong>: Analyzes phase residuals across frequency channels</p></li>
+<li><p><strong>Statistical Processing</strong>: Computes circular mean phases for each channel</p></li>
+<li><p><strong>Output Generation</strong>: Creates fourfit-compatible phase calibration files</p></li>
+</ol>
+<p><strong>Mathematical Operations:</strong>
+- <strong>Circular Statistics</strong>: Proper handling of phase angles using circular means
+- <strong>Residual Analysis</strong>: Extraction of phase residuals from fit results
+- <strong>Channel Mapping</strong>: Correlation of phase corrections with frequency channels
+- <strong>Error Propagation</strong>: Handling of uncertainties in phase measurements</p>
+<p><strong>Output Format:</strong>
+The generated output is compatible with fourfit control files and can be used
+for subsequent processing:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>* Phase calibration corrections generated from fringe fit
+pc_phases ref_station rem_station
+pc_phases A B  0.0 15.2 -23.1 8.7 ...
+pc_phases A C  5.1 -12.3 18.9 -6.4 ...
+</pre></div>
+</div>
+<p><strong>Applications:</strong>
+- <strong>Automated Calibration</strong>: Generation of phase calibration corrections
+- <strong>Data Quality Assessment</strong>: Analysis of phase stability across channels
+- <strong>Iterative Processing</strong>: Refinement of calibration in multi-pass processing
+- <strong>Custom Calibration</strong>: Development of specialized calibration algorithms</p>
+</section>
+<section id="python-api-usage-patterns">
+<h2>Python API Usage Patterns<a class="headerlink" href="#python-api-usage-patterns" title="Link to this heading"></a></h2>
+<p>The examples demonstrate several important usage patterns for the Python API:</p>
+<p><strong>Data Access Pattern:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access different data interfaces</span>
+<span class="n">fringe_data</span> <span class="o">=</span> <span class="n">fringe_data_interface</span><span class="o">.</span><span class="n">get_fringe_data</span><span class="p">()</span>
+<span class="n">container_store</span> <span class="o">=</span> <span class="n">fringe_data_interface</span><span class="o">.</span><span class="n">get_container_store</span><span class="p">()</span>
+<span class="n">parameter_store</span> <span class="o">=</span> <span class="n">fringe_data_interface</span><span class="o">.</span><span class="n">get_parameter_store</span><span class="p">()</span>
+
+<span class="c1"># Access specific data containers</span>
+<span class="n">visibility_data</span> <span class="o">=</span> <span class="n">fringe_data</span><span class="o">.</span><span class="n">get_visibility_data</span><span class="p">()</span>
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">fringe_data</span><span class="o">.</span><span class="n">get_plot_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Array Manipulation Pattern:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get NumPy arrays for efficient processing</span>
+<span class="n">vis_array</span> <span class="o">=</span> <span class="n">visibility_data</span><span class="o">.</span><span class="n">get_numpy_array</span><span class="p">()</span>
+
+<span class="c1"># Modify data in-place</span>
+<span class="n">vis_array</span><span class="p">[</span><span class="n">channel_mask</span><span class="p">]</span> <span class="o">*=</span> <span class="n">correction_factor</span>
+
+<span class="c1"># Changes are automatically reflected in C++ data</span>
+</pre></div>
+</div>
+<p><strong>Metadata Access Pattern:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access metadata through Python dictionaries</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">get_metadata</span><span class="p">()</span>
+<span class="n">station_info</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;stations&#39;</span><span class="p">]</span>
+<span class="n">frequency_info</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;frequencies&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Error Handling Pattern:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Python processing code</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">process_data</span><span class="p">(</span><span class="n">fringe_data_interface</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="c1"># Handle errors gracefully</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p><strong>Development Guidelines:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Efficiency</strong>: Use NumPy arrays for numerical operations</p></li>
+<li><p><strong>Memory Management</strong>: Leverage zero-copy access where possible</p></li>
+<li><p><strong>Type Safety</strong>: Utilize automatic type checking and conversion</p></li>
+<li><p><strong>Error Handling</strong>: Implement robust exception handling</p></li>
+<li><p><strong>Documentation</strong>: Provide clear function documentation</p></li>
+<li><p><strong>Testing</strong>: Include validation and testing code</p></li>
+</ol>
+<p><strong>Integration with HOPS4 Pipeline:</strong>
+The Python examples show how custom Python functions can be integrated
+into the HOPS4 processing pipeline through the operator framework, enabling:</p>
+<ul class="simple">
+<li><p><strong>Custom Preprocessing</strong>: Data correction before fringe fitting</p></li>
+<li><p><strong>Custom Analysis</strong>: Specialized analysis of fringe fitting results</p></li>
+<li><p><strong>Quality Control</strong>: Automated data quality assessment</p></li>
+<li><p><strong>Calibration</strong>: Custom calibration algorithm implementation</p></li>
+<li><p><strong>Visualization</strong>: Custom plotting and data visualization</p></li>
+<li><p><strong>Automation</strong>: Automated processing and decision making</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, MIT Haystack Observatory.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

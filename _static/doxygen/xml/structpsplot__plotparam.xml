@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structpsplot__plotparam" kind="struct" language="C++" prot="public">
+    <compoundname>psplot_plotparam</compoundname>
+    <includes refid="psplot_8h" local="no">psplot.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpsplot__plotparam_1a403608343704a36aebc881ccc7e19357" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_plotparam::band</definition>
+        <argsstring></argsstring>
+        <name>band</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="105" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1ad3626cb893e5a19e9bfa86cf58dac110" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_plotparam::base_per_page</definition>
+        <argsstring></argsstring>
+        <name>base_per_page</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="104" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1a2511454a2ee3ff5cc1b7b0d597523498" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float psplot_plotparam::base_sep</definition>
+        <argsstring></argsstring>
+        <name>base_sep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="106" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1aa0e4e9fcb8d69719c26e6952ff689747" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_plotparam::basepage</definition>
+        <argsstring></argsstring>
+        <name>basepage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="102" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1ab66e961d95bb57f86f8c81072487e555" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_plotparam::nbasepage</definition>
+        <argsstring></argsstring>
+        <name>nbasepage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="100" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1a869efc259475b893b524f517f8e90d9b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_plotparam::npages</definition>
+        <argsstring></argsstring>
+        <name>npages</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="99" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1a81fb238767f5c147807c94c0c67af2d4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float psplot_plotparam::scan_sep</definition>
+        <argsstring></argsstring>
+        <name>scan_sep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="107" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1aa0e1d36a724b2f3141235e9a21f7fe16" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_plotparam::scanpage</definition>
+        <argsstring></argsstring>
+        <name>scanpage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="101" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1a17a6653a2090941d3a7b6229207d398f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_plotparam::scans_per_page</definition>
+        <argsstring></argsstring>
+        <name>scans_per_page</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="103" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1a2b67358e7796b3a617fc3eb563994fd8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float psplot_plotparam::tagsize</definition>
+        <argsstring></argsstring>
+        <name>tagsize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="108" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1a3c8947ed2b51e3523bf290a5dcb65002" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float psplot_plotparam::xgb_fract</definition>
+        <argsstring></argsstring>
+        <name>xgb_fract</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="109" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpsplot__plotparam_1ac3fa8258945b7966adaf01afda787725" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float psplot_plotparam::ygb_fract</definition>
+        <argsstring></argsstring>
+        <name>ygb_fract</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="110" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>psplot_plotparam</label>
+        <link refid="structpsplot__plotparam"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>base_sep</edgelabel>
+          <edgelabel>scan_sep</edgelabel>
+          <edgelabel>tagsize</edgelabel>
+          <edgelabel>xgb_fract</edgelabel>
+          <edgelabel>ygb_fract</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>band</edgelabel>
+          <edgelabel>base_per_page</edgelabel>
+          <edgelabel>basepage</edgelabel>
+          <edgelabel>nbasepage</edgelabel>
+          <edgelabel>npages</edgelabel>
+          <edgelabel>scanpage</edgelabel>
+          <edgelabel>scans_per_page</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="3">
+        <label>int</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" line="97" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/include/psplot.h" bodystart="98" bodyend="111"/>
+    <listofallmembers>
+      <member refid="structpsplot__plotparam_1a403608343704a36aebc881ccc7e19357" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>band</name></member>
+      <member refid="structpsplot__plotparam_1ad3626cb893e5a19e9bfa86cf58dac110" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>base_per_page</name></member>
+      <member refid="structpsplot__plotparam_1a2511454a2ee3ff5cc1b7b0d597523498" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>base_sep</name></member>
+      <member refid="structpsplot__plotparam_1aa0e4e9fcb8d69719c26e6952ff689747" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>basepage</name></member>
+      <member refid="structpsplot__plotparam_1ab66e961d95bb57f86f8c81072487e555" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>nbasepage</name></member>
+      <member refid="structpsplot__plotparam_1a869efc259475b893b524f517f8e90d9b" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>npages</name></member>
+      <member refid="structpsplot__plotparam_1a81fb238767f5c147807c94c0c67af2d4" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>scan_sep</name></member>
+      <member refid="structpsplot__plotparam_1aa0e1d36a724b2f3141235e9a21f7fe16" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>scanpage</name></member>
+      <member refid="structpsplot__plotparam_1a17a6653a2090941d3a7b6229207d398f" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>scans_per_page</name></member>
+      <member refid="structpsplot__plotparam_1a2b67358e7796b3a617fc3eb563994fd8" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>tagsize</name></member>
+      <member refid="structpsplot__plotparam_1a3c8947ed2b51e3523bf290a5dcb65002" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>xgb_fract</name></member>
+      <member refid="structpsplot__plotparam_1ac3fa8258945b7966adaf01afda787725" prot="public" virt="non-virtual"><scope>psplot_plotparam</scope><name>ygb_fract</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

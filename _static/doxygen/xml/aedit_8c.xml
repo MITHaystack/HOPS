@@ -1,0 +1,1057 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="aedit_8c" kind="file" language="C++">
+    <compoundname>aedit.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="aedit_8h" local="yes">aedit.h</includes>
+    <includes refid="aedata_8h" local="yes">aedata.h</includes>
+    <includes refid="usearray_8h" local="yes">usearray.h</includes>
+    <includes refid="summary_8h" local="yes">summary.h</includes>
+    <incdepgraph>
+      <node id="46">
+        <label>aedata.h</label>
+        <link refid="aedata_8h"/>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>type_303.h</label>
+        <link refid="type__303_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>type_212.h</label>
+        <link refid="type__212_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>stdarg.h</label>
+      </node>
+      <node id="13">
+        <label>mk4_typedefs.h</label>
+        <link refid="mk4__typedefs_8h"/>
+      </node>
+      <node id="51">
+        <label>usearray.h</label>
+        <link refid="usearray_8h"/>
+      </node>
+      <node id="40">
+        <label>type_307.h</label>
+        <link refid="type__307_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>sys/times.h</label>
+      </node>
+      <node id="19">
+        <label>type_203.h</label>
+        <link refid="type__203_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>general.h</label>
+        <link refid="general_8h"/>
+      </node>
+      <node id="23">
+        <label>type_207.h</label>
+        <link refid="type__207_8h"/>
+      </node>
+      <node id="5">
+        <label>aedit.h</label>
+        <link refid="aedit_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>stdint.h</label>
+      </node>
+      <node id="7">
+        <label>aedit_proto.h</label>
+        <link refid="aedit__proto_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="28">
+        <label>type_221.h</label>
+        <link refid="type__221_8h"/>
+      </node>
+      <node id="52">
+        <label>mk4_util.h</label>
+        <link refid="mk4__util_8h"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>type_302.h</label>
+        <link refid="type__302_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>type_306.h</label>
+        <link refid="type__306_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>msg.h</label>
+        <link refid="msg_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>type_202.h</label>
+        <link refid="type__202_8h"/>
+      </node>
+      <node id="22">
+        <label>type_206.h</label>
+        <link refid="type__206_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>psplot.h</label>
+        <link refid="psplot_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>type_220.h</label>
+        <link refid="type__220_8h"/>
+      </node>
+      <node id="15">
+        <label>type_120.h</label>
+        <link refid="type__120_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>sys/types.h</label>
+      </node>
+      <node id="34">
+        <label>type_301.h</label>
+        <link refid="type__301_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>type_210.h</label>
+        <link refid="type__210_8h"/>
+      </node>
+      <node id="11">
+        <label>type_000.h</label>
+        <link refid="type__000_8h"/>
+      </node>
+      <node id="3">
+        <label>string.h</label>
+      </node>
+      <node id="38">
+        <label>type_305.h</label>
+        <link refid="type__305_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>type_309.h</label>
+        <link refid="type__309_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>adata.h</label>
+        <link refid="adata_8h"/>
+      </node>
+      <node id="17">
+        <label>type_201.h</label>
+        <link refid="type__201_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>type_205.h</label>
+        <link refid="type__205_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>sizelimits.h</label>
+        <link refid="sizelimits_8h"/>
+      </node>
+      <node id="14">
+        <label>type_101.h</label>
+        <link refid="type__101_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>complex.h</label>
+      </node>
+      <node id="30">
+        <label>type_230.h</label>
+        <link refid="type__230_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>mk4_sizes.h</label>
+        <link refid="mk4__sizes_8h"/>
+      </node>
+      <node id="57">
+        <label>fileset.h</label>
+        <link refid="fileset_8h"/>
+        <childnode refid="58" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>mk4_records.h</label>
+        <link refid="mk4__records_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>hops_complex.h</label>
+        <link refid="hops__complex_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>type_300.h</label>
+        <link refid="type__300_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>type_304.h</label>
+        <link refid="type__304_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>type_308.h</label>
+        <link refid="type__308_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>type_200.h</label>
+        <link refid="type__200_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>account.h</label>
+        <link refid="account_8h"/>
+      </node>
+      <node id="20">
+        <label>type_204.h</label>
+        <link refid="type__204_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>type_208.h</label>
+        <link refid="type__208_8h"/>
+      </node>
+      <node id="44">
+        <label>T1.h</label>
+        <link refid="T1_8h"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_100.h</label>
+        <link refid="type__100_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>pstruct.h</label>
+        <link refid="pstruct_8h"/>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+      <node id="50">
+        <label>summary.h</label>
+        <link refid="summary_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>aedit.c</label>
+        <link refid="aedit_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>fstruct.h</label>
+        <link refid="fstruct_8h"/>
+      </node>
+      <node id="29">
+        <label>type_222.h</label>
+        <link refid="type__222_8h"/>
+      </node>
+      <node id="8">
+        <label>mk4_data.h</label>
+        <link refid="mk4__data_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="aedit_8c_1ad1793c1a8dd3db1a8c4e2d76eadf0036" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int batch</definition>
+        <argsstring></argsstring>
+        <name>batch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="40" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1afbb9b1dda8ad9915e753c7a84be13489" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int cflag</definition>
+        <argsstring></argsstring>
+        <name>cflag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="38" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int cscan</definition>
+        <argsstring></argsstring>
+        <name>cscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="37" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a4701a575d7993b0edfa057b319e330df" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int csortstat[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>csortstat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="46" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int cspace</definition>
+        <argsstring></argsstring>
+        <name>cspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="39" column="12" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a106b1504da610ea2c720bafb9a4d8c67" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int data_version</definition>
+        <argsstring></argsstring>
+        <name>data_version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="42" column="20" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a2f29aab1c371226c7a31af51f0001f11" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int dotype</definition>
+        <argsstring></argsstring>
+        <name>dotype</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="41" column="36" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1aab9e30d72b4b6af02ce19b24422ad2ce" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fflag</definition>
+        <argsstring></argsstring>
+        <name>fflag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="38" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a1f60804e6e47d358561049739d360d3a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fscan</definition>
+        <argsstring></argsstring>
+        <name>fscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="37" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a5ecbdd60d8ed41819099496a87f186bb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fsortstat[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>fsortstat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="45" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int fspace</definition>
+        <argsstring></argsstring>
+        <name>fspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="39" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structinputs" kindref="compound">inputs</ref></type>
+        <definition>struct inputs inp</definition>
+        <argsstring></argsstring>
+        <name>inp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="47" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a18e571ae00428ed0123d072572a274e4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int output_version</definition>
+        <argsstring></argsstring>
+        <name>output_version</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="42" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1ac083d6709ce090866b0c8c34ef3c44d8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int plot_open</definition>
+        <argsstring></argsstring>
+        <name>plot_open</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="41" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1ac83385bcefb21a96e2b201c33e441055" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int psplot_open</definition>
+        <argsstring></argsstring>
+        <name>psplot_open</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="41" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1ad68ceffeafb3a212d3d749b1899eb19b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int qflag</definition>
+        <argsstring></argsstring>
+        <name>qflag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="38" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int qscan</definition>
+        <argsstring></argsstring>
+        <name>qscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="37" column="29" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a6fa4a4c7b8d0d721383b51363933c49d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int qsortstat[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>qsortstat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="43" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int qspace</definition>
+        <argsstring></argsstring>
+        <name>qspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="39" column="33" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structdatasumm" kindref="compound">datasumm</ref> rsumm csumm fsumm tsumm</type>
+        <definition>struct datasumm rsumm csumm fsumm tsumm qsumm</definition>
+        <argsstring></argsstring>
+        <name>qsumm</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="47" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1abb90ecefc5b17c468a6aca0261c8b63d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rflag</definition>
+        <argsstring></argsstring>
+        <name>rflag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="38" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a871f0b454c753d58efbf287f09c2be83" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rmdup</definition>
+        <argsstring></argsstring>
+        <name>rmdup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="40" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a179e7279be43393227b169b575c734cf" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rscan</definition>
+        <argsstring></argsstring>
+        <name>rscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="37" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a0597ac9a5fe21b22160969b3097b0942" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rsortstat[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>rsortstat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="47" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rspace</definition>
+        <argsstring></argsstring>
+        <name>rspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="39" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1aa4dcbf0c59f920c51895f4937eed1d16" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int rundepth</definition>
+        <argsstring></argsstring>
+        <name>rundepth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="41" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1ab3fe9f9160e69ccb1c2ec2762072a6a4" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tflag</definition>
+        <argsstring></argsstring>
+        <name>tflag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="38" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tscan</definition>
+        <argsstring></argsstring>
+        <name>tscan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="37" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1aa197c7a76a2fa21bf3735cf1d70b860d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tsortstat[10]</definition>
+        <argsstring>[10]</argsstring>
+        <name>tsortstat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="44" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int tspace</definition>
+        <argsstring></argsstring>
+        <name>tspace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="39" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a3e3b628171376543f5ac7642fff82ac3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int up_to_date</definition>
+        <argsstring></argsstring>
+        <name>up_to_date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="40" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="structusearray" kindref="compound">usearray</ref></type>
+        <definition>struct usearray user_param</definition>
+        <argsstring></argsstring>
+        <name>user_param</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="47" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="aedit_8c_1a7ebff3ca9111aaba3727d524df0143a5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int xwindow</definition>
+        <argsstring></argsstring>
+        <name>xwindow</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="40" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="aedit_8c_1a0ddf1224851353fc92bfbff6f499fa97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char *argv[])</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>argv</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" line="57" column="5" bodyfile="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c" bodystart="57" bodyend="172"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>program,<sp/>aedit,<sp/>is<sp/>intended<sp/>to<sp/>be<sp/>a<sp/>general<sp/>MkIII<sp/>correlator<sp/>data<sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>display<sp/>and<sp/>editing<sp/>program,<sp/>which<sp/>takes<sp/>advantage<sp/>of<sp/>the<sp/>Xwindow<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>environment<sp/>on<sp/>UNIX<sp/>workstations,<sp/>and<sp/>is<sp/>built<sp/>on<sp/>the<sp/>Caltech<sp/>PGPLOT<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>plotting<sp/>package.<sp/><sp/>It<sp/>forms<sp/>part<sp/>of<sp/>an<sp/>integrated<sp/>software<sp/>system<sp/>for<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>the<sp/>MkIII<sp/>system<sp/>under<sp/>UNIX<sp/>in<sp/>general,<sp/>and<sp/>HP-UX<sp/>in<sp/>particular<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Initial<sp/>options<sp/>to<sp/>aedit<sp/>are<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/>-r<sp/>(file<sp/>to<sp/>read<sp/>commands<sp/>from<sp/>on<sp/>startup),<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/>-f<sp/>(files<sp/>to<sp/>read<sp/>on<sp/>startup),<sp/>and<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/>-x<sp/>(use<sp/>the<sp/>Xwindow<sp/>system<sp/>for<sp/>program<sp/>control)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>file<sp/>is<sp/>merely<sp/>the<sp/>upper-level<sp/>control<sp/>routine,<sp/>and<sp/>most<sp/>of<sp/>the<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>functionality<sp/>is<sp/>contained<sp/>in<sp/>subroutines<sp/>accessed<sp/>from<sp/>execute()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Created<sp/>3/22/89<sp/>by<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>2.0<sp/><sp/>April<sp/>18<sp/>1990<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>3.0<sp/><sp/>March<sp/>12<sp/>1992<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>3.1<sp/><sp/>February<sp/>23<sp/>1993<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>3.2<sp/><sp/>October<sp/>18<sp/>1993<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>3.3<sp/>beta<sp/><sp/>December<sp/>16<sp/>1993<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>4.0<sp/>March<sp/>8<sp/>1994<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>4.1<sp/>August<sp/>29<sp/>1994<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>4.2<sp/>May<sp/>3<sp/>1995<sp/>CJL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Version<sp/>5.0<sp/>Jan<sp/>31<sp/>2001<sp/>CJL<sp/>(enough<sp/>changes<sp/>for<sp/>Mk4<sp/>to<sp/>merit<sp/>this)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedit_8h" kindref="compound">aedit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="aedata_8h" kindref="compound">aedata.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="usearray_8h" kindref="compound">usearray.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="summary_8h" kindref="compound">summary.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref>,<sp/><ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref>,<sp/><ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref>,<sp/><ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref>,<sp/><ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref>,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1abb90ecefc5b17c468a6aca0261c8b63d" kindref="member">rflag</ref>,<sp/><ref refid="aedit_8c_1afbb9b1dda8ad9915e753c7a84be13489" kindref="member">cflag</ref>,<sp/><ref refid="aedit_8c_1aab9e30d72b4b6af02ce19b24422ad2ce" kindref="member">fflag</ref>,<sp/><ref refid="aedit_8c_1ab3fe9f9160e69ccb1c2ec2762072a6a4" kindref="member">tflag</ref>,<sp/><ref refid="aedit_8c_1ad68ceffeafb3a212d3d749b1899eb19b" kindref="member">qflag</ref>,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref>,<sp/><ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref>,<sp/><ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref>,<sp/><ref refid="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" kindref="member">tspace</ref>,<sp/><ref refid="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" kindref="member">qspace</ref>,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1ad1793c1a8dd3db1a8c4e2d76eadf0036" kindref="member">batch</ref>,<sp/><ref refid="aedit_8c_1a7ebff3ca9111aaba3727d524df0143a5" kindref="member">xwindow</ref>,<sp/><ref refid="aedit_8c_1a3e3b628171376543f5ac7642fff82ac3" kindref="member">up_to_date</ref>,<sp/><ref refid="aedit_8c_1a871f0b454c753d58efbf287f09c2be83" kindref="member">rmdup</ref>,<sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1ac83385bcefb21a96e2b201c33e441055" kindref="member">psplot_open</ref>,<sp/><ref refid="aedit_8c_1ac083d6709ce090866b0c8c34ef3c44d8" kindref="member">plot_open</ref>,<sp/><ref refid="aedit_8c_1aa4dcbf0c59f920c51895f4937eed1d16" kindref="member">rundepth</ref>,<sp/><ref refid="aedit_8c_1a2f29aab1c371226c7a31af51f0001f11" kindref="member">dotype</ref>,<sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a18e571ae00428ed0123d072572a274e4" kindref="member">output_version</ref>,<sp/><ref refid="aedit_8c_1a106b1504da610ea2c720bafb9a4d8c67" kindref="member">data_version</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a6fa4a4c7b8d0d721383b51363933c49d" kindref="member">qsortstat</ref>[10];</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1aa197c7a76a2fa21bf3735cf1d70b860d" kindref="member">tsortstat</ref>[10];</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a5ecbdd60d8ed41819099496a87f186bb" kindref="member">fsortstat</ref>[10];</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a4701a575d7993b0edfa057b319e330df" kindref="member">csortstat</ref>[10];</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a0597ac9a5fe21b22160969b3097b0942" kindref="member">rsortstat</ref>[10];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>These<sp/>arrays<sp/>are<sp/>where<sp/>a<sp/>record<sp/>of<sp/>the<sp/>sort<sp/>status<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>of<sp/>the<sp/>data<sp/>is<sp/>maintained.<sp/><sp/>The<sp/>first<sp/>element<sp/>is<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>the<sp/>number<sp/>of<sp/>sort<sp/>passes<sp/>done,<sp/>and<sp/>subsequent<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>elements<sp/>identify<sp/>the<sp/>sort<sp/>key<sp/>for<sp/>each<sp/>of<sp/>those<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>passes.<sp/>See<sp/>sorter()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structinputs" kindref="compound">inputs</ref><sp/><ref refid="aedit_8c_1abd573eff89e10745989cee5a194cc6b0" kindref="member">inp</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structdatasumm" kindref="compound">datasumm</ref><sp/>rsumm,<sp/>csumm,<sp/>fsumm,<sp/>tsumm,<sp/><ref refid="aedit_8c_1a5cd8da60b3f5f41c89d4504c1a1f60d2" kindref="member">qsumm</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structusearray" kindref="compound">usearray</ref><sp/><ref refid="aedit_8c_1ab735b108113cfcf02baf251fb4a8b646" kindref="member">user_param</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit_8c_1a0ddf1224851353fc92bfbff6f499fa97" kindref="member">main</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*argv[])</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*optarg;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>optind;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structesum" kindref="compound">esum</ref><sp/>data;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>file,<sp/>runfile,<sp/>c,<sp/>i,<sp/>j,<sp/>n,<sp/>len,<sp/><ref refid="fringex_8h_1aed0136847f093314d75285dde8bfc127" kindref="member">filelist</ref>,<sp/>ret;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="aedit__proto_8h_1a70af895f5aa31e01f99f2eb9264329db" kindref="member">execute</ref><sp/>(<ref refid="structesum" kindref="compound">esum</ref><sp/>*,<sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="structcom" kindref="compound">com</ref>*);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>run_fname[512],<sp/>line[512],<sp/>*eol;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structcom" kindref="compound">com</ref><sp/><ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>[10];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Structure<sp/>contains<sp/>parsed<sp/>command<sp/>info<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a41f224f3550cd182f5861fcfd034b734" kindref="member">set_progname</ref>(</highlight><highlight class="stringliteral">&quot;aedit&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1ae2aa6e8913c5d96af651065245a39ef4" kindref="member">set_msglev</ref>(2);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mk4__util_8h_1a4c1a529fb8f5b33debbadef37777358a" kindref="member">environment</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>up<sp/>directories<sp/>according<sp/>to<sp/>env&apos;t<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1acf5278e9aa7adf3b8aa0ccf942af01ec" kindref="member">check_env</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Aedit-specific<sp/>ones<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1addf1094bd04444873ba5599b4d3df5a0" kindref="member">init_inputs</ref>();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>everything<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a7ebff3ca9111aaba3727d524df0143a5" kindref="member">xwindow</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/><ref refid="aedit_8c_1ad1793c1a8dd3db1a8c4e2d76eadf0036" kindref="member">batch</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/><ref refid="aedit_8c_1a871f0b454c753d58efbf287f09c2be83" kindref="member">rmdup</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/><ref refid="aedit_8c_1ac083d6709ce090866b0c8c34ef3c44d8" kindref="member">plot_open</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1ac83385bcefb21a96e2b201c33e441055" kindref="member">psplot_open</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/>file<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/>runfile<sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa1e095cc966dbecf6a0d8aad75348d1a" kindref="member">FALSE</ref>;<sp/><ref refid="aedit_8c_1aa4dcbf0c59f920c51895f4937eed1d16" kindref="member">rundepth</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a106b1504da610ea2c720bafb9a4d8c67" kindref="member">data_version</ref><sp/>=<sp/>0;<sp/><ref refid="aedit_8c_1a18e571ae00428ed0123d072572a274e4" kindref="member">output_version</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a179e7279be43393227b169b575c734cf" kindref="member">rscan</ref><sp/>=<sp/><ref refid="aedit_8c_1a1386ebb1b94591749683abba8259ffe6" kindref="member">cscan</ref><sp/>=<sp/><ref refid="aedit_8c_1a1f60804e6e47d358561049739d360d3a" kindref="member">fscan</ref><sp/>=<sp/><ref refid="aedit_8c_1a927ae6d077305576efe46d3262e2fac9" kindref="member">tscan</ref><sp/>=<sp/><ref refid="aedit_8c_1a0a5078ccad3aa56bff65729922afe6e8" kindref="member">qscan</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1abb90ecefc5b17c468a6aca0261c8b63d" kindref="member">rflag</ref><sp/>=<sp/><ref refid="aedit_8c_1afbb9b1dda8ad9915e753c7a84be13489" kindref="member">cflag</ref><sp/>=<sp/><ref refid="aedit_8c_1aab9e30d72b4b6af02ce19b24422ad2ce" kindref="member">fflag</ref><sp/>=<sp/><ref refid="aedit_8c_1ab3fe9f9160e69ccb1c2ec2762072a6a4" kindref="member">tflag</ref><sp/>=<sp/><ref refid="aedit_8c_1ad68ceffeafb3a212d3d749b1899eb19b" kindref="member">qflag</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref><sp/>=<sp/><ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref><sp/>=<sp/><ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref><sp/>=<sp/><ref refid="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" kindref="member">tspace</ref><sp/>=<sp/><ref refid="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" kindref="member">qspace</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a2f29aab1c371226c7a31af51f0001f11" kindref="member">dotype</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;10;<sp/>i++)<sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a5ecbdd60d8ed41819099496a87f186bb" kindref="member">fsortstat</ref>[i]<sp/>=<sp/><ref refid="aedit_8c_1a4701a575d7993b0edfa057b319e330df" kindref="member">csortstat</ref>[i]<sp/>=<sp/><ref refid="aedit_8c_1a0597ac9a5fe21b22160969b3097b0942" kindref="member">rsortstat</ref>[i]<sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="aedit_8c_1aa197c7a76a2fa21bf3735cf1d70b860d" kindref="member">tsortstat</ref>[i]<sp/>=<sp/><ref refid="aedit_8c_1a6fa4a4c7b8d0d721383b51363933c49d" kindref="member">qsortstat</ref>[i]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Interpret<sp/>command<sp/>line<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="adump_8h_1a1f55298ff79347a11e3ab86c84b86fa1" kindref="member">parse_cmdline</ref><sp/>(argc,<sp/>argv,<sp/>&amp;<ref refid="aedit_8c_1a7ebff3ca9111aaba3727d524df0143a5" kindref="member">xwindow</ref>,<sp/>run_fname,<sp/>line,<sp/>&amp;<ref refid="fringex_8h_1aed0136847f093314d75285dde8bfc127" kindref="member">filelist</ref>)<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;Problem<sp/>parsing<sp/>command<sp/>line,<sp/>abort&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit<sp/>(1);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Announce<sp/>ourselves<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref><sp/>(</highlight><highlight class="stringliteral">&quot;\t\tAEDIT<sp/>VERSION<sp/>5.0<sp/>---<sp/>JAN<sp/>2001\n\n&quot;</highlight><highlight class="normal">,<sp/>2);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialize<sp/>the<sp/>memory<sp/>arrays<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/>rspace<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/><sp/><sp/><sp/>cspace<sp/>=<sp/>500;</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/><sp/><sp/><sp/>fspace<sp/>=<sp/>500;</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/><sp/><sp/><sp/>tspace<sp/>=<sp/>200;</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/><sp/><sp/><sp/>qspace<sp/>=<sp/>200;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref><sp/>=<sp/>5000;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref><sp/>=<sp/>25000;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref><sp/>=<sp/>25000;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" kindref="member">tspace</ref><sp/>=<sp/>10000;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" kindref="member">qspace</ref><sp/>=<sp/>10000;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>data.<ref refid="structesum_1ada63a2c76257e87fa4bfecfb067d3e05" kindref="member">rdata</ref><sp/>=<sp/>(<ref refid="structrootarray" kindref="compound">rootarray</ref><sp/>*)<sp/>calloc(<ref refid="aedit_8c_1a409a282430c5d3968099eb4342b47fa5" kindref="member">rspace</ref>,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structrootarray" kindref="compound">rootarray</ref>));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>data.<ref refid="structesum_1aeb5a85acd1f5ff2203c2cad8d20341b4" kindref="member">cdata</ref><sp/>=<sp/>(<ref refid="structcorelarray" kindref="compound">corelarray</ref><sp/>*)<sp/>calloc(<ref refid="aedit_8c_1a40a4bac3491c0d43ef657097a0e5e687" kindref="member">cspace</ref>,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structcorelarray" kindref="compound">corelarray</ref>));</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>data.<ref refid="structesum_1a0e1ae1d1e795229afaf5eba45f2f07a6" kindref="member">fdata</ref><sp/>=<sp/>(<ref refid="structfringearray" kindref="compound">fringearray</ref><sp/>*)<sp/>calloc(<ref refid="aedit_8c_1adaed2ef3bb8f73edb5c9a439a6c2e395" kindref="member">fspace</ref>,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structfringearray" kindref="compound">fringearray</ref>));</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>data.<ref refid="structesum_1a5b7351638813f38c179e463262d66615" kindref="member">tdata</ref><sp/>=<sp/>(<ref refid="structtrianglearray" kindref="compound">trianglearray</ref><sp/>*)<sp/>calloc(<ref refid="aedit_8c_1a8c58f8518a99534fef453ac039eeacbc" kindref="member">tspace</ref>,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structtrianglearray" kindref="compound">trianglearray</ref>));</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>data.<ref refid="structesum_1a5f86a9569e39d8c8821d584565f3124e" kindref="member">qdata</ref><sp/>=<sp/>(<ref refid="structquadarray" kindref="compound">quadarray</ref><sp/>*)<sp/>calloc(<ref refid="aedit_8c_1aed9aed1d97d9951e4844b4db5bcfed29" kindref="member">qspace</ref>,</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structquadarray" kindref="compound">quadarray</ref>));</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>If<sp/>in<sp/>-b<sp/>mode,<sp/>just<sp/>execute<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>supplied<sp/>commands<sp/>and<sp/>exit<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strlen<sp/>(line)<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit_8c_1ad1793c1a8dd3db1a8c4e2d76eadf0036" kindref="member">batch</ref><sp/>=<sp/><ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a1668b5438cc02b8c69c104bb73de48a1" kindref="member">parse_commands</ref><sp/>(line,<sp/><ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>,<sp/>&amp;n);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i=0;<sp/>i&lt;n;<sp/>i++)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((ret<sp/>=<sp/><ref refid="aedit__proto_8h_1a70af895f5aa31e01f99f2eb9264329db" kindref="member">execute</ref><sp/>(&amp;data,<sp/>&amp;<ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>[i]))<sp/>&lt;<sp/>0)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit<sp/>(ret);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>up<sp/>the<sp/>X-window<sp/>interface<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="aedit_8c_1a7ebff3ca9111aaba3727d524df0143a5" kindref="member">xwindow</ref>)<sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Xwindow<sp/>option<sp/>not<sp/>yet<sp/>operational<sp/>-<sp/>sorry!&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>in<sp/>the<sp/>files<sp/>expected<sp/>on<sp/>the<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>command<sp/>line<sp/>based<sp/>on<sp/>-f<sp/>flag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="fringex_8h_1aed0136847f093314d75285dde8bfc127" kindref="member">filelist</ref>)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(;optind&lt;argc;optind++)<sp/><ref refid="aedit__proto_8h_1a691eb7fef9566555cf896a7ad07dadcf" kindref="member">read_data</ref>(&amp;data,argv[optind]);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Execute<sp/>the<sp/>runfile<sp/>specified<sp/>with<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>-r<sp/>flag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strlen<sp/>(run_fname)<sp/>&gt;<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy<sp/>(<ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>[0].<ref refid="structcom_1ae4c9b7ae795b24e0f4e52218722a6dd4" kindref="member">cmnd</ref>,<sp/></highlight><highlight class="stringliteral">&quot;run&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>strcpy<sp/>(<ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>[0].<ref refid="structcom_1a702a1ad03e4f75f47503299b9b4f139c" kindref="member">arg1</ref>,<sp/>run_fname);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>[0].narg<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="aedit__proto_8h_1a70af895f5aa31e01f99f2eb9264329db" kindref="member">execute</ref>(&amp;data,&amp;<ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>[0])<sp/>&lt;<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Runfile<sp/>fails<sp/>...<sp/>Abort!&quot;</highlight><highlight class="normal">,<sp/>3);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>exit(1);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Enter<sp/>the<sp/>main<sp/>prompt<sp/>loop<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Only<sp/>way<sp/>out<sp/>is<sp/>&quot;exit&quot;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<ref refid="difx2mark4_8h_1ad1c1018b91abe46eaa220d8c979c9e77aa82764c3079aea4e60c80e45befbb839" kindref="member">TRUE</ref>)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="aedit_8c_1a2f29aab1c371226c7a31af51f0001f11" kindref="member">dotype</ref><sp/>&gt;=<sp/>0)<sp/>printf(</highlight><highlight class="stringliteral">&quot;aedit<sp/>%d&gt;<sp/>&quot;</highlight><highlight class="normal">,<sp/><ref refid="aedit_8c_1a2f29aab1c371226c7a31af51f0001f11" kindref="member">dotype</ref>);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>printf(</highlight><highlight class="stringliteral">&quot;aedit&gt;<sp/>&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Read<sp/>user<sp/>input<sp/>and<sp/>check<sp/>it<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!fgets(line,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(line),<sp/>stdin))<sp/>exit(0);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>eol<sp/>=<sp/>strrchr(line,<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(eol)<sp/>*eol<sp/>=<sp/>0;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Drop<sp/>newline<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Shell<sp/>escape<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(line[0]<sp/>==<sp/></highlight><highlight class="charliteral">&apos;!&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>=<sp/>system(&amp;line[1]);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i)<sp/><ref refid="msg_8h_1a02560f9686da0fc5d8020e1a070b884b" kindref="member">msg</ref>(</highlight><highlight class="stringliteral">&quot;Warning,<sp/>return<sp/>value<sp/>%d<sp/>from<sp/>last<sp/>command&quot;</highlight><highlight class="normal">,2,i);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="aedit__proto_8h_1a1668b5438cc02b8c69c104bb73de48a1" kindref="member">parse_commands</ref>(line,<ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>,&amp;n);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Do<sp/>all<sp/>commands<sp/>on<sp/>line<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;i&lt;n;i++)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="aedit__proto_8h_1a70af895f5aa31e01f99f2eb9264329db" kindref="member">execute</ref>(&amp;data,&amp;<ref refid="command__id_8c_1a811e212db301cadf9154ab8f6743c0a3" kindref="member">commands</ref>[i])<sp/>&lt;<sp/>0)<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>exit<sp/>(0);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/aedit/aedit.c"/>
+  </compounddef>
+</doxygen>

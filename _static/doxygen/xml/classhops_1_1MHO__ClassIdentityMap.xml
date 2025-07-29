@@ -1,0 +1,576 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ClassIdentityMap" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ClassIdentityMap</compoundname>
+    <derivedcompoundref refid="classhops_1_1MHO__ContainerDictionary" prot="public" virt="non-virtual">hops::MHO_ContainerDictionary</derivedcompoundref>
+    <includes refid="MHO__ClassIdentityMap_8hh" local="no">MHO_ClassIdentityMap.hh</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ClassIdentityMap_1aa9593b215788c588c77f6781609b2465" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &gt;</type>
+        <definition>std::map&lt; std::string, MHO_UUID &gt; hops::MHO_ClassIdentityMap::fClassName2UUID</definition>
+        <argsstring></argsstring>
+        <name>fClassName2UUID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="215" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="215" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ClassIdentityMap_1a7c19c181ba151d9f18cadf93723061f3" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>, <ref refid="classhops_1_1MHO__SerializableObjectFactory" kindref="compound">MHO_SerializableObjectFactory</ref> * &gt;</type>
+        <definition>std::map&lt; MHO_UUID, MHO_SerializableObjectFactory* &gt; hops::MHO_ClassIdentityMap::fFactoryMap</definition>
+        <argsstring></argsstring>
+        <name>fFactoryMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="216" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="216" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ClassIdentityMap_1a1dff8aca0d05dd0aff93a23c3952b6ce" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>, <ref refid="classhops_1_1MHO__JSONConverter" kindref="compound">MHO_JSONConverter</ref> * &gt;</type>
+        <definition>std::map&lt; MHO_UUID, MHO_JSONConverter* &gt; hops::MHO_ClassIdentityMap::fJSONConverterMap</definition>
+        <argsstring></argsstring>
+        <name>fJSONConverterMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="217" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ClassIdentityMap_1a4a3b31a0eaac82497f553cb73c05e3d3" prot="protected" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__MD5HashGenerator" kindref="compound">MHO_MD5HashGenerator</ref></type>
+        <definition>MHO_MD5HashGenerator hops::MHO_ClassIdentityMap::fMD5Generator</definition>
+        <argsstring></argsstring>
+        <name>fMD5Generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="213" column="30" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ClassIdentityMap_1a2de36e66bf0a4e9d56b4729a56b55269" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref>, std::string &gt;</type>
+        <definition>std::map&lt; MHO_UUID, std::string &gt; hops::MHO_ClassIdentityMap::fUUID2ClassName</definition>
+        <argsstring></argsstring>
+        <name>fUUID2ClassName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="214" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1adeb4c0465fb1605b42912194894bd1ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ClassIdentityMap::MHO_ClassIdentityMap</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ClassIdentityMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="32" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1ac7bc672558d8f417c3ca2b709ea323b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual hops::MHO_ClassIdentityMap::~MHO_ClassIdentityMap</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ClassIdentityMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="34" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="34" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1aacb4044308825b39e1f5267ba5b60464" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ClassIdentityMap::AddClassType</definition>
+        <argsstring>()</argsstring>
+        <name>AddClassType</name>
+        <briefdescription>
+<para>Function AddClassType, adds a class of a particular type to the identity map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>when a class is added to the identity map, this also creates a <ref refid="classhops_1_1MHO__SerializableObjectFactory" kindref="compound">MHO_SerializableObjectFactory</ref> and <ref refid="classhops_1_1MHO__ContainerJSONConverter" kindref="compound">MHO_ContainerJSONConverter</ref> that are dedicated to handling objects of this type </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="52" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="52" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1a0103c4975042d0957488ac71c9807d29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void hops::MHO_ClassIdentityMap::AddClassType</definition>
+        <argsstring>(const XClassType &amp;obj)</argsstring>
+        <name>AddClassType</name>
+        <param>
+          <type>const XClassType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Function AddClassType, overload provided for passing object reference. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>(const XClassType&amp;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return value (template&lt; typename XClassType &gt; void) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="80" column="27" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="80" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1ae11557634aed6caa84c4650da0f35a0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> *</type>
+        <definition>MHO_Serializable* hops::MHO_ClassIdentityMap::GenerateContainerFromUUID</definition>
+        <argsstring>(const MHO_UUID &amp;uuid)</argsstring>
+        <name>GenerateContainerFromUUID</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+<para>Generates a container from a UUID and returns a ptr to <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref> if found in factory map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input UUID to search for in factory map</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+returns a ptr to base class <ref refid="classhops_1_1MHO__Serializable" kindref="compound">MHO_Serializable</ref>, but the underlying type is that which is associated with the uuid, if the uuid is not in the factory map then nullptr is returned, memory managment is delegated to the caller <simplesect kind="return"><para>MHO_Serializable* object pointer or nullptr if UUID not found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="187" column="26" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="187" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1a18722990995da99e0bfedbbae39ef67c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ClassIdentityMap::GetClassNameFromObject</definition>
+        <argsstring>(const XClassType &amp;obj)</argsstring>
+        <name>GetClassNameFromObject</name>
+        <param>
+          <type>const XClassType &amp;</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+<para>Getter for class name from object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>obj</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input object of type XClassType&amp; to retrieve its class name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>String representation of the input object&apos;s class name. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="108" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="108" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1ab5fab332ff20bda9ff5cb2058af53933" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ClassIdentityMap::GetClassNameFromUUID</definition>
+        <argsstring>(const MHO_UUID &amp;uuid) const</argsstring>
+        <name>GetClassNameFromUUID</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+<para>Getter for class name from uuid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input UUID to lookup its corresponding class name </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Class name as string; &apos;unknown&apos; if not found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="120" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="120" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename XClassType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_ClassIdentityMap::GetUUIDFor</definition>
+        <argsstring>() const</argsstring>
+        <name>GetUUIDFor</name>
+        <briefdescription>
+<para>Getter for uuid for a class type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> corresponding to the input class type </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="155" column="31" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="155" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1a1e04611ffbc80e9cce0fcaf26b3d9880" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref></type>
+        <definition>MHO_UUID hops::MHO_ClassIdentityMap::GetUUIDFromClassName</definition>
+        <argsstring>(const std::string &amp;name) const</argsstring>
+        <name>GetUUIDFromClassName</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Getter for uuid from class name. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Class name to search for </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>UUID corresponding to the input class name if found </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="139" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="139" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1adb7d3b4cfa2b147704b58f8ad55d7d6a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ClassIdentityMap::IsTypePresent</definition>
+        <argsstring>(const MHO_UUID &amp;uuid) const</argsstring>
+        <name>IsTypePresent</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>uuid</declname>
+        </param>
+        <briefdescription>
+<para>Checks if a UUID is present in the class name map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UUID to search for. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if the UUID is found, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="167" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="167" bodyend="175"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ClassIdentityMap_1a9ce28a29369978d3a129718baf7a910c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ClassIdentityMap::AddToMap</definition>
+        <argsstring>(const MHO_UUID &amp;type_uuid, const std::string &amp;name)</argsstring>
+        <name>AddToMap</name>
+        <param>
+          <type>const <ref refid="classhops_1_1MHO__UUID" kindref="compound">MHO_UUID</ref> &amp;</type>
+          <declname>type_uuid</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Adds an entry to the UUID-name map and its reverse map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type_uuid</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UUID of the type to add. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name associated with the given UUID. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="207" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="207" bodyend="211"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ClassIdentityMap" kindref="compound">MHO_ClassIdentityMap</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu Apr 29 12:30:28 2021 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hops::MHO_ContainerDictionary</label>
+        <link refid="classhops_1_1MHO__ContainerDictionary"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+      </node>
+      <node id="3">
+        <label>hops::MHO_ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__ContainerFileInterface"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hops::MHO_HDF5ContainerFileInterface</label>
+        <link refid="classhops_1_1MHO__HDF5ContainerFileInterface"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="11">
+        <label>size_t</label>
+      </node>
+      <node id="15">
+        <label>uint_fast32_t</label>
+      </node>
+      <node id="18">
+        <label>std::map&lt; hops::MHO_UUID, std::string &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>MHO_MD5HashGeneratorBasicTypes</label>
+        <link refid="classhops_1_1MHO__MD5HashGeneratorMultiType"/>
+      </node>
+      <node id="14">
+        <label>_picohash_md5_ctx_t</label>
+        <link refid="struct__picohash__md5__ctx__t"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>buffer</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>a</edgelabel>
+          <edgelabel>b</edgelabel>
+          <edgelabel>block</edgelabel>
+          <edgelabel>c</edgelabel>
+          <edgelabel>d</edgelabel>
+          <edgelabel>hi</edgelabel>
+          <edgelabel>lo</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>std::map&lt; std::string, hops::MHO_UUID &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hops::MHO_ClassIdentityMap</label>
+        <link refid="classhops_1_1MHO__ClassIdentityMap"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fJSONConverterMap</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>fMD5Generator</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>fFactoryMap</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fUUID2ClassName</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>fClassName2UUID</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_JSONConverter * &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>json</label>
+      </node>
+      <node id="10">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="12">
+        <label>hops::MHO_MD5HashGenerator</label>
+        <link refid="classhops_1_1MHO__MD5HashGenerator"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>fHashStruct</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fDigest</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>int</label>
+      </node>
+      <node id="3">
+        <label>hops::MHO_UUID</label>
+        <link refid="classhops_1_1MHO__UUID"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>fBytes</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>uint8_t</label>
+      </node>
+      <node id="16">
+        <label>std::map&lt; hops::MHO_UUID, hops::MHO_SerializableObjectFactory * &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>hops::MHO_SerializableObjectFactory</label>
+        <link refid="classhops_1_1MHO__SerializableObjectFactory"/>
+      </node>
+      <node id="5">
+        <label>hops::MHO_JSONConverter</label>
+        <link refid="classhops_1_1MHO__JSONConverter"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>fRawData</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>fJSON</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>fLOD</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>fRawDataDescriptor</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>fRank</edgelabel>
+          <edgelabel>fRawByteSize</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>char</label>
+      </node>
+      <node id="9">
+        <label>std::string</label>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" line="29" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Containers/include/MHO_ClassIdentityMap.hh" bodystart="30" bodyend="218"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1aacb4044308825b39e1f5267ba5b60464" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>AddClassType</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a0103c4975042d0957488ac71c9807d29" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>AddClassType</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a9ce28a29369978d3a129718baf7a910c" prot="protected" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>AddToMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1aa9593b215788c588c77f6781609b2465" prot="protected" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>fClassName2UUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a7c19c181ba151d9f18cadf93723061f3" prot="protected" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>fFactoryMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1dff8aca0d05dd0aff93a23c3952b6ce" prot="protected" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>fJSONConverterMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a4a3b31a0eaac82497f553cb73c05e3d3" prot="protected" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>fMD5Generator</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a2de36e66bf0a4e9d56b4729a56b55269" prot="protected" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>fUUID2ClassName</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ae11557634aed6caa84c4650da0f35a0d" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>GenerateContainerFromUUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a18722990995da99e0bfedbbae39ef67c" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>GetClassNameFromObject</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ab5fab332ff20bda9ff5cb2058af53933" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>GetClassNameFromUUID</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1e8027a17af12026e03bacf9f274811b" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>GetUUIDFor</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1a1e04611ffbc80e9cce0fcaf26b3d9880" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>GetUUIDFromClassName</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1adb7d3b4cfa2b147704b58f8ad55d7d6a" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>IsTypePresent</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1adeb4c0465fb1605b42912194894bd1ec" prot="public" virt="non-virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>MHO_ClassIdentityMap</name></member>
+      <member refid="classhops_1_1MHO__ClassIdentityMap_1ac7bc672558d8f417c3ca2b709ea323b2" prot="public" virt="virtual"><scope>hops::MHO_ClassIdentityMap</scope><name>~MHO_ClassIdentityMap</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

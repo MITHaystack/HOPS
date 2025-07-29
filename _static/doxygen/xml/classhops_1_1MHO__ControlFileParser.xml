@@ -1,0 +1,693 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classhops_1_1MHO__ControlFileParser" kind="class" language="C++" prot="public">
+    <compoundname>hops::MHO_ControlFileParser</compoundname>
+    <includes refid="MHO__ControlFileParser_8hh" local="no">MHO_ControlFileParser.hh</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classhops_1_1MHO__ControlFileParser_1a139e7623260253418a7db295e5ed5d66" prot="private" static="no">
+        <type>std::list&lt; <ref refid="structhops_1_1MHO__ControlLine" kindref="compound">MHO_ControlLine</ref> &gt;::iterator</type>
+        <definition>using hops::MHO_ControlFileParser::line_itr =  std::list&lt; MHO_ControlLine &gt;::iterator</definition>
+        <argsstring></argsstring>
+        <name>line_itr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="145" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a21634442e09775592b9a2e4e1ced1501" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fCommentFlag</definition>
+        <argsstring></argsstring>
+        <name>fCommentFlag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="140" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a712e57ed0098180440f4fde511444dad" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fControlFileName</definition>
+        <argsstring></argsstring>
+        <name>fControlFileName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="136" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a03f924409df8f68cd4abf58f86cad2aa" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fControlVersion</definition>
+        <argsstring></argsstring>
+        <name>fControlVersion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="149" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1aac39f84172d9a0e2ac8bde0cf75f4235" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__ControlElementParser" kindref="compound">MHO_ControlElementParser</ref></type>
+        <definition>MHO_ControlElementParser hops::MHO_ControlFileParser::fElementParser</definition>
+        <argsstring></argsstring>
+        <name>fElementParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="159" column="34" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a1a7d7ee221fba4a68c82d945c6d39a8f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt;</type>
+        <definition>std::vector&lt; MHO_Token &gt; hops::MHO_ControlFileParser::fFileTokens</definition>
+        <argsstring></argsstring>
+        <name>fFileTokens</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="155" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a18e4badd558e52e40e6e56657fec0119" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fFormatDirectory</definition>
+        <argsstring></argsstring>
+        <name>fFormatDirectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="148" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1ab46d39e37657e4328bd30cff93227ded" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::size_t &gt;</type>
+        <definition>std::vector&lt; std::size_t &gt; hops::MHO_ControlFileParser::fKeywordLocations</definition>
+        <argsstring></argsstring>
+        <name>fKeywordLocations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="156" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1ab1563b103afb95e65a8899e5187d458c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt; std::string &gt; hops::MHO_ControlFileParser::fKeywordNames</definition>
+        <argsstring></argsstring>
+        <name>fKeywordNames</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="150" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a9a9859e4a34aca3f82ba49ce77005472" prot="private" static="no" mutable="no">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlFileParser::fKeywordNamesJSON</definition>
+        <argsstring></argsstring>
+        <name>fKeywordNamesJSON</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="151" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a473c12cf23ddb32b31a7b365090d7a9c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structhops_1_1MHO__Token" kindref="compound">MHO_Token</ref> &gt;</type>
+        <definition>std::vector&lt; MHO_Token &gt; hops::MHO_ControlFileParser::fLegacyFileTokens</definition>
+        <argsstring></argsstring>
+        <name>fLegacyFileTokens</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="164" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1ade69fd8686c368ba731e5eea7e314ab1" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fLegacyProcessedControlFileText</definition>
+        <argsstring></argsstring>
+        <name>fLegacyProcessedControlFileText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="163" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a9778908ea5b2dfe99ceb678ddd1caa2e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fLine</definition>
+        <argsstring></argsstring>
+        <name>fLine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="143" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a47eeb173a1d23946f011830da79fefaa" prot="private" static="no" mutable="no">
+        <type>std::list&lt; <ref refid="structhops_1_1MHO__ControlLine" kindref="compound">MHO_ControlLine</ref> &gt;</type>
+        <definition>std::list&lt; MHO_ControlLine &gt; hops::MHO_ControlFileParser::fLines</definition>
+        <argsstring></argsstring>
+        <name>fLines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="144" column="19" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1af6fe8394ba46fe48f90d3e313020c9d8" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fProcessedControlFileText</definition>
+        <argsstring></argsstring>
+        <name>fProcessedControlFileText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="162" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a8fc44c6c1dd1058653439b9151a2c022" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fSetString</definition>
+        <argsstring></argsstring>
+        <name>fSetString</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="135" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a16f0636ea2ef1ba41d85851780b35728" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structhops_1_1MHO__ControlStatement" kindref="compound">MHO_ControlStatement</ref> &gt;</type>
+        <definition>std::vector&lt; MHO_ControlStatement &gt; hops::MHO_ControlFileParser::fStatements</definition>
+        <argsstring></argsstring>
+        <name>fStatements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="157" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1aad9882a83322135a02b8b83721564b57" prot="private" static="no" mutable="no">
+        <type><ref refid="classhops_1_1MHO__Tokenizer" kindref="compound">MHO_Tokenizer</ref></type>
+        <definition>MHO_Tokenizer hops::MHO_ControlFileParser::fTokenizer</definition>
+        <argsstring></argsstring>
+        <name>fTokenizer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="154" column="23" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhops_1_1MHO__ControlFileParser_1a99932b864697fd77a0cdab6889904694" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::fWhitespace</definition>
+        <argsstring></argsstring>
+        <name>fWhitespace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="139" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a8e0e824aee048495644b920bc259864f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hops::MHO_ControlFileParser::MHO_ControlFileParser</definition>
+        <argsstring>()</argsstring>
+        <name>MHO_ControlFileParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="34" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="29" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a3f37e58ad61c3e8005b4950b50bfdff3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>hops::MHO_ControlFileParser::~MHO_ControlFileParser</definition>
+        <argsstring>()</argsstring>
+        <name>~MHO_ControlFileParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="35" column="17" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a83414c693ea96fc03fe700982d517be2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::GetLegacyProcessedControlFileText</definition>
+        <argsstring>() const</argsstring>
+        <name>GetLegacyProcessedControlFileText</name>
+        <briefdescription>
+<para>Getter for legacy processed control file text (just the control file tokens without set-string additions, needed for backwards compatible <ref refid="structtype__222" kindref="compound">type_222</ref> records) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::string containing legacy processed control file text </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="71" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1af0624cbc331adf5fb65c4b438ad7179b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string hops::MHO_ControlFileParser::GetProcessedControlFileText</definition>
+        <argsstring>() const</argsstring>
+        <name>GetProcessedControlFileText</name>
+        <briefdescription>
+<para>Getter for processed control file text (i.e. all of the tokens that make it into the control flow) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Processed control file text as std::string </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="63" column="21" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a77d45bc7bee73b5928923ffff3b55761" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlFileParser::ParseControl</definition>
+        <argsstring>()</argsstring>
+        <name>ParseControl</name>
+        <briefdescription>
+<para>Parses control file and constructs JSON object representing control objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>mho_json object containing constructed control objects. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="56" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="47" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a49a706a3088f7646cd75a78faefd1476" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::PassSetString</definition>
+        <argsstring>(std::string set_string)</argsstring>
+        <name>PassSetString</name>
+        <param>
+          <type>std::string</type>
+          <declname>set_string</declname>
+        </param>
+        <briefdescription>
+<para>Sets the global set_string (control statement) variable. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>set_string</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new value to be assigned to the global set_string. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="42" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a8650067b142cdea5afbeb4d28d29d5e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::SetControlFile</definition>
+        <argsstring>(std::string filename)</argsstring>
+        <name>SetControlFile</name>
+        <param>
+          <type>std::string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Setter for control file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New control file name </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="49" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="42" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a17879c954f80deb1f044dc6d2ef64906" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MHO__JSONHeaderWrapper_8hh_1ad8862af8dd9e65e2990665b6bbfcb6fe" kindref="member">mho_json</ref></type>
+        <definition>mho_json hops::MHO_ControlFileParser::ConstructControlObjects</definition>
+        <argsstring>()</argsstring>
+        <name>ConstructControlObjects</name>
+        <briefdescription>
+<para>Constructs control objects from statements and adds them to a JSON root. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>mho_json representing the constructed control objects. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="113" column="18" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="313" bodyend="349"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a916f98ae116fcff917b0e3f0eeb8105a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::ExportTokens</definition>
+        <argsstring>()</argsstring>
+        <name>ExportTokens</name>
+        <briefdescription>
+<para>Exports tokens from control files and stores them in respective processed text variables. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="99" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="242" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a0249670995f21f3075c5b79f280d294b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::FindAndReplace</definition>
+        <argsstring>(const std::string &amp;find_str, const std::string &amp;regex_str, const std::string &amp;replace_str, std::string &amp;text)</argsstring>
+        <name>FindAndReplace</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>find_str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>regex_str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>replace_str</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+<para>Replaces occurrences of find_str in text with replace_str using regex_str as pattern. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>find_str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>String to search for and replace </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>regex_str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Regular expression pattern for matching </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>replace_str</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>String to replace matches with </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>text</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input/output string where replacements occur </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="132" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="351" bodyend="360"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a823639f22d748c719baaa6bef45a24ab" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::FindKeywords</definition>
+        <argsstring>()</argsstring>
+        <name>FindKeywords</name>
+        <briefdescription>
+<para>Searches for keywords in file tokens and stores their locations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="103" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="268" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a6f34c3fd9fa137f3826ca1a094c7c07b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::FixSymbols</definition>
+        <argsstring>()</argsstring>
+        <name>FixSymbols</name>
+        <briefdescription>
+<para>Fixes symbols in lines by padding parentheses, ! and &lt;, with spaces. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="87" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="168" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1aa0fd17f2e93e2ef6663bb0bc38382ea6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::FormStatements</definition>
+        <argsstring>()</argsstring>
+        <name>FormStatements</name>
+        <briefdescription>
+<para>Forms control statements by splitting tokens into sections governed by keywords. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="107" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="285" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1ae378363c42d325dc3176c5eaa4cb07b5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::MergeTokens</definition>
+        <argsstring>()</argsstring>
+        <name>MergeTokens</name>
+        <briefdescription>
+<para>Merges tokens from all lines in fLines, excluding first and last lines for legacy tokens. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="95" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="222" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1aa90b6ba2de36bd6e917168047a4113b4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hops::MHO_ControlFileParser::ReadFile</definition>
+        <argsstring>()</argsstring>
+        <name>ReadFile</name>
+        <briefdescription>
+<para>Reads a control file and appends/set string portions to it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if file read successfully, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="79" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="74" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a200da8cf6ee88287ea55e95042beb5a0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::RemoveComments</definition>
+        <argsstring>()</argsstring>
+        <name>RemoveComments</name>
+        <briefdescription>
+<para>Removes comment lines and trims leading comments from non-empty lines in fLines. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="83" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="134" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1ab9586754385f4cbf45e273d9d44e0f01" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::SplitSetString</definition>
+        <argsstring>(const std::string &amp;set_string, std::string &amp;prepend, std::string &amp;append)</argsstring>
+        <name>SplitSetString</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>set_string</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>prepend</declname>
+        </param>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>append</declname>
+        </param>
+        <briefdescription>
+<para>Splits a set string into prepend and append parts based on &apos;if&apos; statement presence. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>set_string</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input set string to be split </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prepend</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: part of set_string before first &apos;if&apos; statement </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>append</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output: part of set_string after first &apos;if&apos; statement </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="122" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="362" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="classhops_1_1MHO__ControlFileParser_1a0f6df9ed7c1266306b0f908caf2b3980" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hops::MHO_ControlFileParser::TokenizeLines</definition>
+        <argsstring>()</argsstring>
+        <name>TokenizeLines</name>
+        <briefdescription>
+<para>Tokenizes lines in the control file parser using specified delimiters and settings. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="91" column="14" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/src/MHO_ControlFileParser.cc" bodystart="195" bodyend="220"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classhops_1_1MHO__ControlFileParser" kindref="compound">MHO_ControlFileParser</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>J. Barrett - <ulink url="mailto:barrettj@mit.edu">barrettj@mit.edu</ulink> </para>
+</simplesect>
+<simplesect kind="date"><para>Thu May 11 15:00:11 2023 -0400 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" line="31" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Control/include/MHO_ControlFileParser.hh" bodystart="32" bodyend="165"/>
+    <listofallmembers>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a17879c954f80deb1f044dc6d2ef64906" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>ConstructControlObjects</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a916f98ae116fcff917b0e3f0eeb8105a" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>ExportTokens</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a21634442e09775592b9a2e4e1ced1501" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fCommentFlag</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a712e57ed0098180440f4fde511444dad" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fControlFileName</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a03f924409df8f68cd4abf58f86cad2aa" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fControlVersion</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1aac39f84172d9a0e2ac8bde0cf75f4235" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fElementParser</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a1a7d7ee221fba4a68c82d945c6d39a8f" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fFileTokens</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a18e4badd558e52e40e6e56657fec0119" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fFormatDirectory</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a0249670995f21f3075c5b79f280d294b" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>FindAndReplace</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a823639f22d748c719baaa6bef45a24ab" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>FindKeywords</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a6f34c3fd9fa137f3826ca1a094c7c07b" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>FixSymbols</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1ab46d39e37657e4328bd30cff93227ded" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fKeywordLocations</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1ab1563b103afb95e65a8899e5187d458c" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fKeywordNames</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a9a9859e4a34aca3f82ba49ce77005472" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fKeywordNamesJSON</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a473c12cf23ddb32b31a7b365090d7a9c" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fLegacyFileTokens</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1ade69fd8686c368ba731e5eea7e314ab1" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fLegacyProcessedControlFileText</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a9778908ea5b2dfe99ceb678ddd1caa2e" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fLine</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a47eeb173a1d23946f011830da79fefaa" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fLines</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1aa0fd17f2e93e2ef6663bb0bc38382ea6" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>FormStatements</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1af6fe8394ba46fe48f90d3e313020c9d8" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fProcessedControlFileText</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a8fc44c6c1dd1058653439b9151a2c022" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fSetString</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a16f0636ea2ef1ba41d85851780b35728" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fStatements</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1aad9882a83322135a02b8b83721564b57" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fTokenizer</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a99932b864697fd77a0cdab6889904694" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>fWhitespace</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a83414c693ea96fc03fe700982d517be2" prot="public" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>GetLegacyProcessedControlFileText</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1af0624cbc331adf5fb65c4b438ad7179b" prot="public" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>GetProcessedControlFileText</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a139e7623260253418a7db295e5ed5d66" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>line_itr</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1ae378363c42d325dc3176c5eaa4cb07b5" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>MergeTokens</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a8e0e824aee048495644b920bc259864f" prot="public" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>MHO_ControlFileParser</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a77d45bc7bee73b5928923ffff3b55761" prot="public" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>ParseControl</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a49a706a3088f7646cd75a78faefd1476" prot="public" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>PassSetString</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1aa90b6ba2de36bd6e917168047a4113b4" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>ReadFile</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a200da8cf6ee88287ea55e95042beb5a0" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>RemoveComments</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a8650067b142cdea5afbeb4d28d29d5e3" prot="public" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>SetControlFile</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1ab9586754385f4cbf45e273d9d44e0f01" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>SplitSetString</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a0f6df9ed7c1266306b0f908caf2b3980" prot="private" virt="non-virtual"><scope>hops::MHO_ControlFileParser</scope><name>TokenizeLines</name></member>
+      <member refid="classhops_1_1MHO__ControlFileParser_1a3f37e58ad61c3e8005b4950b50bfdff3" prot="public" virt="virtual"><scope>hops::MHO_ControlFileParser</scope><name>~MHO_ControlFileParser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

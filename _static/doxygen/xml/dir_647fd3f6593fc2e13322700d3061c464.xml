@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_647fd3f6593fc2e13322700d3061c464" kind="dir">
+    <compoundname>alist</compoundname>
+    <innerdir refid="dir_e7aa57eed084205074e4a151b0ca7166">src</innerdir>
+    <innerfile refid="alist_8c">alist.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/c_src/applications/alist/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,483 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__BasicFringeInfo_8cc" kind="file" language="C++">
+    <compoundname>MHO_BasicFringeInfo.cc</compoundname>
+    <includes refid="MHO__BasicFringeInfo_8hh" local="yes">MHO_BasicFringeInfo.hh</includes>
+    <includes refid="MHO__MathUtilities_8hh" local="yes">MHO_MathUtilities.hh</includes>
+    <incdepgraph>
+      <node id="22">
+        <label>atomic</label>
+      </node>
+      <node id="5">
+        <label>iomanip</label>
+      </node>
+      <node id="32">
+        <label>legacy_hops_date.hh</label>
+        <link refid="legacy__hops__date_8hh"/>
+      </node>
+      <node id="15">
+        <label>cstdint</label>
+      </node>
+      <node id="8">
+        <label>MHO_Clock.hh</label>
+        <link refid="MHO__Clock_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cmath</label>
+      </node>
+      <node id="25">
+        <label>stdexcept</label>
+      </node>
+      <node id="2">
+        <label>MHO_BasicFringeInfo.hh</label>
+        <link refid="MHO__BasicFringeInfo_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>string</label>
+      </node>
+      <node id="11">
+        <label>date/date.h</label>
+      </node>
+      <node id="13">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>MHO_BasicFringeInfo.cc</label>
+        <link refid="MHO__BasicFringeInfo_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>MHO_MathUtilities.hh</label>
+        <link refid="MHO__MathUtilities_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>ostream</label>
+      </node>
+      <node id="24">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>ctime</label>
+      </node>
+      <node id="29">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>vector</label>
+      </node>
+      <node id="6">
+        <label>sstream</label>
+      </node>
+      <node id="21">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>math.h</label>
+      </node>
+      <node id="14">
+        <label>cstdlib</label>
+      </node>
+      <node id="31">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>iostream</label>
+      </node>
+      <node id="17">
+        <label>mutex</label>
+      </node>
+      <node id="9">
+        <label>chrono</label>
+      </node>
+      <node id="23">
+        <label>thread</label>
+      </node>
+      <node id="19">
+        <label>set</label>
+      </node>
+      <node id="4">
+        <label>complex</label>
+      </node>
+      <node id="12">
+        <label>date/tz.h</label>
+      </node>
+      <node id="20">
+        <label>stdio.h</label>
+      </node>
+      <node id="27">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__BasicFringeInfo_8hh" kindref="compound">MHO_BasicFringeInfo.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__MathUtilities_8hh" kindref="compound">MHO_MathUtilities.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">std::string<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">MHO_BasicFringeInfo::leftpadzeros_integer</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n_places,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structvalue" kindref="compound">value</ref>)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>std::stringstream<sp/>ss;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/>std::setw(n_places);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/>std::setfill(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>ss<sp/>&lt;&lt;<sp/><ref refid="structvalue" kindref="compound">value</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ss.str();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">std::string<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a865ebf04855ea9b5801d66c04d855dc2" kindref="member">MHO_BasicFringeInfo::make_legacy_datetime_format</ref>(legacy_hops_date<sp/>ldate)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//formats<sp/>the<sp/>time<sp/>as<sp/>HHMMSS.xx<sp/>with<sp/>no<sp/>separators<sp/>(except<sp/>the<sp/>&apos;.&apos;<sp/>for<sp/>the<sp/>fractional<sp/>second)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isec<sp/>=<sp/>(int)ldate.second;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fsec<sp/>=<sp/>ldate.second<sp/>-<sp/>isec;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>dt;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>dt<sp/>=<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(2,<sp/>ldate.hour)<sp/>+<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(2,<sp/>ldate.minute)<sp/>+<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(2,<sp/>isec);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fsec_dummy<sp/>=<sp/>(int)(100<sp/>*<sp/>fsec);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>dt<sp/>+=<sp/></highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal"><sp/>+<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(2,<sp/>fsec_dummy);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dt;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">std::string<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1aa6b0b87bd859381afe560fb4c7f17872" kindref="member">MHO_BasicFringeInfo::make_legacy_datetime_format_v2</ref>(legacy_hops_date<sp/>ldate)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//formats<sp/>the<sp/>time<sp/>as:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//YYYY:DDD:HHMMSS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iyear<sp/>=<sp/>(int)ldate.year;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iday<sp/>=<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)ldate.day;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isec<sp/>=<sp/>(int)ldate.second;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>dt;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>dt<sp/>=<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(4,<sp/>iyear)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(3,<sp/>iday)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(2,<sp/>ldate.hour)<sp/>+</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(2,<sp/>ldate.minute)<sp/>+<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1af844b5b496b20d12e3f963d68927565f" kindref="member">leftpadzeros_integer</ref>(2,<sp/>isec);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dt;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a8e1390e85a62818b713e71df5ccf6c91" kindref="member">MHO_BasicFringeInfo::calculate_snr</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>effective_npol,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ap_period,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>samp_period,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>total_ap_frac,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a8179ee8684a5bbb2d3e99a166d9b3991" kindref="member">amp</ref>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bw_corr_factor)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Poor<sp/>imitation<sp/>of<sp/>SNR<sp/>--<sp/>needs<sp/>to<sp/>be<sp/>revisited<sp/>and<sp/>formalized</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//some<sp/>hardcoded<sp/>values<sp/>used<sp/>right<sp/>now</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1aecaae848aae9625eafba624faf0a17ab" kindref="member">TODO_FIXME_MSG</ref>(</highlight><highlight class="stringliteral">&quot;TODO<sp/>FIXME<sp/>--<sp/>need<sp/>to<sp/>accommodate<sp/>stations<sp/>with<sp/>non-2bit<sp/>sampling&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>double<sp/>amp_corr_factor<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fact1<sp/>=<sp/>1.0;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//more<sp/>than<sp/>16<sp/>lags</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fact2<sp/>=<sp/>0.881;<sp/><sp/></highlight><highlight class="comment">//2bit<sp/>x<sp/>2bit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fact3<sp/>=<sp/>0.970;<sp/><sp/></highlight><highlight class="comment">//difx</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>whitneys<sp/>=<sp/>1e4;<sp/></highlight><highlight class="comment">//unit<sp/>conversion<sp/>to<sp/>&apos;Whitneys&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>inv_sigma<sp/>=<sp/>fact1<sp/>*<sp/>fact2<sp/>*<sp/>fact3<sp/>*<sp/>std::sqrt(ap_period<sp/>/<sp/>samp_period);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr<sp/>=<sp/>bw_corr_factor<sp/>*<sp/><ref refid="namespacehops__visualization_1_1picking__aedit_1a8179ee8684a5bbb2d3e99a166d9b3991" kindref="member">amp</ref><sp/>*<sp/>inv_sigma<sp/>*<sp/>sqrt(total_ap_frac<sp/>*<sp/>effective_npol)<sp/>/<sp/>(whitneys<sp/>*<sp/>amp_corr_factor);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>snr;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a8dfa0326eecd2b67d1bc61709213ec35" kindref="member">MHO_BasicFringeInfo</ref>::<ref refid="classhops_1_1MHO__BasicFringeInfo_1a0e3d591d0132dfadf69de8dc00f37fad" kindref="member">calculate_mbd_no_ion_error</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>freq_spread,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mbd_err<sp/>=<sp/>(1.0<sp/>/<sp/>(2.0<sp/>*<sp/>M_PI<sp/>*<sp/>freq_spread<sp/>*<sp/>snr));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mbd_err;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a23273aa2433bf09f1fc988f1b2b0236a" kindref="member">MHO_BasicFringeInfo::calculate_sbd_error</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbd_sep,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbavg)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>get<sp/>proper<sp/>weighting<sp/>for<sp/>sbd<sp/>error<sp/>estimate<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>status-&gt;sbavg<sp/>=<sp/>0.0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>for<sp/>(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>nfreq;<sp/>fr++)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>for<sp/>(ap<sp/>=<sp/>pass-&gt;ap_off;<sp/>ap<sp/>&lt;<sp/>pass-&gt;ap_off<sp/>+<sp/>pass-&gt;num_ap;<sp/>ap++)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>status-&gt;sbavg<sp/>+=<sp/>pass-&gt;pass_data[fr].data[ap].sband;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>status-&gt;sbavg<sp/>/=<sp/>status-&gt;total_ap;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbd_err<sp/>=<sp/>(std::sqrt(12.0)<sp/>*<sp/>sbd_sep<sp/>*<sp/>4.0)<sp/>/<sp/>(2.0<sp/>*<sp/>M_PI<sp/>*<sp/>snr<sp/>*<sp/>(2.0<sp/>-<sp/>std::fabs(sbavg)));</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sbd_err;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a2e9b4128bc20dbb0d03282b41a6db9e7" kindref="member">MHO_BasicFringeInfo::calculate_drate_error_v1</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_freq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>total_nap,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ap_delta)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//originally:<sp/>temp<sp/>=<sp/>status-&gt;total_ap<sp/>*<sp/>param-&gt;acc_period<sp/>/<sp/>pass-&gt;channels;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//but<sp/>we<sp/>don&apos;t<sp/>need<sp/>the<sp/>number<sp/>of<sp/>channels<sp/>due<sp/>to<sp/>the<sp/>difference<sp/>in<sp/>the<sp/>way</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//we<sp/>count<sp/>&apos;APs&apos;<sp/>vs<sp/>original<sp/>c-code.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp<sp/>=<sp/>total_nap<sp/>*<sp/>ap_delta;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>drate_error<sp/>=<sp/>std::sqrt(12.0)<sp/>/<sp/>(2.0<sp/>*<sp/>M_PI<sp/>*<sp/>snr<sp/>*<sp/>ref_freq<sp/>*<sp/>temp);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>drate_error;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a26b3151dc82f3a342a00c1d4da0923d7" kindref="member">MHO_BasicFringeInfo::calculate_drate_error_v2</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_freq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>integration_time)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temp<sp/>=<sp/>integration_time;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>drate_error<sp/>=<sp/>std::sqrt(12.0)<sp/>/<sp/>(2.0<sp/>*<sp/>M_PI<sp/>*<sp/>snr<sp/>*<sp/>ref_freq<sp/>*<sp/>temp);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>drate_error;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a48d0c580d46b76e81da5c6eb96e9709c" kindref="member">MHO_BasicFringeInfo::calculate_pfd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pts_searched)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a<sp/>=<sp/>1.0<sp/>-<sp/>std::exp(-1.0<sp/>*<sp/>(snr<sp/>*<sp/>snr)<sp/>/<sp/>2.0);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>pfd<sp/>=<sp/>1.0<sp/>-<sp/>std::pow(a,<sp/>pts_searched);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//NOTE:<sp/>because<sp/>of<sp/>the<sp/>very<sp/>large<sp/>power<sp/>(pts_searched),<sp/>very<sp/>small<sp/>changes<sp/>to<sp/>SNR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//within<sp/>a<sp/>certain<sp/>range<sp/>can<sp/>lead<sp/>to<sp/>large<sp/>changes<sp/>in<sp/>the<sp/>PFD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>pfd<sp/>=<sp/>1.0<sp/>-<sp/>(std::pow(1.0<sp/>-<sp/>std::exp(-1.0<sp/>*<sp/>snr<sp/>*<sp/>snr<sp/>/<sp/>2.0),<sp/>pts_searched));</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(pfd<sp/>&lt;<sp/>0.01)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//approximate<sp/>when<sp/>exp<sp/>term<sp/>is<sp/>small</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pfd<sp/>=<sp/>pts_searched<sp/>*<sp/>std::exp(-1.0<sp/>*<sp/>(snr<sp/>*<sp/>snr)<sp/>/<sp/>2.0);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pfd;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1ae8873e1f955d42097967d9547cc36445" kindref="member">MHO_BasicFringeInfo::calculate_phase_error</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbavg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//no<sp/>ionosphere</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sband_err<sp/>=<sp/>std::sqrt(1.0<sp/>+<sp/>3.0<sp/>*<sp/>(sbavg<sp/>*<sp/>sbavg));<sp/></highlight><highlight class="comment">//why?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>phase_err<sp/>=<sp/>180.0<sp/>*<sp/>sband_err<sp/>/<sp/>(M_PI<sp/>*<sp/>snr);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>phase_err;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1ac99a5d8674d6feaaca658825d95df619" kindref="member">MHO_BasicFringeInfo::calculate_phase_delay_error</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sbavg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_freq)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//no<sp/>ionosphere</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sband_err<sp/>=<sp/>std::sqrt(1.0<sp/>+<sp/>3.0<sp/>*<sp/>(sbavg<sp/>*<sp/>sbavg));</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ph_delay_err<sp/>=<sp/>sband_err<sp/>/<sp/>(2.0<sp/>*<sp/>M_PI<sp/>*<sp/>snr<sp/>*<sp/>ref_freq);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ph_delay_err;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a2dfa46c0b2b9bf12aff1d9c801158362" kindref="member">MHO_BasicFringeInfo::calculate_theory_timerms_phase</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>nseg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Theoretical<sp/>RMS<sp/>values<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>true_nseg<sp/>is<sp/>meant<sp/>to<sp/>be<sp/>effective<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>number<sp/>of<sp/>segments<sp/>actually<sp/>included<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>in<sp/>the<sp/>fit<sp/>for<sp/>switched<sp/>mode<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//true_nseg<sp/>=<sp/>status.nseg<sp/>*<sp/>totap<sp/>/<sp/>(pass-&gt;num_ap<sp/>*<sp/>nfreq);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>true_nseg<sp/>=<sp/>nseg;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>th_timerms_phase<sp/>=<sp/>std::sqrt(true_nseg)<sp/>*<sp/>180.<sp/>/<sp/>(M_PI<sp/>*<sp/>snr);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>th_timerms_phase;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1ae67f7128c1983afaf2f7ba6aeb4f85ff" kindref="member">MHO_BasicFringeInfo::calculate_theory_timerms_amp</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>nseg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>th_timerms_phase<sp/>=<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a2dfa46c0b2b9bf12aff1d9c801158362" kindref="member">calculate_theory_timerms_phase</ref>(nseg,<sp/>snr);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>th_timerms_amp<sp/>=<sp/>th_timerms_phase<sp/>*<sp/>M_PI<sp/>*<sp/>100.<sp/>/<sp/>180.;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>th_timerms_amp;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1aa20fbab7c4f6c6530074c3935b4ff20c" kindref="member">MHO_BasicFringeInfo::calculate_theory_freqrms_phase</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>nchan,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>th_freqrms_phase<sp/>=<sp/>std::sqrt(nchan)<sp/>*<sp/>180.<sp/>/<sp/>(M_PI<sp/>*<sp/>snr);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>th_freqrms_phase;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1a5638ac4b70f64e1fc03401110f20b7d3" kindref="member">MHO_BasicFringeInfo::calculate_theory_freqrms_amp</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>nchan,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>th_freqrms_phase<sp/>=<sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1aa20fbab7c4f6c6530074c3935b4ff20c" kindref="member">calculate_theory_freqrms_phase</ref>(nchan,<sp/>snr);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>th_freqrms_amp<sp/>=<sp/>th_freqrms_phase<sp/>*<sp/>M_PI<sp/>*<sp/>100.<sp/>/<sp/>180.;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>th_freqrms_amp;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1aa4e7b6fc8eeb15fe085a2f778f3dd64b" kindref="member">MHO_BasicFringeInfo::correct_phases_mbd_anchor_sbd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_freq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>freq0,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>frequency_spacing,</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_mbd,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>totphase_deg,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>resphase_deg)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//see<sp/>fill_208.c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//fixes<sp/>up<sp/>the<sp/>phase<sp/>when<sp/>mbd_anchor<sp/>=<sp/>&apos;sbd&apos;<sp/>is<sp/>chosen<sp/>(instead<sp/>of<sp/>&apos;model&apos;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta_f<sp/>=<sp/>std::fmod(ref_freq<sp/>-<sp/>freq0,<sp/>frequency_spacing);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>totphase_deg<sp/>+=<sp/>360.0<sp/>*<sp/>delta_mbd<sp/>*<sp/>delta_f;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>totphase_deg<sp/>=<sp/>std::fmod(totphase_deg,<sp/>360.0);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>resphase_deg<sp/>+=<sp/>360.0<sp/>*<sp/>delta_mbd<sp/>*<sp/>delta_f;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>resphase_deg<sp/>=<sp/>std::fmod(resphase_deg,<sp/>360.0);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__BasicFringeInfo_1aa57287a0dda8eaec7932f00ee6e5e9bd" kindref="member">MHO_BasicFringeInfo::ion_covariance</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nfreq,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>famp,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>snr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>ref_freq,</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;<sp/>double<sp/>&gt;&amp;<sp/>chan_freqs,</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;<sp/>std::complex&lt;<sp/>double<sp/>&gt;<sp/>&gt;&amp;<sp/>chan_phasors,</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;<sp/>double<sp/>&gt;&amp;<sp/>ion_sigmas)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>j,<sp/>fr;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigma_fr,<sp/>fk,<sp/>f0,<sp/>w,</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[3][3],<sp/></highlight><highlight class="comment">//<sp/>normal<sp/>equation<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>C[3][3];<sp/></highlight><highlight class="comment">//<sp/>covariance<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b<sp/>=<sp/>-1.3445;<sp/></highlight><highlight class="comment">//<sp/>for<sp/>correct<sp/>TEC<sp/>units</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>ion_sigmas.resize(3,<sp/>0.0);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pre-clear<sp/>the<sp/>normal<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>i++)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>3;<sp/>j++)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[i][j]<sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(fr<sp/>=<sp/>0;<sp/>fr<sp/>&lt;<sp/>nfreq;<sp/>fr++)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>increment<sp/>normal<sp/>equations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sigma_fr<sp/>=<sp/>std::sqrt((</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)nfreq)<sp/>*<sp/>famp<sp/>/<sp/>(2.0<sp/>*<sp/>M_PI<sp/>*<sp/>snr<sp/>*<sp/>std::abs(chan_phasors[fr]));</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>coefficient<sp/>matrix<sp/>weight</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>1.0<sp/>/<sp/>(sigma_fr<sp/>*<sp/>sigma_fr);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>convenience<sp/>variables<sp/>to<sp/>match<sp/>rjc<sp/>memo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fk<sp/>=<sp/>1e-3<sp/>*<sp/>chan_freqs[fr];<sp/></highlight><highlight class="comment">//channel<sp/>frequency;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f0<sp/>=<sp/>1e-3<sp/>*<sp/>ref_freq;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(GHz)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[0][0]<sp/>+=<sp/>w<sp/>*<sp/>(fk<sp/>-<sp/>f0)<sp/>*<sp/>(fk<sp/>-<sp/>f0);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[0][1]<sp/>+=<sp/>w<sp/>*<sp/>(fk<sp/>-<sp/>f0);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[0][2]<sp/>+=<sp/>w<sp/>*<sp/>b<sp/>*<sp/>(fk<sp/>-<sp/>f0)<sp/>/<sp/>fk;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[1][1]<sp/>+=<sp/>w;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[1][2]<sp/>+=<sp/>w<sp/>*<sp/>b<sp/>/<sp/>fk;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A[2][2]<sp/>+=<sp/>w<sp/>*<sp/>(b<sp/>/<sp/>fk)<sp/>*<sp/>(b<sp/>/<sp/>fk);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>A[1][0]<sp/>=<sp/>A[0][1];<sp/></highlight><highlight class="comment">//<sp/>fill<sp/>in<sp/>rest<sp/>of<sp/>symmetric<sp/>normal<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>A[2][0]<sp/>=<sp/>A[0][2];</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>A[2][1]<sp/>=<sp/>A[1][2];</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ecode<sp/>=<sp/><ref refid="classhops_1_1MHO__MathUtilities_1a5ca2c1ae18c45c7ba38ed3ce405d9b3a" kindref="member">MHO_MathUtilities::minvert3</ref>(A,<sp/>C);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(ecode)</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1acd8d50c6722941e40e21c59ffba48011" kindref="member">msg_error</ref>(</highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;unable<sp/>to<sp/>compute<sp/>ionosphere<sp/>errors<sp/>due<sp/>to<sp/>singular<sp/>matrix&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std<sp/>devs.<sp/>are<sp/>sqrt<sp/>of<sp/>diag<sp/>of<sp/>covariance<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>i++)</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ion_sigmas[i]<sp/>=<sp/>std::sqrt(C[i][i]);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>normalize<sp/>covariance<sp/>to<sp/>get<sp/>correlation<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>i++)</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>3;<sp/>j++)</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>C[i][j]<sp/>/=<sp/>(ion_sigmas[i]<sp/>*<sp/>ion_sigmas[j]);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ionospheric<sp/>sigmas:<sp/>delay<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>1e3<sp/>*<sp/>ion_sigmas[0]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(ps),<sp/>phase<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>360.0<sp/>*<sp/>ion_sigmas[1]</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(deg),<sp/>dTEC<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ion_sigmas[2]<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ionosphere<sp/>correlation<sp/>matrix:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/>C[0][0]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>C[0][1]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>C[0][2]<sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/>C[1][0]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>C[1][1]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>C[1][2]<sp/>&lt;&lt;<sp/>eol);</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="MHO__Message_8hh_1a1e1991911fa5625912e391fd7876c575" kindref="member">msg_debug</ref>(</highlight><highlight class="stringliteral">&quot;fringe&quot;</highlight><highlight class="normal">,<sp/>C[2][0]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>C[2][1]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>C[2][2]<sp/>&lt;&lt;<sp/>eom);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Fringe/src/MHO_BasicFringeInfo.cc"/>
+  </compounddef>
+</doxygen>

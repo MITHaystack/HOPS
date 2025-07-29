@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structhops_1_1h5helper__complex__float" kind="struct" language="C++" prot="public">
+    <compoundname>hops::h5helper_complex_float</compoundname>
+    <includes refid="MHO__HDF5TypeCode_8hh" local="no">MHO_HDF5TypeCode.hh</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhops_1_1h5helper__complex__float_1a69b200e99f346adfb00c44af7ef92a7b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hops::h5helper_complex_float::imag</definition>
+        <argsstring></argsstring>
+        <name>imag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" line="44" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhops_1_1h5helper__complex__float_1abc64f0e2013092873533f7bd110e7e16" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hops::h5helper_complex_float::real</definition>
+        <argsstring></argsstring>
+        <name>real</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" line="43" column="11" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>float</label>
+      </node>
+      <node id="1">
+        <label>hops::h5helper_complex_float</label>
+        <link refid="structhops_1_1h5helper__complex__float"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>imag</edgelabel>
+          <edgelabel>real</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" line="41" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/HDF5/include/MHO_HDF5TypeCode.hh" bodystart="42" bodyend="45"/>
+    <listofallmembers>
+      <member refid="structhops_1_1h5helper__complex__float_1a69b200e99f346adfb00c44af7ef92a7b" prot="public" virt="non-virtual"><scope>hops::h5helper_complex_float</scope><name>imag</name></member>
+      <member refid="structhops_1_1h5helper__complex__float_1abc64f0e2013092873533f7bd110e7e16" prot="public" virt="non-virtual"><scope>hops::h5helper_complex_float</scope><name>real</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

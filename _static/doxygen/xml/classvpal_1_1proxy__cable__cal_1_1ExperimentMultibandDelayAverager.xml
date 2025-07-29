@@ -1,0 +1,409 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager" kind="class" language="Python" prot="public">
+    <compoundname>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">object</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a7d76cd77d178884b86a7597b69a0916b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::band_data_list</definition>
+        <argsstring></argsstring>
+        <name>band_data_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1010" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1010" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1afb4b456d8d3cfcb0cb116ef5349e080e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::band_diff</definition>
+        <argsstring></argsstring>
+        <name>band_diff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1030" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1030" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a0effe1eaef01a0bee07dc919dbe4501f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::bands</definition>
+        <argsstring></argsstring>
+        <name>bands</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1011" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1011" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a29d5f21913c98e733a6d73a65f5d5ccc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::dual_pol_mean_delay</definition>
+        <argsstring></argsstring>
+        <name>dual_pol_mean_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1031" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1031" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1aa2585f45e8fd13101d76fb87fa56e70b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::experiment_name</definition>
+        <argsstring></argsstring>
+        <name>experiment_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1013" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1013" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a8f2289bb3ecad27b771c61177d534003" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::file_lines</definition>
+        <argsstring></argsstring>
+        <name>file_lines</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1024" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1024" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a9d6e837274f96d3b88c0d9f7affa5543" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::mean_delay</definition>
+        <argsstring></argsstring>
+        <name>mean_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1029" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1029" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a942eb380ab9d370bc9f6c2e85200154c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::mean_scan_delay</definition>
+        <argsstring></argsstring>
+        <name>mean_scan_delay</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1020" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1020" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1af94cca6342d89276ca0d2e0af62db8a9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::pols</definition>
+        <argsstring></argsstring>
+        <name>pols</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1012" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1012" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a9c96243da199f880464faee30f8efe47" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_abs_time</definition>
+        <argsstring></argsstring>
+        <name>scan_abs_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1025" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1025" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4219c481f5699355bb7bf195efb84877" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_az</definition>
+        <argsstring></argsstring>
+        <name>scan_az</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1027" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1027" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a2e9087576c26f2cc40fe5a2d97e73bb8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_doy</definition>
+        <argsstring></argsstring>
+        <name>scan_doy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1016" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1016" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a175b1c5cfc7f2ec929ceed4379a7cd0d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_el</definition>
+        <argsstring></argsstring>
+        <name>scan_el</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1028" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1028" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1afd52749fa1e7de8206686785f391a219" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_hour</definition>
+        <argsstring></argsstring>
+        <name>scan_hour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1017" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1017" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a1080253a78677f629254bacbd547ff8a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_id</definition>
+        <argsstring></argsstring>
+        <name>scan_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1023" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1023" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4740153123d3c71a0bf820c1e5920a40" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_min</definition>
+        <argsstring></argsstring>
+        <name>scan_min</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1018" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1018" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a1457055c0ca6d0f0221bc1d68b840d0b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_name</definition>
+        <argsstring></argsstring>
+        <name>scan_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1021" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1021" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a8945bec46c0810239fb7d981430e832f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_rel_time</definition>
+        <argsstring></argsstring>
+        <name>scan_rel_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1026" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1026" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a5601af57eb4d8cf0c466d8e0b4c1c88b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_sec</definition>
+        <argsstring></argsstring>
+        <name>scan_sec</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1019" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1019" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a27e2988a12a7d13d4dd55446565a3919" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::scan_year</definition>
+        <argsstring></argsstring>
+        <name>scan_year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1015" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1015" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a5610e7ca8f390a95c3a66d23f10a5d41" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::src_name</definition>
+        <argsstring></argsstring>
+        <name>src_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1022" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1022" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a6d19dc3eca5215ac8eb8445a39f842f1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager::station_code</definition>
+        <argsstring></argsstring>
+        <name>station_code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1014" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1014" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a00cb16635acea06f7927eb552bbed880" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ExperimentMultibandDelayAverager.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1009" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1009" bodyend="1032"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4849951873cbcdd846a34cedb86aabfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ExperimentMultibandDelayAverager.add_band_data</definition>
+        <argsstring>(self, exp_pcc_band_delay_dat)</argsstring>
+        <name>add_band_data</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>exp_pcc_band_delay_dat</type>
+          <defname>exp_pcc_band_delay_dat</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>append the data for a particular band-pol </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1033" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1033" bodyend="1042"/>
+      </memberdef>
+      <memberdef kind="function" id="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4be083aa134462d8c04316725897eadf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structdef" kindref="compound">def</ref></type>
+        <definition>def vpal.proxy_cable_cal.ExperimentMultibandDelayAverager.average_band_delays</definition>
+        <argsstring>(self)</argsstring>
+        <name>average_band_delays</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>average the delays</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1043" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1043" bodyend="1116"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>simple class to average together the proxy-cable-cal delays of multple band-pols </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>vpal.proxy_cable_cal.ExperimentMultibandDelayAverager</label>
+        <link refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>object</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" line="1007" column="1" bodyfile="/home/barrettj/work/projects/hops-git/source/python_src/vpal_module/vpal/proxy_cable_cal.py" bodystart="1007" bodyend="1121"/>
+    <listofallmembers>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a00cb16635acea06f7927eb552bbed880" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>__init__</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4849951873cbcdd846a34cedb86aabfa" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>add_band_data</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4be083aa134462d8c04316725897eadf" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>average_band_delays</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a7d76cd77d178884b86a7597b69a0916b" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>band_data_list</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1afb4b456d8d3cfcb0cb116ef5349e080e" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>band_diff</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a0effe1eaef01a0bee07dc919dbe4501f" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>bands</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a29d5f21913c98e733a6d73a65f5d5ccc" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>dual_pol_mean_delay</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1aa2585f45e8fd13101d76fb87fa56e70b" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>experiment_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a8f2289bb3ecad27b771c61177d534003" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>file_lines</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a9d6e837274f96d3b88c0d9f7affa5543" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>mean_delay</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a942eb380ab9d370bc9f6c2e85200154c" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>mean_scan_delay</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1af94cca6342d89276ca0d2e0af62db8a9" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>pols</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a9c96243da199f880464faee30f8efe47" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_abs_time</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4219c481f5699355bb7bf195efb84877" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_az</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a2e9087576c26f2cc40fe5a2d97e73bb8" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_doy</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a175b1c5cfc7f2ec929ceed4379a7cd0d" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_el</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1afd52749fa1e7de8206686785f391a219" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_hour</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a1080253a78677f629254bacbd547ff8a" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_id</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a4740153123d3c71a0bf820c1e5920a40" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_min</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a1457055c0ca6d0f0221bc1d68b840d0b" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a8945bec46c0810239fb7d981430e832f" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_rel_time</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a5601af57eb4d8cf0c466d8e0b4c1c88b" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_sec</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a27e2988a12a7d13d4dd55446565a3919" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>scan_year</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a5610e7ca8f390a95c3a66d23f10a5d41" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>src_name</name></member>
+      <member refid="classvpal_1_1proxy__cable__cal_1_1ExperimentMultibandDelayAverager_1a6d19dc3eca5215ac8eb8445a39f842f1" prot="public" virt="non-virtual"><scope>vpal::proxy_cable_cal::ExperimentMultibandDelayAverager</scope><name>station_code</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

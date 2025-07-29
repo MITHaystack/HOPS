@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_c4883bfeea456b22d4c7899d23561ce2" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="MHO__PyConfigurePath_8hh">MHO_PyConfigurePath.hh</innerfile>
+    <innerfile refid="MHO__PyContainerStoreInterface_8hh">MHO_PyContainerStoreInterface.hh</innerfile>
+    <innerfile refid="MHO__PyFringeDataInterface_8hh">MHO_PyFringeDataInterface.hh</innerfile>
+    <innerfile refid="MHO__PyParameterStoreInterface_8hh">MHO_PyParameterStoreInterface.hh</innerfile>
+    <innerfile refid="MHO__PyScanStoreInterface_8hh">MHO_PyScanStoreInterface.hh</innerfile>
+    <innerfile refid="MHO__PyTableContainer_8hh">MHO_PyTableContainer.hh</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Plugins/PythonBindings/Containers/include/"/>
+  </compounddef>
+</doxygen>

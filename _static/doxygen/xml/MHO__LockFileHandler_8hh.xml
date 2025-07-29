@@ -1,0 +1,438 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MHO__LockFileHandler_8hh" kind="file" language="C++">
+    <compoundname>MHO_LockFileHandler.hh</compoundname>
+    <includes local="no">csignal</includes>
+    <includes local="no">cstdlib</includes>
+    <includes local="no">unistd.h</includes>
+    <includes refid="MHO__DirectoryInterface_8hh" local="yes">MHO_DirectoryInterface.hh</includes>
+    <includes refid="MHO__Tokenizer_8hh" local="yes">MHO_Tokenizer.hh</includes>
+    <includedby refid="MHO__FringeData_8cc" local="yes">MHO_FringeData.cc</includedby>
+    <includedby refid="MHO__MK4FringeExport_8cc" local="yes">MHO_MK4FringeExport.cc</includedby>
+    <includedby refid="MHO__LockFileHandler_8cc" local="yes">MHO_LockFileHandler.cc</includedby>
+    <incdepgraph>
+      <node id="18">
+        <label>atomic</label>
+      </node>
+      <node id="10">
+        <label>cstdint</label>
+      </node>
+      <node id="21">
+        <label>stdexcept</label>
+      </node>
+      <node id="22">
+        <label>MHO_Profiler.hh</label>
+        <link refid="MHO__Profiler_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>MHO_Message.hh</label>
+        <link refid="MHO__Message_8hh"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>ostream</label>
+      </node>
+      <node id="5">
+        <label>MHO_DirectoryInterface.hh</label>
+        <link refid="MHO__DirectoryInterface_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>MHO_TestAssertions.hh</label>
+        <link refid="MHO__TestAssertions_8hh"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>ctime</label>
+      </node>
+      <node id="24">
+        <label>MHO_Timer.hh</label>
+        <link refid="MHO__Timer_8hh"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>unistd.h</label>
+      </node>
+      <node id="7">
+        <label>vector</label>
+      </node>
+      <node id="15">
+        <label>sstream</label>
+      </node>
+      <node id="17">
+        <label>MHO_SelfName.hh</label>
+        <link refid="MHO__SelfName_8hh"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>cstdlib</label>
+      </node>
+      <node id="8">
+        <label>MHO_Tokenizer.hh</label>
+        <link refid="MHO__Tokenizer_8hh"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="1">
+        <label>MHO_LockFileHandler.hh</label>
+        <link refid="MHO__LockFileHandler_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>mutex</label>
+      </node>
+      <node id="2">
+        <label>csignal</label>
+      </node>
+      <node id="19">
+        <label>thread</label>
+      </node>
+      <node id="14">
+        <label>set</label>
+      </node>
+      <node id="16">
+        <label>stdio.h</label>
+      </node>
+      <node id="23">
+        <label>cstring</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>MHO_MK4FringeExport.cc</label>
+        <link refid="MHO__MK4FringeExport_8cc"/>
+      </node>
+      <node id="2">
+        <label>MHO_FringeData.cc</label>
+        <link refid="MHO__FringeData_8cc"/>
+      </node>
+      <node id="1">
+        <label>MHO_LockFileHandler.hh</label>
+        <link refid="MHO__LockFileHandler_8hh"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MHO_LockFileHandler.cc</label>
+        <link refid="MHO__LockFileHandler_8cc"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structhops_1_1lockfile__data" prot="public">hops::lockfile_data</innerclass>
+    <innerclass refid="classhops_1_1MHO__LockFileHandler" prot="public">hops::MHO_LockFileHandler</innerclass>
+    <innernamespace refid="namespacehops">hops</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a042fbeabf6dd83e6d1e4d6261ba32f6a" prot="public" static="no">
+        <name>LOCK_FILE_ERROR</name>
+        <initializer>-4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="14" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a984c7b1bc202cc0954403d5ff12f24af" prot="public" static="no">
+        <name>LOCK_FILESET_FAIL</name>
+        <initializer>-6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="12" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a20736cc5374941215563417e654e708f" prot="public" static="no">
+        <name>LOCK_PARSE_ERROR</name>
+        <initializer>-2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="16" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1ada14ed221c6fca414927b85f40752bad" prot="public" static="no">
+        <name>LOCK_PROCESS_HAS_PRIORITY</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="19" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a634af58707c7580779b4cfcf72b90e9d" prot="public" static="no">
+        <name>LOCK_PROCESS_NO_PRIORITY</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="17" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a8d804dc8f5cc64826a455c0b93ecaded" prot="public" static="no">
+        <name>LOCK_STALE_ERROR</name>
+        <initializer>-3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="15" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a680d6306c359d72e483fad9ebc01e605" prot="public" static="no">
+        <name>LOCK_STATUS_OK</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="18" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a64ba1a8d0182143f221401dc14e8fc06" prot="public" static="no">
+        <name>LOCK_TIMEOUT_ERROR</name>
+        <initializer>-5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="13" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="MHO__LockFileHandler_8hh_1a841777a085183b78e955e43d25a258a0" prot="public" static="no">
+        <name>MAX_LOCKNAME_LEN</name>
+        <initializer>512</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" line="22" column="9" bodyfile="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>MHO_LockFileHandler_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MHO_LockFileHandler_HH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;csignal&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdlib&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__DirectoryInterface_8hh" kindref="compound">MHO_DirectoryInterface.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MHO__Tokenizer_8hh" kindref="compound">MHO_Tokenizer.hh</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//return<sp/>error<sp/>codes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="MHO__LockFileHandler_8hh_1a984c7b1bc202cc0954403d5ff12f24af" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_FILESET_FAIL<sp/>-6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="MHO__LockFileHandler_8hh_1a64ba1a8d0182143f221401dc14e8fc06" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_TIMEOUT_ERROR<sp/>-5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="MHO__LockFileHandler_8hh_1a042fbeabf6dd83e6d1e4d6261ba32f6a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_FILE_ERROR<sp/>-4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="MHO__LockFileHandler_8hh_1a8d804dc8f5cc64826a455c0b93ecaded" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_STALE_ERROR<sp/>-3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="MHO__LockFileHandler_8hh_1a20736cc5374941215563417e654e708f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_PARSE_ERROR<sp/>-2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="MHO__LockFileHandler_8hh_1a634af58707c7580779b4cfcf72b90e9d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_PROCESS_NO_PRIORITY<sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="MHO__LockFileHandler_8hh_1a680d6306c359d72e483fad9ebc01e605" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_STATUS_OK<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="MHO__LockFileHandler_8hh_1ada14ed221c6fca414927b85f40752bad" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOCK_PROCESS_HAS_PRIORITY<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//number<sp/>of<sp/>chars<sp/>in<sp/>lock<sp/>file<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="MHO__LockFileHandler_8hh_1a841777a085183b78e955e43d25a258a0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_LOCKNAME_LEN<sp/>512</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehops" kindref="compound">hops</ref></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="structhops_1_1lockfile__data" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="45" refid="structhops_1_1lockfile__data_1ac3d9e99caf6c89e136dbd5e674dff30c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1ac3d9e99caf6c89e136dbd5e674dff30c" kindref="member">validity</ref>;</highlight></codeline>
+<codeline lineno="46" refid="structhops_1_1lockfile__data_1a3210a72fdbf90ff197027dee1f509458" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1a3210a72fdbf90ff197027dee1f509458" kindref="member">seq_number</ref>;</highlight></codeline>
+<codeline lineno="47" refid="structhops_1_1lockfile__data_1a7eb724704f2182d7b4f3dbcbf035d939" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1a7eb724704f2182d7b4f3dbcbf035d939" kindref="member">pid</ref>;</highlight></codeline>
+<codeline lineno="48" refid="structhops_1_1lockfile__data_1a999b1b73a45188519705a25c83e0515b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1a999b1b73a45188519705a25c83e0515b" kindref="member">time_sec</ref>;</highlight></codeline>
+<codeline lineno="49" refid="structhops_1_1lockfile__data_1a8914b7f80cfebbab8f6b203765b4f226" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1a8914b7f80cfebbab8f6b203765b4f226" kindref="member">time_usec</ref>;</highlight></codeline>
+<codeline lineno="50" refid="structhops_1_1lockfile__data_1a53b8808c9a468a7f4b5e7df60471220a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1a53b8808c9a468a7f4b5e7df60471220a" kindref="member">hostname</ref>[256];</highlight></codeline>
+<codeline lineno="51" refid="structhops_1_1lockfile__data_1a6aa9fff6b17ada52629baa6766ef08e8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1a6aa9fff6b17ada52629baa6766ef08e8" kindref="member">active_directory</ref>[<ref refid="MHO__LockFileHandler_8hh_1a841777a085183b78e955e43d25a258a0" kindref="member">MAX_LOCKNAME_LEN</ref>];</highlight></codeline>
+<codeline lineno="52" refid="structhops_1_1lockfile__data_1aebf2684f179af5e6d8652248b8327424" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structhops_1_1lockfile__data_1aebf2684f179af5e6d8652248b8327424" kindref="member">lockfile_name</ref>[<ref refid="MHO__LockFileHandler_8hh_1a841777a085183b78e955e43d25a258a0" kindref="member">MAX_LOCKNAME_LEN</ref>];</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="classhops_1_1MHO__LockFileHandler" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//since<sp/>this<sp/>is<sp/>a<sp/>singleton<sp/>we<sp/>need<sp/>to<sp/>remove<sp/>ability<sp/>to<sp/>copy/move</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="classhops_1_1MHO__LockFileHandler_1af77735f650ef61ac0a45db7868b35162" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__LockFileHandler_1af77735f650ef61ac0a45db7868b35162" kindref="member">MHO_LockFileHandler</ref>(<ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64" refid="classhops_1_1MHO__LockFileHandler_1ac4f095ebb6d76a0606fae2ffb38daa5b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__LockFileHandler_1ac4f095ebb6d76a0606fae2ffb38daa5b" kindref="member">MHO_LockFileHandler</ref>(<ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65" refid="classhops_1_1MHO__LockFileHandler_1ac6d86964596269bbbbfbf0cb44f9adeb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref>&amp;<sp/><ref refid="classhops_1_1MHO__LockFileHandler_1ac6d86964596269bbbbfbf0cb44f9adeb" kindref="member">operator=</ref>(<ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66" refid="classhops_1_1MHO__LockFileHandler_1a09d5931b3f0d7b0a5bd1d65bbf695fd1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref>&amp;<sp/><ref refid="classhops_1_1MHO__LockFileHandler_1a09d5931b3f0d7b0a5bd1d65bbf695fd1" kindref="member">operator=</ref>(<ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="classhops_1_1MHO__LockFileHandler_1aabef93e20d0d0403518d8dc08de627a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref>&amp;<sp/><ref refid="classhops_1_1MHO__LockFileHandler_1aabef93e20d0d0403518d8dc08de627a3" kindref="member">GetInstance</ref>()</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(fInstance<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fInstance<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref>();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*fInstance;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="classhops_1_1MHO__LockFileHandler_1a88820eb8d60605ffa83682fde3d57fe2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LockFileHandler_1a88820eb8d60605ffa83682fde3d57fe2" kindref="member">EnableLegacyMode</ref>()<sp/>{<sp/>fEnableLegacyMode<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="classhops_1_1MHO__LockFileHandler_1a44f7b1499660fcc6ef23e3a24308c763" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LockFileHandler_1a44f7b1499660fcc6ef23e3a24308c763" kindref="member">DisableLegacyMode</ref>()<sp/>{<sp/>fEnableLegacyMode<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LockFileHandler_1ad335247a398f32c8f08fe6a43c04bb02" kindref="member">WaitForWriteLock</ref>(std::string<sp/>directory,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>next_seq_no);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LockFileHandler_1a355c37825e5e948589ba4871d1a91465" kindref="member">RemoveWriteLock</ref>();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>HandleSignal(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>signal_value);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>init_lockfile_data(<ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>data);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>parse_lockfile_name(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>lockfile_name_base,<sp/><ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>result);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>create_lockfile(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>directory,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>lockfile_name,<sp/><ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>lock_data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_seq_no);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>check_stale(<ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>other);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lock_has_priority(<ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>ours,<sp/><ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>other);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>at_front(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>directory,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>lockfile_name,<sp/><ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>lock_data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cand_seq_no);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>remove_lockfile(<ref refid="structhops_1_1lockfile__data" kindref="compound">lockfile_data</ref>*<sp/>other);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>wait_for_write_lock(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>next_seq_no);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>get_max_seq_number(std::string<sp/>dir);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SetDirectory(std::string<sp/>dir);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhops_1_1MHO__LockFileHandler" kindref="compound">MHO_LockFileHandler</ref>()</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//register<sp/>the<sp/>various<sp/>signals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::signal(SIGINT,<sp/>&amp;HandleSignal);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::signal(SIGTERM,<sp/>&amp;HandleSignal);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::signal(SIGQUIT,<sp/>&amp;HandleSignal);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::signal(SIGSEGV,<sp/>&amp;HandleSignal);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::signal(SIGBUS,<sp/>&amp;HandleSignal);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::signal(SIGHUP,<sp/>&amp;HandleSignal);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::signal(SIGABRT,<sp/>&amp;HandleSignal);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fDirectory<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;./&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fEnableLegacyMode<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fTokenizer.<ref refid="classhops_1_1MHO__Tokenizer_1acaa09bc7d82e81eaa5a87933c3c5a8b9" kindref="member">SetDelimiter</ref>(</highlight><highlight class="stringliteral">&quot;.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fTokenizer.<ref refid="classhops_1_1MHO__Tokenizer_1a31385f3b994b43f013abc0313f0ccd8f" kindref="member">SetIncludeEmptyTokensFalse</ref>();</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>init_lockfile_data(&amp;fProcessLockFileData);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>~MHO_LockFileHandler(){};</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//static<sp/>global<sp/>class<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classhops_1_1MHO__LockFileHandler_1af77735f650ef61ac0a45db7868b35162" kindref="member">MHO_LockFileHandler</ref>*<sp/>fInstance;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//info<sp/>of<sp/>the<sp/>current<sp/>process</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structlockfile__data" kindref="compound">lockfile_data</ref><sp/>fProcessLockFileData;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//directory<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>fDirectory;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_DirectoryInterface<sp/>fDirInterface;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MHO_Tokenizer<sp/>fTokenizer;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fEnableLegacyMode;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hops</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight></codeline>
+    </programlisting>
+    <location file="/home/barrettj/work/projects/hops-git/source/cpp_src/Utilities/include/MHO_LockFileHandler.hh"/>
+  </compounddef>
+</doxygen>

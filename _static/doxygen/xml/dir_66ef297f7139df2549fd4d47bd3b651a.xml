@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_66ef297f7139df2549fd4d47bd3b651a" kind="dir">
+    <compoundname>mk4io</compoundname>
+    <innerfile refid="mk4__module_2mk4io_2____init_____8py">mk4_module/mk4io/__init__.py</innerfile>
+    <innerfile refid="mk4io_8py">mk4io.py</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/barrettj/work/projects/hops-git/source/python_src/mk4_module/mk4io/"/>
+  </compounddef>
+</doxygen>
